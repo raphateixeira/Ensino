@@ -1,0 +1,36 @@
+---
+title: "Fundamentos e Altoritmos de Métodos Numéricos"
+subtitle: "Cálculo Numérico"
+institute: "UFPA - CAMTUC - FEE"
+author: "Prof. Dr. Raphael Teixeira"
+#date: "08/12/202"
+output:
+  xaringan::moon_reader:
+    # css: [default, metropolis, metropolis-fonts]
+    css: [default,ufpa-fontes.css, ufpa.css]
+    lib_dir: libs
+    seal: true
+    nature:
+      #titleSlideClass: ["right", "top"]
+      highlightStyle: github
+      highlightLines: true
+      #highlightLanguage: ["r"]
+      countIncrementalSlides: false
+      ratio: "16:10"
+---
+
+# Métodos Numéricos
+
+- Raízes de funções transcedentais
+
+- Interpolação
+
+- Regressão
+
+- Derivação numérica
+
+- Integração numérica
+
+- Otimização
+
+- Identificação de sistemas
