@@ -1,0 +1,64 @@
+# Nome do fluxo de trabalho
+name: Renderizar e Publicar Metodos Numericos
+
+# Gatilho: executa quando há um push (envio) para o branch 'main'
+on:
+  push:
+    branches: [ main ]
+  # Permite que você execute o workflow manualmente na interface do GitHub
+  workflow_dispatch:
+
+# Permissões necessárias para que o workflow possa escrever no GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Definição dos trabalhos (jobs)
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest # O workflow será executado em um ambiente Linux
+
+    steps:
+      # 1. Checkout: Baixa o código do seu repositório
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      # 2. Configura o Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip' # Otimiza a instalação de pacotes Python
+          
+      # 3. Instala as dependências Python (numpy, matplotlib, etc.)
+      - name: Install dependencies
+        run: pip install numpy matplotlib
+
+      # 4. Configura o Quarto (ferramenta de renderização)
+      - name: Setup Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        
+      # 5. Renderiza o Projeto Quarto
+      - name: Render Quarto Project
+        uses: quarto-dev/quarto-actions/render@v2
+        # Define a pasta de saída para o GitHub Pages
+        with:
+          to: html
+          path: .
+          output-dir: docs # ⬅️ IMPORTANTE: Deve ser a mesma que você definiu em _quarto.yml
+
+      # 6. Configura o ambiente para o GitHub Pages
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      # 7. Faz o Deploy (Publicação) do conteúdo renderizado
+      - name: Upload artifact for deployment
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # A pasta 'docs' que contém o site renderizado
+          path: docs 
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
