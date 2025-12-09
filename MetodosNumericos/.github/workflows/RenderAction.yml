@@ -1,11 +1,11 @@
 # Nome do fluxo de trabalho
 name: Renderizar e Publicar Metodos Numericos
 
-# Gatilho: executa quando há um push (envio) para o branch 'main'
+# Gatilho: Executa quando há um push na branch 'main':
 on:
   push:
     branches: [ main ]
-  # Permite que você execute o workflow manualmente na interface do GitHub
+  # Executar o workflow manualmente na interface do GitHub
   workflow_dispatch:
 
 # Permissões necessárias para que o workflow possa escrever no GitHub Pages
@@ -29,7 +29,7 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
-          cache: 'pip' # Otimiza a instalação de pacotes Python
+          cache: 'pip'
           
       # 3. Instala as dependências Python (numpy, matplotlib, etc.)
       - name: Install dependencies

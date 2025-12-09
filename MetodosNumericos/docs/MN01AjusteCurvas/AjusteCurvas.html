@@ -128,7 +128,7 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Ajuste de Curvas</h1>
-  <p class="subtitle">Métodos Numéricos I</p>
+  <p class="subtitle">Métodos Numéricos</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -145,13 +145,32 @@ Prof.&nbsp;Dr.&nbsp;Raphael Teixeira
 <p>Construir função matemática, que tenha o “melhor ajuste” para uma série de dados observados, sujeitos a erros.</p>
 <div id="cell-fig-ajuste-linear" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
-<div id="fig-ajuste-linear" class="quarto-float quarto-figure quarto-figure-center" height="367" data-fig-align="center" width="660">
+<div id="fig-ajuste-linear" class="quarto-float quarto-figure quarto-figure-center" width="660" data-fig-align="center" height="367">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-ajuste-linear-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img data-src="AjusteCurvas_files/figure-revealjs/fig-ajuste-linear-output-1.png" id="fig-ajuste-linear" class="quarto-figure quarto-figure-center" width="660" height="367">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-ajuste-linear-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="o-problema-do-ajuste-de-curvas-1">🎯 O Problema do Ajuste de Curvas</h3>
+<p>Construir função matemática, que tenha o “melhor ajuste” para uma série de dados observados, sujeitos a erros.</p>
+<div id="cell-fig-ajuste-linear-erro" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div id="fig-ajuste-linear-erro" class="quarto-float quarto-figure quarto-figure-center" width="660" data-fig-align="center" height="367">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-ajuste-linear-erro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="AjusteCurvas_files/figure-revealjs/fig-ajuste-linear-erro-output-1.png" id="fig-ajuste-linear-erro" class="quarto-figure quarto-figure-center" width="660" height="367">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-ajuste-linear-erro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2
 </figcaption>
 </figure>
 </div>
@@ -174,8 +193,9 @@ Figure&nbsp;1
 <li>Permitir a <strong>predição</strong> de valores fora da faixa de dados observados (extrapolação).</li>
 </ol>
 </section>
-<section id="método-dos-mínimos-quadrados" class="slide level2">
-<h2>📈 Método dos Mínimos Quadrados</h2>
+<section class="slide level2">
+
+<h3 id="método-dos-mínimos-quadrados">📈 Método dos Mínimos Quadrados</h3>
 <h3 id="a-base-do-ajuste">A Base do Ajuste</h3>
 <p>O método dos mínimos quadrados (MMQ) é a técnica mais comum para encontrar o ajuste. Ele minimiza o erro quadrático total.</p>
 <p><span class="math display">\[
@@ -193,8 +213,9 @@ E = \sum_{i=1}^{n} [y_i - f(x_i)]^2
 \frac{\partial E}{\partial a_k} = 0
 \]</span></p>
 </section>
-<section id="ajuste-linear-reta" class="slide level2">
-<h2>📏 Ajuste Linear (Reta)</h2>
+<section class="slide level2">
+
+<h3 id="ajuste-linear-reta">📏 Ajuste Linear (Reta)</h3>
 <h3 id="equação-da-reta">Equação da Reta</h3>
 <p>Assumimos que o modelo de melhor ajuste é uma reta:</p>
 <p><span class="math display">\[
@@ -210,8 +231,9 @@ n a_0 + (\sum x_i) a_1 = \sum y_i \\
 \]</span></p>
 <p>Este é um sistema linear <span class="math inline">\(2 \times 2\)</span> que pode ser resolvido por métodos como Eliminação Gaussiana ou Cramer.</p>
 </section>
-<section id="exemplo-em-código" class="slide level2">
-<h2>💻 Exemplo em Código</h2>
+<section class="slide level2">
+
+<h3 id="exemplo-em-código">💻 Exemplo em Código</h3>
 <p>Vamos supor que temos os seguintes dados:</p>
 <table class="caption-top">
 <thead>
@@ -245,22 +267,17 @@ n a_0 + (\sum x_i) a_1 = \sum y_i \\
 </table>
 <h3 id="implementação-em-python">Implementação em Python</h3>
 <p>```python import numpy as np</p>
-</section>
-<section id="dados-de-exemplo" class="title-slide slide level1 center">
-<h1>Dados de exemplo</h1>
+<h3 id="dados-de-exemplo">Dados de exemplo</h3>
 <p>x = np.array([1.0, 2.0, 3.0, 4.0, 5.0]) y = np.array([0.5, 2.5, 2.0, 4.0, 3.5])</p>
 </section>
-
+<section>
 <section id="cálculo-dos-coeficientes-pelo-numpy-polyfit" class="title-slide slide level1 center">
 <h1>Cálculo dos coeficientes pelo numpy (polyfit)</h1>
 
 </section>
-
-<section id="o-grau-1-indica-ajuste-linear" class="title-slide slide level1 center">
-<h1>O grau 1 indica ajuste linear</h1>
+<h3 id="o-grau-1-indica-ajuste-linear">O grau 1 indica ajuste linear</h3>
 <p>coefs = np.polyfit(x, y, 1)</p>
 <p>print(f”Coeficiente a1 (inclinação): {coefs[0]:.4f}“) print(f”Coeficiente a0 (intercepto): {coefs[1]:.4f}“)</p>
-
 
 </section>
     </div>

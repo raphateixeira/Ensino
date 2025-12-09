@@ -3,9 +3,8 @@ project:
   output-dir: docs
 
 website:
-  # O website é definido, mas sem barras de navegação (navbar ou sidebar)
-  title: "Métodos Numéricos UFPA" 
-  # NOTA: O Quarto usará o 'index.qmd' como página inicial.
+  title: "Métodos Numéricos" 
+  # O Quarto usará o 'index.qmd' como página inicial.
   # Nenhum bloco 'navbar' ou 'sidebar' está presente.
   
 format:

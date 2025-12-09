@@ -13,6 +13,8 @@ editor: visual
 
 ### 🎯 O Problema do Ajuste de Curvas
 
+
+
 Construir função matemática, que tenha o "melhor ajuste" para uma série de dados observados, sujeitos a erros.
 
 ```{python}
@@ -26,28 +28,23 @@ import matplotlib.pyplot as plt
 plt.rcParams['font.size'] = 14
 plt.rcParams['legend.fontsize'] = 14 
 
-# 1. Dados Observados (Exemplo)
-x_obs = np.array([2.5, 3.1, 4.5, 6.0, 8.0])
-y_obs = np.array([2.0, 2.8, 3.5, 5.0, 6.5])
+# 1. Dados Observados
+xm = np.array([2.5, 3.1, 4.5, 5.3, 6.0, 6.9, 8.0])
+ym = np.array([2.0, 2.8, 3.5, 4.6, 5.0, 5.2, 6.5])
 
 # 2. Cálculo do Ajuste Linear (usando polyfit de grau 1)
 # Retorna os coeficientes [a1, a0]
-coefs = np.polyfit(x_obs, y_obs, 1) 
-a1 = coefs[0]
-a0 = coefs[1]
+theta = np.polyfit(xm, ym, 1) 
+a1 = theta[0]
+a0 = theta[1]
 
 # 3. Gerar a Reta de Ajuste
-# Cria uma função linear com os coeficientes encontrados
-reta_ajuste = a0 + a1 * x_obs 
+y = a0 + a1 * xm 
 
 # 4. Criação do Gráfico
-plt.figure(figsize=(8, 4)) # Define o tamanho da figura no Matplotlib (opcional)
-
-# Pontos observados
-plt.scatter(x_obs, y_obs, color='blue', label='Pontos Observados')
-
-# Reta de Ajuste
-plt.plot(x_obs, reta_ajuste, color='red', linestyle='-', label=f'Reta de Ajuste: y = {a1:.2f}x + {a0:.2f}')
+plt.figure(figsize=(8, 4))
+plt.scatter(xm, ym, color='blue', label='Dados')
+plt.plot(xm, y, color='red', linestyle='-', label=f'Modelo: y = {a1:.2f}x + {a0:.2f}')
 
 plt.xlabel('x')
 plt.ylabel('y')
@@ -58,6 +55,48 @@ plt.show()
 
 ---
 
+### 🎯 O Problema do Ajuste de Curvas
+
+Construir função matemática, que tenha o "melhor ajuste" para uma série de dados observados, sujeitos a erros.
+
+```{python}
+#| label: fig-ajuste-linear-erro
+#| echo: False
+#| fig-align: center
+#| out-width: "80%"
+
+import numpy as np
+import matplotlib.pyplot as plt
+plt.rcParams['font.size'] = 14
+plt.rcParams['legend.fontsize'] = 14 
+
+# 1. Dados Observados
+xm = np.array([2.5, 3.1, 4.5, 5.3, 6.0, 6.9, 8.0])
+ym = np.array([2.0, 2.8, 3.5, 4.6, 5.0, 5.2, 6.5])
+
+# 2. Cálculo do Ajuste Linear (usando polyfit de grau 1)
+# Retorna os coeficientes [a1, a0]
+theta = np.polyfit(xm, ym, 1) 
+a1 = theta[0]
+a0 = theta[1]
+
+# 3. Gerar a Reta de Ajuste
+y = a0 + a1 * xm 
+
+# 4. Criação do Gráfico
+plt.figure(figsize=(8, 4))
+plt.scatter(xm, ym, color='blue', label='Dados')
+plt.plot(xm, y, color='red', linestyle='-', label=f'Modelo: y = {a1:.2f}x + {a0:.2f}')
+
+plt.xlabel('x')
+plt.ylabel('y')
+plt.legend()
+plt.grid(True)
+plt.show()
+```
+
+
+---
 ### 📉 Gráfico do Ajuste Linear pelo Método dos Mínimos Quadrados
 
 
@@ -75,7 +114,7 @@ plt.show()
 
 ------------------------------------------------------------------------
 
-## 📈 Método dos Mínimos Quadrados
+### 📈 Método dos Mínimos Quadrados
 
 ### A Base do Ajuste
 
@@ -101,7 +140,7 @@ $$
 
 ------------------------------------------------------------------------
 
-## 📏 Ajuste Linear (Reta)
+### 📏 Ajuste Linear (Reta)
 
 ### Equação da Reta
 
@@ -126,7 +165,7 @@ Este é um sistema linear $2 \times 2$ que pode ser resolvido por métodos como 
 
 ------------------------------------------------------------------------
 
-## 💻 Exemplo em Código
+### 💻 Exemplo em Código
 
 Vamos supor que temos os seguintes dados:
 
@@ -142,13 +181,13 @@ Vamos supor que temos os seguintes dados:
 
 \`\`\`python import numpy as np
 
-# Dados de exemplo
+### Dados de exemplo
 
 x = np.array(\[1.0, 2.0, 3.0, 4.0, 5.0\]) y = np.array(\[0.5, 2.5, 2.0, 4.0, 3.5\])
 
 # Cálculo dos coeficientes pelo numpy (polyfit)
 
-# O grau 1 indica ajuste linear
+### O grau 1 indica ajuste linear
 
 coefs = np.polyfit(x, y, 1)
 
