@@ -1,30 +1,21 @@
 project:
   type: website
-  output-dir: _site
+  output-dir: docs
 
 website:
-  title: "Apresentações UFPA"
+  # O website é definido, mas sem barras de navegação (navbar ou sidebar)
+  title: "Métodos Numéricos UFPA" 
+  # NOTA: O Quarto usará o 'index.qmd' como página inicial.
+  # Nenhum bloco 'navbar' ou 'sidebar' está presente.
   
-  # Configuração da Barra Lateral (Sidebar)
-  sidebar:
-    style: "docked"
-    search: true
-    collapse-level: 2
-    contents:
-      - index.qmd # Página inicial
-      - section: "Temas"
-        contents: 
-          # Aqui você lista suas apresentações nas subpastas
-          - Apresentacao/Present01.qmd
-          # Adicione outras apresentações aqui, ex:
-          # - Apresentacao/Present02.qmd
-
-# --------------------------
-# Opções de Estilo e Formato
-# --------------------------
 format:
+  # Configuração para o website (index.qmd)
   html:
-    theme: default # Base de onde partem as customizações
-    # Inclui o SCSS customizado (foi movido para dentro de format:html)
-    css: TemaRTx.scss
-    toc: true # Habilita Sumário nas páginas HTML (se aplicável)
+    # APLICAÇÃO DO TEMA SCSS: Processa as variáveis definidas em TemaRTx.scss
+    theme: TemaRTx.scss 
+    lang: pt-BR
+    
+  # Configuração para os Slides (AjusteCurvas.qmd e RaizesNaoLineares.qmd)
+  revealjs:
+    # APLICAÇÃO DO TEMA SCSS: Garante que os estilos do TemaRTx.scss sejam usados nos slides
+    theme: TemaRTx.scss

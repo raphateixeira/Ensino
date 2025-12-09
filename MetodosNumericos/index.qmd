@@ -7,9 +7,23 @@ date: ""
 format: html
 ---
 
-## 🎓 Conteúdo:
+## 🎓 Conteúdo
 
 Nesta página, você encontra o material de apoio para a disciplina. Cada tópico é uma apresentação de slides interativa.
 
-* **[Ajuste de Curvas](MN01AjusteCurvas/AjusteCurvas.qmd)**
+* **[Apresentação 1: Ajuste de Curvas](MN01AjusteCurvas/AjusteCurvas.html)**
     * *Tópicos:* Método dos Mínimos Quadrados (MMQ), Ajuste Linear, Regressão Polinomial.
+* **[Apresentação 2: Raízes de Equações Não Lineares](MN02RaizesNaoLineares/RaizesNaoLineares.html)**
+    * *Tópicos:* Métodos da Bisseção, Newton-Raphson.
+
+---
+
+### 💡 Próximos Tópicos
+
+* Sistemas Lineares
+* Interpolação
+* Integração Numérica
+
+### 🚀 Como Usar
+
+Para visualizar as apresentações, navegue pelos links acima. Lembre-se que os arquivos `.html` são gerados pelo Quarto ao rodar o comando `quarto render` no seu terminal!
