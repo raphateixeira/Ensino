@@ -1,7 +1,4 @@
-# MetodosNumericos
-Fundamentos matemáticos e algoritmos de métodos numéricos.
-
- Métodos Numéricos
+# Metodos Numericos
 
 - Raízes de funções transcedentais
 

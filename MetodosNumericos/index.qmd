@@ -1,0 +1,15 @@
+---
+title: "Métodos Numéricos"
+subtitle: "Apresentações de Slides"
+institute: "Universidade Federal do Pará"
+author: "Prof. Dr. Raphael Teixeira"
+date: ""
+format: html
+---
+
+## 🎓 Conteúdo:
+
+Nesta página, você encontra o material de apoio para a disciplina. Cada tópico é uma apresentação de slides interativa.
+
+* **[Ajuste de Curvas](MN01AjusteCurvas/AjusteCurvas.qmd)**
+    * *Tópicos:* Método dos Mínimos Quadrados (MMQ), Ajuste Linear, Regressão Polinomial.
