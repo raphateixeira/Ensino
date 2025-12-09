@@ -17,3 +17,9 @@ format:
   revealjs:
     theme: default
     scss: TemaRTx.scss
+    transition: fade
+    slide-number: true
+    footer: "Métodos Numéricos UFPA - Prof. Dr. Raphael Teixeira"
+    toc: false
+    fontawesome: true
+    academicons: true

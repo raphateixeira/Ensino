@@ -23,7 +23,3 @@ Nesta página, você encontra o material de apoio para a disciplina. Cada tópic
 * Sistemas Lineares
 * Interpolação
 * Integração Numérica
-
-### 🚀 Como Usar
-
-Para visualizar as apresentações, navegue pelos links acima. Lembre-se que os arquivos `.html` são gerados pelo Quarto ao rodar o comando `quarto render` no seu terminal!

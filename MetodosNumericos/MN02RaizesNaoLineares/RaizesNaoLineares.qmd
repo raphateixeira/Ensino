@@ -1,6 +1,6 @@
 ---
 title: "Raízes de Equações Não Lineares"
-subtitle: "Métodos Numéricos I"
+subtitle: "Métodos Numéricos"
 author: "Prof. Dr. Raphael Teixeira"
 date: ""
 format: 

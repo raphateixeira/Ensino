@@ -46,21 +46,14 @@
     "href": "index.html",
     "title": "Métodos Numéricos",
     "section": "",
-    "text": "Nesta página, você encontra o material de apoio para a disciplina. Cada tópico é uma apresentação de slides interativa.\n\nAjuste de Curvas\n\nTópicos: Método dos Mínimos Quadrados (MMQ), Ajuste Linear, Regressão Polinomial.\n\nRaízes de Equações Não Lineares\n\nTópicos: Métodos da Bisseção, Newton-Raphson.\n\n\n\n\n\n\nSistemas Lineares\nInterpolação\nIntegração Numérica\n\n\n\n\nPara visualizar as apresentações, navegue pelos links acima. Lembre-se que os arquivos .html são gerados pelo Quarto ao rodar o comando quarto render no seu terminal!"
+    "text": "Nesta página, você encontra o material de apoio para a disciplina. Cada tópico é uma apresentação de slides interativa.\n\nAjuste de Curvas\n\nTópicos: Método dos Mínimos Quadrados (MMQ), Ajuste Linear, Regressão Polinomial.\n\nRaízes de Equações Não Lineares\n\nTópicos: Métodos da Bisseção, Newton-Raphson.\n\n\n\n\n\n\nSistemas Lineares\nInterpolação\nIntegração Numérica"
   },
   {
     "objectID": "index.html#conteúdo",
     "href": "index.html#conteúdo",
     "title": "Métodos Numéricos",
     "section": "",
-    "text": "Nesta página, você encontra o material de apoio para a disciplina. Cada tópico é uma apresentação de slides interativa.\n\nAjuste de Curvas\n\nTópicos: Método dos Mínimos Quadrados (MMQ), Ajuste Linear, Regressão Polinomial.\n\nRaízes de Equações Não Lineares\n\nTópicos: Métodos da Bisseção, Newton-Raphson.\n\n\n\n\n\n\nSistemas Lineares\nInterpolação\nIntegração Numérica\n\n\n\n\nPara visualizar as apresentações, navegue pelos links acima. Lembre-se que os arquivos .html são gerados pelo Quarto ao rodar o comando quarto render no seu terminal!"
-  },
-  {
-    "objectID": "MN01AjusteCurvas/AjusteCurvas.html#introdução-e-objetivos",
-    "href": "MN01AjusteCurvas/AjusteCurvas.html#introdução-e-objetivos",
-    "title": "Ajuste de Curvas",
-    "section": "🎯 Introdução e Objetivos",
-    "text": "🎯 Introdução e Objetivos\nO Problema do Ajuste de Curvas\nO ajuste de curvas é o processo de construir uma curva, ou função matemática, que tenha o “melhor ajuste” para uma série de pontos de dados observados, frequentemente sujeitos a erros.\n\nInterpolação: A curva passa exatamente por todos os pontos (exato).\nAjuste: A curva se aproxima da tendência dos pontos (aproximado).\n\nObjetivos\n\nDeterminar a função que melhor representa o fenômeno.\nPermitir a predição de valores fora da faixa de dados observados (extrapolação)."
+    "text": "Nesta página, você encontra o material de apoio para a disciplina. Cada tópico é uma apresentação de slides interativa.\n\nAjuste de Curvas\n\nTópicos: Método dos Mínimos Quadrados (MMQ), Ajuste Linear, Regressão Polinomial.\n\nRaízes de Equações Não Lineares\n\nTópicos: Métodos da Bisseção, Newton-Raphson.\n\n\n\n\n\n\nSistemas Lineares\nInterpolação\nIntegração Numérica"
   },
   {
     "objectID": "MN01AjusteCurvas/AjusteCurvas.html#método-dos-mínimos-quadrados",

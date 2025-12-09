@@ -7,6 +7,10 @@ $yellow-ufpa: #FFD700;
 $black-ufpa: #231F20;
 $white: #FFFFFF;
 
+// Fontes:
+$main-font-size: 18px;
+$code-font-family: 'Courier New', Courier, monospace;
+
 // Configuração do Tema Bootstrap
 $primary: $blue-ufpa;
 $secondary: $red-ufpa;
@@ -32,7 +36,7 @@ h1, h2, h3, h4, h5, h6 {
 // 1. Título da Capa da Apresentação (field 'title:' no YAML)
 // Este é o principal ajuste para controlar o tamanho do título na capa.
 .title {
-  font-size: 0.5em !important; /* Ajuste aqui o tamanho desejado */
+  font-size: 0.4em !important; /* Ajuste aqui o tamanho desejado */
   line-height: 1.0;
 }
 
