@@ -6,6 +6,7 @@ website:
   title: "Métodos Numéricos" 
   # O Quarto usará o 'index.qmd' como página inicial.
   # Nenhum bloco 'navbar' ou 'sidebar' está presente.
+
   
 format:
   html:
@@ -16,9 +17,12 @@ format:
   revealjs:
     theme: default
     scss: TemaRTx.scss
-    transition: fade
+    transition: slide
     slide-number: true
     footer: "Métodos Numéricos UFPA - Prof. Dr. Raphael Teixeira"
-    toc: false
-    fontawesome: true
-    academicons: true
+    width: 1600      # Largura
+    height: 900       # Altura
+    code-theme: monokai
+    code-font-size: 2.0em
+    code-line-numbers: true
+    

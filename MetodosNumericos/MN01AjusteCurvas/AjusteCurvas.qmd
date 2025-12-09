@@ -5,150 +5,135 @@ author: "Prof. Dr. Raphael Teixeira"
 date: ""
 format: 
   revealjs:
-    footer: "UFPA - CAMTUC - FEE  - Ajuste de Curvas"
+    footer: "UFPA - CAMTUC - FEE  | Métodos Numéricos - Ajuste de Curvas | Prof. Dr. Raphael Teixeira"
     slide-number: true
     transition: fade
 editor: visual
----
-
-### 🎯 O Problema do Ajuste de Curvas
-
-
-
-Construir função matemática, que tenha o "melhor ajuste" para uma série de dados observados, sujeitos a erros.
-
-```{python}
-#| label: fig-ajuste-linear
-#| echo: False
-#| fig-align: center
-#| out-width: "80%"
-
-import numpy as np
-import matplotlib.pyplot as plt
-plt.rcParams['font.size'] = 14
-plt.rcParams['legend.fontsize'] = 14 
-
-# 1. Dados Observados
-xm = np.array([2.5, 3.1, 4.5, 5.3, 6.0, 6.9, 8.0])
-ym = np.array([2.0, 2.8, 3.5, 4.6, 5.0, 5.2, 6.5])
-
-# 2. Cálculo do Ajuste Linear (usando polyfit de grau 1)
-# Retorna os coeficientes [a1, a0]
-theta = np.polyfit(xm, ym, 1) 
-a1 = theta[0]
-a0 = theta[1]
-
-# 3. Gerar a Reta de Ajuste
-y = a0 + a1 * xm 
-
-# 4. Criação do Gráfico
-plt.figure(figsize=(8, 4))
-plt.scatter(xm, ym, color='blue', label='Dados')
-plt.plot(xm, y, color='red', linestyle='-', label=f'Modelo: y = {a1:.2f}x + {a0:.2f}')
-
-plt.xlabel('x')
-plt.ylabel('y')
-plt.legend()
-plt.grid(True)
-plt.show()
-```
 
 ---
 
 ### 🎯 O Problema do Ajuste de Curvas
 
-Construir função matemática, que tenha o "melhor ajuste" para uma série de dados observados, sujeitos a erros.
 
-```{python}
-#| label: fig-ajuste-linear-erro
-#| echo: False
-#| fig-align: center
-#| out-width: "80%"
+**Estimar** uma função que melhor se ajuste a um conjunto de dados:
 
-import numpy as np
-import matplotlib.pyplot as plt
-plt.rcParams['font.size'] = 14
-plt.rcParams['legend.fontsize'] = 14 
+::::: columns
 
-# 1. Dados Observados
-xm = np.array([2.5, 3.1, 4.5, 5.3, 6.0, 6.9, 8.0])
-ym = np.array([2.0, 2.8, 3.5, 4.6, 5.0, 5.2, 6.5])
+::: {.column width="15%"}
+<br>
 
-# 2. Cálculo do Ajuste Linear (usando polyfit de grau 1)
-# Retorna os coeficientes [a1, a0]
-theta = np.polyfit(xm, ym, 1) 
-a1 = theta[0]
-a0 = theta[1]
+| $x$ | $y$ |
+|-----|-----|
+| 1.0 | 0.5 |
+| 2.0 | 2.5 |
+| 3.0 | 2.0 |
+| 4.0 | 4.0 |
+| 5.0 | 3.5 |
 
-# 3. Gerar a Reta de Ajuste
-y = a0 + a1 * xm 
-
-# 4. Criação do Gráfico
-plt.figure(figsize=(8, 4))
-plt.scatter(xm, ym, color='blue', label='Dados')
-plt.plot(xm, y, color='red', linestyle='-', label=f'Modelo: y = {a1:.2f}x + {a0:.2f}')
-
-plt.xlabel('x')
-plt.ylabel('y')
-plt.legend()
-plt.grid(True)
-plt.show()
-```
-
-
----
-### 📉 Gráfico do Ajuste Linear pelo Método dos Mínimos Quadrados
-
-
-::: incremental
--   **Interpolação:** A curva **passa** exatamente por todos os pontos (exato).
--   **Ajuste:** A curva **se aproxima** da tendência dos pontos (aproximado).
 :::
 
+::: {.column width="40%"}
+
+<br>
+<br>
+<br>
+
+```{python}
+#| eval: false 
+#| echo: true 
+#| code-block-id: fonte-grande-codigo
+#| highlight-style: github-dark
+
+import numpy as np
+  
+x = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
+y = np.array([0.5, 2.5, 2.0, 4.0, 3.5])
+```
+
+:::
+
+::: {.column width="45%"}
+
+<br><br>
+
+```{python}
+#| echo: False
+#| fig-align: center
+#| out-width: "100%"
+
+import numpy as np
+import matplotlib.pyplot as plt
+plt.rcParams['font.size'] = 16
+plt.rcParams['legend.fontsize'] = 16 
+
+# 1. Dados Observados
+xm = np.array([2.5, 3.1, 4.5, 5.3, 6.0, 6.9, 8.0])
+ym = np.array([2.0, 2.8, 3.5, 4.6, 5.0, 5.2, 6.5])
+
+# 2. Cálculo do Ajuste Linear (usando polyfit de grau 1)
+# Retorna os coeficientes [a1, a0]
+theta = np.polyfit(xm, ym, 1) 
+a1 = theta[0]
+a0 = theta[1]
+
+# 3. Gerar a Reta de Ajuste
+y = a0 + a1 * xm 
+
+# 4. Criação do Gráfico
+plt.figure(figsize=(8, 5))
+plt.scatter(xm, ym, color='blue', label='Dados')
+plt.plot(xm, y, color='red', linestyle='-', label=f'Modelo: y = {a1:.2f}x + {a0:.2f}')
+
+plt.xlabel('x')
+plt.ylabel('y')
+plt.legend()
+plt.grid(True)
+plt.show()
+```
+
+:::
+:::::
+
+Pelo padrão, busca-se ajustar uma reta $y = f(x) = a_1x + a_0$.
+
+
 ---
 
-### Objetivos
+### 📈 Minimização quadrática
 
-1.  Determinar a função que melhor representa o fenômeno.
-2.  Permitir a **predição** de valores fora da faixa de dados observados (extrapolação).
-
-------------------------------------------------------------------------
-
-### 📈 Método dos Mínimos Quadrados
-
-### A Base do Ajuste
-
-O método dos mínimos quadrados (MMQ) é a técnica mais comum para encontrar o ajuste. Ele minimiza o erro quadrático total.
-
+Considera-se a soma dos erros (resíduos) ao quadrado:
 $$
-E = \sum_{i=1}^{n} [y_i - f(x_i)]^2
+E_{\theta} = \sum_{i=1}^{n} [y_i - f(x_i)]^2
 $$
 
 Onde:
 
--   $E$ é o erro quadrático total.
--   $y_i$ é o valor real (observado).
+-   $E_{\theta}$ é o erro quadrático total.
+-   $y_i$ $i$ valor real (observado).
 -   $f(x_i)$ é o valor previsto pela função de ajuste.
 
-### Minimização
+Busca-se ajustar os coeficientes $\theta = [a_1, a_0]^T\;$ de $f(\cdot)\;$ mapa _minimizar_ $E_{\theta}$.
 
-Para encontrar os parâmetros ótimos (ex: $a_0$ e $a_1$ em uma reta), calculamos as derivadas parciais do erro $E$ em relação a cada parâmetro e as igualamos a zero:
+---
 
-$$
-\frac{\partial E}{\partial a_k} = 0
-$$
+### Otimização: minimizar $E_{\theta}$
 
-------------------------------------------------------------------------
-
-### 📏 Ajuste Linear (Reta)
-
-### Equação da Reta
-
-Assumimos que o modelo de melhor ajuste é uma reta:
+Calcular derivadas parciais do erro $E_{\theta}$ e igualar a zero.
 
 $$
-y = a_0 + a_1 x
+\frac{\partial E_{\theta}}{\partial a_k} = 0
 $$
+
+Para $a_1$ e $a_0$ em uma reta, temos: 
+$$
+\begin{align}
+\frac{\partial E}{\partial a_0} &= -2 \sum_{i=1}^{n} [y_i - (a_1 x_i + a_0)] = 0 \\
+\frac{\partial E}{\partial a_1} &= -2 \sum\_{i=1}^{n} [y_i - (a_1 x_i + a_0)] x_i = 0
+\end{align}
+$$
+
+
+---
 
 ### Sistema de Equações Normais
 
@@ -161,34 +146,49 @@ n a_0 + (\sum x_i) a_1 = \sum y_i \\
 \end{cases}
 $$
 
-Este é um sistema linear $2 \times 2$ que pode ser resolvido por métodos como Eliminação Gaussiana ou Cramer.
+Este $2 \times 2$ pode ser resolvido por Eliminação Gaussiana.
 
-------------------------------------------------------------------------
+Na forma vetorial matricial:
 
-### 💻 Exemplo em Código
+$$\begin{pmatrix} n & \sum x_i \\ \sum x_i & \sum x_i^2 \end{pmatrix}
+\begin{pmatrix} a_0 \\ a_1 \end{pmatrix}
+=
+\begin{pmatrix} \sum y_i \\ \sum x_i y_i \end{pmatrix}$$
 
-Vamos supor que temos os seguintes dados:
+---
 
-| $x$ | $y$ |
-|-----|-----|
-| 1.0 | 0.5 |
-| 2.0 | 2.5 |
-| 3.0 | 2.0 |
-| 4.0 | 4.0 |
-| 5.0 | 3.5 |
+<!--
 
-### Implementação em Python
 
-\`\`\`python import numpy as np
+
+### Minimização
+
+Determinar parâmetros ótimos:Calcular derivadas parciais do erro $E$ em relação a cada parâmetro e igualar a zero.
+
+$$
+\frac{\partial E}{\partial a_k} = 0
+$$
+
+Onde $a_k$ são os parâmetros do modelo (ex: $a_0$, $a_1$, ...).
+
+Para $a_0$ e $a_1$ em uma reta, temos: 
+$$
+\frac{\partial E}{\partial a_0} = -2 \sum_{i=1}^{n} [y_i - (a_0 + a_1 x_i)] = 0
+\frac{\partial E}{\partial a_1} = -2 \sum\_{i=1}\^{n} \[y_i - (a_0 + a_1 x_i)\] x_i = 0
+$$
+
+---
+
+
+
+---
 
 ### Dados de exemplo
 
-x = np.array(\[1.0, 2.0, 3.0, 4.0, 5.0\]) y = np.array(\[0.5, 2.5, 2.0, 4.0, 3.5\])
+```{python}
+import numpy as np
+x = np.array([1.0, 2.0, 3.0, 4.0, 5.0]) 
+y = np.array([0.5, 2.5, 2.0, 4.0, 3.5])
+```
 
-# Cálculo dos coeficientes pelo numpy (polyfit)
-
-### O grau 1 indica ajuste linear
-
-coefs = np.polyfit(x, y, 1)
-
-print(f"Coeficiente a1 (inclinação): {coefs\[0\]:.4f}") print(f"Coeficiente a0 (intercepto): {coefs\[1\]:.4f}")
+-->

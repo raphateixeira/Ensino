@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.8.24">
 
   <meta name="author" content="Prof.&nbsp;Dr.&nbsp;Raphael Teixeira">
-  <title>Métodos Numéricos UFPA – Ajuste de Curvas</title>
+  <title>Métodos Numéricos – Ajuste de Curvas</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -28,6 +28,72 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -142,99 +208,10 @@ Prof.&nbsp;Dr.&nbsp;Raphael Teixeira
 <section class="slide level2">
 
 <h3 id="o-problema-do-ajuste-de-curvas">🎯 O Problema do Ajuste de Curvas</h3>
-<p>Construir função matemática, que tenha o “melhor ajuste” para uma série de dados observados, sujeitos a erros.</p>
-<div id="cell-fig-ajuste-linear" class="cell" data-execution_count="1">
-<div class="cell-output cell-output-display">
-<div id="fig-ajuste-linear" class="quarto-float quarto-figure quarto-figure-center" width="660" data-fig-align="center" height="367">
-<figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-ajuste-linear-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="AjusteCurvas_files/figure-revealjs/fig-ajuste-linear-output-1.png" id="fig-ajuste-linear" class="quarto-figure quarto-figure-center" width="660" height="367">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-ajuste-linear-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 id="o-problema-do-ajuste-de-curvas-1">🎯 O Problema do Ajuste de Curvas</h3>
-<p>Construir função matemática, que tenha o “melhor ajuste” para uma série de dados observados, sujeitos a erros.</p>
-<div id="cell-fig-ajuste-linear-erro" class="cell" data-execution_count="2">
-<div class="cell-output cell-output-display">
-<div id="fig-ajuste-linear-erro" class="quarto-float quarto-figure quarto-figure-center" width="660" data-fig-align="center" height="367">
-<figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-ajuste-linear-erro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="AjusteCurvas_files/figure-revealjs/fig-ajuste-linear-erro-output-1.png" id="fig-ajuste-linear-erro" class="quarto-figure quarto-figure-center" width="660" height="367">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-ajuste-linear-erro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 id="gráfico-do-ajuste-linear-pelo-método-dos-mínimos-quadrados">📉 Gráfico do Ajuste Linear pelo Método dos Mínimos Quadrados</h3>
-<ul>
-<li class="fragment"><strong>Interpolação:</strong> A curva <strong>passa</strong> exatamente por todos os pontos (exato).</li>
-<li class="fragment"><strong>Ajuste:</strong> A curva <strong>se aproxima</strong> da tendência dos pontos (aproximado).</li>
-</ul>
-</section>
-<section class="slide level2">
-
-<h3 id="objetivos">Objetivos</h3>
-<ol type="1">
-<li>Determinar a função que melhor representa o fenômeno.</li>
-<li>Permitir a <strong>predição</strong> de valores fora da faixa de dados observados (extrapolação).</li>
-</ol>
-</section>
-<section class="slide level2">
-
-<h3 id="método-dos-mínimos-quadrados">📈 Método dos Mínimos Quadrados</h3>
-<h3 id="a-base-do-ajuste">A Base do Ajuste</h3>
-<p>O método dos mínimos quadrados (MMQ) é a técnica mais comum para encontrar o ajuste. Ele minimiza o erro quadrático total.</p>
-<p><span class="math display">\[
-E = \sum_{i=1}^{n} [y_i - f(x_i)]^2
-\]</span></p>
-<p>Onde:</p>
-<ul>
-<li><span class="math inline">\(E\)</span> é o erro quadrático total.</li>
-<li><span class="math inline">\(y_i\)</span> é o valor real (observado).</li>
-<li><span class="math inline">\(f(x_i)\)</span> é o valor previsto pela função de ajuste.</li>
-</ul>
-<h3 id="minimização">Minimização</h3>
-<p>Para encontrar os parâmetros ótimos (ex: <span class="math inline">\(a_0\)</span> e <span class="math inline">\(a_1\)</span> em uma reta), calculamos as derivadas parciais do erro <span class="math inline">\(E\)</span> em relação a cada parâmetro e as igualamos a zero:</p>
-<p><span class="math display">\[
-\frac{\partial E}{\partial a_k} = 0
-\]</span></p>
-</section>
-<section class="slide level2">
-
-<h3 id="ajuste-linear-reta">📏 Ajuste Linear (Reta)</h3>
-<h3 id="equação-da-reta">Equação da Reta</h3>
-<p>Assumimos que o modelo de melhor ajuste é uma reta:</p>
-<p><span class="math display">\[
-y = a_0 + a_1 x
-\]</span></p>
-<h3 id="sistema-de-equações-normais">Sistema de Equações Normais</h3>
-<p>A aplicação do MMQ leva ao seguinte sistema (para encontrar <span class="math inline">\(a_0\)</span> e <span class="math inline">\(a_1\)</span>):</p>
-<p><span class="math display">\[
-\begin{cases}
-n a_0 + (\sum x_i) a_1 = \sum y_i \\
-(\sum x_i) a_0 + (\sum x_i^2) a_1 = \sum x_i y_i
-\end{cases}
-\]</span></p>
-<p>Este é um sistema linear <span class="math inline">\(2 \times 2\)</span> que pode ser resolvido por métodos como Eliminação Gaussiana ou Cramer.</p>
-</section>
-<section class="slide level2">
-
-<h3 id="exemplo-em-código">💻 Exemplo em Código</h3>
-<p>Vamos supor que temos os seguintes dados:</p>
+<p><strong>Estimar</strong> uma função que melhor se ajuste a um conjunto de dados:</p>
+<div class="columns">
+<div class="column" style="width:15%;">
+<p><br></p>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -265,25 +242,113 @@ n a_0 + (\sum x_i) a_1 = \sum y_i \\
 </tr>
 </tbody>
 </table>
-<h3 id="implementação-em-python">Implementação em Python</h3>
-<p>```python import numpy as np</p>
-<h3 id="dados-de-exemplo">Dados de exemplo</h3>
-<p>x = np.array([1.0, 2.0, 3.0, 4.0, 5.0]) y = np.array([0.5, 2.5, 2.0, 4.0, 3.5])</p>
+</div><div class="column" style="width:40%;">
+<p><br> <br> <br></p>
+<div id="0bdc26a4" class="cell" data-code-block-id="fonte-grande-codigo" data-highlight-style="github-dark" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a></a>&nbsp; </span>
+<span id="cb1-3"><a></a>x <span class="op">=</span> np.array([<span class="fl">1.0</span>, <span class="fl">2.0</span>, <span class="fl">3.0</span>, <span class="fl">4.0</span>, <span class="fl">5.0</span>])</span>
+<span id="cb1-4"><a></a>y <span class="op">=</span> np.array([<span class="fl">0.5</span>, <span class="fl">2.5</span>, <span class="fl">2.0</span>, <span class="fl">4.0</span>, <span class="fl">3.5</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div><div class="column" style="width:45%;">
+<p><br><br></p>
+<div id="2c43ac69" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="AjusteCurvas_files/figure-revealjs/cell-3-output-1.png" class="quarto-figure quarto-figure-center" width="664" height="445"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+<p>Pelo padrão, busca-se ajustar uma reta <span class="math inline">\(y = f(x) = a_1x + a_0\)</span>.</p>
 </section>
-<section>
-<section id="cálculo-dos-coeficientes-pelo-numpy-polyfit" class="title-slide slide level1 center">
-<h1>Cálculo dos coeficientes pelo numpy (polyfit)</h1>
+<section class="slide level2">
 
+<h3 id="minimização-quadrática">📈 Minimização quadrática</h3>
+<p>Considera-se a soma dos erros (resíduos) ao quadrado: <span class="math display">\[
+E_{\theta} = \sum_{i=1}^{n} [y_i - f(x_i)]^2
+\]</span></p>
+<p>Onde:</p>
+<ul>
+<li><span class="math inline">\(E_{\theta}\)</span> é o erro quadrático total.</li>
+<li><span class="math inline">\(y_i\)</span> <span class="math inline">\(i\)</span> valor real (observado).</li>
+<li><span class="math inline">\(f(x_i)\)</span> é o valor previsto pela função de ajuste.</li>
+</ul>
+<p>Busca-se ajustar os coeficientes <span class="math inline">\(\theta = [a_1, a_0]^T\;\)</span> de <span class="math inline">\(f(\cdot)\;\)</span> mapa <em>minimizar</em> <span class="math inline">\(E_{\theta}\)</span>.</p>
 </section>
-<h3 id="o-grau-1-indica-ajuste-linear">O grau 1 indica ajuste linear</h3>
-<p>coefs = np.polyfit(x, y, 1)</p>
-<p>print(f”Coeficiente a1 (inclinação): {coefs[0]:.4f}“) print(f”Coeficiente a0 (intercepto): {coefs[1]:.4f}“)</p>
+<section class="slide level2">
+
+<h3 id="otimização-minimizar-e_theta">Otimização: minimizar <span class="math inline">\(E_{\theta}\)</span></h3>
+<p>Calcular derivadas parciais do erro <span class="math inline">\(E_{\theta}\)</span> e igualar a zero.</p>
+<p><span class="math display">\[
+\frac{\partial E_{\theta}}{\partial a_k} = 0
+\]</span></p>
+<p>Para <span class="math inline">\(a_1\)</span> e <span class="math inline">\(a_0\)</span> em uma reta, temos: <span class="math display">\[
+\begin{align}
+\frac{\partial E}{\partial a_0} &amp;= -2 \sum_{i=1}^{n} [y_i - (a_1 x_i + a_0)] = 0 \\
+\frac{\partial E}{\partial a_1} &amp;= -2 \sum\_{i=1}^{n} [y_i - (a_1 x_i + a_0)] x_i = 0
+\end{align}
+\]</span></p>
+</section>
+<section class="slide level2">
+
+<h3 id="sistema-de-equações-normais">Sistema de Equações Normais</h3>
+<p>A aplicação do MMQ leva ao seguinte sistema (para encontrar <span class="math inline">\(a_0\)</span> e <span class="math inline">\(a_1\)</span>):</p>
+<p><span class="math display">\[
+\begin{cases}
+n a_0 + (\sum x_i) a_1 = \sum y_i \\
+(\sum x_i) a_0 + (\sum x_i^2) a_1 = \sum x_i y_i
+\end{cases}
+\]</span></p>
+<p>Este <span class="math inline">\(2 \times 2\)</span> pode ser resolvido por Eliminação Gaussiana.</p>
+<p>Na forma vetorial matricial:</p>
+<p><span class="math display">\[\begin{pmatrix} n &amp; \sum x_i \\ \sum x_i &amp; \sum x_i^2 \end{pmatrix}
+\begin{pmatrix} a_0 \\ a_1 \end{pmatrix}
+=
+\begin{pmatrix} \sum y_i \\ \sum x_i y_i \end{pmatrix}\]</span></p>
+</section>
+<section class="slide level2">
+
+<!--
+
+
+
+### Minimização
+
+Determinar parâmetros ótimos:Calcular derivadas parciais do erro $E$ em relação a cada parâmetro e igualar a zero.
+
+$$
+\frac{\partial E}{\partial a_k} = 0
+$$
+
+Onde $a_k$ são os parâmetros do modelo (ex: $a_0$, $a_1$, ...).
+
+Para $a_0$ e $a_1$ em uma reta, temos: 
+$$
+\frac{\partial E}{\partial a_0} = -2 \sum_{i=1}^{n} [y_i - (a_0 + a_1 x_i)] = 0
+\frac{\partial E}{\partial a_1} = -2 \sum\_{i=1}\^{n} \[y_i - (a_0 + a_1 x_i)\] x_i = 0
+$$
+
+---
+
+
+
+---
+
+### Dados de exemplo
+
+
+
+-->
+
 
 </section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
-<p>UFPA - CAMTUC - FEE - Ajuste de Curvas</p>
+<p>UFPA - CAMTUC - FEE | Métodos Numéricos - Ajuste de Curvas | Prof.&nbsp;Dr.&nbsp;Raphael Teixeira</p>
 </div>
 </div></div>
 
@@ -461,9 +526,9 @@ n a_0 + (\sum x_i) a_1 = \sum y_i \\
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be
         // specified using percentage units.
-        width: 1050,
+        width: 1600,
 
-        height: 700,
+        height: 900,
 
         // Factor of the display size that should remain empty around the content
         margin: 0.1,
