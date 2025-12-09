@@ -1,12 +1,10 @@
 ---
 title: "Ajuste de Curvas"
 subtitle: "Métodos Numéricos I"
-author: "Seu Nome / Disciplina"
-date: "Dezembro, 2025"
+author: "Prof. Dr. Raphael Teixeira"
+date: ""
 format: 
   revealjs:
-    theme: TemaRTx.scss # Garante o tema customizado da UFPA (se o _quarto.yml não for suficiente)
-    css: styles.css
     footer: "MN01 - Ajuste de Curvas"
     slide-number: true
     transition: fade

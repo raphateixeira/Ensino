@@ -1,22 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-9e9c160a45683dd0f7b189ef3e2dc519.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-html/tabby.min.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -25,7 +9,8 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.8.24">
 
-  <title>Métodos Numéricos UFPA – raizesnaolineares</title>
+  <meta name="author" content="Prof.&nbsp;Dr.&nbsp;Raphael Teixeira">
+  <title>Métodos Numéricos UFPA – Raízes de Equações Não Lineares</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -44,7 +29,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-233282752eef7b34bbeb15a7cd4fb6ce.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -137,20 +122,142 @@
     }
   </style>
 </head>
-<body class="quarto-light fullcontent">
+<body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Raízes de Equações Não Lineares</h1>
+  <p class="subtitle">Métodos Numéricos I</p>
 
-<section class="slide level2">
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Prof.&nbsp;Dr.&nbsp;Raphael Teixeira 
+</div>
+</div>
+</div>
 
+</section>
+<section id="o-problema-da-determinação-de-raízes" class="slide level2">
+<h2>🔍 O Problema da Determinação de Raízes</h2>
+<h3 id="definição">Definição</h3>
+<p>O objetivo é encontrar os valores de <span class="math inline">\(x\)</span> que satisfazem a equação <span class="math inline">\(f(x) = 0\)</span>.</p>
+<blockquote>
+<p>Resolver <span class="math inline">\(\text{e}^x = 4 \sin(x)\)</span> equivale a encontrar os zeros de <span class="math inline">\(f(x) = \text{e}^x - 4 \sin(x)\)</span>.</p>
+</blockquote>
+<h3 id="métodos-analíticos-vs.-numéricos">Métodos Analíticos vs.&nbsp;Numéricos</h3>
+<ul>
+<li><strong>Analíticos:</strong> Usam fórmulas exatas (ex: Fórmula de Bhaskara para quadráticas). Limitados a poucos tipos de funções.</li>
+<li><strong>Numéricos:</strong> Usam iterações para encontrar uma <strong>aproximação</strong> da raiz. Essenciais para funções transcendentais ou complexas.</li>
+</ul>
+</section>
+<section id="método-da-bisseção" class="slide level2">
+<h2>🪓 Método da Bisseção</h2>
+<h3 id="princípio-fundamental-teorema-de-bolzano">Princípio Fundamental (Teorema de Bolzano)</h3>
+<p>O método da Bisseção é um método de <strong>fechamento (bracketting)</strong>.</p>
+<ol type="1">
+<li>Escolhemos um intervalo <span class="math inline">\([a, b]\)</span> onde a função <span class="math inline">\(f(x)\)</span> tem sinais opostos.
+<ul>
+<li>Isto é, <span class="math inline">\(f(a) \cdot f(b) &lt; 0\)</span>.</li>
+</ul></li>
+<li>A raiz está garantidamente no intervalo.</li>
+<li>A nova aproximação é o ponto médio: <span class="math inline">\(r = (a+b)/2\)</span>.</li>
+<li>O intervalo é reduzido pela metade em cada iteração.</li>
+</ol>
+<h3 id="vantagens-e-desvantagens">Vantagens e Desvantagens</h3>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Vantagens</th>
+<th style="text-align: left;">Desvantagens</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Garante a convergência</strong> (sempre encontra a raiz).</td>
+<td style="text-align: left;">Convergência <strong>lenta</strong> (linear).</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Fácil de implementar.</td>
+<td style="text-align: left;">Requer o conhecimento prévio de um intervalo válido.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="estimativa-de-erro-na-bisseção" class="slide level2">
+<h2>🧪 Estimativa de Erro na Bisseção</h2>
+<p>O erro absoluto (<span class="math inline">\(E_a\)</span>) é dado pela metade do tamanho do novo intervalo:</p>
+<p><span class="math display">\[
+E_a = \frac{b - a}{2}
+\]</span></p>
+<p>Após <span class="math inline">\(k\)</span> iterações, o erro máximo é:</p>
+<p><span class="math display">\[
+E_k \le \frac{b_0 - a_0}{2^k}
+\]</span></p>
+<p>Para atingir uma precisão (<span class="math inline">\(\epsilon\)</span>) desejada, o número mínimo de iterações (<span class="math inline">\(k\)</span>) é:</p>
+<p><span class="math display">\[
+k \ge \log_2\left(\frac{b_0 - a_0}{\epsilon}\right)
+\]</span></p>
+</section>
+<section id="método-de-newton-raphson" class="slide level2">
+<h2>⚡️ Método de Newton-Raphson</h2>
+<h3 id="fórmula-iterativa">Fórmula Iterativa</h3>
+<p>O método de Newton é um método <strong>aberto</strong> que utiliza a reta tangente à curva no ponto atual <span class="math inline">\(x_i\)</span> para estimar o próximo ponto <span class="math inline">\(x_{i+1}\)</span>.</p>
+<p><span class="math display">\[
+x_{i+1} = x_i - \frac{f(x_i)}{f'(x_i)}
+\]</span></p>
+<ul>
+<li>Requer uma aproximação inicial <span class="math inline">\(x_0\)</span>.</li>
+</ul>
+<h3 id="convergência-rápida">Convergência Rápida</h3>
+<p>Quando a aproximação inicial é próxima da raiz, o método converge <strong>quadraticamente</strong>.</p>
+<p><span class="math display">\[
+\text{Erro}_{i+1} \propto (\text{Erro}_i)^2
+\]</span></p>
+</section>
+<section id="desafios-de-newton-raphson" class="slide level2">
+<h2>⚠️ Desafios de Newton-Raphson</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="problemas-comuns">Problemas Comuns</h3>
+<ol type="1">
+<li><strong>Derivada Zero:</strong> Se <span class="math inline">\(f'(x_i) \approx 0\)</span>, a fórmula se torna instável (divisão por zero).</li>
+<li><strong>Divergência:</strong> Uma aproximação inicial ruim pode fazer a sequência de <span class="math inline">\(x_i\)</span> se afastar da raiz.</li>
+<li><strong>Raízes Múltiplas:</strong> A convergência se torna mais lenta (linear).</li>
+</ol>
+</div><div class="column" style="width:50%;">
+
+</div></div>
+</section>
+<section id="exemplo-em-python" class="slide level2">
+<h2>💻 Exemplo em Python</h2>
+<p>Encontrando a raiz de <span class="math inline">\(f(x) = \text{e}^{-x} - x\)</span>.</p>
+<p>```python import numpy as np</p>
+<p>def f(x): # e^(-x) - x return np.exp(-x) - x</p>
+<p>def df(x): # Derivada: -e^(-x) - 1 return -np.exp(-x) - 1</p>
+<p>def newton_raphson(x0, tol=1e-6, max_iter=10): x = x0 for i in range(max_iter): delta_x = f(x) / df(x) x_novo = x - delta_x</p>
+<pre><code>    if abs(x_novo - x) &lt; tol:
+        return x_novo
+    
+    x = x_novo
+return x</code></pre>
+</section>
+<section id="aproximação-inicial" class="title-slide slide level1 center">
+<h1>Aproximação inicial</h1>
+<p>raiz = newton_raphson(x0=1.0)</p>
+<p>print(f”Raiz aproximada: {raiz:.6f}“) # Output deve ser próximo de 0.567143</p>
 
 
 </section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
-
+<p>MN02 - Raízes de Equações Não Lineares</p>
 </div>
 </div></div>
 
@@ -203,7 +310,7 @@
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: false,
+        slideNumber: 'c/t',
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',

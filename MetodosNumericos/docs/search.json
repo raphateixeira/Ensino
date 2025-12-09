@@ -1,0 +1,86 @@
+[
+  {
+    "objectID": "MN02RaizesNaoLineares/RaizesNaoLineares.html#o-problema-da-determinação-de-raízes",
+    "href": "MN02RaizesNaoLineares/RaizesNaoLineares.html#o-problema-da-determinação-de-raízes",
+    "title": "Raízes de Equações Não Lineares",
+    "section": "🔍 O Problema da Determinação de Raízes",
+    "text": "🔍 O Problema da Determinação de Raízes\nDefinição\nO objetivo é encontrar os valores de \\(x\\) que satisfazem a equação \\(f(x) = 0\\).\n\nResolver \\(\\text{e}^x = 4 \\sin(x)\\) equivale a encontrar os zeros de \\(f(x) = \\text{e}^x - 4 \\sin(x)\\).\n\nMétodos Analíticos vs. Numéricos\n\nAnalíticos: Usam fórmulas exatas (ex: Fórmula de Bhaskara para quadráticas). Limitados a poucos tipos de funções.\nNuméricos: Usam iterações para encontrar uma aproximação da raiz. Essenciais para funções transcendentais ou complexas."
+  },
+  {
+    "objectID": "MN02RaizesNaoLineares/RaizesNaoLineares.html#método-da-bisseção",
+    "href": "MN02RaizesNaoLineares/RaizesNaoLineares.html#método-da-bisseção",
+    "title": "Raízes de Equações Não Lineares",
+    "section": "🪓 Método da Bisseção",
+    "text": "🪓 Método da Bisseção\nPrincípio Fundamental (Teorema de Bolzano)\nO método da Bisseção é um método de fechamento (bracketting).\n\nEscolhemos um intervalo \\([a, b]\\) onde a função \\(f(x)\\) tem sinais opostos.\n\nIsto é, \\(f(a) \\cdot f(b) &lt; 0\\).\n\nA raiz está garantidamente no intervalo.\nA nova aproximação é o ponto médio: \\(r = (a+b)/2\\).\nO intervalo é reduzido pela metade em cada iteração.\n\nVantagens e Desvantagens\n\n\n\n\n\n\n\nVantagens\nDesvantagens\n\n\n\n\nGarante a convergência (sempre encontra a raiz).\nConvergência lenta (linear).\n\n\nFácil de implementar.\nRequer o conhecimento prévio de um intervalo válido."
+  },
+  {
+    "objectID": "MN02RaizesNaoLineares/RaizesNaoLineares.html#estimativa-de-erro-na-bisseção",
+    "href": "MN02RaizesNaoLineares/RaizesNaoLineares.html#estimativa-de-erro-na-bisseção",
+    "title": "Raízes de Equações Não Lineares",
+    "section": "🧪 Estimativa de Erro na Bisseção",
+    "text": "🧪 Estimativa de Erro na Bisseção\nO erro absoluto (\\(E_a\\)) é dado pela metade do tamanho do novo intervalo:\n\\[\nE_a = \\frac{b - a}{2}\n\\]\nApós \\(k\\) iterações, o erro máximo é:\n\\[\nE_k \\le \\frac{b_0 - a_0}{2^k}\n\\]\nPara atingir uma precisão (\\(\\epsilon\\)) desejada, o número mínimo de iterações (\\(k\\)) é:\n\\[\nk \\ge \\log_2\\left(\\frac{b_0 - a_0}{\\epsilon}\\right)\n\\]"
+  },
+  {
+    "objectID": "MN02RaizesNaoLineares/RaizesNaoLineares.html#método-de-newton-raphson",
+    "href": "MN02RaizesNaoLineares/RaizesNaoLineares.html#método-de-newton-raphson",
+    "title": "Raízes de Equações Não Lineares",
+    "section": "⚡️ Método de Newton-Raphson",
+    "text": "⚡️ Método de Newton-Raphson\nFórmula Iterativa\nO método de Newton é um método aberto que utiliza a reta tangente à curva no ponto atual \\(x_i\\) para estimar o próximo ponto \\(x_{i+1}\\).\n\\[\nx_{i+1} = x_i - \\frac{f(x_i)}{f'(x_i)}\n\\]\n\nRequer uma aproximação inicial \\(x_0\\).\n\nConvergência Rápida\nQuando a aproximação inicial é próxima da raiz, o método converge quadraticamente.\n\\[\n\\text{Erro}_{i+1} \\propto (\\text{Erro}_i)^2\n\\]"
+  },
+  {
+    "objectID": "MN02RaizesNaoLineares/RaizesNaoLineares.html#desafios-de-newton-raphson",
+    "href": "MN02RaizesNaoLineares/RaizesNaoLineares.html#desafios-de-newton-raphson",
+    "title": "Raízes de Equações Não Lineares",
+    "section": "⚠️ Desafios de Newton-Raphson",
+    "text": "⚠️ Desafios de Newton-Raphson\n\n\nProblemas Comuns\n\nDerivada Zero: Se \\(f'(x_i) \\approx 0\\), a fórmula se torna instável (divisão por zero).\nDivergência: Uma aproximação inicial ruim pode fazer a sequência de \\(x_i\\) se afastar da raiz.\nRaízes Múltiplas: A convergência se torna mais lenta (linear)."
+  },
+  {
+    "objectID": "MN02RaizesNaoLineares/RaizesNaoLineares.html#exemplo-em-python",
+    "href": "MN02RaizesNaoLineares/RaizesNaoLineares.html#exemplo-em-python",
+    "title": "Raízes de Equações Não Lineares",
+    "section": "💻 Exemplo em Python",
+    "text": "💻 Exemplo em Python\nEncontrando a raiz de \\(f(x) = \\text{e}^{-x} - x\\).\n```python import numpy as np\ndef f(x): # e^(-x) - x return np.exp(-x) - x\ndef df(x): # Derivada: -e^(-x) - 1 return -np.exp(-x) - 1\ndef newton_raphson(x0, tol=1e-6, max_iter=10): x = x0 for i in range(max_iter): delta_x = f(x) / df(x) x_novo = x - delta_x\n    if abs(x_novo - x) &lt; tol:\n        return x_novo\n    \n    x = x_novo\nreturn x"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Métodos Numéricos",
+    "section": "",
+    "text": "Nesta página, você encontra o material de apoio para a disciplina. Cada tópico é uma apresentação de slides interativa.\n\nAjuste de Curvas\n\nTópicos: Método dos Mínimos Quadrados (MMQ), Ajuste Linear, Regressão Polinomial.\n\nRaízes de Equações Não Lineares\n\nTópicos: Métodos da Bisseção, Newton-Raphson.\n\n\n\n\n\n\nSistemas Lineares\nInterpolação\nIntegração Numérica\n\n\n\n\nPara visualizar as apresentações, navegue pelos links acima. Lembre-se que os arquivos .html são gerados pelo Quarto ao rodar o comando quarto render no seu terminal!"
+  },
+  {
+    "objectID": "index.html#conteúdo",
+    "href": "index.html#conteúdo",
+    "title": "Métodos Numéricos",
+    "section": "",
+    "text": "Nesta página, você encontra o material de apoio para a disciplina. Cada tópico é uma apresentação de slides interativa.\n\nAjuste de Curvas\n\nTópicos: Método dos Mínimos Quadrados (MMQ), Ajuste Linear, Regressão Polinomial.\n\nRaízes de Equações Não Lineares\n\nTópicos: Métodos da Bisseção, Newton-Raphson.\n\n\n\n\n\n\nSistemas Lineares\nInterpolação\nIntegração Numérica\n\n\n\n\nPara visualizar as apresentações, navegue pelos links acima. Lembre-se que os arquivos .html são gerados pelo Quarto ao rodar o comando quarto render no seu terminal!"
+  },
+  {
+    "objectID": "MN01AjusteCurvas/AjusteCurvas.html#introdução-e-objetivos",
+    "href": "MN01AjusteCurvas/AjusteCurvas.html#introdução-e-objetivos",
+    "title": "Ajuste de Curvas",
+    "section": "🎯 Introdução e Objetivos",
+    "text": "🎯 Introdução e Objetivos\nO Problema do Ajuste de Curvas\nO ajuste de curvas é o processo de construir uma curva, ou função matemática, que tenha o “melhor ajuste” para uma série de pontos de dados observados, frequentemente sujeitos a erros.\n\nInterpolação: A curva passa exatamente por todos os pontos (exato).\nAjuste: A curva se aproxima da tendência dos pontos (aproximado).\n\nObjetivos\n\nDeterminar a função que melhor representa o fenômeno.\nPermitir a predição de valores fora da faixa de dados observados (extrapolação)."
+  },
+  {
+    "objectID": "MN01AjusteCurvas/AjusteCurvas.html#método-dos-mínimos-quadrados",
+    "href": "MN01AjusteCurvas/AjusteCurvas.html#método-dos-mínimos-quadrados",
+    "title": "Ajuste de Curvas",
+    "section": "📈 Método dos Mínimos Quadrados",
+    "text": "📈 Método dos Mínimos Quadrados\nA Base do Ajuste\nO método dos mínimos quadrados (MMQ) é a técnica mais comum para encontrar o ajuste. Ele minimiza o erro quadrático total.\n\\[\nE = \\sum_{i=1}^{n} [y_i - f(x_i)]^2\n\\]\nOnde:\n\n\\(E\\) é o erro quadrático total.\n\\(y_i\\) é o valor real (observado).\n\\(f(x_i)\\) é o valor previsto pela função de ajuste.\n\nMinimização\nPara encontrar os parâmetros ótimos (ex: \\(a_0\\) e \\(a_1\\) em uma reta), calculamos as derivadas parciais do erro \\(E\\) em relação a cada parâmetro e as igualamos a zero:\n\\[\n\\frac{\\partial E}{\\partial a_k} = 0\n\\]"
+  },
+  {
+    "objectID": "MN01AjusteCurvas/AjusteCurvas.html#ajuste-linear-reta",
+    "href": "MN01AjusteCurvas/AjusteCurvas.html#ajuste-linear-reta",
+    "title": "Ajuste de Curvas",
+    "section": "📏 Ajuste Linear (Reta)",
+    "text": "📏 Ajuste Linear (Reta)\nEquação da Reta\nAssumimos que o modelo de melhor ajuste é uma reta:\n\\[\ny = a_0 + a_1 x\n\\]\nSistema de Equações Normais\nA aplicação do MMQ leva ao seguinte sistema (para encontrar \\(a_0\\) e \\(a_1\\)):\n\\[\n\\begin{cases}\nn a_0 + (\\sum x_i) a_1 = \\sum y_i \\\\\n(\\sum x_i) a_0 + (\\sum x_i^2) a_1 = \\sum x_i y_i\n\\end{cases}\n\\]\nEste é um sistema linear \\(2 \\times 2\\) que pode ser resolvido por métodos como Eliminação Gaussiana ou Cramer."
+  },
+  {
+    "objectID": "MN01AjusteCurvas/AjusteCurvas.html#exemplo-em-código",
+    "href": "MN01AjusteCurvas/AjusteCurvas.html#exemplo-em-código",
+    "title": "Ajuste de Curvas",
+    "section": "💻 Exemplo em Código",
+    "text": "💻 Exemplo em Código\nVamos supor que temos os seguintes dados:\n\n\n\n\\(x\\)\n\\(y\\)\n\n\n\n\n1.0\n0.5\n\n\n2.0\n2.5\n\n\n3.0\n2.0\n\n\n4.0\n4.0\n\n\n5.0\n3.5\n\n\n\nImplementação em Python\n```python import numpy as np"
+  }
+]

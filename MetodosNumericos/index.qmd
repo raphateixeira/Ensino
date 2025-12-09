@@ -1,6 +1,6 @@
 ---
 title: "Métodos Numéricos"
-subtitle: "Apresentações de Slides"
+subtitle: "Tópicos de Cálculo Numériro em Python"
 institute: "Universidade Federal do Pará"
 author: "Prof. Dr. Raphael Teixeira"
 date: ""
@@ -11,10 +11,10 @@ format: html
 
 Nesta página, você encontra o material de apoio para a disciplina. Cada tópico é uma apresentação de slides interativa.
 
-* **[Apresentação 1: Ajuste de Curvas](MN01AjusteCurvas/AjusteCurvas.html)**
+* [Ajuste de Curvas](MN01AjusteCurvas/AjusteCurvas.html)
     * *Tópicos:* Método dos Mínimos Quadrados (MMQ), Ajuste Linear, Regressão Polinomial.
-* **[Apresentação 2: Raízes de Equações Não Lineares](MN02RaizesNaoLineares/RaizesNaoLineares.html)**
-    * *Tópicos:* Métodos da Bisseção, Newton-Raphson.
+* [Raízes de Equações Não Lineares](MN02RaizesNaoLineares/RaizesNaoLineares.html)
+   * *Tópicos:* Métodos da Bisseção, Newton-Raphson.
 
 ---
 

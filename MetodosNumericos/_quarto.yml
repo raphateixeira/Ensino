@@ -9,13 +9,11 @@ website:
   # Nenhum bloco 'navbar' ou 'sidebar' está presente.
   
 format:
-  # Configuração para o website (index.qmd)
   html:
-    # APLICAÇÃO DO TEMA SCSS: Processa as variáveis definidas em TemaRTx.scss
-    theme: TemaRTx.scss 
+    theme: default
     lang: pt-BR
+    scss: TemaRTx.scss
     
-  # Configuração para os Slides (AjusteCurvas.qmd e RaizesNaoLineares.qmd)
   revealjs:
-    # APLICAÇÃO DO TEMA SCSS: Garante que os estilos do TemaRTx.scss sejam usados nos slides
-    theme: TemaRTx.scss
+    theme: default
+    scss: TemaRTx.scss

@@ -1,0 +1,142 @@
+---
+title: "Raízes de Equações Não Lineares"
+subtitle: "Métodos Numéricos I"
+author: "Prof. Dr. Raphael Teixeira"
+date: ""
+format: 
+  revealjs:
+    footer: "MN02 - Raízes de Equações Não Lineares"
+    slide-number: true
+editor: visual
+---
+
+## 🔍 O Problema da Determinação de Raízes
+
+### Definição
+
+O objetivo é encontrar os valores de $x$ que satisfazem a equação $f(x) = 0$.
+
+> Resolver $\text{e}^x = 4 \sin(x)$ equivale a encontrar os zeros de $f(x) = \text{e}^x - 4 \sin(x)$.
+
+### Métodos Analíticos vs. Numéricos
+
+* **Analíticos:** Usam fórmulas exatas (ex: Fórmula de Bhaskara para quadráticas). Limitados a poucos tipos de funções.
+* **Numéricos:** Usam iterações para encontrar uma **aproximação** da raiz. Essenciais para funções transcendentais ou complexas.
+
+---
+
+## 🪓 Método da Bisseção
+
+### Princípio Fundamental (Teorema de Bolzano)
+
+O método da Bisseção é um método de **fechamento (bracketting)**. 
+
+1.  Escolhemos um intervalo $[a, b]$ onde a função $f(x)$ tem sinais opostos.
+    * Isto é, $f(a) \cdot f(b) < 0$.
+2.  A raiz está garantidamente no intervalo.
+3.  A nova aproximação é o ponto médio: $r = (a+b)/2$.
+4.  O intervalo é reduzido pela metade em cada iteração.
+
+### Vantagens e Desvantagens
+
+| Vantagens | Desvantagens |
+| :--- | :--- |
+| **Garante a convergência** (sempre encontra a raiz). | Convergência **lenta** (linear). |
+| Fácil de implementar. | Requer o conhecimento prévio de um intervalo válido. |
+
+---
+
+## 🧪 Estimativa de Erro na Bisseção
+
+O erro absoluto ($E_a$) é dado pela metade do tamanho do novo intervalo:
+
+$$
+E_a = \frac{b - a}{2}
+$$
+
+Após $k$ iterações, o erro máximo é:
+
+$$
+E_k \le \frac{b_0 - a_0}{2^k}
+$$
+
+Para atingir uma precisão ($\epsilon$) desejada, o número mínimo de iterações ($k$) é:
+
+$$
+k \ge \log_2\left(\frac{b_0 - a_0}{\epsilon}\right)
+$$
+
+---
+
+## ⚡️ Método de Newton-Raphson
+
+### Fórmula Iterativa
+
+O método de Newton é um método **aberto** que utiliza a reta tangente à curva no ponto atual $x_i$ para estimar o próximo ponto $x_{i+1}$.
+
+$$
+x_{i+1} = x_i - \frac{f(x_i)}{f'(x_i)}
+$$
+
+* Requer uma aproximação inicial $x_0$.
+
+### Convergência Rápida
+
+Quando a aproximação inicial é próxima da raiz, o método converge **quadraticamente**.
+
+$$
+\text{Erro}_{i+1} \propto (\text{Erro}_i)^2
+$$
+
+---
+
+## ⚠️ Desafios de Newton-Raphson
+
+::: columns
+::: {.column width="50%"}
+### Problemas Comuns
+
+1.  **Derivada Zero:** Se $f'(x_i) \approx 0$, a fórmula se torna instável (divisão por zero).
+2.  **Divergência:** Uma aproximação inicial ruim pode fazer a sequência de $x_i$ se afastar da raiz.
+3.  **Raízes Múltiplas:** A convergência se torna mais lenta (linear).
+:::
+
+::: {.column width="50%"}
+
+:::
+:::
+
+---
+
+## 💻 Exemplo em Python
+
+Encontrando a raiz de $f(x) = \text{e}^{-x} - x$.
+
+```python
+import numpy as np
+
+def f(x):
+    # e^(-x) - x
+    return np.exp(-x) - x
+
+def df(x):
+    # Derivada: -e^(-x) - 1
+    return -np.exp(-x) - 1
+
+def newton_raphson(x0, tol=1e-6, max_iter=10):
+    x = x0
+    for i in range(max_iter):
+        delta_x = f(x) / df(x)
+        x_novo = x - delta_x
+        
+        if abs(x_novo - x) < tol:
+            return x_novo
+        
+        x = x_novo
+    return x
+
+# Aproximação inicial
+raiz = newton_raphson(x0=1.0) 
+
+print(f"Raiz aproximada: {raiz:.6f}")
+# Output deve ser próximo de 0.567143
