@@ -1,0 +1,17 @@
+---
+title: "Introdução Aprendizagem"
+subtitle: "Aprendizagem de Máquina"
+institute: "Universidade Federal do Pará"
+author: "Prof. Dr. Raphael Teixeira"
+date: ""
+editor:
+  render-on-save: false
+format: 
+  revealjs:
+    slide-number: true
+    transition: fade
+---
+
+# Slide 1
+
+- Asadasd
