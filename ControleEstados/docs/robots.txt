@@ -1,1 +1,1 @@
-Sitemap: https://raphateixeira.github.io/ControleDFIG/sitemap.xml
+Sitemap: https://raphateixeira.github.io/ControleEstados/sitemap.xml
