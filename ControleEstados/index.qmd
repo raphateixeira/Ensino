@@ -1,0 +1,12 @@
+---
+title: "Controle por Espaço de Estados"
+subtitle: "Sistemas de Controle II"
+institute: "Universidade Federal do Pará"
+author: "Prof. Dr. Raphael Teixeira"
+date: ""
+format: html
+---
+
+Espaço de estados:
+
+[Representação em Espaço de Estados](Topicos/SS01Representacao.html)
