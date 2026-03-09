@@ -1,0 +1,35 @@
+---
+title: "Representação em Espaço de Estados"
+subtitle: "Sistemas de Controle II"
+institute: "Universidade Federal do Pará"
+author: "Prof. Dr. Raphael Teixeira"
+date: ""
+editor:
+  render-on-save: false
+format: 
+  revealjs:
+    slide-number: true
+    transition: fade
+---
+
+## Modelos de sistemas dinâmicos
+
+- Equações diferenciais ordinárias (EDOs)
+- Resposta ao impulso
+- Função de transferência
+- Representação em espaço de estados
+
+---
+
+## Equações diferenciais ordinárias (EDOs)
+
+- Descrevem a dinâmica de um sistema em termos de suas variáveis de estado e suas derivadas
+- Exemplo: \(\dot{x} = ax + bu\)
+- Onde \(x\) é a variável de estado, \(u\) é a entrada, \(a\) e \(b\) são parâmetros do sistema
+
+---
+
+## Representação em espaço de estados
+
+
+
