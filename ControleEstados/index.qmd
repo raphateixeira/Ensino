@@ -1,0 +1,12 @@
+---
+title: "Espaço de Estados"
+subtitle: "Sistemas de Controle II"
+institute: "Universidade Federal do Pará"
+author: "Prof. Dr. Raphael Teixeira"
+date: ""
+format: html
+---
+
+Espaço de Estados:
+
+* [Variáveis trifásicas e referenciais](Topicos/SS01Representacaohtml)
