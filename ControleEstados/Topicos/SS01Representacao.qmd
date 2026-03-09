@@ -1,5 +1,5 @@
 ---
-title: "Representação em Espaço de Estados"
+title: "Espaço de Estados"
 subtitle: "Sistemas de Controle II"
 institute: "Universidade Federal do Pará"
 author: "Prof. Dr. Raphael Teixeira"
@@ -10,6 +10,7 @@ format:
   revealjs:
     slide-number: true
     transition: fade
+    theme: [default, ../TemaRTx.scss]
 ---
 
 ## Modelos de sistemas dinâmicos

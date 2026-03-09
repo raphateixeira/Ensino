@@ -2,21 +2,21 @@
   {
     "objectID": "Topicos/SS01Representacao.html#modelos-de-sistemas-dinâmicos",
     "href": "Topicos/SS01Representacao.html#modelos-de-sistemas-dinâmicos",
-    "title": "Representação em Espaço de Estados",
+    "title": "Espaço de Estados",
     "section": "Modelos de sistemas dinâmicos",
     "text": "Modelos de sistemas dinâmicos\n\nEquações diferenciais ordinárias (EDOs)\nResposta ao impulso\nFunção de transferência\nRepresentação em espaço de estados"
   },
   {
     "objectID": "Topicos/SS01Representacao.html#equações-diferenciais-ordinárias-edos",
     "href": "Topicos/SS01Representacao.html#equações-diferenciais-ordinárias-edos",
-    "title": "Representação em Espaço de Estados",
+    "title": "Espaço de Estados",
     "section": "Equações diferenciais ordinárias (EDOs)",
     "text": "Equações diferenciais ordinárias (EDOs)\n\nDescrevem a dinâmica de um sistema em termos de suas variáveis de estado e suas derivadas\nExemplo: ( = ax + bu)\nOnde (x) é a variável de estado, (u) é a entrada, (a) e (b) são parâmetros do sistema"
   },
   {
     "objectID": "Topicos/SS01Representacao.html#representação-em-espaço-de-estados",
     "href": "Topicos/SS01Representacao.html#representação-em-espaço-de-estados",
-    "title": "Representação em Espaço de Estados",
+    "title": "Espaço de Estados",
     "section": "Representação em espaço de estados",
     "text": "Representação em espaço de estados"
   },
@@ -25,6 +25,6 @@
     "href": "index.html",
     "title": "Espaço de Estados",
     "section": "",
-    "text": "Espaço de Estados:\n\nVariáveis trifásicas e referenciais"
+    "text": "Espaço de Estados:\n\nModelo em Espaço de Estados"
   }
 ]

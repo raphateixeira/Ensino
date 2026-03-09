@@ -9,4 +9,4 @@ format: html
 
 Espaço de Estados:
 
-* [Variáveis trifásicas e referenciais](Topicos/SS01Representacaohtml)
+* [Modelo em Espaço de Estados](Topicos/SS01Representacao.html)
