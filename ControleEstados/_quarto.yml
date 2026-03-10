@@ -5,7 +5,7 @@ project:
 website:
   title: "Espaço de Estados"
   site-url: https://raphateixeira.github.io/ControleEstados/
-  repo-url: https://github.com/raphateixeira/ControleEstados
+  repo-url: https://github.com/raphateixeira/ControleEstados/
   
   sidebar:
     style: "floating"
@@ -26,10 +26,8 @@ format:
 
   revealjs:
     theme: [default, TemaRTx.scss]
-    logo: "https://upload.wikimedia.org/wikipedia/commons/0/09/Logo_UFPA.png" # Opcional: logo da UFPA
     transition: slide
     slide-number: true
-    footer: "Prof. Dr. Raphael Teixeira - UFPA"
     width: 1600
     height: 900
     code-theme: monokai
