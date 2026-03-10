@@ -1,0 +1,69 @@
+---
+title: "Espaço de Estados"
+subtitle: "Sistemas de Controle II"
+institute: "Universidade Federal do Pará"
+author: "Prof. Dr. Raphael Teixeira"
+date: ""
+editor:
+  render-on-save: false
+format: 
+  revealjs:
+    slide-number: true
+    transition: fade
+    theme: [default, ../TemaRTx.scss]
+---
+
+## Circuito RLC:
+
+Considere o circuito RLC série alimentado por uma fonte de tensão $v(t)$, onde a saída de interesse é a tensão no capacitor $v_c(t)$.
+
+**Componentes:**
+* $R$: Resistência ($\Omega$)
+* $L$: Indutância ($H$)
+* $C$: Capacitância ($F$)
+* $i(t)$: Corrente série;
+
+## Aplicação das Leis Físicas
+
+Aplicando a **Lei das Tensões de Kirchhoff (LTK)** na malha:
+$$v(t) = v_R(t) + v_L(t) + v_C(t)$$
+
+Substituindo pelas relações constitutivas:
+$$v(t) = R \cdot i(t) + L \frac{di(t)}{dt} + v_C(t)$$
+Para o capacitor, a relação entre corrente e tensão é:
+$$i(t) = C \frac{dv_C(t)}{dt} \implies \frac{dv_C(t)}{dt} = \frac{1}{C} i(t)$$  
+
+---
+
+## Definição das Variáveis de Estado
+Definimos as variáveis de estado como:
+$$x_1(t) = v_C(t)$$
+$$x_2(t) = i(t)$$
+Substituindo essas definições nas equações anteriores, obtemos o sistema de equações diferenciais:
+$$\dot{x}_1(t) = \frac{1}{C} x_2(t)$$
+$$\dot{x}_2(t) = \frac{1}{L} (v(t) - R x_2(t) - x_1(t))$$
+Essas equações podem ser escritas na forma matricial:
+$$\begin{bmatrix} \dot{x}_1(t) \\ \dot{x}_2(t) \end{bmatrix} = \begin{bmatrix} 0 & \frac{1}{C} \\ -\frac{1}{L} & -\frac{R}{L} \end{bmatrix} \begin{bmatrix} x_1(t) \\ x_2(t) \end{bmatrix} + \begin{bmatrix} 0 \\ \frac{1}{L} \end{bmatrix} v(t)$$
+A saída do sistema é dada por:
+$$y(t) = x_1(t)$$
+
+---
+
+## Representação em Espaço de Estados
+A representação em espaço de estados do sistema é dada por:
+$$\dot{\mathbf{x}}(t) = A \mathbf{x}(t) + B u(t)$$
+$$y(t) = C \mathbf{x}(t) + D u(t)$$
+Onde:
+- $\mathbf{x}(t) = \begin{bmatrix} x_1(t) \\ x_2(t) \end{bmatrix}$ é o vetor de estado
+- $u(t) = v(t)$ é a entrada do sistema
+- $y(t) = x_1(t)$ é a saída do sistema
+- $A = \begin{bmatrix} 0 & \frac{1}{C} \\ -\frac{1}{L} & -\frac{R}{L} \end{bmatrix}$ é a matriz de estado
+- $B = \begin{bmatrix} 0 \\ \frac{1}{L} \end{bmatrix}$ é a matriz de entrada
+- $C = \begin{bmatrix} 1 & 0 \end{bmatrix}$ é a matriz de saída
+- $D = 0$ é a matriz de transmissão direta;
+
+---
+
+## Conclusão
+A representação em espaço de estados é uma ferramenta poderosa para modelar e analisar sistemas dinâmicos
+
