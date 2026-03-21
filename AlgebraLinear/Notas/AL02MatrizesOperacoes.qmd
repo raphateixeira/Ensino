@@ -1,25 +1,21 @@
 ---
-title: "Sistemas de Equações Lineares"
+title: "Matrizes e Operações Matriciais"
 subtitle: "Álgebra Linear"
-institute: "Universidade Federal do Pará"
 author: "Prof. Dr. Raphael Teixeira"
-date: ""
-editor:
-  render-on-save: false
+institute: "Universidade Federal do Pará"
 format: 
-  revealjs:
+  revealjs: 
     slide-number: true
     transition: fade
+    chalkboard: true # Dica: habilita o quadro negro para riscar durante a aula
+  html: 
+    toc: true # Mantém uma versão em página para leitura/impressão
 ---
 
-# Sistemas de Equações Lineares
+# Matrizes e Operações Matriciais
 
 ## Introdução
 
-Seja o sistema de equações lineares
-$$\begin{cases}
-a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = b_1 \\
-a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n = b_2 \\
-\vdots \\
-a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = b_m
-\end{cases}$$
+Seja a matriz $A = (a_{ij})_{m \times n}$ e o vetor $\mathbf{b} = (b_1, b_2, \ldots, b_m)^T$. O sistema de equações lineares pode ser escrito na forma matricial:
+$$A\mathbf{x} = \mathbf{b}$$
+

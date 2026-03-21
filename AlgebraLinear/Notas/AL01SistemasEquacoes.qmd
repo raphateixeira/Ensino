@@ -1,15 +1,15 @@
 ---
 title: "Sistemas de Equações Lineares"
 subtitle: "Álgebra Linear"
-institute: "Universidade Federal do Pará"
 author: "Prof. Dr. Raphael Teixeira"
-date: ""
-editor:
-  render-on-save: false
+institute: "Universidade Federal do Pará"
 format: 
-  revealjs:
+  revealjs: 
     slide-number: true
     transition: fade
+    chalkboard: true # Dica: habilita o quadro negro para riscar durante a aula
+  html: 
+    toc: true # Mantém uma versão em página para leitura/impressão
 ---
 
 # Sistemas de Equações Lineares
