@@ -15,9 +15,11 @@ website:
         text: Início
       - section: "Notas de Aula"
         contents:
-          # O segredo está em apontar direto para o arquivo de slides gerado
-          - href: Notas/AL01SistemasEquacoes.revealjs.html
+          - href: Notas/AL01SistemasEquacoes.html
             text: "Aula 01: Sistemas de Equações Lineares"
+          - href: Notas/AL02MatrizesOperacoes.html
+            text: "Aula 02: Matrizes e Operações Matriciais"
+
 
 format:
   html:
