@@ -1,13 +1,11 @@
 ---
 title: "Álgebra Linear"
-subtitle: ""
+subtitle: "Engenharia Elétrica"
 institute: "Universidade Federal do Pará"
 author: "Prof. Dr. Raphael Teixeira"
-date: ""
 format: html
 ---
 
 Notas de Aula:
 
-* Aula 01: [Sistemas de equações lineares](Notas/AL01SistemasEquacoes.revealjs.html)
-
+* Aula 01: [Sistemas de equações lineares](Notas/AL01SistemasEquacoes.html)

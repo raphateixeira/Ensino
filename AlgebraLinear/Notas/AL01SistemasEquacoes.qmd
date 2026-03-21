@@ -10,9 +10,10 @@ format:
     slide-number: true
     incremental: true 
     chalkboard: true
-  html:
-    toc: true
 ---
+
+## Introdução
+... (restante do seu conteúdo)
 
 ## Introdução
 
