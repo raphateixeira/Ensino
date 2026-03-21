@@ -1,25 +1,68 @@
 ---
-title: "Sistemas de Equações Lineares"
-subtitle: "Álgebra Linear"
+title: "Aula 01: Sistemas de Equações Lineares"
+subtitle: "Álgebra Linear - Engenharia Elétrica"
 author: "Prof. Dr. Raphael Teixeira"
-institute: "Universidade Federal do Pará"
-format: 
-  revealjs: 
+institute: "Universidade Federal do Pará (UFPA)"
+lang: pt-BR
+format:
+  revealjs:
+    theme: [default, ../TemaRTx.scss]
     slide-number: true
-    transition: fade
-    chalkboard: true # Dica: habilita o quadro negro para riscar durante a aula
-  html: 
-    toc: true # Mantém uma versão em página para leitura/impressão
+    incremental: true 
+    chalkboard: true
+    logo: https://www.ufpa.br/images/layout/logo-ufpa.png # Opcional: logo da UFPA
+    footer: "Álgebra Linear - Prof. Raphael Teixeira"
+  html:
+    toc: true
+    code-copy: true
 ---
-
-# Sistemas de Equações Lineares
 
 ## Introdução
 
-Seja o sistema de equações lineares
-$$\begin{cases}
+Um **Sistema de Equações Lineares** é um conjunto de equações da forma:
+
+$$
+\begin{cases}
 a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = b_1 \\
 a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n = b_2 \\
 \vdots \\
 a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = b_m
-\end{cases}$$
+\end{cases}
+$$
+
+. . .
+
+Na engenharia, esses sistemas surgem na análise de circuitos (Leis de Kirchhoff), processamento de sinais e sistemas de controle.
+
+## Interpretação Geométrica ($R^2$)
+
+No plano bidimensional, cada equação linear representa uma **reta**. A solução do sistema é a interseção dessas retas.
+
+- **SPD:** Sistema Possível e Determinado (Retas concorrentes).
+- **SPI:** Sistema Possível e Indeterminado (Retas coincidentes).
+- **SI:** Sistema Impossível (Retas paralelas distintas).
+
+## Visualização Gráfica com Python
+
+Considere o sistema:
+$x + y = 3$ e $x - y = 1$.
+
+```{python}
+#| label: fig-sistema
+#| fig-cap: "Interseção de duas retas no ponto (2, 1)"
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(-1, 5, 100)
+y1 = 3 - x
+y2 = x - 1
+
+plt.figure(figsize=(8, 4))
+plt.plot(x, y1, 'b-', label=r'$x + y = 3$')
+plt.plot(x, y2, 'r-', label=r'$x - y = 1$')
+plt.plot(2, 1, 'go', markersize=10, label='Solução (2,1)')
+plt.axhline(0, color='black', lw=0.5)
+plt.axvline(0, color='black', lw=0.5)
+plt.grid(True, alpha=0.3)
+plt.legend()
+plt.show()
