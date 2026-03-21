@@ -5,13 +5,14 @@ author: "Prof. Dr. Raphael Teixeira"
 institute: "Universidade Federal do Pará (UFPA)"
 lang: pt-BR
 format:
-  revealjs:        # Mover para primeiro lugar força o link a abrir os slides
+  revealjs:
     theme: [default, ../TemaRTx.scss]
     slide-number: true
     incremental: true 
     chalkboard: true
     footer: "Álgebra Linear - Prof. Raphael Teixeira"
-  html:            # O HTML fica em segundo lugar
+    logo: https://www.ufpa.br/images/layout/logo-ufpa.png
+  html:
     toc: true
     code-copy: true
 ---
@@ -63,4 +64,3 @@ plt.grid(True, alpha=0.3)
 plt.legend()
 plt.show()
 ```
-

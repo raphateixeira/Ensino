@@ -7,7 +7,6 @@ website:
   site-url: https://raphateixeira.github.io/AlgebraLinear/
   repo-url: https://github.com/raphateixeira/AlgebraLinear
   
-  # Configuração da barra lateral para organizar suas notas
   sidebar:
     style: "docked"
     search: true
@@ -16,8 +15,9 @@ website:
         text: Início
       - section: "Notas de Aula"
         contents:
-          - Notas/AL01SistemasEquacoes.qmd
-          # Adicione novos arquivos .qmd aqui conforme for criando
+          # O segredo está em apontar direto para o arquivo de slides gerado
+          - href: Notas/AL01SistemasEquacoes.revealjs.html
+            text: "Aula 01: Sistemas de Equações Lineares"
 
 format:
   html:
