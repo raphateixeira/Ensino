@@ -5,14 +5,13 @@ author: "Prof. Dr. Raphael Teixeira"
 institute: "Universidade Federal do Pará (UFPA)"
 lang: pt-BR
 format:
-  revealjs:
+  revealjs:        # Mover para primeiro lugar força o link a abrir os slides
     theme: [default, ../TemaRTx.scss]
     slide-number: true
     incremental: true 
     chalkboard: true
-    logo: https://www.ufpa.br/images/layout/logo-ufpa.png # Opcional: logo da UFPA
     footer: "Álgebra Linear - Prof. Raphael Teixeira"
-  html:
+  html:            # O HTML fica em segundo lugar
     toc: true
     code-copy: true
 ---
@@ -32,20 +31,17 @@ $$
 
 . . .
 
-Na engenharia, esses sistemas surgem na análise de circuitos (Leis de Kirchhoff), processamento de sinais e sistemas de controle.
+Na engenharia elétrica, esses sistemas surgem na análise de circuitos (Leis de Kirchhoff), processamento de sinais e sistemas de controle.
 
 ## Interpretação Geométrica ($R^2$)
 
 No plano bidimensional, cada equação linear representa uma **reta**. A solução do sistema é a interseção dessas retas.
 
-- **SPD:** Sistema Possível e Determinado (Retas concorrentes).
-- **SPI:** Sistema Possível e Indeterminado (Retas coincidentes).
-- **SI:** Sistema Impossível (Retas paralelas distintas).
+* **SPD:** Sistema Possível e Determinado (Retas concorrentes).
+* **SPI:** Sistema Possível e Indeterminado (Retas coincidentes).
+* **SI:** Sistema Impossível (Retas paralelas).
 
 ## Visualização Gráfica com Python
-
-Considere o sistema:
-$x + y = 3$ e $x - y = 1$.
 
 ```{python}
 #| label: fig-sistema
@@ -66,3 +62,5 @@ plt.axvline(0, color='black', lw=0.5)
 plt.grid(True, alpha=0.3)
 plt.legend()
 plt.show()
+```
+
