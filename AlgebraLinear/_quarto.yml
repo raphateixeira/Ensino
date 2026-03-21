@@ -3,30 +3,36 @@ project:
   output-dir: docs
 
 website:
-  title: "Algebra Linear"
+  title: "Álgebra Linear"
   site-url: https://raphateixeira.github.io/AlgebraLinear/
   repo-url: https://github.com/raphateixeira/AlgebraLinear
-  navbar:
-    left:
+  
+  # Configuração da barra lateral para organizar suas notas
+  sidebar:
+    style: "docked"
+    search: true
+    contents:
       - href: index.qmd
         text: Início
-      # Adicione aqui outros arquivos .qmd que você criar na pasta Notas
-      # - Notas/aula01.qmd
+      - section: "Notas de Aula"
+        contents:
+          - Notas/AL01SistemasEquacoes.qmd
+          # Adicione novos arquivos .qmd aqui conforme for criando
 
 format:
   html:
     theme: default
     lang: pt-BR
     scss: TemaRTx.scss
-    toc: true            # Adicionei o sumário lateral para facilitar a navegação
-    code-copy: true      # Facilita para os alunos copiarem seus códigos de controle
+    toc: true
+    code-copy: true
     
   revealjs:
     theme: default
     scss: TemaRTx.scss
     transition: slide
     slide-number: true
-    footer: "Álgebra Linear - UFPA"
+    footer: "Álgebra Linear - Prof. Raphael Teixeira"
     width: 1600
     height: 900
     code-theme: monokai
