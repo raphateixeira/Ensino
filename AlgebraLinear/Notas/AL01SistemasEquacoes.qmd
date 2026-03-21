@@ -10,10 +10,8 @@ format:
     slide-number: true
     incremental: true 
     chalkboard: true
-    footer: "Álgebra Linear - Prof. Raphael Teixeira"
   html:
     toc: true
-    code-copy: true
 ---
 
 ## Introdução
@@ -29,3 +27,14 @@ a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = b_m
 \end{cases}
 $$
 
+. . .
+
+Na engenharia elétrica, esses sistemas surgem na análise de circuitos (Leis de Kirchhoff), processamento de sinais e sistemas de controle.
+
+## Interpretação Geométrica ($R^2$)
+
+No plano bidimensional, cada equação linear representa uma **reta**. A solução do sistema é a interseção dessas retas.
+
+* **SPD:** Sistema Possível e Determinado (Retas concorrentes).
+* **SPI:** Sistema Possível e Indeterminado (Retas coincidentes).
+* **SI:** Sistema Impossível (Retas paralelas).

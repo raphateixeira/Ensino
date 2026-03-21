@@ -9,10 +9,5 @@ format: html
 
 Notas de Aula:
 
-* Aula 01: [Sistemas de equações lineares](Notas/AL01SistemasEquacoes.qmd)
+* Aula 01: [Sistemas de equações lineares](Notas/AL01SistemasEquacoes.revealjs.html)
 
-* Aula 02: [Matrizes e operações matriciais](Notas/AL02MatrizesOperacoes.qmd)
-
-Listas de Exercícios:
-
-Plano de Ensino:
