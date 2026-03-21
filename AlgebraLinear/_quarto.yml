@@ -3,26 +3,32 @@ project:
   output-dir: docs
 
 website:
-  title: "Controle DFIG"
-  site-url: https://raphateixeira.github.io/ControleDFIG/
-  repo-url: https://github.com/raphateixeira/ControleDFIG
+  title: "Algebra Linear"
+  site-url: https://raphateixeira.github.io/AlgebraLinear/
+  repo-url: https://github.com/raphateixeira/AlgebraLinear
+  navbar:
+    left:
+      - href: index.qmd
+        text: Início
+      # Adicione aqui outros arquivos .qmd que você criar na pasta Notas
+      # - Notas/aula01.qmd
 
-  
 format:
   html:
     theme: default
     lang: pt-BR
     scss: TemaRTx.scss
+    toc: true            # Adicionei o sumário lateral para facilitar a navegação
+    code-copy: true      # Facilita para os alunos copiarem seus códigos de controle
     
   revealjs:
     theme: default
     scss: TemaRTx.scss
     transition: slide
     slide-number: true
-    footer: ""
-    width: 1600      # Largura
-    height: 900       # Altura
+    footer: "Álgebra Linear - UFPA"
+    width: 1600
+    height: 900
     code-theme: monokai
     code-font-size: 2.0em
     code-line-numbers: true
-    
