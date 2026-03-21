@@ -2,8 +2,9 @@ name: Render and Publish
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main ] # Se sua branch principal for 'master', troque 'main' por 'master'
 
+# Permissões necessárias para que o GitHub Actions publique no GitHub Pages
 permissions:
   contents: read
   pages: write
@@ -19,11 +20,13 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      # Se você usa Python/Jupyter no site, descomente as linhas abaixo:
-      # - name: Set up Python
-      #   uses: actions/setup-python@v5
-      #   with:
-      #     python-version: '3.10'
+      # Instalação de Python ---
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Install Dependencies
+        run: pip install jupyter numpy scipy matplotlib
 
       - name: Render Quarto Project
         uses: quarto-dev/quarto-actions/render@v2
@@ -31,7 +34,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: _site # Certifique-se que seu _quarto.yml gera o output em _site
+          # Deve ser exatamente igual ao output-dir do seu _quarto.yml
+          path: docs 
 
       - name: Deploy to GitHub Pages
         id: deployment
