@@ -11,7 +11,6 @@ format:
     incremental: true 
     chalkboard: true
     footer: "Álgebra Linear - Prof. Raphael Teixeira"
-    logo: https://www.ufpa.br/images/layout/logo-ufpa.png
   html:
     toc: true
     code-copy: true
@@ -30,37 +29,3 @@ a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = b_m
 \end{cases}
 $$
 
-. . .
-
-Na engenharia elétrica, esses sistemas surgem na análise de circuitos (Leis de Kirchhoff), processamento de sinais e sistemas de controle.
-
-## Interpretação Geométrica ($R^2$)
-
-No plano bidimensional, cada equação linear representa uma **reta**. A solução do sistema é a interseção dessas retas.
-
-* **SPD:** Sistema Possível e Determinado (Retas concorrentes).
-* **SPI:** Sistema Possível e Indeterminado (Retas coincidentes).
-* **SI:** Sistema Impossível (Retas paralelas).
-
-## Visualização Gráfica com Python
-
-```{python}
-#| label: fig-sistema
-#| fig-cap: "Interseção de duas retas no ponto (2, 1)"
-import numpy as np
-import matplotlib.pyplot as plt
-
-x = np.linspace(-1, 5, 100)
-y1 = 3 - x
-y2 = x - 1
-
-plt.figure(figsize=(8, 4))
-plt.plot(x, y1, 'b-', label=r'$x + y = 3$')
-plt.plot(x, y2, 'r-', label=r'$x - y = 1$')
-plt.plot(2, 1, 'go', markersize=10, label='Solução (2,1)')
-plt.axhline(0, color='black', lw=0.5)
-plt.axvline(0, color='black', lw=0.5)
-plt.grid(True, alpha=0.3)
-plt.legend()
-plt.show()
-```

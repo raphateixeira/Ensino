@@ -9,7 +9,7 @@ format: html
 
 Notas de Aula:
 
-* Aula 01: [Sistemas de equações lineares](Notas/AL01SistemasEquacoes.revealjs.html)
+* Aula 01: [Sistemas de equações lineares](Notas/AL01SistemasEquacoes.html)
 
-* Aula 02: [Matrizes e operações matriciais](Notas/AL02MatrizesOperacoes.revealjs.html)
+* Aula 02: [Matrizes e operações matriciais](Notas/AL02MatrizesOperacoes.html)
 
