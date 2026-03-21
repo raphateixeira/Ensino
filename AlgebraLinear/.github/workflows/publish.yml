@@ -2,9 +2,8 @@ name: Render and Publish
 
 on:
   push:
-    branches: [ main ] # Se sua branch principal for 'master', troque 'main' por 'master'
+    branches: [ main ]
 
-# Permissões necessárias para que o GitHub Actions publique no GitHub Pages
 permissions:
   contents: read
   pages: write
@@ -20,21 +19,23 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      # Instalação de Python ---
+      # Instalação de Python para Álgebra Linear (Numpy/Scipy)
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
+
       - name: Install Dependencies
         run: pip install jupyter numpy scipy matplotlib
 
       - name: Render Quarto Project
         uses: quarto-dev/quarto-actions/render@v2
+        with:
+          to: html  # CRITICAL: Impede o Quarto de tentar fazer o upload automático
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Deve ser exatamente igual ao output-dir do seu _quarto.yml
           path: docs 
 
       - name: Deploy to GitHub Pages
