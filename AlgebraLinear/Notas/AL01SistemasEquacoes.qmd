@@ -4,12 +4,9 @@ subtitle: "Álgebra Linear - Engenharia Elétrica"
 author: "Prof. Dr. Raphael Teixeira"
 institute: "Universidade Federal do Pará (UFPA)"
 lang: pt-BR
-format:
+format: 
   revealjs:
-    theme: [default, ../TemaRTx.scss]
-    slide-number: true
-    incremental: true 
-    chalkboard: true
+    self-contained: true
 ---
 
 ## Introdução

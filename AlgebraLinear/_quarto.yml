@@ -15,10 +15,8 @@ website:
         text: Início
       - section: "Notas de Aula"
         contents:
-          - href: Notas/AL01SistemasEquacoes.html
+          - href: Notas/AL01SistemasEquacoes.qmd
             text: "Aula 01: Sistemas de Equações Lineares"
-          - href: Notas/AL02MatrizesOperacoes.html
-            text: "Aula 02: Matrizes e Operações Matriciais"
 format:
   html:
     theme: default
