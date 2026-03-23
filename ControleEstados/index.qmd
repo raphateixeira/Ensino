@@ -9,4 +9,5 @@ format: html
 
 Espaço de Estados:
 
-* [Modelo em Espaço de Estados](Aulas/Aula00EspacoEstados.html)
+* [Modelo em Espaço de Estados](Notas/SS00ModeloEspacoEstados.html)
+* [Formas de Representação](Notas/SS01Representacoes.html)

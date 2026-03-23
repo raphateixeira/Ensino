@@ -13,7 +13,8 @@ website:
       - index.qmd
       - section: "Tópicos de Controle"
         contents:
-          - Aulas/Aula00EspacoEstados.qmd
+          - Notas/SS00ModeloEspacoEstados.qmd
+          - Notas/SS01Representacoes.qmd
 
 format:
   html:

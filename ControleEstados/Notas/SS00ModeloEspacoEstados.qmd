@@ -1,16 +1,9 @@
 ---
 title: "Espaço de Estados"
 subtitle: "Sistemas de Controle II"
-institute: "Universidade Federal do Pará"
-author: "Prof. Dr. Raphael Teixeira"
-date: ""
-editor:
-  render-on-save: false
 format: 
   revealjs:
-    slide-number: true
-    transition: fade
-    theme: [default, ../TemaRTx.scss]
+    self-contained: true
 ---
 
 ## Circuito RLC:
@@ -65,5 +58,22 @@ Onde:
 ---
 
 ## Conclusão
-A representação em espaço de estados é uma ferramenta poderosa para modelar e analisar sistemas dinâmicos
 
+
+```{tikz}
+#| label: fig-rlc
+#| fig-cap: "Circuito RLC para extração das equações de estado"
+#| engine: tikz
+#| echo: false
+#| out-width: "100%"
+#| preamble: |
+#|   \usepackage[american]{circuitikz}
+
+\begin{circuitikz}[scale=1.5]
+  \draw (0,0)
+    to[V, l=$v_i(t)$] (0,2)
+    to[R, l=$R$] (2,2)
+    to[L, l=$L$, i=$i_L(t)$] (4,2)
+    to[C, l=$C$, v=$v_C(t)$] (4,0)
+    -- (0,0);
+\end{circuitikz}
