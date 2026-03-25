@@ -2,14 +2,14 @@
 title: "Aprendizagem de Máquina"
 subtitle: "UFPA - NDAE - PPCA"
 institute: 
-    - "Universidade Federal do Pará"
-    - "Núcleo de Desenvolvimento Amazônico em Engenharia"
-    - "Programa de Pós-Graduação em Computação Aplicada"
+  - "Universidade Federal do Pará"
 author:
-    - "Prof. Dr. Raphael Teixeira"
-    - "Prof. Dr. Cleison Silva"
-date: ""
-format: html
+  - "Prof. Dr. Raphael Teixeira"
+  - "Prof. Dr. Cleison Silva"
+lang: pt-BR
+format: 
+  html:
+    theme: [cosmo, TemaRTx.scss]
 ---
 
 Notas de Aula:

@@ -1,22 +1,31 @@
 ---
 title: "Aprendizagem de Máquina"
 subtitle: "Fundamentos e Aplicações"
-institute: "Universidade Federal do Pará"
-author:  "Prof. Dr. Raphael Teixeira  &nbsp; &nbsp; &nbsp; Prof. Dr. Cleison Silva"
-date: ""
-editor:
-  render-on-save: false
+institute: ""
+author: "Prof. Dr. Raphael Teixeira &nbsp; &nbsp; &nbsp; Prof. Dr. Cleison Silva"
+lang: pt-BR
 format: 
   revealjs:
+    theme: [default, ../TemaRTx.scss] 
+    transition: slide
     slide-number: true
-    transition: fade
+    width: 1600 
+    height: 900
+    footer: "UFPA - NDAE - PPCA "
+    center: true
+    title-slide-attributes:
+      data-background-image: "../imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 40px center"
 ---
 
 ## Paradigmas de programação
 
+Computadores e humanos têm formas diferentes de processar informações.
+
 ::: {.columns}
 
-::: {.column width="40%"}
+::: {.column width="45%"}
 
 **Programação Tradicional**
 
@@ -31,12 +40,49 @@ format:
 * Capaz de lidar com tarefas complexas
 :::
 
-::: {.column .v-center-column width="60%"}
-![](../imgs/ParadigmaProgram.png){width="100%"}
+::: {.column .v-center-column width="55%"}
+![](../imgs/ParadigmaProgram.png){width="90%"}
+:::
+
+:::
+
+Tarefas complexas: reconhecimento de voz, visão computacional, tradução automática, etc.
+
+---
+
+## Tarefa complexa
+
+Como classificar um e-mail como spam ou não-spam?
+
+::: {.column .h-center-column width="70%"}
+![](../imgs/ClassiicaEmail.png){width="100%"}
+:::
+
+---
+
+
+## Aprendizagem de máquina: definição
+
+::: {.columns}
+
+::: {.column .v-center-column width="55%"}
+![](../imgs/MLParadigma.png){width="90%"}
+:::
+
+::: {.column width="45%"}
+
+* Algoritmo de aprendizagem redebe dados;
+* Respostas também chamadas de rótulos ou classes;
+* Regras são inferidas a partir dos dados;
+
+- Dados: $x$
+- Rótulos: $y$
+- Algoritmo de aprendizagem: $f$
+
+
 :::
 
 :::
 
 ---
 
-## Aprendizagem de Máquina
