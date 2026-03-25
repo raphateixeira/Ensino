@@ -12,7 +12,23 @@ format:
     transition: fade
 ---
 
-# Aprendizagem de Máquina
+## Aprendizagem de Máquina
 
-Seja um conjunto de dados $D = \{(x_1, y_1), (x_2, y_2), ..., (x_n, y_n)\}$, onde $x_i$ representa as características de um exemplo e $y_i$ é a classe ou valor associado a esse exemplo. O objetivo da aprendizagem de máquina é encontrar uma função $f$ que mapeie as características $x$ para as classes ou valores $y$, de forma que $f(x_i) \approx y_i$ para todos os exemplos em $D$.
+A forma de programar um computador para realizar uma tarefa é diferente da forma como um ser humano a realizar a mesma tarefa
 
+### Programação Tradicional
+ - Regras especificadas por programadores ;
+ - Computador segue regras explícitas;
+ - Difícil de lidar com tarefas complexas ou variáveis.
+
+E se as regras não forem claras ou forem difíceis de definir?
+- Exemplo: Reconhecimento de Imagens, Processamento de Linguagem Natural, Jogos, etc.
+
+### Aprendizagem de Máquina
+ - O computador aprende a realizar a tarefa a partir de dados;
+ - O modelo é treinado para reconhecer padrões e fazer previsões;
+ - Capaz de lidar com tarefas complexas e variáveis;
+
+ ---
+
+ 
