@@ -2,9 +2,7 @@
 title: "Aprendizagem de Máquina"
 subtitle: "Fundamentos e Aplicações"
 institute: "Universidade Federal do Pará"
-author:
-    - "Prof. Dr. Raphael Teixeira"
-    - "Prof. Dr. Cleison Silva"
+author:  "Prof. Dr. Raphael Teixeira  Prof. Dr. Cleison Silva"
 date: ""
 editor:
   render-on-save: false
@@ -14,6 +12,7 @@ format:
     transition: fade
 ---
 
-# Slide 1
+# Aprendizagem de Máquina
 
-- Asadasd
+Seja um conjunto de dados $D = \{(x_1, y_1), (x_2, y_2), ..., (x_n, y_n)\}$, onde $x_i$ representa as características de um exemplo e $y_i$ é a classe ou valor associado a esse exemplo. O objetivo da aprendizagem de máquina é encontrar uma função $f$ que mapeie as características $x$ para as classes ou valores $y$, de forma que $f(x_i) \approx y_i$ para todos os exemplos em $D$.
+
