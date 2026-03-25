@@ -1,8 +1,10 @@
 ---
-title: "Introdução Aprendizagem"
-subtitle: "Aprendizagem de Máquina"
+title: "Aprendizagem de Máquina"
+subtitle: "Fundamentos e Aplicações"
 institute: "Universidade Federal do Pará"
-author: "Prof. Dr. Raphael Teixeira"
+author:
+    - "Prof. Dr. Raphael Teixeira"
+    - "Prof. Dr. Cleison Silva"
 date: ""
 editor:
   render-on-save: false
