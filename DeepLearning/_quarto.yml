@@ -19,7 +19,7 @@ format:
     scss: TemaRTx.scss
     transition: slide
     slide-number: true
-    footer: ""
+    footer: "UFPA - NDAE - PPCA - Aprendizagem de Máquina"
     width: 1600      # Largura
     height: 900       # Altura
     code-theme: monokai
