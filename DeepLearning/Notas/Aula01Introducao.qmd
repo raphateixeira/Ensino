@@ -2,7 +2,7 @@
 title: "Aprendizagem de Máquina"
 subtitle: "Fundamentos e Aplicações"
 institute: "Universidade Federal do Pará"
-author:  "Prof. Dr. Raphael Teixeira  Prof. Dr. Cleison Silva"
+author:  "Prof. Dr. Raphael Teixeira  &nbsp; &nbsp; &nbsp; Prof. Dr. Cleison Silva"
 date: ""
 editor:
   render-on-save: false
@@ -12,23 +12,31 @@ format:
     transition: fade
 ---
 
+## Paradigmas de programação
+
+::: {.columns}
+
+::: {.column width="40%"}
+
+**Programação Tradicional**
+
+* Regras explícitas
+* Programação baseada em lógica
+* Difícil de lidar com tarefas complexas
+
+**Aprendizagem de Máquina**
+
+* Aprendizado a partir de dados
+* Programação baseada em exemplos
+* Capaz de lidar com tarefas complexas
+:::
+
+::: {.column .v-center-column width="60%"}
+![](../imgs/ParadigmaProgram.png){width="100%"}
+:::
+
+:::
+
+---
+
 ## Aprendizagem de Máquina
-
-A forma de programar um computador para realizar uma tarefa é diferente da forma como um ser humano a realizar a mesma tarefa
-
-### Programação Tradicional
- - Regras especificadas por programadores ;
- - Computador segue regras explícitas;
- - Difícil de lidar com tarefas complexas ou variáveis.
-
-E se as regras não forem claras ou forem difíceis de definir?
-- Exemplo: Reconhecimento de Imagens, Processamento de Linguagem Natural, Jogos, etc.
-
-### Aprendizagem de Máquina
- - O computador aprende a realizar a tarefa a partir de dados;
- - O modelo é treinado para reconhecer padrões e fazer previsões;
- - Capaz de lidar com tarefas complexas e variáveis;
-
- ---
-
- 

@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "Controle DFIG"
+  title: "Aprendizagem de Máquina"
   site-url: https://raphateixeira.github.io/AprendizagemMaquina
   repo-url: https://github.com/raphateixeira/AprendizagemMaquina
 
