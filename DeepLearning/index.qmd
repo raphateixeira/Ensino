@@ -14,4 +14,4 @@ format: html
 
 Notas de Aula:
 
-* [Aula 01](Notas/Aula01Introducao.html) - Introdução à Aprendizagem de Máquina;
+* [Aula 01](Notas/Aula01Introducao.qmd) - Introdução à Aprendizagem de Máquina;
