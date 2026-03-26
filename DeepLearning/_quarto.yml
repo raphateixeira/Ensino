@@ -6,12 +6,6 @@ website:
   title: "Aprendizagem de Máquina"
   site-url: https://raphateixeira.github.io/AprendizagemMaquina
   repo-url: https://github.com/raphateixeira/AprendizagemMaquina
-  sidebar:
-    contents:
-      - index.qmd
-      - section: "Notas de Aula"
-        contents:
-          - Notas/Aula01Introducao.qmd
 
 format:
   html:

@@ -58,6 +58,8 @@ Como classificar um e-mail como spam ou não-spam?
 ![](../imgs/ClassiicaEmail.png){width="100%"}
 :::
 
+$$y = f(x)$$
+
 ---
 
 
@@ -71,18 +73,15 @@ Como classificar um e-mail como spam ou não-spam?
 
 ::: {.column width="45%"}
 
-* Algoritmo de aprendizagem redebe dados;
-* Respostas também chamadas de rótulos ou classes;
-* Regras são inferidas a partir dos dados;
-
-- Dados: $x$
-- Rótulos: $y$
-- Algoritmo de aprendizagem: $f$
-
+* Dados $x$: características ou atributos de um exemplo;
+* Resposta $y$: o que queremos prever ou classificar;
+* Algoritmo de aprendizagem $f$: processo que aprende a partir dos dados;
 
 :::
 
 :::
+
+
 
 ---
 
