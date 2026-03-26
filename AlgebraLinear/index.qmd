@@ -11,4 +11,4 @@ format:
 
 Notas de Aula:
 
-* Aula 01: [Sistemas de equações lineares](Notas/AL01SistemasEquacoes.html)
+* Aula 01: [Sistemas de equações lineares](Notas/AL01SistemasEquacoes.qmd)
