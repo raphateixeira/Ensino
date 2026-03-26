@@ -24,7 +24,7 @@ format:
 
 ## Introdução
 
-Um **Sistema de Equações Lineares** é um conjunto de equações da forma:
+Um **Sistema de Equações Lineares** é u conjunto de equações da forma:
 
 $$
 \begin{cases}

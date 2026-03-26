@@ -9,20 +9,10 @@ website:
   
 format:
   html:
-    theme: default
+    theme: [cosmo, TemaRTx.scss]
     lang: pt-BR
-    scss: TemaRTx.scss
-    toc: true
-    code-copy: true
-    
   revealjs:
-    theme: default
-    scss: TemaRTx.scss
-    transition: slide
-    slide-number: true
-    footer: "Álgebra Linear - Prof. Raphael Teixeira"
+    theme: [default, TemaRTx.scss]
+    lang: pt-BR
     width: 1600
     height: 900
-    code-theme: monokai
-    code-font-size: 2.0em
-    code-line-numbers: true
