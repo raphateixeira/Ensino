@@ -2,7 +2,7 @@
 
 // Paleta de Cores UFPA
 $blue-ufpa: #002C6F;
-$red-ufpa: #E4002B;
+$red-ufpa: #96263a;
 $yellow-ufpa: #FFD700;
 $black-ufpa: #231F20;
 $white: #FFFFFF;
@@ -39,8 +39,6 @@ $link-color: $blue-ufpa;
 .reveal h2 {
     font-size: 1.4em !important; 
     color: $blue-ufpa !important;
-    border-bottom: 3px solid $red-ufpa; 
-    padding-bottom: 10px;
 }
 
 // --- Bloco de Autores ---
@@ -49,7 +47,7 @@ $link-color: $blue-ufpa;
     justify-content: center !important;
     gap: 80px !important; 
     margin-top: 2em !important;
-    font-size: 1.1em !important;
+    font-size: 1.0em !important;
 }
 
 // --- Layout de Colunas ---

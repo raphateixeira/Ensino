@@ -1,0 +1,36 @@
+---
+title: "Álgebra Linear"
+subtitle: "Sistema de Equações Lineares"
+author: "Prof. Dr. Raphael Teixeira"
+institute: "Universidade Federal do Pará"
+lang: pt-BR
+format: 
+  revealjs:
+    theme: [default, ../TemaRTx.scss] 
+    transition: slide
+    slide-number: true
+    width: 1600 
+    height: 900
+    footer: "UFPA - NDAE - PPCA "
+    center: true
+    title-slide-attributes:
+      data-background-image: "../imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 40px center"
+---
+
+## Equações Lineares
+
+Exemplo de um sistema de equações lineares:
+
+$$
+\begin{cases}
+2x + 3y = 5 \\
+4x - y = 11
+\end{cases}
+$$
+
+---
+
+## Equações Lineares
+

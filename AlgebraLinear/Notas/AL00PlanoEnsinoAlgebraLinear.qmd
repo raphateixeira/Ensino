@@ -1,0 +1,104 @@
+---
+title: "Álgebra Linear"
+subtitle: "Plano de Ensino"
+author: "Prof. Dr. Raphael Teixeira"
+institute: "Universidade Federal do Pará"
+lang: pt-BR
+format: 
+  revealjs:
+    theme: [default, ../TemaRTx.scss] 
+    transition: slide
+    slide-number: true
+    width: 1600 
+    height: 900
+    footer: " "
+    center: true
+    title-slide-attributes:
+      data-background-image: "../imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 40px center"
+---
+
+
+---
+
+## Ementa e Objetivos do Curso
+
+* **Sistemas de Equações Lineares:** Métodos de resolução e interpretação geométrica.
+* **Espaços Vetoriais:** Estruturas, subespaços, base e dimensão.
+* **Transformações Lineares:** Núcleo, imagem e representação matricial.
+* **Autovalores e Autovetores:** Diagonalização de operadores e aplicações.
+* **Espaços com Produto Interno:** Ortogonalidade e o processo de Gram-Schmidt.
+
+::: {.callout-note}
+## Objetivo Principal
+Desenvolver o raciocínio abstrato e aplicar ferramentas algébricas na resolução de problemas práticos de engenharia e computação.
+:::
+
+---
+
+## Bibliografia Recomendada
+
+::: {.columns}
+
+::: {.column width="50%"}
+### Básica
+* **Anton, H. & Rorres, C.** *Álgebra Linear com Aplicações*. 10ª ed. Bookman.
+* **Lay, D. C.** *Álgebra Linear e suas Aplicações*. 4ª ed. Pearson.
+* **Strang, G.** *Introdução à Álgebra Linear*. 4ª ed. LTC.
+:::
+
+::: {.column width="50%"}
+### Complementar
+* **Boldrini, J. L. et al.** *Álgebra Linear*. 3ª ed. Harper & Row do Brasil.
+* **Lipschutz, S. & Lipson, M.** *Álgebra Linear*. Coleção Schaum. Bookman.
+:::
+
+:::
+
+---
+
+## Critérios de Avaliação e Cronograma
+
+::: {.columns}
+
+::: {.column width="45%"}
+### Composição da Nota
+* **Avaliação I:** Sistemas Lineares e Espaços Vetoriais.
+* **Avaliação II:** Transformações, Autovalores e Autovetores.
+* **Trabalho Prático:** Implementação computacional (Python/Julia) ou aplicação em Engenharia.
+:::
+
+::: {.column width="10%"}
+:::
+
+::: {.column width="45%"}
+### Cronograma Previsto
+* **Semanas 1-4:** Matrizes e Sistemas.
+* **Semanas 5-8:** Espaços Vetoriais.
+* **Semanas 9-12:** Transformações Lineares.
+* **Semanas 13-15:** Autovalores e Produto Interno.
+:::
+
+:::
+
+::: {.incremental}
+* Frequência mínima: 75%
+* Uso de ferramentas computacionais será incentivado.
+:::
+
+---
+
+## {data-background-color="#f0f0f0" .v-center-container}
+
+::: {layout-align="center" style="text-align: center;"}
+![](../imgs/UFPA.png){width=250px}
+
+<br>
+
+### Prof. Dr. Raphael Teixeira
+
+<br>
+
+**Obrigado!**
+:::

@@ -11,4 +11,6 @@ format:
 
 Notas de Aula:
 
+* Aula 00: [Plano de Ensino](Notas/AL00PlanoEnsinoAlgebraLinear.qmd)
 * Aula 01: [Sistemas de equações lineares](Notas/AL01SistemasEquacoes.qmd)
+* Aula 02: [Matrizes e operações](Notas/AL02MatrizesOperacoes.qmd)
