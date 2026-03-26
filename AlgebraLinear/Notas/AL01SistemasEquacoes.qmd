@@ -1,8 +1,8 @@
 ---
-title: "Aula 01: Sistemas de Equações Lineares"
-subtitle: "Álgebra Linear - Engenharia Elétrica"
+title: "Álgebra Linear"
+subtitle: "Sistema de Equações Lineares"
 author: "Prof. Dr. Raphael Teixeira"
-institute: "Universidade Federal do Pará (UFPA)"
+institute: "Universidade Federal do Pará"
 lang: pt-BR
 format: 
   revealjs:
@@ -19,30 +19,18 @@ format:
       data-background-position: "top 40px center"
 ---
 
-## Introdução
-... (restante do seu conteúdo)
+## Equações Lineares
 
-## Introdução
-
-Um **Sistema de Equações Lineares** é u conjunto de equações da forma:
+Exemplo de um sistema de equações lineares:
 
 $$
 \begin{cases}
-a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = b_1 \\
-a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n = b_2 \\
-\vdots \\
-a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = b_m
+2x + 3y = 5 \\
+4x - y = 11
 \end{cases}
 $$
 
-. . .
+---
 
-Na engenharia elétrica, esses sistemas surgem na análise de circuitos (Leis de Kirchhoff), processamento de sinais e sistemas de controle.
+## Equações Lineares
 
-## Interpretação Geométrica ($R^2$)
-
-No plano bidimensional, cada equação linear representa uma **reta**. A solução do sistema é a interseção dessas retas.
-
-* **SPD:** Sistema Possível e Determinado (Retas concorrentes).
-* **SPI:** Sistema Possível e Indeterminado (Retas coincidentes).
-* **SI:** Sistema Impossível (Retas paralelas).
