@@ -7,16 +7,6 @@ website:
   site-url: https://raphateixeira.github.io/AlgebraLinear/
   repo-url: https://github.com/raphateixeira/AlgebraLinear
   
-  sidebar:
-    style: "docked"
-    search: true
-    contents:
-      - href: index.qmd
-        text: Início
-      - section: "Notas de Aula"
-        contents:
-          - href: Notas/AL01SistemasEquacoes.qmd
-            text: "Aula 01: Sistemas de Equações Lineares"
 format:
   html:
     theme: default

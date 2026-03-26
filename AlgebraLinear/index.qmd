@@ -3,7 +3,10 @@ title: "Álgebra Linear"
 subtitle: "Engenharia Elétrica"
 institute: "Universidade Federal do Pará"
 author: "Prof. Dr. Raphael Teixeira"
-format: html
+lang: pt-BR
+format: 
+  html:
+    theme: [cosmo, TemaRTx.scss]
 ---
 
 Notas de Aula:
