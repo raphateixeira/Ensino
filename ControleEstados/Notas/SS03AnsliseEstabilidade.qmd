@@ -1,0 +1,94 @@
+---
+title: "Espaço de Estados"
+subtitle: "Sistemas de Controle II"
+format: 
+  revealjs:
+    self-contained: true
+---
+
+## Circuito RLC:
+
+Considere o circuito RLC série alimentado por uma fonte de tensão $v(t)$, onde a saída de interesse é a tensão no capacitor $v_c(t)$.
+
+**Componentes:**
+* $R$: Resistência ($\Omega$)
+* $L$: Indutância ($H$)
+* $C$: Capacitância ($F$)
+* $i(t)$: Corrente série;
+
+## Aplicação das Leis Físicas
+
+Aplicando a **Lei das Tensões de Kirchhoff (LTK)** na malha:
+$$v(t) = v_R(t) + v_L(t) + v_C(t)$$
+
+Substituindo pelas relações constitutivas:
+$$v(t) = R \cdot i(t) + L \frac{di(t)}{dt} + v_C(t)$$
+Para o capacitor, a relação entre corrente e tensão é:
+$$i(t) = C \frac{dv_C(t)}{dt} \implies \frac{dv_C(t)}{dt} = \frac{1}{C} i(t)$$  
+
+---
+
+## Definição das Variáveis de Estado
+Definimos as variáveis de estado como:
+$$x_1(t) = v_C(t)$$
+$$x_2(t) = i(t)$$
+Substituindo essas definições nas equações anteriores, obtemos o sistema de equações diferenciais:
+$$\dot{x}_1(t) = \frac{1}{C} x_2(t)$$
+$$\dot{x}_2(t) = \frac{1}{L} (v(t) - R x_2(t) - x_1(t))$$
+Essas equações podem ser escritas na forma matricial:
+$$\begin{bmatrix} \dot{x}_1(t) \\ \dot{x}_2(t) \end{bmatrix} = \begin{bmatrix} 0 & \frac{1}{C} \\ -\frac{1}{L} & -\frac{R}{L} \end{bmatrix} \begin{bmatrix} x_1(t) \\ x_2(t) \end{bmatrix} + \begin{bmatrix} 0 \\ \frac{1}{L} \end{bmatrix} v(t)$$
+A saída do sistema é dada por:
+$$y(t) = x_1(t)$$
+
+---
+
+## Representação em Espaço de Estados
+A representação em espaço de estados do sistema é dada por:
+$$\dot{\mathbf{x}}(t) = A \mathbf{x}(t) + B u(t)$$
+$$y(t) = C \mathbf{x}(t) + D u(t)$$
+Onde:
+- $\mathbf{x}(t) = \begin{bmatrix} x_1(t) \\ x_2(t) \end{bmatrix}$ é o vetor de estado
+- $u(t) = v(t)$ é a entrada do sistema
+- $y(t) = x_1(t)$ é a saída do sistema
+- $A = \begin{bmatrix} 0 & \frac{1}{C} \\ -\frac{1}{L} & -\frac{R}{L} \end{bmatrix}$ é a matriz de estado
+- $B = \begin{bmatrix} 0 \\ \frac{1}{L} \end{bmatrix}$ é a matriz de entrada
+- $C = \begin{bmatrix} 1 & 0 \end{bmatrix}$ é a matriz de saída
+- $D = 0$ é a matriz de transmissão direta;
+
+---
+
+## Motor de Corrente Contínua (CC)
+
+Estados, definimos o vetor de estados $x$, a entrada $u$ e a saída $y$:
+
+* **Estados:** $x = \begin{bmatrix} i \\ \omega \end{bmatrix}$ 
+* **Entrada:** $u = V$ (tensão aplicada)
+* **Saída:** $y = \omega$ 
+
+Isolando as derivadas nas equações fundamentais:
+$$\frac{di}{dt} = -\frac{R}{L}i - \frac{K_e}{L}\omega + \frac{1}{L}V$$
+$$\frac{d\omega}{dt} = \frac{K_t}{J}i - \frac{B}{J}\omega$$
+
+---
+## Equação de Estado
+Organizando as equações lineares na forma matricial $\dot{x} = Ax + Bu$:
+
+$$
+\begin{bmatrix} \dot{i} \\ \dot{\omega} \end{bmatrix} = 
+\begin{bmatrix} 
+-\frac{R}{L} & -\frac{K_e}{L} \\ 
+\frac{K_t}{J} & -\frac{B}{J} 
+\end{bmatrix} 
+\begin{bmatrix} i \\ \omega \end{bmatrix} + 
+\begin{bmatrix} \frac{1}{L} \\ 0 \end{bmatrix} V
+$$
+
+A equação de saída $y = Cx + Du$ define o que estamos observando no sistema. Se o objetivo é monitorar apenas a velocidade do eixo:
+
+$$
+y = \begin{bmatrix} 0 & 1 \end{bmatrix} \begin{bmatrix} i \\ \omega \end{bmatrix} + [0]V
+$$
+
+
+
+

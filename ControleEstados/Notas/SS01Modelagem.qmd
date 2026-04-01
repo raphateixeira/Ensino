@@ -1,11 +1,25 @@
 ---
-title: "Modelagem noEspaço de Estados"
+title: "Modelagem no Espaço de Estados"
 subtitle: "Sistemas de Controle II"
 institute: "Universidade Federal do Pará"
 author: "Prof. Dr. Raphael Teixeira"
 format: 
   revealjs:
     self-contained: true
+---
+
+## Modelos de sistemas dinâmicos
+
+Sistemas dinâmicos são comumente representados a partir de equações diferenciais:
+
+$$\frac{d^n y}{dt^n} + a_{n-1} \frac{d^{n-1} y}{dt^{n-1}} + \ldots + a_1 \frac{dy}{dt} + a_0 y = b_0 u$$
+
+Ou por funções de transferência:
+
+$$G(s) = \frac{Y(s)}{U(s)} = \frac{b_0}{s^n + a_{n-1} s^{n-1} + \ldots + a_1 s + a_0}$$
+
+Estas representações são adequadas para análise de sistemas lineares e invariantes no tempo (LIT), mas não são as mais adequadas para modelar sistemas com múltiplas entradas e saídas, ou sistemas não lineares.
+
 ---
 
 ## Sistema massa mola amortecedor
@@ -121,6 +135,7 @@ $$\mathbf{y} = \mathbf{C}\mathbf{x} + \mathbf{D}u$$
 
 Onde:
 
+- $m$ entradas; $p$ saídas;
 - $\mathbf{x} \in \mathbb{R}^n$ é o vetor de estado;
 - $u \in \mathbb{R}$ é a entrada do sistema;
 - $\mathbf{y} \in \mathbb{R}^p$ é a saída do sistema;
@@ -128,16 +143,16 @@ Onde:
 - $\mathbf{B} \in \mathbb{R}^{n \times m}$ é a matriz de entrada; 
 - $\mathbf{C} \in \mathbb{R}^{p \times n}$ é a matriz de saída;
 - $\mathbf{D} \in \mathbb{R}^{p \times m}$ é a matriz de transmissão direta.
-- $m$ é o número de entradas do sistema;
-- $p$ é o número de saídas do sistema.
+
 
 ---
 
-# Diagrama de blocos - Modelo de estados
+## Diagrama de blocos - Modelo de estados
 
 ![](imgs/DiagramaSS.png){width=80%}
 
 ---
+
 
 ## Circuito RLC
 
@@ -274,3 +289,31 @@ Expressando na forma matricial:
 $$\begin{bmatrix} \dot{x}_1 \\ \dot{x}_2 \end{bmatrix} = \begin{bmatrix} -\frac{R}{L} & -\frac{K_e}{L} \\ \frac{K_t}{J} & -\frac{b}{J} \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \end{bmatrix} + \begin{bmatrix} \frac{1}{L} \\ 0 \end{bmatrix} u(t)$$
 $$y = \begin{bmatrix} 0 & 1 \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \end{bmatrix}$$
 
+---
+
+### Conversão da equação de estados para a função de transferência
+
+Seja a equação de estados:
+$$\dot{\mathbf{x}} = \mathbf{A}\mathbf{x} + \mathbf{B}u$$
+$$\mathbf{y} = \mathbf{C}\mathbf{x} + \mathbf{D}u$$
+
+Aplicando transformada de Laplace:
+$$s\mathbf{X}(s) - \mathbf{x}(0) = \mathbf{A}\mathbf{X}(s) + \mathbf{B}U(s)$$
+$$\mathbf{Y}(s) = \mathbf{C}\mathbf{X}(s) + \mathbf{D}U(s)$$
+
+Rearranjando a primeira equação:
+$$\mathbf{X}(s) = (s\mathbf{I} - \mathbf{A})^{-1} \mathbf{x}(0) + (s\mathbf{I} - \mathbf{A})^{-1} \mathbf{B} U(s)$$
+
+Considerara que as condições iniciais são nulas $\mathbf{x}(0) = 0$.
+
+---
+
+### Conversão da equação de estados para a função de transferência
+
+$$\mathbf{X}(s) = (s\mathbf{I} - \mathbf{A})^{-1} \mathbf{B} U(s)$$
+
+Substituindo na equação de saída:
+$$\mathbf{Y}(s) = \mathbf{C} (s\mathbf{I} - \mathbf{A})^{-1} \mathbf{B} U(s) + \mathbf{D} U(s)$$
+
+A função de transferência é dada por:
+$$G(s) = \frac{\mathbf{Y}(s)}{U(s)} = \mathbf{C} (s\mathbf{I} - \mathbf{A})^{-1} \mathbf{B} + \mathbf{D}$$

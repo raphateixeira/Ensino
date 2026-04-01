@@ -11,10 +11,12 @@ website:
     style: "floating"
     contents:
       - index.qmd
-      - section: "Tópicos de Controle"
+      - section: "Sistemas de Controle II"
         contents:
-          - Notas/SS00ModeloEspacoEstados.qmd
-          - Notas/SS01Representacoes.qmd
+          - Notas/SS00PlanoEnsino.qmd
+          - Notas/SS01Modelagem.qmd
+          - Notas/SS02ConversaoRepresentacoes.qmd
+          - Notas/SS03AnaliseEstabilidade.qmd
 
 format:
   html:
