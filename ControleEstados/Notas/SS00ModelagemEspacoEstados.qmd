@@ -235,3 +235,42 @@ $$\mathbf{x}(t) = e^{\mathbf{A}t} \mathbf{x}(0) + \int_0^t e^{\mathbf{A}(t-\tau)
 ## Modelagem do motor de corrente contínua 
 
 ![](imgs/MotorDC.png){width=80%}
+
+---
+
+## Modelagem do motor de corrente contínua 
+
+Equação da armadura:
+$$V_a(t) = L \frac{di_a(t)}{dt} + R i_a(t) + e_b(t)$$
+
+Equação do movimento:
+$$J \frac{d\omega(t)}{dt} = T(t) - b \omega(t)$$
+
+Força contra-eletromotriz e torque:
+$$e_b(t) = K_e \omega(t) \qquad\qquad T(t) = K_t i_a(t)$$
+
+Determine as equações de estado do motor CC.
+
+---
+
+## Modelagem do motor de corrente contínua 
+
+Aplicando FCC e torque nas equações da armadura e do movimento:
+$$V_a(t) = L \frac{di_a(t)}{dt} + R i_a(t) + K_e \omega(t)$$
+$$J \frac{d\omega(t)}{dt} = K_t i_a(t) - b \omega(t)$$
+
+Definindo as variáveis de estado:
+$$x_1 = i_a(t) \qquad x_2 = \omega(t)$$
+
+Substituindo nas equações e isolando as derivadas:
+$$\dot{x}_1 = \frac{1}{L} (V_a(t) - R x_1(t) - K_e x_2(t)) \qquad \qquad \dot{x}_2 = \frac{1}{J} (K_t x_1(t) - b x_2(t))$$
+
+---
+
+## Modelagem do motor de corrente contínua 
+
+Expressando na forma matricial:
+
+$$\begin{bmatrix} \dot{x}_1 \\ \dot{x}_2 \end{bmatrix} = \begin{bmatrix} -\frac{R}{L} & -\frac{K_e}{L} \\ \frac{K_t}{J} & -\frac{b}{J} \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \end{bmatrix} + \begin{bmatrix} \frac{1}{L} \\ 0 \end{bmatrix} u(t)$$
+$$y = \begin{bmatrix} 0 & 1 \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \end{bmatrix}$$
+
