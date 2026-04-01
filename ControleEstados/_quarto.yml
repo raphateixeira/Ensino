@@ -6,17 +6,6 @@ website:
   title: "Espaço de Estados"
   site-url: https://raphateixeira.github.io/ControleEstados/
   repo-url: https://github.com/raphateixeira/ControleEstados/
-  
-  sidebar:
-    style: "floating"
-    contents:
-      - index.qmd
-      - section: "Sistemas de Controle II"
-        contents:
-          - Notas/SS00PlanoEnsino.qmd
-          - Notas/SS01Modelagem.qmd
-          - Notas/SS02ConversaoRepresentacoes.qmd
-          - Notas/SS03AnaliseEstabilidade.qmd
 
 format:
   html:
