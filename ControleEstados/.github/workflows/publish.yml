@@ -1,5 +1,4 @@
----
-name: Publicar - ControleEstados
+name: Publicar Controle Estados
 
 on:
   push:
@@ -20,9 +19,7 @@ jobs:
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
-        with:
-          # Para garantir que use a versão mais estável
-          version: latest 
+        # Removida a linha 'version: latest' para evitar o erro 404
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
