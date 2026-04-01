@@ -57,23 +57,38 @@ Onde:
 
 ---
 
-## Conclusão
+## Motor de Corrente Contínua (CC)
+
+Estados, definimos o vetor de estados $x$, a entrada $u$ e a saída $y$:
+
+* **Estados:** $x = \begin{bmatrix} i \\ \omega \end{bmatrix}$ 
+* **Entrada:** $u = V$ (tensão aplicada)
+* **Saída:** $y = \omega$ 
+
+Isolando as derivadas nas equações fundamentais:
+$$\frac{di}{dt} = -\frac{R}{L}i - \frac{K_e}{L}\omega + \frac{1}{L}V$$
+$$\frac{d\omega}{dt} = \frac{K_t}{J}i - \frac{B}{J}\omega$$
+
+---
+## Equação de Estado
+Organizando as equações lineares na forma matricial $\dot{x} = Ax + Bu$:
+
+$$
+\begin{bmatrix} \dot{i} \\ \dot{\omega} \end{bmatrix} = 
+\begin{bmatrix} 
+-\frac{R}{L} & -\frac{K_e}{L} \\ 
+\frac{K_t}{J} & -\frac{B}{J} 
+\end{bmatrix} 
+\begin{bmatrix} i \\ \omega \end{bmatrix} + 
+\begin{bmatrix} \frac{1}{L} \\ 0 \end{bmatrix} V
+$$
+
+A equação de saída $y = Cx + Du$ define o que estamos observando no sistema. Se o objetivo é monitorar apenas a velocidade do eixo:
+
+$$
+y = \begin{bmatrix} 0 & 1 \end{bmatrix} \begin{bmatrix} i \\ \omega \end{bmatrix} + [0]V
+$$
 
 
-```{tikz}
-#| label: fig-rlc
-#| fig-cap: "Circuito RLC para extração das equações de estado"
-#| engine: tikz
-#| echo: false
-#| out-width: "100%"
-#| preamble: |
-#|   \usepackage[american]{circuitikz}
 
-\begin{circuitikz}[scale=1.5]
-  \draw (0,0)
-    to[V, l=$v_i(t)$] (0,2)
-    to[R, l=$R$] (2,2)
-    to[L, l=$L$, i=$i_L(t)$] (4,2)
-    to[C, l=$C$, v=$v_C(t)$] (4,0)
-    -- (0,0);
-\end{circuitikz}
+

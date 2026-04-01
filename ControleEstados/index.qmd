@@ -7,7 +7,7 @@ date: ""
 format: html
 ---
 
-Espaço de Estados:
+Notas de aula: de Estados:
 
-* [Modelo em Espaço de Estados](Notas/SS00ModeloEspacoEstados.html)
-* [Formas de Representação](Notas/SS01Representacoes.html)
+* [Modelagem no Espaço de Estados](Notas/SS00ModelagemEspacoEstados.html)
+
