@@ -21,9 +21,9 @@ format:
 :::
 ::: {.column width="50%"}
 
-  - **Ementa Espaço de Estados**: Modelagem de sistemas físicos; Representação em espaço de estados; Análise de sistemas no espaço de estados; Controle de sistemas no espaço de estados; Observadores de estado; Estabilidade, controlabilidade e observabilidade; Projeto de controladores e observadores.
+  - **Ementa Espaço de Estados**: Modelagem de sistemas físicos; Representação em espaço de estados; Análise de sistemas no espaço de estados; Controle de sistemas no espaço de estados; Observadores de estado; Projeto de controladores e observadores; Controe de sistemas não lineares; Linearização; Estabilidade, controlabilidade e observabilidade; Regulação e Rastreamento.
 
-  - **Ementa Controle Digital**: Controle digital; Amostragem e reconstrução de sinais; Análise de sistemas amostrados; Projeto de controladores digitais; Implementação de controladores digitais.
+  - **Ementa Controle Digital**: Controle digital; Amostragem e reconstrução de sinais; Sinais e sistemas discretos; Transformada $Z$;Análise de sistemas amostrados; Projeto de controladores digitais; Implementação de controladores digitais.
 
 
 :::
@@ -35,7 +35,7 @@ format:
 
 - **Livro  1**: Ogata, Katsuhiko. "Engenharia de Controle Moderno" 5th Edition. Prentice Hall, 2010.
 - **Livro  2**: Nise, Norman S. "Engenharia de Sistemas de Controle." 7th Edition. Wiley, 2015.
-- **Livro  3**: Dorf, Richard C., and Robert H. Bishop. "Sistemas de Controle Moderno." 13th Edition. Pearson, 2016.
+- **Livro  3**: Dorf, Richard. "Sistemas de Controle Moderno." 13th Edition. Pearson, 2016.
 
 ![](imgs/LivrosControle.png){width=60%}
 
@@ -59,9 +59,7 @@ Testes de 1hora com uma ou duas questões.
 - Teste 5 - $T_5$: 3,5 pts - Transformada Z, função de transferência discreta; Análise de sistemas amostrados;
 - Teste 6 -  $T_6$: 4,0 pts - Projeto de controle digital por emulação;
 
-::: {.notes}
 Nota 2: $N_2 = T_4 + T_5 + T_6$
-:::
 
 Testes de 1hora com uma ou duas questões.
 
@@ -69,11 +67,18 @@ Testes de 1hora com uma ou duas questões.
 
 ## Avaliação Final
 
-- Nota Final: $N_f = \frac{N_1 + N_2}{2}$
+- Nota Final: $N_f = \dfrac{N_1 + N_2}{2}$
 
 - Nota_1 ou a Nota_2 podem ser substituídas por exame final com todo o conteúdo de epaço de estados ou de controle digital, respectivamente.
 
 - Frequencia mínima: 75% [Regulamento de Graduação da UFPA](https://proeg.ufpa.br/images/Artigos/Academico/Downloads/Regulamento_de_Graduacao.pdf), Art. 18.
+
+**Conceitos:**
+
+- $N_f \geq 9,0$: EXC - Excelente.
+- $7,0 \leq N_f < 9,0$: BOM - Bom.
+- $5,0 \leq N_f < 7,0$: REG - Regular
+- $N_f < 5,0$: INS - Insuficiente.
 
 --- 
 

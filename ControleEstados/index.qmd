@@ -4,10 +4,14 @@ subtitle: "Sistemas de Controle II"
 institute: "Universidade Federal do Pará"
 author: "Prof. Dr. Raphael Teixeira"
 date: ""
-format: html
+format: 
+  html:
+    page-layout: article
 ---
 
-Notas de aula: de Estados:
+Notas de aula de Sistemas de Controle II - Espaço de Estados:
+
+Turma de 2024 da FEE - CAMTUC - UFPA.
 
 * Aula 0 - [Plano de Ensino](Notas/SS00PlanoEnsino.html)
 * Aula 1 - [Modelagem no Espaço de Estados](Notas/SS01Modelagem.html)
