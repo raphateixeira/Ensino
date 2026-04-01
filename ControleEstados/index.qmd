@@ -10,6 +10,6 @@ format: html
 Notas de aula: de Estados:
 
 * Aula 0 - [Plano de Ensino](Notas/SS00PlanoEnsino.html)
-* Aula 1 e 2 - [Modelagem no Espaço de Estados](Notas/SS01Modelagem.html)
-* Aula 3 - [Conversão de Representações](Notas/SS01ConversaoRepresentacoes.html)
-* Aula 4 - [Análise de Sistemas no Espaço de Estados](Notas/SS02AnaliseSistemas.html)
+* Aula 1 - [Modelagem no Espaço de Estados](Notas/SS01Modelagem.html)
+* Aula 2 - [Conversão de Representações](Notas/SS01ConversaoRepresentacoes.html)
+* Aula 3 - [Análise de Sistemas no Espaço de Estados](Notas/SS02AnaliseSistemas.html)

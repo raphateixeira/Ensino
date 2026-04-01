@@ -3,19 +3,26 @@ name: Publicar - ControleEstados
 
 on:
   push:
-    branches: main
+    branches: [ main, master ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
 
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          # Para garantir que use a versão mais estável
+          version: latest 
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
