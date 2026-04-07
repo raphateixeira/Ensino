@@ -1,0 +1,142 @@
+---
+title: "Aprendizagem de Máquina"
+subtitle: "Fundamentos e Aplicações"
+institute: ""
+author: "Prof. Dr. Raphael Teixeira &nbsp; &nbsp; &nbsp; Prof. Dr. Cleison Silva"
+lang: pt-BR
+format: 
+  revealjs:
+    theme: [default, ../TemaRTx.scss] 
+    transition: slide
+    slide-number: true
+    width: 1600 
+    height: 900
+    footer: "UFPA - NDAE - PPCA "
+    center: true
+    title-slide-attributes:
+      data-background-image: "../imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 40px center"
+---
+
+## Regressão polinomial
+
+O problema de regressão pode ser conduzido utilizando a biblioteca `scikit-learn` do Python - Considerando os dados novamente:
+
+```{python}
+#| echo: true
+#| output: false
+import matplotlib.pyplot as plt
+import numpy as np
+
+np.random.seed(42)
+
+# Número de amostras
+N = 10
+
+# Entrada
+x = np.linspace(0, 2*np.pi, N)
+
+# base de tempo para a sin(x)
+x_true = np.linspace(0, 2*np.pi, 100)
+# Ruído gaussiano
+noise = np.random.normal(0, 0.2, N)
+
+# Saída
+y = np.sin(x) + noise
+
+# reshape para ML
+X = x.reshape(-1,1)
+
+plt.scatter(x, y, label='Dados ruidosos')
+plt.plot(x_true, np.sin(x_true), color='green', label='Função verdadeira')
+plt.legend()
+plt.show()
+```
+
+---
+
+## Regressão polinomial sklearn
+
+O problema de regressão pode ser conduzido utilizando a biblioteca `scikit-learn` do Python - Considerando os dados novamente:
+
+```{python}
+#| echo: false
+#| output: true
+import matplotlib.pyplot as plt
+import numpy as np
+
+np.random.seed(42)
+
+# Número de amostras
+N = 10
+
+# Entrada
+x = np.linspace(0, 2*np.pi, N)
+
+# base de tempo para a sin(x)
+x_true = np.linspace(0, 2*np.pi, 100)
+# Ruído gaussiano
+noise = np.random.normal(0, 0.2, N)
+
+# Saída
+y = np.sin(x) + noise
+
+# reshape para ML
+X = x.reshape(-1,1)
+
+plt.scatter(x, y, label='Dados ruidosos')
+plt.plot(x_true, np.sin(x_true), color='green', label='Função verdadeira')
+plt.legend()
+plt.show()
+```
+
+---
+
+## Regressão polinomial sklearn
+
+```{python}
+#| echo: true
+#| output: true
+
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.linear_model import LinearRegression
+import matplotlib.pyplot as plt
+
+# 1. Transformação: x -> [1, x, x^2, ..., x^M]
+M = 3
+poly = PolynomialFeatures(degree=M)
+
+X = poly.fit_transform(X)
+
+X
+```
+
+---
+
+## Regressão polinomial sklearn
+
+```{python}
+#| echo: true
+#| output: true
+
+# 2. Ajuste do Modelo (Equação Normal Interna)
+model = LinearRegression()
+model.fit(X, y)
+
+# 3. Predição
+y_pred = model.predict(X)
+
+# Visualização
+plt.figure(figsize=(8, 5))
+plt.scatter(x, y, facecolor="none", edgecolor="blue", s=80, label='Dados')
+plt.plot(x_true, np.sin(x_true), color='green', label='$\sin(x)$')
+plt.plot(x_true, y_pred, color='red', label=f'Sklearn (M={M})')
+plt.legend()
+plt.show()
+
+print(f"Coeficientes aprendidos: {model.coef_}")
+print(f"Intercepto (w0): {model.intercept_}")
+```
+
+

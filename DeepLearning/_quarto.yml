@@ -12,7 +12,6 @@ format:
     theme: [cosmo, TemaRTx.scss]
     lang: pt-BR
   revealjs:
-    # AQUI ESTÁ O TRUQUE: Deixamos o tema global
     theme: [default, TemaRTx.scss]
     lang: pt-BR
     width: 1600
