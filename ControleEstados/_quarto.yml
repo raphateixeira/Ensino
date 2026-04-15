@@ -9,9 +9,7 @@ website:
 
 format:
   html:
-    theme: 
-      - default
-      - TemaRTx.scss
+    theme: [cosmo, TemaRTx.scss]
     lang: pt-BR
     code-copy: true
     anchor-sections: true
@@ -23,6 +21,6 @@ format:
     width: 1600
     height: 900
     code-theme: monokai
-    code-font-size: 0.8em # Ajustado para não estourar o slide padrão
+    code-font-size: 0.8em 
     code-line-numbers: true
     hash-type: number

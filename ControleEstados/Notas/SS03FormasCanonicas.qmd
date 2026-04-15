@@ -1,0 +1,78 @@
+---
+title: "Formas Canônicas da Representação em Espaço de Estados"
+subtitle: "Sistemas de Controle II"
+institute: "Universidade Federal do Pará"
+author: "Prof. Dr. Raphael Teixeira"
+format: 
+  revealjs:
+    theme: [default, ../TemaRTx.scss] 
+    self-contained: true
+    transition: slide
+    slide-number: true
+    width: 1600 
+    height: 900
+    footer: " "
+    center: true
+    title-slide-attributes:
+      data-background-image: "../Notas/imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 40px center"
+---
+
+## Representação em espaço de estados
+
+A representação em espaço de estados de um sistema é dada por:
+$$\dot{x}(t) = A x(t) + B u(t)$$
+$$y(t) = C x(t) + D u(t)$$
+
+
+Esta representação é muito flexível e pode ser convertida para outras formas, como a função de transferência. No entanto, existem formas canônicas específicas que facilitam a análise e o projeto de sistemas de controle.
+
+---
+
+## Nise: 3.5
+
+Convertendo a função de transferência para Espaço de estados:
+
+Caso 1 - Sistemas com numerador constante:
+$$G(s) = \frac{Y(s)}{U(s)} = \frac{b_0}{s^n + a_{n-1} s^{n-1} + ... + a_0}$$
+
+
+
+---
+
+$$G(s) = \frac{12}{s^3 + 9s^2 + 26s + 24}$$
+
+EDO associada:
+$$y''' + 9y'' + 26y' + 24y = 12u$$
+
+Definindo as variáveis de estado:
+$$x_1 = y$$ 
+$$x_2 = y'$$
+$$x_3 = y''$$
+
+---
+
+Derivando as variáveis de estado:
+$$\dot{x}_1 = x_2$$
+$$\dot{x}_2 = x_3$$
+$$\dot{x}_3 = 12u - 9x_3 - 26x_2 - 24x_1$$
+
+A representação em espaço de estados é dada por:
+$$\begin{bmatrix} \dot{x}_1 \\ \dot{x}_2 \\ \dot{x}_3 \end{bmatrix} = \begin{bmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ -24 & -26 & -9 \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} + \begin{bmatrix} 0 \\ 0 \\ 12 \end{bmatrix} u$$
+$$y = \begin{bmatrix} 1 & 0 & 0 \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}$$
+
+---
+
+Caso 2 - Sistemas com numerador polinomial: Lathi 3.5
+
+$$G(s) = \frac{Y(s)}{U(s)} = \frac{b_2 s^2 + b_1 s + b_0}{a_3s^3 + a_2 s^2  + a_1 s + a_0}$$
+
+---
+
+## Formas Canônicas: 
+
+- Nise 5.7
+
+- Forma em cascata;
+

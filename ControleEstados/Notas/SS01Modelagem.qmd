@@ -5,9 +5,19 @@ institute: "Universidade Federal do Pará"
 author: "Prof. Dr. Raphael Teixeira"
 format: 
   revealjs:
+    theme: [default, ../TemaRTx.scss] 
     self-contained: true
+    transition: slide
+    slide-number: true
+    width: 1600 
+    height: 900
+    footer: " "
+    center: true
+    title-slide-attributes:
+      data-background-image: "../Notas/imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 40px center"
 ---
-
 ## Modelos de sistemas dinâmicos
 
 Sistemas dinâmicos são comumente representados a partir de equações diferenciais:
@@ -156,7 +166,7 @@ Onde:
 
 ## Circuito RLC
 
-![](imgs/CircuitoRLC.png){width=80%}
+![](imgs/CircuitoRLC.png){width=40%}
 
 
 ---
@@ -200,44 +210,6 @@ $$x_2 = i_L(t) \qquad \longrightarrow \qquad \dot{x}_2 = \frac{1}{L} (x_1(t) - R
 Expressando na forma matricial:
 $$\begin{bmatrix} \dot{x}_1 \\ \dot{x}_2 \end{bmatrix} = \begin{bmatrix} 0 & -\frac{1}{C} \\ \frac{1}{L} & -\frac{R}{L} \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \end{bmatrix} + \begin{bmatrix} \frac{1}{C} \\ 0 \end{bmatrix} u$$
 $$y = \begin{bmatrix} 0 & R \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \end{bmatrix}$$
-
---- 
-
-## Solução da equação de estados
-
-Considerando uma equação de 1a ordem:
-
-$$\dot{x}(t) = ax(t) + bu(t)$$
-
-Aplicando transformada de Laplace:
-
-$$sX(s) - x(0) = aX(s) + bU(s)$$
-
-Rearranjando:
-$$X(s) = \frac{x(0)}{s-a} + \frac{b}{s-a} U(s)$$
-
-Ou seja, a resposta do sistema é composta por uma resposta natural (devido à condição inicial) e uma resposta forçada (devido à entrada).
-
-$$
-x(t) = e^{at} x(0) + \int_0^t e^{a(t-\tau)} b u(\tau) d\tau
-$$
-
----
-
-## Solução da equação de estados
-
-Para um sistema de ordem $n$:
-
-$$\dot{\mathbf{x}} = \mathbf{A}\mathbf{x} + \mathbf{B}u$$
-
-Aplicando transformada de Laplace:
-$$s\mathbf{X}(s) - \mathbf{x}(0) = \mathbf{A}\mathbf{X}(s) + \mathbf{B}U(s)$$
-Rearranjando:
-$$\mathbf{X}(s) = (s\mathbf{I} - \mathbf{A})^{-1} \mathbf{x}(0) + (s\mathbf{I} - \mathbf{A})^{-1} \mathbf{B} U(s)$$
-
-No tempo:
-
-$$\mathbf{x}(t) = e^{\mathbf{A}t} \mathbf{x}(0) + \int_0^t e^{\mathbf{A}(t-\tau)} \mathbf{B} u(\tau) d\tau$$
 
 ---
 

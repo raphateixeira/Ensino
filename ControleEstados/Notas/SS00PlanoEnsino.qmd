@@ -5,7 +5,18 @@ institute: "Universidade Federal do Pará"
 author: "Prof. Dr. Raphael Teixeira"
 format: 
   revealjs:
+    theme: [default, ../TemaRTx.scss] 
     self-contained: true
+    transition: slide
+    slide-number: true
+    width: 1600 
+    height: 900
+    footer: " "
+    center: true
+    title-slide-attributes:
+      data-background-image: "../Notas/imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 40px center"
 ---
 
 ## Sistemas de Controle II
@@ -31,7 +42,7 @@ format:
 
 ---
 
-### Bibliografia
+## Bibliografia
 
 - **Livro  1**: Ogata, Katsuhiko. "Engenharia de Controle Moderno" 5th Edition. Prentice Hall, 2010.
 - **Livro  2**: Nise, Norman S. "Engenharia de Sistemas de Controle." 7th Edition. Wiley, 2015.
@@ -84,7 +95,7 @@ Testes de 1hora com uma ou duas questões.
 
 ## Plano de Ensino
 
-- [25/08] - Plano de ensino; Introdução aos modelos de estado; Modelagem massa mola amortecedor;
+- [25/03] - Plano de ensino; Introdução aos modelos de estado; Modelagem massa mola amortecedor;
 - [01/04] - Modelagem espaço de estados, forma vetorial matricial, diagrama de blocos; Modelagem circuiro RLC;Simulação Matlab (script);
 - [02/04] - Modelagem motor CC; Simulação simulink;Conversão de representações: Forma de estado para função de transferência; Análise de estabilidade: Polos - Autovalores de $A$;
 - [08/04] - Conversão de representações: Função de transferência para espaço de estados; Formas canônicas;
@@ -96,19 +107,31 @@ Testes de 1hora com uma ou duas questões.
 ## Plano de Ensino
 
 - [16/04] - Controladores por alocação de polos; Estabilidade, controlabilidade; Especificação de desempenho;Projeto de controladores por alocação de polos;
-
-- [22/04] - Exercícios de controladores por alocação de polos; 
+- [22/04] - Forma canônica controlável e o projeto de controladores por alocação de polos;
 - [23/04] - Exercícios de controladores por alocação de polos; 
-- [29/04] - Teste 2 - $T_2$; Correção do teste 2;
+- [29/04] - Exercícios de controladores por alocação de polos; 
+- [30/04] - Teste 2 - $T_2$; Correção do teste 2;
 
 --- 
 
 ## Plano de Ensino
 
-- [30/04] - Observadores de estado; Observabilidade; Projeto de observadores de estado;
-- [06/05] - Projeto de controladores por alocação de polos e observadores de estado; 
-- [07/05] - Regulação e Rastreamento; Exercícios de projeto de controladores e observadores;
-- [13/05] - Teste 3 - $T_3$; Correção do teste 3;
+- [06/05] - Observadores de estado; Observabilidade; Projeto de observadores de estado;
+- [07/05] - Projeto de controladores por alocação de polos e observadores de estado; 
+- [13/05] - Regulação e Rastreamento; Exercícios de projeto de controladores e observadores;
+- [14/05] - Exercícios de projeto de controladores e observadores;
+- [20/05] - Exercícios de projeto de controladores e observadores;
+- [21/05] - Teste 3 - $T_3$; Correção do teste 3;
+
+--- 
+
+## Plano de Ensino
+
+- [27/05] - Sistemas de controle digital; Amostragem e reconstrução de sinais; Sinais e sistemas discretos;
+- [28/05] - Transformada $Z$; Análise de sistemas amostrados; Projeto de controladores digitais por emulação;
+- [03/06] - Exercícios de controle digital;
+
+.... **Em construção** ....
 
 
 

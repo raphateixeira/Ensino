@@ -5,9 +5,187 @@ institute: "Universidade Federal do Pará"
 author: "Prof. Dr. Raphael Teixeira"
 format: 
   revealjs:
+    theme: [default, ../TemaRTx.scss] 
     self-contained: true
+    transition: slide
+    slide-number: true
+    width: 1600 
+    height: 900
+    footer: " "
+    center: true
+    title-slide-attributes:
+      data-background-image: "../Notas/imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 30px center"
+--- 
+
+## Modelos de sistemas LIT. 
+
+Os modelos de sistemas LIT podem ser convertidos entre as seguintes representações:
+
+- Equação diferencial de ordem $n$;
+- Função de transferência;
+- Modelo de espaço de estados.
+
 ---
 
-## Conversão de modelos de representação
+## Espaço de estados para função de transferência
 
-Em construção...
+Seja um sistema representado por um modelo de espaço de estados:
+
+$$\dot{x}(t) = A x(t) + B u(t)$$
+$$y(t) = C x(t) + D u(t)$$
+
+Aplicando transformada de Laplace:
+$$sX(s) - x(0) = A X(s) + B U(s)$$
+$$Y(s) = C X(s) + D U(s)$$
+
+---
+
+## Espaço de estados para função de transferência
+
+Rearranjando:
+$$X(s) = (sI - A)^{-1} x(0) + (sI - A)^{-1} B U(s)$$
+$$Y(s) = C (sI - A)^{-1} x(0) + C (sI - A)^{-1} B U(s) + D U(s)$$
+
+A função de transferência ($x(0) = 0$) é dada por:
+$$G(s) = \frac{Y(s)}{U(s)} = C (sI - A)^{-1} B + D$$
+
+$$(G(s) = \frac{C \text{adj}(sI - A) B}{\text{det}(sI - A)} + D$$
+
+--- 
+
+## Matriz adjunta e inversa da matriz $sI - A$
+
+A inversa de $sI - A$ é dada por:
+$$(sI - A)^{-1} = \frac{\text{adj}(sI - A)}{\text{det}(sI - A)}$$
+
+
+Para n = 2, a matriz adjunta é dada por:
+
+$$ A = \begin{bmatrix} a & b \\ c & d \end{bmatrix} \qquad \longrightarrow \qquad \text{adj}(A) = \begin{bmatrix} d & -b \\ -c & a \end{bmatrix}$$
+
+No caso de $sI - A$, temos:
+$$sI - A = \begin{bmatrix} s - a & -b \\ -c & s -d \end{bmatrix} \qquad \longrightarrow \qquad \text{adj}(sI - A) = \begin{bmatrix} s - d & b \\ c & s - a \end{bmatrix}$$
+
+---
+
+## Exemplo ss2tf
+
+Considere o sistema representado por:
+
+$$\dot{x} = \begin{bmatrix} 0 & 1 \\ -2 & -3 \end{bmatrix} x + \begin{bmatrix} 0 \\ 1 \end{bmatrix} u$$
+$$y = \begin{bmatrix} 1 & 0 \end{bmatrix} x$$
+
+Calculando a função de transferência:
+
+$$G(s) = C (sI - A)^{-1} B + D$$
+
+
+## Exemplo ss2tf
+
+Determinando a matriz adjunta e o determinante de $sI - A$:
+$$sI - A = \begin{bmatrix} s & -1 \\ 2 & s + 3 \end{bmatrix}$$
+$$\text{adj}(sI - A) = \begin{bmatrix} s + 3 & 1 \\ -2 & s \end{bmatrix}$$
+$$\text{det}(sI - A) = s^2 + 3s + 2$$
+
+Assim, a função de transferência é dada por:
+$$G(s) = \frac{\begin{bmatrix} 1 & 0 \end{bmatrix} \begin{bmatrix} s + 3 & 1 \\ -2 & s \end{bmatrix} \begin{bmatrix} 0 \\ 1 \end{bmatrix}}{s^2 + 3s + 2} = \frac{1}{s^2 + 3s + 2}$$
+
+---
+
+## Autovalores de $A$ e polos de $G(s)$
+
+Os autovalores de $A$ são as raízes do polinômio característico $\text{det}(sI - A) = 0$, os polos de $G(s)$.
+
+Pelo exemplo, para determinar os autovalores de $A$ e os polos de $G(s)$, basta resolver a equação:
+$$\text{det}(sI - A) = 0$$
+
+Para o exemploe $$s^2 + 3s + 2 = 0$$:
+
+As raízes são $s = -1$ e $s = -2$, que são os autovalores de $A$ e os polos de $G(s)$.
+
+---
+
+## Exemplo - Massa-mola-amortecedor
+
+Seja o sistema massa-mola-amortecedor representado no espaço de estados por $$\dot{x} = \begin{bmatrix} 0 & 1 \\ -\frac{k}{m} & -\frac{b}{m} \end{bmatrix} x + \begin{bmatrix} 0 \\ \frac{1}{m} \end{bmatrix} u$$
+$$y = \begin{bmatrix} 1 & 0 \end{bmatrix} x$$
+
+Busca-se determinar a função de transferência do sistema.
+
+$$G(s) = C (sI - A)^{-1} B + D$$
+
+Calculando a matriz adjunta e o determinante de $sI - A$:
+$$sI - A = \begin{bmatrix} s & -1 \\ \frac{k}{m} & s + \frac{b}{m} \end{bmatrix}$$
+
+---
+
+## Exemplo - Massa-mola-amortecedor
+$$\text{adj}(sI - A) = \begin{bmatrix} s + \frac{b}{m} & 1 \\ -\frac{k}{m} & s \end{bmatrix}$$
+$$\text{det}(sI - A) = s^2 + \frac{b}{m} s + \frac{k}{m}$$
+
+Assim, a função de transferência é dada por:
+$$G(s) = \frac{\begin{bmatrix} 1 & 0 \end{bmatrix} \begin{bmatrix} s + \frac{b}{m} & 1 \\ -\frac{k}{m} & s \end{bmatrix} \begin{bmatrix} 0 \\ \frac{1}{m} \end{bmatrix}}{s^2 + \frac{b}{m} s + \frac{k}{m}} = \frac{\frac{1}{m}}{s^2 + \frac{b}{m} s + \frac{k}{m}}$$
+
+
+--- 
+
+## Conversão de função de transferência para espaço de estados
+
+Seja um sistema representado por uma função de transferência:
+$$G(s) = \frac{Y(s)}{U(s)} = \frac{b_0 s^m + b_1 s^{m-1} + \ldots + b_{m-1} s + b_m}{s^n + a_1 s^{n-1} + \ldots + a_{n-1} s + a_n}$$
+
+A conversão de função de transferência para espaço de estados pode ser feita utilizando as formas canônicas, como a forma controlável ou a forma observável.
+
+Fazendo a conversão para a forma controlável, temos:
+$$\dot{x} = \begin{bmatrix} 0 & 1 &
+\ldots & 0 \\ 0 & 0 & \ldots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ -a_n & -a_{n-1} & \ldots & -a_1 \end{bmatrix} x + \begin{bmatrix} 0 \\ 0 \\ \vdots \\ b_0 \end{bmatrix} u$$
+$$y = \begin{bmatrix} 1 & 0 & \ldots & 0 \end{bmatrix} x$$
+
+---
+
+## Caso 1
+
+Seja o sistema representado pela EDO de ordem $n$ na forma:
+
+$$y^{(n)} + a_{n-1} y^{(n-1)} + \ldots + a_1 y' + a_n y(t) = b_0u(t)$$
+
+Representado pela função de transferência:
+
+$$G(s) = \frac{Y(s)}{U(s)} = \frac{b_m}{s^n + a_1 s^{n-1} + \ldots + a_{n-1} s + a_n}$$
+
+Uma escolha para as variáveis de estado é:
+$$x_1 = y(t)\qquad\quad x_2 = y'(t)\qquad\quad \ldots \qquad\quad x_n = y^{(n-1)}(t)$$
+
+
+## Caso 1 - Constante no numerador
+
+As variáveis de estado são a saída e suas derivadas. Expressando as derivadas das variáveis de estado em função das variáveis de estado e da entrada:
+
+$$\dot{x}_1 = x_2 \qquad\quad \dot{x}_2 = x_3 \qquad\quad \ldots \qquad\quad \dot{x}_{n-1} = x_n$$
+$$\dot{x}_n = -a_n x_1 - a_{n-1} x_2 - \ldots - a_1 x_n + b_0 u$$
+
+O que pode ser escrito na forma matricial como:
+$$\dot{x} = \begin{bmatrix} 0 & 1 & \ldots & 0 \\ 0 & 0 & \ldots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ -a_n & -a_{n-1} & \ldots & -a_1 \end{bmatrix} x + \begin{bmatrix} 0 \\ 0 \\ \vdots \\ b_0 \end{bmatrix} u$$
+$$y(t) = \begin{bmatrix} 1 & 0 & \ldots & 0 \end{bmatrix} x$$
+
+---
+
+## Exemplo Caso 1 (Lathi):
+
+Determine a representação de estados do sistema.
+
+$$G(s) = \frac{Y(s)}{R(s)} = \frac{24}{s^3 + 9s^2 + 26s + 24}$$
+
+Convertendo para EDO:
+
+$$y''' + 9y'' + 26y' + 24y = 24u$$
+
+Definindo as variáveis de estado:
+$$x_1 = y(t) \qquad\quad x_2 = y'(t) \qquad\quad x_3 = y''(t)$$
+Expressando as derivadas das variáveis de estado em função das variáveis de estado e da entrada:
+$$\dot{x}_1 = x_2 \qquad\quad \dot{x}_2 = x_3 \qquad\quad \dot{x}_3 = -24x_1 - 26x_2 - 9x_3 + 24u$$
+
+---
+

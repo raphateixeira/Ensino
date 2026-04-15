@@ -15,5 +15,6 @@ Turma de 2024 da FEE - CAMTUC - UFPA.
 
 * Aula 0 - [Plano de Ensino](Notas/SS00PlanoEnsino.html)
 * Aula 1 - [Modelagem no Espaço de Estados](Notas/SS01Modelagem.html)
-* Aula 2 - [Conversão de Representações](Notas/SS01ConversaoRepresentacoes.html)
-* Aula 3 - [Análise de Sistemas no Espaço de Estados](Notas/SS02AnaliseSistemas.html)
+* Aula 2 - [Conversão de Representações](Notas/SS02ConversaoRepresentacoes.html)
+* Aula 3 - [Formas Canônicas](Notas/SS03FormasCanonicas.html)
+* Aula 4 - [Análise de Sistemas no Espaço de Estados](Notas/SS04AnaliseSistemas.html)
