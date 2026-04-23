@@ -1,0 +1,39 @@
+---
+title: "Controle por Alocação de Polos"
+subtitle: "Sistemas de Controle II"
+institute: "Universidade Federal do Pará"
+author: "Prof. Dr. Raphael Teixeira"
+format: 
+  revealjs:
+    theme: [default, ../TemaRTx.scss] 
+    self-contained: true
+    transition: slide
+    slide-number: true
+    width: 1600 
+    height: 900
+    footer: " "
+    center: true
+    title-slide-attributes:
+      data-background-image: "../Notas/imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 40px center"
+---
+
+## Sistema no Espaço de Estados
+
+Seja o sistema LIT representado pela função de transferência:
+
+
+$$ G(s) = \frac{Y(s)}{U(s)} = \frac{b_ms"m + b_{m-1}s^{m-1} + \cdots + b_1s + b_0}{s^n + a_{n-1}s^{n-1} + \cdots + a_1s + a_0}$$
+
+Cuja representação em espaço de estados é dada por:
+
+$$ \begin{cases}
+\dot{x}(t) = Ax(t) + Bu(t) \\
+y(t) = Cx(t)
+\end{cases} $$
+
+Ou seja:
+
+$$ \begin{cases}
+\dot{
