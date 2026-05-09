@@ -3,10 +3,6 @@ title: "Controle por Alocação de Polos"
 subtitle: "Sistemas de Controle II"
 institute: "Universidade Federal do Pará"
 author: "Prof. Dr. Raphael Teixeira"
-engine: knitr
-knitr:
-  opts_chunk:
-    engine.path: "C:/MATLAB/R2024a/bin/matlab.exe"
 format: 
   revealjs:
     theme: [default, ../TemaRTx.scss] 
