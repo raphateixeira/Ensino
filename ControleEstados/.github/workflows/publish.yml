@@ -19,7 +19,11 @@ jobs:
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
-        # Removida a linha 'version: latest' para evitar o erro 404
+        with:
+          python: true
+
+      - name: Install Python dependencies
+        run: pip install jupyter nbformat ipykernel
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
