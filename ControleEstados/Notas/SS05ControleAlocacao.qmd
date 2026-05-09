@@ -3,6 +3,10 @@ title: "Controle por Alocação de Polos"
 subtitle: "Sistemas de Controle II"
 institute: "Universidade Federal do Pará"
 author: "Prof. Dr. Raphael Teixeira"
+engine: knitr
+knitr:
+  opts_chunk:
+    engine.path: "C:/MATLAB/R2024a/bin/matlab.exe"
 format: 
   revealjs:
     theme: [default, ../TemaRTx.scss] 
@@ -19,63 +23,367 @@ format:
       data-background-position: "top 40px center"
 ---
 
-## Sistema no Espaço de Estados
+## Espaço de Estados e Polos de Malha Aberta
 
-Seja o sistema LIT representado pela função de transferência:
+Consideramos sistemas LIT representados em espaço de estados:
 
-
-$$ G(s) = \frac{Y(s)}{U(s)} = \frac{b_ms^m + b_{m-1}s^{m-1} + \cdots + b_1s + b_0}{s^n + a_{n-1}s^{n-1} + \cdots + a_1s + a_0}$$
-
-Cuja representação em espaço de estados é dada por:
-
-$$ \begin{cases}
+$$\begin{cases}
 \dot{x}(t) = Ax(t) + Bu(t) \\
 y(t) = Cx(t)
-\end{cases} $$
+\end{cases}$$
+
+Os **polos de malha aberta** são os autovalores de $A$:
+
+$$\det(sI - A) = 0$$
+
+::: {.callout-important title="Problema"}
+E se os **polos de malha aberta** não atenderem às especificações de desempenho desejadas?
+:::
 
 ---
 
-## Representação em Espaço de Estados: Diagramas de Blocos
+## Motivação: Por que alocar polos?
+
+A posição dos polos no plano complexo determina o comportamento do sistema:
+
+$$p_1, p_2 = -\xi\omega_n \pm j\omega_n\sqrt{1-\xi^2}$$
+
+| Especificação | Relação com os polos |
+|---|---|
+| Tempo de acomodação | Parte real $\xi\omega_n$ |
+| Frequência de oscilação | Parte imaginária $\omega_d = \omega_n\sqrt{1-\xi^2}$ |
+| Sobressinal | Fator de amortecimento $\xi$ |
+
+::: {.callout-important title="Solução"}
+Se pudermos **escolher** onde ficam os polos de malha fechada, podemos impor diretamente as especificações de desempenho.
+:::
+
+**Esta aula:** como projetar uma lei de controle que posicione os polos onde quisermos.
+
+---
+
+## Sistema no Espaço de Estados: Malha aberta
+
+$$\begin{cases}
+\dot{x}(t) = Ax(t) + Bu(t) \\
+y(t) = Cx(t)
+\end{cases}$$
 
 ![](imgs/DiagramaSSMalhaAberta.png){width=60%}
 
 ---
 
-## Proposta para a Lei de Controle
+## Lei de Controle por Realimentação de Estados
 
-$$ u(t) = -Kx(t) + r(t) $$
+Proposta: o sinal de controle é uma combilação linear dos estados.
 
-Aplicando a lei de controle na representação em espaço de estados, temos:
+$$u(t) = -Kx(t) + r(t)$$
 
-$$ \begin{cases}
-\dot{x}(t) = Ax(t) + B(-Kx(t) + r(t)) \\
+$K = \begin{bmatrix} k_1 & k_2 & \cdots & k_n \end{bmatrix}$ é o **vetor de ganhos**,  $r(t)$ a referência. Aplicando ao modelo:
+
+$$\dot{x}(t) = Ax(t) + B\bigl(-Kx(t) + r(t)\bigr)$$
+
+O que resulta no **sistema em malha fechada**:
+
+$$\begin{cases}
+\dot{x}(t) = (A - BK)x(t) + Br(t) \\
 y(t) = Cx(t)
-\end{cases} $$
+\end{cases}$$
 
-O que resulta:
-$$ \begin{cases}
-\dot{x}(t) = (A-BK)x(t) + Br(t) \
-y(t) = Cx(t)
-\end{cases} $$
+::: {.callout-note title="Observação"}
+A realimentação de estados **modifica a matriz dinâmica** do sistema: $A \rightarrow A_{cl} = A - BK$. 
+Escolhendo $K$, escolhemos os autovalores de $A_{cl}$ — ou seja, os **polos de malha fechada**.
+:::
+
+---
+
+## Sistema Controlado — Diagrama de Blocos
+
+![](imgs/DiagramaSSMalhaFechada.png){width=70% fig-align="center"}
+
+::: {.callout-note title="Observação"}
+O ganho $K$ **realimenta todos os estados** $x(t)$ — não apenas a saída $y(t)$.
+Isso distingue a realimentação de estados da realimentação de saída clássica.
+:::
+
+---
+
+## Efeito da Realimentação sobre os Polos
+
+A matriz de malha fechada é $A_{cl} = A - BK$.
+
+Os **polos de malha fechada** são os autovalores de $A_{cl}$, obtidos por:
+
+$$\det\bigl(sI - (A - BK)\bigr) = 0$$
+
+::: {.callout-important title="Alocação de Polos"}
+Escolhendo $K$ adequadamente, podemos posicionar os polos de malha fechada em qualquer lugar desejado no plano complexo — desde que o sistema seja **controlável**.
+:::
+
+---
+
+## Controlabilidade: Motivação
+
+::: {.callout-important title="Questão fundamental"}
+Dado um sistema $\dot{x} = Ax + Bu$, sempre é possível encontrar um ganho $K$ que posicione os polos onde quisermos?
+:::
+
+**Não necessariamente.** Depende de quão bem a entrada $u$ consegue **influenciar** os estados do sistema.
+
+- Se um estado $x_i$ não é afetado por $u$ — direta ou indiretamente — ele não pode ser controlado.
+- Os polos associados a estados não controláveis **não podem ser movidos**.
+
+::: {.callout-note title="Condição necessária"}
+Para que a alocação arbitrária de polos seja possível, o sistema deve ser **completamente controlável**.
+:::
+
+---
+
+## Condição de Controlabilidade
+
+O sistema $\dot{x} = Ax + Bu$ é **completamente controlável** se e somente se a matriz de controlabilidade
+
+$$\mathcal{C} = \begin{bmatrix} B & AB & A^2B & \cdots & A^{n-1}B \end{bmatrix}$$
+
+tiver **rank** $n$ (posto completo), onde $n$ é a ordem do sistema.
+
+::: {.callout-note title="Interpretação"}
+A controlabilidade garante que existe um ganho $K$ capaz de levar o sistema a qualquer estado em tempo finito.
+:::
+
+---
+
+## Polinômio Característico Desejado
+
+Os polos desejados de malha fechada $p_1, p_2, \ldots, p_n$ definem o **polinômio característico desejado**:
+
+$$\phi(s) = (s - p_1)(s - p_2)\cdots(s - p_n)$$
+
+$$= s^n + \alpha_{n-1}s^{n-1} + \cdots + \alpha_1 s + \alpha_0$$
+
+**Objetivo do projeto:** encontrar $K$ tal que:
+
+$$\det\bigl(sI - (A - BK)\bigr) = \phi(s)$$
+
+::: {.callout-note title="Em outras palavras"}
+Queremos que o polinômio característico de $A_{cl} = A - BK$ seja **exatamente** $\phi(s)$ — ou seja, que os polos de malha fechada sejam exatamente os $p_i$ especificados.
+:::
+
+---
+
+## Determinando $K$: A Fórmula de Ackermann.
+
+Queremos $K = \begin{bmatrix} k_1 & k_2 & \cdots & k_n \end{bmatrix}$ tal que $\det\bigl(sI - (A - BK)\bigr) = \phi(s)$.
+
+Igualando os coeficientes dos dois lados, obtemos **$n$ equações** nas **$n$ incógnitas** $k_1, \ldots, k_n$.
+
+Ackermann mostrou que esse sistema tem solução elegante quando o sistema é controlável:
+
+$$\boxed{K = \begin{bmatrix} 0 & \cdots & 0 & 1 \end{bmatrix} \mathcal{C}^{-1} \,\phi(A)}$$
+
+onde $\phi(A)$ é o polinômio desejado **avaliado na matriz** $A$:
+
+$$\phi(A) = A^n + \alpha_{n-1}A^{n-1} + \cdots + \alpha_1 A + \alpha_0 I$$
+
+::: {.callout-tip title="Intuição"}
+$\mathcal{C}^{-1}$ "desfaz" a estrutura do sistema e $\phi(A)$ "impõe" a dinâmica desejada — o produto seleciona exatamente os ganhos necessários.
+:::
+
+---
+
+## Exemplo Numérico
+
+**Dados do sistema:** $\dot{x} = Ax + Bu$ com:
+
+$$A = \begin{bmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ -1 & -5 & -6 \end{bmatrix}, \quad
+B = \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}$$
+
+**Polos de malha fechada desejados:**
+
+$$p_1 = -2 + j4, \quad p_2 = -2 - j4, \quad p_3 = -10$$
+
+::: {.callout-note title="Roteiro"}
+1. Verificar controlabilidade;
+2. Calcular o polinômio desejado $\phi(s)$; 
+3. Avaliar $\phi(A)$;
+4. Aplicar a fórmula de Ackermann;;
+:::
+
+---
+
+## Passo 1 — Verificar Controlabilidade
+
+Calculamos a matriz de controlabilidade $\mathcal{C} = \begin{bmatrix} B & AB & A^2B \end{bmatrix}$:
+
+$$AB = \begin{bmatrix}0\\1\\-6\end{bmatrix}, \quad
+A^2B = \begin{bmatrix}1\\-6\\31\end{bmatrix}$$
+
+$$\mathcal{C} = \begin{bmatrix} 0 & 0 & 1 \\ 0 & 1 & -6 \\ 1 & -6 & 31 \end{bmatrix}$$
+
+$$\det(\mathcal{C}) = 1 \neq 0 \implies \text{posto}(\mathcal{C}) = 3 = n \checkmark$$
+
+::: {.callout-tip title="Conclusão"}
+O sistema é **completamente controlável** — a alocação arbitrária de polos é possível.
+:::
+
+---
+
+## Passo 2 — Polinômio Característico Desejado
+
+A partir dos polos desejados:
+
+$$\phi(s) = (s - p_1)(s - p_2)(s - p_3) = (s+2-j4)(s+2+j4)(s+10)$$
+
+Agrupando o par complexo conjugado:
+
+$$\phi(s) = (s^2 + 4s + 20)(s + 10)$$
+
+Expandindo:
+
+$$\boxed{\phi(s) = s^3 + 14s^2 + 60s + 200}$$
+
+O polinômio característico desejado!
+
+---
+
+## Passo 3 — Avaliar $\phi(A)$
+
+$$\phi(A) = A^3 + 14A^2 + 60A + 200I$$
+
+Calculando as potências de $A$:
+
+$$A^2 = \begin{bmatrix} 0 & 0 & 1 \\ -1 & -5 & -6 \\ 5 & 25 & 31 \end{bmatrix}, \quad
+A^3 = \begin{bmatrix} -1 & -5 & -6 \\ 5 & 25 & 31 \\ -25 & -125 & -181 \end{bmatrix}$$
+
+Somando termo a termo:
+
+$$\phi(A) = \begin{bmatrix} 199 & -10 & -6 \\ -4 & 80 & 1 \\ -20 & -100 & 0 \end{bmatrix}$$
+
+---
+
+## Passo 4 — Aplicar a Fórmula de Ackermann
+
+$$K = \begin{bmatrix} 0 & 0 & 1 \end{bmatrix} \mathcal{C}^{-1} \,\phi(A)$$
+
+:::: {.columns}
+::: {.column width="50%"}
+Calculando $\mathcal{C}^{-1}$:
+
+$$\mathcal{C}^{-1} = \begin{bmatrix} 5 & 6 & 1 \\ 6 & 1 & 0 \\ 1 & 0 & 0 \end{bmatrix}$$
+:::
+::: {.column width="50%"}
+Calculando $\mathcal{C}^{-1}\phi(A)$:
+
+$$\mathcal{C}^{-1}\phi(A) = \begin{bmatrix} 940 & 1186 & 199 \\ 1186 & 489 & 55 \\ 199 & 55 & 8 \end{bmatrix}$$
+:::
+::::
+
+O vetor $\begin{bmatrix} 0 & 0 & 1 \end{bmatrix}$ seleciona a **última linha**:
+
+$$\boxed{K = \begin{bmatrix} 199 & 55 & 8 \end{bmatrix}}$$
+
+---
+
+## Passo 5 — Verificação
+
+A lei de controle $u = -Kx$ resulta em $A_{cl} = A - BK$:
+
+$$A_{cl} = \begin{bmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ -1 & -5 & -6 \end{bmatrix} - \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}\begin{bmatrix} 199 & 55 & 8 \end{bmatrix} = \begin{bmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ -200 & -60 & -14 \end{bmatrix}$$
+
+O polinômio característico de $A_{cl}$:
+
+$$\det(sI - A_{cl}) = s^3 + 14s^2 + 60s + 200 = \phi(s) \checkmark$$
+
+::: {.callout-tip title="Conclusão"}
+Os polos de malha fechada são exatamente $p_1 = -2+j4$, $p_2 = -2-j4$, $p_3 = -10$ ✓
+:::
 
 
 ---
 
-### Sistema controlado - diagrama de blocos
+## Implementação em MATLAB
 
-![](imgs/DiagramaSSMalhaFechada.png){width=60%}
+```{matlab}
+#| echo: true
+#| eval: false
+#| code-overflow: scroll
+#| style: "font-size: 2.5em;"
+
+% Matrizes do sistema:
+
+A = [0  1  0;
+     0  0  1;
+    -1 -5 -6];
+
+B = [0; 0; 1];
+
+% Polos desejados:
+p = [-2+4j, -2-4j, -10];
+
+% Verificar controlabilidade
+Co = ctrb(A, B);
+fprintf('Posto de C: %d\n', rank(Co));
+
+% Ganho via Ackermann
+K = acker(A, B, p);
+fprintf('K = [%.0f  %.0f  %.0f]\n', K(1), K(2), K(3));
+
+% Matriz de malha fechada
+Acl = A - B*K;
+fprintf('Polos de malha fechada:\n');
+disp(eig(Acl))
+```
+
+::: {.callout-note title="acker vs place"}
+`acker` implementa a fórmula de Ackermann — adequado para sistemas SISO de baixa ordem. Para sistemas de ordem elevada, prefira `place` (algoritmo de Kautsky-Nichols), numericamente mais robusto e que também suporta sistemas MIMO.
+:::
 
 ---
 
-### Projeto de controlador: Fórmula de Ackermann
+## Limitações e Considerações Práticas
 
-Seja um sistema controlável:
+::: {.incremental}
+- A fórmula de Ackermann é exata para sistemas **SISO** — para sistemas MIMO, há outros métodos (e.g., alocação por realimentação de saída).
+- Polos muito distantes do eixo imaginário exigem **ganhos elevados**, podendo amplificar ruído e saturar atuadores.
+- O projeto completo inclui também um **observador de estados** quando os estados não são todos mensuráveis.
+- A escolha dos polos desejados deve levar em conta especificações de desempenho: tempo de acomodação, sobressinal, largura de banda.
+:::
 
-$$ \dot{x} = Ax + Bu $$
-A fórmula de Ackermann é dada por:
+---
 
-$$ K = [0 \cdots 0 \ 1]C_t^{-1}(\alpha(A)) $$
+## Resumo
 
-Onde $C_t$ é a matriz de controlabilidade:
+| Etapa | Operação |
+|-------|----------|
+| 1. Controlabilidade | $\text{posto}(\mathcal{C}) = n$? |
+| 2. Polinômio desejado | $\alpha(s) = \prod_i(s - p_i)$ |
+| 3. Avaliar $\alpha(A)$ | Substituir $s \to A$ |
+| 4. Ganho de Ackermann | $K = e_n^T \mathcal{C}^{-1} \alpha(A)$ |
+| 5. Verificação | $\text{eig}(A - BK) \stackrel{?}{=} \{p_i\}$ |
 
-$$ C_t = [B \ AB \ A^2B \ \cdots \ A^{n-1}B] $$
+---
+
+## Exercício Proposto
+
+Dado o sistema:
+
+$$A = \begin{bmatrix} 0 & 1 \\ -2 & -3 \end{bmatrix}, \quad B = \begin{bmatrix} 0 \\ 1 \end{bmatrix}$$
+
+1. Verifique a controlabilidade.
+2. Projete $K$ pela fórmula de Ackermann para polos em $s = -4 \pm j2$.
+3. Verifique os polos de malha fechada.
+4. Simule a resposta ao degrau unitário para $x_0 = \mathbf{0}$ e $r(t) = 1$.
+
+---
+
+## {.center data-background-color="#535353"}
+
+:::{style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 70vh; gap: 2rem;"}
+
+![](../Notas/imgs/ufpabranco.png){width="220px"}
+
+[Prof. Dr. Raphael Teixeira]{style="color: #cccccc; font-size: 2.2rem;"}
+
+[raphaelbt@ufpa.br]{style="color: #7e9eda; font-size: 2.2rem;"}
+
+:::

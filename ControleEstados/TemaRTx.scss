@@ -55,3 +55,21 @@ $link-color: $blue-ufpa;
     display: flex !important;
     align-items: center !important; 
 }
+
+
+// --- Callouts ---
+.reveal .callout {
+    font-size: 1em !important;
+}
+
+.reveal .callout-title {
+    font-size: 1em !important;
+}
+
+.reveal .callout-body {
+    font-size: 1em !important;
+}
+
+.reveal pre code {
+    font-size: 0.7em !important;
+}
