@@ -173,7 +173,7 @@ Queremos $K = \begin{bmatrix} k_1 & k_2 & \cdots & k_n \end{bmatrix}$ tal que $\
 
 Igualando os coeficientes dos dois lados, obtemos **$n$ equações** nas **$n$ incógnitas** $k_1, \ldots, k_n$.
 
-Ackermann mostrou que esse sistema tem solução elegante quando o sistema é controlável:
+Ackermann mostrou que se este sistema for controlável, a solução elegante para $K$ é:
 
 $$\boxed{K = \begin{bmatrix} 0 & \cdots & 0 & 1 \end{bmatrix} \mathcal{C}^{-1} \,\phi(A)}$$
 
