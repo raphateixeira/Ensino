@@ -38,48 +38,69 @@ E se os **polos de malha aberta** não atenderem às especificações de desempe
 
 ---
 
-## Motivação: Por que alocar polos?
+## Sistema de Exemplo: Polos de Malha Aberta
 
-A posição dos polos no plano complexo determina o comportamento do sistema:
+$$A = \begin{bmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ -1 & -5 & -6 \end{bmatrix} \implies \det(sI - A) = s^3 + 6s^2 + 5s + 1 = 0$$
 
-$$p_1, p_2 = -\xi\omega_n \pm j\omega_n\sqrt{1-\xi^2}$$
+**Polos de malha aberta:**  $p_1 \approx -0{,}308 \qquad p_2 \approx -0{,}643 \qquad p_3 \approx -5{,}049$.
 
-| Especificação | Relação com os polos |
-|---|---|
-| Tempo de acomodação | Parte real $\xi\omega_n$ |
-| Frequência de oscilação | Parte imaginária $\omega_d = \omega_n\sqrt{1-\xi^2}$ |
-| Sobressinal | Fator de amortecimento $\xi$ |
-
-::: {.callout-important title="Solução"}
-Se pudermos **escolher** onde ficam os polos de malha fechada, podemos impor diretamente as especificações de desempenho.
+:::: {.columns}
+::: {.column width="50%"}
+![](imgs/PolosMalhaAberta.png){width=100% fig-align="center"}
 :::
-
-**Esta aula:** como projetar uma lei de controle que posicione os polos onde quisermos.
+::: {.column width="50%"}
+::: {.callout-important title="Análise"}
+- Sistema **estável** — polos no semiplano esquerdo.
+- $p_1$ e $p_2$ próximos do eixo imaginário — resposta **lenta**.
+- $p_3$ rápido e não dominante.
+- Dominado pelos polos lentos — **não atende especificações típicas**.
+:::
+:::
+::::
 
 ---
 
-## Sistema no Espaço de Estados: Malha aberta
+## Motivação: Por que alocar polos?
+
+A posição dos polos determina o comportamento dinâmico do sistema:
+
+$$G(s) = \frac{K\omega_n}{s^2 + 2\xi\omega_n s + \omega_n^2} \quad\implies\quad \text{polos} = -\xi\omega_n \pm j\omega_n\sqrt{1-\xi^2}$$
+
+| Especificação | Relação com os polos |
+|---|---|
+| Estabilidade | Polos no semiplano esquerdo |
+| Tempo de acomodação | Parte real $\xi\omega_n$ |
+| Frequência de oscilação | $\omega_d = \omega_n\sqrt{1-\xi^2}$ |
+| Sobressinal | Fator de amortecimento $\xi$ |
+
+::: {.callout-important title="Ideia Central"}
+Polos de malha fechada bem posicionados $\implies$ especificações de desempenho atendidas.
+:::
+
+---
+
+## Diagrama de Blocos: Malha Aberta
 
 $$\begin{cases}
 \dot{x}(t) = Ax(t) + Bu(t) \\
 y(t) = Cx(t)
 \end{cases}$$
 
-![](imgs/DiagramaSSMalhaAberta.png){width=60%}
+![](imgs/DiagramaSSMalhaAberta.png){width=60% fig-align="center"}
 
 ---
 
 ## Lei de Controle por Realimentação de Estados
 
-Proposta: o sinal de controle é uma combilação linear dos estados.
+Sinal de controle como combinação linear dos estados:
 
 $$u(t) = -Kx(t) + r(t)$$
 
-$K = \begin{bmatrix} k_1 & k_2 & \cdots & k_n \end{bmatrix}$ é o **vetor de ganhos**,  $r(t)$ a referência. Aplicando ao modelo:
+onde $K = \begin{bmatrix} k_1 & k_2 & \cdots & k_n \end{bmatrix}$ é o **vetor de ganhos** e $r(t)$ a referência. Substituindo:
 
 $$\dot{x}(t) = Ax(t) + B\bigl(-Kx(t) + r(t)\bigr)$$
 
-O que resulta no **sistema em malha fechada**:
+**Sistema em malha fechada:**
 
 $$\begin{cases}
 \dot{x}(t) = (A - BK)x(t) + Br(t) \\
@@ -87,8 +108,8 @@ y(t) = Cx(t)
 \end{cases}$$
 
 ::: {.callout-note title="Observação"}
-A realimentação de estados **modifica a matriz dinâmica** do sistema: $A \rightarrow A_{cl} = A - BK$. 
-Escolhendo $K$, escolhemos os autovalores de $A_{cl}$ — ou seja, os **polos de malha fechada**.
+A realimentação modifica a matriz dinâmica: $A \rightarrow A_{cl} = A - BK$.
+Os autovalores de $A_{cl}$ são os **polos de malha fechada**.
 :::
 
 ---
@@ -99,112 +120,131 @@ Escolhendo $K$, escolhemos os autovalores de $A_{cl}$ — ou seja, os **polos de
 
 ::: {.callout-note title="Observação"}
 O ganho $K$ **realimenta todos os estados** $x(t)$ — não apenas a saída $y(t)$.
-Isso distingue a realimentação de estados da realimentação de saída clássica.
+Diferente da realimentação de saída clássica.
 :::
 
 ---
 
 ## Efeito da Realimentação sobre os Polos
 
-A matriz de malha fechada é $A_{cl} = A - BK$.
+Matriz de malha fechada: $A_{cl} = A - BK$.
 
-Os **polos de malha fechada** são os autovalores de $A_{cl}$, obtidos por:
+**Polos de malha fechada** — autovalores de $A_{cl}$:
 
 $$\det\bigl(sI - (A - BK)\bigr) = 0$$
 
 ::: {.callout-important title="Alocação de Polos"}
-Escolhendo $K$ adequadamente, podemos posicionar os polos de malha fechada em qualquer lugar desejado no plano complexo — desde que o sistema seja **controlável**.
+Com $K$ adequado, os polos de malha fechada podem ser posicionados em qualquer lugar do plano complexo — desde que o sistema seja **controlável**.
 :::
 
 ---
 
-## Controlabilidade: Motivação
+## Sistema controlável e Controlabilidade
 
 ::: {.callout-important title="Questão fundamental"}
-Dado um sistema $\dot{x} = Ax + Bu$, sempre é possível encontrar um ganho $K$ que posicione os polos onde quisermos?
+Dado $\dot{x} = Ax + Bu$, sempre existe $K$ que posicione os polos arbitrariamente?
 :::
 
-**Não necessariamente.** Depende de quão bem a entrada $u$ consegue **influenciar** os estados do sistema.
+**Não necessariamente.** Depende da capacidade de $u$ em **influenciar** os estados.
 
-- Se um estado $x_i$ não é afetado por $u$ — direta ou indiretamente — ele não pode ser controlado.
-- Os polos associados a estados não controláveis **não podem ser movidos**.
+- Estado $x_i$ não influenciado por $u$ — direta ou indiretamente — não é controlável.
+- Polos associados a estados não controláveis **não podem ser movidos**.
 
 ::: {.callout-note title="Condição necessária"}
-Para que a alocação arbitrária de polos seja possível, o sistema deve ser **completamente controlável**.
+A alocação arbitrária de polos exige que o sistema seja **completamente controlável**.
 :::
 
 ---
 
 ## Condição de Controlabilidade
 
-O sistema $\dot{x} = Ax + Bu$ é **completamente controlável** se e somente se a matriz de controlabilidade
+O sistema $\dot{x} = Ax + Bu$ é **completamente controlável** se e somente se:
 
-$$\mathcal{C} = \begin{bmatrix} B & AB & A^2B & \cdots & A^{n-1}B \end{bmatrix}$$
+$$\text{posto}(\mathcal{C}) = n, \quad \mathcal{C} = \begin{bmatrix} B & AB & A^2B & \cdots & A^{n-1}B \end{bmatrix}$$
 
-tiver **rank** $n$ (posto completo), onde $n$ é a ordem do sistema.
+onde $n$ é a ordem do sistema.
+
+$$\text{rank}(\mathcal{C}) = \text{posto}(\mathcal{C}) = n, \det(\mathcal{C}) \neq 0.  \text{ Ou seja:} \mathcal{C} \text{é invertível!}$$
 
 ::: {.callout-note title="Interpretação"}
-A controlabilidade garante que existe um ganho $K$ capaz de levar o sistema a qualquer estado em tempo finito.
+Controlabilidade garante a existência de $K$ capaz de levar o sistema a qualquer estado em tempo finito.
+:::
+
+---
+
+## Controlabilidade: Exemplo
+
+**Sistema não controlável** — considere:
+
+$$A = \begin{bmatrix} -1 & 0 \\ 0 & -2 \end{bmatrix}, \quad B = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$$
+
+A matriz de controlabilidade:
+
+$$\mathcal{C} = \begin{bmatrix} B & AB \end{bmatrix} = \begin{bmatrix} 1 & -1 \\ 0 & 0 \end{bmatrix}$$
+
+$$\det(\mathcal{C}) = 0 \implies \text{posto}(\mathcal{C}) = 1 < n = 2$$
+
+::: {.callout-important title="Conclusão"}
+O estado $x_2$ não é influenciado por $u$ — o polo em $s = -2$ **não pode ser movido**.
+A alocação arbitrária de polos é **impossível** para este sistema.
 :::
 
 ---
 
 ## Polinômio Característico Desejado
 
-Os polos desejados de malha fechada $p_1, p_2, \ldots, p_n$ definem o **polinômio característico desejado**:
+Polos desejados $p_1, p_2, \ldots, p_n$ definem o **polinômio característico desejado**:
 
-$$\phi(s) = (s - p_1)(s - p_2)\cdots(s - p_n)$$
+$$\alpha(s) = (s - p_1)(s - p_2)\cdots(s - p_n) = s^n + \alpha_{n-1}s^{n-1} + \cdots + \alpha_1 s + \alpha_0$$
 
-$$= s^n + \alpha_{n-1}s^{n-1} + \cdots + \alpha_1 s + \alpha_0$$
+**Objetivo:** encontrar $K$ tal que:
 
-**Objetivo do projeto:** encontrar $K$ tal que:
-
-$$\det\bigl(sI - (A - BK)\bigr) = \phi(s)$$
+$$\det\bigl(sI - (A - BK)\bigr) = \alpha(s)$$
 
 ::: {.callout-note title="Em outras palavras"}
-Queremos que o polinômio característico de $A_{cl} = A - BK$ seja **exatamente** $\phi(s)$ — ou seja, que os polos de malha fechada sejam exatamente os $p_i$ especificados.
+O polinômio característico de $A_{cl} = A - BK$ deve coincidir **exatamente** com $\alpha(s)$.
 :::
 
 ---
 
-## Determinando $K$: A Fórmula de Ackermann.
+## Fórmula de Ackermann
 
-Queremos $K = \begin{bmatrix} k_1 & k_2 & \cdots & k_n \end{bmatrix}$ tal que $\det\bigl(sI - (A - BK)\bigr) = \phi(s)$.
+Igualando coeficientes de $\det\bigl(sI - (A - BK)\bigr) = \alpha(s)$, obtêm-se **$n$ equações** nas **$n$ incógnitas** $k_1, \ldots, k_n$.
 
-Igualando os coeficientes dos dois lados, obtemos **$n$ equações** nas **$n$ incógnitas** $k_1, \ldots, k_n$.
+Para sistemas controláveis, a solução é dada pela **fórmula de Ackermann**:
 
-Ackermann mostrou que se este sistema for controlável, a solução elegante para $K$ é:
+$$\boxed{K = \begin{bmatrix} 0 & \cdots & 0 & 1 \end{bmatrix} \mathcal{C}^{-1} \,\alpha(A)}$$
 
-$$\boxed{K = \begin{bmatrix} 0 & \cdots & 0 & 1 \end{bmatrix} \mathcal{C}^{-1} \,\phi(A)}$$
+onde $\alpha(A)$ é o polinômio desejado **avaliado na matriz** $A$:
 
-onde $\phi(A)$ é o polinômio desejado **avaliado na matriz** $A$:
-
-$$\phi(A) = A^n + \alpha_{n-1}A^{n-1} + \cdots + \alpha_1 A + \alpha_0 I$$
+$$\alpha(A) = A^n + \alpha_{n-1}A^{n-1} + \cdots + \alpha_1 A + \alpha_0 I$$
 
 ::: {.callout-tip title="Intuição"}
-$\mathcal{C}^{-1}$ "desfaz" a estrutura do sistema e $\phi(A)$ "impõe" a dinâmica desejada — o produto seleciona exatamente os ganhos necessários.
+$\mathcal{C}^{-1}$ desfaz a estrutura do sistema — $\alpha(A)$ impõe a dinâmica desejada.
 :::
 
 ---
 
 ## Exemplo Numérico
 
-**Dados do sistema:** $\dot{x} = Ax + Bu$ com:
+Determinar $K$ para o sistema que atenda aos polos desejados:
 
 $$A = \begin{bmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ -1 & -5 & -6 \end{bmatrix}, \quad
 B = \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}$$
-
-**Polos de malha fechada desejados:**
-
-$$p_1 = -2 + j4, \quad p_2 = -2 - j4, \quad p_3 = -10$$
+Polos desejados: $\boxed{p_1 = -2 + j4, \quad p_2 = -2 - j4, \quad p_3 = -10}$
 
 ::: {.callout-note title="Roteiro"}
-1. Verificar controlabilidade;
-2. Calcular o polinômio desejado $\phi(s)$; 
-3. Avaliar $\phi(A)$;
-4. Aplicar a fórmula de Ackermann;;
+:::: {.columns}
+::: {.column width="50%"}
+1. Verificar controlabilidade
+2. Calcular $\alpha(s)$
 :::
-
+::: {.column width="50%"}
+3. Avaliar $\alpha(A)$
+4. Aplicar a fórmula de Ackermann
+:::
+::::
+:::
 ---
 
 ## Passo 1 — Verificar Controlabilidade
@@ -380,6 +420,6 @@ $$A = \begin{bmatrix} 0 & 1 \\ -2 & -3 \end{bmatrix}, \quad B = \begin{bmatrix} 
 
 [Prof. Dr. Raphael Teixeira]{style="color: #cccccc; font-size: 2.2rem;"}
 
-[raphaelbt@ufpa.br]{style="color: #7e9eda; font-size: 2.2rem;"}
+[raphaelbt@ufpa.br]{style="color: #b6cefb; font-size: 2.2rem;"}
 
 :::

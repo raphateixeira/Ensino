@@ -19,3 +19,4 @@ Turma de 2024 da FEE - CAMTUC - UFPA.
 * Aula 3 - [Formas Canônicas](Notas/SS03FormasCanonicas.html)
 * Aula 4 - [Simulação Matlab/Simulink](Notas/SS04SimulacaoMatlab.html)
 * Aula 5 - [Controle por Alocação de Polos](Notas/SS05ControleAlocacao.html)
+* Aula 6 - [Controle Servomecanismo](Notas/SS06ControleServomecanismo.html)
