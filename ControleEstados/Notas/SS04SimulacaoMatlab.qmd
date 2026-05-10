@@ -17,10 +17,16 @@ format:
       data-background-image: "../Notas/imgs/UFPA.png"
       data-background-size: "100px"
       data-background-position: "top 40px center"
+engine: knitr
 ---
 ## Simulação Matlab/Simulink: Sistema massa mola amortecedor
 
-![](imgs/mma2.png){width=60%}
+```{tikz}
+#| echo: false
+#| fig-align: center
+\usetikzlibrary{arrows.meta, positioning, calc, decorations.pathmorphing, patterns}
+\input{imgs/tikz/MassaMolaAmortecedor.tikz}
+```
 
 A funcaoo de transferência do sistema LIT é dada por:
 
@@ -31,7 +37,12 @@ $$ G(s) = \frac{Y(s)}{U(s)} = \frac{1}{ms^2 + bs + k} $$
 
 ## Simulação Matlab/Simulink: Sistema massa mola amortecedor
 
-![](imgs/mma2.png){width=60%}
+```{tikz}
+#| echo: false
+#| fig-align: center
+\usetikzlibrary{arrows.meta, positioning, calc, decorations.pathmorphing, patterns}
+\input{imgs/tikz/MassaMolaAmortecedor.tikz}
+```
 
 A representação em espaço de estados é dada por:
 
@@ -48,4 +59,9 @@ $$
 $$\dot{\mathbf{x}} = \mathbf{A}\mathbf{x} + \mathbf{B}u$$
 $$\mathbf{y} = \mathbf{C}\mathbf{x}$$
 
-![](imgs/DiagramaSSMalhaAberta.png){width=60%}
+```{tikz}
+#| echo: false
+#| fig-align: center
+\usetikzlibrary{arrows.meta, positioning, calc, decorations.pathmorphing, patterns}
+\input{imgs/tikz/DiagramaSSMalhaAberta.tikz}
+```

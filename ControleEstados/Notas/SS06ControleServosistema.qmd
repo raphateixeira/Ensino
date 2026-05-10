@@ -17,6 +17,7 @@ format:
       data-background-image: "../Notas/imgs/UFPA.png"
       data-background-size: "100px"
       data-background-position: "top 40px center"
+engine: knitr
 ---
 
 ## Motivação: Rastreamento de Referência

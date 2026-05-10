@@ -17,6 +17,7 @@ format:
       data-background-image: "../Notas/imgs/UFPA.png"
       data-background-size: "100px"
       data-background-position: "top 40px center"
+engine: knitr
 ---
 
 ## Espaço de Estados e Polos de Malha Aberta
@@ -86,7 +87,12 @@ $$\begin{cases}
 y(t) = Cx(t)
 \end{cases}$$
 
-![](imgs/DiagramaSSMalhaAberta.png){width=60% fig-align="center"}
+```{tikz}
+#| echo: false
+#| fig-align: center
+\usetikzlibrary{arrows.meta, positioning, calc}
+\input{imgs/tikz/DiagramaSSMalhaAberta.tikz}
+```
 
 ---
 
@@ -116,7 +122,12 @@ Os autovalores de $A_{cl}$ são os **polos de malha fechada**.
 
 ## Sistema Controlado — Diagrama de Blocos
 
-![](imgs/DiagramaSSMalhaFechada.png){width=70% fig-align="center"}
+```{tikz}
+#| echo: false
+#| fig-align: center
+\usetikzlibrary{arrows.meta, positioning, calc}
+\input{imgs/tikz/DiagramaSSMalhaFechada.tikz}
+```
 
 ::: {.callout-note title="Observação"}
 O ganho $K$ **realimenta todos os estados** $x(t)$ — não apenas a saída $y(t)$.
@@ -339,12 +350,8 @@ Os polos de malha fechada são exatamente $p_1 = -2+j4$, $p_2 = -2-j4$, $p_3 = -
 
 ## Implementação em MATLAB
 
-```{matlab}
-#| echo: true
-#| eval: false
-#| code-overflow: scroll
-#| style: "font-size: 2.5em;"
-
+::: {style="font-size: 0.8em;"}
+```matlab
 % Matrizes do sistema:
 
 A = [0  1  0;
@@ -369,6 +376,7 @@ Acl = A - B*K;
 fprintf('Polos de malha fechada:\n');
 disp(eig(Acl))
 ```
+:::
 
 ::: {.callout-note title="acker vs place"}
 `acker` implementa a fórmula de Ackermann — adequado para sistemas SISO de baixa ordem. Para sistemas de ordem elevada, prefira `place` (algoritmo de Kautsky-Nichols), numericamente mais robusto e que também suporta sistemas MIMO.
