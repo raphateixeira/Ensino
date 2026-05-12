@@ -310,7 +310,7 @@ Prof.&nbsp;Dr.&nbsp;Raphael Teixeira &nbsp; &nbsp; &nbsp; Prof.&nbsp;Dr.&nbsp;Cl
 <section id="ex-ajuste-de-curva---polinomial" class="slide level2 center">
 <h2>Ex: Ajuste de curva - Polinomial</h2>
 <p>Considera-se um conjunto de dados gerados a partir de uma função seno <span class="math inline">\(y = \sin(x)\)</span> com ruído gaussiano <span class="math inline">\(\epsilon \sim \mathcal{N}(0, \sigma^2)\)</span>. O objetivo é ajustar um modelo polinomial aos dados. Em python pode-se gerar <span class="math inline">\(N = 10\)</span> amostras de <span class="math inline">\(x\)</span> uniformemente distribuídas no intervalo <span class="math inline">\([0, 2\pi]\)</span> e calcular os valores correspondentes de <span class="math inline">\(y\)</span> com ruído:</p>
-<div id="b8d21974" class="cell" data-execution_count="1">
+<div id="5909a8a1" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-2"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a></a></span>
@@ -342,7 +342,7 @@ Prof.&nbsp;Dr.&nbsp;Raphael Teixeira &nbsp; &nbsp; &nbsp; Prof.&nbsp;Dr.&nbsp;Cl
 <section id="ex-ajuste-de-curva---polinomial-1" class="slide level2 center">
 <h2>Ex: Ajuste de curva - Polinomial</h2>
 <p>O que resulta:</p>
-<div id="d8a86fe8" class="cell" data-execution_count="2">
+<div id="9a0bcd9f" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -355,7 +355,7 @@ Prof.&nbsp;Dr.&nbsp;Raphael Teixeira &nbsp; &nbsp; &nbsp; Prof.&nbsp;Dr.&nbsp;Cl
 <section id="ex-ajuste-de-curva---polinomial-2" class="slide level2 center">
 <h2>Ex: Ajuste de curva - Polinomial</h2>
 <p>A matriz de regressão <span class="math inline">\(\mathbf{X}\)</span> pode ser gerada por:</p>
-<div id="ae9706ea" class="cell" data-execution_count="3">
+<div id="52eb1f76" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a></a></span>
 <span id="cb2-3"><a></a><span class="kw">def</span> MatrizRegressao(x, M):</span>
@@ -374,7 +374,7 @@ Prof.&nbsp;Dr.&nbsp;Raphael Teixeira &nbsp; &nbsp; &nbsp; Prof.&nbsp;Dr.&nbsp;Cl
 </section>
 <section id="ex-ajuste-de-curva---polinomial-3" class="slide level2 center">
 <h2>Ex: Ajuste de curva - Polinomial</h2>
-<div id="37dbabd5" class="cell" data-execution_count="4">
+<div id="f45bbda7" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-2"><a></a></span>
 <span id="cb3-3"><a></a><span class="kw">def</span> MinimosQuadrados(X, y):</span>
@@ -391,7 +391,7 @@ Prof.&nbsp;Dr.&nbsp;Raphael Teixeira &nbsp; &nbsp; &nbsp; Prof.&nbsp;Dr.&nbsp;Cl
 <section id="ex-ajuste-de-curva---polinomial-4" class="slide level2 center">
 <h2>Ex: Ajuste de curva - Polinomial</h2>
 <p>Para um modelo polinomial de grau <span class="math inline">\(M=3\)</span>, tem-se:</p>
-<div id="99e54793" class="cell" data-execution_count="5">
+<div id="d23f2e87" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="co"># 1. Definir o grau do polinômio</span></span>
 <span id="cb4-2"><a></a>M <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb4-3"><a></a></span>
@@ -416,7 +416,7 @@ w3: 0.0850</code></pre>
 <section id="ex-ajuste-de-curva---polinomial-5" class="slide level2 center">
 <h2>Ex: Ajuste de curva - Polinomial</h2>
 <p>Modelo de grau <span class="math inline">\(M=3\)</span>: Resultado.</p>
-<div id="3bf49fba" class="cell" data-execution_count="6">
+<div id="18665a52" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -429,7 +429,7 @@ w3: 0.0850</code></pre>
 <section id="ajuste-de-curva---polinomial---complexidade-grau-m" class="slide level2 center">
 <h2>Ajuste de curva - Polinomial - Complexidade (Grau <span class="math inline">\(M\)</span>)</h2>
 <p>Abaixo, comparamos o ajuste de polinômios de diferentes graus sobre o mesmo conjunto de 10 dados ruidosos.</p>
-<div id="a2711a28" class="cell" data-execution_count="7">
+<div id="0ed103ff" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -441,8 +441,8 @@ w3: 0.0850</code></pre>
 </section>
 <section id="ex-ajuste-de-curva---polinomial---comparação-dos-parâmetros-mathbfw" class="slide level2 center">
 <h2>Ex: Ajuste de curva - Polinomial - Comparação dos Parâmetros <span class="math inline">\(\mathbf{w}\)</span></h2>
-<div id="d407e492" class="cell" data-execution_count="8">
-<div class="cell-output cell-output-display" data-execution_count="40">
+<div id="5b82c785" class="cell" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <div>
 <style scoped="">
     .dataframe tbody tr th:only-of-type {
