@@ -1,0 +1,467 @@
+---
+title: "Atividade Avaliativa: Controle no Espaço de Estados"
+subtitle: "Sistemas de Controle II"
+institute: "Universidade Federal do Pará"
+author: "Prof. Dr. Raphael Teixeira"
+format: 
+  revealjs:
+    theme: [default, ../TemaRTx.scss]
+    self-contained: true
+    transition: slide
+    slide-number: true
+    width: 1600
+    height: 900
+    footer: " "
+    center: true
+    title-slide-attributes:
+      data-background-image: "../Notas/imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 30px center"
+engine: knitr
+---
+
+# Parte 1 {background-color="#0E7C7B"}
+## Análise do Sistema de 4ª Ordem
+
+---
+
+## Modelo fornecido
+
+O sistema de 4ª ordem é representado no espaço de estados por:
+
+$$\dot{x}(t) = A\,x(t) + B\,u(t), \qquad y(t) = C\,x(t) + D\,u(t)$$
+
+com as matrizes:
+
+$$A = \begin{bmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \\ -10 & -35 & -50 & -24 \end{bmatrix}, \quad
+B = \begin{bmatrix} 0 \\ 0 \\ 0 \\ 1 \end{bmatrix}, \quad
+C = \begin{bmatrix} 1 & 0 & 0 & 0 \end{bmatrix}, \quad D = 0$$
+
+A função de transferência equivalente é:
+
+$$G(s) = \frac{1}{s^4 + 24s^3 + 50s^2 + 35s + 10}$$
+
+---
+
+## Análise — Estabilidade
+
+Os **autovalores de $A$** - raízes do polinômio característico $\det(sI - A) = 0$, sã0 os **polos de $G(s)$**.
+
+$$\det(sI - A) = s^4 + 24s^3 + 50s^2 + 35s + 10 = 0$$
+
+O sistema é **assintoticamente estável** se e somente se todos os autovalores possuírem parte real negativa.
+
+```matlab
+% MATLAB
+autoval = eig(A);
+disp('Autovalores de A:')
+disp(autoval)
+```
+
+::: {.callout-tip}
+Verifique se $\text{Re}(\lambda_i) < 0$ para todo $i = 1,\ldots,4$.
+:::
+
+---
+
+## Análise — Controlabilidade e Observabilidade
+
+A **matriz de controlabilidade** e a **matriz de observabilidade** são, respectivamente:
+
+$$\mathcal{C} = \begin{bmatrix} B & AB & A^2B & A^3B \end{bmatrix}, \qquad
+\mathcal{O} = \begin{bmatrix} C \\ CA \\ CA^2 \\ CA^3 \end{bmatrix}$$
+
+O sistema é **completamente controlável** se $\text{rank}(\mathcal{C}) = n$ e **completamente observável** se $\text{rank}(\mathcal{O}) = n$, onde $n = 4$.
+
+```matlab
+Co = ctrb(A, B);   rankCo = rank(Co);
+Ob = obsv(A, C);   rankOb = rank(Ob);
+fprintf('rank(Co) = %d\n', rankCo)
+fprintf('rank(Ob) = %d\n', rankOb)
+```
+
+::: {.callout-important}
+Se $\text{rank}(\mathcal{C}) < n$: projeto do controlador inviável.  
+Se $\text{rank}(\mathcal{O}) < n$: projeto do observador inviável.
+:::
+
+---
+
+## Análise — Resposta em Malha Aberta e Integrador
+
+**Resposta ao degrau em malha aberta:**
+
+```matlab
+figure;
+step(sys);
+title('Resposta ao Degrau — Malha Aberta')
+grid on
+```
+
+**Verificação de integrador na malha direta:**
+
+Um integrador corresponde a um **polo de $G(s)$ em $s = 0$**.
+
+```matlab
+[z, p, k] = zpkdata(tf(sys), 'v');
+fprintf('Polos em s = 0: %d\n', sum(abs(p) < 1e-6))
+```
+
+::: {.callout-note}
+- **Com integrador** ($\exists\, p_i = 0$): sistema do Tipo $\geq 1$ — erro nulo ao degrau sem ação adicional.  
+- **Sem integrador**: sistema do Tipo 0 — será necessário projetar um **servomecanismo** (Parte 4).
+:::
+
+---
+
+# Parte 2 {background-color="#1B4F72"}
+## Projeto do Controlador por Realimentação de Estados
+
+---
+
+## Realimentação de Estados — Lei de Controle
+
+A lei de controle por realimentação de estados é dada por:
+
+$$u(t) = -K\,x(t) + N\,r(t)$$
+
+onde $K \in \mathbb{R}^{1 \times n}$ é o vetor de ganhos e $N$ é o ganho de pré-compensação para rastreamento de referência.
+
+A dinâmica de malha fechada fica:
+
+$$\dot{x} = (A - BK)\,x + BN\,r, \qquad y = Cx$$
+
+Os **polos de malha fechada** são os autovalores de $A - BK$, que podem ser **arbitrariamente alocados** desde que o sistema seja controlável.
+
+---
+
+## Especificação dos Polos Desejados
+
+Dado um par dominante com $\zeta$ e $\omega_n$ desejados:
+
+$$p_{1,2} = -\zeta\omega_n \pm j\,\omega_n\sqrt{1 - \zeta^2}$$
+
+Os polos recessivos devem ser colocados **3 a 5 vezes mais rápidos** (em módulo da parte real) que os dominantes, para que não interfiram na resposta transitória:
+
+$$p_3,\, p_4 \approx -(3\text{ a }5)\,\zeta\omega_n$$
+
+```matlab
+zeta = 0.7;  wn = 4;
+p1 = -zeta*wn + 1j*wn*sqrt(1 - zeta^2);
+p2 = conj(p1);
+p3 = -5*wn;   p4 = -6*wn;   % recessivos
+polos_mf = [p1; p2; p3; p4];
+```
+
+---
+
+## Cálculo dos Ganhos e Pré-compensação
+
+```matlab
+%% PARTE 2 — Projeto do Controlador
+
+% Verificar controlabilidade antes de prosseguir
+if rank(ctrb(A, B)) == size(A, 1)
+    K = place(A, B, polos_mf);
+    fprintf('K = '); disp(K)
+else
+    error('Sistema NÃO completamente controlável!')
+end
+
+% Confirmar alocação
+disp('Autovalores de (A - BK):')
+disp(eig(A - B*K))
+
+% Ganho de pré-compensação (erro nulo em regime permanente)
+N = -1 / (C * inv(A - B*K) * B);
+fprintf('N = %.4f\n', N)
+```
+
+::: {.callout-tip}
+Para sistemas SISO também pode-se usar `acker(A, B, polos_mf)`, porém `place` é numericamente mais robusto para polos distintos.
+:::
+
+---
+
+## Simulação e Gráficos
+
+```matlab
+% Malha fechada
+Acl = A - B*K;   Bcl = B*N;
+sys_mf = ss(Acl, Bcl, C, D);
+t = 0:0.001:5;
+
+% Resposta ao degrau e sinal de controle
+[y_mf, t_out, x_mf] = step(sys_mf, t);
+u_mf = N - K * x_mf';
+
+figure;
+subplot(2,1,1)
+  plot(t_out, y_mf, 'b', 'LineWidth', 2)
+  yline(1, 'k--');  title('Saída — Malha Fechada');  grid on
+subplot(2,1,2)
+  plot(t_out, u_mf(1,:), 'r', 'LineWidth', 2)
+  title('Sinal de Controle u(t)');  grid on
+```
+
+**Entregáveis — Parte 2:**
+
+- Polos de malha fechada escolhidos e justificativa ($\zeta$, $\omega_n$)
+- Vetor de ganhos $K$ e confirmação dos autovalores de $(A - BK)$
+- Gráficos de $y(t)$ e $u(t)$ — verificar saturação do controle
+- Diagrama Simulink com realimentação de estados
+- Análise: $t_s$, $t_p$, $\%OS$ obtidos vs. especificados; $e_{ss}$ após pré-compensação
+
+---
+
+# Parte 3 {background-color="#0D1B2A"}
+## Projeto do Observador de Luenberger
+
+---
+
+## Observador de Luenberger — Equações
+
+Como em geral os estados $x(t)$ não são diretamente mensuráveis, projeta-se um **observador de ordem plena** que estima $\hat{x}(t)$:
+
+$$\dot{\hat{x}}(t) = A\,\hat{x}(t) + B\,u(t) + L\bigl[y(t) - C\,\hat{x}(t)\bigr]$$
+
+onde $L \in \mathbb{R}^{n \times 1}$ é o vetor de ganhos do observador.
+
+Definindo o **erro de estimação** $e(t) = x(t) - \hat{x}(t)$:
+
+$$\dot{e}(t) = (A - LC)\,e(t)$$
+
+O erro converge para zero se os autovalores de $(A - LC)$ tiverem parte real negativa.
+
+---
+
+## Projeto dos Ganhos do Observador
+
+Por **dualidade**, o projeto de $L$ equivale ao projeto de $K$ para o par $(A^\top,\, C^\top)$:
+
+$$L = \bigl[\texttt{place}(A^\top,\; C^\top,\; \text{polos\_obs})\bigr]^\top$$
+
+Os **polos do observador** devem ser escolhidos **mais rápidos** que os do controlador (tipicamente 3 a 5 vezes):
+
+```matlab
+%% PARTE 3 — Projeto do Observador
+
+% Verificar observabilidade
+if rank(obsv(A, C)) < size(A, 1)
+    error('Sistema NÃO completamente observável!')
+end
+
+% Polos do observador (4x mais rápidos)
+fator = 4;
+polos_obs = fator * real(polos_mf) + 1j * imag(polos_mf);
+
+L = place(A', C', polos_obs)';
+fprintf('L = '); disp(L)
+disp('Autovalores de (A - LC):')
+disp(eig(A - L*C))
+```
+
+---
+
+## Sistema Aumentado: Planta + Observador
+
+O sistema de malha fechada com observador é descrito pelo **sistema aumentado** de ordem $2n$:
+
+$$\begin{bmatrix} \dot{x} \\ \dot{e} \end{bmatrix} =
+\begin{bmatrix} A - BK & BK \\ 0 & A - LC \end{bmatrix}
+\begin{bmatrix} x \\ e \end{bmatrix} +
+\begin{bmatrix} BN \\ 0 \end{bmatrix} r$$
+
+Os polos de malha fechada são a **união** dos polos do controlador e dos polos do observador (**princípio da separação**).
+
+```matlab
+A_aug = [A - B*K,  B*K;
+         zeros(4,4), A - L*C];
+B_aug = [B*N; zeros(4,1)];
+C_aug = [C, zeros(1,4)];
+sys_aug = ss(A_aug, B_aug, C_aug, 0);
+```
+
+---
+
+## Simulação: Estados Reais vs. Estimados
+
+Utiliza-se condição inicial assimétrica ($x(0) = 0$, $\hat{x}(0) \neq 0$) para evidenciar a convergência do observador:
+
+```matlab
+x0_aug = [zeros(4,1); 0.5*ones(4,1)];
+[y_obs, t_obs, x_obs] = lsim(sys_aug, ones(size(t)), t, x0_aug);
+
+figure;
+estados = {'x_1','x_2','x_3','x_4'};
+for k = 1:4
+    subplot(4, 1, k)
+    plot(t_obs, x_obs(:,k),   'b', 'LineWidth', 2); hold on
+    plot(t_obs, x_obs(:,4+k), 'r--', 'LineWidth', 2)
+    legend('Real','Estimado');  ylabel(estados{k});  grid on
+end
+```
+
+**Entregáveis — Parte 3:**
+
+- Polos do observador e relação com os polos do controlador
+- Vetor de ganhos $L$ e confirmação dos autovalores de $(A - LC)$
+- Gráficos $x_i(t)$ vs. $\hat{x}_i(t)$ — convergência do erro $e(t) \to 0$
+- Diagrama Simulink com controlador e observador integrados
+
+---
+
+# Parte 4 {background-color="#7B0D1E"}
+## Erro em Regime Permanente e Servomecanismo
+
+---
+
+## Análise do Tipo do Sistema
+
+O **tipo** de um sistema é definido pelo número de polos de $G(s)$ na origem.
+
+| Tipo | Polos em $s=0$ | $e_{ss}$ ao degrau |
+|:----:|:--------------:|:------------------:|
+| 0    | 0              | $\dfrac{1}{1 + K_p} \neq 0$ |
+| 1    | 1              | $0$ |
+| $\geq 2$ | $\geq 2$   | $0$ |
+
+```matlab
+[~, p, ~] = zpkdata(tf(sys), 'v');
+tem_integrador = any(abs(p) < 1e-6);
+
+if tem_integrador
+    fprintf('Sistema Tipo >= 1: ess = 0 naturalmente\n')
+else
+    fprintf('Sistema Tipo 0: necessário servomecanismo\n')
+end
+```
+
+---
+
+## Caso A — Sistema com Integrador (Tipo $\geq 1$)
+
+Se $G(s)$ possui polo em $s = 0$, o sistema **já integra o erro** na malha direta.
+
+Para referência degrau, o erro em regime permanente é **nulo por natureza**:
+
+$$e_{ss} = \lim_{s \to 0} \frac{s}{1 + G(s)} \cdot \frac{1}{s} = 0$$
+
+Neste caso, basta garantir:
+
+- A pré-compensação $N$ está corretamente calculada para que $y(\infty) = r$
+- A realimentação de estados não desestabiliza o polo integrador
+
+::: {.callout-important}
+Verificar que o estado integrador não está associado a um **modo não controlável**. Se o polo em $s = 0$ for cancelado por um zero, o sistema pode ser instável internamente.
+:::
+
+---
+
+## Caso B — Sistema sem Integrador: Servomecanismo
+
+Se $G(s)$ **não** possui polo em $s = 0$ (Tipo 0), é necessário **adicionar um integrador** na malha para anular o erro ao degrau.
+
+Define-se a variável de estado integral:
+
+$$\dot{z}_i(t) = r(t) - y(t) = r - Cx$$
+
+O **sistema aumentado** de ordem $n+1$ é:
+
+$$\begin{bmatrix} \dot{x} \\ \dot{z}_i \end{bmatrix} =
+\underbrace{\begin{bmatrix} A & 0 \\ -C & 0 \end{bmatrix}}_{\tilde{A}}
+\begin{bmatrix} x \\ z_i \end{bmatrix} +
+\underbrace{\begin{bmatrix} B \\ 0 \end{bmatrix}}_{\tilde{B}} u +
+\underbrace{\begin{bmatrix} 0 \\ 1 \end{bmatrix}}_{\tilde{B}_r} r$$
+
+A lei de controle passa a ser:
+
+$$u(t) = -K_c\,x(t) - K_i\,z_i(t)$$
+
+---
+
+## Projeto do Servomecanismo
+
+```matlab
+%% PARTE 4 — Servomecanismo (Caso B: Tipo 0)
+
+A_til = [A,          zeros(4,1);
+         -C,         0         ];
+B_til = [B; 0];
+
+% Escolher polo adicional para o integrador
+p5 = -5*wn;
+polos_serv = [polos_mf; p5];
+
+% Verificar controlabilidade do sistema aumentado
+if rank(ctrb(A_til, B_til)) == size(A_til, 1)
+    K_til = place(A_til, B_til, polos_serv);
+    Kc = K_til(1:4);   Ki = K_til(5);
+    fprintf('Kc = '); disp(Kc)
+    fprintf('Ki = %.4f\n', Ki)
+else
+    error('Sistema aumentado NÃO controlável!')
+end
+```
+
+---
+
+## Simulação do Servomecanismo
+
+```matlab
+% Malha fechada do sistema aumentado
+Acl_s = A_til - B_til * K_til;
+Ccl_s = [C, 0];
+sys_serv = ss(Acl_s, [B_til, [zeros(4,1); 1]], Ccl_s, 0);
+
+% Simulação com entrada degrau
+[y_serv, t_serv] = step(sys_serv(1,2), t);
+
+% Comparação: com e sem ação integral
+figure;
+plot(t_out,  y_mf,   'b',  'LineWidth', 2); hold on
+plot(t_serv, y_serv, 'r--','LineWidth', 2)
+yline(1, 'k:');
+legend('Sem integrador','Com integrador (servomecanismo)','Referência')
+title('Comparação: Erro em Regime Permanente');  grid on
+```
+
+**Entregáveis — Parte 4:**
+
+- Identificação do tipo do sistema com justificativa
+- **Caso A**: mostrar $e_{ss} = 0$ natural; verificar estabilidade interna
+- **Caso B**: ganhos $K_c$ e $K_i$; gráfico comparando $y(t)$ com e sem integrador; análise de *wind-up*
+
+---
+
+## Orientações para o Simulink
+
+Para cada parte, construir um diagrama Simulink separado (ou subsistemas em um único modelo):
+
+| Parte | Bloco principal | O que registrar |
+|:-----:|:----------------|:----------------|
+| 1 | `State-Space` + `Step` | $y(t)$, $x(t)$ em `To Workspace` |
+| 2 | Realimentação via `Gain(K)` + `Gain(N)` | $y(t)$, $u(t)$ |
+| 3 | Observador em paralelo à planta | $x(t)$ e $\hat{x}(t)$ separadamente |
+| 4 | `Integrator` no laço do erro | $y(t)$ com e sem $K_i$ |
+
+::: {.callout-tip}
+Use `To Workspace` com formato `Array` e salve as variáveis de tempo e estado para gerar os gráficos diretamente no script `.m`.
+:::
+
+---
+
+## Resumo e Critérios de Avaliação
+
+| Parte | Descrição | Pontos |
+|:-----:|:----------|:------:|
+| 1 | Análise: autovalores, rank $\mathcal{C}/\mathcal{O}$, resposta MA, integrador | 20 |
+| 2 | Controlador: polos, ganhos $K$, gráficos $y(t)$ e $u(t)$, Simulink | 25 |
+| 3 | Observador: polos, ganhos $L$, estados reais vs. estimados | 25 |
+| 4 | Servomecanismo: identificação do tipo, ganhos, comparação $e_{ss}$ | 20 |
+| Extra | Qualidade da análise crítica e conclusões técnicas | 10 |
+| **Total** | | **100** |
+
+::: {.callout-important}
+**Entrega:** relatório em PDF + scripts `.m` comentados + modelo Simulink `.slx`
+:::

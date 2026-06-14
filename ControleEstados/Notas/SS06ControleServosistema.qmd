@@ -1,5 +1,5 @@
 ---
-title: "Controle por Alocação de Polos: Servosistemas"
+title: "Controle por Alocação de Polos: Servosistemas - Com integrador"
 subtitle: "Sistemas de Controle II"
 institute: "Universidade Federal do Pará"
 author: "Prof. Dr. Raphael Teixeira"
