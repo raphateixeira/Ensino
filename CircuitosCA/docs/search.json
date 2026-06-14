@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Circuitos Elétricos II",
+    "section": "",
+    "text": "Notas de aula de Circuitos Elétricos II — Corrente Alternada.\nTurma 2024 da FEE/CAMTUC/UFPA."
+  },
+  {
+    "objectID": "index.html#apresentação",
+    "href": "index.html#apresentação",
+    "title": "Circuitos Elétricos II",
+    "section": "Apresentação",
+    "text": "Apresentação\n\nAula 0 — Plano de Ensino"
+  },
+  {
+    "objectID": "index.html#unidade-1-fasores-e-elementos-em-ca",
+    "href": "index.html#unidade-1-fasores-e-elementos-em-ca",
+    "title": "Circuitos Elétricos II",
+    "section": "Unidade 1 — Fasores e Elementos em CA",
+    "text": "Unidade 1 — Fasores e Elementos em CA\n\nAula 1 — Tensões e Correntes Senoidais e Fasores\n\nSinal senoidal: amplitude, período, fase\nValor eficaz (RMS)\nFasores: representação, conversão e operações\nDomínio fasorial vs. domínio do tempo\n\nAula 2 — Relações Tensão-Corrente em CA\n\nResistor, Indutor e Capacitor em CA\nImpedância e Reatância\nAdmitância\nImpedâncias em série e paralelo"
+  }
+]

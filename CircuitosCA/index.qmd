@@ -1,0 +1,34 @@
+---
+title: "Circuitos Elétricos II"
+subtitle: "Circuitos em Corrente Alternada — CA"
+institute: "Universidade Federal do Pará"
+author: "Prof. Dr. Raphael Teixeira"
+date: ""
+format:
+  html:
+    page-layout: article
+---
+
+Notas de aula de **Circuitos Elétricos II — Corrente Alternada**.
+
+Turma 2024 da FEE/CAMTUC/UFPA.
+
+---
+
+## Apresentação
+
+* Aula 0 — [Plano de Ensino](Notas/CEII00PlanoEnsino.qmd)
+
+## Unidade 1 — Fasores e Elementos em CA
+
+* Aula 1 — [Tensões e Correntes Senoidais e Fasores](Notas/CEII01Senoides.qmd)
+  * Sinal senoidal: amplitude, período, fase
+  * Valor eficaz (RMS)
+  * Fasores: representação, conversão e operações
+  * Domínio fasorial vs. domínio do tempo
+
+* Aula 2 — [Relações Tensão-Corrente em CA](Notas/CEII02RelacoesTensaoCorrente.qmd)
+  * Resistor, Indutor e Capacitor em CA
+  * Impedância e Reatância
+  * Admitância
+  * Impedâncias em série e paralelo

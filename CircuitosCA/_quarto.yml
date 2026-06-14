@@ -1,0 +1,26 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Circuitos Elétricos II"
+  site-url: https://raphateixeira.github.io/CircuitosCA/
+  repo-url: https://github.com/raphateixeira/CircuitosCA/
+
+format:
+  html:
+    theme: [cosmo, TemaRTx.scss]
+    lang: pt-BR
+    code-copy: true
+    anchor-sections: true
+
+  revealjs:
+    theme: [default, TemaRTx.scss]
+    transition: slide
+    slide-number: true
+    width: 1600
+    height: 900
+    code-theme: monokai
+    code-font-size: 0.8em 
+    code-line-numbers: true
+    hash-type: number
