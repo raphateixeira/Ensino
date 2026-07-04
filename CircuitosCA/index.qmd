@@ -1,34 +1,24 @@
 ---
 title: "Circuitos Elétricos II"
-subtitle: "Circuitos em Corrente Alternada — CA"
+subtitle: "Circuitos de Corrente Alternada (CA)"
 institute: "Universidade Federal do Pará"
 author: "Prof. Dr. Raphael Teixeira"
 date: ""
-format:
+format: 
   html:
     page-layout: article
 ---
 
-Notas de aula de **Circuitos Elétricos II — Corrente Alternada**.
+<!-- Portal do projeto. Cada item aponta para um deck em Notas/.
+     Duplique as linhas conforme adicionar aulas. -->
 
-Turma 2024 da FEE/CAMTUC/UFPA.
+Notas de aula sobre análise de circuitos elétricos em regime permanente senoidal (CA): senoides, fasores, impedância e potência.
 
----
+* Aula 0 - [Plano de Ensino](Notas/Aula00PlanoEnsino.qmd)
+* Aula 1 - [Senoides e Fasores](Notas/Aula01Senoides.qmd)
+<!-- * Aula 2 - [Título](Notas/Aula02Titulo.qmd) -->
 
-## Apresentação
+## Avaliações
 
-* Aula 0 — [Plano de Ensino](Notas/CEII00PlanoEnsino.qmd)
-
-## Unidade 1 — Fasores e Elementos em CA
-
-* Aula 1 — [Tensões e Correntes Senoidais e Fasores](Notas/CEII01Senoides.qmd)
-  * Sinal senoidal: amplitude, período, fase
-  * Valor eficaz (RMS)
-  * Fasores: representação, conversão e operações
-  * Domínio fasorial vs. domínio do tempo
-
-* Aula 2 — [Relações Tensão-Corrente em CA](Notas/CEII02RelacoesTensaoCorrente.qmd)
-  * Resistor, Indutor e Capacitor em CA
-  * Impedância e Reatância
-  * Admitância
-  * Impedâncias em série e paralelo
+* Avaliação 1 - [Avaliação Exemplo (modelo)](Avaliacoes/Avaliacao01Exemplo.qmd)
+<!-- * Avaliação 2 - [Título](Avaliacoes/Avaliacao02Titulo.qmd) -->

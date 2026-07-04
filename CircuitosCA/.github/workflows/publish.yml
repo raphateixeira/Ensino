@@ -1,4 +1,4 @@
-name: Publicar CircuitosII
+name: Publicar site Quarto
 
 on:
   push:

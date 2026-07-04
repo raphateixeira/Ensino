@@ -1,0 +1,19 @@
+% ---------------------------------------------------------------
+% Diagrama-exemplo do modelo: substitua pelo seu esquema.
+% As bibliotecas TikZ são carregadas no chunk .qmd com \usetikzlibrary.
+% ---------------------------------------------------------------
+\begin{tikzpicture}[>=Latex, line width=0.9pt,
+  bloco/.style={draw, minimum width=1.6cm, minimum height=1.0cm, fill=blue!8}]
+
+  \node (in)            at (0,0)   {entrada};
+  \node[bloco] (sis)    at (2.6,0) {Sistema};
+  \node (out)           at (5.6,0) {saída};
+
+  \draw[->] (in)  -- (sis);
+  \draw[->] (sis) -- (out);
+
+  % realimentação ilustrativa
+  \draw[->] (sis.south) |- (1.0,-1.2) -| (1.0,0) -- (sis.west);
+  \node[font=\small] at (2.6,-1.5) {realimentação};
+
+\end{tikzpicture}

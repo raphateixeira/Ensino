@@ -1,0 +1,74 @@
+/*-- scss:defaults --*/
+
+// =====================================================================
+//  TEMA DO MODELO  —  troque apenas estas variáveis para reidentificar
+//  o projeto (cores institucionais, fontes, tamanhos).
+// =====================================================================
+
+// --- Paleta (substitua pelos valores da sua instituição/tema) ---
+$cor-primaria:    #1F3A5F;   // títulos, links, destaques
+$cor-secundaria:  #B23A48;   // ênfases, segundo plano
+$cor-acento:      #E8B23A;   // detalhes pontuais
+$cor-texto:       #1A1A1A;   // corpo de texto
+$cor-fundo:       #FFFFFF;   // fundo dos slides
+
+// --- Tipografia ---
+$main-font-size:   1.1em;
+$code-font-family: 'Courier New', Courier, monospace;
+
+// --- Mapeamento para o Bootstrap (não precisa editar abaixo) ---
+$primary:    $cor-primaria;
+$secondary:  $cor-secundaria;
+$body-bg:    $cor-fundo;
+$body-color: $cor-texto;
+$link-color: $cor-primaria;
+
+/*-- scss:rules --*/
+
+// --- Título da capa ---
+.title {
+    font-size: 2.0em !important;
+    color: $cor-primaria !important;
+    line-height: 1.1;
+    margin-bottom: 0.5em !important;
+}
+
+// --- Subtítulo da capa ---
+.subtitle {
+    font-size: 1.4em !important;
+    color: #555 !important;
+    margin-bottom: 1.5em !important;
+}
+
+// --- Títulos de slide (##) ---
+.reveal h2 {
+    font-size: 1.4em !important;
+    color: $cor-primaria !important;
+}
+
+// --- Bloco de autores na capa ---
+.quarto-title-authors {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 80px !important;
+    margin-top: 2em !important;
+    font-size: 1.0em !important;
+}
+
+// --- Layout de duas colunas (alinhamento vertical centralizado) ---
+.columns {
+    display: flex !important;
+    align-items: center !important;
+}
+
+// --- Callouts ---
+.reveal .callout,
+.reveal .callout-title,
+.reveal .callout-body {
+    font-size: 1em !important;
+}
+
+// --- Blocos de código (reduz a fonte para caber no slide) ---
+.reveal pre code {
+    font-size: 0.7em !important;
+}

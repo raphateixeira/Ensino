@@ -1,0 +1,39 @@
+---
+# =====================================================================
+#  AVALIAÇÃO-EXEMPLO — molde de prova/lista de exercícios.
+#  Copie este arquivo, renomeie (ex.: Avaliacao02Titulo.qmd) e substitua
+#  o conteúdo. Diferente das aulas, usa format: html (documento, não
+#  slides), pensado para impressão ou entrega em PDF.
+# =====================================================================
+title: "Avaliação 1 — Título"
+subtitle: "Circuitos Elétricos II"
+institute: "Universidade Federal do Pará"
+author: "Prof. Dr. Raphael Teixeira"
+date: ""
+format:
+  html:
+    toc: false
+    page-layout: article
+---
+
+## Instruções
+
+- Duração: 00 minutos.
+- Consulta: permitida/não permitida a...
+- Entrega: formato e prazo.
+
+## Questões
+
+1. **(peso 0,0)** Enunciado da primeira questão.
+2. **(peso 0,0)** Enunciado da segunda questão.
+3. **(peso 0,0)** Enunciado da terceira questão, com aplicação prática.
+
+## Critérios de avaliação
+
+| Questão | Peso | Critério |
+|:--:|:--:|:--|
+| 1 | 0,0 | descreva o que será avaliado |
+| 2 | 0,0 | descreva o que será avaliado |
+| 3 | 0,0 | descreva o que será avaliado |
+
+<!-- Fim da avaliação-exemplo. -->

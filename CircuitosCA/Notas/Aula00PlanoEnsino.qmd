@@ -1,0 +1,100 @@
+---
+title: "Plano de Ensino"
+subtitle: "Circuitos Elétricos II"
+institute: "Universidade Federal do Pará"
+author: "Prof. Dr. Raphael Teixeira"
+format:
+  revealjs:
+    theme: [default, ../Tema.scss]
+    self-contained: true
+    transition: slide
+    slide-number: true
+    width: 1600
+    height: 900
+    footer: " "
+    center: true
+    title-slide-attributes:
+      data-background-image: "imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 40px center"
+---
+
+## Identificação
+
+::: {.columns}
+::: {.column width="50%"}
+
+- Curso: Engenharia Elétrica
+- Carga horária: 60 horas
+- Pré-requisitos: Circuitos Elétricos I
+- Ferramentas: números complexos, MATLAB/Octave ou Python (opcional)
+
+:::
+::: {.column width="50%"}
+
+**Ementa:** Senoides e fasores. Relações tensão-corrente nos elementos
+passivos (resistor, indutor, capacitor) em regime permanente senoidal.
+Impedância e admitância. Leis de Kirchhoff e métodos sistemáticos de
+análise (nodal e de malhas) em circuitos CA. Teoremas de circuitos
+(superposição, Thévenin, Norton, máxima transferência de potência)
+aplicados a circuitos CA. Potência em corrente alternada: instantânea,
+média, reativa, aparente e complexa; fator de potência e sua correção.
+
+:::
+:::
+
+---
+
+## Objetivos
+
+- Capacitar o estudante a analisar circuitos elétricos lineares em
+  regime permanente senoidal, utilizando a representação fasorial e o
+  conceito de impedância.
+- Representar sinais senoidais na forma fasorial e transitar entre os
+  domínios do tempo e da frequência.
+- Determinar impedâncias e admitâncias de elementos R, L, C e de suas
+  associações série/paralelo.
+- Aplicar leis de Kirchhoff e os métodos de análise nodal e de malhas
+  em circuitos CA.
+- Aplicar os teoremas de circuitos (superposição, Thévenin, Norton,
+  máxima transferência de potência) em regime CA.
+- Calcular potências instantânea, média, reativa, aparente e complexa;
+  determinar e corrigir o fator de potência de uma carga.
+
+::: {.callout-note}
+Cada unidade retoma, em regime CA, um conceito já visto em Circuitos Elétricos I para circuitos resistivos em regime contínuo (CC).
+:::
+
+---
+
+## Bibliografia
+
+- **Sadiku & Alexander** — *Fundamentos de Circuitos Elétricos*. 5ª ed. AMGH/Bookman [@sadiku2013].
+- **Dorf & Svoboda** — *Introdução a Circuitos Elétricos*. 9ª ed. LTC [@dorf2019].
+
+---
+
+## Avaliação
+
+- **Avaliação 1** — peso 5,0: prova individual e sem consulta, cobrindo
+  senoides, fasores, impedância e leis circuitais em CA;
+- **Avaliação 2** — peso 5,0: prova individual e sem consulta, cobrindo teoremas de circuitos e potência em CA;
+- **Listas de exercícios** — atividade formativa (não somativa), uma por unidade, como preparação para as avaliações.
+
+$$N_f = \text{Avaliação 1} + \text{Avaliação 2}$$
+
+---
+
+## Cronograma
+
+| Semanas | Conteúdo |
+|:--:|:--|
+| 1–2 | Senoides e fasores |
+| 3–5 | Relações V-I em R, L, C; impedância e admitância |
+| 6–7 | Leis de Kirchhoff; análise nodal e de malhas em CA |
+| 8 | Avaliação 1 |
+| 9–10 | Teoremas de circuitos em CA (superposição, Thévenin, Norton, máxima transferência de potência) |
+| 11–13 | Potência em CA (instantânea, média, complexa, fator de potência e correção) |
+| 14 | Avaliação 2 |
+| 15–16 | Revisão e exercícios integradores |
+

@@ -1,26 +1,57 @@
+# ---------------------------------------------------------------------
+#  Configuração do projeto Quarto (website + apresentações revealjs).
+#  Edite os campos marcados com  <<< EDITAR  para adaptar a qualquer tema.
+# ---------------------------------------------------------------------
+
 project:
   type: website
-  output-dir: docs
+  output-dir: _site
+  render:
+    - index.qmd
+    - Notas/*.qmd
+    - Avaliacoes/*.qmd
+
+# Bibliografia compartilhada por todas as páginas do site (aulas e
+# avaliações). Cite com @chave no texto; veja o exemplo em
+# Notas/Aula01Exemplo.qmd. Edite Referencias.bib com suas fontes.
+bibliography: Referencias.bib
 
 website:
   title: "Circuitos Elétricos II"
-  site-url: https://raphateixeira.github.io/CircuitosCA/
-  repo-url: https://github.com/raphateixeira/CircuitosCA/
+  description: "Notas de aula — Circuitos de Corrente Alternada (CA)"
+  reader-mode: true
+  navbar:
+    background: "#1F3A5F"                 # <<< EDITAR (igual à $cor-primaria do .scss)
+    foreground: "#FFFFFF"
+    title: "Circuitos Elétricos II"
+    left:
+      - text: "Início"
+        href: index.qmd
+      - text: "Notas de Aula"
+        menu:
+          # Adicione/edite uma entrada por aula:
+          - text: "0 · Plano de Ensino"
+            href: Notas/Aula00PlanoEnsino.qmd
+          - text: "1 · Senoides e Fasores"
+            href: Notas/Aula01Senoides.qmd
+      - text: "Avaliações"
+        menu:
+          # Adicione/edite uma entrada por avaliação:
+          - text: "1 · Avaliação Exemplo (modelo)"
+            href: Avaliacoes/Avaliacao01Exemplo.qmd
+  page-footer:
+    border: false
+    left: "Circuitos Elétricos II"
+    center: "Universidade Federal do Pará · Faculdade de Engenharia Elétrica"
+    right: "Prof. Dr. Raphael Teixeira"
 
 format:
   html:
-    theme: [cosmo, TemaRTx.scss]
+    theme: [cosmo, Tema.scss]
+    toc: true
+    toc-title: "Nesta página"
+    page-layout: article
     lang: pt-BR
-    code-copy: true
-    anchor-sections: true
 
-  revealjs:
-    theme: [default, TemaRTx.scss]
-    transition: slide
-    slide-number: true
-    width: 1600
-    height: 900
-    code-theme: monokai
-    code-font-size: 0.8em 
-    code-line-numbers: true
-    hash-type: number
+# Os decks revealjs definem o próprio `format:` no cabeçalho de cada .qmd;
+# este bloco aplica-se apenas às páginas HTML (ex.: index).

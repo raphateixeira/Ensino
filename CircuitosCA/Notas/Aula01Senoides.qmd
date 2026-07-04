@@ -1,0 +1,387 @@
+---
+title: "Tensões e Correntes Senoidais e Fasores"
+subtitle: "Circuitos Elétricos II — CA"
+institute: "Universidade Federal do Pará"
+author: "Prof. Dr. Raphael Teixeira"
+format:
+  revealjs:
+    theme: [default, ../Tema.scss]
+    self-contained: true
+    transition: slide
+    slide-number: true
+    width: 1600
+    height: 900
+    footer: " "
+    center: true
+    title-slide-attributes:
+      data-background-image: "imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 40px center"
+engine: knitr
+---
+
+```{r setup, include=FALSE}
+# Habilita pgfplots nos chunks {tikz} desta aula (gráficos de senoides).
+knitr::opts_chunk$set(engine.opts = list(
+  extra.preamble = c("\\usepackage{pgfplots}", "\\pgfplotsset{compat=1.18}")
+))
+```
+
+## Por que Corrente Alternada?
+
+::: {.columns}
+::: {.column width="55%"}
+
+- A geração e transmissão de energia elétrica é feita em **corrente alternada (CA)**
+- A rede elétrica brasileira opera em **60 Hz**
+- Transformadores só funcionam em CA — permitem elevar/reduzir tensões com alta eficiência
+- A análise em CA é fundamental para: **motores, filtros, antenas, conversores de energia**
+
+:::
+::: {.column width="45%"}
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 6
+\usetikzlibrary{arrows.meta, positioning}
+\input{imgs/tikz/SistemaCA.tikz}
+```
+
+:::
+:::
+
+::: {.callout-note}
+A elevação de tensão reduz a corrente na linha de transmissão e, com isso, as perdas por efeito Joule ($P = RI^2$).
+:::
+
+---
+
+## O Sinal Senoidal
+
+A tensão senoidal é descrita por:
+
+$$\boxed{v(t) = V_m \cos(\omega t + \phi)}$$
+
+**Parâmetros fundamentais:**
+
+| Símbolo | Nome | Unidade | Relação |
+|---------|------|---------|---------|
+| $V_m$ | Amplitude (pico) | V | — |
+| $T$ | Período | s | $T = \dfrac{2\pi}{\omega}$ |
+| $f$ | Frequência | Hz | $f = \dfrac{1}{T}$ |
+| $\omega$ | Freq. angular | rad/s | $\omega = 2\pi f$ |
+| $\phi$ | Fase inicial | rad ou ° | — |
+
+> **Convenção:** usamos $\cos$ como referência padrão. Senos podem ser convertidos: $\sin(\theta) = \cos(\theta - 90°)$
+
+---
+
+## Período e Frequência
+
+::: {.columns}
+::: {.column width="45%"}
+
+O **período** $T$ é o tempo de um ciclo completo.
+
+A **frequência** $f$ é o número de ciclos por segundo:
+
+$$f = \frac{1}{T} \qquad [\text{Hz}]$$
+
+A **frequência angular** relaciona-se com $f$ por:
+
+$$\omega = 2\pi f \qquad [\text{rad/s}]$$
+
+**Rede elétrica brasileira:**
+$$f = 60 \text{ Hz} \implies T = 16{,}7 \text{ ms} \implies \omega \approx 377 \text{ rad/s}$$
+
+:::
+::: {.column width="55%"}
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 6
+\input{imgs/tikz/SenoideBasica.tikz}
+```
+
+:::
+:::
+
+---
+
+## Fase e Defasagem
+
+::: {.columns}
+::: {.column width="45%"}
+
+Dois sinais com a **mesma frequência** podem ter **fases diferentes**:
+
+$$v_1(t) = V_{m1}\cos(\omega t + \phi_1)$$
+$$v_2(t) = V_{m2}\cos(\omega t + \phi_2)$$
+
+- Se $\phi_1 > \phi_2$: $v_1$ **adianta** $v_2$ em $(\phi_1 - \phi_2)$
+- Se $\phi_1 < \phi_2$: $v_1$ **atrasa** $v_2$ em $(\phi_2 - \phi_1)$
+- Se $\phi_1 = \phi_2$: sinais **em fase**
+- Se $|\phi_1 - \phi_2| = 180°$: sinais **em oposição de fase**
+
+:::
+::: {.column width="55%"}
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 6
+\input{imgs/tikz/DefasagemSenoides.tikz}
+```
+
+:::
+:::
+
+---
+
+## Valor Eficaz (RMS)
+
+::: {.callout-important}
+## Definição
+O **valor eficaz** (ou RMS — *Root Mean Square*) de um sinal periódico é o valor de CC que dissiparia a mesma potência em um resistor.
+:::
+
+Para uma senoide $v(t) = V_m \cos(\omega t + \phi)$:
+
+$$V_{rms} = \sqrt{\frac{1}{T}\int_0^T v^2(t)\,dt} = \frac{V_m}{\sqrt{2}}$$
+
+$$\boxed{V_{rms} = \frac{V_m}{\sqrt{2}} \approx 0{,}707\, V_m}$$
+
+**Exemplos práticos:**
+
+| Aplicação | $V_{rms}$ | $V_m$ |
+|-----------|-----------|-------|
+| Tomada residencial (Brasil) | 127 V ou 220 V | 180 V ou 311 V |
+| Transmissão de alta tensão | 500 kV | 707 kV |
+
+---
+
+## Motivação para Fasores
+
+A análise direta no domínio do tempo é trabalhosa. Exemplo: circuito RLC em série com excitação senoidal requer resolver **equação diferencial**:
+
+$$L\frac{di}{dt} + Ri + \frac{1}{C}\int i\,dt = V_m\cos(\omega t)$$
+
+**Solução:** usar **fasores** — representação complexa de sinais senoidais que transforma equações diferenciais em **equações algébricas**.
+
+::: {.callout-tip}
+## Ideia central
+No regime permanente senoidal, todas as tensões e correntes têm a **mesma frequência** $\omega$. Só precisamos rastrear **amplitude** e **fase**.
+:::
+
+---
+
+## O Conceito de Fasor
+
+Um fasor é um **número complexo** que representa amplitude e fase de uma senoide.
+
+Usando a **fórmula de Euler**: $e^{j\theta} = \cos\theta + j\sin\theta$
+
+A senoide $v(t) = V_m\cos(\omega t + \phi)$ é a parte real de:
+
+$$v(t) = \text{Re}\left[V_m e^{j(\omega t + \phi)}\right] = \text{Re}\left[V_m e^{j\phi} \cdot e^{j\omega t}\right]$$
+
+O **fasor** de $v(t)$ é o número complexo (sem o fator $e^{j\omega t}$):
+
+$$\mathbf{V} = V_m e^{j\phi} = V_m\angle\phi$$
+
+ou na **forma retangular**:
+
+$$\mathbf{V} = V_m\cos\phi + jV_m\sin\phi$$
+
+---
+
+## Formas de Representação Fasorial
+
+Um fasor $\mathbf{V} = V_m\angle\phi$ pode ser escrito em três formas equivalentes:
+
+| Forma | Expressão | Componentes |
+|-------|-----------|-------------|
+| Polar | $V_m\angle\phi$ | módulo e ângulo |
+| Exponencial | $V_m e^{j\phi}$ | módulo e ângulo |
+| Retangular | $a + jb$ | parte real e imaginária |
+
+**Conversões:**
+
+$$V_m = \sqrt{a^2 + b^2}, \qquad \phi = \arctan\!\left(\frac{b}{a}\right)$$
+
+$$a = V_m\cos\phi, \qquad b = V_m\sin\phi$$
+
+::: {.callout-warning}
+## Atenção ao quadrante
+Use $\arctan2(b, a)$ para obter o ângulo correto em todos os quadrantes.
+:::
+
+---
+
+## Transformação Tempo → Fasor
+
+**Domínio do tempo → Domínio fasorial:**
+
+$$v(t) = V_m\cos(\omega t + \phi) \quad\longleftrightarrow\quad \mathbf{V} = V_m\angle\phi$$
+
+**Exemplos:**
+
+| Domínio do tempo | Fasor |
+|-----------------|-------|
+| $5\cos(\omega t + 30°)$ | $5\angle 30°$ |
+| $3\cos(\omega t - 45°)$ | $3\angle{-45°}$ |
+| $4\sin(\omega t + 60°)$ | $4\angle{-30°}$ |
+| $-2\cos(\omega t)$ | $2\angle 180°$ |
+
+> Para o último exemplo: $-\cos(\theta) = \cos(\theta \pm 180°)$
+
+> Para seno: $A\sin(\omega t + \phi) = A\cos(\omega t + \phi - 90°)$
+
+---
+
+## Derivada e Integral no Domínio Fasorial
+
+Uma das grandes vantagens dos fasores:
+
+| Operação no tempo | Equivalente fasorial |
+|-------------------|---------------------|
+| $\dfrac{dv}{dt}$ | $j\omega\,\mathbf{V}$ |
+| $\displaystyle\int v\,dt$ | $\dfrac{\mathbf{V}}{j\omega}$ |
+
+**Verificação:** se $v(t) = V_m\cos(\omega t + \phi)$, então
+
+$$\frac{dv}{dt} = -\omega V_m\sin(\omega t+\phi) = \omega V_m\cos(\omega t+\phi+90°)$$
+
+No domínio fasorial: $j\omega \cdot V_m\angle\phi = \omega V_m\angle(\phi+90°)$ ✓
+
+---
+
+## Diagrama Fasorial
+
+::: {.columns}
+::: {.column width="45%"}
+
+O diagrama fasorial representa fasores no **plano complexo**:
+
+- Eixo real ($x$): parte real
+- Eixo imaginário ($y$): parte imaginária
+- Módulo: comprimento da seta
+- Ângulo: medido do eixo real positivo, sentido anti-horário
+
+**Útil para visualizar:**
+
+- Defasagem entre tensão e corrente
+- Adição de fasores (lei dos paralelogramos)
+- Verificação de resultados
+
+:::
+::: {.column width="55%"}
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 6
+\usetikzlibrary{arrows.meta}
+\input{imgs/tikz/DiagramaFasorial.tikz}
+```
+
+:::
+:::
+
+---
+
+## Adição de Fasores
+
+A adição de sinais senoidais de **mesma frequência** é feita algebricamente no domínio fasorial.
+
+**Exemplo:** $v(t) = 12\cos(\omega t + 60°) + 8\cos(\omega t - 30°)$
+
+::: {.columns}
+::: {.column width="50%"}
+
+**Passo 1:** Converter para forma retangular:
+
+$$\mathbf{V}_1 = 12\angle 60° = 6{,}00 + j10{,}39$$
+$$\mathbf{V}_2 = 8\angle{-30°} = 6{,}93 - j4{,}00$$
+
+**Passo 2:** Somar:
+
+$$\mathbf{V} = \mathbf{V}_1 + \mathbf{V}_2 = 12{,}93 + j6{,}39$$
+
+**Passo 3:** Converter para polar:
+
+$$|\mathbf{V}| = 14{,}43, \qquad \phi = 26{,}3°$$
+
+$$\therefore\quad v(t) = 14{,}43\cos(\omega t + 26{,}3°)$$
+
+:::
+::: {.column width="50%"}
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 6
+\usetikzlibrary{arrows.meta, calc}
+\input{imgs/tikz/AdicaoFasores.tikz}
+```
+
+:::
+:::
+
+---
+
+## Resumo: Domínio do Tempo vs. Fasorial
+
+| | Domínio do Tempo | Domínio Fasorial |
+|---|---|---|
+| **Sinal** | $v(t) = V_m\cos(\omega t+\phi)$ | $\mathbf{V} = V_m\angle\phi$ |
+| **Adição** | Soma trigonométrica | Soma de complexos |
+| **Derivada** | $\frac{dv}{dt}$ | $j\omega\mathbf{V}$ |
+| **Integral** | $\int v\,dt$ | $\frac{\mathbf{V}}{j\omega}$ |
+| **Equações** | Diferenciais | Algébricas |
+| **Frequência** | Explícita em $\omega t$ | Implícita (fixada) |
+
+::: {.callout-important}
+## Limitação
+A análise fasorial só é válida para o **regime permanente senoidal** — quando a frequência é única e constante.
+:::
+
+---
+
+## Exemplo Completo
+
+**Problema:** Encontre a senoide equivalente $v(t) = v_1(t) + v_2(t)$, onde:
+
+$$v_1(t) = 20\cos(377t + 45°) \text{ V}, \quad v_2(t) = 10\cos(377t - 60°) \text{ V}$$
+
+**Solução:**
+
+$$\mathbf{V}_1 = 20\angle 45° = 14{,}14 + j14{,}14$$
+
+$$\mathbf{V}_2 = 10\angle{-60°} = 5{,}00 - j8{,}66$$
+
+$$\mathbf{V} = \mathbf{V}_1 + \mathbf{V}_2 = 19{,}14 + j5{,}48$$
+
+$$|\mathbf{V}| = \sqrt{19{,}14^2 + 5{,}48^2} = 19{,}91 \text{ V}$$
+
+$$\phi = \arctan\!\left(\frac{5{,}48}{19{,}14}\right) = 16{,}0°$$
+
+$$\boxed{v(t) = 19{,}91\cos(377t + 16{,}0°) \text{ V}}$$
+
+---
+
+## Exercícios
+
+1. Converta para a forma fasorial: $v(t) = 15\sin(200t - 20°)$ V.
+2. Dois sinais $i_1(t) = 4\cos(\omega t + 15°)$ A e $i_2(t) = 6\cos(\omega t - 75°)$ A alimentam o mesmo nó. Determine $i(t) = i_1(t) + i_2(t)$ usando fasores.
+3. Calcule o valor eficaz de $v(t) = 220\sqrt{2}\cos(377t)$ V e identifique a aplicação prática desse valor.
+4. Mostre, a partir da definição de fasor, que a integral de $v(t) = V_m\cos(\omega t+\phi)$ corresponde, no domínio fasorial, a $\mathbf{V}/(j\omega)$.
+
+---
+
+## Referências
+
+::: {#refs}
+:::

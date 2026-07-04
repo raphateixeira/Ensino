@@ -1,0 +1,197 @@
+---
+# =====================================================================
+#  AULA-EXEMPLO — demonstra todos os recursos do modelo.
+#  Copie este arquivo, renomeie (ex.: Aula02Titulo.qmd) e substitua o
+#  conteúdo. Mantenha o bloco `format:` abaixo sem alterações.
+# =====================================================================
+title: "Título da Aula"
+subtitle: "Circuitos Elétricos II"
+institute: "Universidade Federal do Pará"
+author: "Prof. Dr. Raphael Teixeira"
+format: 
+  revealjs:
+    theme: [default, ../Tema.scss]
+    self-contained: true          # gera um .html único, sem dependências externas
+    transition: slide
+    slide-number: true
+    width: 1600                   # proporção 16:9
+    height: 900
+    footer: " "
+    center: true
+    title-slide-attributes:
+      data-background-image: "imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 40px center"
+engine: knitr                     # necessário para os chunks {tikz}
+---
+
+## Estrutura de um slide
+
+Cada slide começa com `##`. Separe slides com `---` em linha própria.
+
+- Texto direto e impessoal (evite a primeira pessoa).
+- Pouco texto por slide; uma ideia central por slide.
+- Listas curtas, como esta.
+
+::: {.callout-note}
+Callout de **nota**. Use para observações; não abuse — no máximo um por slide.
+:::
+
+---
+
+## Duas colunas
+
+::: {.columns}
+::: {.column width="50%"}
+
+A coluna da esquerda recebe a formulação ou o texto.
+
+$$f(x) = \int_a^b g(t)\,dt$$
+
+:::
+::: {.column width="50%"}
+
+A coluna da direita recebe a figura, o resultado ou um segundo bloco.
+
+- Item A
+- Item B
+
+:::
+:::
+
+::: {.callout-important}
+Controle o volume de conteúdo: texto ou código em excesso **vaza** do slide. Prefira dividir em dois slides a encolher demais a fonte.
+:::
+
+---
+
+## Matemática
+
+Equações em destaque com `$$ ... $$`:
+
+$$\frac{d}{dx}\left[\,x^n\,\right] = n\,x^{n-1}$$
+
+E em linha, com `$ ... $`: a condição $|g'(x^{*})| < 1$ garante convergência local.
+
+Sistemas e matrizes:
+
+$$A = \begin{bmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{bmatrix}, \qquad A\mathbf{x} = \mathbf{b}$$
+
+---
+
+## Exemplo passo a passo
+
+**Problema.** Enuncie o exemplo em uma frase.
+
+**Passo 1.** Primeira manipulação:
+
+$$x_{k+1} = x_k - \frac{f(x_k)}{f'(x_k)}$$
+
+**Passo 2.** Substituição dos valores e resultado:
+
+$$x_1 = 2 - \frac{f(2)}{f'(2)} = 2{,}0945\ldots$$
+
+---
+
+## Citações bibliográficas
+
+Cite uma fonte listada em `Referencias.bib` com `@chave`: o método
+iterativo do exemplo anterior remonta a @newton1687.
+
+Várias citações juntas: [@newton1687; @boyce2020].
+
+::: {.callout-tip}
+A lista completa das referências citadas é gerada automaticamente no
+slide `## Referências`, ao final da aula.
+:::
+
+---
+
+## Código (abas para várias linguagens)
+
+::: {.panel-tabset}
+
+### Python
+
+```python
+import numpy as np
+
+def newton(f, df, x0, tol=1e-12, nmax=50):
+    x = x0
+    for _ in range(nmax):
+        x_new = x - f(x) / df(x)
+        if abs(x_new - x) < tol:
+            return x_new
+        x = x_new
+    return x
+```
+
+### MATLAB
+
+```matlab
+function x = newton(f, df, x0, tol, nmax)
+    x = x0;
+    for k = 1:nmax
+        x_new = x - f(x) / df(x);
+        if abs(x_new - x) < tol, x = x_new; return; end
+        x = x_new;
+    end
+end
+```
+
+:::
+
+::: {.callout-tip}
+Para uma única linguagem, omita o `panel-tabset` e use apenas um bloco ```` ```python ````.
+:::
+
+---
+
+## Figura em TikZ
+
+Diagramas e esquemas ficam em `imgs/tikz/*.tikz` e entram por `\input`.
+**Atenção:** nos chunks `{tikz}`, as opções começam com `%|` (comentário LaTeX), nunca `#|`.
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 6
+\usetikzlibrary{arrows.meta, positioning}
+\input{imgs/tikz/ExemploDiagrama.tikz}
+```
+
+---
+
+## Figura de dados (gerada por código)
+
+Para **gráficos de dados**, prefira gerar a imagem na própria linguagem
+(Matplotlib, etc.) e inseri-la, ou cole uma imagem em `imgs/`:
+
+![Legenda da figura](imgs/UFPA.png){width="30%" fig-align="center"}
+
+---
+
+## Tabela
+
+| Método | Ordem | Custo |
+|:--|:--:|:--:|
+| A | 1 | baixo |
+| B | 2 | médio |
+| C | 4 | alto |
+
+---
+
+## Exercícios
+
+1. Primeiro exercício proposto.
+2. Segundo exercício, com aplicação.
+3. Terceiro exercício, de implementação.
+
+---
+
+## Referências
+
+::: {#refs}
+:::
+
+<!-- Fim da aula-exemplo. Apague os slides que não usar. -->
