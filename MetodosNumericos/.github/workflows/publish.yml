@@ -38,9 +38,12 @@ jobs:
           r-version: "4.4.0"
 
       - name: Instalar dependências R (knitr + reticulate)
-        run: |
-          install.packages(c('knitr', 'rmarkdown', 'reticulate'), repos = 'https://cran.r-project.org')
-        shell: Rscript {0}
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages: |
+            any::knitr
+            any::rmarkdown
+            any::reticulate
 
       - name: 💻 Renderizar o Quarto
         run: quarto render
