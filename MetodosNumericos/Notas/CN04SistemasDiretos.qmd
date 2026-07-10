@@ -1,0 +1,137 @@
+---
+title: "Sistemas Lineares — Métodos Diretos"
+subtitle: "Cálculo Numérico"
+institute: "Universidade Federal do Pará"
+author: "Prof. Dr. Raphael Teixeira"
+format: 
+  revealjs:
+    theme: [default, ../TemaCN.scss] 
+    self-contained: true
+    transition: slide
+    slide-number: true
+    width: 1600 
+    height: 900
+    footer: " "
+    center: true
+    title-slide-attributes:
+      data-background-image: "imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 40px center"
+engine: knitr
+---
+
+## Sistemas de equações lineares
+
+Busca-se $\mathbf{x}$ tal que $A\mathbf{x} = \mathbf{b}$, com $A\in\mathbb{R}^{n\times n}$ inversível.
+
+Surge em análise de **circuitos** (Kirchhoff), **treliças**, discretização de **EDPs** e ajuste de curvas.
+
+::: {.callout-note}
+**Métodos diretos** obtêm a solução exata (a menos de arredondamento) em um número **finito** de operações. Indicados para matrizes densas de porte moderado.
+:::
+
+---
+
+## Eliminação de Gauss
+
+Transforma $A$ em **triangular superior** por operações elementares, e resolve por **retro-substituição**.
+
+::: {.columns}
+::: {.column width="52%"}
+
+**Eliminação** (zera abaixo da diagonal):
+$$m_{ik} = \frac{a_{ik}}{a_{kk}}, \quad L_i \leftarrow L_i - m_{ik}\,L_k$$
+
+:::
+::: {.column width="48%"}
+
+**Retro-substituição:**
+$$x_i = \frac{1}{a_{ii}}\!\left(b_i - \sum_{j>i} a_{ij}\,x_j\right)$$
+
+:::
+:::
+
+Custo dominante: $\dfrac{n^3}{3}$ operações.
+
+---
+
+## Pivotamento parcial
+
+O multiplicador $m_{ik}$ amplifica erros quando o pivô $a_{kk}$ é pequeno. O **pivotamento parcial** troca linhas para usar o **maior pivô em módulo**:
+
+$$|a_{pk}| = \max_{i \geq k} |a_{ik}| \;\Rightarrow\; \text{troca } L_k \leftrightarrow L_p$$
+
+::: {.callout-important}
+Sem pivotamento, um pivô nulo interrompe o método e um pivô pequeno degrada a precisão. O pivotamento parcial é o padrão das bibliotecas numéricas.
+:::
+
+---
+
+## Fatoração LU
+
+Decompõe $PA = LU$, com $L$ triangular inferior unitária e $U$ triangular superior:
+
+$$A\mathbf{x}=\mathbf{b} \;\Longrightarrow\; L\mathbf{y}=P\mathbf{b}, \quad U\mathbf{x}=\mathbf{y}$$
+
+Vantagem: fatorar **uma vez** e resolver para **vários** $\mathbf{b}$ a custo $O(n^2)$ cada.
+
+```python
+import numpy as np
+from scipy.linalg import lu_factor, lu_solve
+
+A = np.array([[2., 1., -1.],
+              [-3., -1., 2.],
+              [-2., 1., 2.]])
+b = np.array([8., -11., -3.])
+
+lu_piv = lu_factor(A)          # fatoração com pivotamento
+x = lu_solve(lu_piv, b)
+print(x)                       # [2. 3. -1.]
+```
+
+---
+
+## Casos especiais
+
+| Estrutura de $A$ | Método | Custo |
+|:--|:--|:--:|
+| Simétrica definida positiva | **Cholesky** $A=LL^\top$ | $n^3/6$ |
+| Tridiagonal | **Thomas** | $O(n)$ |
+| Densa geral | LU com pivotamento | $n^3/3$ |
+
+```python
+from scipy.linalg import cholesky, solveh_banded
+L = cholesky(A_spd, lower=True)     # exige A simétrica def. positiva
+```
+
+::: {.callout-tip}
+Explorar a estrutura da matriz reduz drasticamente o custo — essencial em problemas de Engenharia de grande porte.
+:::
+
+---
+
+## Resolução direta em Python
+
+```python
+import numpy as np
+
+A = np.array([[2., 1., -1.], [-3., -1., 2.], [-2., 1., 2.]])
+b = np.array([8., -11., -3.])
+
+x = np.linalg.solve(A, b)      # LU com pivotamento internamente
+res = np.linalg.norm(A @ x - b, np.inf)
+print(x, res)
+```
+
+::: {.callout-important}
+Evite `inv(A) @ b`: calcular a inversa é mais caro e menos estável que `solve`.
+:::
+
+---
+
+## Exercícios
+
+1. Resolva por eliminação de Gauss **com** e **sem** pivotamento o sistema com pivô pequeno $\begin{bmatrix}10^{-4} & 1\\ 1 & 1\end{bmatrix}\mathbf{x}=\begin{bmatrix}1\\2\end{bmatrix}$ e compare.
+2. Obtenha $PA=LU$ de uma matriz $4\times4$ e resolva para dois vetores $\mathbf{b}$ distintos reaproveitando a fatoração.
+3. Monte o sistema nodal de um circuito resistivo de 3 nós e resolva com `solve`.
+4. Verifique numericamente o custo $O(n^3)$ medindo o tempo de `solve` para $n = 100, 200, 400$.

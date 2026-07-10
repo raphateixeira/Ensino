@@ -1,25 +1,65 @@
 ---
-title: "Métodos Numéricos"
-subtitle: "Tópicos de Cálculo Numériro em Python"
+title: "Cálculo Numérico"
+subtitle: "Métodos Numéricos em Python"
 institute: "Universidade Federal do Pará"
 author: "Prof. Dr. Raphael Teixeira"
 date: ""
-format: html
+format: 
+  html:
+    page-layout: article
 ---
 
-## 🎓 Conteúdo
+Notas de aula de Cálculo Numérico — implementações em **Python** (NumPy · SciPy · Matplotlib), com ênfase em aplicações de Engenharia.
 
-Nesta página, você encontra o material de apoio para a disciplina. Cada tópico é uma apresentação de slides interativa.
-
-* [Ajuste de Curvas](MN01AjusteCurvas/AjusteCurvas.html)
-    * *Tópicos:* Método dos Mínimos Quadrados (MMQ), Ajuste Linear, Regressão Polinomial.
-* [Raízes de Equações Não Lineares](MN02RaizesNaoLineares/RaizesNaoLineares.html)
-   * *Tópicos:* Métodos da Bisseção, Newton-Raphson.
-
----
-
-### 💡 Próximos Tópicos
-
-* Sistemas Lineares
-* Interpolação
-* Integração Numérica
+```{=html}
+<div class="categoria-grid">
+<a class="categoria-card" href="Notas/CN00PlanoEnsino.qmd">
+  <h3>Aula 0</h3>
+  <p>Plano de Ensino</p>
+</a>
+<a class="categoria-card" href="Notas/CN01Erros.qmd">
+  <h3>Aula 1</h3>
+  <p>Erros e Aritmética de Ponto Flutuante</p>
+</a>
+<a class="categoria-card" href="Notas/CN02ZerosIntervalares.qmd">
+  <h3>Aula 2</h3>
+  <p>Zeros de Funções — Métodos Intervalares</p>
+</a>
+<a class="categoria-card" href="Notas/CN03ZerosAbertos.qmd">
+  <h3>Aula 3</h3>
+  <p>Zeros de Funções — Métodos Abertos</p>
+</a>
+<a class="categoria-card" href="Notas/CN04SistemasDiretos.qmd">
+  <h3>Aula 4</h3>
+  <p>Sistemas Lineares — Métodos Diretos</p>
+</a>
+<a class="categoria-card" href="Notas/CN05SistemasIterativos.qmd">
+  <h3>Aula 5</h3>
+  <p>Sistemas Lineares — Métodos Iterativos</p>
+</a>
+<a class="categoria-card" href="Notas/CN06Interpolacao.qmd">
+  <h3>Aula 6</h3>
+  <p>Interpolação Polinomial</p>
+</a>
+<a class="categoria-card" href="Notas/CN07AjusteSplines.qmd">
+  <h3>Aula 7</h3>
+  <p>Ajuste de Curvas e Splines</p>
+</a>
+<a class="categoria-card" href="Notas/CN08Integracao.qmd">
+  <h3>Aula 8</h3>
+  <p>Integração Numérica</p>
+</a>
+<a class="categoria-card" href="Notas/CN09Diferenciacao.qmd">
+  <h3>Aula 9</h3>
+  <p>Diferenciação Numérica</p>
+</a>
+<a class="categoria-card" href="Notas/CN10EDOsEuler.qmd">
+  <h3>Aula 10</h3>
+  <p>EDOs — Euler e Runge-Kutta</p>
+</a>
+<a class="categoria-card" href="Notas/CN11EDOsSistemas.qmd">
+  <h3>Aula 11</h3>
+  <p>EDOs — Sistemas e Estabilidade</p>
+</a>
+</div>
+```

@@ -1,0 +1,113 @@
+---
+title: "EDOs — Sistemas e Estabilidade"
+subtitle: "Cálculo Numérico"
+institute: "Universidade Federal do Pará"
+author: "Prof. Dr. Raphael Teixeira"
+format: 
+  revealjs:
+    theme: [default, ../TemaCN.scss] 
+    self-contained: true
+    transition: slide
+    slide-number: true
+    width: 1600 
+    height: 900
+    footer: " "
+    center: true
+    title-slide-attributes:
+      data-background-image: "imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 40px center"
+engine: knitr
+---
+
+## EDOs de ordem superior
+
+Uma EDO de ordem $n$ converte-se em um **sistema de $n$ equações de 1ª ordem**. Para $m\ddot{x} + c\dot{x} + kx = F(t)$, define-se $x_1 = x,\ x_2 = \dot{x}$:
+
+$$\begin{cases} \dot{x}_1 = x_2 \\ \dot{x}_2 = \dfrac{1}{m}\bigl(F - c\,x_2 - k\,x_1\bigr) \end{cases}$$
+
+Os mesmos métodos (Euler, RK4, `solve_ivp`) aplicam-se ao **vetor de estado** $\mathbf{y} = [x_1, x_2]^\top$.
+
+---
+
+## Sistemas em Python
+
+```python
+import numpy as np
+from scipy.integrate import solve_ivp
+
+m, c, k = 1.0, 0.5, 20.0          # massa-mola-amortecedor
+
+def sistema(t, y):
+    x, v = y
+    return [v, (-c*v - k*x) / m]
+
+sol = solve_ivp(sistema, [0, 10], [1.0, 0.0], method='RK45',
+                t_eval=np.linspace(0, 10, 500), rtol=1e-8)
+x, v = sol.y                       # deslocamento e velocidade
+```
+
+A solução vetorial fornece **todos os estados** simultaneamente.
+
+---
+
+## Estabilidade numérica
+
+Aplica-se a **equação-teste** $y' = \lambda y$, com $\mathrm{Re}(\lambda) < 0$. Para o Euler explícito:
+
+$$y_{k+1} = (1 + h\lambda)\,y_k \;\Rightarrow\; \text{estável se } |1 + h\lambda| < 1$$
+
+Para $\lambda$ real negativo, exige-se:
+
+$$h < \frac{2}{|\lambda|}$$
+
+::: {.callout-important}
+Passo grande demais torna a solução numérica **divergente**, ainda que a solução exata decaia. Métodos explícitos têm região de estabilidade **limitada**.
+:::
+
+---
+
+## Problemas rígidos (*stiff*)
+
+Sistemas com **escalas de tempo muito distintas** (autovalores de magnitudes díspares) forçam passo minúsculo nos métodos explícitos.
+
+::: {.columns}
+::: {.column width="50%"}
+
+**Sintoma:** RK45 fica lentíssimo ou diverge, mesmo com solução suave.
+
+:::
+::: {.column width="50%"}
+
+**Solução:** métodos **implícitos** com região de estabilidade ampla — `Radau`, `BDF`.
+
+:::
+:::
+
+```python
+sol = solve_ivp(f_stiff, [0, 1], y0, method='BDF', rtol=1e-8)
+```
+
+---
+
+## Escolha do método
+
+| Situação | Método em `solve_ivp` |
+|:--|:--|
+| Não rígido, uso geral | `RK45` (padrão) |
+| Precisão alta, não rígido | `DOP853` |
+| **Rígido** | `Radau`, `BDF` |
+| Solução oscilatória suave | `LSODA` (alterna automaticamente) |
+
+::: {.callout-tip}
+Na dúvida sobre rigidez, `LSODA` detecta e troca entre estratégias explícita e implícita automaticamente.
+:::
+
+---
+
+## Exercícios
+
+1. Converta $\dddot{y} + 3\ddot{y} + 2\dot{y} + y = 0$ em sistema de 1ª ordem e resolva com `solve_ivp`.
+2. Simule o massa-mola-amortecedor e trace o **retrato de fase** $(x, \dot{x})$.
+3. Determine o maior $h$ estável do Euler explícito para $y' = -50y$ e confirme numericamente.
+4. Resolva um sistema rígido com `RK45` e com `BDF`, comparando número de passos e tempo de execução.

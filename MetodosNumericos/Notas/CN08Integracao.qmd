@@ -1,0 +1,147 @@
+---
+title: "Integração Numérica"
+subtitle: "Cálculo Numérico"
+institute: "Universidade Federal do Pará"
+author: "Prof. Dr. Raphael Teixeira"
+format: 
+  revealjs:
+    theme: [default, ../TemaCN.scss] 
+    self-contained: true
+    transition: slide
+    slide-number: true
+    width: 1600 
+    height: 900
+    footer: " "
+    center: true
+    title-slide-attributes:
+      data-background-image: "imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 40px center"
+engine: knitr
+---
+
+## Quadratura numérica
+
+Quando a primitiva de $f$ é indisponível, aproxima-se a integral por uma **soma ponderada** de valores da função:
+
+$$\int_a^b f(x)\,dx \approx \sum_{i=0}^{n} w_i\, f(x_i)$$
+
+As **fórmulas de Newton-Cotes** usam nós equiespaçados e integram o polinômio interpolador.
+
+---
+
+## Regra do trapézio
+
+Aproxima $f$ por uma reta em $[a,b]$:
+
+::: {.columns}
+::: {.column width="52%"}
+
+$$\int_a^b f\,dx \approx \frac{h}{2}\,[\,f(a) + f(b)\,]$$
+
+Erro: $-\dfrac{h^3}{12}\,f''(\xi)$, exata para polinômios de grau $\leq 1$.
+
+:::
+::: {.column width="48%"}
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 5
+\usetikzlibrary{arrows.meta}
+\input{imgs/tikz/Trapezio.tikz}
+```
+
+:::
+:::
+
+---
+
+## Regra de Simpson 1/3
+
+Aproxima $f$ por uma **parábola** por 3 pontos:
+
+::: {.columns}
+::: {.column width="52%"}
+
+$$\int_{x_0}^{x_2} f\,dx \approx \frac{h}{3}\,[\,f_0 + 4f_1 + f_2\,]$$
+
+Erro: $-\dfrac{h^5}{90}\,f^{(4)}(\xi)$, exata para polinômios de grau $\leq 3$.
+
+:::
+::: {.column width="48%"}
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 5
+\usetikzlibrary{arrows.meta}
+\input{imgs/tikz/Simpson.tikz}
+```
+
+:::
+:::
+
+---
+
+## Regras compostas
+
+Subdivide-se $[a,b]$ em $n$ subintervalos de largura $h=(b-a)/n$:
+
+$$\int_a^b f\,dx \approx \frac{h}{2}\Bigl[f_0 + 2\!\sum_{i=1}^{n-1} f_i + f_n\Bigr] \quad\text{(trapézio composto)}$$
+
+$$\int_a^b f\,dx \approx \frac{h}{3}\Bigl[f_0 + 4\!\!\sum_{i\,\text{ímpar}}\!\! f_i + 2\!\!\sum_{i\,\text{par}}\!\! f_i + f_n\Bigr] \quad\text{(Simpson composto)}$$
+
+O erro do trapézio composto é $O(h^2)$; o de Simpson, $O(h^4)$.
+
+---
+
+## Quadratura de Gauss
+
+Escolhe **nós e pesos ótimos** (não equiespaçados) que integram exatamente polinômios de grau até $2n-1$:
+
+$$\int_{-1}^{1} f(\xi)\,d\xi \approx \sum_{i=1}^{n} w_i\, f(\xi_i)$$
+
+```python
+import numpy as np
+from numpy.polynomial.legendre import leggauss
+
+xi, w = leggauss(4)                 # nós e pesos em [-1, 1]
+a, b = 0.0, 1.0
+t = 0.5*(b-a)*xi + 0.5*(b+a)        # mudança de variável
+I = 0.5*(b-a) * np.sum(w * np.exp(-t**2))
+print(I)
+```
+
+---
+
+## Integração em Python
+
+```python
+import numpy as np
+from scipy.integrate import quad, simpson, trapezoid
+
+f = lambda x: np.exp(-x**2)
+
+# Integração adaptativa (preferida) — retorna valor e estimativa de erro
+I, erro = quad(f, 0, 1)
+
+# A partir de amostras (dados tabelados)
+x = np.linspace(0, 1, 101);  y = f(x)
+I_trap = trapezoid(y, x)
+I_simp = simpson(y, x)
+print(I, I_trap, I_simp)
+```
+
+::: {.callout-tip}
+Para uma função avaliável em qualquer ponto, use `quad` (adaptativo). Para dados tabelados, use `simpson` ou `trapezoid`.
+:::
+
+---
+
+## Exercícios
+
+1. Aproxime $\int_0^1 e^{-x^2}dx$ por trapézio e Simpson compostos com $n=4,8,16$ e observe a ordem do erro.
+2. Mostre que Simpson é exata para $\int_0^2 x^3\,dx$.
+3. Compare a quadratura de Gauss de 3 pontos com Simpson para $\int_0^\pi \sin x\,dx$.
+4. Calcule o trabalho $W=\int F\,dx$ a partir de uma tabela $(x, F)$ de medições.

@@ -1,0 +1,123 @@
+---
+title: "Plano de Ensino"
+subtitle: "Cálculo Numérico"
+institute: "Universidade Federal do Pará"
+author: "Prof. Dr. Raphael Teixeira"
+format: 
+  revealjs:
+    theme: [default, ../TemaCN.scss] 
+    self-contained: true
+    transition: slide
+    slide-number: true
+    width: 1600 
+    height: 900
+    footer: " "
+    center: true
+    title-slide-attributes:
+      data-background-image: "imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 40px center"
+---
+
+## Cálculo Numérico
+
+::: {.columns}
+::: {.column width="50%"}
+
+- Curso de Engenharia
+- Carga horária: 60 horas
+- Pré-requisitos: Cálculo Diferencial e Integral; Álgebra Linear; Introdução à Programação
+- Ferramenta: **Python** (NumPy, SciPy, Matplotlib)
+
+:::
+::: {.column width="50%"}
+
+**Ementa:** Erros e aritmética de ponto flutuante; zeros de funções; sistemas de equações lineares (métodos diretos e iterativos); interpolação polinomial; ajuste de curvas; integração e diferenciação numérica; solução numérica de equações diferenciais ordinárias.
+
+:::
+:::
+
+---
+
+## Objetivos
+
+- Compreender as fontes de **erro** no cálculo numérico e seu controle.
+- Selecionar o **método** adequado a cada classe de problema.
+- **Implementar** algoritmos numéricos em Python e avaliar custo e precisão.
+- Aplicar métodos numéricos a **problemas de Engenharia**.
+
+::: {.callout-note}
+A ênfase é aplicada: cada método é apresentado com sua formulação, análise de erro e implementação computacional sobre um problema concreto.
+:::
+
+---
+
+## Bibliografia
+
+- **Livro 1**: BURDEN, R. L.; FAIRES, J. D. *Análise Numérica*. 10ª ed. Cengage, 2016.
+- **Livro 2**: RUGGIERO, M. A. G.; LOPES, V. L. R. *Cálculo Numérico: Aspectos Teóricos e Computacionais*. 2ª ed. Pearson, 1996.
+- **Livro 3**: CHAPRA, S. C.; CANALE, R. P. *Métodos Numéricos para Engenharia*. 7ª ed. McGraw-Hill, 2016.
+
+Apoio computacional: documentação **NumPy** e **SciPy**.
+
+---
+
+## Avaliação
+
+- **Teste 1** — $T_1$: 3,0 pts — Erros; zeros de funções; sistemas lineares;
+- **Teste 2** — $T_2$: 3,0 pts — Interpolação; ajuste; integração e diferenciação;
+- **Teste 3** — $T_3$: 2,0 pts — Equações diferenciais ordinárias;
+- **Projeto computacional** — $P$: 2,0 pts — aplicação integrada em Python.
+
+$$N_f = T_1 + T_2 + T_3 + P$$
+
+**Conceitos:** EXC $(\geq 9{,}0)$ · BOM $(7{,}0$–$8{,}9)$ · REG $(5{,}0$–$6{,}9)$ · INS $(<5{,}0)$.
+
+---
+
+## Cronograma
+
+| Semanas | Conteúdo |
+|:--:|:--|
+| 1 | Erros e aritmética de ponto flutuante |
+| 2–3 | Zeros de funções: métodos intervalares e abertos |
+| 4–5 | Sistemas lineares: métodos diretos e iterativos |
+| 6 | $T_1$ |
+| 7–8 | Interpolação polinomial; ajuste de curvas e splines |
+| 9–10 | Integração e diferenciação numérica |
+| 11 | $T_2$ |
+| 12–14 | EDOs: Euler, Runge-Kutta, sistemas e estabilidade |
+| 15 | $T_3$ e entrega do projeto |
+
+---
+
+## Ambiente de trabalho
+
+::: {.columns}
+::: {.column width="50%"}
+
+**Instalação recomendada:**
+
+```bash
+pip install numpy scipy matplotlib
+# ou, via conda:
+conda install numpy scipy matplotlib
+```
+
+:::
+::: {.column width="50%"}
+
+**Importações usadas no curso:**
+
+```python
+import numpy as np
+import scipy as sp
+import matplotlib.pyplot as plt
+```
+
+:::
+:::
+
+::: {.callout-tip}
+Os exemplos são reprodutíveis em Jupyter, VS Code ou diretamente em scripts `.py`.
+:::

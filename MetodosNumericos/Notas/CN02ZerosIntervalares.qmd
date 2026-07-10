@@ -1,0 +1,151 @@
+---
+title: "Zeros de Funções — Métodos Intervalares"
+subtitle: "Cálculo Numérico"
+institute: "Universidade Federal do Pará"
+author: "Prof. Dr. Raphael Teixeira"
+format: 
+  revealjs:
+    theme: [default, ../TemaCN.scss] 
+    self-contained: true
+    transition: slide
+    slide-number: true
+    width: 1600 
+    height: 900
+    footer: " "
+    center: true
+    title-slide-attributes:
+      data-background-image: "imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 40px center"
+engine: knitr
+---
+
+## O problema dos zeros
+
+Dada $f:\mathbb{R}\to\mathbb{R}$ contínua, busca-se $x^{*}$ tal que $f(x^{*}) = 0$.
+
+Raramente há solução analítica — recorre-se a métodos **iterativos**, que geram uma sequência $x_0, x_1, x_2, \ldots \to x^{*}$.
+
+::: {.callout-note}
+**Métodos intervalares** (ou de confinamento) mantêm a raiz dentro de um intervalo e **sempre convergem**, à custa de velocidade.
+:::
+
+---
+
+## Teorema de Bolzano
+
+Se $f$ é contínua em $[a,b]$ e $f(a)\,f(b) < 0$, então existe ao menos uma raiz em $(a,b)$.
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 7
+\usetikzlibrary{arrows.meta}
+\input{imgs/tikz/Bissecao.tikz}
+```
+
+---
+
+## Método da bisseção
+
+A cada passo, calcula-se o ponto médio e seleciona-se o subintervalo que mantém a troca de sinal:
+
+$$m = \frac{a+b}{2}, \qquad
+\begin{cases}
+f(a)\,f(m) < 0 \Rightarrow b \leftarrow m \\
+\text{caso contrário} \Rightarrow a \leftarrow m
+\end{cases}$$
+
+O erro é reduzido **pela metade** a cada iteração:
+
+$$|x^{*} - m_n| \leq \frac{b-a}{2^{\,n+1}}$$
+
+---
+
+## Bisseção — convergência e implementação
+
+O número de iterações para uma tolerância $\delta$ é conhecido **a priori**:
+
+$$n \geq \log_2\!\left(\frac{b-a}{\delta}\right)$$
+
+```python
+import numpy as np
+from scipy.optimize import bisect
+
+f = lambda x: x**3 - 2*x - 5          # raiz em ~2.0946
+raiz = bisect(f, 1.0, 3.0, xtol=1e-10)
+
+n = int(np.ceil(np.log2((3.0 - 1.0) / 1e-10)))
+print(raiz, n)                        # 2.0945514815..., 35
+```
+
+::: {.callout-tip}
+Convergência **linear**: garantida, porém lenta (≈ 1 dígito decimal a cada 3,3 iterações).
+:::
+
+---
+
+## Método da falsa posição
+
+Em vez do ponto médio, usa-se a **interseção da corda** com o eixo $x$:
+
+$$x_r = \frac{a\,f(b) - b\,f(a)}{f(b) - f(a)}$$
+
+A seleção do subintervalo segue a mesma regra de sinal da bisseção.
+
+```python
+def falsa_posicao(f, a, b, tol=1e-10, nmax=100):
+    for _ in range(nmax):
+        xr = (a*f(b) - b*f(a)) / (f(b) - f(a))
+        if abs(f(xr)) < tol:
+            return xr
+        if f(a)*f(xr) < 0: b = xr
+        else:              a = xr
+    return xr
+```
+
+---
+
+## Critérios de parada
+
+Combinam-se critérios para robustez:
+
+| Critério | Condição |
+|:--|:--|
+| Resíduo | $|f(x_k)| < \delta_f$ |
+| Variação | $|x_k - x_{k-1}| < \delta_x$ |
+| Iterações | $k > n_{\max}$ |
+
+::: {.callout-important}
+Resíduo pequeno **não garante** raiz precisa em funções de baixa inclinação. Combine sempre com o critério de variação.
+:::
+
+---
+
+## Exemplo aplicado — Engenharia
+
+A função de Antoine relaciona pressão de vapor e temperatura. Determina-se $T$ para uma pressão alvo resolvendo $P(T) - P^{*} = 0$:
+
+```python
+import numpy as np
+from scipy.optimize import brentq
+
+# log10(P) = A - B/(C+T)   (P em mmHg, T em °C) — água
+A, B, C = 8.07131, 1730.63, 233.426
+P_alvo = 760.0                         # ebulição (1 atm)
+
+f = lambda T: 10**(A - B/(C + T)) - P_alvo
+T_eb = brentq(f, 50, 150)
+print(T_eb)                            # ~99.97 °C
+```
+
+`brentq` combina bisseção com interpolação — robusto e rápido.
+
+---
+
+## Exercícios
+
+1. Implemente a bisseção e tabele $a_k, b_k, m_k, f(m_k)$ para $f(x)=x^3-2x-5$ em $[1,3]$.
+2. Compare o número de iterações de bisseção e falsa posição para $\delta = 10^{-8}$.
+3. Determine a maior raiz real de $f(x)=x\,e^{x}-1$ no intervalo apropriado.
+4. Justifique por que a falsa posição pode estagnar um dos extremos do intervalo.

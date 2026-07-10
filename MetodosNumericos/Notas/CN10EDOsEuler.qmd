@@ -1,0 +1,152 @@
+---
+title: "EDOs — Euler e Runge-Kutta"
+subtitle: "Cálculo Numérico"
+institute: "Universidade Federal do Pará"
+author: "Prof. Dr. Raphael Teixeira"
+format: 
+  revealjs:
+    theme: [default, ../TemaCN.scss] 
+    self-contained: true
+    transition: slide
+    slide-number: true
+    width: 1600 
+    height: 900
+    footer: " "
+    center: true
+    title-slide-attributes:
+      data-background-image: "imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 40px center"
+engine: knitr
+---
+
+## Problema de valor inicial
+
+Busca-se $y(t)$ que satisfaz:
+
+$$\frac{dy}{dt} = f(t, y), \qquad y(t_0) = y_0$$
+
+Modela carga de **capacitores**, resfriamento, cinética química, dinâmica de corpos — fenômenos governados por taxas de variação.
+
+::: {.callout-note}
+Os métodos avançam a solução em passos discretos $t_{k+1} = t_k + h$, usando a inclinação $f(t,y)$ para estimar o próximo valor.
+:::
+
+---
+
+## Método de Euler explícito
+
+Avança pela **tangente** no ponto atual:
+
+::: {.columns}
+::: {.column width="50%"}
+
+$$y_{k+1} = y_k + h\, f(t_k, y_k)$$
+
+- Erro local: $O(h^2)$;
+- Erro global: $O(h)$ — **primeira ordem**.
+
+:::
+::: {.column width="50%"}
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 5.5
+\usetikzlibrary{arrows.meta}
+\input{imgs/tikz/EulerPasso.tikz}
+```
+
+:::
+:::
+
+---
+
+## Euler modificado (Heun)
+
+Esquema **preditor-corretor**: usa a média das inclinações nos extremos do passo:
+
+$$\tilde{y}_{k+1} = y_k + h\,f(t_k, y_k) \quad\text{(preditor)}$$
+$$y_{k+1} = y_k + \frac{h}{2}\bigl[\,f(t_k, y_k) + f(t_{k+1}, \tilde{y}_{k+1})\,\bigr] \quad\text{(corretor)}$$
+
+Erro global $O(h^2)$ — **segunda ordem**.
+
+---
+
+## Runge-Kutta de 4ª ordem (RK4)
+
+Combina **quatro** avaliações da inclinação por passo:
+
+::: {.columns}
+::: {.column width="50%"}
+
+$$\begin{aligned}
+k_1 &= f(t_k, y_k) \\
+k_2 &= f(t_k + \tfrac{h}{2},\, y_k + \tfrac{h}{2}k_1) \\
+k_3 &= f(t_k + \tfrac{h}{2},\, y_k + \tfrac{h}{2}k_2) \\
+k_4 &= f(t_k + h,\, y_k + h k_3)
+\end{aligned}$$
+
+:::
+::: {.column width="50%"}
+
+$$y_{k+1} = y_k + \frac{h}{6}\bigl(k_1 + 2k_2 + 2k_3 + k_4\bigr)$$
+
+Erro global $O(h^4)$ — excelente relação **precisão/custo**, o método de uso geral.
+
+:::
+:::
+
+---
+
+## Implementação — RK4 e validação
+
+```python
+import numpy as np
+
+def rk4(f, t0, y0, h, n):
+    t = np.zeros(n+1);  y = np.zeros(n+1)
+    t[0], y[0] = t0, y0
+    for k in range(n):
+        k1 = f(t[k],       y[k])
+        k2 = f(t[k] + h/2, y[k] + h/2*k1)
+        k3 = f(t[k] + h/2, y[k] + h/2*k2)
+        k4 = f(t[k] + h,   y[k] + h*k3)
+        y[k+1] = y[k] + h/6*(k1 + 2*k2 + 2*k3 + k4)
+        t[k+1] = t[k] + h
+    return t, y
+
+# Carga de capacitor RC:  y' = (V - y)/(R C)
+R, C, V = 1e3, 1e-6, 5.0
+f = lambda t, y: (V - y) / (R*C)
+t, y = rk4(f, 0.0, 0.0, h=1e-4, n=100)
+```
+
+---
+
+## Solução em Python — `solve_ivp`
+
+```python
+import numpy as np
+from scipy.integrate import solve_ivp
+
+R, C, V = 1e3, 1e-6, 5.0
+f = lambda t, y: (V - y) / (R*C)
+
+sol = solve_ivp(f, [0, 0.01], [0.0], method='RK45',
+                t_eval=np.linspace(0, 0.01, 200), rtol=1e-8)
+t, y = sol.t, sol.y[0]
+```
+
+::: {.callout-tip}
+`solve_ivp` controla o passo **adaptativamente** pela tolerância — preferível a passo fixo para a maioria das aplicações.
+:::
+
+---
+
+## Exercícios
+
+1. Resolva $y' = (V-y)/(RC)$ por Euler, Heun e RK4 com o mesmo $h$ e compare ao resultado analítico.
+2. Mostre numericamente que o erro global de Euler é $O(h)$ e o de RK4 é $O(h^4)$, reduzindo $h$ pela metade.
+3. Resolva a queda com arrasto $m v' = mg - c v^2$ e determine a velocidade terminal.
+4. Use `solve_ivp` com diferentes `rtol` e observe o número de passos adaptativos.

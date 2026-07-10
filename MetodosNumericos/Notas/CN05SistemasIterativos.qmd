@@ -1,0 +1,140 @@
+---
+title: "Sistemas Lineares — Métodos Iterativos"
+subtitle: "Cálculo Numérico"
+institute: "Universidade Federal do Pará"
+author: "Prof. Dr. Raphael Teixeira"
+format: 
+  revealjs:
+    theme: [default, ../TemaCN.scss] 
+    self-contained: true
+    transition: slide
+    slide-number: true
+    width: 1600 
+    height: 900
+    footer: " "
+    center: true
+    title-slide-attributes:
+      data-background-image: "imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 40px center"
+engine: knitr
+---
+
+## Por que métodos iterativos?
+
+Matrizes provenientes de EDPs são **grandes** e **esparsas**. Métodos diretos seriam caros e destruiriam a esparsidade (preenchimento).
+
+Métodos iterativos partem de $\mathbf{x}^{(0)}$ e geram aproximações sucessivas, custando $O(n)$ por iteração para matrizes esparsas.
+
+---
+
+## Método de Jacobi
+
+Decompõe-se $A = D + L + U$ (diagonal, estritamente inferior e superior). Isola-se $x_i$ na $i$-ésima equação:
+
+$$x_i^{(k+1)} = \frac{1}{a_{ii}}\!\left(b_i - \sum_{j\neq i} a_{ij}\,x_j^{(k)}\right)$$
+
+```python
+import numpy as np
+
+def jacobi(A, b, x0, tol=1e-10, nmax=500):
+    D = np.diag(A);  R = A - np.diagflat(D)
+    x = x0.copy()
+    for k in range(nmax):
+        xn = (b - R @ x) / D
+        if np.linalg.norm(xn - x, np.inf) < tol:
+            return xn, k
+        x = xn
+    return x, nmax
+```
+
+---
+
+## Método de Gauss-Seidel
+
+Usa **imediatamente** os valores já atualizados na mesma iteração — converge mais rápido que Jacobi:
+
+$$x_i^{(k+1)} = \frac{1}{a_{ii}}\!\left(b_i - \sum_{j<i} a_{ij}\,x_j^{(k+1)} - \sum_{j>i} a_{ij}\,x_j^{(k)}\right)$$
+
+```python
+def gauss_seidel(A, b, x0, tol=1e-10, nmax=500):
+    n = len(b);  x = x0.copy()
+    for k in range(nmax):
+        xv = x.copy()
+        for i in range(n):
+            s = A[i, :] @ x - A[i, i] * x[i]
+            x[i] = (b[i] - s) / A[i, i]
+        if np.linalg.norm(x - xv, np.inf) < tol:
+            return x, k
+    return x, nmax
+```
+
+---
+
+## Convergência
+
+::: {.columns}
+::: {.column width="50%"}
+
+**Condição suficiente:** $A$ **diagonalmente dominante** por linhas:
+
+$$|a_{ii}| > \sum_{j\neq i} |a_{ij}|$$
+
+:::
+::: {.column width="50%"}
+
+**Condição necessária e suficiente:** raio espectral da matriz de iteração
+
+$$\rho(M) < 1$$
+
+:::
+:::
+
+A **sobre-relaxação sucessiva (SOR)** acelera Gauss-Seidel com um fator $\omega \in (1,2)$:
+
+$$x_i^{(k+1)} = (1-\omega)\,x_i^{(k)} + \omega\, x_i^{\text{GS}}$$
+
+---
+
+## Condicionamento
+
+O **número de condição** mede a amplificação de erros em $A\mathbf{x}=\mathbf{b}$:
+
+$$\kappa(A) = \|A\|\,\|A^{-1}\| \;\geq\; 1$$
+
+```python
+import numpy as np
+
+A = np.array([[2., 1.], [1., 3.]])
+print(np.linalg.cond(A))            # condição na norma-2
+```
+
+::: {.callout-important}
+$\kappa(A)\gg 1$ indica sistema **mal condicionado**: a solução é sensível a perturbações em $A$ e $\mathbf{b}$, independentemente do método.
+:::
+
+---
+
+## Sistemas esparsos em Python
+
+```python
+import numpy as np
+from scipy.sparse import csr_matrix
+from scipy.sparse.linalg import spsolve, cg
+
+# Matriz esparsa (formato comprimido)
+A = csr_matrix([[4., -1., 0.], [-1., 4., -1.], [0., -1., 4.]])
+b = np.array([1., 5., 0.])
+
+x_dir = spsolve(A, b)               # direto esparso
+x_it, info = cg(A, b, rtol=1e-10)   # gradiente conjugado (SPD)
+```
+
+---
+
+## Exercícios
+
+1. Verifique a dominância diagonal e aplique Jacobi e Gauss-Seidel a $\begin{bmatrix}4&1&1\\1&5&2\\1&2&6\end{bmatrix}\mathbf{x}=\begin{bmatrix}6\\8\\9\end{bmatrix}$, comparando o número de iterações.
+2. Discretize $-u'' = 1$ em $[0,1]$ com $u(0)=u(1)=0$ e resolva o sistema tridiagonal resultante.
+3. Avalie o efeito do fator $\omega$ do SOR no número de iterações.
+4. Construa uma matriz mal condicionada (ex.: Hilbert $5\times5$) e meça $\kappa(A)$.

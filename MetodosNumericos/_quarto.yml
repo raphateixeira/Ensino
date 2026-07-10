@@ -1,28 +1,60 @@
 project:
   type: website
-  output-dir: docs
+  output-dir: _site
+  render:
+    - index.qmd
+    - Notas/*.qmd
 
 website:
-  title: "Métodos Numéricos" 
-  # O Quarto usará o 'index.qmd' como página inicial.
-  # Nenhum bloco 'navbar' ou 'sidebar' está presente.
+  title: "Cálculo Numérico"
+  description: "Notas de aula — Métodos Numéricos em Python · UFPA"
+  reader-mode: true
+  navbar:
+    background: "#1F3A5F"
+    foreground: "#FFFFFF"
+    title: "Cálculo Numérico"
+    left:
+      - text: "Início"
+        href: index.qmd
+      - text: "Notas de Aula"
+        menu:
+          - text: "0 · Plano de Ensino"
+            href: Notas/CN00PlanoEnsino.qmd
+          - text: "1 · Erros e Ponto Flutuante"
+            href: Notas/CN01Erros.qmd
+          - text: "2 · Zeros — Métodos Intervalares"
+            href: Notas/CN02ZerosIntervalares.qmd
+          - text: "3 · Zeros — Métodos Abertos"
+            href: Notas/CN03ZerosAbertos.qmd
+          - text: "4 · Sistemas Lineares — Diretos"
+            href: Notas/CN04SistemasDiretos.qmd
+          - text: "5 · Sistemas Lineares — Iterativos"
+            href: Notas/CN05SistemasIterativos.qmd
+          - text: "6 · Interpolação Polinomial"
+            href: Notas/CN06Interpolacao.qmd
+          - text: "7 · Ajuste de Curvas e Splines"
+            href: Notas/CN07AjusteSplines.qmd
+          - text: "8 · Integração Numérica"
+            href: Notas/CN08Integracao.qmd
+          - text: "9 · Diferenciação Numérica"
+            href: Notas/CN09Diferenciacao.qmd
+          - text: "10 · EDOs — Euler e Runge-Kutta"
+            href: Notas/CN10EDOsEuler.qmd
+          - text: "11 · EDOs — Sistemas e Estabilidade"
+            href: Notas/CN11EDOsSistemas.qmd
+  page-footer:
+    border: false
+    left: "Cálculo Numérico — Métodos Numéricos em Python"
+    center: "FEE · CAMTUC · UFPA"
+    right: "Prof. Dr. Raphael Teixeira"
 
-  
 format:
   html:
-    theme: default
+    theme: [cosmo, TemaCN.scss]
+    toc: true
+    toc-title: "Nesta página"
+    page-layout: article
     lang: pt-BR
-    scss: TemaRTx.scss
-    
-  revealjs:
-    theme: default
-    scss: TemaRTx.scss
-    transition: slide
-    slide-number: true
-    footer: "Métodos Numéricos UFPA - Prof. Dr. Raphael Teixeira"
-    width: 1600      # Largura
-    height: 900       # Altura
-    code-theme: monokai
-    code-font-size: 2.0em
-    code-line-numbers: true
-    
+
+# Os decks revealjs definem seu próprio `format:` em cada .qmd;
+# este bloco aplica-se apenas às páginas HTML (index).

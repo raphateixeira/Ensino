@@ -1,15 +1,3 @@
-# Metodos Numericos
+## Cálculo Numérico
 
-- Raízes de funções transcedentais
-
-- Interpolação
-
-- Regressão
-
-- Derivação numérica
-
-- Integração numérica
-
-- Otimização
-
-- Identificação de sistemas
+Notas de aula de Cálculo Numérico — implementações em Python (NumPy · SciPy · Matplotlib), com ênfase em aplicações de Engenharia.

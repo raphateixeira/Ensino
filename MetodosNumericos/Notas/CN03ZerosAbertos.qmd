@@ -1,0 +1,151 @@
+---
+title: "Zeros de Funções — Métodos Abertos"
+subtitle: "Cálculo Numérico"
+institute: "Universidade Federal do Pará"
+author: "Prof. Dr. Raphael Teixeira"
+format: 
+  revealjs:
+    theme: [default, ../TemaCN.scss] 
+    self-contained: true
+    transition: slide
+    slide-number: true
+    width: 1600 
+    height: 900
+    footer: " "
+    center: true
+    title-slide-attributes:
+      data-background-image: "imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 40px center"
+engine: knitr
+---
+
+## Métodos abertos
+
+Dispensam o confinamento da raiz: partem de uma (ou duas) estimativa inicial e iteram por uma **fórmula de recorrência**.
+
+- **Mais rápidos** que os intervalares (convergência super-linear);
+- **Sem garantia** de convergência — dependem do ponto inicial.
+
+---
+
+## Iteração de ponto fixo
+
+Reescreve-se $f(x)=0$ como $x = g(x)$ e itera-se $x_{k+1} = g(x_k)$.
+
+::: {.columns}
+::: {.column width="50%"}
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 5.5
+\usetikzlibrary{arrows.meta}
+\input{imgs/tikz/PontoFixo.tikz}
+```
+
+:::
+::: {.column width="50%"}
+
+**Convergência local** se $|g'(x^{*})| < 1$.
+
+Quanto menor $|g'(x^{*})|$, mais rápida a convergência (linear).
+
+A escolha de $g$ **não é única** e determina a convergência.
+
+:::
+:::
+
+---
+
+## Método de Newton-Raphson
+
+Aproxima $f$ pela **reta tangente** em $x_k$:
+
+::: {.columns}
+::: {.column width="50%"}
+
+$$x_{k+1} = x_k - \frac{f(x_k)}{f'(x_k)}$$
+
+Convergência **quadrática** próximo da raiz: o número de dígitos corretos **dobra** a cada passo.
+
+:::
+::: {.column width="50%"}
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 5.5
+\usetikzlibrary{arrows.meta}
+\input{imgs/tikz/Newton.tikz}
+```
+
+:::
+:::
+
+::: {.callout-important}
+Falha se $f'(x_k) \approx 0$ ou se a estimativa inicial estiver distante da raiz.
+:::
+
+---
+
+## Método da secante
+
+Substitui a derivada por uma **diferença finita** entre duas iterações:
+
+$$x_{k+1} = x_k - f(x_k)\,\frac{x_k - x_{k-1}}{f(x_k) - f(x_{k-1})}$$
+
+- Não exige $f'(x)$;
+- Convergência super-linear (ordem $\approx 1{,}618$).
+
+::: {.callout-tip}
+Útil quando a derivada é cara ou indisponível analiticamente.
+:::
+
+---
+
+## Implementação em Python
+
+```python
+import numpy as np
+from scipy.optimize import newton
+
+f  = lambda x: x**3 - 2*x - 5
+df = lambda x: 3*x**2 - 2
+
+# Newton (com derivada)
+r1 = newton(f, x0=2.0, fprime=df, tol=1e-12)
+
+# Secante (sem derivada): omite-se fprime
+r2 = newton(f, x0=2.0, x1=3.0, tol=1e-12)
+
+print(r1, r2)        # 2.0945514815423265 (ambos)
+```
+
+---
+
+## Sistemas não lineares
+
+Para $\mathbf{F}(\mathbf{x}) = \mathbf{0}$ com $\mathbf{x}\in\mathbb{R}^n$, o método de Newton usa a **matriz Jacobiana**:
+
+$$\mathbf{x}_{k+1} = \mathbf{x}_k - J(\mathbf{x}_k)^{-1}\,\mathbf{F}(\mathbf{x}_k), \qquad J_{ij} = \frac{\partial F_i}{\partial x_j}$$
+
+```python
+from scipy.optimize import fsolve
+
+def F(v):
+    x, y = v
+    return [x**2 + y**2 - 4,      # circunferência
+            x*y - 1]              # hipérbole
+sol = fsolve(F, [1.5, 1.0])
+print(sol)                        # ~[1.932, 0.518]
+```
+
+---
+
+## Exercícios
+
+1. Encontre uma função de iteração $g$ convergente para a raiz de $x^3 - 2x - 5 = 0$ e verifique $|g'(x^{*})| < 1$.
+2. Compare o número de iterações de Newton, secante e bisseção para a mesma tolerância.
+3. Aplique Newton a $f(x) = x^3 - 2x + 2$ a partir de $x_0 = 0$ e explique o comportamento observado.
+4. Resolva o sistema $\{x^2 + y^2 = 4,\; e^x + y = 1\}$ com `fsolve` e diferentes estimativas iniciais.

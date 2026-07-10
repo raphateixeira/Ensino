@@ -1,0 +1,173 @@
+---
+title: "Erros e Aritmética de Ponto Flutuante"
+subtitle: "Cálculo Numérico"
+institute: "Universidade Federal do Pará"
+author: "Prof. Dr. Raphael Teixeira"
+format: 
+  revealjs:
+    theme: [default, ../TemaCN.scss] 
+    self-contained: true
+    transition: slide
+    slide-number: true
+    width: 1600 
+    height: 900
+    footer: " "
+    center: true
+    title-slide-attributes:
+      data-background-image: "imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 40px center"
+engine: knitr
+---
+
+## Por que estudar erros?
+
+O computador representa apenas um subconjunto **finito** dos números reais. Toda simulação de Engenharia carrega erro — a questão é **quantificá-lo e controlá-lo**.
+
+- Um método pode **convergir na teoria** e falhar na aritmética finita.
+- Erros pequenos podem ser **amplificados** ao longo do cálculo.
+
+::: {.callout-note}
+O objetivo não é eliminar o erro, mas garantir que ele permaneça **abaixo da tolerância** exigida pela aplicação.
+:::
+
+---
+
+## Fontes de erro
+
+| Fonte | Origem |
+|:--|:--|
+| **Modelagem** | simplificações físicas do problema |
+| **Dados** | medições e parâmetros de entrada |
+| **Truncamento** | substituir um processo infinito por um finito |
+| **Arredondamento** | representação finita dos números |
+
+O cálculo numérico atua sobre os erros de **truncamento** e **arredondamento**.
+
+---
+
+## Erro absoluto e relativo
+
+Seja $\hat{x}$ uma aproximação do valor exato $x$:
+
+$$E_{\text{abs}} = |x - \hat{x}|, \qquad E_{\text{rel}} = \frac{|x - \hat{x}|}{|x|}$$
+
+O **erro relativo** é adimensional e mais informativo, pois independe da escala da grandeza.
+
+::: {.callout-tip}
+Diz-se que $\hat{x}$ tem $d$ **dígitos significativos** corretos quando $E_{\text{rel}} \lesssim 0{,}5 \times 10^{-d}$.
+:::
+
+---
+
+## Ponto flutuante — padrão IEEE 754
+
+Um número é armazenado como $\;\pm\, (1.f) \times 2^{e}$:
+
+$$\underbrace{s}_{1\text{ bit}} \;\; \underbrace{e}_{11\text{ bits}} \;\; \underbrace{f}_{52\text{ bits}} \qquad (\text{precisão dupla})$$
+
+::: {.columns}
+::: {.column width="50%"}
+
+- **Sinal** $s$;
+- **Expoente** $e$ (com viés);
+- **Mantissa** $f$ (fração).
+
+:::
+::: {.column width="50%"}
+
+- $\approx 15$–$16$ dígitos decimais;
+- maior valor $\approx 1{,}8\times 10^{308}$;
+- menor positivo normal $\approx 2{,}2\times 10^{-308}$.
+
+:::
+:::
+
+---
+
+## Épsilon de máquina
+
+O **épsilon de máquina** $\varepsilon_m$ é a distância de $1$ ao próximo número representável:
+
+$$\varepsilon_m = 2^{-52} \approx 2{,}22 \times 10^{-16}$$
+
+```python
+import numpy as np
+
+print(np.finfo(float).eps)    # 2.220446049250313e-16
+print(np.finfo(float).max)    # 1.7976931348623157e+308
+print(1.0 + np.finfo(float).eps != 1.0)   # True
+```
+
+::: {.callout-important}
+$0{,}1$ **não** tem representação exata em binário: `0.1 + 0.2 == 0.3` resulta `False`.
+:::
+
+---
+
+## Cancelamento catastrófico
+
+A subtração de dois números próximos **destrói dígitos significativos**:
+
+::: {.columns}
+::: {.column width="52%"}
+
+$$\frac{1 - \cos x}{x^2}, \qquad x \to 0$$
+
+Para $x = 10^{-8}$, o numerador perde precisão: $\cos x \approx 1$.
+
+:::
+::: {.column width="48%"}
+
+```python
+x = 1e-8
+ruim = (1 - np.cos(x)) / x**2
+# -> 0.0  (errado; exato ~ 0.5)
+
+bom = 0.5 * (np.sinc(x/(2*np.pi)))**2
+# -> 0.5  (forma estável)
+```
+
+:::
+:::
+
+A reformulação algébrica evita a subtração crítica.
+
+---
+
+## Exemplo — Raízes da equação quadrática
+
+A fórmula clássica sofre cancelamento quando $b^2 \gg 4ac$ e $b>0$ (em $-b + \sqrt{\Delta}$):
+
+```python
+import numpy as np
+
+def raizes(a, b, c):
+    d = np.sqrt(b*b - 4*a*c)
+    q = -0.5 * (b + np.sign(b) * d)   # evita o cancelamento
+    return q / a, c / q
+
+print(raizes(1.0, 1e8, 1.0))   # estável para ambas as raízes
+```
+
+A forma estável calcula uma raiz com sinal seguro e a outra por $x_1 x_2 = c/a$.
+
+---
+
+## Condicionamento e propagação
+
+O **número de condição** mede a sensibilidade da saída a perturbações na entrada:
+
+$$\kappa = \left| \frac{x\, f'(x)}{f(x)} \right|$$
+
+- $\kappa \gg 1$: problema **mal condicionado** — pequenos erros são amplificados.
+- A escolha do **algoritmo** (estabilidade) é distinta do **condicionamento** (propriedade do problema).
+
+---
+
+## Exercícios
+
+1. Mostre, em Python, que `0.1 + 0.2 != 0.3` e quantifique o erro absoluto.
+2. Calcule $E_{\text{abs}}$ e $E_{\text{rel}}$ ao aproximar $e$ pela série $\sum_{k=0}^{5} 1/k!$.
+3. Avalie $f(x) = \dfrac{e^x - 1}{x}$ em $x = 10^{-10}$ e proponha uma forma numericamente estável.
+4. Determine $\kappa$ de $f(x) = \sqrt{x}$ e discuta seu condicionamento.
