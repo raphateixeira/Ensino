@@ -37,7 +37,10 @@ jobs:
         with:
           r-version: "4.4.0"
 
-      - name: Instalar dependências R (knitr + reticulate + tikzDevice)
+      - name: Instalar dependências de sistema para magick
+        run: sudo apt-get update && sudo apt-get install -y libmagick++-dev ghostscript
+
+      - name: Instalar dependências R (knitr + reticulate + tikzDevice + magick)
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           packages: |
@@ -45,6 +48,8 @@ jobs:
             any::rmarkdown
             any::reticulate
             any::tikzDevice
+            any::magick
+            any::pdftools
 
       - name: Instalar TinyTeX + pacotes TikZ
         run: |
