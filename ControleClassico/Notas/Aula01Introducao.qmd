@@ -1,0 +1,241 @@
+---
+title: "Introdução a Sistemas de Controle"
+subtitle: "Sistemas de Controle I — Controle Clássico"
+institute: "Universidade Federal do Pará"
+author: "Prof. Dr. Raphael Teixeira"
+format:
+  revealjs:
+    theme: [default, ../Tema.scss]
+    self-contained: true
+    transition: slide
+    slide-number: true
+    width: 1600
+    height: 900
+    footer: " "
+    center: true
+    title-slide-attributes:
+      data-background-image: "imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 40px center"
+engine: knitr
+---
+
+## O que é Controle Automático?
+
+:::{.columns}
+::: {.column width="55%"}
+
+- **Controle** é o processo de fazer um sistema físico se comportar de uma maneira desejada
+- Um **sistema de controle** manipula variáveis de entrada para que a saída siga um comportamento especificado
+- Objetivo: fazer a saída $y(t)$ rastrear uma referência $r(t)$, mesmo na presença de **perturbações** e **incertezas** no modelo da planta
+
+:::
+::: {.column width="45%"}
+
+**Aplicações:**
+
+- Controle de temperatura (fornos, ar-condicionado)
+- Controle de velocidade (cruise control, motores)
+- Controle de posição (robótica, CNC, antenas)
+- Controle de nível (tanques, caldeiras)
+- Reguladores de tensão
+- Piloto automático (aeronaves, drones)
+
+:::
+:::
+
+---
+
+## Um Pouco de História
+
+- **1788** — regulador centrífugo de Watt para máquinas a vapor (primeiro controle de realimentação amplamente usado na indústria)
+- **1868** — James Clerk Maxwell analisa matematicamente a estabilidade do regulador de Watt [@maxwell1868]
+- **1927–1940** — Black, Nyquist e Bode (Bell Labs) desenvolvem a teoria de realimentação e resposta em frequência para amplificadores telefônicos
+- **1942** — Ziegler e Nichols publicam regras práticas de sintonia de controladores PID [@ziegler1942]
+- **1950–60** — consolidação do "controle clássico" (Laplace, função de transferência, LGR de Evans) e início do controle moderno (espaço de estados)
+
+::: {.callout-note}
+O **controle clássico**, tema deste curso, opera no domínio da frequência complexa $s$ e é a base histórica e conceitual de toda a teoria de controle moderna.
+:::
+
+---
+
+## Componentes de um Sistema de Controle
+
+:::{.columns}
+::: {.column width="45%"}
+
+| Componente | Descrição |
+|:-----------|:----------|
+| **Planta** | Sistema físico a ser controlado |
+| **Atuador** | Dispositivo que age sobre a planta |
+| **Sensor** | Mede a saída real do sistema |
+| **Controlador** | Calcula a ação de controle |
+| **Referência** $r(t)$ | Valor desejado para a saída |
+| **Erro** $e(t)$ | Diferença entre $r(t)$ e a saída medida |
+| **Perturbação** $d(t)$ | Sinal indesejado que afeta a saída |
+
+:::
+::: {.column width="55%"}
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 8
+\usetikzlibrary{arrows.meta, positioning, calc}
+\input{imgs/tikz/ComponentesSistema.tikz}
+```
+
+$$e(t) = r(t) - y(t)$$
+
+:::
+:::
+
+---
+
+## Malha Aberta
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 10
+\usetikzlibrary{arrows.meta, positioning}
+\input{imgs/tikz/MalhaAberta.tikz}
+```
+
+- A saída **não** é medida nem comparada com a referência
+- O controlador aplica uma ação **pré-calculada**, independente do resultado real
+- Simples e barato, **mas** sensível a perturbações e a variações da planta
+
+::: {.callout-tip}
+**Exemplos:** torradeira (tempo fixo), máquina de lavar (ciclo fixo), semáforo de tempo fixo.
+:::
+
+---
+
+## Malha Fechada (Realimentação Negativa)
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 10
+\usetikzlibrary{arrows.meta, positioning, calc}
+\input{imgs/tikz/MalhaFechada.tikz}
+```
+
+- A saída é **medida** (pelo sensor $H(s)$) e comparada com a referência
+- O controlador atua sobre o **erro** $e(t) = r(t) - y(t)$
+- Robusto a perturbações e a variações paramétricas da planta; pode corrigir erros automaticamente
+
+::: {.callout-tip}
+**Exemplos:** termostato, piloto automático, controle de velocidade de cruzeiro.
+:::
+
+---
+
+## Malha Aberta vs. Malha Fechada
+
+| | Malha Aberta | Malha Fechada |
+|---|---|---|
+| **Mede a saída?** | Não | Sim |
+| **Custo/complexidade** | Baixo | Maior (sensor + comparação) |
+| **Sensibilidade a perturbações** | Alta | Reduzida |
+| **Sensibilidade a variações da planta** | Alta | Reduzida |
+| **Estabilidade** | Sempre que a planta for estável | Pode instabilizar se mal projetada |
+| **Precisão em regime permanente** | Depende só da planta | Pode ser melhorada pelo controlador |
+
+::: {.callout-important}
+A realimentação **não é grátis**: ela introduz o risco de instabilidade e exige um sensor confiável. Grande parte deste curso trata de como projetar controladores que explorem os benefícios da realimentação com segurança.
+:::
+
+---
+
+## Sinais e Variáveis do Sistema
+
+Em um sistema de controle em malha fechada, identificamos:
+
+- $r(t)$ — referência ou *set point*: valor desejado da saída
+- $y(t)$ — saída controlada: variável que se deseja regular
+- $e(t) = r(t) - y(t)$ — sinal de erro atuante
+- $u(t)$ — sinal de controle: saída do controlador, entrada da planta
+- $d(t)$ — perturbação: sinal indesejado que afeta a saída
+- $n(t)$ — ruído de medição (frequentemente desprezado em uma primeira análise)
+
+::: {.callout-note}
+O controlador $C(s)$ é projetado para que $y(t) \to r(t)$ **mesmo na presença** de $d(t)$ e de incertezas em $G(s)$.
+:::
+
+---
+
+## Modelagem Matemática — Motivação
+
+Para **projetar** um controlador precisamos de um **modelo matemático** da planta que relacione a entrada $u(t)$ com a saída $y(t)$.
+
+:::{.columns}
+::: {.column width="50%"}
+
+**Equação Diferencial Ordinária (EDO)**
+
+Sistema linear invariante no tempo (LIT) de ordem $n$:
+
+$$a_n \frac{d^n y}{dt^n} + \cdots + a_1 \frac{dy}{dt} + a_0 y = b_m \frac{d^m u}{dt^m} + \cdots + b_0 u$$
+
+- Coeficientes $a_i, b_i$ constantes reais
+- Difícil de manipular algebricamente e de generalizar para blocos interligados
+
+:::
+::: {.column width="50%"}
+
+**A solução: Transformada de Laplace**
+
+- Converte EDOs em equações **algébricas** em $s$
+- Introduz a **função de transferência** $G(s) = Y(s)/U(s)$
+- Permite representar e **combinar** subsistemas por **diagramas de blocos**
+
+Esse é o tema da próxima aula.
+
+:::
+:::
+
+---
+
+## Objetivos de um Projeto de Controle
+
+Um controlador é projetado para atender a especificações de três naturezas:
+
+1. **Estabilidade** — requisito mínimo: o sistema em malha fechada não pode divergir
+2. **Resposta transitória** — velocidade e qualidade da resposta (tempo de subida, sobressinal, tempo de acomodação)
+3. **Erro de regime permanente** — precisão da saída após o transitório desaparecer
+
+::: {.callout-important}
+Esses três objetivos frequentemente **competem** entre si (ex.: reduzir o erro aumentando o ganho tende a piorar o sobressinal e pode até instabilizar o sistema). Todo o curso constrói ferramentas para navegar esse compromisso.
+:::
+
+---
+
+## Roteiro do Curso
+
+| Bloco | Conteúdo |
+|:--|:--|
+| Modelagem | Laplace, função de transferência, diagrama de blocos |
+| Resposta transitória | Sistemas de 1ª e 2ª ordem, polos dominantes |
+| Regime permanente | Erro de regime permanente, tipo de sistema |
+| Estabilidade e projeto no domínio de $s$ | Routh-Hurwitz, Lugar Geométrico das Raízes (LGR) |
+| Domínio da frequência | Diagramas de Bode, margens de ganho e fase |
+| Controladores | Ação P, PI, PD, PID e sintonia |
+
+---
+
+## Exercícios
+
+1. Cite três sistemas de controle do seu cotidiano e classifique cada um como malha aberta ou malha fechada, justificando.
+2. Para um sistema de controle de temperatura de um chuveiro elétrico com termostato, identifique $r(t)$, $y(t)$, $u(t)$, $e(t)$ e uma possível perturbação $d(t)$.
+3. Explique, em suas palavras, por que a realimentação negativa reduz a sensibilidade do sistema a variações na planta, mas pode introduzir risco de instabilidade.
+4. Pesquise e descreva resumidamente o funcionamento do regulador centrífugo de Watt (1788) e sua importância histórica para a teoria de controle.
+
+---
+
+## Referências
+
+::: {#refs}
+:::

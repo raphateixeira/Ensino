@@ -1,17 +1,68 @@
 ---
-title: "Introdução aos Sistemas de Controle"
-subtitle: "Sistemas de Controle"
+title: "Sistemas de Controle I"
+subtitle: "Controle Clássico"
 institute: "Universidade Federal do Pará"
 author: "Prof. Dr. Raphael Teixeira"
 date: ""
-format: 
+format:
   html:
     page-layout: article
 ---
 
-Notas de aula de Sistemas de Controle II - Espaço de Estados:
+Notas de aula de Sistemas de Controle I — Controle Clássico: modelagem por função de transferência, resposta transitória de sistemas de primeira e segunda ordem, erro de regime permanente, lugar geométrico das raízes, resposta em frequência e controladores PID.
 
-Turma de 2024 da FEE - CAMTUC - UFPA.
+```{=html}
+<div class="categoria-grid">
+<a class="categoria-card" href="Notas/Aula00PlanoEnsino.qmd">
+  <h3>Aula 0</h3>
+  <p>Plano de Ensino</p>
+</a>
+<a class="categoria-card" href="Notas/Aula01Introducao.qmd">
+  <h3>Aula 1</h3>
+  <p>Introdução a Sistemas de Controle</p>
+</a>
+<a class="categoria-card" href="Notas/Aula02ModelagemFT.qmd">
+  <h3>Aula 2</h3>
+  <p>Modelagem e Função de Transferência</p>
+</a>
+<a class="categoria-card" href="Notas/Aula03PrimeiraOrdem.qmd">
+  <h3>Aula 3</h3>
+  <p>Sistemas de Primeira Ordem</p>
+</a>
+<a class="categoria-card" href="Notas/Aula04SegundaOrdem.qmd">
+  <h3>Aula 4</h3>
+  <p>Sistemas de Segunda Ordem</p>
+</a>
+<a class="categoria-card" href="Notas/Aula05RespostaTransitoria.qmd">
+  <h3>Aula 5</h3>
+  <p>Resposta Transitória de Sistemas de Ordem Superior</p>
+</a>
+<a class="categoria-card" href="Notas/Aula06ErroRegimePermanente.qmd">
+  <h3>Aula 6</h3>
+  <p>Erro de Regime Permanente</p>
+</a>
+<a class="categoria-card" href="Notas/Aula07LGR.qmd">
+  <h3>Aula 7</h3>
+  <p>Lugar Geométrico das Raízes (LGR)</p>
+</a>
+<a class="categoria-card" href="Notas/Aula08RespostaFrequencia.qmd">
+  <h3>Aula 8</h3>
+  <p>Resposta em Frequência</p>
+</a>
+<a class="categoria-card" href="Notas/Aula09PID.qmd">
+  <h3>Aula 9</h3>
+  <p>Controlador PID</p>
+</a>
+</div>
+```
 
-* Aula 0 - [Plano de Ensino](Notas/SC00PlanoEnsino.qmd)
-* Aula 1 - [Introdução aos Sistemas de Controle](Notas/SC01Introducao.qmd)
+## Avaliações
+
+```{=html}
+<div class="categoria-grid">
+<a class="categoria-card" href="Avaliacoes/Avaliacao01Exemplo.qmd">
+  <h3>Avaliação 1</h3>
+  <p>Avaliação Exemplo (modelo)</p>
+</a>
+</div>
+```

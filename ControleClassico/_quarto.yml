@@ -1,26 +1,70 @@
+# ---------------------------------------------------------------------
+#  Configuração do projeto Quarto (website + apresentações revealjs).
+#  Disciplina: Sistemas de Controle I — Controle Clássico.
+# ---------------------------------------------------------------------
+
 project:
   type: website
-  output-dir: docs
+  output-dir: _site
+  render:
+    - index.qmd
+    - Notas/*.qmd
+    - Avaliacoes/*.qmd
+
+# Bibliografia compartilhada por todas as páginas do site (aulas e
+# avaliações). Cite com @chave no texto; veja Referencias.bib.
+bibliography: Referencias.bib
 
 website:
-  title: "Introdução aos Sistemas de Controle"
-  site-url: https://raphateixeira.github.io/ControleClassico/
-  repo-url: https://github.com/raphateixeira/ControleClassico/
+  title: "Sistemas de Controle I"
+  description: "Notas de aula — Controle Clássico (contínuo, no domínio da frequência)"
+  reader-mode: true
+  navbar:
+    background: "#1F3A5F"
+    foreground: "#FFFFFF"
+    title: "Sistemas de Controle I"
+    left:
+      - text: "Início"
+        href: index.qmd
+      - text: "Notas de Aula"
+        menu:
+          - text: "0 · Plano de Ensino"
+            href: Notas/Aula00PlanoEnsino.qmd
+          - text: "1 · Introdução a Sistemas de Controle"
+            href: Notas/Aula01Introducao.qmd
+          - text: "2 · Modelagem e Função de Transferência"
+            href: Notas/Aula02ModelagemFT.qmd
+          - text: "3 · Sistemas de Primeira Ordem"
+            href: Notas/Aula03PrimeiraOrdem.qmd
+          - text: "4 · Sistemas de Segunda Ordem"
+            href: Notas/Aula04SegundaOrdem.qmd
+          - text: "5 · Resposta Transitória"
+            href: Notas/Aula05RespostaTransitoria.qmd
+          - text: "6 · Erro de Regime Permanente"
+            href: Notas/Aula06ErroRegimePermanente.qmd
+          - text: "7 · Lugar Geométrico das Raízes"
+            href: Notas/Aula07LGR.qmd
+          - text: "8 · Resposta em Frequência"
+            href: Notas/Aula08RespostaFrequencia.qmd
+          - text: "9 · Controlador PID"
+            href: Notas/Aula09PID.qmd
+      - text: "Avaliações"
+        menu:
+          - text: "1 · Avaliação Exemplo (modelo)"
+            href: Avaliacoes/Avaliacao01Exemplo.qmd
+  page-footer:
+    border: false
+    left: "Sistemas de Controle I"
+    center: "Universidade Federal do Pará · Faculdade de Engenharia Elétrica"
+    right: "Prof. Dr. Raphael Teixeira"
 
 format:
   html:
-    theme: [cosmo, TemaRTx.scss]
+    theme: [cosmo, Tema.scss]
+    toc: true
+    toc-title: "Nesta página"
+    page-layout: article
     lang: pt-BR
-    code-copy: true
-    anchor-sections: true
 
-  revealjs:
-    theme: [default, TemaRTx.scss]
-    transition: slide
-    slide-number: true
-    width: 1600
-    height: 900
-    code-theme: monokai
-    code-font-size: 0.8em 
-    code-line-numbers: true
-    hash-type: number
+# Os decks revealjs definem o próprio `format:` no cabeçalho de cada .qmd;
+# este bloco aplica-se apenas às páginas HTML (ex.: index).

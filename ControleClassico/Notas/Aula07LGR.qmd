@@ -1,0 +1,201 @@
+---
+title: "Lugar Geométrico das Raízes (LGR)"
+subtitle: "Sistemas de Controle I — Controle Clássico"
+institute: "Universidade Federal do Pará"
+author: "Prof. Dr. Raphael Teixeira"
+format:
+  revealjs:
+    theme: [default, ../Tema.scss]
+    self-contained: true
+    transition: slide
+    slide-number: true
+    width: 1600
+    height: 900
+    footer: " "
+    center: true
+    title-slide-attributes:
+      data-background-image: "imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 40px center"
+---
+
+## Motivação
+
+Considere a malha fechada com ganho ajustável $K$:
+
+$$T(s) = \frac{KG(s)}{1+KG(s)H(s)}$$
+
+Os polos de malha fechada mudam de posição conforme $K$ varia de $0$ a $\infty$ — e a resposta transitória (Aulas 3–5) e a estabilidade (Aula 6) dependem **diretamente** dessas posições.
+
+::: {.callout-important}
+## Definição
+O **Lugar Geométrico das Raízes (LGR)**, ou lugar de Evans, é o conjunto de todas as posições dos polos de malha fechada quando $K$ varia de $0$ a $+\infty$.
+:::
+
+O LGR permite **visualizar** como escolher $K$ para atender especificações de $\zeta$, $\omega_n$, $M_p$, $t_s$ — sem calcular as raízes para cada valor de $K$.
+
+---
+
+## Condições de Ângulo e de Módulo
+
+Um ponto $s_0$ pertence ao LGR se e somente se satisfaz a **equação característica** $1+KG(s)H(s)=0$, ou seja, $KG(s_0)H(s_0) = -1$. Escrevendo em forma polar:
+
+::: {.callout-important}
+## Condição de ângulo (define o LGR)
+$$\angle G(s_0)H(s_0) = 180° + k\cdot360°, \qquad k=0,\pm1,\pm2,\ldots$$
+:::
+
+::: {.callout-tip}
+## Condição de módulo (define o valor de $K$ naquele ponto)
+$$K = \frac{1}{|G(s_0)H(s_0)|}$$
+:::
+
+- A condição de **ângulo** sozinha determina **se** $s_0$ está no LGR (independente de $K$)
+- A condição de **módulo** só é usada **depois**, para achar o $K$ correspondente a um ponto já identificado no LGR
+
+---
+
+## Regras de Construção — Ramos e Simetria
+
+Seja $G(s)H(s) = \dfrac{\prod_{i=1}^{m}(s+z_i)}{\prod_{j=1}^{n}(s+p_j)}$, com $n$ polos e $m$ zeros de malha aberta ($n\geq m$, tipicamente).
+
+1. **Número de ramos** = $n$ (número de polos de malha aberta) — cada ramo parte de um polo
+2. **Pontos de partida** ($K=0$): os $n$ polos de malha aberta
+3. **Pontos de chegada** ($K\to\infty$): os $m$ zeros finitos de malha aberta; os $n-m$ ramos restantes vão para **zeros no infinito**
+4. **Simetria**: o LGR é simétrico em relação ao **eixo real** (polos complexos sempre em pares conjugados)
+
+---
+
+## Regras de Construção — Eixo Real
+
+::: {.callout-important}
+## Regra do eixo real
+Um ponto do eixo real pertence ao LGR se o número de polos **mais** zeros de malha aberta à sua **direita** é **ímpar**.
+:::
+
+- Regra derivada diretamente da condição de ângulo: cada polo/zero real à direita contribui $180°$; a soma precisa ser um múltiplo ímpar de $180°$
+- Segmentos entre polos/zeros reais alternam pertencer ou não ao LGR, da direita para a esquerda
+
+---
+
+## Regras de Construção — Assíntotas
+
+Os $n-m$ ramos que vão para o infinito o fazem ao longo de **assíntotas retas**, centradas em:
+
+$$\sigma_a = \frac{\sum_j p_j - \sum_i z_i}{n-m} \qquad\text{(centroide, sobre o eixo real)}$$
+
+com ângulos:
+
+$$\theta_a = \frac{(2k+1)\times180°}{n-m}, \qquad k = 0,1,\ldots,n-m-1$$
+
+::: {.callout-tip}
+Exemplo: com $n-m=3$ (três ramos ao infinito), os ângulos são $60°$, $180°$ e $300°$ ($-60°$).
+:::
+
+---
+
+## Regras de Construção — Pontos de Saída/Chegada
+
+**Pontos de quebra (breakaway/break-in)**: onde dois ou mais ramos reais se encontram e se separam (saindo ou entrando no eixo real). Ocorrem em raízes reais de:
+
+$$\frac{dK}{ds} = 0, \qquad \text{onde } K(s) = \frac{-1}{G(s)H(s)}$$
+
+restritas às regiões do eixo real que pertencem ao LGR (regra anterior).
+
+**Ângulos de partida/chegada** (polos/zeros complexos): calculados aplicando a condição de ângulo a um ponto de teste infinitesimalmente próximo ao polo (ou zero) complexo, somando as contribuições angulares de todos os demais polos e zeros.
+
+---
+
+## Regras de Construção — Cruzamento do Eixo Imaginário
+
+O(s) ponto(s) onde o LGR cruza o eixo $j\omega$ (fronteira de estabilidade) e o **ganho crítico** $K_{crít}$ correspondente são obtidos por **Routh-Hurwitz** (Aula 6): o valor de $K$ que anula uma linha inteira do array de Routh é $K_{crít}$; o polinômio auxiliar formado com a linha anterior dá a frequência de cruzamento $\omega$.
+
+::: {.callout-important}
+Essa é a ponte direta entre o critério de Routh-Hurwitz (Aula 6) e o LGR: o array de Routh localiza **exatamente** onde o lugar cruza para o semiplano direito.
+:::
+
+---
+
+## Exemplo 1 — LGR de $G(s)H(s) = \dfrac{K}{s(s+2)(s+4)}$
+
+![LGR de $K/[s(s+2)(s+4)]$](imgs/plots/fig_lgr_exemplo1.png){width="52%" fig-align="center"}
+
+- $n=3$ polos ($0,-2,-4$), $m=0$ zeros $\implies$ 3 ramos, todos para o infinito
+- Centroide: $\sigma_a = \dfrac{0-2-4}{3} = -2$; ângulos das assíntotas: $60°, 180°, 300°$
+- Eixo real no LGR: $[-2,0]$ e $(-\infty,-4]$
+
+---
+
+## Exemplo 1 — Ganho Crítico
+
+Equação característica: $s(s+2)(s+4)+K = s^3+6s^2+8s+K=0$.
+
+Array de Routh (mesma estrutura da Aula 6):
+
+$$
+\begin{array}{c|cc}
+s^3 & 1 & 8 \\
+s^2 & 6 & K \\
+s^1 & 8-\dfrac{K}{6} & 0 \\
+s^0 & K &
+\end{array}
+$$
+
+Estabilidade: $0 < K < 48$. Em $K=48$, a linha $s^1$ se anula — o LGR cruza o eixo $j\omega$ em $\omega = \sqrt{8} \approx 2{,}83$ rad/s (raiz do polinômio auxiliar $6s^2+K=0$).
+
+---
+
+## Exemplo 2 — Efeito de um Zero: $G(s)H(s) = \dfrac{K(s+3)}{s(s+1)(s+5)}$
+
+![LGR de $K(s+3)/[s(s+1)(s+5)]$](imgs/plots/fig_lgr_exemplo2.png){width="52%" fig-align="center"}
+
+- $n=3$ polos ($0,-1,-5$), $m=1$ zero ($-3$) $\implies$ 3 ramos: 1 termina no zero $-3$, 2 vão ao infinito
+- $n-m=2$ assíntotas: ângulos $90°$ e $270°$, centroide $\sigma_a = \dfrac{(0-1-5)-(-3)}{2}=-1{,}5$
+- O zero **atrai** o ramo complexo para a esquerda, tendendo a **estabilizar** e **acelerar** o sistema (compare com o Exemplo 1, sem zero)
+
+---
+
+## Usando o LGR para Projeto
+
+O LGR permite escolher $K$ (ou projetar um controlador que reformula o LGR) para posicionar os polos de malha fechada em uma **região desejada** do plano $s$:
+
+1. Trace as retas de $\zeta$ constante (ângulo $\theta=\cos^{-1}\zeta$ a partir da origem) para atender a especificação de $M_p$ (Aula 4)
+2. Trace a reta vertical $\text{Re}(s) = -\sigma_{\min}$ para atender a especificação de $t_s$
+3. Identifique a interseção dessas retas com o LGR e leia (ou calcule pela condição de módulo) o $K$ correspondente
+
+::: {.callout-tip}
+Se o LGR **não passa** pela região desejada, é necessário **modificar** a malha aberta — adicionando polos/zeros via um controlador (compensador de avanço/atraso de fase, ou PID — Aula 9) para "puxar" o lugar para a região desejada.
+:::
+
+---
+
+## Exemplo de Projeto por LGR
+
+**Problema:** para $G(s)H(s) = \dfrac{K}{s(s+2)(s+4)}$ (Exemplo 1), encontrar $K$ tal que o par de polos dominantes tenha $\zeta \approx 0{,}5$.
+
+**Procedimento:**
+
+1. Trace a reta $\theta = \cos^{-1}(0{,}5) = 60°$ a partir da origem
+2. Encontre a interseção dessa reta com o ramo complexo do LGR (numericamente ou por software)
+3. Aplique a condição de módulo naquele ponto $s_0$: $K = |s_0|\,|s_0+2|\,|s_0+4|$
+
+::: {.callout-note}
+Na prática, esse procedimento é feito por software (MATLAB `rlocus`/`sgrid`, Python `control.root_locus`) — o traçado manual detalhado tem valor **didático**, para compreender a geometria por trás do resultado numérico.
+:::
+
+---
+
+## Exercícios
+
+1. Para $G(s)H(s) = \dfrac{K}{(s+1)(s+3)}$, esboce o LGR: identifique polos, segmentos do eixo real, centroide e ângulos das assíntotas.
+2. Para $G(s)H(s) = \dfrac{K}{s(s+1)(s+2)(s+3)}$, determine o número de ramos, a posição do centroide e os ângulos das assíntotas.
+3. Repita o Exemplo 1 (LGR de $K/[s(s+2)(s+4)]$) calculando manualmente o ponto de quebra no eixo real, no intervalo $[-2,0]$.
+4. Para $G(s)H(s)=\dfrac{K(s+3)}{s(s+1)(s+5)}$ (Exemplo 2), monte o array de Routh da equação característica e determine a faixa de $K$ para estabilidade.
+5. Explique por que adicionar um zero ao ramo complexo do LGR tende a "puxar" os polos dominantes para a esquerda, tornando o sistema mais estável e mais rápido.
+
+---
+
+## Referências
+
+::: {#refs}
+:::

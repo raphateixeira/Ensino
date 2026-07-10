@@ -2,3 +2,15 @@
 **/*.quarto_ipynb
 
 /docs/
+/_site/
+*.log
+.DS_Store
+__pycache__/
+PlanoEnsino/*.aux
+PlanoEnsino/*.bbl
+PlanoEnsino/*.bcf
+PlanoEnsino/*.blg
+PlanoEnsino/*.fdb_latexmk
+PlanoEnsino/*.fls
+PlanoEnsino/*.out
+PlanoEnsino/*.run.xml

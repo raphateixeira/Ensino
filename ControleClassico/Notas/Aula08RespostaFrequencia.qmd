@@ -1,0 +1,195 @@
+---
+title: "Resposta em Frequência"
+subtitle: "Sistemas de Controle I — Controle Clássico"
+institute: "Universidade Federal do Pará"
+author: "Prof. Dr. Raphael Teixeira"
+format:
+  revealjs:
+    theme: [default, ../Tema.scss]
+    self-contained: true
+    transition: slide
+    slide-number: true
+    width: 1600
+    height: 900
+    footer: " "
+    center: true
+    title-slide-attributes:
+      data-background-image: "imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 40px center"
+---
+
+## Resposta em Frequência — Conceito
+
+Para um sistema LIT estável com função de transferência $G(s)$, a resposta em **regime permanente** a uma entrada senoidal $u(t)=A\sin(\omega t)$ é também senoidal, de **mesma frequência**, com amplitude e fase alteradas:
+
+$$y_{ss}(t) = A\,|G(j\omega)|\,\sin\!\big(\omega t + \angle G(j\omega)\big)$$
+
+::: {.callout-important}
+## Ideia central
+A **resposta em frequência** $G(j\omega)$ é obtida substituindo $s=j\omega$ na função de transferência. Ela descreve completamente como o sistema amplifica/atenua e desloca em fase cada frequência $\omega$.
+:::
+
+- $|G(j\omega)|$ — **magnitude** (ganho) em função de $\omega$
+- $\angle G(j\omega)$ — **fase** em função de $\omega$
+
+---
+
+## Diagrama de Bode
+
+O **diagrama de Bode** representa $G(j\omega)$ em **dois gráficos** com eixo de frequência **logarítmico**:
+
+- **Magnitude**: $20\log_{10}|G(j\omega)|$ em decibéis (dB) vs. $\log_{10}\omega$
+- **Fase**: $\angle G(j\omega)$ em graus vs. $\log_{10}\omega$
+
+::: {.callout-tip}
+## Por que log-log/log-linear?
+Fatores de $G(j\omega)$ em **produto** (polos, zeros, ganho) tornam-se **somas** em dB e em fase — cada fator contribui uma assíntota simples que se **soma** graficamente às demais.
+:::
+
+---
+
+## Assíntotas de Bode — Fatores Básicos
+
+| Fator | Magnitude (assíntota) | Fase |
+|:--|:--|:--|
+| Ganho $K$ | $20\log_{10}K$ (constante) | $0°$ (ou $180°$ se $K<0$) |
+| Polo na origem $1/(j\omega)$ | reta de $-20$ dB/década | constante em $-90°$ |
+| Zero na origem $(j\omega)$ | reta de $+20$ dB/década | constante em $+90°$ |
+| Polo real $1/(1+j\omega/p)$ | $0$ dB/década até $\omega=p$; $-20$ dB/década após | $0°\to-90°\to-180°$ (centrado em $\omega=p$) |
+| Zero real $(1+j\omega/z)$ | $0$ dB/década até $\omega=z$; $+20$ dB/década após | $0°\to+90°\to+180°$ (centrado em $\omega=z$) |
+
+::: {.callout-note}
+A frequência $\omega=p$ (ou $z$) é a **frequência de canto** (*corner frequency*) — no diagrama assintótico, o erro máximo em relação à curva real é de $\approx3$ dB nesse ponto.
+:::
+
+---
+
+## Construindo o Diagrama Assintótico
+
+**Procedimento:**
+
+1. Escreva $G(j\omega)$ como produto de fatores básicos (ganho, polos/zeros na origem, polos/zeros reais, pares complexos)
+2. Identifique as **frequências de canto** de cada fator (ordene-as)
+3. Comece a assíntota de magnitude com a inclinação do(s) fator(es) de baixa frequência (ganho + polos/zeros na origem)
+4. A cada frequência de canto, **some** a inclinação do fator correspondente ($-20$ dB/década por polo, $+20$ dB/década por zero)
+5. Para a fase, some as contribuições assintóticas (ou exatas) de cada fator
+
+---
+
+## Exemplo — Diagrama de Bode
+
+![Diagrama de Bode de $G(s)=10/[s(s+1)(s+5)]$, com margens de ganho e fase](imgs/plots/fig_bode_exemplo.png){width="66%" fig-align="center"}
+
+- Polo na origem: $-20$ dB/dec desde baixas frequências, fase partindo de $-90°$
+- Frequências de canto em $\omega=1$ e $\omega=5$ rad/s (polos reais): inclinação cai para $-40$ e depois $-60$ dB/dec
+
+---
+
+## Margens de Estabilidade
+
+Para sistemas de **fase mínima** (sem polos/zeros no semiplano direito), a estabilidade da malha fechada pode ser avaliada diretamente no Bode de malha aberta $G(j\omega)H(j\omega)$:
+
+::: {.callout-important}
+## Margem de Ganho (MG)
+$$\text{MG (dB)} = -20\log_{10}\big|G(j\omega_{gc})H(j\omega_{gc})\big|$$
+onde $\omega_{gc}$ é a **frequência de cruzamento de fase** ($\angle G H = -180°$). Quanto o ganho pode aumentar antes de instabilizar.
+:::
+
+::: {.callout-important}
+## Margem de Fase (MF)
+$$\text{MF} = 180° + \angle G(j\omega_{pc})H(j\omega_{pc})$$
+onde $\omega_{pc}$ é a **frequência de cruzamento de ganho** ($|GH|=1=0$ dB). Quanto de atraso de fase adicional o sistema tolera antes de instabilizar.
+:::
+
+---
+
+## Interpretando as Margens no Exemplo
+
+No diagrama de Bode do slide anterior, $G(s) = \dfrac{10}{s(s+1)(s+5)}$:
+
+- $\omega_{pc} \approx 1{,}23$ rad/s (onde $|G|=0$ dB) $\implies$ **MF $\approx 25°$**
+- $\omega_{gc} \approx 2{,}24$ rad/s (onde $\angle G=-180°$) $\implies$ **MG $\approx 9{,}5$ dB**
+
+::: {.callout-tip}
+## Regras práticas de projeto
+Margens **positivas** $\implies$ malha fechada **estável**. Valores usuais de projeto: **MF entre $30°$ e $60°$**, **MG maior que $6$ dB** — margens pequenas (como MF $\approx25°$ acima) indicam sistema estável mas com pouca robustez e resposta transitória oscilatória.
+:::
+
+---
+
+## Relação entre Margem de Fase e Amortecimento
+
+Para um sistema de malha aberta tipo dominante de 2ª ordem, existe a aproximação clássica:
+
+$$\zeta \approx \frac{\text{MF}}{100}, \qquad \text{válida para } \text{MF} \lesssim 60°$$
+
+| MF | $\zeta$ aprox. | $M_p$ aprox. |
+|:--:|:--:|:--:|
+| $20°$ | $0{,}2$ | $53\%$ |
+| $40°$ | $0{,}4$ | $25\%$ |
+| $60°$ | $0{,}6$ | $9\%$ |
+| $70°$ | $0{,}7$ | $5\%$ |
+
+::: {.callout-note}
+Essa relação permite **traduzir** uma especificação de sobressinal (domínio do tempo, Aula 4) em uma especificação de margem de fase (domínio da frequência) — ponte fundamental para o projeto de controladores por resposta em frequência.
+:::
+
+---
+
+## Banda Passante e Velocidade de Resposta
+
+A **banda passante** $\omega_{BW}$ é a frequência em que $|T(j\omega)|$ (malha fechada) cai $3$ dB abaixo do valor em $\omega=0$.
+
+::: {.callout-tip}
+## Relação aproximada (2ª ordem)
+$$\omega_{BW} \approx \omega_n\sqrt{(1-2\zeta^2)+\sqrt{4\zeta^4-4\zeta^2+2}}$$
+Para $\zeta$ típico ($0{,}4$–$0{,}8$): $\omega_{BW} \approx (1\text{ a }1{,}5)\,\omega_n$.
+:::
+
+- Quanto **maior** a banda passante, **mais rápida** a resposta transitória (menor $t_r$, menor $t_s$) — mas também maior sensibilidade a ruído de medição em alta frequência
+
+---
+
+## Critério de Nyquist (Visão Geral)
+
+O critério de Bode (margens) **pressupõe** sistema de fase mínima. Para o caso geral (incluindo polos de malha aberta no semiplano direito), usa-se o **critério de Nyquist**:
+
+::: {.callout-important}
+## Critério de Nyquist
+$$Z = N + P$$
+onde $P$ é o número de polos de malha aberta no SPD, $N$ é o número de envolvimentos **horários** do ponto $-1$ pelo diagrama de Nyquist de $G(j\omega)H(j\omega)$, e $Z$ é o número de polos de malha fechada no SPD. Estabilidade $\iff Z=0$.
+:::
+
+::: {.callout-tip}
+O diagrama de Nyquist é o gráfico de $G(j\omega)H(j\omega)$ no **plano complexo** (parte real vs. imaginária), percorrendo $\omega$ de $-\infty$ a $+\infty$. As margens de ganho e fase têm interpretação geométrica direta como distâncias ao ponto $-1$.
+:::
+
+---
+
+## Resumo: Domínio do Tempo vs. Frequência
+
+| Domínio do Tempo | Domínio da Frequência |
+|:--|:--|
+| Polos dominantes ($\zeta,\omega_n$) | Margem de fase, banda passante |
+| Sobressinal $M_p$ | Margem de fase (aprox. $\zeta\approx\text{MF}/100$) |
+| Tempo de acomodação $t_s$ | Banda passante (inversamente relacionada) |
+| Erro de regime permanente | Ganho em baixa frequência ($K_p$, $K_v$, $K_a$) |
+| Routh-Hurwitz | Critério de Nyquist |
+
+---
+
+## Exercícios
+
+1. Esboce o diagrama de Bode assintótico de $G(s) = \dfrac{100}{(s+2)(s+20)}$: identifique as frequências de canto e as inclinações em cada faixa.
+2. Para $G(s) = \dfrac{K}{s(s+4)}$, determine, em função de $K$, a frequência de cruzamento de ganho $\omega_{gc}$ e a margem de fase correspondente.
+3. Um sistema tem margem de fase medida de $45°$. Estime $\zeta$ e o sobressinal $M_p$ esperado em malha fechada.
+4. Explique, com base no critério de Nyquist, por que um sistema de fase mínima estável em malha aberta pode se tornar instável em malha fechada ao aumentar o ganho $K$.
+5. Compare as margens de ganho e fase do Exemplo desta aula ($G(s)=10/[s(s+1)(s+5)]$) com as do Exemplo 1 do LGR (Aula 7, mesma planta com $K=48$ no limite de estabilidade) — o que ocorre com a margem de fase quando $K\to K_{crít}$?
+
+---
+
+## Referências
+
+::: {#refs}
+:::

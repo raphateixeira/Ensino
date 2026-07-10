@@ -1,0 +1,273 @@
+
+\documentclass[oneside,a4paper,12pt]{article}
+\input{Package.tex}
+% Definições-----------------------------------------------------------
+\newcommand{\plano}{Ensino}%Ensino ou Aula
+\newcommand{\universidade}{Universidade Federal do Pará \par Campus Universitário de Tucuruí }
+\newcommand{\departamento}{Faculdade de Engenharia Elétrica}
+
+% ===== Dados da Disciplina =====
+\newcommand{\professor}{Dr. Raphael Barros Teixeira}
+\newcommand{\email}{raphaelbt@ufpa.br}
+\newcommand{\curso}{Engenharia Elétrica}
+\newcommand{\disciplina}{Sistemas de Controle I}
+\newcommand{\carater}{Obrigatória}
+\newcommand{\cargahoraria}{60h}
+\newcommand{\regime}{Extensivo}
+\newcommand{\periodo}{31/08/2026 a 19/12/2026}
+\newcommand{\prerequisito}{Análise de Sistemas Lineares}
+\newcommand{\periodoletivo}{2026.4}
+
+% ---------------------------------------------------------------------
+\begin{document}
+  \pagestyle{empty}
+% Cabeçalho--------------------------------------------------------------
+\begin{center}
+    \includegraphics[width=2.5cm]{Figuras/UFPA.png}
+
+    \vspace{8pt}
+
+    \universidade
+    \par
+    \departamento
+    \par
+
+    \vspace{16pt}
+
+    \LARGE \textbf{Plano de \plano}
+\end{center}
+
+%\vspace{6pt}
+%TABELA----------------------------------------------------------------
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+
+\begin{tabular}{|p{0.48\textwidth}|p{0.48\textwidth}|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Dados de Identificação}} \\
+\hline
+\textbf{Professor:} \professor &
+\textbf{E-mail:} \email \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Curso:} \curso} \\
+\hline
+\textbf{Disciplina:} \disciplina &
+\textbf{Caráter:} \carater \\
+\hline
+\textbf{Carga horária:} \cargahoraria &
+\textbf{Regime:} \regime \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Período de oferta:} \periodo} \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Pré-requisito:} \prerequisito} \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Período letivo:} \periodoletivo} \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{3mm}
+%Texto-----------------------------------------------------------------
+  \begin{snugshade}
+  \section{Ementa}
+  \end{snugshade}
+
+Introdução aos sistemas de controle realimentados: terminologia, malha aberta e malha fechada. Modelagem matemática de sistemas dinâmicos lineares e invariantes no tempo por meio da Transformada de Laplace e da função de transferência. Diagrama de blocos e álgebra de blocos. Resposta transitória de sistemas de primeira e de segunda ordem; especificações de desempenho no domínio do tempo. Resposta transitória de sistemas de ordem superior; polos dominantes; efeito de polos e zeros adicionais. Erro de regime permanente e classificação de sistemas por tipo. Critério de estabilidade de Routh-Hurwitz. Lugar geométrico das raízes (LGR): construção, análise e projeto. Resposta em frequência: diagramas de Bode, margens de ganho e de fase, critério de Nyquist. Controladores PID: ações proporcional, integral e derivativa; métodos de sintonia.
+
+  \begin{snugshade}
+  \section{Objetivos}
+\end{snugshade}
+
+\subsection*{Objetivo geral}
+
+Capacitar o(a) estudante a modelar sistemas dinâmicos lineares por função de transferência e a analisar e projetar sistemas de controle realimentados no domínio do tempo, do plano complexo $s$ e da frequência, com ênfase em controladores PID.
+
+\subsection*{Objetivos específicos}
+
+\begin{itemize}
+    \item Compreender a terminologia e a estrutura de sistemas de controle em malha aberta e em malha fechada.
+    \item Obter modelos de sistemas dinâmicos (mecânicos, elétricos e eletromecânicos) na forma de função de transferência, a partir da Transformada de Laplace.
+    \item Reduzir diagramas de blocos por álgebra de blocos.
+    \item Analisar a resposta transitória de sistemas de primeira e de segunda ordem a partir da localização dos polos, e estender essa análise a sistemas de ordem superior por meio do conceito de polos dominantes.
+    \item Calcular o erro de regime permanente, classificar sistemas por tipo e aplicar o critério de Routh-Hurwitz para análise de estabilidade.
+    \item Esboçar e interpretar o lugar geométrico das raízes (LGR) para análise e projeto de controladores.
+    \item Interpretar diagramas de Bode e determinar margens de ganho e de fase.
+    \item Projetar e sintonizar controladores PID para atender especificações de desempenho.
+\end{itemize}
+
+\begin{snugshade}
+  \section{Competências e Habilidades}
+\end{snugshade}
+
+\begin{itemize}
+
+    \item Modelar sistemas dinâmicos lineares e invariantes no tempo por função de transferência e por diagrama de blocos. Relacionar competências a serem desenvolvidas conforme seção 3.4 Competências e Habilidades, página 13, do PPC de Engenharia Elétrica de 2012.
+
+    \item Analisar a resposta transitória e o erro de regime permanente de sistemas de controle realimentados.
+
+    \item Aplicar o critério de Routh-Hurwitz e o lugar geométrico das raízes na análise de estabilidade e no projeto de controladores.
+
+    \item Interpretar a resposta em frequência (diagramas de Bode) e determinar margens de estabilidade.
+
+    \item Projetar e sintonizar controladores PID para especificações de desempenho.
+
+\end{itemize}
+
+Ao final da disciplina, espera-se que o discente seja capaz de modelar sistemas dinâmicos lineares por função de transferência e analisar e projetar sistemas de controle realimentados utilizando as ferramentas do domínio do tempo (resposta transitória, erro de regime permanente), do plano complexo $s$ (Routh-Hurwitz, lugar geométrico das raízes) e da frequência (diagramas de Bode), culminando no projeto de controladores PID.
+
+
+  \begin{snugshade}
+  \section{Conteúdo programático} % conteúdos programados para a aula organizados em tópicos (de 4 a 8).
+  \end{snugshade}
+
+  \begin{enumerate}
+    \item \textbf{Unidade 1 --- Introdução a sistemas de controle}
+    \begin{itemize}
+      \item Conceito de controle automático; componentes de um sistema de controle (planta, atuador, sensor, controlador).
+      \item Sistemas em malha aberta e em malha fechada; realimentação negativa.
+      \item Sinais e variáveis do sistema: referência, erro, sinal de controle, perturbação.
+      \item Objetivos de projeto: estabilidade, resposta transitória e erro de regime permanente.
+      \item Breve histórico do controle automático.
+    \end{itemize}
+
+    \item \textbf{Unidade 2 --- Modelagem e função de transferência}
+    \begin{itemize}
+      \item Revisão da Transformada de Laplace: propriedades e pares notáveis.
+      \item Função de transferência: definição, polos e zeros, equação característica.
+      \item Modelagem de sistemas mecânicos (massa-mola-amortecedor) e eletromecânicos (motor CC).
+      \item Diagrama de blocos: elementos, álgebra de blocos (série, paralelo, realimentação).
+      \item Redução de diagramas com múltiplas malhas por álgebra de blocos (malhas aninhadas).
+    \end{itemize}
+
+    \item \textbf{Unidade 3 --- Resposta transitória}
+    \begin{itemize}
+      \item Sistemas de primeira ordem: constante de tempo, resposta ao degrau, à rampa e ao impulso.
+      \item Sistemas de segunda ordem: frequência natural, coeficiente de amortecimento, classificação (sub, criticamente e sobreamortecido).
+      \item Especificações de desempenho: sobressinal, tempo de pico, tempo de acomodação, tempo de subida.
+      \item Sistemas de ordem superior: polos dominantes; efeito de polos e zeros adicionais; zeros de fase não-mínima.
+    \end{itemize}
+
+    \item \textbf{Unidade 4 --- Erro de regime permanente e estabilidade}
+    \begin{itemize}
+      \item Erro de regime permanente; teorema do valor final.
+      \item Tipo de sistema; constantes de erro estático (posição, velocidade, aceleração).
+      \item Conceito de estabilidade BIBO; critério de estabilidade de Routh-Hurwitz.
+      \item Casos especiais do array de Routh (zero na primeira coluna; linha inteiramente nula).
+    \end{itemize}
+
+    \item \textbf{Unidade 5 --- Lugar geométrico das raízes e resposta em frequência}
+    \begin{itemize}
+      \item Condições de ângulo e de módulo; regras de construção do lugar geométrico das raízes (LGR).
+      \item Assíntotas, pontos de quebra, ângulos de partida/chegada, cruzamento do eixo imaginário.
+      \item Projeto de ganho por LGR.
+      \item Resposta em frequência: diagrama de Bode (assíntotas, fatores básicos).
+      \item Margens de ganho e de fase; relação entre margem de fase e amortecimento; noção do critério de Nyquist.
+    \end{itemize}
+
+    \item \textbf{Unidade 6 --- Controladores PID}
+    \begin{itemize}
+      \item Ação proporcional (P), integral (I) e derivativa (D): efeitos individuais sobre a resposta.
+      \item Estruturas PI, PD e PID; efeito sobre o tipo do sistema e sobre a estabilidade.
+      \item Sintonia de Ziegler-Nichols: método da malha fechada e método da curva de reação.
+      \item Aspectos práticos de implementação: windup integral, ruído na ação derivativa.
+    \end{itemize}
+  \end{enumerate}
+
+
+
+  \begin{snugshade}
+  \section{Procedimentos metodológicos} % estratégias relevantes adotadas para alcançar os objetivos.
+  \end{snugshade}
+
+As aulas serão ministradas de forma expositiva e dialogada, com apoio de recursos audiovisuais e simulações computacionais (MATLAB/Simulink - Python), seguidas da resolução de listas de exercícios e discussão orientada de estudos de caso aplicados. As avaliações poderão utilizar questões da prova do ENADE e de concursos públicos.
+
+  \begin{snugshade}
+  \section{Recursos didáticos} % quadro, giz, retro-projetor, filme, música, quadrinhos, etc.
+  \end{snugshade}
+    \begin{itemize}
+	  \item Quadro e apoio de recursos audiovisuais (data-show).
+	  \item Softwares de simulação de sistemas de controle (MATLAB/Simulink, Python/\texttt{python-control}).
+	  \item SIGAA - UFPA.
+    \end{itemize}
+  %\newpage
+  \begin{snugshade}
+\section{Avaliação}
+\end{snugshade}
+
+A avaliação da aprendizagem será realizada por meio de prova escrita e por resolução de lista de exercícios. provas escritas, trabalhos individuais ou em grupo, listas de exercícios, seminários, atividades práticas e/ou outras estratégias definidas pelo docente, de acordo com a natureza da disciplina.
+
+A composição da nota final (NF) será estabelecida a partir da média aritmética das duas avaliações realizadas ao longo do período adicionada da pontuação obtida em atividades complementares - resolução de listas de exercícios.
+
+\begin{center}
+$\mathrm{NF} = \dfrac{A_1 + A_2}{2} +P_l$
+\end{center}
+
+Será considerado aprovado o discente que obtiver frequência mínima de 75\% da carga horária da disciplina e nota final igual ou superior a 5,0 pontos (Regulamento de graduação da UFPA).
+
+Estes critérios de avaliação, instrumentos utilizados, pesos atribuídos e cronograma das atividades avaliativas serão apresentados no início do período letivo, podendo ser ajustados, quando necessário, por motivos pedagógicos, mediante comunicação prévia aos discentes.
+
+Entretanto, as avaliações na modalidade de prova escrita deverão limitar-se a, no máximo, duas aplicações durante o período acadêmico, devendo ocorrer nas semanas de provas definidas no calendário acadêmico, em conformidade com deliberação aprovada pelo Colegiado da Faculdade de Engenharia Elétrica.%\newpage
+
+% Referências bibliográficas-------------------------------------------
+% Programação Semestral (descomente o bloco abaixo para habilitar)-------
+%
+%  \begin{snugshade}
+%  \section*{Programação Semestral} %
+%  \end{snugshade}
+%
+%	\begin{tabular}{ |c|c|p{13cm}| }
+%	  \hline
+%	  \textbf{Aula}& \textbf{Data}  &  \multicolumn{1}{|c|}{\textbf{Conteúdo}} \\
+%	  \hline
+%	   01 & 01/01 & Apresentação da disciplina e diretrizes do curso \\
+%	  \hline
+%	   02 & 01/01 &           \\
+%	  \hline
+%	   03 & 01/01 &           \\
+%	  \hline
+%	   04 & 01/01 &           \\
+%	  \hline
+%	   05 & 01/01 &           \\
+%	  \hline
+%	   06 & 01/01 &           \\
+%	  \hline
+%	   07 & 01/01 & Prova Bimestral \\
+%	  \hline
+%	   08 & 01/01 & Prova Substitutiva \\
+%	  \hline
+%	   09 & 01/01 &           \\
+%	  \hline
+%	   10 & 01/01 &           \\
+%	  \hline
+%	   11 & 01/01 &           \\
+%	  \hline
+%	   12 & 01/01 &           \\
+%	  \hline
+%	   13 & 01/01 & Encerramento do conteúdo e revisão de tópicos da disciplina \\
+%	  \hline
+%	   14 & 01/01 & Prova Final \\
+%	  \hline
+%	   15 & 01/01 & Prova de Recuperação \\
+%      \hline
+%
+%	\end{tabular}
+%\vspace{3mm}
+% Referências bibliográficas-------------------------------------------
+\vspace{10pt}
+\nocite{*}
+\nocite{*}
+
+\printbibliography[keyword=basica, title={Bibliografia Básica}]
+
+\printbibliography[keyword=complementar, title={Bibliografia Complementar}]
+%\newpage
+% Anexos (descomente para habilitar)------------------------------------
+%\begin{snugshade}
+%\section*{Anexo I} %
+%\end{snugshade}
+%
+%\begin{figure}[h]
+%\includegraphics[width=15cm]{Figuras/Universe.png}
+%%\centering\caption{There's a map of concepts above.}
+%\end{figure}
+\end{document}
