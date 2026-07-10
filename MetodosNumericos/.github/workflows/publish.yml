@@ -37,13 +37,22 @@ jobs:
         with:
           r-version: "4.4.0"
 
-      - name: Instalar dependências R (knitr + reticulate)
+      - name: Instalar dependências R (knitr + reticulate + tikzDevice)
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           packages: |
             any::knitr
             any::rmarkdown
             any::reticulate
+            any::tikzDevice
+
+      - name: Instalar TinyTeX + pacotes TikZ
+        run: |
+          quarto install tinytex --no-prompt
+          echo "$HOME/.TinyTeX/bin/x86_64-linux" >> "$GITHUB_PATH"
+          export PATH="$HOME/.TinyTeX/bin/x86_64-linux:$PATH"
+          tlmgr update --self
+          tlmgr install pgf standalone
 
       - name: 💻 Renderizar o Quarto
         run: quarto render
