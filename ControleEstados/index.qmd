@@ -13,10 +13,35 @@ Notas de aula de Sistemas de Controle II - Espaço de Estados:
 
 Turma de 2024 da FEE - CAMTUC - UFPA.
 
-* Aula 0 - [Plano de Ensino](Notas/SS00PlanoEnsino.qmd)
-* Aula 1 - [Modelagem no Espaço de Estados](Notas/SS01Modelagem.qmd)
-* Aula 2 - [Conversão de Representações](Notas/SS02ConversaoRepresentacoes.qmd)
-* Aula 3 - [Formas Canônicas](Notas/SS03FormasCanonicas.qmd)
-* Aula 4 - [Simulação Matlab/Simulink](Notas/SS04SimulacaoMatlab.qmd)
-* Aula 5 - [Controle por Alocação de Polos](Notas/SS05ControleAlocacao.qmd)
-* Aula 6 - [Controle Servomecanismo](Notas/SS06ControleServosistema.qmd)
+```{=html}
+<div class="categoria-grid">
+<a class="categoria-card" href="Notas/SS00PlanoEnsino.qmd">
+  <h3>Aula 0</h3>
+  <p>Plano de Ensino</p>
+</a>
+<a class="categoria-card" href="Notas/SS01Modelagem.qmd">
+  <h3>Aula 1</h3>
+  <p>Modelagem no Espaço de Estados</p>
+</a>
+<a class="categoria-card" href="Notas/SS02ConversaoRepresentacoes.qmd">
+  <h3>Aula 2</h3>
+  <p>Conversão de Representações</p>
+</a>
+<a class="categoria-card" href="Notas/SS03FormasCanonicas.qmd">
+  <h3>Aula 3</h3>
+  <p>Formas Canônicas</p>
+</a>
+<a class="categoria-card" href="Notas/SS04SimulacaoMatlab.qmd">
+  <h3>Aula 4</h3>
+  <p>Simulação Matlab/Simulink</p>
+</a>
+<a class="categoria-card" href="Notas/SS05ControleAlocacao.qmd">
+  <h3>Aula 5</h3>
+  <p>Controle por Alocação de Polos</p>
+</a>
+<a class="categoria-card" href="Notas/SS06ControleServosistema.qmd">
+  <h3>Aula 6</h3>
+  <p>Controle Servomecanismo</p>
+</a>
+</div>
+```
