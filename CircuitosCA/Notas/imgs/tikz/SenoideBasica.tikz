@@ -4,8 +4,10 @@
 % ---------------------------------------------------------------------
 \begin{tikzpicture}
 \begin{axis}[
-  width=11cm, height=6cm,
+  width=18cm, height=8.5cm,
   axis lines=middle,
+  label style={font=\Large},
+  tick label style={font=\Large},
   xlabel={$\omega t$ (rad)}, ylabel={$v(t)/V_m$},
   xtick={0,90,180,270,360},
   xticklabels={$0$,$\pi/2$,$\pi$,$3\pi/2$,$2\pi$},
@@ -15,9 +17,10 @@
   domain=0:360, samples=200,
   enlargelimits=false,
   clip=false,
+  line width=2.2pt,
 ]
-\addplot[blue!70!black, line width=1.2pt] {cos(x)};
-\draw[red!70!black, <->, thick] (axis cs:0,-1.25) -- (axis cs:360,-1.25)
-  node[midway, below, font=\small, black] {$T = 2\pi/\omega$};
+\addplot[blue!70!black, line width=2.4pt] {cos(x)};
+\draw[red!70!black, <->, line width=2pt] (axis cs:0,-1.25) -- (axis cs:360,-1.25)
+  node[midway, below, font=\Large, black, fill=white] {$T = 2\pi/\omega$};
 \end{axis}
 \end{tikzpicture}

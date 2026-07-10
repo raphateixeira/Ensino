@@ -34,6 +34,8 @@ website:
             href: Notas/Aula00PlanoEnsino.qmd
           - text: "1 · Senoides e Fasores"
             href: Notas/Aula01Senoides.qmd
+          - text: "2 · Relações Tensão-Corrente em CA"
+            href: Notas/Aula02Impedancia.qmd
       - text: "Avaliações"
         menu:
           # Adicione/edite uma entrada por avaliação:

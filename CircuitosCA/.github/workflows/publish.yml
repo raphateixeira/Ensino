@@ -40,7 +40,7 @@ jobs:
         run: |
           quarto install tinytex --no-prompt
           ~/.TinyTeX/bin/x86_64-linux/tlmgr update --self
-          ~/.TinyTeX/bin/x86_64-linux/tlmgr install pgf pgfplots xcolor
+          ~/.TinyTeX/bin/x86_64-linux/tlmgr install pgf pgfplots xcolor circuitikz
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2

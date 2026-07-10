@@ -1,0 +1,299 @@
+---
+title: "Relações Tensão-Corrente em CA"
+subtitle: "Circuitos Elétricos II — CA"
+institute: "Universidade Federal do Pará"
+author: "Prof. Dr. Raphael Teixeira"
+format:
+  revealjs:
+    theme: [default, ../Tema.scss]
+    self-contained: true
+    transition: slide
+    slide-number: true
+    width: 1600
+    height: 900
+    footer: " "
+    center: true
+    title-slide-attributes:
+      data-background-image: "imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 40px center"
+engine: knitr
+---
+
+```{r setup, include=FALSE}
+# Habilita circuitikz (diagramas de circuito) e pgfplots (gráficos) nos
+# chunks {tikz} desta aula.
+knitr::opts_chunk$set(engine.opts = list(
+  extra.preamble = c("\\usepackage{circuitikz}", "\\usepackage{pgfplots}",
+                      "\\pgfplotsset{compat=1.18}"),
+  # standalone's crop padrão só reconhece \begin{tikzpicture}; circuitikz usa
+  # \begin{circuitikz}, então precisa ser listado explicitamente em "multi".
+  classoption = "tikz,multi=circuitikz"
+))
+```
+
+## Impedância: A Grande Ideia
+
+No domínio fasorial, a relação tensão-corrente para **qualquer** elemento linear é:
+
+$$\mathbf{V} = \mathbf{Z}\,\mathbf{I}$$
+
+onde $\mathbf{Z}$ é a **impedância** — generalização da resistência para CA.
+
+::: {.callout-tip}
+## Analogia com a Lei de Ohm
+A impedância $\mathbf{Z}$ faz para circuitos CA o que a resistência $R$ faz para CC. As mesmas técnicas de análise (divisor de tensão, nós, malhas, Thévenin...) se aplicam, mas com **números complexos**.
+:::
+
+**Forma geral:** $\mathbf{Z} = R + jX$ $[\Omega]$, onde $R$ é a resistência (parte real) e $X$ é a reatância (parte imaginária).
+
+---
+
+## Resistor em CA
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 5
+\input{imgs/tikz/ElementoR.tikz}
+```
+
+**No domínio do tempo:** $v(t) = R\,i(t)$. Se $i(t) = I_m\cos(\omega t+\theta)$, então $v(t) = RI_m\cos(\omega t+\theta) = V_m\cos(\omega t+\theta)$, com $V_m = RI_m$ e **mesma fase**.
+
+**No domínio fasorial:** $\mathbf{V} = R\,\mathbf{I} \implies \mathbf{Z}_R = R$
+
+- Tensão e corrente **em fase**; impedância **puramente real** ($\mathbf{Z}_R = R\angle 0°$); dissipa energia.
+
+---
+
+## Resistor em CA — Forma de Onda
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 11
+\input{imgs/tikz/FaseResistor.tikz}
+```
+
+---
+
+## Indutor em CA
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 5
+\input{imgs/tikz/ElementoL.tikz}
+```
+
+**No domínio do tempo:** $v(t) = L\dfrac{di(t)}{dt}$. Se $i(t) = I_m\cos(\omega t+\theta)$, então $v(t) = \omega L I_m\cos(\omega t+\theta+90°)$.
+
+**No domínio fasorial** (usando $\frac{d}{dt}\to j\omega$): $\mathbf{V} = j\omega L\,\mathbf{I} \implies \mathbf{Z}_L = j\omega L = jX_L$
+
+- Tensão **adianta** a corrente em $90°$ ("ELI"); **reatância indutiva** $X_L=\omega L$ cresce com a frequência; não dissipa energia.
+
+---
+
+## Indutor em CA — Forma de Onda
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 11
+\input{imgs/tikz/FaseIndutor.tikz}
+```
+
+---
+
+## Capacitor em CA
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 5
+\input{imgs/tikz/ElementoC.tikz}
+```
+
+**No domínio do tempo:** $i(t) = C\dfrac{dv(t)}{dt}$. Se $v(t) = V_m\cos(\omega t+\phi)$, então $i(t) = \omega C V_m\cos(\omega t+\phi+90°)$.
+
+**No domínio fasorial:** $\mathbf{I} = j\omega C\,\mathbf{V} \implies \mathbf{Z}_C = \dfrac{1}{j\omega C} = -jX_C$
+
+- Corrente **adianta** a tensão em $90°$ ("ICE"); **reatância capacitiva** $X_C=\dfrac{1}{\omega C}$ decresce com a frequência; não dissipa energia.
+
+---
+
+## Capacitor em CA — Forma de Onda
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 11
+\input{imgs/tikz/FaseCapacitor.tikz}
+```
+
+---
+
+## Reatância: Resistência a Variações
+
+A **reatância** $X$ mede a oposição ao fluxo de corrente CA devida ao armazenamento de energia:
+
+| Elemento | Reatância | Impedância | Comportamento com $\omega$ |
+|----------|-----------|------------|---------------------------|
+| Resistor | — | $R$ | Independente |
+| Indutor | $X_L = \omega L$ | $jX_L$ | Cresce com $\omega$ |
+| Capacitor | $X_C = \dfrac{1}{\omega C}$ | $-jX_C$ | Decresce com $\omega$ |
+
+---
+
+## Reatância — Gráficos
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 12
+\usepgfplotslibrary{groupplots}
+\input{imgs/tikz/Reatancias.tikz}
+```
+
+---
+
+## O Mnemônico ELI the ICEman
+
+::: {.callout-tip}
+## Como memorizar a defasagem
+**ELI**: Em um indutor (**L**), a tensão (**E**) adianta a corrente (**I**). **ICE**: Em um capacitor (**C**), a corrente (**I**) adianta a tensão (**E**).
+:::
+
+**Indutor — ELI:** $\mathbf{Z}_L = j\omega L = \omega L\angle 90°$, logo $\mathbf{V}_L = j\omega L\,\mathbf{I} \implies \phi_V = \phi_I + 90°$ — a tensão está $90°$ **à frente** da corrente.
+
+**Capacitor — ICE:** $\mathbf{Z}_C = \dfrac{1}{j\omega C} = \dfrac{1}{\omega C}\angle{-90°}$, logo $\mathbf{V}_C = \dfrac{\mathbf{I}}{j\omega C} \implies \phi_V = \phi_I - 90°$ — a tensão está $90°$ **atrás** da corrente.
+
+---
+
+## Tabela Resumo: R, L e C em CA {.smaller}
+
+| | Resistor | Indutor | Capacitor |
+|---|---|---|---|
+| **Relação v-i (tempo)** | $v = Ri$ | $v = L\dfrac{di}{dt}$ | $i = C\dfrac{dv}{dt}$ |
+| **Impedância** | $\mathbf{Z} = R$ | $\mathbf{Z} = j\omega L$ | $\mathbf{Z} = \dfrac{1}{j\omega C}$ |
+| **Módulo** | $R$ | $\omega L$ | $\dfrac{1}{\omega C}$ |
+| **Ângulo** | $0°$ | $+90°$ | $-90°$ |
+| **Defasagem v-i** | Em fase | $v$ adianta $i$ em 90° | $i$ adianta $v$ em 90° |
+| **Potência média** | $\dfrac{V_m I_m}{2}$ | $0$ | $0$ |
+
+---
+
+## Admitância
+
+A **admitância** $\mathbf{Y}$ é o inverso da impedância:
+
+$$\mathbf{Y} = \frac{1}{\mathbf{Z}} = G + jB \qquad [\text{S} = \Omega^{-1}]$$
+
+$G$ é a condutância (parte real) e $B$ é a susceptância (parte imaginária).
+
+| Elemento | Impedância | Admitância |
+|----------|-----------|-----------|
+| Resistor | $R$ | $G = \dfrac{1}{R}$ |
+| Indutor | $j\omega L$ | $\dfrac{1}{j\omega L} = -\dfrac{j}{\omega L}$ |
+| Capacitor | $\dfrac{1}{j\omega C}$ | $j\omega C$ |
+
+::: {.callout-tip}
+A admitância é conveniente para **elementos em paralelo**: $\mathbf{Y}_{total} = \mathbf{Y}_1 + \mathbf{Y}_2 + \cdots$
+:::
+
+---
+
+## Impedâncias em Série e Paralelo
+
+As mesmas regras do CC se aplicam no domínio fasorial:
+
+**Série:** $\mathbf{Z}_{eq} = \mathbf{Z}_1 + \mathbf{Z}_2 + \cdots + \mathbf{Z}_N \qquad$ Divisor de tensão: $\mathbf{V}_k = \dfrac{\mathbf{Z}_k}{\mathbf{Z}_{eq}}\,\mathbf{V}_{total}$
+
+**Paralelo:** $\dfrac{1}{\mathbf{Z}_{eq}} = \dfrac{1}{\mathbf{Z}_1} + \dfrac{1}{\mathbf{Z}_2} + \cdots \qquad$ Divisor de corrente (dois elementos): $\mathbf{I}_1 = \dfrac{\mathbf{Z}_2}{\mathbf{Z}_1+\mathbf{Z}_2}\,\mathbf{I}_{total}$
+
+::: {.callout-warning}
+## Atenção
+Impedâncias são números **complexos** — as operações devem ser feitas com álgebra complexa, não com módulos diretamente.
+:::
+
+---
+
+## Exemplo 1: Indutor em CA
+
+**Problema:** Um indutor de $L = 10\text{ mH}$ tem tensão $v(t) = 50\cos(2000t + 30°)$ V. Encontre a corrente $i(t)$.
+
+**Solução:**
+
+1. Fasor da tensão: $\mathbf{V} = 50\angle 30°$ V
+2. Impedância do indutor: $\mathbf{Z}_L = j\omega L = j(2000)(0{,}01) = j20\ \Omega = 20\angle 90°\ \Omega$
+3. Corrente fasorial: $\mathbf{I} = \dfrac{\mathbf{V}}{\mathbf{Z}_L} = \dfrac{50\angle 30°}{20\angle 90°} = 2{,}5\angle{-60°}\ \text{A}$
+
+$$\boxed{i(t) = 2{,}5\cos(2000t - 60°)\ \text{A}}$$
+
+> A corrente **atrasa** a tensão em $90°$, como esperado para um indutor.
+
+---
+
+## Exemplo 2: Capacitor em CA
+
+**Problema:** Um capacitor de $C = 100\,\mu\text{F}$ tem corrente $i(t) = 8\cos(200t + 15°)$ mA. Encontre a tensão $v(t)$.
+
+**Solução:**
+
+1. Fasor da corrente: $\mathbf{I} = 8\angle 15°$ mA
+2. Impedância do capacitor: $\mathbf{Z}_C = \dfrac{1}{j\omega C} = \dfrac{1}{j(200)(100\times10^{-6})} = -j50\ \Omega = 50\angle{-90°}\ \Omega$
+3. Tensão fasorial: $\mathbf{V} = \mathbf{Z}_C\,\mathbf{I} = (50\angle{-90°})(8\times10^{-3}\angle 15°) = 0{,}4\angle{-75°}\ \text{V}$
+
+$$\boxed{v(t) = 0{,}4\cos(200t - 75°)\ \text{V}}$$
+
+> A tensão **atrasa** a corrente em $90°$, como esperado para um capacitor.
+
+---
+
+## Exemplo 3: Circuito RL Série
+
+**Problema:** Circuito com $R = 3\,\Omega$ e $L = 4\text{ mH}$ em série, alimentado por $v_s(t) = 10\cos(500t)$ V. Encontre a corrente e as tensões em cada elemento.
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 7
+\input{imgs/tikz/CircuitoRL.tikz}
+```
+
+---
+
+## Exemplo 3 — Solução (1/2)
+
+$$\mathbf{Z}_{RL} = R + j\omega L = 3 + j(500)(0{,}004) = 3 + j2\ \Omega$$
+
+$$|\mathbf{Z}| = \sqrt{3^2+2^2} = \sqrt{13} \approx 3{,}61\ \Omega, \qquad \phi = \arctan\!\left(\frac{2}{3}\right) \approx 33{,}7°$$
+
+$$\mathbf{I} = \frac{\mathbf{V}_s}{\mathbf{Z}} = \frac{10\angle 0°}{3{,}61\angle 33{,}7°} = 2{,}77\angle{-33{,}7°}\ \text{A}$$
+
+---
+
+## Exemplo 3 — Solução (2/2)
+
+$$\mathbf{V}_R = R\,\mathbf{I} = 3(2{,}77\angle{-33{,}7°}) = 8{,}31\angle{-33{,}7°}\ \text{V}$$
+
+$$\mathbf{V}_L = j\omega L\,\mathbf{I} = (2\angle 90°)(2{,}77\angle{-33{,}7°}) = 5{,}54\angle 56{,}3°\ \text{V}$$
+
+$$\boxed{i(t) = 2{,}77\cos(500t-33{,}7°)\ \text{A}}$$
+
+---
+
+## Exercícios
+
+1. Um resistor de $R = 100\,\Omega$ tem corrente $i(t) = 2\cos(1000t)$ A. Encontre $v(t)$ e a impedância $\mathbf{Z}_R$.
+2. Um indutor de $L = 50$ mH opera em $\omega = 377$ rad/s. Calcule $X_L$ e $\mathbf{Z}_L$.
+3. Um capacitor de $C = 220\,\mu\text{F}$ opera em $f = 60$ Hz. Calcule $X_C$ e $\mathbf{Z}_C$.
+4. Para o circuito RL do Exemplo 3, recalcule $\mathbf{I}$, $\mathbf{V}_R$ e $\mathbf{V}_L$ se a frequência dobrar ($\omega = 1000$ rad/s).
+5. Dois elementos com $\mathbf{Z}_1 = 4+j3\ \Omega$ e $\mathbf{Z}_2 = 2-j2\ \Omega$ estão em paralelo. Calcule $\mathbf{Z}_{eq}$ usando admitâncias.
+
+---
+
+## Referências
+
+::: {#refs}
+:::

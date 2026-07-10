@@ -3,3 +3,12 @@
 /_site/
 .DS_Store
 Notas/*.log
+PlanoEnsino/*.aux
+PlanoEnsino/*.bbl
+PlanoEnsino/*.bcf
+PlanoEnsino/*.blg
+PlanoEnsino/*.fdb_latexmk
+PlanoEnsino/*.fls
+PlanoEnsino/*.log
+PlanoEnsino/*.out
+PlanoEnsino/*.run.xml

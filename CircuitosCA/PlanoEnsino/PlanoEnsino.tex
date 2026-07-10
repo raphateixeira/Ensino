@@ -1,0 +1,315 @@
+
+\documentclass[oneside,a4paper,12pt]{article}
+\input{Package.tex}
+% Definições-----------------------------------------------------------
+\newcommand{\plano}{Ensino}%Ensino ou Aula
+\newcommand{\universidade}{Universidade Federal do Pará \par Campus Universitário de Tucuruí }
+\newcommand{\departamento}{Faculdade de Engenharia Elétrica}
+
+% ===== Dados da Disciplina =====
+\newcommand{\professor}{Dr. Raphael Barros Teixeira}
+\newcommand{\email}{raphaelbt@ufpa.br}
+\newcommand{\curso}{Engenharia Elétrica}
+\newcommand{\disciplina}{Circuitos Elétricos II}
+\newcommand{\carater}{Obrigatória}
+\newcommand{\cargahoraria}{60h}
+\newcommand{\regime}{Extensivo}
+\newcommand{\periodo}{31/08/2026 a 19/12/2026}
+\newcommand{\prerequisito}{Circuitos Elétricos I, Análise de Sistemas Lineares e Funções de uma Variável Complexa}
+\newcommand{\periodoletivo}{2026.4}
+
+% ---------------------------------------------------------------------
+\begin{document}
+  \pagestyle{empty}
+% Cabeçalho--------------------------------------------------------------
+\begin{center}
+    \includegraphics[width=2.5cm]{Figuras/UFPA.png}
+
+    \vspace{8pt}
+
+    \universidade
+    \par
+    \departamento
+    \par
+
+    \vspace{16pt}
+
+    \LARGE \textbf{Plano de \plano}
+\end{center}
+
+%\vspace{6pt}
+%TABELA----------------------------------------------------------------
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+
+\begin{tabular}{|p{0.48\textwidth}|p{0.48\textwidth}|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Dados de Identificação}} \\
+\hline
+\textbf{Professor:} \professor &
+\textbf{E-mail:} \email \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Curso:} \curso} \\
+\hline
+\textbf{Disciplina:} \disciplina &
+\textbf{Caráter:} \carater \\
+\hline
+\textbf{Carga horária:} \cargahoraria &
+\textbf{Regime:} \regime \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Período de oferta:} \periodo} \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Pré-requisito:} \prerequisito} \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Período letivo:} \periodoletivo} \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{3mm}
+%Texto-----------------------------------------------------------------
+  \begin{snugshade}
+  \section{Ementa}
+  \end{snugshade}
+
+Análise de circuitos elétricos em regime permanente senoidal (corrente alternada). Representação de sinais senoidais no domínio do tempo e no domínio fasorial. Relações tensão-corrente nos elementos passivos R, L e C em regime senoidal. Impedância e admitância complexas. Associações série, paralela e mistas em CA. Leis de Kirchhoff aplicadas a circuitos em CA. Métodos sistemáticos de análise: análise nodal e análise de malhas em regime senoidal. Teoremas de circuitos (superposição, Thévenin, Norton e máxima transferência de potência) aplicados a circuitos em CA. Potência em CA: potência instantânea, ativa, reativa, aparente, complexa e fator de potência. Correção do fator de potência. Circuitos trifásicos equilibrados e desequilibrados nas configurações estrela e triângulo; cálculo de potência em sistemas trifásicos.
+
+  \begin{snugshade}
+  \section{Objetivos}
+\end{snugshade}
+
+\subsection*{Objetivo geral}
+
+Capacitar o(a) estudante a analisar circuitos elétricos lineares em regime permanente senoidal, utilizando a representação fasorial e os métodos sistemáticos de análise de circuitos, com aplicação ao cálculo de potência em sistemas monofásicos e trifásicos.
+
+\subsection*{Objetivos específicos}
+
+\begin{itemize}
+    \item Compreender a representação de sinais senoidais por meio de fasores e a transformação entre os domínios do tempo e da frequência.
+    \item Determinar as relações tensão-corrente e a impedância dos elementos R, L e C em regime senoidal.
+    \item Resolver circuitos série, paralelo e mistos em CA utilizando impedância complexa.
+    \item Aplicar as leis de Kirchhoff, a análise nodal e a análise de malhas a circuitos em regime senoidal.
+    \item Aplicar os teoremas de circuitos (superposição, Thévenin, Norton e máxima transferência de potência) a circuitos em CA.
+    \item Calcular potência instantânea, ativa, reativa, aparente e complexa, e realizar a correção do fator de potência.
+    \item Analisar circuitos trifásicos equilibrados e desequilibrados e calcular a potência em sistemas trifásicos.
+\end{itemize}
+
+\begin{snugshade}
+  \section{Competências e Habilidades}
+\end{snugshade}
+
+\begin{itemize}
+
+    \item Representar grandezas senoidais na forma fasorial e operar com impedâncias de elementos resistivos, indutivos e capacitivos. Relacionar competências a serem desenvolvidas conforme seção 3.4 Competências e Habilidades, página 13, do PPC de Engenharia Elétrica de 2012.
+
+    \item Analisar circuitos série e paralelo em regime senoidal permanente.
+
+    \item Aplicar as leis circuitais e os teoremas de circuitos à análise de circuitos de corrente alternada.
+
+    \item Utilizar os métodos de análise de malhas e de nós na solução de circuitos CA.
+
+    \item Calcular a potência em circuitos monofásicos e trifásicos.
+
+\end{itemize}
+
+Ao final da disciplina, espera-se que o discente seja capaz de analisar circuitos elétricos em regime senoidal permanente utilizando fasores, impedâncias, teoremas de circuitos e os métodos de malhas e de nós, além de determinar a potência envolvida em circuitos monofásicos e trifásicos.
+
+
+  \begin{snugshade}
+  \section{Conteúdo programático} % conteúdos programados para a aula organizados em tópicos (de 4 a 8).
+  \end{snugshade}
+
+  \begin{enumerate}
+    \item \textbf{Unidade 1 --- Senoides e fasores}
+    \begin{itemize}
+      \item Características de um sinal senoidal: amplitude, frequência angular, período, fase.
+      \item Relação entre seno e cosseno; defasagem entre sinais senoidais.
+      \item Números complexos: forma retangular, polar e exponencial; operações.
+      \item Transformação fasorial: do domínio do tempo para o domínio da frequência e vice-versa.
+      \item Relações fasoriais para os elementos R, L e C.
+    \end{itemize}
+
+    \item \textbf{Unidade 2 --- Impedância, admitância e associações em CA}
+    \begin{itemize}
+      \item Impedância complexa: definição, resistência e reatância.
+      \item Admitância complexa: condutância e susceptância.
+      \item Diagramas de impedância e triângulo de impedâncias.
+      \item Associação de impedâncias em série e em paralelo.
+      \item Divisores de tensão e de corrente em CA.
+      \item Transformação estrela-triângulo (Y-$\Delta$) de impedâncias.
+    \end{itemize}
+
+    \item \textbf{Unidade 3 --- Leis circuitais e métodos de análise em CA}
+    \begin{itemize}
+      \item Leis de Kirchhoff das tensões (LKT) e das correntes (LKC) em regime fasorial.
+      \item Análise nodal em circuitos com fontes independentes e dependentes.
+      \item Análise de malhas em circuitos com fontes independentes e dependentes.
+      \item Circuitos com fontes de tensão e de corrente em CA; supernó e supermalha.
+    \end{itemize}
+
+    \item \textbf{Unidade 4 --- Teoremas de circuitos em CA}
+    \begin{itemize}
+      \item Teorema da superposição aplicado a circuitos com múltiplas fontes senoidais.
+      \item Teorema de Thévenin em regime senoidal.
+      \item Teorema de Norton em regime senoidal.
+      \item Transferência de máxima potência com carga complexa.
+    \end{itemize}
+
+    \item \textbf{Unidade 5 --- Potência em circuitos de corrente alternada}
+    \begin{itemize}
+      \item Potência instantânea e potência média (ativa).
+      \item Valor eficaz (RMS) de tensão e corrente.
+      \item Potência reativa e potência aparente.
+      \item Potência complexa e triângulo de potências.
+      \item Fator de potência: definição, natureza indutiva e capacitiva.
+      \item Correção do fator de potência por compensação reativa.
+      \item Máxima transferência de potência média.
+    \end{itemize}
+
+    \item \textbf{Unidade 6 --- Circuitos trifásicos}
+    \begin{itemize}
+      \item Geração de tensões trifásicas; sequência de fases.
+      \item Configurações estrela (Y) e triângulo ($\Delta$) para fonte e carga.
+      \item Circuitos trifásicos equilibrados: Y-Y, Y-$\Delta$, $\Delta$-$\Delta$ e $\Delta$-Y.
+      \item Relações entre grandezas de fase e de linha.
+      \item Circuitos trifásicos desequilibrados (introdução).
+      \item Potência em sistemas trifásicos equilibrados; método dos dois wattímetros.
+    \end{itemize}
+  \end{enumerate}
+
+
+
+  \begin{snugshade}
+  \section{Procedimentos metodológicos} % estratégias relevantes adotadas para alcançar os objetivos.
+  \end{snugshade}
+
+As aulas serão ministradas de forma expositiva e dialogada, com apoio de recursos audiovisuais e simulações computacionais (MATLAB/Simulink - Python - LTspice), seguidas da resolução de listas de exercícios e discussão orientada de estudos de caso aplicados. As avaliações poderão utilizar questões da prova do ENADE e de concursos públicos.
+
+  \begin{snugshade}
+  \section{Recursos didáticos} % quadro, giz, retro-projetor, filme, música, quadrinhos, etc.
+  \end{snugshade}
+    \begin{itemize}
+	  \item Quadro e apoio de recursos audiovisuais (data-show).
+	  \item Softwares de simulação de circuitos elétricos.
+	  \item SIGAA - UFPA.
+    \end{itemize}
+  %\newpage
+  \begin{snugshade}
+\section{Avaliação}
+\end{snugshade}
+
+A avaliação da aprendizagem será realizada por meio de duas provas escritas bimestrais (A1 e A2) e de listas de exercícios associadas a cada uma delas, podendo ainda ser complementada por trabalhos individuais ou em grupo, seminários, atividades práticas e/ou outras estratégias definidas pelo docente, de acordo com a natureza da disciplina.
+
+Cada prova bimestral vale, no máximo, 9,0 pontos. A pontuação da lista de exercícios de cada bimestre ($Pl_1$ e $Pl_2$) vale, no máximo, 1,0 ponto, dividido em duas partes: 0,5 ponto pela resolução e entrega da lista de exercícios e 0,5 ponto pela resolução, em sala de aula, de uma questão sorteada aleatoriamente dentre as da lista.
+
+A composição da nota final (NF) será estabelecida a partir da média aritmética das notas obtidas em cada bimestre, já somadas à respectiva pontuação da lista de exercícios.
+
+\begin{center}
+$\mathrm{NF} = \dfrac{(A_1 + Pl_1) + (A_2 + Pl_2)}{2}$
+\end{center}
+
+Não haverá prova de recuperação. Será considerado aprovado o discente que obtiver frequência mínima de 75\% da carga horária da disciplina e nota final igual ou superior a 5,0 pontos (Regulamento de graduação da UFPA).
+
+Estes critérios de avaliação, instrumentos utilizados, pesos atribuídos e cronograma das atividades avaliativas serão apresentados no início do período letivo, podendo ser ajustados, quando necessário, por motivos pedagógicos, mediante comunicação prévia aos discentes.
+
+Entretanto, as avaliações na modalidade de prova escrita deverão limitar-se a, no máximo, duas aplicações durante o período acadêmico, devendo ocorrer nas semanas de provas definidas no calendário acadêmico, em conformidade com deliberação aprovada pelo Colegiado da Faculdade de Engenharia Elétrica.%\newpage
+
+% Referências bibliográficas-------------------------------------------
+% Programação Semestral --------------------------------------------------
+\newpage
+  \begin{snugshade}
+  \section*{Programação Semestral} %
+  \end{snugshade}
+
+Encontros às terças e quintas-feiras, 2h/aula, totalizando 60h em 30 aulas.
+
+\begin{longtable}{ |c|c|p{13cm}| }
+  \hline
+  \textbf{Aula}& \textbf{Data}  &  \multicolumn{1}{|c|}{\textbf{Conteúdo}} \\
+  \hline
+  \endfirsthead
+  \hline
+  \textbf{Aula}& \textbf{Data}  &  \multicolumn{1}{|c|}{\textbf{Conteúdo}} \\
+  \hline
+  \endhead
+   01 & 01/09 & Apresentação da disciplina e diretrizes do curso; características de um sinal senoidal (amplitude, frequência angular, período, fase); relação entre seno e cosseno e defasagem entre sinais senoidais; números complexos: formas retangular e polar \\
+  \hline
+   02 & 03/09 & Números complexos: forma exponencial e operações; transformação fasorial (domínio do tempo $\leftrightarrow$ domínio da frequência); relações fasoriais para os elementos R, L e C \\
+  \hline
+   03 & 08/09 & Impedância complexa: definição, resistência e reatância \\
+  \hline
+   04 & 10/09 & Admitância complexa (condutância e susceptância); diagramas de impedância e triângulo de impedâncias \\
+  \hline
+   05 & 15/09 & Associação de impedâncias em série e em paralelo \\
+  \hline
+   06 & 17/09 & Divisores de tensão e de corrente em CA; transformação estrela-triângulo (Y-$\Delta$) de impedâncias \\
+  \hline
+   07 & 22/09 & Leis de Kirchhoff das tensões (LKT) e das correntes (LKC) em regime fasorial \\
+  \hline
+   08 & 24/09 & Análise nodal em circuitos com fontes independentes e dependentes \\
+  \hline
+   09 & 29/09 & Análise de malhas em circuitos com fontes independentes e dependentes \\
+  \hline
+   10 & 01/10 & Fontes de tensão e de corrente em CA; supernó e supermalha \\
+  \hline
+   11 & 06/10 & Aula de exercícios: resolução da lista referente às Unidades 1 a 3 \\
+  \hline
+   12 & 08/10 & Revisão para a Prova 1 --- Unidades 1 a 3 \\
+  \hline
+   13 & 13/10 & Prova Bimestral (A1) --- Unidades 1 a 3 \\
+  \hline
+   14 & 15/10 & Prova Substitutiva (referente à A1) \\
+  \hline
+   15 & 20/10 & Teorema da superposição aplicado a circuitos com múltiplas fontes senoidais \\
+  \hline
+   16 & 22/10 & Teorema de Thévenin em regime senoidal \\
+  \hline
+   17 & 27/10 & Teorema de Norton em regime senoidal \\
+  \hline
+   18 & 29/10 & Transferência de máxima potência com carga complexa \\
+  \hline
+   19 & 03/11 & Potência instantânea e potência média (ativa) \\
+  \hline
+   20 & 05/11 & Valor eficaz (RMS) de tensão e corrente \\
+  \hline
+   21 & 10/11 & Potência reativa e aparente; potência complexa e triângulo de potências \\
+  \hline
+   22 & 12/11 & Fator de potência: definição, natureza indutiva e capacitiva \\
+  \hline
+   23 & 17/11 & Correção do fator de potência por compensação reativa; máxima transferência de potência média \\
+  \hline
+   24 & 19/11 & Geração de tensões trifásicas; sequência de fases \\
+  \hline
+   25 & 24/11 & Configurações estrela (Y) e triângulo ($\Delta$) para fonte e carga; circuitos trifásicos equilibrados (Y-Y, Y-$\Delta$, $\Delta$-$\Delta$, $\Delta$-Y) \\
+  \hline
+   26 & 26/11 & Relações entre grandezas de fase e de linha; circuitos trifásicos desequilibrados (introdução) \\
+  \hline
+   27 & 01/12 & Potência em sistemas trifásicos equilibrados; método dos dois wattímetros \\
+  \hline
+   28 & 03/12 & Aula de exercícios: resolução da lista referente às Unidades 4 a 6 \\
+  \hline
+   29 & 08/12 & Revisão para a Prova Final --- Unidades 4 a 6 \\
+  \hline
+   30 & 10/12 & Prova Final (A2) --- Unidades 4 a 6 \\
+  \hline
+\end{longtable}
+\vspace{3mm}
+% Referências bibliográficas-------------------------------------------
+\vspace{10pt}
+\nocite{*}
+\nocite{*}
+
+\printbibliography[keyword=basica, title={Bibliografia Básica}]
+
+\printbibliography[keyword=complementar, title={Bibliografia Complementar}]
+%\newpage
+% Anexos (descomente para habilitar)------------------------------------
+%\begin{snugshade}
+%\section*{Anexo I} %
+%\end{snugshade}
+%
+%\begin{figure}[h]
+%\includegraphics[width=15cm]{Figuras/Universe.png}
+%%\centering\caption{There's a map of concepts above.}
+%\end{figure}
+\end{document}

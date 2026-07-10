@@ -14,11 +14,30 @@ format:
 
 Notas de aula sobre análise de circuitos elétricos em regime permanente senoidal (CA): senoides, fasores, impedância e potência.
 
-* Aula 0 - [Plano de Ensino](Notas/Aula00PlanoEnsino.qmd)
-* Aula 1 - [Senoides e Fasores](Notas/Aula01Senoides.qmd)
-<!-- * Aula 2 - [Título](Notas/Aula02Titulo.qmd) -->
+## Plano de Ensino:
+
+[Plano de ensino](PlanoEnsino/PlanoEnsino.pdf) da disciplina Circuitos Elétricos II, conforme [Resolução 002/2026 – FEE/CAMTUC](https://drive.google.com/file/d/1JtjL9buTB5QWKTA2logcqEF6UDcoIAck/view).
+
+## Notas de Aula:
+
+```{=html}
+<div class="categoria-grid">
+<a class="categoria-card" href="Notas/Aula00PlanoEnsino.qmd">
+  <h3>Aula 0</h3>
+  <p>Plano de Ensino</p>
+</a>
+<a class="categoria-card" href="Notas/Aula01Senoides.qmd">
+  <h3>Aula 1</h3>
+  <p>Senoides e Fasores</p>
+</a>
+<a class="categoria-card" href="Notas/Aula02Impedancia.qmd">
+  <h3>Aula 2</h3>
+  <p>Relações Tensão-Corrente em CA</p>
+</a>
+</div>
+```
+<!-- Duplique um bloco <a class="categoria-card"> acima conforme adicionar aulas. -->
 
 ## Avaliações
 
-* Avaliação 1 - [Avaliação Exemplo (modelo)](Avaliacoes/Avaliacao01Exemplo.qmd)
-<!-- * Avaliação 2 - [Título](Avaliacoes/Avaliacao02Titulo.qmd) -->
+<!-- * Avaliação x - [Título](Avaliacoes/Avaliacao02Titulo.qmd) -->

@@ -29,27 +29,10 @@ knitr::opts_chunk$set(engine.opts = list(
 
 ## Por que Corrente Alternada?
 
-::: {.columns}
-::: {.column width="55%"}
-
 - A geração e transmissão de energia elétrica é feita em **corrente alternada (CA)**
 - A rede elétrica brasileira opera em **60 Hz**
 - Transformadores só funcionam em CA — permitem elevar/reduzir tensões com alta eficiência
 - A análise em CA é fundamental para: **motores, filtros, antenas, conversores de energia**
-
-:::
-::: {.column width="45%"}
-
-```{tikz}
-%| echo: false
-%| fig-align: center
-%| fig-width: 6
-\usetikzlibrary{arrows.meta, positioning}
-\input{imgs/tikz/SistemaCA.tikz}
-```
-
-:::
-:::
 
 ::: {.callout-note}
 A elevação de tensão reduz a corrente na linha de transmissão e, com isso, as perdas por efeito Joule ($P = RI^2$).
@@ -57,7 +40,19 @@ A elevação de tensão reduz a corrente na linha de transmissão e, com isso, a
 
 ---
 
-## O Sinal Senoidal
+## Sistema de Geração, Transmissão e Distribuição
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 13
+\usetikzlibrary{arrows.meta, positioning}
+\input{imgs/tikz/SistemaCA.tikz}
+```
+
+---
+
+## O Sinal Senoidal {.smaller}
 
 A tensão senoidal é descrita por:
 
@@ -79,64 +74,42 @@ $$\boxed{v(t) = V_m \cos(\omega t + \phi)}$$
 
 ## Período e Frequência
 
-::: {.columns}
-::: {.column width="45%"}
+O **período** $T$ é o tempo de um ciclo completo; a **frequência** $f$ é o número de ciclos por segundo, e a **frequência angular** $\omega$ relaciona-se com $f$ por:
 
-O **período** $T$ é o tempo de um ciclo completo.
+$$f = \frac{1}{T} \quad [\text{Hz}] \qquad\qquad \omega = 2\pi f \quad [\text{rad/s}]$$
 
-A **frequência** $f$ é o número de ciclos por segundo:
-
-$$f = \frac{1}{T} \qquad [\text{Hz}]$$
-
-A **frequência angular** relaciona-se com $f$ por:
-
-$$\omega = 2\pi f \qquad [\text{rad/s}]$$
-
-**Rede elétrica brasileira:**
-$$f = 60 \text{ Hz} \implies T = 16{,}7 \text{ ms} \implies \omega \approx 377 \text{ rad/s}$$
-
-:::
-::: {.column width="55%"}
+**Rede elétrica brasileira:** $f = 60 \text{ Hz} \implies T = 16{,}7 \text{ ms} \implies \omega \approx 377 \text{ rad/s}$
 
 ```{tikz}
 %| echo: false
 %| fig-align: center
-%| fig-width: 6
+%| fig-width: 11
 \input{imgs/tikz/SenoideBasica.tikz}
 ```
-
-:::
-:::
 
 ---
 
 ## Fase e Defasagem
 
-::: {.columns}
-::: {.column width="45%"}
-
 Dois sinais com a **mesma frequência** podem ter **fases diferentes**:
 
-$$v_1(t) = V_{m1}\cos(\omega t + \phi_1)$$
-$$v_2(t) = V_{m2}\cos(\omega t + \phi_2)$$
+$$v_1(t) = V_{m1}\cos(\omega t + \phi_1) \qquad\qquad v_2(t) = V_{m2}\cos(\omega t + \phi_2)$$
 
-- Se $\phi_1 > \phi_2$: $v_1$ **adianta** $v_2$ em $(\phi_1 - \phi_2)$
-- Se $\phi_1 < \phi_2$: $v_1$ **atrasa** $v_2$ em $(\phi_2 - \phi_1)$
-- Se $\phi_1 = \phi_2$: sinais **em fase**
-- Se $|\phi_1 - \phi_2| = 180°$: sinais **em oposição de fase**
+- Se $\phi_1 > \phi_2$: $v_1$ **adianta** $v_2$ em $(\phi_1-\phi_2)$; se $\phi_1 < \phi_2$: $v_1$ **atrasa** $v_2$ em $(\phi_2-\phi_1)$
+- Se $\phi_1 = \phi_2$: sinais **em fase**; se $|\phi_1-\phi_2| = 180°$: sinais em **oposição de fase**
 
-:::
-::: {.column width="55%"}
+---
+
+## Fase e Defasagem — Exemplo
+
+$$v_1(t) = \cos(\omega t + 45°) \qquad\qquad v_2(t) = \cos(\omega t - 45°)$$
 
 ```{tikz}
 %| echo: false
 %| fig-align: center
-%| fig-width: 6
+%| fig-width: 11
 \input{imgs/tikz/DefasagemSenoides.tikz}
 ```
-
-:::
-:::
 
 ---
 
@@ -149,9 +122,7 @@ O **valor eficaz** (ou RMS — *Root Mean Square*) de um sinal periódico é o v
 
 Para uma senoide $v(t) = V_m \cos(\omega t + \phi)$:
 
-$$V_{rms} = \sqrt{\frac{1}{T}\int_0^T v^2(t)\,dt} = \frac{V_m}{\sqrt{2}}$$
-
-$$\boxed{V_{rms} = \frac{V_m}{\sqrt{2}} \approx 0{,}707\, V_m}$$
+$$V_{rms} = \sqrt{\frac{1}{T}\int_0^T v^2(t)\,dt} = \frac{V_m}{\sqrt{2}} \approx 0{,}707\, V_m$$
 
 **Exemplos práticos:**
 
@@ -189,11 +160,7 @@ $$v(t) = \text{Re}\left[V_m e^{j(\omega t + \phi)}\right] = \text{Re}\left[V_m e
 
 O **fasor** de $v(t)$ é o número complexo (sem o fator $e^{j\omega t}$):
 
-$$\mathbf{V} = V_m e^{j\phi} = V_m\angle\phi$$
-
-ou na **forma retangular**:
-
-$$\mathbf{V} = V_m\cos\phi + jV_m\sin\phi$$
+$$\mathbf{V} = V_m e^{j\phi} = V_m\angle\phi \qquad \text{ou, na forma retangular,} \qquad \mathbf{V} = V_m\cos\phi + jV_m\sin\phi$$
 
 ---
 
@@ -209,9 +176,7 @@ Um fasor $\mathbf{V} = V_m\angle\phi$ pode ser escrito em três formas equivalen
 
 **Conversões:**
 
-$$V_m = \sqrt{a^2 + b^2}, \qquad \phi = \arctan\!\left(\frac{b}{a}\right)$$
-
-$$a = V_m\cos\phi, \qquad b = V_m\sin\phi$$
+$$V_m = \sqrt{a^2 + b^2}, \qquad \phi = \arctan\!\left(\frac{b}{a}\right), \qquad a = V_m\cos\phi, \qquad b = V_m\sin\phi$$
 
 ::: {.callout-warning}
 ## Atenção ao quadrante
@@ -235,9 +200,7 @@ $$v(t) = V_m\cos(\omega t + \phi) \quad\longleftrightarrow\quad \mathbf{V} = V_m
 | $4\sin(\omega t + 60°)$ | $4\angle{-30°}$ |
 | $-2\cos(\omega t)$ | $2\angle 180°$ |
 
-> Para o último exemplo: $-\cos(\theta) = \cos(\theta \pm 180°)$
-
-> Para seno: $A\sin(\omega t + \phi) = A\cos(\omega t + \phi - 90°)$
+> Para o último exemplo: $-\cos(\theta) = \cos(\theta \pm 180°)$. Para seno: $A\sin(\omega t + \phi) = A\cos(\omega t + \phi - 90°)$
 
 ---
 
@@ -260,35 +223,26 @@ No domínio fasorial: $j\omega \cdot V_m\angle\phi = \omega V_m\angle(\phi+90°)
 
 ## Diagrama Fasorial
 
-::: {.columns}
-::: {.column width="45%"}
-
 O diagrama fasorial representa fasores no **plano complexo**:
 
-- Eixo real ($x$): parte real
-- Eixo imaginário ($y$): parte imaginária
-- Módulo: comprimento da seta
-- Ângulo: medido do eixo real positivo, sentido anti-horário
+- Eixo real ($x$): parte real; eixo imaginário ($y$): parte imaginária
+- Módulo: comprimento da seta; ângulo: medido do eixo real positivo, sentido anti-horário
 
-**Útil para visualizar:**
+**Útil para visualizar:** defasagem entre tensão e corrente, adição de fasores (lei dos paralelogramos) e verificação de resultados.
 
-- Defasagem entre tensão e corrente
-- Adição de fasores (lei dos paralelogramos)
-- Verificação de resultados
+---
 
-:::
-::: {.column width="55%"}
+## Diagrama Fasorial — Exemplo
+
+$$\mathbf{V}_1 = 5\angle 30^\circ \qquad\qquad \mathbf{V}_2 = 3\angle{-45^\circ}$$
 
 ```{tikz}
 %| echo: false
 %| fig-align: center
-%| fig-width: 6
+%| fig-width: 7.5
 \usetikzlibrary{arrows.meta}
 \input{imgs/tikz/DiagramaFasorial.tikz}
 ```
-
-:::
-:::
 
 ---
 
@@ -298,37 +252,25 @@ A adição de sinais senoidais de **mesma frequência** é feita algebricamente 
 
 **Exemplo:** $v(t) = 12\cos(\omega t + 60°) + 8\cos(\omega t - 30°)$
 
-::: {.columns}
-::: {.column width="50%"}
+**Passo 1 — forma retangular:** $\mathbf{V}_1 = 12\angle 60° = 6{,}00 + j10{,}39 \qquad \mathbf{V}_2 = 8\angle{-30°} = 6{,}93 - j4{,}00$
 
-**Passo 1:** Converter para forma retangular:
+**Passo 2 — somar:** $\mathbf{V} = \mathbf{V}_1 + \mathbf{V}_2 = 12{,}93 + j6{,}39$
 
-$$\mathbf{V}_1 = 12\angle 60° = 6{,}00 + j10{,}39$$
-$$\mathbf{V}_2 = 8\angle{-30°} = 6{,}93 - j4{,}00$$
-
-**Passo 2:** Somar:
-
-$$\mathbf{V} = \mathbf{V}_1 + \mathbf{V}_2 = 12{,}93 + j6{,}39$$
-
-**Passo 3:** Converter para polar:
-
-$$|\mathbf{V}| = 14{,}43, \qquad \phi = 26{,}3°$$
+**Passo 3 — forma polar:** $|\mathbf{V}| = 14{,}43, \qquad \phi = 26{,}3°$
 
 $$\therefore\quad v(t) = 14{,}43\cos(\omega t + 26{,}3°)$$
 
-:::
-::: {.column width="50%"}
+---
+
+## Adição de Fasores — Diagrama
 
 ```{tikz}
 %| echo: false
 %| fig-align: center
-%| fig-width: 6
+%| fig-width: 8
 \usetikzlibrary{arrows.meta, calc}
 \input{imgs/tikz/AdicaoFasores.tikz}
 ```
-
-:::
-:::
 
 ---
 
@@ -350,7 +292,7 @@ A análise fasorial só é válida para o **regime permanente senoidal** — qua
 
 ---
 
-## Exemplo Completo
+## Exemplo Completo (1/2)
 
 **Problema:** Encontre a senoide equivalente $v(t) = v_1(t) + v_2(t)$, onde:
 
@@ -363,6 +305,12 @@ $$\mathbf{V}_1 = 20\angle 45° = 14{,}14 + j14{,}14$$
 $$\mathbf{V}_2 = 10\angle{-60°} = 5{,}00 - j8{,}66$$
 
 $$\mathbf{V} = \mathbf{V}_1 + \mathbf{V}_2 = 19{,}14 + j5{,}48$$
+
+---
+
+## Exemplo Completo (2/2)
+
+Convertendo $\mathbf{V} = 19{,}14 + j5{,}48$ para a forma polar:
 
 $$|\mathbf{V}| = \sqrt{19{,}14^2 + 5{,}48^2} = 19{,}91 \text{ V}$$
 
