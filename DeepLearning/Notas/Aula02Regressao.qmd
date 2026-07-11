@@ -124,8 +124,9 @@ X
 model = LinearRegression()
 model.fit(X, y)
 
-# 3. Predição
-y_pred = model.predict(X)
+# 3. Predição (na mesma base fina x_true, para uma curva suave)
+X_true = poly.transform(x_true.reshape(-1, 1))
+y_pred = model.predict(X_true)
 
 # Visualização
 plt.figure(figsize=(8, 5))
