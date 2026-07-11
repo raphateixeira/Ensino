@@ -36,8 +36,8 @@ Estas representações são adequadas para análise de sistemas lineares e invar
 ## Sistema massa mola amortecedor
 
 ```{tikz}
-#| echo: false
-#| fig-align: center
+%| echo: false
+%| fig-align: center
 \usetikzlibrary{arrows.meta, positioning, calc, decorations.pathmorphing, patterns}
 \input{imgs/tikz/MassaMolaAmortecedor.tikz}
 ```
@@ -166,8 +166,8 @@ Onde:
 ## Diagrama de blocos - Modelo de estados
 
 ```{tikz}
-#| echo: false
-#| fig-align: center
+%| echo: false
+%| fig-align: center
 \usetikzlibrary{arrows.meta, positioning, calc}
 \input{imgs/tikz/DiagramaSSMalhaAberta.tikz}
 ```

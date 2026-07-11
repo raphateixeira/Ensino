@@ -22,8 +22,8 @@ engine: knitr
 ## Simulação Matlab/Simulink: Sistema massa mola amortecedor
 
 ```{tikz}
-#| echo: false
-#| fig-align: center
+%| echo: false
+%| fig-align: center
 \usetikzlibrary{arrows.meta, positioning, calc, decorations.pathmorphing, patterns}
 \input{imgs/tikz/MassaMolaAmortecedor.tikz}
 ```
@@ -38,8 +38,8 @@ $$ G(s) = \frac{Y(s)}{U(s)} = \frac{1}{ms^2 + bs + k} $$
 ## Simulação Matlab/Simulink: Sistema massa mola amortecedor
 
 ```{tikz}
-#| echo: false
-#| fig-align: center
+%| echo: false
+%| fig-align: center
 \usetikzlibrary{arrows.meta, positioning, calc, decorations.pathmorphing, patterns}
 \input{imgs/tikz/MassaMolaAmortecedor.tikz}
 ```
@@ -60,8 +60,8 @@ $$\dot{\mathbf{x}} = \mathbf{A}\mathbf{x} + \mathbf{B}u$$
 $$\mathbf{y} = \mathbf{C}\mathbf{x}$$
 
 ```{tikz}
-#| echo: false
-#| fig-align: center
+%| echo: false
+%| fig-align: center
 \usetikzlibrary{arrows.meta, positioning, calc, decorations.pathmorphing, patterns}
 \input{imgs/tikz/DiagramaSSMalhaAberta.tikz}
 ```

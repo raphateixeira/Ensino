@@ -88,8 +88,8 @@ y(t) = Cx(t)
 \end{cases}$$
 
 ```{tikz}
-#| echo: false
-#| fig-align: center
+%| echo: false
+%| fig-align: center
 \usetikzlibrary{arrows.meta, positioning, calc}
 \input{imgs/tikz/DiagramaSSMalhaAberta.tikz}
 ```
@@ -123,8 +123,8 @@ Os autovalores de $A_{cl}$ são os **polos de malha fechada**.
 ## Sistema Controlado — Diagrama de Blocos
 
 ```{tikz}
-#| echo: false
-#| fig-align: center
+%| echo: false
+%| fig-align: center
 \usetikzlibrary{arrows.meta, positioning, calc}
 \input{imgs/tikz/DiagramaSSMalhaFechada.tikz}
 ```
