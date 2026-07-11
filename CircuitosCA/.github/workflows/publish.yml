@@ -2,49 +2,15 @@ name: Publicar site Quarto
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [main]
   workflow_dispatch:
-
-permissions:
-  contents: write
-  pages: write
-  id-token: write
 
 jobs:
   build-deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Set up Quarto
-        uses: quarto-dev/quarto-actions/setup@v2
-
-      - name: Install R
-        uses: r-lib/actions/setup-r@v2
-        with:
-          r-version: '4.4.0'
-
-      - name: Install Ghostscript (delegate do magick para converter PDF em PNG)
-        run: sudo apt-get update && sudo apt-get install -y ghostscript
-
-      - name: Install R package dependencies
-        uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          packages: |
-            any::knitr
-            any::rmarkdown
-            any::magick
-
-      - name: Install TinyTeX + pacotes TikZ
-        run: |
-          quarto install tinytex --no-prompt
-          ~/.TinyTeX/bin/x86_64-linux/tlmgr update --self
-          ~/.TinyTeX/bin/x86_64-linux/tlmgr install pgf pgfplots xcolor circuitikz
-
-      - name: Render and Publish
-        uses: quarto-dev/quarto-actions/publish@v2
-        with:
-          target: gh-pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    uses: raphateixeira/.github/.github/workflows/quarto-publish.yml@main
+    with:
+      needs_r: true
+      r_packages: "knitr, rmarkdown, magick"
+      needs_magick_system_deps: true
+      needs_tinytex: true
+      tinytex_packages: "pgf pgfplots xcolor circuitikz"

@@ -1,27 +1,9 @@
 /*-- scss:defaults --*/
 
-// =====================================================================
-//  TEMA DO MODELO  —  troque apenas estas variáveis para reidentificar
-//  o projeto (cores institucionais, fontes, tamanhos).
-// =====================================================================
-
-// --- Paleta (substitua pelos valores da sua instituição/tema) ---
-$cor-primaria:    #1F3A5F;   // títulos, links, destaques
-$cor-secundaria:  #B23A48;   // ênfases, segundo plano
-$cor-acento:      #E8B23A;   // detalhes pontuais
-$cor-texto:       #1A1A1A;   // corpo de texto
-$cor-fundo:       #FFFFFF;   // fundo dos slides
-
-// --- Tipografia ---
-$main-font-size:   1.1em;
-$code-font-family: 'Courier New', Courier, monospace;
-
-// --- Mapeamento para o Bootstrap (não precisa editar abaixo) ---
-$primary:    $cor-primaria;
-$secondary:  $cor-secundaria;
-$body-bg:    $cor-fundo;
-$body-color: $cor-texto;
-$link-color: $cor-primaria;
+// Paleta e tipografia institucionais: fonte única em
+// https://github.com/raphateixeira/.github/blob/main/assets/rtx-palette.scss
+// (baixada para rtx-palette.scss pelo workflow de publish a cada build).
+@import "rtx-palette";
 
 /*-- scss:rules --*/
 
