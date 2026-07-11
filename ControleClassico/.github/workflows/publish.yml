@@ -17,4 +17,4 @@ jobs:
       r_packages: "knitr, rmarkdown, magick, pdftools"
       needs_magick_system_deps: true
       needs_tinytex: true
-      tinytex_packages: "pgf pgfplots xcolor patterns"
+      tinytex_packages: "pgf pgfplots xcolor"
