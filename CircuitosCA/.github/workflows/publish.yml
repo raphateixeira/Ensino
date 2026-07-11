@@ -7,6 +7,10 @@ on:
 
 jobs:
   build-deploy:
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     uses: raphateixeira/.github/.github/workflows/quarto-publish.yml@main
     with:
       needs_r: true
