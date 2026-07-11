@@ -1,29 +1,16 @@
 /*-- scss:defaults --*/
 
-// Paleta de Cores UFPA
-$blue-ufpa: #002C6F;
-$red-ufpa: #96263a;
-$yellow-ufpa: #FFD700;
-$black-ufpa: #231F20;
-$white: #FFFFFF;
-
-// Fontes
-$main-font-size: 1.1em;
-$code-font-family: 'Courier New', Courier, monospace;
-
-// Configuração do Tema Bootstrap
-$primary: $blue-ufpa;
-$secondary: $red-ufpa;
-$body-bg: $white; 
-$body-color: $black-ufpa; 
-$link-color: $blue-ufpa;
+// Paleta e tipografia institucionais: fonte única em
+// https://github.com/raphateixeira/.github/blob/main/assets/rtx-palette.scss
+// (baixada para rtx-palette.scss pelo workflow de publish a cada build).
+@import "rtx-palette";
 
 /*-- scss:rules --*/
 
 // --- Título da Capa ---
 .title {
     font-size: 2.0em !important;
-    color: $blue-ufpa !important;
+    color: $cor-primaria !important;
     line-height: 1.1;
     margin-bottom: 0.5em !important;
 }
@@ -37,15 +24,15 @@ $link-color: $blue-ufpa;
 
 // --- Títulos dos Slides (##) ---
 .reveal h2 {
-    font-size: 1.4em !important; 
-    color: $blue-ufpa !important;
+    font-size: 1.4em !important;
+    color: $cor-primaria !important;
 }
 
 // --- Bloco de Autores ---
 .quarto-title-authors {
     display: flex !important;
     justify-content: center !important;
-    gap: 80px !important; 
+    gap: 80px !important;
     margin-top: 2em !important;
     font-size: 1.0em !important;
 }
@@ -53,5 +40,5 @@ $link-color: $blue-ufpa;
 // --- Layout de Colunas ---
 .columns {
     display: flex !important;
-    align-items: center !important; 
+    align-items: center !important;
 }
