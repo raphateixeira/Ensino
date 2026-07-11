@@ -2,47 +2,20 @@ name: Publicar Controle Estados
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [main]
   workflow_dispatch:
-
-permissions:
-  contents: write
-  pages: write
-  id-token: write
 
 jobs:
   build-deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Set up Quarto
-        uses: quarto-dev/quarto-actions/setup@v2
-
-      - name: Install R
-        uses: r-lib/actions/setup-r@v2
-        with:
-          r-version: '4.4.0'
-
-      - name: Install system dependencies for magick
-        run: sudo apt-get install -y libmagick++-dev ghostscript
-
-      - name: Install R dependencies
-        run: |
-          install.packages(c('knitr', 'rmarkdown', 'magick', 'pdftools'),
-                           repos = 'https://cran.r-project.org')
-        shell: Rscript {0}
-
-      - name: Install TinyTeX + pacotes TikZ
-        run: |
-          quarto install tinytex --no-prompt
-          ~/.TinyTeX/bin/x86_64-linux/tlmgr update --self
-          ~/.TinyTeX/bin/x86_64-linux/tlmgr install pgf pgfplots xcolor patterns
-
-      - name: Render and Publish
-        uses: quarto-dev/quarto-actions/publish@v2
-        with:
-          target: gh-pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: raphateixeira/.github/.github/workflows/quarto-publish.yml@main
+    with:
+      needs_r: true
+      r_packages: "knitr, rmarkdown, magick, pdftools"
+      needs_magick_system_deps: true
+      needs_tinytex: true
+      tinytex_packages: "pgf pgfplots xcolor"
+      output_dir: "docs"
