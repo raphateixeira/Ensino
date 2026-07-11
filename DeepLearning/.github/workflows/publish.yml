@@ -14,5 +14,5 @@ jobs:
     uses: raphateixeira/.github/.github/workflows/quarto-publish.yml@main
     with:
       needs_python: true
-      python_packages: "pandas numpy scipy matplotlib scikit-learn"
+      python_packages: "jupyter pyyaml pandas numpy scipy matplotlib scikit-learn"
       output_dir: "docs"
