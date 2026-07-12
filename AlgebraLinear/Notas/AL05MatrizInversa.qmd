@@ -1,0 +1,164 @@
+---
+title: "Álgebra Linear"
+subtitle: "Matriz Inversa"
+author: "Prof. Dr. Raphael Teixeira"
+institute: "Universidade Federal do Pará"
+lang: pt-BR
+format:
+  revealjs:
+    theme: [default, ../TemaRTx.scss]
+    transition: slide
+    slide-number: true
+    width: 1600
+    height: 900
+    footer: "UFPA - NDAE - PPCA "
+    center: true
+    title-slide-attributes:
+      data-background-image: "../imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 40px center"
+---
+
+## Sumário {.smaller}
+
+- **5.1** Definição de matriz inversa e unicidade
+- **5.2** Matrizes elementares e o algoritmo de Gauss-Jordan $[A\mid I]\to[I\mid A^{-1}]$
+- **5.3** Propriedades da inversa
+- **5.4** Resolvendo $Ax=b$ via $A^{-1}$; equivalências com invertibilidade
+
+# 5.1 — Definição de matriz inversa
+
+## Matriz invertível
+
+::: {.callout-note title="Definição"}
+Uma matriz quadrada $A$ ($n\times n$) é **invertível** (ou não singular) quando existe uma matriz $A^{-1}$ ($n\times n$) tal que
+$$AA^{-1}=A^{-1}A=I_n.$$
+Se tal matriz não existir, $A$ é dita **singular**.
+:::
+
+::: {.callout-important title="Teorema — unicidade da inversa"}
+Se $A$ possui inversa, ela é **única**.
+:::
+
+**Prova rápida:** se $B$ e $C$ satisfazem $AB=BA=I$ e $AC=CA=I$, então $B=BI=B(AC)=(BA)C=IC=C$.
+
+# 5.2 — Matrizes elementares e Gauss-Jordan
+
+## Matrizes elementares
+
+::: {.callout-note title="Definição"}
+Uma **matriz elementar** é obtida aplicando **uma única** operação elementar à matriz identidade $I$.
+:::
+
+- Aplicar uma operação elementar a $A$ equivale a **multiplicar $A$ à esquerda** pela matriz elementar correspondente.
+- Toda matriz elementar é invertível, e sua inversa também é elementar (do mesmo "tipo" revertido).
+
+::: {.callout-important title="Ideia do algoritmo"}
+Se uma sequência de operações elementares leva $A$ até $I$, a **mesma sequência**, aplicada a $I$, produz $A^{-1}$:
+$$[A\mid I] \ \xrightarrow{\text{operações elementares}}\ [I\mid A^{-1}]$$
+:::
+
+## Exemplo — cálculo da inversa, passo 1
+
+Para $A=\begin{bmatrix}2&1&1\\1&2&1\\1&1&2\end{bmatrix}$, formamos $[A\mid I]$ e escalonamos:
+
+$$
+\left[\begin{array}{ccc|ccc}2&1&1&1&0&0\\1&2&1&0&1&0\\1&1&2&0&0&1\end{array}\right]
+\ \xrightarrow[L_3\to L_3-L_1]{L_1\leftrightarrow L_2,\ L_2\to L_2-2L_1}\
+\left[\begin{array}{ccc|ccc}1&2&1&0&1&0\\0&-3&-1&1&-2&0\\0&-1&1&0&-1&1\end{array}\right]
+$$
+
+$$
+\xrightarrow[\ -R_2\to R_2\ ]{L_2\leftrightarrow L_3}\
+\left[\begin{array}{ccc|ccc}1&2&1&0&1&0\\0&1&-1&0&1&-1\\0&-3&-1&1&-2&0\end{array}\right]
+\xrightarrow{L_3\to L_3+3L_2}
+\left[\begin{array}{ccc|ccc}1&2&1&0&1&0\\0&1&-1&0&1&-1\\0&0&-4&1&1&-3\end{array}\right]
+$$
+
+## Exemplo — cálculo da inversa, passo 2 (RREF final)
+
+Normalizando $L_3\to-\tfrac14L_3$ e eliminando acima dos pivôs ($L_2\to L_2+L_3$, $L_1\to L_1-L_3$, $L_1\to L_1-2L_2$):
+
+$$
+\left[\begin{array}{ccc|ccc}1&0&0&\ \tfrac34&-\tfrac14&-\tfrac14\\0&1&0&-\tfrac14&\ \tfrac34&-\tfrac14\\0&0&1&-\tfrac14&-\tfrac14&\ \tfrac34\end{array}\right]
+$$
+
+$$
+\boxed{A^{-1}=\frac14\begin{bmatrix}3&-1&-1\\-1&3&-1\\-1&-1&3\end{bmatrix}}
+$$
+
+**Verificação:** $AA^{-1}$: linha 1 de $A$ é $(2,1,1)$; coluna 1 de $\tfrac14$-matriz é $\tfrac14(3,-1,-1)$, produto $=\tfrac14(6-1-1)=\tfrac14(4)=1$ ✓ (as demais entradas se conferem de modo análogo).
+
+## Exemplo — matriz não invertível
+
+$$B=\begin{bmatrix}1&2&3\\2&4&6\\1&1&1\end{bmatrix}$$
+
+$$
+\left[\begin{array}{ccc|ccc}1&2&3&1&0&0\\2&4&6&0&1&0\\1&1&1&0&0&1\end{array}\right]
+\ \xrightarrow[L_3\to L_3-L_1]{L_2\to L_2-2L_1}\
+\left[\begin{array}{ccc|ccc}1&2&3&1&0&0\\0&0&0&-2&1&0\\0&-1&-2&-1&0&1\end{array}\right]
+$$
+
+::: {.callout-tip title="Observação"}
+A linha 2 do bloco esquerdo ficou **totalmente nula** — é impossível continuar até obter $I$ à esquerda. Conclusão: $B$ **não é invertível**. (De fato, linha 2 de $B$ é o dobro da linha 1.)
+:::
+
+# 5.3 — Propriedades da inversa
+
+## Propriedades algébricas
+
+::: {.callout-important title="Propriedades"}
+Para $A,B$ invertíveis (de mesmo tamanho) e escalar $c\neq0$:
+
+1. $(A^{-1})^{-1}=A$
+2. $(AB)^{-1}=B^{-1}A^{-1}$ — **atenção à ordem invertida!**
+3. $(A^T)^{-1}=(A^{-1})^T$
+4. $(cA)^{-1}=\dfrac1c A^{-1}$
+:::
+
+- Consequência da propriedade 2: o produto de matrizes invertíveis é invertível.
+- Essas propriedades espelham exatamente as propriedades análogas da transposta (Aula 2).
+
+# 5.4 — Sistemas via inversa e equivalências
+
+## Resolvendo $Ax=b$ com $A$ invertível
+
+::: {.callout-important title="Teorema"}
+Se $A$ ($n\times n$) é invertível, o sistema $Ax=b$ tem **solução única**, dada por
+$$x=A^{-1}b.$$
+:::
+
+**Exemplo:** $\begin{cases}2x+y=5\\x+y=3\end{cases}$, ou seja $A=\begin{bmatrix}2&1\\1&1\end{bmatrix}$, $b=\begin{bmatrix}5\\3\end{bmatrix}$.
+
+Como $\det A = 1$: $\ A^{-1}=\begin{bmatrix}1&-1\\-1&2\end{bmatrix}$.
+
+$$x=A^{-1}b=\begin{bmatrix}1&-1\\-1&2\end{bmatrix}\begin{bmatrix}5\\3\end{bmatrix}=\begin{bmatrix}5-3\\-5+6\end{bmatrix}=\begin{bmatrix}2\\1\end{bmatrix}$$
+
+**Verificação:** $2(2)+1=5$ ✓, $\ 2+1=3$ ✓.
+
+## Equivalências com invertibilidade
+
+::: {.callout-important title="Teorema — condições equivalentes"}
+Para $A$ quadrada $n\times n$, as afirmações abaixo são **equivalentes** (todas verdadeiras ou todas falsas simultaneamente):
+
+1. $A$ é invertível.
+2. $\operatorname{posto}(A)=n$ (posto completo).
+3. O único $x$ que satisfaz $Ax=0$ é $x=0$ (solução trivial única).
+4. A forma escalonada reduzida de $A$ é $I_n$.
+5. $\det(A)\neq 0$ *(veremos determinantes na Aula 7)*.
+:::
+
+Essa lista conecta todos os conceitos vistos até aqui — sistemas, escalonamento, posto e inversa — em uma única ideia central.
+
+## Resumo da aula {.smaller}
+
+- **5.1** — $A$ invertível: existe $A^{-1}$ com $AA^{-1}=A^{-1}A=I$; a inversa, quando existe, é única.
+- **5.2** — Algoritmo $[A\mid I]\to[I\mid A^{-1}]$ via Gauss-Jordan; uma linha de zeros no bloco esquerdo $\Rightarrow$ $A$ não invertível.
+- **5.3** — $(A^{-1})^{-1}=A$; $(AB)^{-1}=B^{-1}A^{-1}$; $(A^T)^{-1}=(A^{-1})^T$; $(cA)^{-1}=\tfrac1cA^{-1}$.
+- **5.4** — $Ax=b$ com $A$ invertível tem solução única $x=A^{-1}b$; invertibilidade $\iff$ posto completo $\iff$ $Ax=0$ só trivial $\iff$ $\det(A)\neq0$.
+
+## Referências
+
+- **Anton, H. & Rorres, C.** *Álgebra Linear com Aplicações*, 10ª ed., Bookman — Cap. 1.
+- **Lay, D. C.** *Álgebra Linear e suas Aplicações*, 4ª ed., Pearson — Cap. 2.
+- **Strang, G.** *Introdução à Álgebra Linear*, 4ª ed., LTC — Cap. 2.

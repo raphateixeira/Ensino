@@ -12,5 +12,41 @@ format:
 Notas de Aula:
 
 * Aula 00: [Plano de Ensino](Notas/AL00PlanoEnsinoAlgebraLinear.qmd)
-* Aula 01: [Sistemas de equações lineares](Notas/AL01SistemasEquacoes.qmd)
+
+### Bloco 1 — Sistemas Lineares e Matrizes
+
+* Aula 01: [Sistemas de equações lineares e interpretação geométrica](Notas/AL01SistemasEquacoes.qmd)
 * Aula 02: [Matrizes e operações](Notas/AL02MatrizesOperacoes.qmd)
+* Aula 03: [Eliminação de Gauss e forma escalonada](Notas/AL03EliminacaoGauss.qmd)
+* Aula 04: [Gauss-Jordan, sistemas homogêneos e posto](Notas/AL04GaussJordanPosto.qmd)
+* Aula 05: [Matriz inversa](Notas/AL05MatrizInversa.qmd)
+* Aula 06: [Fatoração LU](Notas/AL06FatoracaoLU.qmd)
+* Aula 07: [Determinantes: cofatores e propriedades](Notas/AL07Determinantes.qmd)
+* Aula 08: [Regra de Cramer, adjunta e revisão do bloco](Notas/AL08CramerRevisao.qmd)
+
+### Bloco 2 — Espaços Vetoriais
+
+* Aula 09: [Espaços vetoriais: axiomas e exemplos](Notas/AL09EspacosVetoriais.qmd)
+* Aula 10: [Subespaços vetoriais](Notas/AL10SubespacosVetoriais.qmd)
+* Aula 11: [Combinação linear e espaço gerado](Notas/AL11CombinacaoLinearEspacoGerado.qmd)
+* Aula 12: [Dependência e independência linear](Notas/AL12DependenciaIndependenciaLinear.qmd)
+* Aula 13: [Base e dimensão](Notas/AL13BaseDimensao.qmd)
+* Aula 14: [Espaço linha/coluna, núcleo, posto e nulidade](Notas/AL14EspacoLinhaColunaNucleoPosto.qmd)
+* Aula 15: [Coordenadas e mudança de base](Notas/AL15CoordenadasMudancaBase.qmd)
+
+### Bloco 3 — Transformações Lineares
+
+* Aula 16: [Transformações lineares: definição e exemplos](Notas/AL16TransformacoesLineares.qmd)
+* Aula 17: [Núcleo e imagem de uma transformação linear](Notas/AL17NucleoImagem.qmd)
+* Aula 18: [Matriz de uma transformação linear](Notas/AL18MatrizTransformacaoLinear.qmd)
+* Aula 19: [Composição e inversa; mudança de base de operadores](Notas/AL19ComposicaoInversaMudancaBase.qmd)
+* Aula 20: [Transformações geométricas no plano e no espaço](Notas/AL20TransformacoesGeometricas.qmd)
+
+### Bloco 4 — Autovalores, Autovetores e Produto Interno
+
+* Aula 21: [Autovalores, autovetores e polinômio característico](Notas/AL21AutovaloresAutovetores.qmd)
+* Aula 22: [Diagonalização de matrizes](Notas/AL22Diagonalizacao.qmd)
+* Aula 23: [Aplicações: sistemas dinâmicos e matrizes simétricas](Notas/AL23AplicacoesAutovalores.qmd)
+* Aula 24: [Norma, produto escalar e produto interno](Notas/AL24NormaProdutoInterno.qmd)
+* Aula 25: [Bases ortonormais e o processo de Gram-Schmidt](Notas/AL25BasesOrtonormaisGramSchmidt.qmd)
+* Aula 26: [Subespaços ortogonais, mínimos quadrados e encerramento](Notas/AL26SubespacosOrtogonaisMinimosQuadrados.qmd)

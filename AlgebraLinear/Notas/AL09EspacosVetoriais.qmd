@@ -1,0 +1,176 @@
+---
+title: "Álgebra Linear"
+subtitle: "Espaços Vetoriais: Axiomas e Exemplos"
+author: "Prof. Dr. Raphael Teixeira"
+institute: "Universidade Federal do Pará"
+lang: pt-BR
+format:
+  revealjs:
+    theme: [default, ../TemaRTx.scss]
+    transition: slide
+    slide-number: true
+    width: 1600
+    height: 900
+    footer: "UFPA - NDAE - PPCA "
+    center: true
+    title-slide-attributes:
+      data-background-image: "../imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 40px center"
+---
+
+## Sumário {.smaller}
+
+- **9.1** Motivação: generalizando $\mathbb{R}^n$
+- **9.2** Definição formal de espaço vetorial (10 axiomas)
+- **9.3** Exemplos de espaços vetoriais
+- **9.4** Um contraexemplo
+- **9.5** Propriedades imediatas dos axiomas
+
+# 9.1 — Motivação
+
+## De $\mathbb{R}^n$ para outros conjuntos
+
+- Até aqui, trabalhamos com vetores em $\mathbb{R}^n$: soma e multiplicação por escalar.
+- **Pergunta:** essas operações e suas propriedades algébricas aparecem em outros conjuntos?
+- Sim! Matrizes, polinômios e funções também podem ser "somados" e "multiplicados por escalar".
+- **Ideia central:** abstrair as propriedades que realmente importam — os **axiomas** — e chamar de **espaço vetorial** qualquer conjunto que os satisfaça.
+
+## Por que abstrair?
+
+- Um teorema provado *apenas a partir dos axiomas* vale automaticamente para:
+  - vetores de $\mathbb{R}^n$;
+  - matrizes;
+  - polinômios;
+  - funções contínuas;
+  - e qualquer outro conjunto que satisfaça os axiomas.
+- Economia de esforço: prova-se uma vez, usa-se sempre.
+
+# 9.2 — Definição formal
+
+## Espaço vetorial — os 10 axiomas (I)
+
+::: {.callout-note title="Definição — Espaço Vetorial"}
+Seja $V$ um conjunto com duas operações: adição ($u+v$) e multiplicação por escalar ($cu$). $V$ é um **espaço vetorial** (real) se, para todo $u,v,w\in V$ e escalares $c,d\in\mathbb{R}$:
+
+1. $u+v \in V$ (fechamento da adição)
+2. $u+v = v+u$ (comutatividade)
+3. $(u+v)+w = u+(v+w)$ (associatividade)
+4. Existe $0\in V$ tal que $u+0=u$ (elemento neutro)
+5. Para cada $u$ existe $-u\in V$ tal que $u+(-u)=0$ (elemento oposto)
+:::
+
+## Espaço vetorial — os 10 axiomas (II)
+
+::: {.callout-note title="Definição — Espaço Vetorial (continuação)"}
+6. $cu \in V$ (fechamento da multiplicação por escalar)
+7. $c(u+v) = cu+cv$
+8. $(c+d)u = cu+du$
+9. $c(du) = (cd)u$
+10. $1u = u$
+:::
+
+- Os axiomas 1–5 dizem que $(V,+)$ se comporta como a adição usual.
+- Os axiomas 6–10 regulam a interação entre escalares e vetores.
+- Os elementos de $V$ são chamados **vetores**, mesmo quando são matrizes, polinômios etc.
+
+# 9.3 — Exemplos de espaços vetoriais
+
+## Exemplo — $\mathbb{R}^n$
+
+- $V=\mathbb{R}^n$ com adição e multiplicação por escalar usuais.
+- Todos os 10 axiomas já foram verificados nas aulas anteriores (AL01–AL08): é o exemplo motivador.
+- Vetor nulo: $0=(0,0,\ldots,0)$. Oposto de $v$: $-v=(-1)v$.
+
+## Exemplo — espaço de matrizes $M_{m,n}$
+
+- $V=M_{m,n}$: matrizes reais $m\times n$, com adição usual de matrizes e $cA$ (multiplicação de cada entrada por $c$).
+- Vetor nulo: matriz nula $0_{m,n}$. Oposto de $A$: $-A$.
+
+**Verificação do Axioma 8** (para $A,B\in M_{2,2}$): $(c+d)A = cA+dA$ segue diretamente de $(c+d)a_{ij} = ca_{ij}+da_{ij}$ em cada entrada.
+
+- Os demais axiomas se verificam entrada a entrada, exatamente como em $\mathbb{R}^{mn}$.
+
+## Exemplo — espaço de polinômios $P_n$
+
+::: {.callout-note title="Definição"}
+$P_n$ = conjunto dos polinômios de grau $\le n$:
+$$p(x) = a_0+a_1x+a_2x^2+\cdots+a_nx^n, \qquad a_i\in\mathbb{R}$$
+:::
+
+- Adição: $(p+q)(x) = p(x)+q(x)$ (soma coeficiente a coeficiente).
+- Escalar: $(cp)(x) = c\,p(x)$.
+- Vetor nulo: o polinômio $0(x)=0$. Oposto de $p$: $-p$.
+- Novamente, cada axioma se verifica coeficiente a coeficiente — igual a $\mathbb{R}^{n+1}$.
+
+## Exemplo — espaço de funções contínuas
+
+- $V=C(-\infty,\infty)$: todas as funções contínuas $f:\mathbb{R}\to\mathbb{R}$.
+- Adição $(f+g)(x)=f(x)+g(x)$; escalar $(cf)(x)=cf(x)$.
+- Vetor nulo: a função constante $0$.
+- Os 10 axiomas seguem das propriedades dos números reais aplicadas ponto a ponto — não entraremos em detalhes nesta disciplina, mas é um exemplo importante em Cálculo/Equações Diferenciais.
+
+# 9.4 — Um contraexemplo
+
+## Nem toda estrutura é espaço vetorial
+
+Considere $V=\mathbb{R}^2$ com:
+
+- adição usual: $(x_1,y_1)+(x_2,y_2) = (x_1+x_2,\,y_1+y_2)$;
+- multiplicação por escalar **modificada**: $c(x,y) = (cx,\,y)$ — a segunda coordenada não é escalada!
+
+**Pergunta:** isso é um espaço vetorial?
+
+## O Axioma 8 falha
+
+::: {.callout-tip title="Contraexemplo"}
+Tome $u=(1,1)$ e $c=d=1$. Pelo Axioma 8, deveríamos ter $(c+d)u = cu+du$.
+
+$$(c+d)u = 2u = 2(1,1) = (2\cdot1,\ 1) = (2,1)$$
+
+$$cu+du = 1\cdot(1,1) + 1\cdot(1,1) = (1,1)+(1,1) = (2,2)$$
+
+Como $(2,1)\neq(2,2)$, o **Axioma 8** $(c+d)u=cu+du$ **falha**. Logo $V$, com esta multiplicação por escalar, **não é** espaço vetorial.
+:::
+
+- Os axiomas 1–7, 9 e 10 até se verificam para esta operação — mas basta **um** axioma falhar para destruir a estrutura.
+
+# 9.5 — Propriedades imediatas
+
+## Consequências dos axiomas
+
+::: {.callout-important title="Teorema"}
+Seja $V$ espaço vetorial, $v\in V$ e $c$ escalar. Então:
+
+(a) $0v = 0$
+(b) $c\cdot 0 = 0$
+(c) $(-1)v = -v$
+:::
+
+- Note que aqui $0$ (escalar) e $0$ (vetor nulo) são coisas diferentes, mas ambas satisfazem a propriedade.
+- Essas propriedades **não são axiomas** — são consequências lógicas deles.
+
+## Prova de $0v=0$ e $(-1)v=-v$
+
+**(a)** Pelo Axioma 8: $0v = (0+0)v = 0v+0v$. Somando $-(0v)$ aos dois lados:
+$$0 = 0v+0v+(-(0v)) = 0v.$$
+
+**(c)** Usando Axiomas 10 e 8:
+$$v+(-1)v = 1v+(-1)v = (1+(-1))v = 0v = 0$$
+
+Logo $(-1)v$ é o oposto de $v$, ou seja, $(-1)v=-v$.
+
+- A prova de $c\cdot 0=0$ é análoga, usando o Axioma 7: $c\cdot 0 = c(0+0)=c\cdot0+c\cdot0$.
+
+## Resumo da aula
+
+- **9.1–9.2** — Espaço vetorial: conjunto com adição e multiplicação por escalar satisfazendo 10 axiomas.
+- **9.3** — Exemplos: $\mathbb{R}^n$, $M_{m,n}$, $P_n$, funções contínuas — todos verificam os axiomas "coordenada a coordenada".
+- **9.4** — Nem toda operação "razoável" gera espaço vetorial: basta um axioma falhar (contraexemplo com $c(x,y)=(cx,y)$).
+- **9.5** — Consequências dos axiomas: $0v=0$, $c\cdot 0=0$, $(-1)v=-v$.
+
+## Referências
+
+- ANTON, H.; RORRES, C. **Álgebra Linear com Aplicações**. 10ª ed. Capítulo 4 — Espaços Vetoriais Gerais.
+- LAY, D. **Álgebra Linear e suas Aplicações**. 4ª ed. Capítulo 4 — Espaços Vetoriais.
+- STRANG, G. **Álgebra Linear e suas Aplicações**. 4ª ed. Capítulo 3 — Espaços Vetoriais.

@@ -1,0 +1,158 @@
+---
+title: "Álgebra Linear"
+subtitle: "Transformações Lineares: Definição e Exemplos"
+author: "Prof. Dr. Raphael Teixeira"
+institute: "Universidade Federal do Pará"
+lang: pt-BR
+format:
+  revealjs:
+    theme: [default, ../TemaRTx.scss]
+    transition: slide
+    slide-number: true
+    width: 1600
+    height: 900
+    footer: "UFPA - NDAE - PPCA "
+    center: true
+    title-slide-attributes:
+      data-background-image: "../imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 40px center"
+---
+
+## Sumário {.smaller}
+
+- **16.1** Definição de transformação linear e primeira consequência
+- **16.2** Exemplos fundamentais
+- **16.3** Um contraexemplo importante
+- **16.4** A matriz canônica
+
+# 16.1 — Definição
+
+## Transformação linear — definição
+
+::: {.callout-note title="Definição"}
+Sejam $V,W$ espaços vetoriais. Uma função $T:V\to W$ é uma **transformação linear** quando, para todo $u,v\in V$ e todo escalar $c$:
+
+1. $T(u+v) = T(u)+T(v)$ (preserva a soma)
+2. $T(cv) = c\,T(v)$ (preserva a multiplicação por escalar)
+:::
+
+- Equivalentemente: $T(cu+dv) = cT(u)+dT(v)$ para quaisquer escalares $c,d$.
+- $V$ é o **domínio**, $W$ é o **contradomínio** de $T$.
+
+## Consequência imediata: $T(0)=0$
+
+::: {.callout-important title="Teorema"}
+Se $T:V\to W$ é linear, então
+$$T(0) = 0.$$
+:::
+
+**Prova:** $T(0) = T(0\cdot v) = 0\cdot T(v) = 0$.
+
+::: {.callout-tip title="Teste rápido de não linearidade"}
+Se $T(0)\neq 0$, então $T$ **não** é linear. (Cuidado: a recíproca é falsa — $T(0)=0$ não garante que $T$ seja linear.)
+:::
+
+# 16.2 — Exemplos fundamentais
+
+## Exemplo — identidade e transformação nula
+
+- **Identidade:** $T:V\to V$, $T(v)=v$.
+$$T(u+v)=u+v=T(u)+T(v), \qquad T(cv)=cv=cT(v)$$
+
+- **Transformação nula:** $T:V\to W$, $T(v)=0$ para todo $v\in V$. Também linear (verificação imediata, ambos os lados dão $0$).
+
+## Exemplo — projeção sobre o eixo $x$ em $\mathbb{R}^2$
+
+$$T(x,y) = (x,0)$$
+
+Matriz associada: $A=\begin{bmatrix}1&0\\0&0\end{bmatrix}$, pois $A\begin{bmatrix}x\\y\end{bmatrix} = \begin{bmatrix}x\\0\end{bmatrix}$.
+
+**Verificação:**
+$$T\big((x_1,y_1)+(x_2,y_2)\big) = (x_1+x_2,\,0) = T(x_1,y_1)+T(x_2,y_2)$$
+$$T\big(c(x,y)\big)=(cx,0)=c\,T(x,y)$$
+
+## Exemplo — rotação em $\mathbb{R}^2$
+
+Rotacionar cada vetor por um ângulo $\theta$ (sentido anti-horário):
+$$T(x,y) = (x\cos\theta - y\sin\theta,\ \ x\sin\theta + y\cos\theta)$$
+
+- É linear: cada componente da saída é uma combinação **linear** de $x$ e $y$ com coeficientes constantes ($\cos\theta$, $\sin\theta$).
+- Estudaremos rotações, reflexões e escalas em detalhe na Aula 20.
+
+## Exemplo — multiplicação por matriz
+
+Se $A$ é uma matriz $m\times n$ fixa,
+$$T(x) = Ax, \qquad T:\mathbb{R}^n\to\mathbb{R}^m$$
+é **sempre** linear:
+$$T(u+v) = A(u+v) = Au+Av = T(u)+T(v)$$
+$$T(cv) = A(cv) = c(Av) = cT(v)$$
+
+- Identidade, transformação nula, projeção e rotação são todos casos particulares deste exemplo!
+
+## Exemplo — derivação em polinômios e traço de matrizes
+
+**Derivação:** $T:P_2\to P_1$, $T(p) = p'$.
+
+Para $p(x) = 3x^2-2x+1$:
+$$T(p) = 6x - 2$$
+
+Linear pois $(p+q)' = p'+q'$ e $(cp)'=cp'$.
+
+**Traço:** $T:M_{2,2}\to\mathbb{R}$, $T(A) = a_{11}+a_{22}=\mathrm{tr}(A)$.
+
+Linear pois $\mathrm{tr}(A+B)=\mathrm{tr}(A)+\mathrm{tr}(B)$ e $\mathrm{tr}(cA)=c\,\mathrm{tr}(A)$.
+
+# 16.3 — Um contraexemplo importante
+
+## $T(x,y)=(x^2,y)$ não é linear
+
+$$T:\mathbb{R}^2\to\mathbb{R}^2, \qquad T(x,y) = (x^2,\ y)$$
+
+::: {.callout-tip title="Contraexemplo — T não é linear"}
+Tome $v=(1,1)$ e $c=2$. Então $cv=(2,2)$ e:
+$$T(cv) = T(2,2) = (4,2)$$
+$$c\,T(v) = 2\,T(1,1) = 2(1,1) = (2,2)$$
+
+Como $(4,2)\neq(2,2)$, temos $T(cv)\neq c\,T(v)$: **$T$ não é linear.**
+:::
+
+- O termo $x^2$ é a causa: transformações lineares só podem envolver combinações **lineares** das coordenadas de entrada.
+
+# 16.4 — A matriz canônica
+
+## Toda transformação linear de $\mathbb{R}^n$ em $\mathbb{R}^m$ é matricial
+
+::: {.callout-important title="Teorema — matriz canônica"}
+Se $T:\mathbb{R}^n\to\mathbb{R}^m$ é linear, existe uma **única** matriz $A$, $m\times n$, tal que
+$$T(x) = Ax \qquad \text{para todo } x\in\mathbb{R}^n.$$
+As colunas de $A$ são as imagens dos vetores da base canônica $\{e_1,\ldots,e_n\}$:
+$$A = \big[\ T(e_1)\ \ T(e_2)\ \ \cdots\ \ T(e_n)\ \big]$$
+$A$ é chamada **matriz canônica** (ou matriz padrão) de $T$.
+:::
+
+## Exemplo — construindo a matriz canônica
+
+Seja $T:\mathbb{R}^3\to\mathbb{R}^2$ dada por $T(x,y,z) = (x+2y,\ y-z)$.
+
+Calculando as imagens da base canônica $\{e_1,e_2,e_3\}$:
+$$T(1,0,0)=(1,0), \qquad T(0,1,0)=(2,1), \qquad T(0,0,1)=(0,-1)$$
+
+Logo:
+$$A = \begin{bmatrix}1&2&0\\0&1&-1\end{bmatrix}$$
+
+**Verificação:**
+$$A\begin{bmatrix}x\\y\\z\end{bmatrix} = \begin{bmatrix}x+2y\\y-z\end{bmatrix} = T(x,y,z)\ \checkmark$$
+
+## Resumo da aula {.smaller}
+
+- **16.1** — $T$ é linear quando preserva soma e multiplicação por escalar; consequência imediata $T(0)=0$ serve de teste rápido de não linearidade.
+- **16.2** — Identidade, transformação nula, projeção, rotação, $T(x)=Ax$, derivação e traço são todos exemplos de transformações lineares.
+- **16.3** — $T(x,y)=(x^2,y)$ não é linear: termos não lineares (como $x^2$) quebram a definição.
+- **16.4** — Toda TL $\mathbb{R}^n\to\mathbb{R}^m$ é da forma $T(x)=Ax$; a matriz canônica é obtida a partir das imagens dos vetores da base canônica.
+
+## Referências
+
+- Anton, H.; Rorres, C. **Álgebra Linear com Aplicações**. Capítulo sobre Transformações Lineares.
+- Lay, D. C. **Álgebra Linear e suas Aplicações**. Seções 1.8–1.9 e Capítulo 4.
+- Strang, G. **Álgebra Linear e suas Aplicações**. Capítulo sobre Transformações Lineares.

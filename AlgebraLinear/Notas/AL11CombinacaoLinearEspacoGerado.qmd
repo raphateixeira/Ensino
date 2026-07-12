@@ -1,0 +1,141 @@
+---
+title: "Álgebra Linear"
+subtitle: "Combinação Linear e Espaço Gerado"
+author: "Prof. Dr. Raphael Teixeira"
+institute: "Universidade Federal do Pará"
+lang: pt-BR
+format:
+  revealjs:
+    theme: [default, ../TemaRTx.scss]
+    transition: slide
+    slide-number: true
+    width: 1600
+    height: 900
+    footer: "UFPA - NDAE - PPCA "
+    center: true
+    title-slide-attributes:
+      data-background-image: "../imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 40px center"
+---
+
+## Sumário {.smaller}
+
+- **11.1** Combinação linear
+- **11.2** Espaço gerado ($\mathrm{ger}$ / $\mathrm{span}$)
+- **11.3** Interpretação geométrica
+- **11.4** Pertinência ao espaço gerado — exemplos algébricos
+- **11.5** Conjuntos geradores de $\mathbb{R}^n$
+
+# 11.1 — Combinação linear
+
+## Definição de combinação linear
+
+::: {.callout-note title="Definição"}
+Um vetor $w$ é **combinação linear** dos vetores $v_1,v_2,\ldots,v_k$ de um espaço vetorial $V$ se existem escalares $c_1,c_2,\ldots,c_k$ tais que
+$$w = c_1v_1+c_2v_2+\cdots+c_kv_k.$$
+:::
+
+- Já usamos essa ideia informalmente desde AL01 (sistemas lineares) e AL03 (eliminação de Gauss).
+- Os $c_i$ são os **coeficientes** da combinação linear.
+
+## Exemplo — combinação linear em $\mathbb{R}^3$
+
+Para $v_1=(1,0,1)$, $v_2=(0,1,1)$, o vetor
+$$w = 2v_1 - 3v_2 = 2(1,0,1) - 3(0,1,1) = (2,-3,-1)$$
+é combinação linear de $v_1,v_2$, com coeficientes $c_1=2$, $c_2=-3$.
+
+# 11.2 — Espaço gerado
+
+## Definição de espaço gerado
+
+::: {.callout-note title="Definição"}
+Seja $S=\{v_1,\ldots,v_k\}\subset V$. O **espaço gerado** por $S$, denotado $\mathrm{ger}(S)$ ou $\mathrm{span}(S)$, é o conjunto de **todas** as combinações lineares dos vetores de $S$:
+$$\mathrm{ger}(S) = \{c_1v_1+c_2v_2+\cdots+c_kv_k : c_1,\ldots,c_k\in\mathbb{R}\}.$$
+
+Dizemos que $S$ **gera** $\mathrm{ger}(S)$.
+:::
+
+## O espaço gerado é sempre um subespaço
+
+::: {.callout-important title="Teorema"}
+Para qualquer $S=\{v_1,\ldots,v_k\}\subset V$, o conjunto $\mathrm{ger}(S)$ é subespaço de $V$.
+:::
+
+**Prova (teste de subespaço):**
+
+1. $0 = 0v_1+\cdots+0v_k \in \mathrm{ger}(S)$.
+2. Se $u=\sum a_iv_i$ e $w=\sum b_iv_i$, então $u+w = \sum(a_i+b_i)v_i \in \mathrm{ger}(S)$.
+3. Se $u=\sum a_iv_i$, então $cu = \sum(ca_i)v_i \in \mathrm{ger}(S)$. $\blacksquare$
+
+# 11.3 — Interpretação geométrica
+
+## Reta e plano gerados
+
+![](../imgs/espaco-gerado.svg){fig-align="center" width="85%"}
+
+- **(a)** $\mathrm{ger}\{v\}$, com $v\neq0$, é a **reta** que passa pela origem na direção de $v$.
+- **(b)** $\mathrm{ger}\{u,w\}$, com $u,w$ **linearmente independentes** (não colineares), é o **plano** que passa pela origem contendo $u$ e $w$.
+- Se $u,w$ fossem colineares, $\mathrm{ger}\{u,w\}$ seria apenas uma reta (o "plano" degeneraria).
+
+# 11.4 — Pertinência ao espaço gerado
+
+## Exemplo — um vetor QUE pertence ao espaço gerado
+
+Sejam $v_1=(1,0,1)$, $v_2=(0,1,1)$. O vetor $w=(1,1,2)$ pertence a $\mathrm{ger}\{v_1,v_2\}$?
+
+Buscamos $c_1,c_2$ com $c_1v_1+c_2v_2=w$:
+$$c_1(1,0,1)+c_2(0,1,1) = (c_1,\ c_2,\ c_1+c_2) = (1,1,2)$$
+
+$$c_1=1,\qquad c_2=1,\qquad c_1+c_2=1+1=2\ \checkmark$$
+
+Sistema **consistente**: $c_1=1$, $c_2=1$. Logo $w=v_1+v_2 \in \mathrm{ger}\{v_1,v_2\}$.
+
+## Exemplo — um vetor que NÃO pertence ao espaço gerado
+
+Com os mesmos $v_1=(1,0,1)$, $v_2=(0,1,1)$, o vetor $w'=(1,1,3)$ pertence a $\mathrm{ger}\{v_1,v_2\}$?
+
+$$c_1(1,0,1)+c_2(0,1,1) = (c_1,\ c_2,\ c_1+c_2) = (1,1,3)$$
+
+Das duas primeiras equações: $c_1=1$, $c_2=1$. Substituindo na terceira:
+$$c_1+c_2 = 1+1 = 2 \neq 3$$
+
+Sistema **inconsistente**: não existem $c_1,c_2$. Logo $w'\notin \mathrm{ger}\{v_1,v_2\}$.
+
+- Geometricamente: $w'$ está fora do plano gerado por $v_1,v_2$.
+
+# 11.5 — Conjuntos geradores de $\mathbb{R}^n$
+
+## Quando um conjunto gera todo $\mathbb{R}^n$?
+
+::: {.callout-note title="Fato"}
+$S=\{v_1,\ldots,v_k\}\subset\mathbb{R}^n$ gera $\mathbb{R}^n$ (isto é, $\mathrm{ger}(S)=\mathbb{R}^n$) se, e somente se, a matriz $M$ cujas colunas são $v_1,\ldots,v_k$ tem **posto $n$**.
+:::
+
+- Se $k=n$: basta $\det(M)\neq 0$.
+- Se $k<n$: impossível gerar $\mathbb{R}^n$ (posto $\le k<n$).
+- Se $k>n$: possível, desde que o posto atinja $n$.
+
+## Exemplo — verificando se três vetores geram $\mathbb{R}^3$
+
+Verificar se $v_1=(1,0,1)$, $v_2=(0,1,1)$, $v_3=(1,1,0)$ geram $\mathbb{R}^3$.
+
+$$M = \begin{bmatrix}1&0&1\\0&1&1\\1&1&0\end{bmatrix}$$
+
+$$\det(M) = 1\begin{vmatrix}1&1\\1&0\end{vmatrix} - 0\begin{vmatrix}0&1\\1&0\end{vmatrix} + 1\begin{vmatrix}0&1\\1&1\end{vmatrix} = 1(0-1)-0+1(0-1) = -1-1=-2$$
+
+Como $\det(M)=-2\neq0$, o posto de $M$ é $3=n$. Logo $\{v_1,v_2,v_3\}$ **gera** $\mathbb{R}^3$.
+
+## Resumo da aula
+
+- **11.1** — Combinação linear: $w=c_1v_1+\cdots+c_kv_k$.
+- **11.2** — $\mathrm{ger}(S)$: conjunto de todas as combinações lineares de $S$; é sempre subespaço.
+- **11.3** — Geometricamente: 1 vetor gera uma reta; 2 vetores LI geram um plano (ambos pela origem).
+- **11.4** — Pertinência a $\mathrm{ger}(S)$ se testa resolvendo um sistema linear (consistente $\Rightarrow$ pertence).
+- **11.5** — $S$ gera $\mathbb{R}^n$ $\iff$ a matriz formada pelos vetores de $S$ tem posto $n$.
+
+## Referências
+
+- ANTON, H.; RORRES, C. **Álgebra Linear com Aplicações**. 10ª ed. Seção 4.3 — Independência Linear (parte de combinação/espaço gerado na Seção 4.2–4.3).
+- LAY, D. **Álgebra Linear e suas Aplicações**. 4ª ed. Seção 4.1 — Combinações Lineares e Espaços Gerados.
+- STRANG, G. **Álgebra Linear e suas Aplicações**. 4ª ed. Seção 3.1 — Combinações Lineares.

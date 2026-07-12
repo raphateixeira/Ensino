@@ -1,0 +1,135 @@
+---
+title: "Álgebra Linear"
+subtitle: "Espaço Linha, Espaço Coluna, Núcleo, Posto e Nulidade"
+author: "Prof. Dr. Raphael Teixeira"
+institute: "Universidade Federal do Pará"
+lang: pt-BR
+format:
+  revealjs:
+    theme: [default, ../TemaRTx.scss]
+    transition: slide
+    slide-number: true
+    width: 1600
+    height: 900
+    footer: "UFPA - NDAE - PPCA "
+    center: true
+    title-slide-attributes:
+      data-background-image: "../imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 40px center"
+---
+
+## Sumário {.smaller}
+
+- **14.1** Espaço linha, espaço coluna e núcleo
+- **14.2** Operações elementares e o espaço linha
+- **14.3** Bases do espaço linha e do espaço coluna
+- **14.4** Posto e nulidade; teorema do posto
+- **14.5** Exemplo numérico completo (matriz $3\times4$)
+
+# 14.1 — Definições
+
+## Três subespaços associados a uma matriz
+
+Seja $A$ uma matriz $m\times n$.
+
+::: {.callout-note title="Definições"}
+- **Espaço linha** $R(A^T)$: subespaço de $\mathbb{R}^n$ gerado pelas **linhas** de $A$.
+- **Espaço coluna** $R(A)$: subespaço de $\mathbb{R}^m$ gerado pelas **colunas** de $A$.
+- **Núcleo (espaço nulo)** $N(A) = \{x\in\mathbb{R}^n : Ax=0\}$: já estudado em AL04/AL10.
+:::
+
+- $R(A)$ é exatamente o conjunto dos $b$ para os quais $Ax=b$ é consistente (pois $Ax$ é combinação linear das colunas de $A$, com coeficientes $x_i$).
+
+# 14.2 — Operações elementares e o espaço linha
+
+## O que se preserva ao escalonar
+
+::: {.callout-important title="Teorema"}
+Operações elementares sobre as **linhas** de $A$ **preservam o espaço linha**: se $A'$ é obtida de $A$ por operações elementares, então $R(A^T)=R(A'^T)$.
+:::
+
+- Trocar, somar múltiplos ou escalar linhas apenas produz **novas combinações lineares** das linhas originais — o conjunto de todas as combinações lineares (o espaço gerado) não muda.
+- **Cuidado:** o mesmo **não vale** para o espaço coluna! Operações de linha podem alterar completamente quais combinações de colunas são possíveis (o espaço coluna de $A'$ pode ser bem diferente do de $A$).
+- Consequência prática: o espaço linha pode ser lido **diretamente da forma escalonada**.
+
+# 14.3 — Bases do espaço linha e do espaço coluna
+
+## Como obter as bases
+
+::: {.callout-note title="Procedimento"}
+Dada $A$, escalone até a forma escalonada $R$ (ou RREF):
+
+- **Base do espaço linha:** as **linhas não nulas** de $R$.
+- **Base do espaço coluna:** as **colunas de $A$ (a matriz original!)** que correspondem às **colunas pivô** de $R$.
+:::
+
+- Atenção: a base do espaço linha usa a matriz **escalonada**; a base do espaço coluna usa as colunas correspondentes na matriz **original** (pois, como vimos, o espaço coluna não é preservado pelo escalonamento).
+
+# 14.4 — Posto e nulidade
+
+## Definições
+
+::: {.callout-note title="Definição"}
+- **Posto** de $A$: $\mathrm{posto}(A) = \dim(R(A)) = \dim(R(A^T))$.
+- **Nulidade** de $A$: $\mathrm{nul}(A) = \dim(N(A))$.
+:::
+
+::: {.callout-important title="Teorema"}
+$\dim(R(A)) = \dim(R(A^T))$ — isto é, a dimensão do espaço coluna **sempre** coincide com a do espaço linha, mesmo quando vivem em espaços diferentes ($\mathbb{R}^m$ e $\mathbb{R}^n$). Esse valor comum é o **posto**.
+:::
+
+## Teorema do posto (rank-nullity)
+
+::: {.callout-important title="Teorema do posto"}
+Para $A$ de tamanho $m\times n$:
+$$\mathrm{posto}(A) + \mathrm{nul}(A) = n$$
+:::
+
+- $n$ = número de **colunas** de $A$ = número de variáveis do sistema $Ax=0$.
+- Intuição: cada coluna pivô "consome" uma dimensão do espaço linha/coluna (posto); cada coluna livre gera uma direção no núcleo (nulidade).
+
+# 14.5 — Exemplo numérico completo
+
+## A matriz e o escalonamento
+
+$$A=\begin{bmatrix}1&2&1&3\\2&4&0&4\\1&2&2&5\end{bmatrix}$$
+
+Escalonando ($L_2\leftarrow L_2-2L_1$, $L_3\leftarrow L_3-L_1$, depois eliminando):
+
+$$\begin{bmatrix}1&2&1&3\\0&0&-2&-2\\0&0&1&2\end{bmatrix} \to \cdots \to R=\begin{bmatrix}1&2&0&0\\0&0&1&0\\0&0&0&1\end{bmatrix}$$
+
+Pivôs nas colunas 1, 3 e 4.
+
+## Posto e nulidade
+
+- $\mathrm{posto}(A) = 3$ (três linhas não nulas em $R$; três colunas pivô).
+- $n=4$ colunas $\Rightarrow$ pelo teorema do posto: $\mathrm{nul}(A) = 4-3=1$.
+
+**Base do núcleo:** de $R$, as equações são $x_1+2x_2=0$, $x_3=0$, $x_4=0$, com $x_2=t$ livre:
+$$x = t(-2,\,1,\,0,\,0) \quad\Rightarrow\quad N(A) = \mathrm{ger}\{(-2,1,0,0)\}$$
+
+## Base do espaço linha e do espaço coluna
+
+**Base do espaço linha** (linhas não nulas de $R$):
+$$\{(1,2,0,0),\ (0,0,1,0),\ (0,0,0,1)\} \subset \mathbb{R}^4$$
+
+**Base do espaço coluna** (colunas pivô 1, 3, 4 **da matriz original** $A$):
+$$\left\{\begin{bmatrix}1\\2\\1\end{bmatrix},\ \begin{bmatrix}1\\0\\2\end{bmatrix},\ \begin{bmatrix}3\\4\\5\end{bmatrix}\right\} \subset \mathbb{R}^3$$
+
+- Como $\mathrm{posto}(A)=3=$ número de linhas de $A$, o espaço coluna é **todo** o $\mathbb{R}^3$.
+- Verificação final: $\mathrm{posto}(A)+\mathrm{nul}(A) = 3+1 = 4 = n$ ✓.
+
+## Resumo da aula
+
+- **14.1** — Espaço linha $R(A^T)\subset\mathbb{R}^n$, espaço coluna $R(A)\subset\mathbb{R}^m$, núcleo $N(A)\subset\mathbb{R}^n$.
+- **14.2** — Operações de linha preservam o espaço linha, mas **não** o espaço coluna.
+- **14.3** — Base do espaço linha: linhas não nulas da forma escalonada. Base do espaço coluna: colunas pivô da matriz **original**.
+- **14.4** — Posto = $\dim(R(A))=\dim(R(A^T))$; nulidade = $\dim(N(A))$; teorema do posto: $\mathrm{posto}+\mathrm{nul}=n$.
+- **14.5** — Exemplo $3\times4$: posto 3, nulidade 1, todas as bases obtidas da mesma forma escalonada.
+
+## Referências
+
+- ANTON, H.; RORRES, C. **Álgebra Linear com Aplicações**. 10ª ed. Seção 4.7 — Posto, Nulidade e os Espaços Fundamentais de uma Matriz.
+- LAY, D. **Álgebra Linear e suas Aplicações**. 4ª ed. Seção 4.6 — Posto.
+- STRANG, G. **Álgebra Linear e suas Aplicações**. 4ª ed. Seção 3.3 — O Posto de uma Matriz.

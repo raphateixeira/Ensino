@@ -1,0 +1,135 @@
+---
+title: "Álgebra Linear"
+subtitle: "Diagonalização de Matrizes"
+author: "Prof. Dr. Raphael Teixeira"
+institute: "Universidade Federal do Pará"
+lang: pt-BR
+format:
+  revealjs:
+    theme: [default, ../TemaRTx.scss]
+    transition: slide
+    slide-number: true
+    width: 1600
+    height: 900
+    footer: "UFPA - NDAE - PPCA "
+    center: true
+    title-slide-attributes:
+      data-background-image: "../imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 40px center"
+---
+
+# 22.1 — Diagonalização
+
+## Por que diagonalizar?
+
+- Matrizes **diagonais** são extremamente fáceis de manipular: potências, sistemas dinâmicos, etc.
+- Ideia: trocar de base para uma em que $A$ **atua como matriz diagonal**.
+- Essa base é formada por autovetores de $A$ — o assunto da aula anterior agora vira ferramenta de cálculo.
+
+## Definição — matriz diagonalizável
+
+::: {.callout-note title="Definição"}
+Uma matriz $A$ ($n\times n$) é **diagonalizável** se existe uma matriz invertível $P$ tal que
+$$P^{-1}AP = D$$
+é uma matriz **diagonal**.
+:::
+
+- Equivalentemente: $A = PDP^{-1}$.
+- $D$ contém os autovalores de $A$; $P$ contém os autovetores correspondentes — mas em que ordem, exatamente?
+
+## Teorema 22.1 — condição de diagonalizabilidade
+
+::: {.callout-important title="Teorema 22.1"}
+Uma matriz $A$ ($n\times n$) é diagonalizável se e somente se possui $n$ autovetores linearmente independentes.
+
+Nesse caso, se $P$ tem esses autovetores como colunas, então
+$$P^{-1}AP = D,$$
+onde $D$ é diagonal e sua $i$-ésima entrada diagonal é o autovalor correspondente à $i$-ésima coluna de $P$.
+:::
+
+- A ordem das colunas de $P$ e das entradas de $D$ deve **coincidir**.
+- Se algum autovalor tem multiplicidade geométrica $<$ algébrica (matriz defectiva), faltam autovetores LI e $A$ **não** é diagonalizável.
+
+## Exemplo — diagonalizando uma matriz $2\times2$ (parte 1)
+
+Retomando $A=\begin{bmatrix}4&2\\1&3\end{bmatrix}$ (aula anterior): autovalores $\lambda_1=5$, $\lambda_2=2$, com autovetores
+$$v_1=(2,1) \ \text{ (para }\lambda_1=5\text{)}, \qquad v_2=(1,-1) \ \text{ (para }\lambda_2=2\text{)}.$$
+
+Como $v_1,v_2$ são LI (não são paralelos) e $A$ é $2\times2$, o Teorema 22.1 garante que $A$ é diagonalizável.
+
+## Exemplo — diagonalizando uma matriz $2\times2$ (parte 2)
+
+$$P=\begin{bmatrix}2&1\\1&-1\end{bmatrix}, \qquad D=\begin{bmatrix}5&0\\0&2\end{bmatrix}$$
+
+Como $\det P = -2-1=-3\neq0$, $P$ é invertível, com
+$$P^{-1}=\begin{bmatrix}1/3&1/3\\1/3&-2/3\end{bmatrix}.$$
+
+**Verificação** ($AP=PD$): $AP=\begin{bmatrix}10&2\\5&-2\end{bmatrix}$ e $PD=\begin{bmatrix}2\cdot5&1\cdot2\\1\cdot5&-1\cdot2\end{bmatrix}=\begin{bmatrix}10&2\\5&-2\end{bmatrix}$. ✓
+
+Logo $P^{-1}AP=D$.
+
+## Teorema 22.2 — autovalores distintos bastam
+
+::: {.callout-important title="Teorema 22.2"}
+Se uma matriz $A$ ($n\times n$) possui $n$ autovalores **distintos**, então $A$ é diagonalizável.
+:::
+
+- Autovetores associados a autovalores distintos são automaticamente LI — condição **suficiente**, mas **não necessária**.
+- Contraexemplo da suficiência não ser necessária: $A=I$ tem autovalor único $\lambda=1$ com multiplicidade $n$, mas é diagonalizável (já é diagonal!). O teorema não se aplica, mas $A$ é diagonalizável mesmo assim.
+
+## Contraexemplo — matriz não diagonalizável
+
+Retomando $A=\begin{bmatrix}2&1\\0&2\end{bmatrix}$: autovalor único $\lambda=2$, multiplicidade algébrica $2$, mas multiplicidade geométrica $1$ (autoespaço $=\mathrm{span}\{(1,0)\}$).
+
+::: {.callout-tip title="Observação"}
+Só existe **um** autovetor LI. É impossível formar $P$ $2\times2$ invertível com colunas autovetores de $A$ — logo $A$ **não é diagonalizável**.
+:::
+
+- Esse é exatamente o tipo de matriz "defectiva" apresentado na aula anterior.
+
+# 22.2 — Aplicação: potências de matrizes
+
+## Potências via diagonalização
+
+Se $A=PDP^{-1}$, então para qualquer inteiro $k\ge1$:
+$$A^k = (PDP^{-1})(PDP^{-1})\cdots(PDP^{-1}) = PD^kP^{-1},$$
+
+pois os termos $P^{-1}P$ do meio se cancelam.
+
+- Como $D$ é diagonal, $D^k$ é trivial: basta elevar **cada entrada da diagonal** à potência $k$.
+- Calcular $A^k$ diretamente exigiria $k-1$ multiplicações de matrizes; via diagonalização, apenas **duas** multiplicações (mais elevar escalares a potências).
+
+## Exemplo — calculando $A^{10}$ (fórmula geral)
+
+Para $A=\begin{bmatrix}4&2\\1&3\end{bmatrix}=PDP^{-1}$ com $\lambda_1=5,\lambda_2=2$, $P,P^{-1}$ como antes, obtém-se, para qualquer $k$:
+
+$$A^k = \frac{1}{3}\begin{bmatrix}2\lambda_1^k+\lambda_2^k & 2\lambda_1^k-2\lambda_2^k \\ \lambda_1^k-\lambda_2^k & \lambda_1^k+2\lambda_2^k\end{bmatrix}$$
+
+**Checagem para $k=1$:** $\frac13\begin{bmatrix}2(5)+2 & 2(5)-2(2)\\5-2 & 5+2(2)\end{bmatrix}=\frac13\begin{bmatrix}12&6\\3&9\end{bmatrix}=\begin{bmatrix}4&2\\1&3\end{bmatrix}=A.$ ✓
+
+## Exemplo — calculando $A^{10}$ (resultado numérico)
+
+Com $\lambda_1^{10}=5^{10}=9\,765\,625$ e $\lambda_2^{10}=2^{10}=1024$:
+
+$$A^{10} = \begin{bmatrix}6\,510\,758 & 6\,509\,734 \\ 3\,254\,867 & 3\,255\,891\end{bmatrix}$$
+
+::: {.callout-tip title="Verificação rápida"}
+$\det(A)=10$, logo $\det(A^{10})=10^{10}$. De fato, $\lambda_1^{10}\lambda_2^{10}=9\,765\,625\times 1024=10\,000\,000\,000=10^{10}$. ✓
+
+$\mathrm{tr}(A^{10})=\lambda_1^{10}+\lambda_2^{10}=9\,766\,649$, que coincide com $6\,510\,758+3\,255\,891$. ✓
+:::
+
+## Resumo da aula
+
+- $A$ é diagonalizável $\iff$ possui $n$ autovetores LI; $P$ = autovetores em colunas, $D$ = autovalores correspondentes na diagonal.
+- Autovalores distintos $\Rightarrow$ diagonalizável (condição suficiente, não necessária).
+- Matrizes defectivas (multiplicidade geométrica $<$ algébrica) **não** são diagonalizáveis.
+- Aplicação central: $A^k=PD^kP^{-1}$ torna potências de matrizes triviais de calcular.
+
+## Referências
+
+- Anton, H. & Rorres, C. **Álgebra Linear com Aplicações**. 10ª ed. Bookman.
+- Lay, D. C. **Álgebra Linear e suas Aplicações**. 4ª ed. Pearson.
+- Strang, G. **Introdução à Álgebra Linear**. 4ª ed. LTC.
+- Larson, R. **Elementos de Álgebra Linear**, 8ª ed. Capítulo sobre Diagonalização.

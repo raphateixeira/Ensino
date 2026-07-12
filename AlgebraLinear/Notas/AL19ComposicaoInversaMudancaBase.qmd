@@ -1,0 +1,134 @@
+---
+title: "Álgebra Linear"
+subtitle: "Composição e Inversa de Transformações Lineares; Mudança de Base de Operadores"
+author: "Prof. Dr. Raphael Teixeira"
+institute: "Universidade Federal do Pará"
+lang: pt-BR
+format:
+  revealjs:
+    theme: [default, ../TemaRTx.scss]
+    transition: slide
+    slide-number: true
+    width: 1600
+    height: 900
+    footer: "UFPA - NDAE - PPCA "
+    center: true
+    title-slide-attributes:
+      data-background-image: "../imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 40px center"
+---
+
+## Sumário {.smaller}
+
+- **19.1** Composição de transformações lineares
+- **19.2** Transformações invertíveis
+- **19.3** Isomorfismos
+- **19.4** Mudança de base de um operador
+
+# 19.1 — Composição
+
+## Composição de transformações lineares
+
+::: {.callout-note title="Definição"}
+Sejam $T_1:U\to V$ e $T_2:V\to W$ lineares. A **composição** $T_2\circ T_1:U\to W$ é definida por
+$$(T_2\circ T_1)(u) = T_2\big(T_1(u)\big)$$
+:::
+
+::: {.callout-important title="Teorema"}
+Se $T_1$ e $T_2$ são lineares, então $T_2\circ T_1$ também é linear.
+:::
+
+## Matriz da composição
+
+::: {.callout-important title="Teorema — matriz da composição"}
+Sejam $T_1:\mathbb{R}^n\to\mathbb{R}^m$ e $T_2:\mathbb{R}^m\to\mathbb{R}^p$ com matrizes canônicas $[T_1]$ e $[T_2]$. Então a matriz canônica de $T_2\circ T_1$ é
+$$[T_2\circ T_1] = [T_2]\,[T_1]$$
+:::
+
+- A ordem importa: $[T_2][T_1]$, e **não** $[T_1][T_2]$ — a composição $T_2\circ T_1$ aplica $T_1$ primeiro.
+
+## Exemplo numérico — composição de duas transformações
+
+Seja $T_1:\mathbb{R}^2\to\mathbb{R}^2$ a rotação de $90^\circ$, $[T_1]=\begin{bmatrix}0&-1\\1&0\end{bmatrix}$, e $T_2:\mathbb{R}^2\to\mathbb{R}^2$ a escala $[T_2]=\begin{bmatrix}2&0\\0&3\end{bmatrix}$.
+
+$$[T_2\circ T_1] = [T_2][T_1] = \begin{bmatrix}2&0\\0&3\end{bmatrix}\begin{bmatrix}0&-1\\1&0\end{bmatrix} = \begin{bmatrix}0&-2\\3&0\end{bmatrix}$$
+
+Aplicando a $v=(1,0)$: $T_1(1,0)=(0,1)$ (rotação), depois $T_2(0,1)=(0,3)$ (escala). Direto: $\begin{bmatrix}0&-2\\3&0\end{bmatrix}\begin{bmatrix}1\\0\end{bmatrix}=\begin{bmatrix}0\\3\end{bmatrix}$ $\checkmark$
+
+Note que $[T_1][T_2] = \begin{bmatrix}0&-3\\2&0\end{bmatrix} \neq [T_2][T_1]$: **a ordem da composição importa!**
+
+# 19.2 — Transformações invertíveis
+
+## Invertibilidade
+
+::: {.callout-important title="Teorema"}
+Uma transformação linear $T:\mathbb{R}^n\to\mathbb{R}^n$ é **invertível** se, e somente se, é bijetora, se e somente se sua matriz canônica $[T]$ é invertível ($\det[T]\neq0$). Nesse caso, $T^{-1}$ é linear e
+$$[T^{-1}] = [T]^{-1}$$
+:::
+
+- Equivalências úteis para $T:\mathbb{R}^n\to\mathbb{R}^n$ (Aula 17): $T$ injetora $\iff$ $T$ sobrejetora $\iff$ $\det[T]\neq 0$.
+
+## Exemplo — calculando $T^{-1}$ em $\mathbb{R}^2$
+
+Seja $T(x,y) = (2x+y,\ x+2y)$, com $[T]=\begin{bmatrix}2&1\\1&2\end{bmatrix}$.
+
+$\det[T] = 4-1 = 3\neq 0 \ \Rightarrow\ T$ é invertível.
+
+$$[T]^{-1} = \frac{1}{3}\begin{bmatrix}2&-1\\-1&2\end{bmatrix}$$
+
+Logo $T^{-1}(x,y) = \left(\dfrac{2x-y}{3},\ \dfrac{-x+2y}{3}\right)$.
+
+**Verificação:**
+$$[T][T]^{-1} = \begin{bmatrix}2&1\\1&2\end{bmatrix}\cdot\frac13\begin{bmatrix}2&-1\\-1&2\end{bmatrix} = \frac13\begin{bmatrix}3&0\\0&3\end{bmatrix}=I$$
+
+# 19.3 — Isomorfismos
+
+## Isomorfismo entre espaços de mesma dimensão finita
+
+::: {.callout-note title="Definição"}
+$T:V\to W$ é um **isomorfismo** quando é linear e bijetora (invertível). Dizemos então que $V$ e $W$ são **isomorfos**.
+:::
+
+::: {.callout-important title="Teorema"}
+Todo espaço vetorial $V$ de dimensão finita $n$ é isomorfo a $\mathbb{R}^n$: fixada uma base $B=\{v_1,\ldots,v_n\}$ de $V$, a aplicação **coordenada** $v\mapsto[v]_B$ é um isomorfismo $V\to\mathbb{R}^n$.
+:::
+
+- **Exemplo:** $P_2$ (polinômios de grau $\le 2$) é isomorfo a $\mathbb{R}^3$ via $a_0+a_1x+a_2x^2 \mapsto (a_0,a_1,a_2)$. Soma e multiplicação por escalar em $P_2$ correspondem exatamente às mesmas operações em $\mathbb{R}^3$.
+
+# 19.4 — Mudança de base de um operador
+
+## Motivação e fórmula
+
+- A matriz $[T]_B$ de um operador $T:V\to V$ depende da base $B$ escolhida (Aula 18).
+- Pergunta natural: como relacionar $[T]_B$ e $[T]_{B'}$ para duas bases diferentes $B,B'$ de $V$?
+
+::: {.callout-important title="Teorema — mudança de base de um operador"}
+Sejam $B,B'$ bases de $V$ e $P$ a matriz cujas colunas são os vetores de $B'$ expressos em coordenadas de $B$ (de modo que $[v]_B = P[v]_{B'}$ para todo $v$). Então
+$$[T]_{B'} = P^{-1}\,[T]_B\,P$$
+:::
+
+- Diz-se que $[T]_B$ e $[T]_{B'}$ são **matrizes semelhantes** — retomaremos essa ideia ao estudar autovalores e diagonalização.
+
+## Exemplo completo — mudança de base de um operador em $\mathbb{R}^2$
+
+Retomando $T(x,y)=(2x+y,\ x+2y)$, com $[T] = \begin{bmatrix}2&1\\1&2\end{bmatrix}$ na base canônica $B$, e a nova base $B'=\{(1,1),(1,-1)\}$.
+
+$$P = \begin{bmatrix}1&1\\1&-1\end{bmatrix}, \qquad P^{-1} = \begin{bmatrix}\tfrac12&\tfrac12\\[2pt]\tfrac12&-\tfrac12\end{bmatrix}$$
+
+$$[T]_{B'} = P^{-1}[T]P = \begin{bmatrix}\tfrac12&\tfrac12\\[2pt]\tfrac12&-\tfrac12\end{bmatrix}\begin{bmatrix}2&1\\1&2\end{bmatrix}\begin{bmatrix}1&1\\1&-1\end{bmatrix} = \begin{bmatrix}3&0\\0&1\end{bmatrix}$$
+
+- Confere exatamente com o resultado obtido diretamente na Aula 18: na base $B'$, o operador tem matriz **diagonal**.
+
+## Resumo da aula {.smaller}
+
+- **19.1** — Composição de TLs é linear; matriz da composição é o produto $[T_2\circ T_1]=[T_2][T_1]$ (ordem importa).
+- **19.2** — $T:\mathbb{R}^n\to\mathbb{R}^n$ é invertível $\iff$ bijetora $\iff$ $[T]$ invertível; $[T^{-1}]=[T]^{-1}$.
+- **19.3** — Todo espaço de dimensão finita $n$ é isomorfo a $\mathbb{R}^n$ via a aplicação coordenada.
+- **19.4** — Mudança de base de um operador: $[T]_{B'}=P^{-1}[T]_BP$; matrizes semelhantes representam o mesmo operador em bases diferentes.
+
+## Referências
+
+- Anton, H.; Rorres, C. **Álgebra Linear com Aplicações**. Capítulo sobre Transformações Lineares.
+- Lay, D. C. **Álgebra Linear e suas Aplicações**. Seções sobre composição, invertibilidade e matrizes semelhantes.
+- Strang, G. **Álgebra Linear e suas Aplicações**. Capítulo sobre mudança de base e semelhança de matrizes.

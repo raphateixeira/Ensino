@@ -1,0 +1,143 @@
+---
+title: "Álgebra Linear"
+subtitle: "Fatoração LU"
+author: "Prof. Dr. Raphael Teixeira"
+institute: "Universidade Federal do Pará"
+lang: pt-BR
+format:
+  revealjs:
+    theme: [default, ../TemaRTx.scss]
+    transition: slide
+    slide-number: true
+    width: 1600
+    height: 900
+    footer: "UFPA - NDAE - PPCA "
+    center: true
+    title-slide-attributes:
+      data-background-image: "../imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 40px center"
+---
+
+## Sumário {.smaller}
+
+- **6.1** Motivação e definição da fatoração $A=LU$
+- **6.2** Construção de $L$ e $U$ a partir da eliminação de Gauss
+- **6.3** Resolvendo $Ax=b$ via $LUx=b$
+- **6.4** Quando é necessário pivotamento
+
+# 6.1 — Motivação e definição
+
+## Por que fatorar $A=LU$?
+
+- Em engenharia é comum resolver $Ax=b$ para o **mesmo** $A$ e **vários** vetores $b$ diferentes (ex.: simulações com múltiplas condições de contorno).
+- Refazer a eliminação de Gauss do zero para cada $b$ é **desperdício**: a parte "cara" do processo (escalonar $A$) não depende de $b$.
+- Ideia: fatorar $A$ **uma única vez**; depois, cada novo $b$ é resolvido rapidamente por substituições diretas.
+
+## Definição da fatoração LU
+
+::: {.callout-note title="Definição"}
+Uma fatoração **LU** de $A$ (quadrada) é uma escrita
+$$A = LU$$
+em que:
+
+- $L$ é **triangular inferior** com $1$'s na diagonal principal;
+- $U$ é **triangular superior** — de fato, a forma escalonada de $A$ obtida **sem trocas de linha**.
+:::
+
+- $L$ registra "como" a eliminação foi feita; $U$ é o "resultado" da eliminação.
+
+# 6.2 — Construção de L e U via eliminação de Gauss
+
+## Os multiplicadores viram as entradas de L
+
+::: {.callout-important title="Ideia central"}
+Ao eliminar a entrada $(i,j)$ com $i>j$ usando a operação $L_i \to L_i - m_{ij}L_j$, o **multiplicador** $m_{ij}$ é guardado diretamente como a entrada $(i,j)$ de $L$ — **sem troca de sinal**.
+:::
+
+- Ao final, $U$ é a matriz escalonada; $L$ tem $1$'s na diagonal e os multiplicadores $m_{ij}$ abaixo dela.
+
+## Exemplo — eliminação e obtenção de U
+
+$$A=\begin{bmatrix}2&1&1\\4&-6&0\\-2&7&2\end{bmatrix}$$
+
+**Eliminando a coluna 1:** $m_{21}=4/2=2$, $\ m_{31}=-2/2=-1$
+
+$$L_2\to L_2-2L_1,\qquad L_3\to L_3-(-1)L_1=L_3+L_1$$
+
+$$\begin{bmatrix}2&1&1\\0&-8&-2\\0&8&3\end{bmatrix}$$
+
+**Eliminando a coluna 2:** $m_{32}=8/(-8)=-1$
+
+$$L_3\to L_3-(-1)L_2=L_3+L_2 \qquad\Longrightarrow\qquad U=\begin{bmatrix}2&1&1\\0&-8&-2\\0&0&1\end{bmatrix}$$
+
+## Exemplo — montagem de L e verificação
+
+Com os multiplicadores $m_{21}=2$, $m_{31}=-1$, $m_{32}=-1$:
+
+$$L=\begin{bmatrix}1&0&0\\2&1&0\\-1&-1&1\end{bmatrix}, \qquad U=\begin{bmatrix}2&1&1\\0&-8&-2\\0&0&1\end{bmatrix}$$
+
+**Verificando $LU=A$** (linha 3 de $L$ vezes $U$):
+$$-1(2,1,1)-1(0,-8,-2)+1(0,0,1) = (-2,-1,-1)+(0,8,2)+(0,0,1)=(-2,7,2)$$
+
+que é exatamente a linha 3 de $A$. As linhas 1 e 2 conferem de modo análogo. $\ \boxed{A=LU}$
+
+# 6.3 — Resolvendo $Ax=b$ via $LUx=b$
+
+## Estratégia em duas etapas
+
+Como $Ax=b \iff L(Ux)=b$, resolvemos em **dois passos triangulares** (ambos baratos):
+
+::: {.callout-note title="Algoritmo"}
+1. Resolver $Ly=b$ por **substituição direta** (de cima para baixo), pois $L$ é triangular inferior.
+2. Resolver $Ux=y$ por **retro-substituição** (de baixo para cima), pois $U$ é triangular superior.
+:::
+
+- Nenhuma das duas etapas exige refazer a eliminação — só substituições diretas, muito mais rápidas.
+
+## Exemplo — resolvendo $Ly=b$
+
+Para $b=(5,-2,9)$, resolvendo $Ly=b$ com $L=\begin{bmatrix}1&0&0\\2&1&0\\-1&-1&1\end{bmatrix}$:
+
+$$y_1=5$$
+$$2y_1+y_2=-2 \ \Rightarrow\ y_2=-2-2(5)=-12$$
+$$-y_1-y_2+y_3=9 \ \Rightarrow\ y_3=9+5+(-12)=2$$
+
+$$\boxed{y=(5,-12,2)}$$
+
+## Exemplo — resolvendo $Ux=y$ e verificação final
+
+Resolvendo $Ux=y$ com $U=\begin{bmatrix}2&1&1\\0&-8&-2\\0&0&1\end{bmatrix}$, $y=(5,-12,2)$:
+
+$$x_3=2$$
+$$-8x_2-2(2)=-12 \ \Rightarrow\ -8x_2=-8 \ \Rightarrow\ x_2=1$$
+$$2x_1+1+2=5 \ \Rightarrow\ x_1=1$$
+
+$$\boxed{x=(1,1,2)}$$
+
+**Verificação em $A$:** $2(1)+1+2=5$ ✓; $\ 4(1)-6(1)+0=-2$ ✓; $\ -2(1)+7(1)+2(2)=9$ ✓.
+
+# 6.4 — Quando é necessário pivotamento
+
+## Pivotamento (troca de linhas)
+
+::: {.callout-tip title="Observação"}
+A fatoração $A=LU$ **sem trocas de linha**, como apresentada, só existe quando a eliminação de Gauss não encontra pivô nulo no caminho.
+:::
+
+- Se em algum passo o pivô natural for $0$ (ou numericamente muito pequeno), é necessário **trocar linhas** antes de prosseguir.
+- Nesse caso obtém-se uma fatoração $PA=LU$, com $P$ uma **matriz de permutação** registrando as trocas — a chamada fatoração **PLU**.
+- Na prática (bibliotecas numéricas como LAPACK), o pivotamento parcial é usado **sempre**, mesmo quando não estritamente necessário, para maior estabilidade numérica.
+
+## Resumo da aula {.smaller}
+
+- **6.1** — $A=LU$ evita repetir a eliminação de Gauss para cada novo $b$.
+- **6.2** — $U$ é a forma escalonada de $A$; $L$ guarda os multiplicadores da eliminação (1's na diagonal).
+- **6.3** — Resolver $Ax=b$ vira dois passos triangulares baratos: $Ly=b$ (substituição direta) e $Ux=y$ (retro-substituição).
+- **6.4** — Pivô nulo exige troca de linhas $\Rightarrow$ fatoração $PA=LU$ (comentário qualitativo).
+
+## Referências
+
+- **Anton, H. & Rorres, C.** *Álgebra Linear com Aplicações*, 10ª ed., Bookman — Cap. 9.
+- **Lay, D. C.** *Álgebra Linear e suas Aplicações*, 4ª ed., Pearson — Cap. 2.
+- **Strang, G.** *Introdução à Álgebra Linear*, 4ª ed., LTC — Cap. 2.

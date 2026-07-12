@@ -1,0 +1,160 @@
+---
+title: "Álgebra Linear"
+subtitle: "Gauss-Jordan, Sistemas Homogêneos e Posto"
+author: "Prof. Dr. Raphael Teixeira"
+institute: "Universidade Federal do Pará"
+lang: pt-BR
+format:
+  revealjs:
+    theme: [default, ../TemaRTx.scss]
+    transition: slide
+    slide-number: true
+    width: 1600
+    height: 900
+    footer: "UFPA - NDAE - PPCA "
+    center: true
+    title-slide-attributes:
+      data-background-image: "../imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 40px center"
+---
+
+## Sumário {.smaller}
+
+- **4.1** Forma escalonada reduzida (RREF)
+- **4.2** Algoritmo de Gauss-Jordan — exemplo completo
+- **4.3** Sistemas lineares homogêneos $Ax=0$
+- **4.4** Posto e nulidade de uma matriz
+
+# 4.1 — Forma escalonada reduzida
+
+## Forma escalonada reduzida por linhas (RREF)
+
+::: {.callout-note title="Definição"}
+Uma matriz está na **forma escalonada reduzida** (*reduced row echelon form*) quando, além de estar na forma escalonada:
+
+1. Todo pivô é igual a $1$.
+2. Cada pivô é a **única** entrada não nula em sua coluna (zeros **acima e abaixo**).
+:::
+
+**Exemplo:**
+$$
+\left[\begin{array}{ccc|c}1&0&0&1\\0&1&0&2\\0&0&1&3\end{array}\right]
+$$
+
+- Nesta forma, o sistema já está **resolvido**: cada linha lê-se diretamente como $x_i = (\text{valor})$.
+- É o objetivo do método de **Gauss-Jordan**, uma extensão da eliminação de Gauss.
+
+# 4.2 — Algoritmo de Gauss-Jordan
+
+## Retomando o exemplo da Aula 3
+
+Partimos da forma escalonada já obtida para $\begin{cases}x+y+z=6\\2x-y+z=3\\x+2y-z=2\end{cases}$:
+
+$$
+\left[\begin{array}{ccc|c}1&1&1&6\\0&1&-2&-4\\0&0&-7&-21\end{array}\right]
+$$
+
+**Passo 1 — normalizar o último pivô:** $L_3 \to -\tfrac17 L_3$
+
+$$
+\left[\begin{array}{ccc|c}1&1&1&6\\0&1&-2&-4\\0&0&-7&-21\end{array}\right]
+\ \longrightarrow\
+\left[\begin{array}{ccc|c}1&1&1&6\\0&1&-2&-4\\0&0&1&3\end{array}\right]
+$$
+
+## Gauss-Jordan — zerando acima dos pivôs
+
+**Passo 2 — eliminar a coluna de $z$ acima do pivô:** $L_2 \to L_2+2L_3$, $\ L_1 \to L_1-L_3$
+
+$$
+\left[\begin{array}{ccc|c}1&1&1&6\\0&1&-2&-4\\0&0&1&3\end{array}\right]
+\ \longrightarrow\
+\left[\begin{array}{ccc|c}1&1&0&3\\0&1&0&2\\0&0&1&3\end{array}\right]
+$$
+
+**Passo 3 — eliminar a coluna de $y$ acima do pivô:** $L_1 \to L_1-L_2$
+
+$$
+\left[\begin{array}{ccc|c}1&1&0&3\\0&1&0&2\\0&0&1&3\end{array}\right]
+\ \longrightarrow\
+\left[\begin{array}{ccc|c}1&0&0&1\\0&1&0&2\\0&0&1&3\end{array}\right]
+$$
+
+$$\boxed{(x,y,z)=(1,2,3)}$$
+
+Mesmo resultado da retro-substituição (Aula 3) — mas aqui a solução aparece **diretamente**, sem substituições manuais.
+
+# 4.3 — Sistemas lineares homogêneos
+
+## O sistema $Ax=0$
+
+::: {.callout-note title="Definição"}
+Um sistema linear é **homogêneo** quando todos os termos independentes são nulos: $Ax=0$.
+:::
+
+::: {.callout-important title="Observação fundamental"}
+Todo sistema homogêneo é **sempre possível**: $x=0$ (a **solução trivial**) satisfaz $Ax=0$ para qualquer $A$.
+:::
+
+A pergunta relevante não é "existe solução?" (sempre existe), mas sim: **existem soluções não triviais** ($x\neq0$)?
+
+## Quando existem soluções não triviais
+
+::: {.callout-important title="Teorema"}
+Seja $A$ uma matriz $m\times n$. O sistema homogêneo $Ax=0$ possui solução **não trivial** se, e somente se,
+$$n > \operatorname{posto}(A).$$
+Nesse caso, existem **infinitas** soluções não triviais (há pelo menos uma variável livre).
+:::
+
+- Se $\operatorname{posto}(A)=n$ (posto máximo, "posto completo em coluna"), a única solução é $x=0$ — sistema homogêneo SPD trivial.
+- Se $n>\operatorname{posto}(A)$, o sistema é SPI: há variáveis livres parametrizando um espaço de soluções.
+
+# 4.4 — Posto e nulidade de uma matriz
+
+## Definições
+
+::: {.callout-note title="Definição"}
+O **posto** de $A$, $\operatorname{posto}(A)$, é o número de pivôs (linhas não nulas) na forma escalonada de $A$.
+
+A **nulidade** de $A$ é o número de variáveis livres do sistema homogêneo $Ax=0$:
+$$\text{nulidade}(A) = n - \operatorname{posto}(A),$$
+onde $n$ é o número de colunas (incógnitas) de $A$.
+:::
+
+- Posto e nulidade não dependem de qual sequência de operações elementares foi usada — são invariantes de $A$.
+
+## Exemplo — calculando o posto de uma matriz $3\times4$
+
+$$A=\begin{bmatrix}1&2&-1&3\\2&4&-1&8\\3&6&-2&11\end{bmatrix}$$
+
+Eliminando: $L_2\to L_2-2L_1$, $\ L_3\to L_3-3L_1$:
+
+$$\begin{bmatrix}1&2&-1&3\\0&0&1&2\\0&0&1&2\end{bmatrix} \ \xrightarrow{L_3\to L_3-L_2}\ \begin{bmatrix}1&2&-1&3\\0&0&1&2\\0&0&0&0\end{bmatrix}$$
+
+Dois pivôs (colunas $1$ e $3$) $\Rightarrow$ $\boxed{\operatorname{posto}(A)=2}$. Como $n=4$: $\ \text{nulidade}(A)=4-2=2$.
+
+## Exemplo — espaço-solução do sistema homogêneo $Ax=0$
+
+Da forma escalonada: $\begin{cases}x_1+2x_2-x_3+3x_4=0\\x_3+2x_4=0\end{cases}$
+
+Variáveis livres: $x_2=s$, $x_4=t$ (pois $n-\operatorname{posto}=4-2=2$). Da 2ª equação: $x_3=-2t$. Da 1ª: $x_1=-2x_2+x_3-3x_4=-2s-2t-3t=-2s-5t$.
+
+$$
+\boxed{(x_1,x_2,x_3,x_4) = s(-2,1,0,0)+t(-5,0,-2,1),\quad s,t\in\mathbb{R}}
+$$
+
+- Espaço-solução com **2 parâmetros** — coerente com nulidade $=2$: infinitas soluções não triviais, pois $n=4>\operatorname{posto}(A)=2$.
+
+## Resumo da aula {.smaller}
+
+- **4.1** — RREF: pivôs iguais a $1$, zeros acima e abaixo.
+- **4.2** — Gauss-Jordan continua a eliminação de Gauss até a RREF; solução aparece direta, sem retro-substituição manual.
+- **4.3** — $Ax=0$ sempre tem a solução trivial; soluções não triviais existem sse $n>\operatorname{posto}(A)$.
+- **4.4** — Posto = nº de pivôs; nulidade $=n-\operatorname{posto}(A)$ = nº de parâmetros do espaço-solução homogêneo.
+
+## Referências
+
+- **Anton, H. & Rorres, C.** *Álgebra Linear com Aplicações*, 10ª ed., Bookman — Cap. 1.
+- **Lay, D. C.** *Álgebra Linear e suas Aplicações*, 4ª ed., Pearson — Cap. 1.
+- **Strang, G.** *Introdução à Álgebra Linear*, 4ª ed., LTC — Cap. 3.

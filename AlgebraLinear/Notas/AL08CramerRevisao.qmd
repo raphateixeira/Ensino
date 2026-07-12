@@ -1,0 +1,128 @@
+---
+title: "Álgebra Linear"
+subtitle: "Regra de Cramer, Adjunta e Revisão do Bloco 1"
+author: "Prof. Dr. Raphael Teixeira"
+institute: "Universidade Federal do Pará"
+lang: pt-BR
+format:
+  revealjs:
+    theme: [default, ../TemaRTx.scss]
+    transition: slide
+    slide-number: true
+    width: 1600
+    height: 900
+    footer: "UFPA - NDAE - PPCA "
+    center: true
+    title-slide-attributes:
+      data-background-image: "../imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 40px center"
+---
+
+## Sumário {.smaller}
+
+- **8.1** Matriz de cofatores e matriz adjunta — inversa via $\operatorname{adj}(A)$
+- **8.2** Regra de Cramer
+- **8.3** Custo computacional: cofatores/Cramer vs. eliminação de Gauss
+- **8.4** Revisão geral do Bloco 1
+
+# 8.1 — Matriz de cofatores e adjunta
+
+## Matriz adjunta
+
+::: {.callout-note title="Definição"}
+A **matriz de cofatores** de $A$ é $C=[C_{ij}]$. A **matriz adjunta** é a transposta da matriz de cofatores:
+$$\operatorname{adj}(A) = C^T$$
+:::
+
+::: {.callout-important title="Teorema"}
+Se $\det(A)\neq0$:
+$$A^{-1} = \frac{1}{\det A}\operatorname{adj}(A)$$
+:::
+
+- Método alternativo (não recomendado para $n$ grande — Seção 8.3) ao Gauss-Jordan da Aula 5.
+
+## Exemplo — cofatores da matriz da Aula 5
+
+Para $A=\begin{bmatrix}2&1&1\\1&2&1\\1&1&2\end{bmatrix}$ (mesma matriz da Aula 5):
+
+$$C_{11}=\begin{vmatrix}2&1\\1&2\end{vmatrix}=3,\quad C_{12}=-\begin{vmatrix}1&1\\1&2\end{vmatrix}=-1,\quad C_{13}=\begin{vmatrix}1&2\\1&1\end{vmatrix}=-1$$
+$$C_{21}=-\begin{vmatrix}1&1\\1&2\end{vmatrix}=-1,\quad C_{22}=\begin{vmatrix}2&1\\1&2\end{vmatrix}=3,\quad C_{23}=-\begin{vmatrix}2&1\\1&1\end{vmatrix}=-1$$
+$$C_{31}=\begin{vmatrix}1&1\\2&1\end{vmatrix}=-1,\quad C_{32}=-\begin{vmatrix}2&1\\1&1\end{vmatrix}=-1,\quad C_{33}=\begin{vmatrix}2&1\\1&2\end{vmatrix}=3$$
+
+## Exemplo — adjunta, determinante e $A^{-1}$
+
+Matriz de cofatores $C=\begin{bmatrix}3&-1&-1\\-1&3&-1\\-1&-1&3\end{bmatrix}$ — **simétrica**, logo $\operatorname{adj}(A)=C^T=C$.
+
+Expandindo pela linha 1: $\det A = 2(3)+1(-1)+1(-1) = 6-1-1=4$.
+
+$$A^{-1} = \frac{1}{\det A}\operatorname{adj}(A) = \frac14\begin{bmatrix}3&-1&-1\\-1&3&-1\\-1&-1&3\end{bmatrix}$$
+
+::: {.callout-tip title="Confirmação"}
+Resultado **idêntico** ao obtido via Gauss-Jordan na Aula 5 — os dois métodos são equivalentes, apenas com custos computacionais diferentes.
+:::
+
+# 8.2 — Regra de Cramer
+
+## Enunciado
+
+::: {.callout-important title="Teorema — regra de Cramer"}
+Se $Ax=b$ com $A$ ($n\times n$) e $\det(A)\neq0$, a única solução é
+$$x_i = \frac{\det(A_i)}{\det(A)}, \qquad i=1,\dots,n,$$
+onde $A_i$ é $A$ com a coluna $i$ **substituída** por $b$.
+:::
+
+- Útil teoricamente e para sistemas pequenos ($n\le3$); computacionalmente cara para $n$ grande (Seção 8.3).
+
+## Exemplo — sistema $3\times3$ (o mesmo das Aulas 3–4)
+
+$$\begin{cases}x+y+z=6\\2x-y+z=3\\x+2y-z=2\end{cases} \qquad A=\begin{bmatrix}1&1&1\\2&-1&1\\1&2&-1\end{bmatrix},\quad b=\begin{bmatrix}6\\3\\2\end{bmatrix}$$
+
+$$\det A = 7$$
+
+$$\det A_1=\begin{vmatrix}6&1&1\\3&-1&1\\2&2&-1\end{vmatrix}=7, \qquad \det A_2=\begin{vmatrix}1&6&1\\2&3&1\\1&2&-1\end{vmatrix}=14, \qquad \det A_3=\begin{vmatrix}1&1&6\\2&-1&3\\1&2&2\end{vmatrix}=21$$
+
+## Exemplo — solução final
+
+$$x = \frac{\det A_1}{\det A}=\frac{7}{7}=1, \qquad y=\frac{\det A_2}{\det A}=\frac{14}{7}=2, \qquad z=\frac{\det A_3}{\det A}=\frac{21}{7}=3$$
+
+$$\boxed{(x,y,z)=(1,2,3)}$$
+
+Exatamente a mesma solução obtida por eliminação de Gauss (Aula 3) e Gauss-Jordan (Aula 4) — três caminhos, um resultado.
+
+# 8.3 — Custo computacional
+
+## Cofatores/Cramer vs. eliminação de Gauss
+
+::: {.callout-tip title="Comentário"}
+- Calcular um determinante $n\times n$ por expansão em cofatores exige, recursivamente, cerca de $n!$ multiplicações — **cresce absurdamente rápido**.
+- A regra de Cramer exige calcular $n+1$ determinantes — ainda mais caro.
+- A eliminação de Gauss resolve $Ax=b$ com aproximadamente $\tfrac{2}{3}n^3$ operações — **polinomial**, não fatorial.
+:::
+
+- Para $n=10$: $10!\approx3{,}6$ milhões vs. $\tfrac23(10)^3\approx667$ operações.
+- **Conclusão prática:** cofatores e Cramer são ferramentas **teóricas** valiosas (fórmulas fechadas, prova de teoremas); na prática computacional, **eliminação de Gauss (ou LU) é o método usado**.
+
+# 8.4 — Revisão geral do Bloco 1
+
+## Mapa mental do Bloco 1
+
+::: {.callout-important title="Tudo conectado por posto e invertibilidade"}
+$$\text{Sistema } Ax=b \ \xrightarrow{\text{Aulas 3–4}} \ \text{Escalonamento (posto)} \ \xrightarrow{\text{Aula 5}} \ \text{Inversa } A^{-1} \ \xrightarrow{\text{Aulas 7–8}} \ \text{Determinante}$$
+:::
+
+| Conceito | Pergunta que responde |
+|---|---|
+| Sistemas (Aula 1) | Quantas soluções tem $Ax=b$? (SPD/SPI/SI) |
+| Escalonamento (Aulas 3–4) | Como calcular a solução? Qual o posto de $A$? |
+| Inversa (Aula 5) | $A$ é invertível? $x=A^{-1}b$ é único? |
+| LU (Aula 6) | Como resolver $Ax=b$ eficientemente para vários $b$? |
+| Determinante (Aulas 7–8) | $\det(A)\neq0 \iff$ tudo acima "funciona bem" |
+
+- **Fio condutor:** para $A$ quadrada, invertibilidade $\iff$ posto completo $\iff$ $Ax=0$ só trivial $\iff$ $\det(A)\neq0$ $\iff$ solução única para todo $b$.
+
+## Referências do Bloco 1
+
+- **Anton, H. & Rorres, C.** *Álgebra Linear com Aplicações*, 10ª ed., Bookman — Caps. 1–2.
+- **Lay, D. C.** *Álgebra Linear e suas Aplicações*, 4ª ed., Pearson — Caps. 1–3.
+- **Strang, G.** *Introdução à Álgebra Linear*, 4ª ed., LTC — Caps. 1–2 e 5.

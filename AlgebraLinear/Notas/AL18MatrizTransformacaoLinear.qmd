@@ -1,0 +1,137 @@
+---
+title: "Álgebra Linear"
+subtitle: "Matriz de uma Transformação Linear (em relação a bases)"
+author: "Prof. Dr. Raphael Teixeira"
+institute: "Universidade Federal do Pará"
+lang: pt-BR
+format:
+  revealjs:
+    theme: [default, ../TemaRTx.scss]
+    transition: slide
+    slide-number: true
+    width: 1600
+    height: 900
+    footer: "UFPA - NDAE - PPCA "
+    center: true
+    title-slide-attributes:
+      data-background-image: "../imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 40px center"
+---
+
+## Sumário {.smaller}
+
+- **18.1** Motivação: além da matriz canônica
+- **18.2** Definição: matriz de $T$ em relação a bases
+- **18.3** Exemplo — derivada em polinômios (bases canônicas)
+- **18.4** Exemplo — bases não canônicas em $\mathbb{R}^2$
+- **18.5** Caso particular: operadores lineares
+
+# 18.1 — Motivação
+
+## Por que generalizar a matriz canônica?
+
+- Na Aula 16, vimos que toda TL $T:\mathbb{R}^n\to\mathbb{R}^m$ tem uma **matriz canônica**, construída a partir da base canônica.
+- E se quisermos representar $T$ usando **outras bases** de $V$ e $W$ — inclusive quando $V,W$ não são $\mathbb{R}^n$ (por exemplo, polinômios ou matrizes)?
+- Resposta: a mesma ideia funciona, desde que troquemos "base canônica" por "base escolhida".
+
+# 18.2 — Definição
+
+## Matriz de $T$ em relação às bases $B,B'$
+
+::: {.callout-note title="Definição"}
+Sejam $B=\{v_1,\ldots,v_n\}$ base de $V$ e $B'=\{w_1,\ldots,w_m\}$ base de $W$, e $T:V\to W$ linear. A **matriz de $T$ em relação a $B,B'$**, denotada $[T]_B^{B'}$, é a matriz $m\times n$ cuja $i$-ésima coluna é o vetor de coordenadas $[T(v_i)]_{B'}$:
+$$[T]_B^{B'} = \Big[\ [T(v_1)]_{B'}\ \ [T(v_2)]_{B'}\ \ \cdots\ \ [T(v_n)]_{B'}\ \Big]$$
+:::
+
+## Como usar a matriz $[T]_B^{B'}$
+
+::: {.callout-important title="Teorema"}
+Para todo $v\in V$:
+$$[T(v)]_{B'} = [T]_B^{B'}\,[v]_B$$
+:::
+
+- Multiplicar $[T]_B^{B'}$ pelas coordenadas de $v$ na base $B$ dá as coordenadas de $T(v)$ na base $B'$.
+- Quando $B,B'$ são as bases canônicas de $\mathbb{R}^n,\mathbb{R}^m$: recuperamos a matriz canônica da Aula 16.
+
+# 18.3 — Exemplo: derivada em polinômios
+
+## Exemplo — bases canônicas de $P_2$ e $P_1$
+
+Seja $T:P_2\to P_1$, $T(p)=p'$ (derivada). Usando as bases canônicas $B=\{1,x,x^2\}$ de $P_2$ e $B'=\{1,x\}$ de $P_1$:
+
+$$T(1)=0, \qquad T(x)=1, \qquad T(x^2)=2x$$
+
+Coordenadas em $B'=\{1,x\}$:
+$$[T(1)]_{B'}=\begin{bmatrix}0\\0\end{bmatrix},\qquad [T(x)]_{B'}=\begin{bmatrix}1\\0\end{bmatrix},\qquad [T(x^2)]_{B'}=\begin{bmatrix}0\\2\end{bmatrix}$$
+
+$$[T]_B^{B'} = \begin{bmatrix}0&1&0\\0&0&2\end{bmatrix}$$
+
+## Exemplo — usando a matriz para calcular $T(p)$
+
+Seja $p(x) = 3x^2-2x+5$, isto é, $[p]_B=\begin{bmatrix}5\\-2\\3\end{bmatrix}$ (ordem $1,x,x^2$).
+
+$$[T(p)]_{B'} = \begin{bmatrix}0&1&0\\0&0&2\end{bmatrix}\begin{bmatrix}5\\-2\\3\end{bmatrix} = \begin{bmatrix}-2\\6\end{bmatrix}$$
+
+Logo $T(p) = -2(1)+6(x) = 6x-2$, que confere com a derivada direta $p'(x)=6x-2$. $\checkmark$
+
+# 18.4 — Exemplo com bases não canônicas
+
+## A transformação e sua matriz canônica
+
+Seja $T:\mathbb{R}^2\to\mathbb{R}^2$, $T(x,y)=(x+y,\ x-y)$. Na base canônica:
+$$A = [T] = \begin{bmatrix}1&1\\1&-1\end{bmatrix}$$
+
+Vamos agora representar a **mesma** $T$ usando bases não canônicas em $V$ e em $W$.
+
+## Mudando para bases não canônicas $B$ e $B'$
+
+Escolha $B=\{v_1,v_2\}=\{(1,1),(1,0)\}$ em $V=\mathbb{R}^2$ e $B'=\{w_1,w_2\}=\{(1,1),(1,-1)\}$ em $W=\mathbb{R}^2$.
+
+$$T(v_1)=T(1,1)=(2,0), \qquad T(v_2)=T(1,0)=(1,1)$$
+
+Resolvendo $(2,0)=a\,w_1+b\,w_2$ e $(1,1)=c\,w_1+d\,w_2$: obtém-se $a=b=1$ e $c=1,\ d=0$.
+
+$$[T]_B^{B'} = \begin{bmatrix}1&1\\1&0\end{bmatrix}$$
+
+## Comparação e verificação
+
+$$[T] = \begin{bmatrix}1&1\\1&-1\end{bmatrix} \ \text{(base canônica)} \quad\neq\quad [T]_B^{B'}=\begin{bmatrix}1&1\\1&0\end{bmatrix} \ \text{(bases }B,B'\text{)}$$
+
+**Mesma transformação, matrizes diferentes.**
+
+**Verificação:** para $v=2v_1+3v_2=(5,2)$, temos $[v]_B=(2,3)$:
+$$[T]_B^{B'}[v]_B = \begin{bmatrix}1&1\\1&0\end{bmatrix}\begin{bmatrix}2\\3\end{bmatrix}=\begin{bmatrix}5\\2\end{bmatrix}$$
+
+De fato, $T(5,2)=(7,3) = 5w_1+2w_2 = 5(1,1)+2(1,-1)=(7,3)$, logo $[T(v)]_{B'}=(5,2)$. $\checkmark$
+
+# 18.5 — Caso particular: operadores lineares
+
+## Operador $T:V\to V$ com uma única base
+
+::: {.callout-note title="Definição"}
+Quando $T:V\to V$ (um **operador linear**) e usamos a **mesma** base $B$ no domínio e no contradomínio, escreve-se simplesmente $[T]_B$ (em vez de $[T]_B^B$).
+:::
+
+## Exemplo — operador com matriz diagonal numa base especial
+
+Seja $T:\mathbb{R}^2\to\mathbb{R}^2$, $T(x,y)=(2x+y,\ x+2y)$, e $B=\{v_1,v_2\}=\{(1,1),(1,-1)\}$.
+
+$$T(1,1)=(3,3)=3v_1+0v_2, \qquad T(1,-1)=(1,-1)=0v_1+1v_2$$
+
+$$[T]_B = \begin{bmatrix}3&0\\0&1\end{bmatrix}$$
+
+- Notável: na base canônica, $[T]=\begin{bmatrix}2&1\\1&2\end{bmatrix}$ (não diagonal); na base $B$, $[T]_B$ é **diagonal**! Isso antecipa a ideia de diagonalização, que veremos em aulas futuras.
+
+## Resumo da aula {.smaller}
+
+- **18.1–18.2** — Generalização da matriz canônica: $[T]_B^{B'}$ tem colunas $[T(v_i)]_{B'}$; usa-se via $[T(v)]_{B'}=[T]_B^{B'}[v]_B$.
+- **18.3** — Exemplo: derivada em polinômios com bases canônicas de $P_2$ e $P_1$.
+- **18.4** — A matriz de $T$ depende da escolha de bases: mesma transformação, matrizes diferentes.
+- **18.5** — Para operadores $T:V\to V$ com a mesma base, escreve-se $[T]_B$; a escolha certa de base pode simplificar drasticamente a matriz (por exemplo, torná-la diagonal).
+
+## Referências
+
+- Anton, H.; Rorres, C. **Álgebra Linear com Aplicações**. Capítulo sobre Transformações Lineares.
+- Lay, D. C. **Álgebra Linear e suas Aplicações**. Seção sobre a matriz de uma transformação linear.
+- Strang, G. **Álgebra Linear e suas Aplicações**. Capítulo sobre mudança de base.

@@ -1,0 +1,156 @@
+---
+title: "Álgebra Linear"
+subtitle: "Aplicações de Autovalores: Sistemas Dinâmicos e Matrizes Simétricas"
+author: "Prof. Dr. Raphael Teixeira"
+institute: "Universidade Federal do Pará"
+lang: pt-BR
+format:
+  revealjs:
+    theme: [default, ../TemaRTx.scss]
+    transition: slide
+    slide-number: true
+    width: 1600
+    height: 900
+    footer: "UFPA - NDAE - PPCA "
+    center: true
+    title-slide-attributes:
+      data-background-image: "../imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 40px center"
+---
+
+# 23.1 — Sistemas dinâmicos discretos
+
+## Sistemas dinâmicos lineares
+
+::: {.callout-note title="Definição"}
+Um **sistema dinâmico discreto linear** é uma sequência de vetores $x_0,x_1,x_2,\ldots$ definida por
+$$x_{k+1} = Ax_k,$$
+onde $A$ é $n\times n$ e $x_0$ é o estado inicial.
+:::
+
+- Aplicando repetidamente: $x_k = A^kx_0$.
+- Já sabemos calcular $A^k$ de forma eficiente via diagonalização (aula anterior) — é exatamente isso que torna esse problema tratável.
+
+## Solução geral via autovalores e autovetores
+
+Se $A$ tem autovalores $\lambda_1,\ldots,\lambda_n$ com autovetores LI $v_1,\ldots,v_n$, escrevemos
+$$x_0 = c_1v_1+c_2v_2+\cdots+c_nv_n.$$
+
+Então:
+$$x_k = A^kx_0 = c_1\lambda_1^kv_1+c_2\lambda_2^kv_2+\cdots+c_n\lambda_n^kv_n.$$
+
+**Interpretação de longo prazo** (quando $k\to\infty$):
+
+- $|\lambda_i|>1$: a componente na direção $v_i$ **cresce** sem limite.
+- $|\lambda_i|<1$: a componente na direção $v_i$ **decai** a zero.
+- $|\lambda_i|=1$: a componente na direção $v_i$ permanece **constante em módulo**.
+
+## Exemplo — cadeia de Markov (modelo)
+
+Modelo simplificado de previsão do tempo com dois estados, "ensolarado" (E) e "chuvoso" (C). Se hoje é E, amanhã é E com probabilidade $0{,}9$ e C com probabilidade $0{,}1$; se hoje é C, amanhã é E com probabilidade $0{,}2$ e C com probabilidade $0{,}8$.
+
+Matriz de transição (colunas somam $1$):
+$$A=\begin{bmatrix}0{,}9&0{,}2\\0{,}1&0{,}8\end{bmatrix}, \qquad x_k=\begin{bmatrix}\Pr(\text{E no dia }k)\\ \Pr(\text{C no dia }k)\end{bmatrix}, \qquad x_{k+1}=Ax_k.$$
+
+## Exemplo — cadeia de Markov (autovalores e autovetores)
+
+Polinômio característico: $\det(A-\lambda I)=(0{,}9-\lambda)(0{,}8-\lambda)-0{,}02=\lambda^2-1{,}7\lambda+0{,}7$.
+
+Raízes: $\lambda=\dfrac{1{,}7\pm\sqrt{1{,}7^2-4(0{,}7)}}{2}=\dfrac{1{,}7\pm0{,}3}{2}$
+
+$$\boxed{\lambda_1=1, \qquad \lambda_2=0{,}7}$$
+
+**Autovetores:** para $\lambda_1=1$: $(A-I)v=0 \Rightarrow -0{,}1v_1+0{,}2v_2=0 \Rightarrow v_1=2v_2$, logo $v_1^{\,vetor}=(2,1)$.
+
+Para $\lambda_2=0{,}7$: $(A-0{,}7I)v=0 \Rightarrow 0{,}2v_1+0{,}2v_2=0 \Rightarrow v_1=-v_2$, logo $v_2^{\,vetor}=(1,-1)$.
+
+## Exemplo — cadeia de Markov (solução e estado estacionário)
+
+Para $x_0=(1,0)$ (começa totalmente ensolarado), escrevendo $x_0=c_1(2,1)+c_2(1,-1)$:
+$$2c_1+c_2=1, \qquad c_1-c_2=0 \ \Rightarrow \ c_1=c_2=\tfrac13.$$
+
+$$x_k = \frac13(2,1) + \frac13(0{,}7)^k(1,-1)$$
+
+::: {.callout-tip title="Comportamento de longo prazo"}
+Como $|\lambda_2|=0{,}7<1$, o segundo termo desaparece quando $k\to\infty$:
+$$x_k \ \longrightarrow \ \left(\tfrac23,\tfrac13\right).$$
+Ou seja: no longo prazo, $\frac23$ dos dias são ensolarados e $\frac13$ chuvosos — independente do estado inicial (autovalor $\lambda_1=1$ define o **estado estacionário**).
+:::
+
+# 23.2 — Matrizes simétricas e o Teorema Espectral
+
+## O Teorema Espectral
+
+::: {.callout-important title="Teorema 23.1 — Teorema Espectral"}
+Se $A$ é uma matriz **simétrica** real ($A=A^T$), então:
+
+1. Todos os autovalores de $A$ são **reais**.
+2. $A$ é diagonalizável por uma matriz **ortogonal** $P$ (isto é, $P^{-1}=P^T$): existe $P$ ortogonal com $P^TAP=D$ diagonal.
+3. Autovetores associados a autovalores **distintos** são **ortogonais** entre si.
+:::
+
+- Esse resultado antecipa a próxima aula (produto interno e ortogonalidade) — a prova do item 3 usa exatamente o produto interno usual de $\mathbb{R}^n$.
+
+## Autovetores de autovalores distintos são ortogonais
+
+**Prova do item 3:** sejam $Av_1=\lambda_1v_1$, $Av_2=\lambda_2v_2$, com $\lambda_1\neq\lambda_2$ e $A=A^T$. Usando o produto interno usual $\langle\cdot,\cdot\rangle$ de $\mathbb{R}^n$:
+
+$$\lambda_1\langle v_1,v_2\rangle = \langle Av_1,v_2\rangle = \langle v_1,A^Tv_2\rangle = \langle v_1,Av_2\rangle = \lambda_2\langle v_1,v_2\rangle$$
+
+Logo $(\lambda_1-\lambda_2)\langle v_1,v_2\rangle=0$. Como $\lambda_1\neq\lambda_2$, conclui-se $\langle v_1,v_2\rangle=0$. $\blacksquare$
+
+## Exemplo — diagonalização ortogonal (autovalores)
+
+Seja $A=\begin{bmatrix}2&1\\1&2\end{bmatrix}$ (simétrica). Polinômio característico:
+$$\det(A-\lambda I)=(2-\lambda)^2-1=\lambda^2-4\lambda+3=(\lambda-1)(\lambda-3)$$
+
+$$\boxed{\lambda_1=3,\qquad \lambda_2=1}$$
+
+**Autovetores:** para $\lambda_1=3$: $(A-3I)v=0 \Rightarrow -v_1+v_2=0 \Rightarrow v_1=v_2$, autovetor $(1,1)$.
+
+Para $\lambda_2=1$: $(A-I)v=0 \Rightarrow v_1+v_2=0 \Rightarrow v_1=-v_2$, autovetor $(1,-1)$.
+
+Note que $(1,1)\cdot(1,-1)=0$ — confirma o item 3 do Teorema Espectral.
+
+## Exemplo — diagonalização ortogonal ($P$, $D$ e verificação)
+
+Normalizando: $u_1=\left(\tfrac{1}{\sqrt2},\tfrac1{\sqrt2}\right)$, $u_2=\left(\tfrac1{\sqrt2},-\tfrac1{\sqrt2}\right)$.
+
+$$P=\begin{bmatrix}1/\sqrt2 & 1/\sqrt2 \\ 1/\sqrt2 & -1/\sqrt2\end{bmatrix}, \qquad D=\begin{bmatrix}3&0\\0&1\end{bmatrix}$$
+
+Como as colunas de $P$ são ortonormais, $P^{-1}=P^T=P$ (neste caso particular). **Verificação:**
+$$Au_1 = \left(\tfrac{2}{\sqrt2}+\tfrac1{\sqrt2},\ \tfrac1{\sqrt2}+\tfrac2{\sqrt2}\right)=\left(\tfrac3{\sqrt2},\tfrac3{\sqrt2}\right)=3u_1 \ ✓$$
+$$Au_2 = \left(\tfrac2{\sqrt2}-\tfrac1{\sqrt2},\ \tfrac1{\sqrt2}-\tfrac2{\sqrt2}\right)=\left(\tfrac1{\sqrt2},-\tfrac1{\sqrt2}\right)=1\cdot u_2 \ ✓$$
+
+Logo $P^TAP=D$.
+
+## Revisão do bloco: autovalores (AL21–AL23)
+
+```{mermaid}
+%%| fig-width: 9
+flowchart LR
+    A["Polinômio característico<br>det(A - λI) = 0"] --> B["Autovalores e autoespaços<br>(AL21)"]
+    B --> C["n autovetores LI?"]
+    C -->|Sim| D["Diagonalização<br>A = PDP⁻¹ (AL22)"]
+    C -->|Não| E["Matriz defectiva<br>(não diagonalizável)"]
+    D --> F["Potências A^k = PD^kP⁻¹"]
+    D --> G["Sistemas dinâmicos x_k = A^k x₀"]
+    D --> H["Matrizes simétricas:<br>diagonalização ORTOGONAL (AL23)"]
+```
+
+- O fio condutor: encontrar autovalores $\to$ verificar se há autovetores LI suficientes $\to$ diagonalizar $\to$ aplicar (potências, dinâmica, matrizes simétricas).
+
+## Resumo da aula
+
+- Sistemas dinâmicos discretos $x_{k+1}=Ax_k$: solução $x_k=A^kx_0$, decomposta em autovalores/autovetores.
+- $|\lambda|>1$ cresce, $|\lambda|<1$ decai, $|\lambda|=1$ estacionário — cadeias de Markov ilustram o estado estacionário via $\lambda=1$.
+- Teorema Espectral: matrizes simétricas reais são diagonalizáveis por matriz ortogonal, com autovalores reais e autovetores de autovalores distintos ortogonais.
+- Bloco de autovalores concluído: polinômio característico $\to$ diagonalização $\to$ aplicações.
+
+## Referências
+
+- Anton, H. & Rorres, C. **Álgebra Linear com Aplicações**. 10ª ed. Bookman.
+- Lay, D. C. **Álgebra Linear e suas Aplicações**. 4ª ed. Pearson.
+- Strang, G. **Introdução à Álgebra Linear**. 4ª ed. LTC.
+- Larson, R. **Elementos de Álgebra Linear**, 8ª ed. Capítulos sobre Autovalores, Diagonalização e Matrizes Simétricas.

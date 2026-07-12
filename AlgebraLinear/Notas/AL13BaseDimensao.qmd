@@ -1,0 +1,143 @@
+---
+title: "Álgebra Linear"
+subtitle: "Base e Dimensão"
+author: "Prof. Dr. Raphael Teixeira"
+institute: "Universidade Federal do Pará"
+lang: pt-BR
+format:
+  revealjs:
+    theme: [default, ../TemaRTx.scss]
+    transition: slide
+    slide-number: true
+    width: 1600
+    height: 900
+    footer: "UFPA - NDAE - PPCA "
+    center: true
+    title-slide-attributes:
+      data-background-image: "../imgs/UFPA.png"
+      data-background-size: "100px"
+      data-background-position: "top 40px center"
+---
+
+## Sumário {.smaller}
+
+- **13.1** Definição de base
+- **13.2** Bases canônicas: $\mathbb{R}^n$, $M_{2,2}$, $P_n$
+- **13.3** Dimensão
+- **13.4** Atalhos para verificar bases
+- **13.5** Exemplo numérico
+- **13.6** Coordenadas — motivação
+
+# 13.1 — Definição de base
+
+## O que é uma base
+
+::: {.callout-note title="Definição"}
+Um conjunto $B=\{v_1,\ldots,v_n\}\subset V$ é uma **base** de $V$ quando:
+
+1. $B$ **gera** $V$: $\mathrm{ger}(B)=V$;
+2. $B$ é **linearmente independente**.
+:::
+
+- Uma base é, ao mesmo tempo, "suficiente" (gera tudo) e "sem redundância" (LI — nenhum vetor é combinação dos demais).
+- É o conjunto mínimo de vetores necessário para descrever todo o espaço.
+
+# 13.2 — Bases canônicas
+
+## Base canônica de $\mathbb{R}^n$
+
+$$B=\{e_1,e_2,\ldots,e_n\}, \qquad e_1=(1,0,\ldots,0),\ e_2=(0,1,\ldots,0),\ \ldots,\ e_n=(0,\ldots,0,1)$$
+
+- Gera $\mathbb{R}^n$: todo $v=(v_1,\ldots,v_n) = v_1e_1+\cdots+v_ne_n$.
+- LI: a matriz $[e_1\ \cdots\ e_n]=I_n$ tem $\det=1\neq0$.
+
+## Base canônica de $M_{2,2}$
+
+$$B=\left\{\begin{bmatrix}1&0\\0&0\end{bmatrix},\ \begin{bmatrix}0&1\\0&0\end{bmatrix},\ \begin{bmatrix}0&0\\1&0\end{bmatrix},\ \begin{bmatrix}0&0\\0&1\end{bmatrix}\right\}$$
+
+- Toda matriz $A=\begin{bmatrix}a&b\\c&d\end{bmatrix}$ se escreve unicamente como $aE_{11}+bE_{12}+cE_{21}+dE_{22}$.
+- 4 vetores geradores, LI $\Rightarrow$ base de $M_{2,2}$.
+
+## Base canônica de $P_n$
+
+$$B=\{1,\ x,\ x^2,\ \ldots,\ x^n\}$$
+
+- Todo $p(x)=a_0+a_1x+\cdots+a_nx^n$ se escreve unicamente nesta base, com coeficientes $a_0,\ldots,a_n$.
+- $n+1$ vetores geradores, LI (um polinômio nulo só tem coeficientes nulos) $\Rightarrow$ base de $P_n$.
+
+# 13.3 — Dimensão
+
+## Todas as bases têm o mesmo tamanho
+
+::: {.callout-important title="Teorema"}
+Se um espaço vetorial $V$ tem uma base com $n$ vetores, então **toda** base de $V$ tem exatamente $n$ vetores.
+:::
+
+::: {.callout-note title="Definição — Dimensão"}
+O número $n$ de vetores em qualquer base de $V$ é chamado **dimensão** de $V$, denotado $\dim(V)=n$. Convenciona-se $\dim(\{0\})=0$.
+:::
+
+- Dimensão é um número **bem definido** — não depende de qual base escolhemos.
+
+## Dimensões dos exemplos vistos
+
+| Espaço | Base canônica | Dimensão |
+|---|---|---|
+| $\mathbb{R}^n$ | $\{e_1,\ldots,e_n\}$ | $n$ |
+| $M_{m,n}$ | $\{E_{ij}\}$ | $mn$ |
+| $P_n$ | $\{1,x,\ldots,x^n\}$ | $n+1$ |
+
+- Cuidado: $P_n$ (grau $\le n$) tem dimensão $n+1$, não $n$!
+
+# 13.4 — Atalhos para verificar bases
+
+## Dois atalhos úteis
+
+::: {.callout-important title="Teorema — atalhos"}
+Seja $V$ espaço vetorial com $\dim(V)=n$, e $S\subset V$ com **exatamente $n$** vetores. Então:
+
+- Se $S$ é **LI**, então $S$ é automaticamente base de $V$.
+- Se $S$ **gera** $V$, então $S$ é automaticamente base de $V$.
+:::
+
+- Ou seja: conhecendo $\dim(V)=n$ e tendo exatamente $n$ vetores, **basta verificar uma das duas condições** (LI ou gerador) — a outra vem de graça!
+- Sem esse atalho seria preciso verificar as duas condições separadamente.
+
+# 13.5 — Exemplo numérico
+
+## Verificando uma base de $\mathbb{R}^3$ via determinante
+
+Verificar se $\{v_1,v_2,v_3\} = \{(1,1,0),\ (0,1,1),\ (1,0,1)\}$ é base de $\mathbb{R}^3$.
+
+- $\dim(\mathbb{R}^3)=3$ e temos exatamente 3 vetores $\Rightarrow$ pelo atalho, basta checar LI (via determinante).
+
+$$M=\begin{bmatrix}1&0&1\\1&1&0\\0&1&1\end{bmatrix}$$
+
+$$\det(M) = 1\begin{vmatrix}1&0\\1&1\end{vmatrix} - 0\begin{vmatrix}1&0\\0&1\end{vmatrix} + 1\begin{vmatrix}1&1\\0&1\end{vmatrix} = 1(1-0)-0+1(1-0) = 1+1=2$$
+
+Como $\det(M)=2\neq0$: os vetores são LI $\Rightarrow$ formam **base** de $\mathbb{R}^3$ (sem precisar verificar separadamente que geram $\mathbb{R}^3$).
+
+# 13.6 — Coordenadas: motivação
+
+## Por que "base" importa: coordenadas
+
+- Fixada uma base **ordenada** $B=\{v_1,\ldots,v_n\}$ de $V$, todo vetor $v\in V$ se escreve de modo **único** como
+$$v = c_1v_1+c_2v_2+\cdots+c_nv_n.$$
+
+- A unicidade decorre de $B$ ser LI (duas representações diferentes dariam uma combinação linear não trivial igual a zero).
+- Os coeficientes $(c_1,\ldots,c_n)$ são as **coordenadas** de $v$ em relação a $B$ — o assunto da próxima aula (AL15).
+
+## Resumo da aula
+
+- **13.1** — Base: conjunto gerador e LI.
+- **13.2** — Bases canônicas de $\mathbb{R}^n$, $M_{2,2}$, $P_n$.
+- **13.3** — Dimensão: número de vetores em qualquer base (bem definido); $\dim P_n=n+1$.
+- **13.4** — Atalhos: com $n=\dim(V)$ vetores, basta checar LI **ou** gerador (não as duas).
+- **13.5** — Exemplo: 3 vetores em $\mathbb{R}^3$ são base sse $\det\neq0$.
+- **13.6** — Base ordenada $\Rightarrow$ coordenadas únicas (motivação para AL15).
+
+## Referências
+
+- ANTON, H.; RORRES, C. **Álgebra Linear com Aplicações**. 10ª ed. Seção 4.4 — Base e Dimensão.
+- LAY, D. **Álgebra Linear e suas Aplicações**. 4ª ed. Seções 4.3–4.5 — Base, Coordenadas, Dimensão.
+- STRANG, G. **Álgebra Linear e suas Aplicações**. 4ª ed. Seção 3.2 — O Espaço Nulo: Solução de $Ax=0$ (bases e dimensão).
