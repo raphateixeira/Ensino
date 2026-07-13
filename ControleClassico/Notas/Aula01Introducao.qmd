@@ -3,6 +3,7 @@ title: "Introdução a Sistemas de Controle"
 subtitle: "Sistemas de Controle I — Controle Clássico"
 institute: "Universidade Federal do Pará"
 author: "Prof. Dr. Raphael Teixeira"
+lang: pt
 format:
   revealjs:
     theme: [default, ../Tema.scss]
@@ -20,75 +21,47 @@ format:
 engine: knitr
 ---
 
-## O que é Controle Automático?
-
-:::{.columns}
-::: {.column width="55%"}
-
-- **Controle** é o processo de fazer um sistema físico se comportar de uma maneira desejada
-- Um **sistema de controle** manipula variáveis de entrada para que a saída siga um comportamento especificado
-- Objetivo: fazer a saída $y(t)$ rastrear uma referência $r(t)$, mesmo na presença de **perturbações** e **incertezas** no modelo da planta
-
-:::
-::: {.column width="45%"}
-
-**Aplicações:**
-
-- Controle de temperatura (fornos, ar-condicionado)
-- Controle de velocidade (cruise control, motores)
-- Controle de posição (robótica, CNC, antenas)
-- Controle de nível (tanques, caldeiras)
-- Reguladores de tensão
-- Piloto automático (aeronaves, drones)
-
-:::
-:::
-
----
-
-## Um Pouco de História
-
-- **1788** — regulador centrífugo de Watt para máquinas a vapor (primeiro controle de realimentação amplamente usado na indústria)
-- **1868** — James Clerk Maxwell analisa matematicamente a estabilidade do regulador de Watt [@maxwell1868]
-- **1927–1940** — Black, Nyquist e Bode (Bell Labs) desenvolvem a teoria de realimentação e resposta em frequência para amplificadores telefônicos
-- **1942** — Ziegler e Nichols publicam regras práticas de sintonia de controladores PID [@ziegler1942]
-- **1950–60** — consolidação do "controle clássico" (Laplace, função de transferência, LGR de Evans) e início do controle moderno (espaço de estados)
-
-::: {.callout-note}
-O **controle clássico**, tema deste curso, opera no domínio da frequência complexa $s$ e é a base histórica e conceitual de toda a teoria de controle moderna.
-:::
-
----
-
-## Componentes de um Sistema de Controle
-
-:::{.columns}
-::: {.column width="45%"}
-
-| Componente | Descrição |
-|:-----------|:----------|
-| **Planta** | Sistema físico a ser controlado |
-| **Atuador** | Dispositivo que age sobre a planta |
-| **Sensor** | Mede a saída real do sistema |
-| **Controlador** | Calcula a ação de controle |
-| **Referência** $r(t)$ | Valor desejado para a saída |
-| **Erro** $e(t)$ | Diferença entre $r(t)$ e a saída medida |
-| **Perturbação** $d(t)$ | Sinal indesejado que afeta a saída |
-
-:::
-::: {.column width="55%"}
+## O que é um Sistema de Controle?
 
 ```{tikz}
 %| echo: false
 %| fig-align: center
-%| fig-width: 8
-\usetikzlibrary{arrows.meta, positioning, calc}
-\input{imgs/tikz/ComponentesSistema.tikz}
+%| fig-width: 10
+\usetikzlibrary{arrows.meta, positioning}
+\input{imgs/tikz/CaixaPreta.tikz}
 ```
 
-$$e(t) = r(t) - y(t)$$
+::: {.fragment}
+$$y(t) \to r(t)$$
+:::
+
+::: {.fragment}
+**A saída deve seguir a referência** — mesmo com perturbações e incertezas
+:::
+
+---
+
+## Está em Toda Parte
+
+:::{.columns}
+::: {.column width="50%"}
+
+- Temperatura (ar-condicionado, forno)
+- Velocidade (cruise control, motor)
+- Posição (robótica, antena, CNC)
 
 :::
+::: {.column width="50%"}
+
+- Nível (tanque, caldeira)
+- Tensão (fonte, gerador)
+- Rota (piloto automático, drone)
+
+:::
+:::
+
+::: {.callout-note}
+Até o corpo humano controla: pâncreas $\to$ glicose, olhos $\to$ rastreiam um alvo.
 :::
 
 ---
@@ -103,17 +76,17 @@ $$e(t) = r(t) - y(t)$$
 \input{imgs/tikz/MalhaAberta.tikz}
 ```
 
-- A saída **não** é medida nem comparada com a referência
-- O controlador aplica uma ação **pré-calculada**, independente do resultado real
-- Simples e barato, **mas** sensível a perturbações e a variações da planta
+- Não mede a saída
+- Ação **pré-calculada**, sem correção
+- Simples e barato — **sensível** a perturbações
 
 ::: {.callout-tip}
-**Exemplos:** torradeira (tempo fixo), máquina de lavar (ciclo fixo), semáforo de tempo fixo.
+Torradeira, máquina de lavar, semáforo de tempo fixo.
 :::
 
 ---
 
-## Malha Fechada (Realimentação Negativa)
+## Malha Fechada (Realimentação)
 
 ```{tikz}
 %| echo: false
@@ -123,92 +96,134 @@ $$e(t) = r(t) - y(t)$$
 \input{imgs/tikz/MalhaFechada.tikz}
 ```
 
-- A saída é **medida** (pelo sensor $H(s)$) e comparada com a referência
-- O controlador atua sobre o **erro** $e(t) = r(t) - y(t)$
-- Robusto a perturbações e a variações paramétricas da planta; pode corrigir erros automaticamente
+- **Mede** a saída e compara com a referência
+- Atua sobre o **erro** $e(t) = r(t) - y(t)$
+- **Robusto** — corrige perturbações e incertezas
 
 ::: {.callout-tip}
-**Exemplos:** termostato, piloto automático, controle de velocidade de cruzeiro.
+Termostato, piloto automático, cruise control.
 :::
 
 ---
 
-## Malha Aberta vs. Malha Fechada
+## Aberta vs. Fechada
 
 | | Malha Aberta | Malha Fechada |
-|---|---|---|
-| **Mede a saída?** | Não | Sim |
-| **Custo/complexidade** | Baixo | Maior (sensor + comparação) |
-| **Sensibilidade a perturbações** | Alta | Reduzida |
-| **Sensibilidade a variações da planta** | Alta | Reduzida |
-| **Estabilidade** | Sempre que a planta for estável | Pode instabilizar se mal projetada |
-| **Precisão em regime permanente** | Depende só da planta | Pode ser melhorada pelo controlador |
+|---|:--:|:--:|
+| Mede a saída? | Não | Sim |
+| Custo | Baixo | Maior |
+| Perturbações | Sensível | Robusto |
+| Estabilidade | Sempre estável* | Pode instabilizar |
 
 ::: {.callout-important}
-A realimentação **não é grátis**: ela introduz o risco de instabilidade e exige um sensor confiável. Grande parte deste curso trata de como projetar controladores que explorem os benefícios da realimentação com segurança.
+Realimentação não é grátis: ganha-se robustez, arrisca-se estabilidade.
 :::
 
 ---
 
-## Sinais e Variáveis do Sistema
+## Ideia Central 1 — Existe um Modelo
 
-Em um sistema de controle em malha fechada, identificamos:
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 8
+\usetikzlibrary{arrows.meta, positioning}
+\input{imgs/tikz/ModeloGs.tikz}
+```
 
-- $r(t)$ — referência ou *set point*: valor desejado da saída
-- $y(t)$ — saída controlada: variável que se deseja regular
-- $e(t) = r(t) - y(t)$ — sinal de erro atuante
-- $u(t)$ — sinal de controle: saída do controlador, entrada da planta
-- $d(t)$ — perturbação: sinal indesejado que afeta a saída
-- $n(t)$ — ruído de medição (frequentemente desprezado em uma primeira análise)
+$$Y(s) = G(s)\,U(s)$$
+
+::: {.fragment}
+- Todo sistema físico $\to$ um **modelo matemático**
+- Construído com leis físicas (Newton, Kirchhoff…) $+$ Laplace
+- Permite **prever** o comportamento sem testar na planta real
+:::
 
 ::: {.callout-note}
-O controlador $C(s)$ é projetado para que $y(t) \to r(t)$ **mesmo na presença** de $d(t)$ e de incertezas em $G(s)$.
+Esse é o assunto da próxima aula.
 :::
 
 ---
 
-## Modelagem Matemática — Motivação
+## Ideia Central 2 — Ajustar Parâmetros Muda o Comportamento
 
-Para **projetar** um controlador precisamos de um **modelo matemático** da planta que relacione a entrada $u(t)$ com a saída $y(t)$.
+![](imgs/plots/fig_efeito_ganho.png){width="62%" fig-align="center" fig-alt="Mesma planta, mesmo controlador — só o ganho muda"}
 
-:::{.columns}
-::: {.column width="50%"}
-
-**Equação Diferencial Ordinária (EDO)**
-
-Sistema linear invariante no tempo (LIT) de ordem $n$:
-
-$$a_n \frac{d^n y}{dt^n} + \cdots + a_1 \frac{dy}{dt} + a_0 y = b_m \frac{d^m u}{dt^m} + \cdots + b_0 u$$
-
-- Coeficientes $a_i, b_i$ constantes reais
-- Difícil de manipular algebricamente e de generalizar para blocos interligados
-
+::: {.fragment}
+**Ganho alto** $\to$ rápido, oscila &nbsp;&nbsp;|&nbsp;&nbsp; **Ganho baixo** $\to$ suave, lento
 :::
-::: {.column width="50%"}
-
-**A solução: Transformada de Laplace**
-
-- Converte EDOs em equações **algébricas** em $s$
-- Introduz a **função de transferência** $G(s) = Y(s)/U(s)$
-- Permite representar e **combinar** subsistemas por **diagramas de blocos**
-
-Esse é o tema da próxima aula.
-
-:::
-:::
-
----
-
-## Objetivos de um Projeto de Controle
-
-Um controlador é projetado para atender a especificações de três naturezas:
-
-1. **Estabilidade** — requisito mínimo: o sistema em malha fechada não pode divergir
-2. **Resposta transitória** — velocidade e qualidade da resposta (tempo de subida, sobressinal, tempo de acomodação)
-3. **Erro de regime permanente** — precisão da saída após o transitório desaparecer
 
 ::: {.callout-important}
-Esses três objetivos frequentemente **competem** entre si (ex.: reduzir o erro aumentando o ganho tende a piorar o sobressinal e pode até instabilizar o sistema). Todo o curso constrói ferramentas para navegar esse compromisso.
+Projetar controle é escolher os **parâmetros certos** para o comportamento desejado — é isso que faremos o curso inteiro.
+:::
+
+---
+
+## Componentes de um Sistema de Controle
+
+:::{.columns}
+::: {.column width="45%"}
+
+| Componente | Papel |
+|:-----------|:----------|
+| Planta | sistema a controlar |
+| Atuador | age sobre a planta |
+| Sensor | mede a saída |
+| Controlador | calcula a ação |
+
+Terminologia de [@nise2015], compatível com [@dorf2018].
+
+:::
+::: {.column width="55%"}
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 8
+\usetikzlibrary{arrows.meta, positioning, calc}
+\input{imgs/tikz/ComponentesSistema.tikz}
+```
+
+:::
+:::
+
+---
+
+## Sinais do Sistema
+
+$$r(t) \quad y(t) \quad e(t) = r(t)-y(t) \quad u(t) \quad d(t) \quad n(t)$$
+
+- $r$ referência &nbsp; $y$ saída &nbsp; $e$ erro &nbsp; $u$ controle
+- $d$ perturbação &nbsp; $n$ ruído de medição
+
+::: {.callout-note}
+Objetivo: $y(t) \to r(t)$ mesmo com $d(t)$ e incertezas em $G(s)$.
+:::
+
+---
+
+## Objetivos de Projeto
+
+1. **Estabilidade** — não pode divergir
+2. **Resposta transitória** — velocidade, sobressinal
+3. **Erro de regime permanente** — precisão final
+
+::: {.callout-important}
+Eles **competem** entre si — você já viu isso no gráfico de ganho alto/baixo.
+:::
+
+---
+
+## Um Pouco de História
+
+- **1788** — regulador de Watt (máquinas a vapor)
+- **1868** — Maxwell analisa sua estabilidade [@maxwell1868]
+- **1927–40** — Black, Nyquist, Bode (Bell Labs) — resposta em frequência
+- **1922–42** — Minorsky, Ziegler-Nichols — controlador PID [@ziegler1942]
+- **1948** — Evans — Lugar Geométrico das Raízes
+
+::: {.callout-note}
+O **controle clássico** (tema deste curso) opera no domínio de $s$.
 :::
 
 ---
@@ -217,21 +232,21 @@ Esses três objetivos frequentemente **competem** entre si (ex.: reduzir o erro 
 
 | Bloco | Conteúdo |
 |:--|:--|
-| Modelagem | Laplace, função de transferência, diagrama de blocos |
-| Resposta transitória | Sistemas de 1ª e 2ª ordem, polos dominantes |
-| Regime permanente | Erro de regime permanente, tipo de sistema |
-| Estabilidade e projeto no domínio de $s$ | Routh-Hurwitz, Lugar Geométrico das Raízes (LGR) |
-| Domínio da frequência | Diagramas de Bode, margens de ganho e fase |
-| Controladores | Ação P, PI, PD, PID e sintonia |
+| Modelagem | Laplace, função de transferência, blocos |
+| Transitório | 1ª e 2ª ordem, polos dominantes |
+| Regime permanente | erro, tipo de sistema |
+| Estabilidade | Routh-Hurwitz, LGR |
+| Frequência | Bode, margens |
+| Controladores | P, PI, PD, PID |
 
 ---
 
 ## Exercícios
 
-1. Cite três sistemas de controle do seu cotidiano e classifique cada um como malha aberta ou malha fechada, justificando.
-2. Para um sistema de controle de temperatura de um chuveiro elétrico com termostato, identifique $r(t)$, $y(t)$, $u(t)$, $e(t)$ e uma possível perturbação $d(t)$.
-3. Explique, em suas palavras, por que a realimentação negativa reduz a sensibilidade do sistema a variações na planta, mas pode introduzir risco de instabilidade.
-4. Pesquise e descreva resumidamente o funcionamento do regulador centrífugo de Watt (1788) e sua importância histórica para a teoria de controle.
+1. Cite três sistemas de controle do seu cotidiano e classifique-os (malha aberta/fechada).
+2. Para um chuveiro elétrico com termostato, identifique $r(t)$, $y(t)$, $u(t)$, $e(t)$, $d(t)$.
+3. Na Figura de ganho alto/baixo: o que ocorreria se o ganho fosse ainda **maior**? O sistema poderia ficar instável?
+4. Pesquise o regulador centrífugo de Watt (1788) e sua importância histórica.
 
 ---
 

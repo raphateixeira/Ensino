@@ -53,6 +53,58 @@ def save(fig, name):
 
 
 # =====================================================================
+# Aula 01 — Introdução
+# =====================================================================
+
+def fig_efeito_ganho():
+    """Recria a Figura 1.10 de Nise: mesma planta, dois ganhos de
+    controlador -> respostas bem diferentes (ganho baixo x ganho alto)."""
+    fig, ax = plt.subplots(figsize=(7.4, 4.6))
+    t = np.linspace(0, 12, 1200)
+    planta = ct.tf([1], [1, 1, 0])  # 1 / [s(s+1)]
+
+    casos = [
+        (0.2, GREEN, "ganho baixo — lento, sem sobressinal"),
+        (5.0, RED, "ganho alto — rápido, oscila bastante"),
+    ]
+    for k, color, lbl in casos:
+        malha = ct.feedback(k * planta, 1)
+        _, y = ct.step_response(malha, T=t)
+        ax.plot(t, y, color=color, lw=2.4, label=lbl)
+    ax.axhline(1.0, color=MUTED, lw=1.2, ls="--", label="entrada (referência)")
+    ax.set_xlabel("tempo $t$ [s]")
+    ax.set_ylabel("$y(t)$")
+    ax.set_title("Mesma planta, mesma estrutura — só o ganho do controlador muda")
+    ax.set_xlim(0, 12)
+    ax.legend(loc="upper right", fontsize=10)
+    save(fig, "fig_efeito_ganho")
+
+
+# =====================================================================
+# Aula 02 — Modelagem e Função de Transferência
+# =====================================================================
+
+def fig_polos_zeros_generico():
+    """Polos e zeros genéricos de G(s) = N(s)/D(s), para ancorar a
+    definição de zero (raiz de N) e polo (raiz de D)."""
+    fig, ax = plt.subplots(figsize=(6.0, 4.6))
+    polos = [-1, -2, -4]
+    zeros = [-3]
+    ax.axhline(0, color=MUTED, lw=1)
+    ax.axvline(0, color=MUTED, lw=1)
+    ax.plot(polos, [0, 0, 0], "x", color=RED, ms=15, mew=3, label="polos — raízes de $D(s)$")
+    ax.plot(zeros, [0], "o", color=GREEN, ms=11, mfc="none", mew=2.4, label="zero — raiz de $N(s)$")
+    ax.set_xlim(-5, 1)
+    ax.set_ylim(-2, 2)
+    ax.set_xlabel(r"Re$(s)$")
+    ax.set_ylabel(r"Im$(s)$")
+    ax.set_title(r"$G(s)=\dfrac{5(s+3)}{(s+1)(s+2)(s+4)}$")
+    ax.legend(loc="upper left", fontsize=10)
+    ax.set_aspect("equal")
+    save(fig, "fig_polos_zeros_generico")
+
+
+# =====================================================================
 # Aula 03 — Sistemas de Primeira Ordem
 # =====================================================================
 
@@ -428,6 +480,8 @@ def fig_pid_ganhos():
 
 
 if __name__ == "__main__":
+    fig_efeito_ganho()
+    fig_polos_zeros_generico()
     fig_1ordem_step()
     fig_1ordem_polo()
     fig_2ordem_zeta()

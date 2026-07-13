@@ -3,6 +3,7 @@ title: "Modelagem e Função de Transferência"
 subtitle: "Sistemas de Controle I — Controle Clássico"
 institute: "Universidade Federal do Pará"
 author: "Prof. Dr. Raphael Teixeira"
+lang: pt
 format:
   revealjs:
     theme: [default, ../Tema.scss]
@@ -27,62 +28,110 @@ knitr::opts_chunk$set(engine.opts = list(
 ))
 ```
 
-## Transformada de Laplace — Revisão
+## Por que Laplace?
 
-A **Transformada de Laplace** converte equações diferenciais lineares em equações algébricas:
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 11
+\usetikzlibrary{arrows.meta, positioning}
+\input{imgs/tikz/FluxoLaplace.tikz}
+```
+
+- EDO $\to$ difícil de manipular e de interligar em blocos
+- Laplace: deriva $\to$ **multiplica** por $s$
+- Sistema passa a ser descrito por **álgebra**
+
+---
+
+## Transformada de Laplace
 
 $$\mathcal{L}\{f(t)\} = F(s) = \int_0^{\infty} f(t)\,e^{-st}\,dt, \qquad s = \sigma + j\omega \in \mathbb{C}$$
 
-**Propriedade fundamental — derivação (condições iniciais nulas):**
-
-$$\mathcal{L}\left\{\frac{d^n f}{dt^n}\right\} = s^n F(s)$$
+$$\mathcal{L}\left\{\frac{d^n f}{dt^n}\right\} = s^n F(s) \qquad \text{(condições iniciais nulas)}$$
 
 | Propriedade | Expressão |
 |:------------|:----------|
 | Linearidade | $\mathcal{L}\{\alpha f + \beta g\} = \alpha F(s) + \beta G(s)$ |
 | Deslocamento em $s$ | $\mathcal{L}\{e^{-at}f(t)\} = F(s+a)$ |
-| Valor final | $\displaystyle\lim_{t\to\infty} f(t) = \lim_{s\to 0} sF(s)$ (se o limite existir) |
+| Valor final | $\displaystyle\lim_{t\to\infty} f(t) = \lim_{s\to 0} sF(s)$ |
 | Valor inicial | $f(0^+) = \displaystyle\lim_{s\to\infty} sF(s)$ |
 
 ---
 
-## Pares Notáveis da Transformada de Laplace
+## Pares Notáveis
 
 | $f(t)$, $t \geq 0$ | $F(s)$ |
 |:--------------------|:-------|
-| $\delta(t)$ — impulso unitário | $1$ |
-| $u(t)$ — degrau unitário | $\dfrac{1}{s}$ |
-| $t$ — rampa unitária | $\dfrac{1}{s^2}$ |
+| $\delta(t)$ impulso | $1$ |
+| $u(t)$ degrau | $\dfrac{1}{s}$ |
+| $t$ rampa | $\dfrac{1}{s^2}$ |
 | $e^{-at}$ | $\dfrac{1}{s+a}$ |
 | $\sin(\omega t)$ | $\dfrac{\omega}{s^2+\omega^2}$ |
 | $\cos(\omega t)$ | $\dfrac{s}{s^2+\omega^2}$ |
-| $t\,e^{-at}$ | $\dfrac{1}{(s+a)^2}$ |
 
 ::: {.callout-tip}
-Tabelas completas de pares e propriedades estão em qualquer livro-texto de sinais e sistemas ou de controle [@ogata2010; @nise2015].
+Tabelas completas em qualquer livro de sinais e sistemas [@ogata2010; @nise2015].
 :::
 
 ---
 
 ## Função de Transferência
 
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 8
+\usetikzlibrary{arrows.meta, positioning}
+\input{imgs/tikz/ModeloGs.tikz}
+```
+
 ::: {.callout-important}
 ## Definição
-A **função de transferência** $G(s)$ de um sistema LIT é a razão entre a transformada de Laplace da saída e a da entrada, **com condições iniciais nulas**:
-
-$$G(s) = \frac{Y(s)}{U(s)}$$
+$$G(s) = \frac{Y(s)}{U(s)}, \qquad \text{condições iniciais nulas}$$
 :::
-
-Para a EDO geral $a_n y^{(n)} + \cdots + a_0 y = b_m u^{(m)} + \cdots + b_0 u$:
-
-$$G(s) = \frac{b_m s^m + \cdots + b_1 s + b_0}{a_n s^n + \cdots + a_1 s + a_0} = \frac{N(s)}{D(s)}$$
-
-- Raízes de $N(s)$: **zeros** de $G(s)$ — raízes de $D(s)$: **polos** de $G(s)$
-- $D(s) = 0$ é a **equação característica** — seus polos determinam a resposta natural (transitória) do sistema
 
 ---
 
-## Exemplo: Sistema Massa-Mola-Amortecedor
+## Exemplo Mínimo
+
+$$\frac{dc}{dt} + 2c(t) = r(t)$$
+
+::: {.fragment}
+Laplace (condições iniciais nulas):
+$$sC(s) + 2C(s) = R(s)$$
+:::
+
+::: {.fragment}
+$$\boxed{G(s) = \frac{C(s)}{R(s)} = \frac{1}{s+2}}$$
+:::
+
+::: {.callout-note}
+Três linhas — é só isso [@nise2015].
+:::
+
+---
+
+## Forma Geral
+
+$$G(s) = \frac{b_m s^m + \cdots + b_0}{a_n s^n + \cdots + a_0} = \frac{N(s)}{D(s)}$$
+
+- Raízes de $N(s)$ $\to$ **zeros**
+- Raízes de $D(s)$ $\to$ **polos** — equação característica
+
+---
+
+## Zeros e Polos no Plano $s$
+
+![](imgs/plots/fig_polos_zeros_generico.png){width="52%" fig-align="center" fig-alt="Zeros e polos genéricos de G(s) no plano s"}
+
+::: {.callout-note}
+Os polos determinam a resposta natural do sistema — tema das próximas aulas.
+:::
+
+---
+
+## Exemplo: Massa-Mola-Amortecedor
 
 ```{tikz}
 %| echo: false
@@ -92,26 +141,23 @@ $$G(s) = \frac{b_m s^m + \cdots + b_1 s + b_0}{a_n s^n + \cdots + a_1 s + a_0} =
 \input{imgs/tikz/MassaMolaAmortecedor.tikz}
 ```
 
-Pela 2ª lei de Newton ($F = m\,\ddot{x}$), com força aplicada $F(t)$, mola de rigidez $k$ e amortecedor viscoso $b$:
-
 $$m\,\ddot{x}(t) + b\,\dot{x}(t) + k\,x(t) = F(t)$$
 
 ---
 
-## Exemplo: Massa-Mola-Amortecedor — Função de Transferência
-
-Aplicando Laplace com condições iniciais nulas à EDO $m\ddot{x} + b\dot{x} + kx = F$:
+## Massa-Mola-Amortecedor — FT
 
 $$m\,s^2 X(s) + b\,s\,X(s) + k\,X(s) = F(s)$$
 
 $$\boxed{G(s) = \frac{X(s)}{F(s)} = \frac{1}{m s^2 + b s + k}}$$
 
-- Sistema de **segunda ordem**, sem zeros finitos, dois polos (reais ou complexos conjugados, conforme $b^2$ vs. $4mk$)
-- Modelo idêntico (a menos de nomes de variáveis) ao de um circuito RLC série — a mesma matemática governa domínios físicos distintos
+::: {.callout-tip}
+Mesma matemática de um circuito RLC série — domínios físicos diferentes, mesmo modelo.
+:::
 
 ---
 
-## Exemplo: Motor CC Controlado pela Armadura
+## Exemplo: Motor CC
 
 ```{tikz}
 %| echo: false
@@ -121,46 +167,36 @@ $$\boxed{G(s) = \frac{X(s)}{F(s)} = \frac{1}{m s^2 + b s + k}}$$
 \input{imgs/tikz/MotorCC.tikz}
 ```
 
-**Circuito de armadura:** $\quad v_a(t) = R_a\,i_a(t) + L_a\dfrac{di_a}{dt} + e_b(t), \qquad e_b(t) = K_b\,\omega(t)$
-
-**Eixo (torque motor $= K_t\,i_a$):** $\quad J\dot\omega(t) + b\,\omega(t) = K_t\,i_a(t)$
+**Armadura:** $v_a = R_a i_a + L_a\dot{i}_a + K_b\omega$  &nbsp;&nbsp; **Eixo:** $J\dot\omega + b\,\omega = K_t i_a$
 
 ---
 
-## Motor CC — Função de Transferência
-
-Aplicando Laplace (condições iniciais nulas) às duas equações e eliminando $I_a(s)$:
-
-$$(R_a + L_a s)\,I_a(s) = V_a(s) - K_b\,\Omega(s), \qquad (Js+b)\,\Omega(s) = K_t\,I_a(s)$$
+## Motor CC — FT
 
 $$\boxed{\frac{\Omega(s)}{V_a(s)} = \frac{K_t}{(R_a+L_a s)(Js+b) + K_t K_b}}$$
 
-- Se $L_a \approx 0$ (indutância de armadura desprezível), o modelo se reduz a **primeira ordem**:
+::: {.fragment}
+Se $L_a \approx 0$ (indutância desprezível) $\to$ reduz a **1ª ordem**:
 
-$$\frac{\Omega(s)}{V_a(s)} \approx \frac{K_t}{R_a(Js+b) + K_t K_b} = \frac{K}{\tau s + 1}$$
-
-::: {.callout-tip}
-Essa simplificação (motor CC de 1ª ordem) é usada com frequência nas próximas aulas para exemplos de controle de velocidade.
+$$\frac{\Omega(s)}{V_a(s)} \approx \frac{K}{\tau s + 1}$$
 :::
 
 ---
 
 ## Diagrama de Blocos
 
-Um **diagrama de blocos** representa graficamente as relações entre subsistemas por meio de:
-
-- **Blocos** — contêm a função de transferência do subsistema;
-- **Setas** — indicam o sentido do fluxo de sinal (sempre unidirecional);
-- **Somadores** (círculos) — somam/subtraem sinais, com o sinal indicado em cada seta de entrada;
-- **Pontos de derivação** — o mesmo sinal segue para dois ou mais destinos.
+- **Blocos** — função de transferência do subsistema
+- **Setas** — sentido do sinal (unidirecional)
+- **Somadores** — soma/subtrai sinais
+- **Pontos de derivação** — mesmo sinal, dois destinos
 
 ::: {.callout-tip}
-Diagramas de blocos permitem **reduzir** sistemas interligados a uma única função de transferência equivalente — é o que faremos nos próximos slides.
+Reduz sistemas interligados a uma única FT equivalente.
 :::
 
 ---
 
-## Álgebra de Blocos: Associação em Série
+## Série
 
 ```{tikz}
 %| echo: false
@@ -170,13 +206,11 @@ Diagramas de blocos permitem **reduzir** sistemas interligados a uma única fun�
 \input{imgs/tikz/SerieBlocos.tikz}
 ```
 
-Blocos em cascata multiplicam suas funções de transferência:
-
 $$G_{eq}(s) = G_1(s)\,G_2(s)$$
 
 ---
 
-## Álgebra de Blocos: Associação em Paralelo
+## Paralelo
 
 ```{tikz}
 %| echo: false
@@ -186,13 +220,11 @@ $$G_{eq}(s) = G_1(s)\,G_2(s)$$
 \input{imgs/tikz/ParaleloBlocos.tikz}
 ```
 
-Blocos em paralelo (saídas somadas) têm suas funções de transferência somadas:
-
 $$G_{eq}(s) = G_1(s) + G_2(s)$$
 
 ---
 
-## Álgebra de Blocos: Realimentação
+## Realimentação
 
 ```{tikz}
 %| echo: false
@@ -202,19 +234,15 @@ $$G_{eq}(s) = G_1(s) + G_2(s)$$
 \input{imgs/tikz/RealimentacaoBlocos.tikz}
 ```
 
-Para a malha com realimentação **negativa**:
-
-$$Y(s) = G(s)\big[X(s) - H(s)Y(s)\big] \implies \boxed{G_{eq}(s) = \frac{Y(s)}{X(s)} = \frac{G(s)}{1+G(s)H(s)}}$$
-
-Para realimentação **positiva**, o sinal do denominador se inverte: $G_{eq}(s) = \dfrac{G(s)}{1-G(s)H(s)}$.
+$$\boxed{G_{eq}(s) = \frac{G(s)}{1+G(s)H(s)}}$$
 
 ::: {.callout-important}
-Esta é provavelmente a fórmula mais usada em todo o curso — memorize-a.
+A fórmula mais usada do curso — memorize.
 :::
 
 ---
 
-## Exemplo: Redução de um Diagrama com Múltiplas Malhas
+## Exemplo: Múltiplas Malhas
 
 ```{tikz}
 %| echo: false
@@ -224,41 +252,30 @@ Esta é provavelmente a fórmula mais usada em todo o curso — memorize-a.
 \input{imgs/tikz/ReducaoExemplo.tikz}
 ```
 
-Diagramas com **malhas aninhadas** (uma malha dentro de outra) se reduzem **de dentro para fora**, aplicando repetidamente as três regras já vistas (série, paralelo, realimentação):
-
-1. Reduza primeiro a **malha mais interna**: $G_2(s)$ realimentado negativamente por $H_1(s)$.
-2. O bloco equivalente resultante fica em **série** com $G_1(s)$ e $G_3(s)$.
-3. Por fim, feche a **malha externa**, realimentada negativamente por $H_2(s)$.
+Reduza **de dentro para fora**: malha interna $\to$ série $\to$ malha externa.
 
 ---
 
-## Exemplo — Solução por Álgebra de Blocos
+## Solução — Passo a Passo
 
-**Passo 1 (malha interna, $G_2$ com $H_1$):**
-
+**1. Malha interna** ($G_2$ com $H_1$):
 $$G_2'(s) = \frac{G_2(s)}{1+G_2(s)H_1(s)}$$
 
-**Passo 2 (série com $G_1$ e $G_3$):**
+**2. Série** com $G_1$ e $G_3$:
+$$G_{13}'(s) = G_1(s)\,G_2'(s)\,G_3(s)$$
 
-$$G_{13}'(s) = G_1(s)\,G_2'(s)\,G_3(s) = \frac{G_1(s)G_2(s)G_3(s)}{1+G_2(s)H_1(s)}$$
-
-**Passo 3 (malha externa, com $H_2$):**
-
-$$\boxed{\frac{Y(s)}{R(s)} = \frac{G_{13}'(s)}{1+G_{13}'(s)H_2(s)} = \frac{G_1G_2G_3}{1+G_2H_1+G_1G_2G_3H_2}}$$
-
-::: {.callout-tip}
-A ordem de redução não importa, desde que cada malha seja tratada **isoladamente antes** de ser combinada com o restante do diagrama — sempre de dentro para fora.
-:::
+**3. Malha externa** (com $H_2$):
+$$\boxed{\frac{Y(s)}{R(s)} = \frac{G_1G_2G_3}{1+G_2H_1+G_1G_2G_3H_2}}$$
 
 ---
 
 ## Exercícios
 
-1. Obtenha a função de transferência $X(s)/F(s)$ de um sistema massa-mola-amortecedor com $m=2\text{ kg}$, $b=4\text{ N·s/m}$, $k=8\text{ N/m}$.
-2. Para o motor CC com $R_a=1\,\Omega$, $L_a\approx0$, $J=0{,}02\text{ kg·m}^2$, $b=0{,}1\text{ N·m·s}$, $K_t=K_b=0{,}05$, obtenha $\Omega(s)/V_a(s)$ na forma $K/(\tau s+1)$.
-3. Reduza por álgebra de blocos um sistema com $G_1(s)$ e $G_2(s)$ em série, seguidos de realimentação unitária negativa em torno do conjunto.
-4. Um sistema tem $G_1(s)$ e $G_2(s)$ em paralelo (saídas somadas), seguidos em série por $G_3(s)$; a saída é realimentada negativamente por $H(s)$ até o somador de entrada. Obtenha $Y(s)/R(s)$ por álgebra de blocos.
-5. Refaça o exemplo de redução com múltiplas malhas invertendo a ordem (reduza primeiro a malha externa, tratando a malha interna como um bloco genérico) e confirme que o resultado final não se altera.
+1. Obtenha $X(s)/F(s)$ para $m=2\text{ kg}$, $b=4\text{ N·s/m}$, $k=8\text{ N/m}$.
+2. Para $R_a=1\,\Omega$, $L_a\approx0$, $J=0{,}02$, $b=0{,}1$, $K_t=K_b=0{,}05$, obtenha $\Omega(s)/V_a(s)$.
+3. Reduza $G_1(s)$ e $G_2(s)$ em série, com realimentação unitária negativa em torno do conjunto.
+4. $G_1,G_2$ em paralelo, em série com $G_3$, realimentação negativa por $H(s)$. Obtenha $Y(s)/R(s)$.
+5. Refaça a redução de múltiplas malhas invertendo a ordem — confirme que o resultado não muda.
 
 ---
 

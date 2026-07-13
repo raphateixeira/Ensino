@@ -1,0 +1,16 @@
+% ---------------------------------------------------------------
+% Modelo matemático reduzido: um único bloco G(s) relaciona a
+% transformada de Laplace da entrada e da saída.
+% ---------------------------------------------------------------
+\begin{tikzpicture}[>=Latex, line width=1.0pt,
+  bloco/.style={draw, minimum width=3.2cm, minimum height=1.6cm, fill=blue!8, font=\Large},
+  seta/.style={->}]
+
+  \node[bloco] (g) at (0,0) {$G(s)$};
+  \node[left=1.4cm of g] (u) {$U(s)$};
+  \node[right=1.4cm of g] (y) {$Y(s)$};
+
+  \draw[seta] (u) -- (g);
+  \draw[seta] (g) -- (y);
+
+\end{tikzpicture}
