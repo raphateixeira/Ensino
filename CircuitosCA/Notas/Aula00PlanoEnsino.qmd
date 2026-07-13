@@ -24,42 +24,39 @@ format:
 ::: {.columns}
 ::: {.column width="50%"}
 
-- Curso: Engenharia Elétrica
-- Carga horária: 60 horas
-- Pré-requisitos: Circuitos Elétricos I
-- Ferramentas: números complexos, MATLAB/Octave ou Python (opcional)
+- **Professor:** Dr. Raphael Barros Teixeira
+- **E-mail:** raphaelbt@ufpa.br
+- **Curso:** Engenharia Elétrica
+- **Disciplina:** Circuitos Elétricos II
+- **Caráter:** Obrigatória
 
 :::
 ::: {.column width="50%"}
 
-**Ementa:** Senoides e fasores. Relações tensão-corrente nos elementos
-passivos (resistor, indutor, capacitor) em regime permanente senoidal.
-Impedância e admitância. Leis de Kirchhoff e métodos sistemáticos de
-análise (nodal e de malhas) em circuitos CA. Teoremas de circuitos
-(superposição, Thévenin, Norton, máxima transferência de potência)
-aplicados a circuitos CA. Potência em corrente alternada: instantânea,
-média, reativa, aparente e complexa; fator de potência e sua correção.
+- **Carga horária:** 60h (30 aulas de 2h, terças e quintas)
+- **Regime:** Extensivo
+- **Período de oferta:** 31/08/2026 a 19/12/2026
+- **Período letivo:** 2026.4
+- **Pré-requisitos:** Circuitos Elétricos I, Análise de Sistemas Lineares, Funções de uma Variável Complexa
 
 :::
 :::
 
 ---
 
-## Objetivos
+## Ementa {.smaller}
 
-- Capacitar o estudante a analisar circuitos elétricos lineares em
-  regime permanente senoidal, utilizando a representação fasorial e o
-  conceito de impedância.
-- Representar sinais senoidais na forma fasorial e transitar entre os
-  domínios do tempo e da frequência.
-- Determinar impedâncias e admitâncias de elementos R, L, C e de suas
-  associações série/paralelo.
-- Aplicar leis de Kirchhoff e os métodos de análise nodal e de malhas
-  em circuitos CA.
-- Aplicar os teoremas de circuitos (superposição, Thévenin, Norton,
-  máxima transferência de potência) em regime CA.
-- Calcular potências instantânea, média, reativa, aparente e complexa;
-  determinar e corrigir o fator de potência de uma carga.
+Análise de circuitos elétricos em regime permanente senoidal (corrente alternada).
+Representação de sinais senoidais no domínio do tempo e no domínio fasorial.
+Relações tensão-corrente nos elementos passivos R, L e C em regime senoidal.
+Impedância e admitância complexas. Associações série, paralela e mistas em CA.
+Leis de Kirchhoff aplicadas a circuitos em CA. Métodos sistemáticos de análise:
+análise nodal e análise de malhas em regime senoidal. Teoremas de circuitos
+(superposição, Thévenin, Norton e máxima transferência de potência) aplicados a
+circuitos em CA. Potência em CA: potência instantânea, ativa, reativa, aparente,
+complexa e fator de potência. Correção do fator de potência. Circuitos
+trifásicos equilibrados nas configurações estrela e triângulo; cálculo de
+potência em sistemas trifásicos.
 
 ::: {.callout-note}
 Cada unidade retoma, em regime CA, um conceito já visto em Circuitos Elétricos I para circuitos resistivos em regime contínuo (CC).
@@ -67,34 +64,176 @@ Cada unidade retoma, em regime CA, um conceito já visto em Circuitos Elétricos
 
 ---
 
-## Bibliografia
+## Objetivo Geral
 
-- **Sadiku & Alexander** — *Fundamentos de Circuitos Elétricos*. 5ª ed. AMGH/Bookman [@sadiku2013].
-- **Dorf & Svoboda** — *Introdução a Circuitos Elétricos*. 9ª ed. LTC [@dorf2019].
+Capacitar o(a) estudante a analisar circuitos elétricos lineares em regime
+permanente senoidal, utilizando a representação fasorial e os métodos
+sistemáticos de análise de circuitos, com aplicação ao cálculo de potência em
+sistemas monofásicos e trifásicos.
+
+---
+
+## Objetivos Específicos {.smaller}
+
+- Compreender a representação de sinais senoidais por meio de fasores e a transformação entre os domínios do tempo e da frequência.
+- Determinar as relações tensão-corrente e a impedância dos elementos R, L e C em regime senoidal.
+- Resolver circuitos série, paralelo e mistos em CA utilizando impedância complexa.
+- Aplicar as leis de Kirchhoff, a análise nodal e a análise de malhas a circuitos em regime senoidal.
+- Aplicar os teoremas de circuitos (superposição, Thévenin, Norton e máxima transferência de potência) a circuitos em CA.
+- Calcular potência instantânea, ativa, reativa, aparente e complexa, e realizar a correção do fator de potência.
+- Analisar circuitos trifásicos equilibrados e calcular a potência em sistemas trifásicos.
+
+---
+
+## Competências e Habilidades {.smaller}
+
+- Representar grandezas senoidais na forma fasorial e operar com impedâncias de elementos resistivos, indutivos e capacitivos.
+- Analisar circuitos série e paralelo em regime senoidal permanente.
+- Aplicar as leis circuitais e os teoremas de circuitos à análise de circuitos de corrente alternada.
+- Utilizar os métodos de análise de malhas e de nós na solução de circuitos CA.
+- Calcular a potência em circuitos monofásicos e trifásicos.
+
+::: {.callout-note}
+Competências relacionadas à seção 3.4 (Competências e Habilidades) do PPC de Engenharia Elétrica de 2012.
+:::
+
+---
+
+## Conteúdo Programático — Unidade 1 {.smaller}
+
+**Senoides e fasores**
+
+- Características de um sinal senoidal: amplitude, frequência angular, período, fase.
+- Relação entre seno e cosseno; defasagem entre sinais senoidais.
+- Números complexos: forma retangular, polar e exponencial; operações.
+- Transformação fasorial: do domínio do tempo para o domínio da frequência e vice-versa.
+- Relações fasoriais para os elementos R, L e C.
+
+---
+
+## Conteúdo Programático — Unidade 2 {.smaller}
+
+**Impedância, admitância e associações em CA**
+
+- Impedância complexa: definição, resistência e reatância.
+- Admitância complexa: condutância e susceptância.
+- Diagramas de impedância e triângulo de impedâncias.
+- Associação de impedâncias em série e em paralelo.
+- Divisores de tensão e de corrente em CA.
+- Transformação estrela-triângulo (Y-$\Delta$) de impedâncias.
+
+---
+
+## Conteúdo Programático — Unidade 3 {.smaller}
+
+**Leis circuitais e métodos de análise em CA**
+
+- Leis de Kirchhoff das tensões (LKT) e das correntes (LKC) em regime fasorial.
+- Análise nodal em circuitos com fontes independentes e dependentes.
+- Análise de malhas em circuitos com fontes independentes e dependentes.
+- Circuitos com fontes de tensão e de corrente em CA; supernó e supermalha.
+
+---
+
+## Conteúdo Programático — Unidade 4 {.smaller}
+
+**Teoremas de circuitos em CA**
+
+- Teorema da superposição aplicado a circuitos com múltiplas fontes senoidais.
+- Teorema de Thévenin em regime senoidal.
+- Teorema de Norton em regime senoidal.
+- Transferência de máxima potência com carga complexa.
+
+---
+
+## Conteúdo Programático — Unidade 5 {.smaller}
+
+**Potência em circuitos de corrente alternada**
+
+- Potência instantânea e potência média (ativa).
+- Valor eficaz (RMS) de tensão e corrente.
+- Potência reativa e potência aparente.
+- Potência complexa e triângulo de potências.
+- Fator de potência: definição, natureza indutiva e capacitiva.
+- Correção do fator de potência por compensação reativa.
+- Máxima transferência de potência média.
+
+---
+
+## Conteúdo Programático — Unidade 6 {.smaller}
+
+**Circuitos trifásicos**
+
+- Geração de tensões trifásicas; sequência de fases.
+- Configurações estrela (Y) e triângulo ($\Delta$) para fonte e carga.
+- Circuitos trifásicos equilibrados: Y-Y, Y-$\Delta$, $\Delta$-$\Delta$ e $\Delta$-Y.
+- Relações entre grandezas de fase e de linha.
+- Potência em sistemas trifásicos equilibrados; método dos dois wattímetros.
+
+---
+
+## Procedimentos e Recursos {.smaller}
+
+::: {.columns}
+::: {.column width="55%"}
+
+**Procedimentos metodológicos**
+
+Aulas expositivas e dialogadas, com apoio de recursos visuais e simulações
+computacionais (MATLAB/Simulink, Python, LTspice), seguidas da resolução de
+listas de exercícios e discussão orientada de estudos de caso aplicados. As
+avaliações poderão utilizar questões da prova do ENADE e de concursos
+públicos.
+
+:::
+::: {.column width="45%"}
+
+**Recursos didáticos**
+
+- Quadro e apoio de recursos audiovisuais (data-show).
+- Softwares de simulação de circuitos elétricos.
+- SIGAA – UFPA.
+
+:::
+:::
 
 ---
 
 ## Avaliação
 
-- **Avaliação 1** — peso 5,0: prova individual e sem consulta, cobrindo
-  senoides, fasores, impedância e leis circuitais em CA;
-- **Avaliação 2** — peso 5,0: prova individual e sem consulta, cobrindo teoremas de circuitos e potência em CA;
-- **Listas de exercícios** — atividade formativa (não somativa), uma por unidade, como preparação para as avaliações.
+A avaliação será feita por meio de duas provas escritas bimestrais (A1 e A2),
+cada uma valendo 10,0 pontos, e de uma lista de exercícios por bimestre
+($Pl_1$, $Pl_2$), valendo no máximo 1,0 ponto cada (0,5 pela entrega da lista
++ 0,5 pela resolução, em sala, de uma questão sorteada da lista).
 
-$$N_f = \text{Avaliação 1} + \text{Avaliação 2}$$
+$$\mathrm{NF} = \dfrac{A_1 + A_2}{2} + Pl_1 + Pl_2$$
+
+::: {.callout-warning}
+## Critério de aprovação
+Frequência mínima de 75% da carga horária **e** nota final $\geq 5,0$ (Regulamento de graduação da UFPA). Avaliações escritas limitadas a, no máximo, duas aplicações no período, nas semanas de prova do calendário acadêmico.
+:::
 
 ---
 
-## Cronograma
+## Cronograma {.smaller}
 
-| Semanas | Conteúdo |
-|:--:|:--|
-| 1–2 | Senoides e fasores |
-| 3–5 | Relações V-I em R, L, C; impedância e admitância |
-| 6–7 | Leis de Kirchhoff; análise nodal e de malhas em CA |
-| 8 | Avaliação 1 |
-| 9–10 | Teoremas de circuitos em CA (superposição, Thévenin, Norton, máxima transferência de potência) |
-| 11–13 | Potência em CA (instantânea, média, complexa, fator de potência e correção) |
-| 14 | Avaliação 2 |
-| 15–16 | Revisão e exercícios integradores |
+| Aulas | Datas | Unidade / Conteúdo |
+|:--:|:--|:--|
+| 1–2 | 01/09, 03/09 | Unidade 1 — Senoides e fasores |
+| 3–6 | 08/09 a 17/09 | Unidade 2 — Impedância, admitância e associações |
+| 7–10 | 22/09 a 01/10 | Unidade 3 — Leis circuitais e métodos de análise |
+| 11–12 | 06/10, 08/10 | Exercícios e revisão (Unidades 1–3) |
+| 13 | 13/10 | **Prova Bimestral A1** |
+| 14 | 15/10 | Prova substitutiva (referente à A1) |
+| 15–18 | 20/10 a 29/10 | Unidade 4 — Teoremas de circuitos em CA |
+| 19–23 | 03/11 a 17/11 | Unidade 5 — Potência em CA |
+| 24–27 | 19/11 a 01/12 | Unidade 6 — Circuitos trifásicos |
+| 28–29 | 03/12, 08/12 | Exercícios e revisão (Unidades 4–6) |
+| 30 | 10/12 | **Prova Final A2** |
 
+---
+
+## Bibliografia
+
+- **Sadiku & Alexander** — *Fundamentos de Circuitos Elétricos*. 5ª ed. AMGH/Bookman [@sadiku2013].
+- **Dorf & Svoboda** — *Introdução a Circuitos Elétricos*. 9ª ed. LTC [@dorf2019].
