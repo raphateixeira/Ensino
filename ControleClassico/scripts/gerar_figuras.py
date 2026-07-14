@@ -144,6 +144,36 @@ def fig_1ordem_polo():
     save(fig, "fig_1ordem_polo")
 
 
+def fig_1ordem_python_exemplo():
+    """Saída do exemplo em Python (python-control) do sensor de temperatura:
+    G(s) = 1/(3s+1), degrau de 20 °C. Reproduz o que `ct.step_response` +
+    matplotlib produzem, com tr, ts (2%) e o ponto de 63,2% marcados."""
+    K, tau, A = 1.0, 3.0, 20.0
+    G = ct.tf([K], [tau, 1])
+    t, y = ct.step_response(G, T=np.linspace(0, 16, 800))
+    y = A * y  # degrau de amplitude 20 °C
+
+    info = ct.step_info(G, T=np.linspace(0, 16, 4000))
+    tr, ts = info["RiseTime"], info["SettlingTime"]
+
+    fig, ax = plt.subplots(figsize=(7.4, 4.4))
+    ax.plot(t, y, color=BLUE, label=r"$y(t)=20\,(1-e^{-t/3})$")
+    ax.plot([tau], [A * (1 - np.exp(-1))], "o", color=RED, ms=6, zorder=5)
+    ax.annotate("63,2 %", (tau, A * (1 - np.exp(-1))), textcoords="offset points",
+                xytext=(10, -14), color=RED, fontsize=10)
+    ax.axvline(tr, color=MUTED, lw=1, ls="--")
+    ax.axvline(ts, color=MUTED, lw=1, ls="--")
+    ax.text(tr, 1.5, f"$t_r$={tr:.1f}s", color=MUTED, fontsize=9, ha="center")
+    ax.text(ts, 1.5, f"$t_s$={ts:.1f}s", color=MUTED, fontsize=9, ha="center")
+    ax.axhline(A, color=MUTED, lw=1, ls=":")
+    ax.set_xlabel("tempo $t$ [s]")
+    ax.set_ylabel(r"$y(t)$ [°C]")
+    ax.set_title("python-control — step_response(G), G = 1/(3s+1)")
+    ax.set_xlim(0, 16)
+    ax.legend(loc="lower right")
+    save(fig, "fig_1ordem_python_exemplo")
+
+
 # =====================================================================
 # Aula 04 — Sistemas de Segunda Ordem
 # =====================================================================
@@ -484,6 +514,7 @@ if __name__ == "__main__":
     fig_polos_zeros_generico()
     fig_1ordem_step()
     fig_1ordem_polo()
+    fig_1ordem_python_exemplo()
     fig_2ordem_zeta()
     fig_2ordem_polos()
     fig_2ordem_especificacoes()

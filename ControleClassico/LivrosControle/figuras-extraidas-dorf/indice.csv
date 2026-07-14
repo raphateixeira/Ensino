@@ -1,0 +1,1352 @@
+arquivo,capitulo,pagina,figura,largura_px,altura_px,legenda_original,status
+_ambiguos/pagina-0030_semlegenda1.png,Chapter 1. Introduction to Control Systems,30,,351,365,,ambiguo
+cap01-introduction-to-control-systems/pagina-0032_fig1-1.png,Chapter 1. Introduction to Control Systems,32,1.1,627,168,FIGURE 1.1 Process to be controlled.,ok
+cap01-introduction-to-control-systems/pagina-0032_fig1-2.png,Chapter 1. Introduction to Control Systems,32,1.2,1306,168,FIGURE 1.2 Open-loop control system (without feedback).,ok
+cap01-introduction-to-control-systems/pagina-0032_fig1-3.png,Chapter 1. Introduction to Control Systems,32,1.3,1530,350,FIGURE 1.3 Closed-loop feedback ­control system (with feedback).,ok
+cap01-introduction-to-control-systems/pagina-0033_fig1-4.png,Chapter 1. Introduction to Control Systems,33,1.4,1537,515,FIGURE 1.4 Closed-loop ­feedback system with external ­disturbances and measurement noise.,ok
+cap01-introduction-to-control-systems/pagina-0034_fig1-5.png,Chapter 1. Introduction to Control Systems,34,1.5,1847,557,FIGURE 1.5,ok
+cap01-introduction-to-control-systems/pagina-0034_fig1-6.png,Chapter 1. Introduction to Control Systems,34,1.6,1324,448,FIGURE 1.6,ok
+cap01-introduction-to-control-systems/pagina-0035_fig1-7.png,Chapter 1. Introduction to Control Systems,35,1.7,1063,940,FIGURE 1.7 Watt’s flyball governor.,ok
+cap01-introduction-to-control-systems/pagina-0036_fig1-8.png,Chapter 1. Introduction to Control Systems,36,1.8,587,689,FIGURE 1.8 Water-level float regulator.,ok
+cap01-introduction-to-control-systems/pagina-0039_fig1-9.png,Chapter 1. Introduction to Control Systems,39,1.9,1672,1133,FIGURE 1.9 applications to control engineering (Source: SRI Business Intelligence).,ok
+cap01-introduction-to-control-systems/pagina-0041_fig1-10.png,Chapter 1. Introduction to Control Systems,41,1.10,1538,1751,FIGURE 1.10 (a) Automobile steering control system. (b) The driver uses the difference be- tween the actual and the desired direction of travel to generate a con- trolled adjustment of the steering wh,ok
+cap01-introduction-to-control-systems/pagina-0042_fig1-11.png,Chapter 1. Introduction to Control Systems,42,1.11,1042,585,FIGURE 1.11 A manual ­control system for ­regulating the level of fluid in a tank by adjusting the output valve. The opera- tor views the level of fluid through a port in the side of the tank.,ok
+cap01-introduction-to-control-systems/pagina-0043_fig1-12.png,Chapter 1. Introduction to Control Systems,43,1.12,1518,1034,"FIGURE 1.12 The Honda ASIMO humanoid robot. ASIMO walks, climbs stairs, and turns corners. (David Coll Blanco/ Alamy Stock Photo)",ok
+cap01-introduction-to-control-systems/pagina-0044_fig1-13.png,Chapter 1. Introduction to Control Systems,44,1.13,1589,1008,FIGURE 1.13 Coordinated ­control system for a boiler–generator.,ok
+cap01-introduction-to-control-systems/pagina-0045_fig1-14.png,Chapter 1. Introduction to Control Systems,45,1.14,1565,763,FIGURE 1.14 Recent advances in electronic prosthetics have resulted in the development of a prosthetic hand and arm that has the same dexterity as a human arm. (Kuznetsov Dmitriy/Shutterstock).,ok
+cap01-introduction-to-control-systems/pagina-0045_fig1-15.png,Chapter 1. Introduction to Control Systems,45,1.15,1540,644,FIGURE 1.15 A feedback ­control system model of the national income.,ok
+cap01-introduction-to-control-systems/pagina-0046_fig1-16.png,Chapter 1. Introduction to Control Systems,46,1.16,968,668,FIGURE 1.16 A commercial drone (GuruXOX/ Shuttterstock).,ok
+cap01-introduction-to-control-systems/pagina-0049_fig1-17.png,Chapter 1. Introduction to Control Systems,49,1.17,954,1203,FIGURE 1.17,ok
+_ambiguos/pagina-0049_semlegenda1.png,Chapter 1. Introduction to Control Systems,49,,755,158,,ambiguo
+cap01-introduction-to-control-systems/pagina-0051_fig1-18.png,Chapter 1. Introduction to Control Systems,51,1.18,1116,997,FIGURE 1.18 The key elements of mechatronics [64].,ok
+cap01-introduction-to-control-systems/pagina-0052_fig1-19.png,Chapter 1. Introduction to Control Systems,52,1.19,1164,798,FIGURE 1.19 The hybrid fuel automobile can be viewed as a ­mechatronic ­system. (Marmaduke St. John/Alamy Stock Photo.),ok
+cap01-introduction-to-control-systems/pagina-0053_fig1-20.png,Chapter 1. Introduction to Control Systems,53,1.20,1117,766,FIGURE 1.20 Efficient wind power generation. (Photo courtesy of NASA),ok
+cap01-introduction-to-control-systems/pagina-0054_fig1-21.png,Chapter 1. Introduction to Control Systems,54,1.21,819,619,FIGURE 1.21 Wearable ­computers can assist a physician provide better healthcare delivery. (Wavebreak Media Ltd/123RF.),ok
+cap01-introduction-to-control-systems/pagina-0057_fig1-22.png,Chapter 1. Introduction to Control Systems,57,1.22,1334,928,FIGURE 1.22 Evolution of con- trol systems and autonomy.,ok
+cap01-introduction-to-control-systems/pagina-0059_fig1-23.png,Chapter 1. Introduction to Control Systems,59,1.23,1812,1223,FIGURE 1.23,ok
+cap01-introduction-to-control-systems/pagina-0060_fig1-24.png,Chapter 1. Introduction to Control Systems,60,1.24,1457,749,FIGURE 1.24 (a) Open-loop (without feedback) control of the speed of a rotating disk. (b) Block diagram model.,ok
+cap01-introduction-to-control-systems/pagina-0061_fig1-25.png,Chapter 1. Introduction to Control Systems,61,1.25,1550,974,FIGURE 1.25 (a) Closed-loop control of the speed of a rotating disk. (b) Block dia- gram model.,ok
+cap01-introduction-to-control-systems/pagina-0062_fig1-26.png,Chapter 1. Introduction to Control Systems,62,1.26,1055,770,FIGURE 1.26 The blood ­glucose and insulin ­levels for a healthy person.,ok
+cap01-introduction-to-control-systems/pagina-0062_fig1-27.png,Chapter 1. Introduction to Control Systems,62,1.27,1401,881,FIGURE 1.27 (a) Open-loop ­(without ­feedback) control and (b) closed-loop control of blood glucose.,ok
+cap01-introduction-to-control-systems/pagina-0063_fig1-28.png,Chapter 1. Introduction to Control Systems,63,1.28,1406,621,FIGURE 1.28 (a) A disk drive (Ragnarock/ Shutterstock.) (b) Diagram of a disk drive.,ok
+cap01-introduction-to-control-systems/pagina-0064_fig1-29.png,Chapter 1. Introduction to Control Systems,64,1.29,1433,326,FIGURE 1.29 Closed-loop control system for disk drive.,ok
+cap01-introduction-to-control-systems/pagina-0064_fig1-30.png,Chapter 1. Introduction to Control Systems,64,1.30,865,136,"FIGURE 1.30 actuator, and process.",ok
+_ambiguos/pagina-0067_semlegenda1.png,Chapter 1. Introduction to Control Systems,67,,1034,297,,ambiguo
+_ambiguos/pagina-0068_semlegenda1.png,Chapter 1. Introduction to Control Systems,68,,917,582,,ambiguo
+_ambiguos/pagina-0069_semlegenda1.png,Chapter 1. Introduction to Control Systems,69,,1054,382,,ambiguo
+_ambiguos/pagina-0069_semlegenda2.png,Chapter 1. Introduction to Control Systems,69,,818,490,,ambiguo
+_ambiguos/pagina-0069_semlegenda3.png,Chapter 1. Introduction to Control Systems,69,,1271,368,,ambiguo
+_ambiguos/pagina-0070_semlegenda1.png,Chapter 1. Introduction to Control Systems,70,,655,272,,ambiguo
+_ambiguos/pagina-0070_semlegenda2.png,Chapter 1. Introduction to Control Systems,70,,862,341,,ambiguo
+_ambiguos/pagina-0070_semlegenda3.png,Chapter 1. Introduction to Control Systems,70,,871,456,,ambiguo
+_ambiguos/pagina-0071_semlegenda1.png,Chapter 1. Introduction to Control Systems,71,,1325,415,,ambiguo
+_ambiguos/pagina-0071_semlegenda2.png,Chapter 1. Introduction to Control Systems,71,,601,751,,ambiguo
+_ambiguos/pagina-0072_semlegenda1.png,Chapter 1. Introduction to Control Systems,72,,880,629,,ambiguo
+_ambiguos/pagina-0072_semlegenda2.png,Chapter 1. Introduction to Control Systems,72,,752,731,,ambiguo
+_ambiguos/pagina-0073_semlegenda1.png,Chapter 1. Introduction to Control Systems,73,,1827,936,,ambiguo
+_ambiguos/pagina-0074_semlegenda1.png,Chapter 1. Introduction to Control Systems,74,,876,678,,ambiguo
+_ambiguos/pagina-0074_semlegenda2.png,Chapter 1. Introduction to Control Systems,74,,1176,851,,ambiguo
+_ambiguos/pagina-0075_semlegenda1.png,Chapter 1. Introduction to Control Systems,75,,1669,744,,ambiguo
+_ambiguos/pagina-0075_semlegenda2.png,Chapter 1. Introduction to Control Systems,75,,1149,717,,ambiguo
+_ambiguos/pagina-0076_semlegenda1.png,Chapter 1. Introduction to Control Systems,76,,867,511,,ambiguo
+_ambiguos/pagina-0076_semlegenda2.png,Chapter 1. Introduction to Control Systems,76,,464,706,,ambiguo
+_ambiguos/pagina-0076_semlegenda3.png,Chapter 1. Introduction to Control Systems,76,,821,670,,ambiguo
+_ambiguos/pagina-0077_semlegenda1.png,Chapter 1. Introduction to Control Systems,77,,531,681,,ambiguo
+_ambiguos/pagina-0077_semlegenda2.png,Chapter 1. Introduction to Control Systems,77,,846,1003,,ambiguo
+_ambiguos/pagina-0077_semlegenda3.png,Chapter 1. Introduction to Control Systems,77,,751,542,,ambiguo
+_ambiguos/pagina-0078_semlegenda1.png,Chapter 1. Introduction to Control Systems,78,,924,631,,ambiguo
+_ambiguos/pagina-0078_semlegenda2.png,Chapter 1. Introduction to Control Systems,78,,696,532,,ambiguo
+_ambiguos/pagina-0078_semlegenda3.png,Chapter 1. Introduction to Control Systems,78,,367,691,,ambiguo
+_ambiguos/pagina-0080_semlegenda1.png,Chapter 2. Mathematical Models of Systems,80,,351,365,,ambiguo
+cap02-mathematical-models-of-systems/pagina-0082_fig2-1.png,Chapter 2. Mathematical Models of Systems,82,2.1,712,689,FIGURE 2.1 (a) Torsional spring–mass system. (b) Spring element.,ok
+_ambiguos/pagina-0083_semlegenda1.png,Chapter 2. Mathematical Models of Systems,83,,311,308,,ambiguo
+_ambiguos/pagina-0083_semlegenda2.png,Chapter 2. Mathematical Models of Systems,83,,312,488,,ambiguo
+_ambiguos/pagina-0083_semlegenda3.png,Chapter 2. Mathematical Models of Systems,83,,126,606,,ambiguo
+_ambiguos/pagina-0083_semlegenda4.png,Chapter 2. Mathematical Models of Systems,83,,126,598,,ambiguo
+cap02-mathematical-models-of-systems/pagina-0084_fig2-2.png,Chapter 2. Mathematical Models of Systems,84,2.2,1016,642,FIGURE 2.2 (a) Spring-mass- damper system. (b) Free-body diagram.,ok
+cap02-mathematical-models-of-systems/pagina-0085_fig2-3.png,Chapter 2. Mathematical Models of Systems,85,2.3,673,268,FIGURE 2.3 RLC circuit.,ok
+cap02-mathematical-models-of-systems/pagina-0085_fig2-4.png,Chapter 2. Mathematical Models of Systems,85,2.4,1187,773,FIGURE 2.4 Typical voltage response for an RLC circuit.,ok
+cap02-mathematical-models-of-systems/pagina-0088_fig2-5.png,Chapter 2. Mathematical Models of Systems,88,2.5,1313,677,FIGURE 2.5 (a) A mass sitting on a nonlinear spring. (b) The spring force versus y (t).,ok
+cap02-mathematical-models-of-systems/pagina-0089_fig2-6.png,Chapter 2. Mathematical Models of Systems,89,2.6,1022,560,FIGURE 2.6 Pendulum oscillator.,ok
+_ambiguos/pagina-0089_semlegenda1.png,Chapter 2. Mathematical Models of Systems,89,,574,161,,ambiguo
+cap02-mathematical-models-of-systems/pagina-0092_fig2-7.png,Chapter 2. Mathematical Models of Systems,92,2.7,816,475,FIGURE 2.7 An s-plane pole and zero plot.,ok
+cap02-mathematical-models-of-systems/pagina-0092_fig2-8.png,Chapter 2. Mathematical Models of Systems,92,2.8,816,431,FIGURE 2.8 Graphical ­evaluation of the residues.,ok
+cap02-mathematical-models-of-systems/pagina-0093_fig2-9.png,Chapter 2. Mathematical Models of Systems,93,2.9,1003,1116,FIGURE 2.9 An s-plane plot of the poles and zeros of,ok
+cap02-mathematical-models-of-systems/pagina-0094_fig2-10.png,Chapter 2. Mathematical Models of Systems,94,2.10,662,582,FIGURE 2.10 The locus of roots as ζ varies with constant.,ok
+cap02-mathematical-models-of-systems/pagina-0094_fig2-11.png,Chapter 2. Mathematical Models of Systems,94,2.11,540,608,FIGURE 2.11 Evaluation of the residue k .,ok
+cap02-mathematical-models-of-systems/pagina-0095_fig2-12.png,Chapter 2. Mathematical Models of Systems,95,2.12,1117,778,FIGURE 2.12 Response of the spring-mass- damper system.,ok
+cap02-mathematical-models-of-systems/pagina-0096_fig2-13.png,Chapter 2. Mathematical Models of Systems,96,2.13,753,296,FIGURE 2.13 An RC network.,ok
+cap02-mathematical-models-of-systems/pagina-0099_fig2-14.png,Chapter 2. Mathematical Models of Systems,99,2.14,1083,368,FIGURE 2.14 The ideal op-amp.,ok
+cap02-mathematical-models-of-systems/pagina-0099_fig2-15.png,Chapter 2. Mathematical Models of Systems,99,2.15,774,443,FIGURE 2.15 An Inverting ­amplifier ­operating with ideal conditions.,ok
+cap02-mathematical-models-of-systems/pagina-0100_fig2-16.png,Chapter 2. Mathematical Models of Systems,100,2.16,810,596,FIGURE 2.16 Two-mass ­mechanical system.,ok
+cap02-mathematical-models-of-systems/pagina-0100_fig2-17.png,Chapter 2. Mathematical Models of Systems,100,2.17,724,330,FIGURE 2.17 Two-node elec- tric circuit analog,ok
+cap02-mathematical-models-of-systems/pagina-0102_fig2-18.png,Chapter 2. Mathematical Models of Systems,102,2.18,1573,848,FIGURE 2.18 A DC motor (a) electrical ­diagram and (b) sketch.,ok
+cap02-mathematical-models-of-systems/pagina-0103_fig2-19.png,Chapter 2. Mathematical Models of Systems,103,2.19,1561,318,FIGURE 2.19 Block diagram model of field-­ controlled DC motor.,ok
+cap02-mathematical-models-of-systems/pagina-0104_fig2-20.png,Chapter 2. Mathematical Models of Systems,104,2.20,1421,481,FIGURE 2.20 Armature-controlled DC motor.,ok
+_ambiguos/pagina-0105_semlegenda1.png,Chapter 2. Mathematical Models of Systems,105,,605,393,,ambiguo
+_ambiguos/pagina-0105_semlegenda2.png,Chapter 2. Mathematical Models of Systems,105,,610,372,,ambiguo
+_ambiguos/pagina-0105_semlegenda3.png,Chapter 2. Mathematical Models of Systems,105,,604,381,,ambiguo
+_ambiguos/pagina-0105_semlegenda4.png,Chapter 2. Mathematical Models of Systems,105,,605,401,,ambiguo
+_ambiguos/pagina-0106_semlegenda1.png,Chapter 2. Mathematical Models of Systems,106,,507,251,,ambiguo
+_ambiguos/pagina-0106_semlegenda2.png,Chapter 2. Mathematical Models of Systems,106,,504,289,,ambiguo
+_ambiguos/pagina-0106_semlegenda3.png,Chapter 2. Mathematical Models of Systems,106,,497,287,,ambiguo
+_ambiguos/pagina-0106_semlegenda4.png,Chapter 2. Mathematical Models of Systems,106,,628,472,,ambiguo
+_ambiguos/pagina-0106_semlegenda5.png,Chapter 2. Mathematical Models of Systems,106,,562,434,,ambiguo
+_ambiguos/pagina-0107_semlegenda1.png,Chapter 2. Mathematical Models of Systems,107,,528,415,,ambiguo
+_ambiguos/pagina-0107_semlegenda2.png,Chapter 2. Mathematical Models of Systems,107,,227,371,,ambiguo
+_ambiguos/pagina-0107_semlegenda3.png,Chapter 2. Mathematical Models of Systems,107,,586,248,,ambiguo
+_ambiguos/pagina-0107_semlegenda4.png,Chapter 2. Mathematical Models of Systems,107,,455,233,,ambiguo
+_ambiguos/pagina-0107_semlegenda5.png,Chapter 2. Mathematical Models of Systems,107,,500,151,,ambiguo
+_ambiguos/pagina-0108_semlegenda1.png,Chapter 2. Mathematical Models of Systems,108,,492,322,,ambiguo
+_ambiguos/pagina-0108_semlegenda2.png,Chapter 2. Mathematical Models of Systems,108,,554,383,,ambiguo
+_ambiguos/pagina-0108_semlegenda3.png,Chapter 2. Mathematical Models of Systems,108,,506,488,,ambiguo
+cap02-mathematical-models-of-systems/pagina-0109_fig2-21.png,Chapter 2. Mathematical Models of Systems,109,2.21,835,245,FIGURE 2.21 Block diagram of a DC motor.,ok
+cap02-mathematical-models-of-systems/pagina-0109_fig2-22.png,Chapter 2. Mathematical Models of Systems,109,2.22,808,217,"FIGURE 2.22 General block representation of two-input, two-­ output system.",ok
+cap02-mathematical-models-of-systems/pagina-0109_fig2-23.png,Chapter 2. Mathematical Models of Systems,109,2.23,809,523,"FIGURE 2.23 Block diagram of a two-input, two-­ output intercon- nected system.",ok
+_ambiguos/pagina-0110_semlegenda1.png,Chapter 2. Mathematical Models of Systems,110,,1149,1503,,ambiguo
+cap02-mathematical-models-of-systems/pagina-0111_fig2-24.png,Chapter 2. Mathematical Models of Systems,111,2.24,1512,484,FIGURE 2.24 Negative feedback control system.,ok
+cap02-mathematical-models-of-systems/pagina-0112_fig2-25.png,Chapter 2. Mathematical Models of Systems,112,2.25,1562,567,FIGURE 2.25 Multiple-loop feedback control system.,ok
+cap02-mathematical-models-of-systems/pagina-0113_fig2-26.png,Chapter 2. Mathematical Models of Systems,113,2.26,1917,1140,FIGURE 2.26,ok
+cap02-mathematical-models-of-systems/pagina-0114_fig2-27.png,Chapter 2. Mathematical Models of Systems,114,2.27,672,247,FIGURE 2.27 Signal-flow graph of the DC motor.,ok
+cap02-mathematical-models-of-systems/pagina-0114_fig2-28.png,Chapter 2. Mathematical Models of Systems,114,2.28,681,335,"FIGURE 2.28 Signal-flow graph of a two-­input, two-output ­interconnected system.",ok
+cap02-mathematical-models-of-systems/pagina-0115_fig2-29.png,Chapter 2. Mathematical Models of Systems,115,2.29,563,501,FIGURE 2.29 Signal-flow graph of two algebraic equations.,ok
+cap02-mathematical-models-of-systems/pagina-0116_fig2-30.png,Chapter 2. Mathematical Models of Systems,116,2.30,1534,1283,FIGURE 2.30 Two-path ­interacting system. (a) Signal-flow graph. (b) Block diagram.,ok
+cap02-mathematical-models-of-systems/pagina-0118_fig2-31.png,Chapter 2. Mathematical Models of Systems,118,2.31,1566,482,FIGURE 2.31 The signal-flow graph of the ­armature-controlled DC motor.,ok
+cap02-mathematical-models-of-systems/pagina-0119_fig2-32.png,Chapter 2. Mathematical Models of Systems,119,2.32,1562,580,FIGURE 2.32 Signal-flow graph of a multiple-loop system.,ok
+cap02-mathematical-models-of-systems/pagina-0120_fig2-33.png,Chapter 2. Mathematical Models of Systems,120,2.33,591,332,FIGURE 2.33 Equivalent circuit of the photovoltaic generator.,ok
+cap02-mathematical-models-of-systems/pagina-0121_fig2-34.png,Chapter 2. Mathematical Models of Systems,121,2.34,1296,1007,FIGURE 2.34 Voltage versus ­current and power versus current for an example ­photovoltaic ­generator at a ­specific insolation level.,ok
+cap02-mathematical-models-of-systems/pagina-0122_fig2-35.png,Chapter 2. Mathematical Models of Systems,122,2.35,1338,1075,FIGURE 2.35,ok
+cap02-mathematical-models-of-systems/pagina-0122_fig2-36.png,Chapter 2. Mathematical Models of Systems,122,2.36,1260,262,FIGURE 2.36,ok
+cap02-mathematical-models-of-systems/pagina-0123_fig2-37.png,Chapter 2. Mathematical Models of Systems,123,2.37,866,668,FIGURE 2.37 The fluid flow ­reservoir configuration.,ok
+cap02-mathematical-models-of-systems/pagina-0124_fig2-38.png,Chapter 2. Mathematical Models of Systems,124,2.38,1400,978,FIGURE 2.38 reservoir example.,ok
+_ambiguos/pagina-0124_semlegenda1.png,Chapter 2. Mathematical Models of Systems,124,,553,159,,ambiguo
+cap02-mathematical-models-of-systems/pagina-0131_fig2-39.png,Chapter 2. Mathematical Models of Systems,131,2.39,1320,1030,FIGURE 2.39 The tank water level time history obtained by integrating the nonlinear equa- tions of motion in Equation (2.119) with H Q t,ok
+cap02-mathematical-models-of-systems/pagina-0132_fig2-40.png,Chapter 2. Mathematical Models of Systems,132,2.40,1292,1031,FIGURE 2.40 The response showing the linear versus nonlinear response to a step input.,ok
+cap02-mathematical-models-of-systems/pagina-0132_fig2-41.png,Chapter 2. Mathematical Models of Systems,132,2.41,1328,1015,FIGURE 2.41 The output flow rate response to a ­sinusoidal variation in the input flow.,ok
+cap02-mathematical-models-of-systems/pagina-0133_fig2-42.png,Chapter 2. Mathematical Models of Systems,133,2.42,1328,1029,FIGURE 2.42 The water level response to a ­sinusoidal variation in the input flow.,ok
+cap02-mathematical-models-of-systems/pagina-0134_fig2-43.png,Chapter 2. Mathematical Models of Systems,134,2.43,1564,1377,FIGURE 2.43 Speed control of an electric traction motor.,ok
+_ambiguos/pagina-0134_semlegenda1.png,Chapter 2. Mathematical Models of Systems,134,,990,348,,ambiguo
+cap02-mathematical-models-of-systems/pagina-0136_fig2-44.png,Chapter 2. Mathematical Models of Systems,136,2.44,1544,1311,"FIGURE 2.44 (a) Ladder network, (b) its signal-flow graph, and (c) its block diagram.",ok
+_ambiguos/pagina-0138_semlegenda1.png,Chapter 2. Mathematical Models of Systems,138,,962,250,,ambiguo
+cap02-mathematical-models-of-systems/pagina-0139_fig2-45.png,Chapter 2. Mathematical Models of Systems,139,2.45,1556,841,FIGURE 2.45 Script to analyze the spring-mass- damper.,ok
+cap02-mathematical-models-of-systems/pagina-0139_fig2-46.png,Chapter 2. Mathematical Models of Systems,139,2.46,1374,962,FIGURE 2.46 Spring-mass- damper unforced response.,ok
+cap02-mathematical-models-of-systems/pagina-0140_fig2-47.png,Chapter 2. Mathematical Models of Systems,140,2.47,1168,668,FIGURE 2.47 Entering the polynomial,ok
+cap02-mathematical-models-of-systems/pagina-0140_fig2-48.png,Chapter 2. Mathematical Models of Systems,140,2.48,1168,493,FIGURE 2.48 Using conv and polyval to ­multiply and evaluate the polynomials,ok
+cap02-mathematical-models-of-systems/pagina-0141_fig2-49.png,Chapter 2. Mathematical Models of Systems,141,2.49,1330,1061,FIGURE 2.49 (a) The tf function. (b) Using the tf function to create transfer function objects and adding them using the tf operator.,ok
+cap02-mathematical-models-of-systems/pagina-0142_fig2-50.png,Chapter 2. Mathematical Models of Systems,142,2.50,1261,1001,FIGURE 2.50 (a) The pole and zero functions. (b) Using the pole and zero functions to compute the pole and zero ­locations of a linear system.,ok
+cap02-mathematical-models-of-systems/pagina-0142_fig2-51.png,Chapter 2. Mathematical Models of Systems,142,2.51,754,539,FIGURE 2.51 The pzmap function.,ok
+cap02-mathematical-models-of-systems/pagina-0143_fig2-52.png,Chapter 2. Mathematical Models of Systems,143,2.52,1152,782,FIGURE 2.52 Pole–zero map for G(s)/H(s).,ok
+cap02-mathematical-models-of-systems/pagina-0143_fig2-53.png,Chapter 2. Mathematical Models of Systems,143,2.53,1138,1319,FIGURE 2.53 Transfer function example for and,ok
+cap02-mathematical-models-of-systems/pagina-0144_fig2-54.png,Chapter 2. Mathematical Models of Systems,144,2.54,859,242,FIGURE 2.54 Open-loop control system (without feedback).,ok
+cap02-mathematical-models-of-systems/pagina-0144_fig2-55.png,Chapter 2. Mathematical Models of Systems,144,2.55,1168,825,FIGURE 2.55 (a) Block diagram. (b) The series function.,ok
+cap02-mathematical-models-of-systems/pagina-0145_fig2-56.png,Chapter 2. Mathematical Models of Systems,145,2.56,974,737,FIGURE 2.56 Application of the series function.,ok
+cap02-mathematical-models-of-systems/pagina-0145_fig2-57.png,Chapter 2. Mathematical Models of Systems,145,2.57,1117,578,FIGURE 2.57 (a) Block diagram. (b) The parallel function.,ok
+cap02-mathematical-models-of-systems/pagina-0145_fig2-58.png,Chapter 2. Mathematical Models of Systems,145,2.58,1100,318,FIGURE 2.58 A basic control system with unity feedback.,ok
+cap02-mathematical-models-of-systems/pagina-0146_fig2-59.png,Chapter 2. Mathematical Models of Systems,146,2.59,1318,780,FIGURE 2.59 (a) Block diagram. (b) The feedback function with unity feedback.,ok
+cap02-mathematical-models-of-systems/pagina-0146_fig2-60.png,Chapter 2. Mathematical Models of Systems,146,2.60,1342,626,FIGURE 2.60 (a) Block diagram. (b) The feedback function.,ok
+cap02-mathematical-models-of-systems/pagina-0147_fig2-61.png,Chapter 2. Mathematical Models of Systems,147,2.61,1139,862,FIGURE 2.61 (a) Block diagram. (b) Application of the feedback function.,ok
+cap02-mathematical-models-of-systems/pagina-0147_fig2-62.png,Chapter 2. Mathematical Models of Systems,147,2.62,860,326,FIGURE 2.62 A basic control system with the controller in the feedback loop.,ok
+cap02-mathematical-models-of-systems/pagina-0148_fig2-63.png,Chapter 2. Mathematical Models of Systems,148,2.63,1001,945,"FIGURE 2.63 Application of the feedback function: (a) block diagram, (b) m-file script.",ok
+cap02-mathematical-models-of-systems/pagina-0149_fig2-64.png,Chapter 2. Mathematical Models of Systems,149,2.64,1132,853,FIGURE 2.64 Multiple-loop block reduction.,ok
+cap02-mathematical-models-of-systems/pagina-0149_fig2-65.png,Chapter 2. Mathematical Models of Systems,149,2.65,968,417,FIGURE 2.65 The minreal function.,ok
+cap02-mathematical-models-of-systems/pagina-0150_fig2-66.png,Chapter 2. Mathematical Models of Systems,150,2.66,1039,395,FIGURE 2.66 Application of the minreal function.,ok
+cap02-mathematical-models-of-systems/pagina-0150_fig2-67.png,Chapter 2. Mathematical Models of Systems,150,2.67,1047,759,FIGURE 2.67 Electric traction motor block reduction.,ok
+cap02-mathematical-models-of-systems/pagina-0151_fig2-68.png,Chapter 2. Mathematical Models of Systems,151,2.68,1275,879,FIGURE 2.68 The step function.,ok
+cap02-mathematical-models-of-systems/pagina-0151_fig2-69.png,Chapter 2. Mathematical Models of Systems,151,2.69,1586,619,FIGURE 2.69,ok
+cap02-mathematical-models-of-systems/pagina-0152_fig2-70.png,Chapter 2. Mathematical Models of Systems,152,2.70,1566,1002,"FIGURE 2.70 Head mount for reader, showing flexure.",ok
+cap02-mathematical-models-of-systems/pagina-0152_fig2-71.png,Chapter 2. Mathematical Models of Systems,152,2.71,1460,629,FIGURE 2.71 Block diagram model of disk drive read system.,ok
+cap02-mathematical-models-of-systems/pagina-0153_fig2-72.png,Chapter 2. Mathematical Models of Systems,153,2.72,1270,317,FIGURE 2.72 Block diagram of closed-loop system.,ok
+cap02-mathematical-models-of-systems/pagina-0154_fig2-73.png,Chapter 2. Mathematical Models of Systems,154,2.73,931,757,FIGURE 2.73 The system response of the system shown in Figure 2.72 for,ok
+cap02-mathematical-models-of-systems/pagina-0155_fig2-74.png,Chapter 2. Mathematical Models of Systems,155,2.74,1446,503,FIGURE 2.74,ok
+cap02-mathematical-models-of-systems/pagina-0156_fig2-75.png,Chapter 2. Mathematical Models of Systems,156,2.75,938,464,FIGURE 2.75,ok
+cap02-mathematical-models-of-systems/pagina-0157_fig2-76.png,Chapter 2. Mathematical Models of Systems,157,2.76,1136,341,FIGURE 2.76,ok
+_ambiguos/pagina-0159_semlegenda1.png,Chapter 2. Mathematical Models of Systems,159,,504,157,,ambiguo
+_ambiguos/pagina-0159_semlegenda2.png,Chapter 2. Mathematical Models of Systems,159,,602,410,,ambiguo
+_ambiguos/pagina-0160_semlegenda1.png,Chapter 2. Mathematical Models of Systems,160,,718,381,,ambiguo
+_ambiguos/pagina-0160_semlegenda2.png,Chapter 2. Mathematical Models of Systems,160,,1370,624,,ambiguo
+_ambiguos/pagina-0160_semlegenda3.png,Chapter 2. Mathematical Models of Systems,160,,755,364,,ambiguo
+_ambiguos/pagina-0160_semlegenda4.png,Chapter 2. Mathematical Models of Systems,160,,442,325,,ambiguo
+_ambiguos/pagina-0161_semlegenda1.png,Chapter 2. Mathematical Models of Systems,161,,845,406,,ambiguo
+_ambiguos/pagina-0161_semlegenda2.png,Chapter 2. Mathematical Models of Systems,161,,874,653,,ambiguo
+_ambiguos/pagina-0161_semlegenda3.png,Chapter 2. Mathematical Models of Systems,161,,1249,444,,ambiguo
+_ambiguos/pagina-0161_semlegenda4.png,Chapter 2. Mathematical Models of Systems,161,,709,512,,ambiguo
+_ambiguos/pagina-0162_semlegenda1.png,Chapter 2. Mathematical Models of Systems,162,,1177,407,,ambiguo
+_ambiguos/pagina-0162_semlegenda2.png,Chapter 2. Mathematical Models of Systems,162,,1265,733,,ambiguo
+_ambiguos/pagina-0163_semlegenda1.png,Chapter 2. Mathematical Models of Systems,163,,782,411,,ambiguo
+_ambiguos/pagina-0163_semlegenda2.png,Chapter 2. Mathematical Models of Systems,163,,785,507,,ambiguo
+_ambiguos/pagina-0163_semlegenda3.png,Chapter 2. Mathematical Models of Systems,163,,846,415,,ambiguo
+_ambiguos/pagina-0163_semlegenda4.png,Chapter 2. Mathematical Models of Systems,163,,666,519,,ambiguo
+_ambiguos/pagina-0164_semlegenda1.png,Chapter 2. Mathematical Models of Systems,164,,1843,528,,ambiguo
+_ambiguos/pagina-0164_semlegenda2.png,Chapter 2. Mathematical Models of Systems,164,,794,673,,ambiguo
+_ambiguos/pagina-0164_semlegenda3.png,Chapter 2. Mathematical Models of Systems,164,,871,400,,ambiguo
+_ambiguos/pagina-0164_semlegenda4.png,Chapter 2. Mathematical Models of Systems,164,,803,402,,ambiguo
+_ambiguos/pagina-0165_semlegenda1.png,Chapter 2. Mathematical Models of Systems,165,,1006,401,,ambiguo
+_ambiguos/pagina-0165_semlegenda2.png,Chapter 2. Mathematical Models of Systems,165,,374,292,,ambiguo
+_ambiguos/pagina-0165_semlegenda3.png,Chapter 2. Mathematical Models of Systems,165,,864,270,,ambiguo
+_ambiguos/pagina-0165_semlegenda4.png,Chapter 2. Mathematical Models of Systems,165,,582,179,,ambiguo
+_ambiguos/pagina-0165_semlegenda5.png,Chapter 2. Mathematical Models of Systems,165,,650,436,,ambiguo
+_ambiguos/pagina-0166_semlegenda1.png,Chapter 2. Mathematical Models of Systems,166,,521,203,,ambiguo
+_ambiguos/pagina-0166_semlegenda2.png,Chapter 2. Mathematical Models of Systems,166,,701,395,,ambiguo
+_ambiguos/pagina-0166_semlegenda3.png,Chapter 2. Mathematical Models of Systems,166,,432,361,,ambiguo
+_ambiguos/pagina-0166_semlegenda4.png,Chapter 2. Mathematical Models of Systems,166,,630,501,,ambiguo
+_ambiguos/pagina-0166_semlegenda5.png,Chapter 2. Mathematical Models of Systems,166,,822,343,,ambiguo
+_ambiguos/pagina-0167_semlegenda1.png,Chapter 2. Mathematical Models of Systems,167,,1293,615,,ambiguo
+_ambiguos/pagina-0167_semlegenda2.png,Chapter 2. Mathematical Models of Systems,167,,1411,438,,ambiguo
+_ambiguos/pagina-0167_semlegenda3.png,Chapter 2. Mathematical Models of Systems,167,,489,176,,ambiguo
+_ambiguos/pagina-0168_semlegenda1.png,Chapter 2. Mathematical Models of Systems,168,,771,757,,ambiguo
+_ambiguos/pagina-0168_semlegenda2.png,Chapter 2. Mathematical Models of Systems,168,,817,308,,ambiguo
+_ambiguos/pagina-0168_semlegenda3.png,Chapter 2. Mathematical Models of Systems,168,,401,267,,ambiguo
+_ambiguos/pagina-0169_semlegenda1.png,Chapter 2. Mathematical Models of Systems,169,,655,502,,ambiguo
+_ambiguos/pagina-0169_semlegenda2.png,Chapter 2. Mathematical Models of Systems,169,,633,675,,ambiguo
+_ambiguos/pagina-0169_semlegenda3.png,Chapter 2. Mathematical Models of Systems,169,,677,853,,ambiguo
+_ambiguos/pagina-0169_semlegenda4.png,Chapter 2. Mathematical Models of Systems,169,,661,460,,ambiguo
+_ambiguos/pagina-0169_semlegenda5.png,Chapter 2. Mathematical Models of Systems,169,,462,304,,ambiguo
+_ambiguos/pagina-0169_semlegenda6.png,Chapter 2. Mathematical Models of Systems,169,,979,362,,ambiguo
+_ambiguos/pagina-0170_semlegenda1.png,Chapter 2. Mathematical Models of Systems,170,,1656,565,,ambiguo
+_ambiguos/pagina-0170_semlegenda2.png,Chapter 2. Mathematical Models of Systems,170,,479,492,,ambiguo
+_ambiguos/pagina-0170_semlegenda3.png,Chapter 2. Mathematical Models of Systems,170,,850,531,,ambiguo
+_ambiguos/pagina-0170_semlegenda4.png,Chapter 2. Mathematical Models of Systems,170,,699,299,,ambiguo
+_ambiguos/pagina-0171_semlegenda1.png,Chapter 2. Mathematical Models of Systems,171,,654,603,,ambiguo
+_ambiguos/pagina-0171_semlegenda2.png,Chapter 2. Mathematical Models of Systems,171,,875,424,,ambiguo
+_ambiguos/pagina-0171_semlegenda3.png,Chapter 2. Mathematical Models of Systems,171,,872,589,,ambiguo
+_ambiguos/pagina-0172_semlegenda1.png,Chapter 2. Mathematical Models of Systems,172,,1598,1477,,ambiguo
+_ambiguos/pagina-0172_semlegenda2.png,Chapter 2. Mathematical Models of Systems,172,,874,453,,ambiguo
+_ambiguos/pagina-0173_semlegenda1.png,Chapter 2. Mathematical Models of Systems,173,,779,401,,ambiguo
+_ambiguos/pagina-0173_semlegenda2.png,Chapter 2. Mathematical Models of Systems,173,,1130,459,,ambiguo
+_ambiguos/pagina-0173_semlegenda3.png,Chapter 2. Mathematical Models of Systems,173,,351,498,,ambiguo
+_ambiguos/pagina-0174_semlegenda1.png,Chapter 2. Mathematical Models of Systems,174,,796,416,,ambiguo
+_ambiguos/pagina-0174_semlegenda2.png,Chapter 2. Mathematical Models of Systems,174,,440,909,,ambiguo
+_ambiguos/pagina-0174_semlegenda3.png,Chapter 2. Mathematical Models of Systems,174,,788,381,,ambiguo
+_ambiguos/pagina-0174_semlegenda4.png,Chapter 2. Mathematical Models of Systems,174,,750,539,,ambiguo
+_ambiguos/pagina-0175_semlegenda1.png,Chapter 2. Mathematical Models of Systems,175,,876,651,,ambiguo
+_ambiguos/pagina-0175_semlegenda2.png,Chapter 2. Mathematical Models of Systems,175,,618,875,,ambiguo
+_ambiguos/pagina-0175_semlegenda3.png,Chapter 2. Mathematical Models of Systems,175,,406,635,,ambiguo
+_ambiguos/pagina-0176_semlegenda1.png,Chapter 2. Mathematical Models of Systems,176,,1315,869,,ambiguo
+_ambiguos/pagina-0176_semlegenda2.png,Chapter 2. Mathematical Models of Systems,176,,668,376,,ambiguo
+_ambiguos/pagina-0176_semlegenda3.png,Chapter 2. Mathematical Models of Systems,176,,709,182,,ambiguo
+_ambiguos/pagina-0176_semlegenda4.png,Chapter 2. Mathematical Models of Systems,176,,848,191,,ambiguo
+_ambiguos/pagina-0176_semlegenda5.png,Chapter 2. Mathematical Models of Systems,176,,386,646,,ambiguo
+_ambiguos/pagina-0177_semlegenda1.png,Chapter 2. Mathematical Models of Systems,177,,1728,1113,,ambiguo
+_ambiguos/pagina-0177_semlegenda2.png,Chapter 2. Mathematical Models of Systems,177,,867,475,,ambiguo
+_ambiguos/pagina-0178_semlegenda1.png,Chapter 2. Mathematical Models of Systems,178,,1289,1195,,ambiguo
+_ambiguos/pagina-0178_semlegenda2.png,Chapter 2. Mathematical Models of Systems,178,,1510,495,,ambiguo
+_ambiguos/pagina-0179_semlegenda1.png,Chapter 2. Mathematical Models of Systems,179,,1062,489,,ambiguo
+_ambiguos/pagina-0179_semlegenda2.png,Chapter 2. Mathematical Models of Systems,179,,877,360,,ambiguo
+_ambiguos/pagina-0180_semlegenda1.png,Chapter 2. Mathematical Models of Systems,180,,905,450,,ambiguo
+_ambiguos/pagina-0180_semlegenda2.png,Chapter 2. Mathematical Models of Systems,180,,861,318,,ambiguo
+_ambiguos/pagina-0180_semlegenda3.png,Chapter 2. Mathematical Models of Systems,180,,792,416,,ambiguo
+_ambiguos/pagina-0180_semlegenda4.png,Chapter 2. Mathematical Models of Systems,180,,452,614,,ambiguo
+_ambiguos/pagina-0180_semlegenda5.png,Chapter 2. Mathematical Models of Systems,180,,716,422,,ambiguo
+_ambiguos/pagina-0181_semlegenda1.png,Chapter 2. Mathematical Models of Systems,181,,720,347,,ambiguo
+_ambiguos/pagina-0181_semlegenda2.png,Chapter 2. Mathematical Models of Systems,181,,530,597,,ambiguo
+_ambiguos/pagina-0181_semlegenda3.png,Chapter 2. Mathematical Models of Systems,181,,899,259,,ambiguo
+_ambiguos/pagina-0182_semlegenda1.png,Chapter 2. Mathematical Models of Systems,182,,1361,451,,ambiguo
+_ambiguos/pagina-0182_semlegenda2.png,Chapter 2. Mathematical Models of Systems,182,,954,627,,ambiguo
+_ambiguos/pagina-0182_semlegenda3.png,Chapter 2. Mathematical Models of Systems,182,,617,223,,ambiguo
+_ambiguos/pagina-0183_semlegenda1.png,Chapter 2. Mathematical Models of Systems,183,,985,341,,ambiguo
+_ambiguos/pagina-0185_semlegenda1.png,Chapter 3. State Variable Models,185,,351,365,,ambiguo
+cap03-state-variable-models/pagina-0187_fig3-1.png,Chapter 3. State Variable Models,187,3.1,1298,261,FIGURE 3.1 Dynamic system.,ok
+cap03-state-variable-models/pagina-0187_fig3-2.png,Chapter 3. State Variable Models,187,3.2,375,485,FIGURE 3.2 A spring-mass- damper system.,ok
+cap03-state-variable-models/pagina-0188_fig3-3.png,Chapter 3. State Variable Models,188,3.3,777,313,FIGURE 3.3 An RLC circuit.,ok
+_ambiguos/pagina-0191_semlegenda1.png,Chapter 3. State Variable Models,191,,1058,147,,ambiguo
+cap03-state-variable-models/pagina-0192_fig3-4.png,Chapter 3. State Variable Models,192,3.4,1214,440,FIGURE 3.4 Two rolling carts ­attached with springs and dampers.,ok
+_ambiguos/pagina-0192_semlegenda1.png,Chapter 3. State Variable Models,192,,904,164,,ambiguo
+cap03-state-variable-models/pagina-0194_fig3-5.png,Chapter 3. State Variable Models,194,3.5,1904,362,FIGURE 3.5,ok
+cap03-state-variable-models/pagina-0195_fig3-6.png,Chapter 3. State Variable Models,195,3.6,1491,1034,FIGURE 3.6 Initial condition response of the two cart system.,ok
+cap03-state-variable-models/pagina-0196_fig3-7.png,Chapter 3. State Variable Models,196,3.7,1436,1029,FIGURE 3.7 RLC network. (a) Signal-flow graph. (b) Block diagram.,ok
+cap03-state-variable-models/pagina-0198_fig3-8.png,Chapter 3. State Variable Models,198,3.8,1563,657,FIGURE 3.8 Flow graph nodes and integrators for fourth-order system.,ok
+cap03-state-variable-models/pagina-0198_fig3-9.png,Chapter 3. State Variable Models,198,3.9,1448,657,FIGURE 3.9 Model for G s of Equation (3.45). (a) Signal-flow graph. (b) Block diagram.,ok
+cap03-state-variable-models/pagina-0200_fig3-10.png,Chapter 3. State Variable Models,200,3.10,1690,1067,FIGURE 3.10 (a) Signal-flow graph. (b) Block diagram.,ok
+cap03-state-variable-models/pagina-0200_fig3-11.png,Chapter 3. State Variable Models,200,3.11,1559,608,FIGURE 3.11 Flow graph of Figure 3.10 with nodes inserted.,ok
+_ambiguos/pagina-0200_semlegenda1.png,Chapter 3. State Variable Models,200,,1226,545,,ambiguo
+cap03-state-variable-models/pagina-0203_fig3-12.png,Chapter 3. State Variable Models,203,3.12,1929,1270,FIGURE 3.12 input feedforward canonical form. (b) Block diagram of the input feedforward canonical form.,ok
+_ambiguos/pagina-0203_semlegenda1.png,Chapter 3. State Variable Models,203,,1489,494,,ambiguo
+cap03-state-variable-models/pagina-0204_fig3-13.png,Chapter 3. State Variable Models,204,3.13,1492,1285,FIGURE 3.13 (a) Phase variable flow graph state model for T(s). (b) Block diagram for the phase variable canonical form.,ok
+cap03-state-variable-models/pagina-0205_fig3-14.png,Chapter 3. State Variable Models,205,3.14,1536,1279,FIGURE 3.14 (a) Alternative flow graph state model for T(s) using the input feedforward canonical form. (b) Block diagram model.,ok
+cap03-state-variable-models/pagina-0206_fig3-15.png,Chapter 3. State Variable Models,206,3.15,1537,760,FIGURE 3.15 A block diagram model of an open- loop DC motor ­control with velocity as the output.,ok
+cap03-state-variable-models/pagina-0206_fig3-16.png,Chapter 3. State Variable Models,206,3.16,1840,713,FIGURE 3.16 of Figure 3.15. (b) Physical state block diagram.,ok
+cap03-state-variable-models/pagina-0208_fig3-17.png,Chapter 3. State Variable Models,208,3.17,1878,897,FIGURE 3.17 diagram form in Figure 3.15. (b) The decoupled state variable block diagram model.,ok
+cap03-state-variable-models/pagina-0209_fig3-18.png,Chapter 3. State Variable Models,209,3.18,649,604,"FIGURE 3.18 An inverted ­pendulum balanced on a person’s hand by moving the hand to reduce Assume, for ease, that the pendulum rotates in the x–y plane.",ok
+cap03-state-variable-models/pagina-0209_fig3-19.png,Chapter 3. State Variable Models,209,3.19,802,530,FIGURE 3.19 A cart and an in- verted pendulum. The pendulum is constrained to pivot in the vertical plane.,ok
+cap03-state-variable-models/pagina-0213_fig3-20.png,Chapter 3. State Variable Models,213,3.20,979,442,FIGURE 3.20 Flow graph of the RLC network.,ok
+cap03-state-variable-models/pagina-0213_fig3-21.png,Chapter 3. State Variable Models,213,3.21,843,338,FIGURE 3.21 Flow graph of the RLC network with,ok
+cap03-state-variable-models/pagina-0215_fig3-22.png,Chapter 3. State Variable Models,215,3.22,1548,458,FIGURE 3.22 Time response of the state variables of the RLC network for,ok
+cap03-state-variable-models/pagina-0215_fig3-23.png,Chapter 3. State Variable Models,215,3.23,822,408,FIGURE 3.23 Trajectory of the state vector in the,ok
+cap03-state-variable-models/pagina-0216_fig3-24.png,Chapter 3. State Variable Models,216,3.24,1719,1214,FIGURE 3.24,ok
+cap03-state-variable-models/pagina-0217_fig3-25.png,Chapter 3. State Variable Models,217,3.25,1427,1235,FIGURE 3.25 Elements of the control system design process emphasized in the spacecraft control example.,ok
+_ambiguos/pagina-0222_semlegenda1.png,Chapter 3. State Variable Models,222,,544,194,,ambiguo
+cap03-state-variable-models/pagina-0223_fig3-26.png,Chapter 3. State Variable Models,223,3.26,1186,587,FIGURE 3.26 Printer belt-drive system.,ok
+cap03-state-variable-models/pagina-0223_fig3-27.png,Chapter 3. State Variable Models,223,3.27,1215,593,FIGURE 3.27 Printer belt-drive model.,ok
+cap03-state-variable-models/pagina-0226_fig3-28.png,Chapter 3. State Variable Models,226,3.28,1521,1425,FIGURE 3.28 Printer belt drive. (a) Signal-flow graph. (b) Block diagram model.,ok
+cap03-state-variable-models/pagina-0227_fig3-29.png,Chapter 3. State Variable Models,227,3.29,1402,1477,FIGURE 3.29 Printer belt drive block diagram reduction.,ok
+_ambiguos/pagina-0227_semlegenda1.png,Chapter 3. State Variable Models,227,,1118,417,,ambiguo
+cap03-state-variable-models/pagina-0229_fig3-30.png,Chapter 3. State Variable Models,229,3.30,1457,852,FIGURE 3.30 Response of,ok
+cap03-state-variable-models/pagina-0230_fig3-32.png,Chapter 3. State Variable Models,230,3.32,1556,963,FIGURE 3.32 Conversion of Equation (3.115) to a state-space representation. (a) m-file script. (b) Output printout.,ok
+cap03-state-variable-models/pagina-0230_fig3-31.png,Chapter 3. State Variable Models,230,3.31,1337,690,FIGURE 3.31 (a) The ss function. (b) Linear system model conversion.,ok
+cap03-state-variable-models/pagina-0231_fig3-33.png,Chapter 3. State Variable Models,231,3.33,1727,684,FIGURE 3.33  Block diagram with X1(s) defined as the leftmost state variable.,ok
+cap03-state-variable-models/pagina-0232_fig3-34.png,Chapter 3. State Variable Models,232,3.34,936,368,"FIGURE 3.34 Computing the state transition ­matrix for a given time,",ok
+cap03-state-variable-models/pagina-0232_fig3-35.png,Chapter 3. State Variable Models,232,3.35,1341,979,FIGURE 3.35 The Isim function for calculating the output and state response.,ok
+cap03-state-variable-models/pagina-0233_fig3-36.png,Chapter 3. State Variable Models,233,3.36,1580,1202,FIGURE 3.36 Computing the time response for ­nonzero initial ­conditions and zero input using Isim.,ok
+cap03-state-variable-models/pagina-0234_fig3-37.png,Chapter 3. State Variable Models,234,3.37,1455,444,FIGURE 3.37 (a) Model of the two-mass system with a spring ­flexure. (b) Simplified model with a rigid spring.,ok
+cap03-state-variable-models/pagina-0234_fig3-38.png,Chapter 3. State Variable Models,234,3.38,1020,345,FIGURE 3.38 Transfer function model of head reader device with a rigid spring.,ok
+cap03-state-variable-models/pagina-0236_fig3-39.png,Chapter 3. State Variable Models,236,3.39,1037,1256,FIGURE 3.39 Response of y for a step input for the two-mass model with,ok
+cap03-state-variable-models/pagina-0239_fig3-40.png,Chapter 3. State Variable Models,239,3.40,1351,352,FIGURE 3.40,ok
+_ambiguos/pagina-0240_semlegenda1.png,Chapter 3. State Variable Models,240,,705,222,,ambiguo
+_ambiguos/pagina-0241_semlegenda1.png,Chapter 3. State Variable Models,241,,963,258,,ambiguo
+_ambiguos/pagina-0241_semlegenda2.png,Chapter 3. State Variable Models,241,,849,254,,ambiguo
+_ambiguos/pagina-0241_semlegenda3.png,Chapter 3. State Variable Models,241,,900,446,,ambiguo
+_ambiguos/pagina-0242_semlegenda1.png,Chapter 3. State Variable Models,242,,888,315,,ambiguo
+_ambiguos/pagina-0242_semlegenda2.png,Chapter 3. State Variable Models,242,,1825,825,,ambiguo
+_ambiguos/pagina-0243_semlegenda1.png,Chapter 3. State Variable Models,243,,1860,461,,ambiguo
+_ambiguos/pagina-0243_semlegenda2.png,Chapter 3. State Variable Models,243,,880,371,,ambiguo
+_ambiguos/pagina-0244_semlegenda1.png,Chapter 3. State Variable Models,244,,1465,276,,ambiguo
+_ambiguos/pagina-0244_semlegenda2.png,Chapter 3. State Variable Models,244,,1156,360,,ambiguo
+_ambiguos/pagina-0244_semlegenda3.png,Chapter 3. State Variable Models,244,,895,375,,ambiguo
+_ambiguos/pagina-0244_semlegenda4.png,Chapter 3. State Variable Models,244,,710,553,,ambiguo
+_ambiguos/pagina-0245_semlegenda1.png,Chapter 3. State Variable Models,245,,1154,424,,ambiguo
+_ambiguos/pagina-0245_semlegenda2.png,Chapter 3. State Variable Models,245,,878,486,,ambiguo
+_ambiguos/pagina-0245_semlegenda3.png,Chapter 3. State Variable Models,245,,891,527,,ambiguo
+_ambiguos/pagina-0246_semlegenda1.png,Chapter 3. State Variable Models,246,,876,401,,ambiguo
+_ambiguos/pagina-0246_semlegenda2.png,Chapter 3. State Variable Models,246,,855,212,,ambiguo
+_ambiguos/pagina-0247_semlegenda1.png,Chapter 3. State Variable Models,247,,1817,1198,,ambiguo
+_ambiguos/pagina-0247_semlegenda2.png,Chapter 3. State Variable Models,247,,996,897,,ambiguo
+_ambiguos/pagina-0248_semlegenda1.png,Chapter 3. State Variable Models,248,,883,310,,ambiguo
+_ambiguos/pagina-0248_semlegenda2.png,Chapter 3. State Variable Models,248,,838,499,,ambiguo
+_ambiguos/pagina-0248_semlegenda3.png,Chapter 3. State Variable Models,248,,820,265,,ambiguo
+_ambiguos/pagina-0249_semlegenda1.png,Chapter 3. State Variable Models,249,,705,830,,ambiguo
+_ambiguos/pagina-0249_semlegenda2.png,Chapter 3. State Variable Models,249,,843,287,,ambiguo
+_ambiguos/pagina-0249_semlegenda3.png,Chapter 3. State Variable Models,249,,807,396,,ambiguo
+_ambiguos/pagina-0250_semlegenda1.png,Chapter 3. State Variable Models,250,,1220,502,,ambiguo
+_ambiguos/pagina-0250_semlegenda2.png,Chapter 3. State Variable Models,250,,386,640,,ambiguo
+_ambiguos/pagina-0250_semlegenda3.png,Chapter 3. State Variable Models,250,,1159,805,,ambiguo
+_ambiguos/pagina-0251_semlegenda1.png,Chapter 3. State Variable Models,251,,594,702,,ambiguo
+_ambiguos/pagina-0251_semlegenda2.png,Chapter 3. State Variable Models,251,,595,222,,ambiguo
+_ambiguos/pagina-0251_semlegenda3.png,Chapter 3. State Variable Models,251,,865,293,,ambiguo
+_ambiguos/pagina-0251_semlegenda4.png,Chapter 3. State Variable Models,251,,590,469,,ambiguo
+_ambiguos/pagina-0252_semlegenda1.png,Chapter 3. State Variable Models,252,,870,413,,ambiguo
+_ambiguos/pagina-0252_semlegenda2.png,Chapter 3. State Variable Models,252,,867,460,,ambiguo
+_ambiguos/pagina-0252_semlegenda3.png,Chapter 3. State Variable Models,252,,852,283,,ambiguo
+_ambiguos/pagina-0252_semlegenda4.png,Chapter 3. State Variable Models,252,,874,891,,ambiguo
+_ambiguos/pagina-0253_semlegenda1.png,Chapter 3. State Variable Models,253,,1502,913,,ambiguo
+_ambiguos/pagina-0254_semlegenda1.png,Chapter 3. State Variable Models,254,,577,276,,ambiguo
+_ambiguos/pagina-0255_semlegenda1.png,Chapter 3. State Variable Models,255,,851,266,,ambiguo
+_ambiguos/pagina-0257_semlegenda1.png,Chapter 4. Feedback Control System Characteristics,257,,351,487,,ambiguo
+cap04-feedback-control-system-characteristics/pagina-0258_fig4-1.png,Chapter 4. Feedback Control System Characteristics,258,4.1,742,713,FIGURE 4.1 A closed-loop system.,ok
+cap04-feedback-control-system-characteristics/pagina-0258_fig4-2.png,Chapter 4. Feedback Control System Characteristics,258,4.2,1413,345,"FIGURE 4.2 An open-loop ­system with a disturbance input,",ok
+cap04-feedback-control-system-characteristics/pagina-0259_fig4-3.png,Chapter 4. Feedback Control System Characteristics,259,4.3,1804,394,FIGURE 4.3,ok
+cap04-feedback-control-system-characteristics/pagina-0259_fig4-4.png,Chapter 4. Feedback Control System Characteristics,259,4.4,1513,1104,FIGURE 4.4 A closed-loop ­control system. (a) Signal-flow graph. (b) Block diagram.,ok
+_ambiguos/pagina-0263_semlegenda1.png,Chapter 4. Feedback Control System Characteristics,263,,482,149,,ambiguo
+cap04-feedback-control-system-characteristics/pagina-0264_fig4-5.png,Chapter 4. Feedback Control System Characteristics,264,4.5,1417,493,FIGURE 4.5 (a) Open-loop amplifier. (b) Amplifier with feedback.,ok
+cap04-feedback-control-system-characteristics/pagina-0265_fig4-6.png,Chapter 4. Feedback Control System Characteristics,265,4.6,1797,525,FIGURE 4.6,ok
+cap04-feedback-control-system-characteristics/pagina-0266_fig4-7.png,Chapter 4. Feedback Control System Characteristics,266,4.7,808,353,FIGURE 4.7 Steel rolling mill.,ok
+cap04-feedback-control-system-characteristics/pagina-0266_fig4-8.png,Chapter 4. Feedback Control System Characteristics,266,4.8,1326,408,FIGURE 4.8 Open-loop speed control system (without tachometer feedback).,ok
+cap04-feedback-control-system-characteristics/pagina-0267_fig4-9.png,Chapter 4. Feedback Control System Characteristics,267,4.9,1552,579,FIGURE 4.9 Closed-loop speed tachometer control system.,ok
+cap04-feedback-control-system-characteristics/pagina-0268_fig4-10.png,Chapter 4. Feedback Control System Characteristics,268,4.10,1886,497,FIGURE 4.10,ok
+cap04-feedback-control-system-characteristics/pagina-0270_fig4-11.png,Chapter 4. Feedback Control System Characteristics,270,4.11,899,484,FIGURE 4.11 Open-loop speed control system (without feedback).,ok
+cap04-feedback-control-system-characteristics/pagina-0271_fig4-12.png,Chapter 4. Feedback Control System Characteristics,271,4.12,1380,677,FIGURE 4.12 (a) Open-loop speed control ­system. (b) Closed-loop speed control system.,ok
+cap04-feedback-control-system-characteristics/pagina-0272_fig4-13.png,Chapter 4. Feedback Control System Characteristics,272,4.13,1082,867,FIGURE 4.13 The response of the open-loop and closed-loop speed control system when τ = 10 and,ok
+_ambiguos/pagina-0273_semlegenda1.png,Chapter 4. Feedback Control System Characteristics,273,,649,149,,ambiguo
+cap04-feedback-control-system-characteristics/pagina-0276_fig4-14.png,Chapter 4. Feedback Control System Characteristics,276,4.14,1381,423,FIGURE 4.14 A block diagram model of a boring machine control system.,ok
+cap04-feedback-control-system-characteristics/pagina-0277_fig4-15.png,Chapter 4. Feedback Control System Characteristics,277,4.15,923,798,FIGURE 4.15 The response y t( ) to a unit input step input (solid line) and a unit disturbance step (dashed line) with T for K = 100.,ok
+cap04-feedback-control-system-characteristics/pagina-0277_fig4-16.png,Chapter 4. Feedback Control System Characteristics,277,4.16,923,669,FIGURE 4.16 The response,ok
+cap04-feedback-control-system-characteristics/pagina-0279_fig4-17.png,Chapter 4. Feedback Control System Characteristics,279,4.17,1289,979,FIGURE 4.17 control example.,ok
+_ambiguos/pagina-0279_semlegenda1.png,Chapter 4. Feedback Control System Characteristics,279,,600,159,,ambiguo
+cap04-feedback-control-system-characteristics/pagina-0280_fig4-18.png,Chapter 4. Feedback Control System Characteristics,280,4.18,1831,722,FIGURE 4.18,ok
+cap04-feedback-control-system-characteristics/pagina-0282_fig4-19.png,Chapter 4. Feedback Control System Characteristics,282,4.19,1214,1033,FIGURE 4.19 Mean arterial pressure (MAP) impulse response for a ­hypothetical patient.,ok
+cap04-feedback-control-system-characteristics/pagina-0284_fig4-20.png,Chapter 4. Feedback Control System Characteristics,284,4.20,1203,1043,FIGURE 4.20 System sensitivity to variations in the parameter p.,ok
+cap04-feedback-control-system-characteristics/pagina-0285_fig4-21.png,Chapter 4. Feedback Control System Characteristics,285,4.21,1190,1031,FIGURE 4.21 Mean arterial ­pressure (MAP) step input response with R s,ok
+cap04-feedback-control-system-characteristics/pagina-0286_fig4-22.png,Chapter 4. Feedback Control System Characteristics,286,4.22,1200,1034,FIGURE 4.22 Mean arterial pressure (MAP) disturbance step response.,ok
+cap04-feedback-control-system-characteristics/pagina-0287_fig4-23.png,Chapter 4. Feedback Control System Characteristics,287,4.23,1259,1361,FIGURE 4.23 Analysis of the open-loop speed control system. (a) Response. (b) m-file script.,ok
+cap04-feedback-control-system-characteristics/pagina-0289_fig4-24.png,Chapter 4. Feedback Control System Characteristics,289,4.24,1255,1577,FIGURE 4.24 Analysis of the closed-loop speed control system. (a) Response. (b) m-file script.,ok
+_ambiguos/pagina-0289_semlegenda1.png,Chapter 4. Feedback Control System Characteristics,289,,477,307,,ambiguo
+cap04-feedback-control-system-characteristics/pagina-0290_fig4-25.png,Chapter 4. Feedback Control System Characteristics,290,4.25,1262,1271,FIGURE 4.25 The response to a step input when (a),ok
+_ambiguos/pagina-0290_semlegenda1.png,Chapter 4. Feedback Control System Characteristics,290,,1146,475,,ambiguo
+cap04-feedback-control-system-characteristics/pagina-0291_fig4-26.png,Chapter 4. Feedback Control System Characteristics,291,4.26,1280,1432,FIGURE 4.26 The response to a step disturbance when (a) and (b) (c) m-file script.,ok
+_ambiguos/pagina-0291_semlegenda1.png,Chapter 4. Feedback Control System Characteristics,291,,1180,493,,ambiguo
+cap04-feedback-control-system-characteristics/pagina-0293_fig4-27.png,Chapter 4. Feedback Control System Characteristics,293,4.27,1254,1590,FIGURE 4.27 (a) System ­sensitivity to plant variations s (b) m-file script.,ok
+_ambiguos/pagina-0293_semlegenda1.png,Chapter 4. Feedback Control System Characteristics,293,,893,325,,ambiguo
+cap04-feedback-control-system-characteristics/pagina-0294_fig4-28.png,Chapter 4. Feedback Control System Characteristics,294,4.28,1568,509,FIGURE 4.28 Control system for disk drive head reader.,ok
+cap04-feedback-control-system-characteristics/pagina-0294_fig4-29.png,Chapter 4. Feedback Control System Characteristics,294,4.29,1570,353,FIGURE 4.29 Disk drive head control system with the typical parameters.,ok
+cap04-feedback-control-system-characteristics/pagina-0295_fig4-30.png,Chapter 4. Feedback Control System Characteristics,295,4.30,1286,1572,FIGURE 4.30 Closed-loop ­response. (a) m-file script. (b) Step ­response for,ok
+cap04-feedback-control-system-characteristics/pagina-0296_fig4-31.png,Chapter 4. Feedback Control System Characteristics,296,4.31,1207,1402,FIGURE 4.31 Disturbance step response. (a) m-file script. (b) Disturbance ­response for,ok
+cap04-feedback-control-system-characteristics/pagina-0297_fig4-32.png,Chapter 4. Feedback Control System Characteristics,297,4.32,1406,424,FIGURE 4.32,ok
+cap04-feedback-control-system-characteristics/pagina-0298_fig4-33.png,Chapter 4. Feedback Control System Characteristics,298,4.33,949,629,FIGURE 4.33,ok
+_ambiguos/pagina-0301_semlegenda1.png,Chapter 4. Feedback Control System Characteristics,301,,1010,301,,ambiguo
+_ambiguos/pagina-0302_semlegenda1.png,Chapter 4. Feedback Control System Characteristics,302,,806,1045,,ambiguo
+_ambiguos/pagina-0302_semlegenda2.png,Chapter 4. Feedback Control System Characteristics,302,,888,574,,ambiguo
+_ambiguos/pagina-0302_semlegenda3.png,Chapter 4. Feedback Control System Characteristics,302,,725,220,,ambiguo
+_ambiguos/pagina-0303_semlegenda1.png,Chapter 4. Feedback Control System Characteristics,303,,1281,933,,ambiguo
+_ambiguos/pagina-0303_semlegenda2.png,Chapter 4. Feedback Control System Characteristics,303,,739,329,,ambiguo
+_ambiguos/pagina-0303_semlegenda3.png,Chapter 4. Feedback Control System Characteristics,303,,748,327,,ambiguo
+_ambiguos/pagina-0304_semlegenda1.png,Chapter 4. Feedback Control System Characteristics,304,,994,1059,,ambiguo
+_ambiguos/pagina-0304_semlegenda2.png,Chapter 4. Feedback Control System Characteristics,304,,915,363,,ambiguo
+_ambiguos/pagina-0304_semlegenda3.png,Chapter 4. Feedback Control System Characteristics,304,,1084,357,,ambiguo
+_ambiguos/pagina-0305_semlegenda1.png,Chapter 4. Feedback Control System Characteristics,305,,833,393,,ambiguo
+_ambiguos/pagina-0305_semlegenda2.png,Chapter 4. Feedback Control System Characteristics,305,,1000,538,,ambiguo
+_ambiguos/pagina-0305_semlegenda3.png,Chapter 4. Feedback Control System Characteristics,305,,401,572,,ambiguo
+_ambiguos/pagina-0306_semlegenda1.png,Chapter 4. Feedback Control System Characteristics,306,,1245,501,,ambiguo
+_ambiguos/pagina-0306_semlegenda2.png,Chapter 4. Feedback Control System Characteristics,306,,1213,748,,ambiguo
+_ambiguos/pagina-0307_semlegenda1.png,Chapter 4. Feedback Control System Characteristics,307,,1497,1013,,ambiguo
+_ambiguos/pagina-0308_semlegenda1.png,Chapter 4. Feedback Control System Characteristics,308,,1256,311,,ambiguo
+_ambiguos/pagina-0308_semlegenda2.png,Chapter 4. Feedback Control System Characteristics,308,,606,679,,ambiguo
+_ambiguos/pagina-0308_semlegenda3.png,Chapter 4. Feedback Control System Characteristics,308,,481,670,,ambiguo
+_ambiguos/pagina-0308_semlegenda4.png,Chapter 4. Feedback Control System Characteristics,308,,343,374,,ambiguo
+_ambiguos/pagina-0308_semlegenda5.png,Chapter 4. Feedback Control System Characteristics,308,,1032,480,,ambiguo
+_ambiguos/pagina-0309_semlegenda1.png,Chapter 4. Feedback Control System Characteristics,309,,1440,557,,ambiguo
+_ambiguos/pagina-0309_semlegenda2.png,Chapter 4. Feedback Control System Characteristics,309,,740,291,,ambiguo
+_ambiguos/pagina-0309_semlegenda3.png,Chapter 4. Feedback Control System Characteristics,309,,894,600,,ambiguo
+_ambiguos/pagina-0310_semlegenda1.png,Chapter 4. Feedback Control System Characteristics,310,,1096,326,,ambiguo
+_ambiguos/pagina-0310_semlegenda2.png,Chapter 4. Feedback Control System Characteristics,310,,828,199,,ambiguo
+_ambiguos/pagina-0310_semlegenda3.png,Chapter 4. Feedback Control System Characteristics,310,,1189,819,,ambiguo
+_ambiguos/pagina-0311_semlegenda1.png,Chapter 4. Feedback Control System Characteristics,311,,1202,476,,ambiguo
+_ambiguos/pagina-0311_semlegenda2.png,Chapter 4. Feedback Control System Characteristics,311,,234,569,,ambiguo
+_ambiguos/pagina-0311_semlegenda3.png,Chapter 4. Feedback Control System Characteristics,311,,1432,723,,ambiguo
+_ambiguos/pagina-0312_semlegenda1.png,Chapter 4. Feedback Control System Characteristics,312,,1036,323,,ambiguo
+_ambiguos/pagina-0312_semlegenda2.png,Chapter 4. Feedback Control System Characteristics,312,,1029,475,,ambiguo
+_ambiguos/pagina-0312_semlegenda3.png,Chapter 4. Feedback Control System Characteristics,312,,1499,416,,ambiguo
+_ambiguos/pagina-0312_semlegenda4.png,Chapter 4. Feedback Control System Characteristics,312,,931,403,,ambiguo
+_ambiguos/pagina-0313_semlegenda1.png,Chapter 4. Feedback Control System Characteristics,313,,1499,470,,ambiguo
+_ambiguos/pagina-0313_semlegenda2.png,Chapter 4. Feedback Control System Characteristics,313,,1287,824,,ambiguo
+_ambiguos/pagina-0314_semlegenda1.png,Chapter 4. Feedback Control System Characteristics,314,,762,554,,ambiguo
+_ambiguos/pagina-0314_semlegenda2.png,Chapter 4. Feedback Control System Characteristics,314,,915,408,,ambiguo
+_ambiguos/pagina-0314_semlegenda3.png,Chapter 4. Feedback Control System Characteristics,314,,1414,585,,ambiguo
+_ambiguos/pagina-0315_semlegenda1.png,Chapter 4. Feedback Control System Characteristics,315,,1140,342,,ambiguo
+_ambiguos/pagina-0315_semlegenda2.png,Chapter 4. Feedback Control System Characteristics,315,,1014,249,,ambiguo
+_ambiguos/pagina-0315_semlegenda3.png,Chapter 4. Feedback Control System Characteristics,315,,791,328,,ambiguo
+_ambiguos/pagina-0316_semlegenda1.png,Chapter 4. Feedback Control System Characteristics,316,,1030,525,,ambiguo
+_ambiguos/pagina-0316_semlegenda2.png,Chapter 4. Feedback Control System Characteristics,316,,1202,565,,ambiguo
+_ambiguos/pagina-0316_semlegenda3.png,Chapter 4. Feedback Control System Characteristics,316,,754,387,,ambiguo
+_ambiguos/pagina-0317_semlegenda1.png,Chapter 4. Feedback Control System Characteristics,317,,872,265,,ambiguo
+_ambiguos/pagina-0317_semlegenda2.png,Chapter 4. Feedback Control System Characteristics,317,,995,452,,ambiguo
+_ambiguos/pagina-0317_semlegenda3.png,Chapter 4. Feedback Control System Characteristics,317,,726,309,,ambiguo
+_ambiguos/pagina-0317_semlegenda4.png,Chapter 4. Feedback Control System Characteristics,317,,901,852,,ambiguo
+_ambiguos/pagina-0318_semlegenda1.png,Chapter 4. Feedback Control System Characteristics,318,,1233,889,,ambiguo
+_ambiguos/pagina-0318_semlegenda2.png,Chapter 4. Feedback Control System Characteristics,318,,915,362,,ambiguo
+_ambiguos/pagina-0319_semlegenda1.png,Chapter 4. Feedback Control System Characteristics,319,,963,248,,ambiguo
+_ambiguos/pagina-0319_semlegenda2.png,Chapter 4. Feedback Control System Characteristics,319,,962,259,,ambiguo
+_ambiguos/pagina-0319_semlegenda3.png,Chapter 4. Feedback Control System Characteristics,319,,1515,452,,ambiguo
+_ambiguos/pagina-0320_semlegenda1.png,Chapter 4. Feedback Control System Characteristics,320,,959,249,,ambiguo
+_ambiguos/pagina-0321_semlegenda1.png,Chapter 4. Feedback Control System Characteristics,321,,915,363,,ambiguo
+_ambiguos/pagina-0321_semlegenda2.png,Chapter 4. Feedback Control System Characteristics,321,,890,347,,ambiguo
+_ambiguos/pagina-0322_semlegenda1.png,Chapter 5. The Performance of Feedback Control Systems,322,,351,365,,ambiguo
+cap05-the-performance-of-feedback-control-systems/pagina-0323_fig5-1.png,Chapter 5. The Performance of Feedback Control Systems,323,5.1,1293,628,FIGURE 5.1 Two performance measures versus parameter p.,ok
+cap05-the-performance-of-feedback-control-systems/pagina-0324_fig5-2.png,Chapter 5. The Performance of Feedback Control Systems,324,5.2,1228,438,"FIGURE 5.2 Test input signals: (a) step, (b) ramp, and (c) parabolic.",ok
+cap05-the-performance-of-feedback-control-systems/pagina-0326_fig5-3.png,Chapter 5. The Performance of Feedback Control Systems,326,5.3,1775,1043,FIGURE 5.3 Second-order closed-loop control system.,ok
+_ambiguos/pagina-0326_semlegenda1.png,Chapter 5. The Performance of Feedback Control Systems,326,,606,159,,ambiguo
+cap05-the-performance-of-feedback-control-systems/pagina-0327_fig5-4.png,Chapter 5. The Performance of Feedback Control Systems,327,5.4,1271,1638,FIGURE 5.4 Transient ­response of a second-­order system for a step input.,ok
+cap05-the-performance-of-feedback-control-systems/pagina-0327_fig5-5.png,Chapter 5. The Performance of Feedback Control Systems,327,5.5,1007,919,FIGURE 5.5 Response of a ­second-order ­system for an ­impulse input.,ok
+cap05-the-performance-of-feedback-control-systems/pagina-0328_fig5-6.png,Chapter 5. The Performance of Feedback Control Systems,328,5.6,1411,917,FIGURE 5.6 Step response of a second-order system.,ok
+cap05-the-performance-of-feedback-control-systems/pagina-0329_fig5-7.png,Chapter 5. The Performance of Feedback Control Systems,329,5.7,1045,1422,FIGURE 5.7 Percent overshoot and normalized peak time versus damping ratio ζ for a second-­ order ­system (Equation 5.8).,ok
+cap05-the-performance-of-feedback-control-systems/pagina-0330_fig5-8.png,Chapter 5. The Performance of Feedback Control Systems,330,5.8,947,785,"FIGURE 5.8 Normalized rise time, Tr11, versus ζ for a second-order system.",ok
+cap05-the-performance-of-feedback-control-systems/pagina-0330_fig5-9.png,Chapter 5. The Performance of Feedback Control Systems,330,5.9,1114,828,FIGURE 5.9 The step response for ζ = 0.2 for ω ω,ok
+cap05-the-performance-of-feedback-control-systems/pagina-0331_fig5-10.png,Chapter 5. The Performance of Feedback Control Systems,331,5.10,1058,789,FIGURE 5.10 The step response for ω ζ = 0.7 and ζ = 1.,ok
+cap05-the-performance-of-feedback-control-systems/pagina-0332_fig5-11.png,Chapter 5. The Performance of Feedback Control Systems,332,5.11,1050,1037,FIGURE 5.11 An s-plane diagram of a third-order system.,ok
+cap05-the-performance-of-feedback-control-systems/pagina-0332_fig5-12.png,Chapter 5. The Performance of Feedback Control Systems,332,5.12,1444,1107,FIGURE 5.12 Comparison of two third-order systems with a ­second-order ­system (dashed line) ­illustrating the concept of ­dominant poles when,ok
+cap05-the-performance-of-feedback-control-systems/pagina-0334_fig5-13.png,Chapter 5. The Performance of Feedback Control Systems,334,5.13,1308,1219,FIGURE 5.13 The response for the second-order transfer function with a zero for four values of the ratio,ok
+cap05-the-performance-of-feedback-control-systems/pagina-0334_fig5-14.png,Chapter 5. The Performance of Feedback Control Systems,334,5.14,1090,301,FIGURE 5.14 Single-loop ­feedback control system.,ok
+cap05-the-performance-of-feedback-control-systems/pagina-0335_fig5-15.png,Chapter 5. The Performance of Feedback Control Systems,335,5.15,1554,721,FIGURE 5.15 Specifications and root locations on the s-plane.,ok
+cap05-the-performance-of-feedback-control-systems/pagina-0335_fig5-16.png,Chapter 5. The Performance of Feedback Control Systems,335,5.16,664,588,FIGURE 5.16 The poles and zeros on the s-plane for a third-order system.,ok
+cap05-the-performance-of-feedback-control-systems/pagina-0337_fig5-17.png,Chapter 5. The Performance of Feedback Control Systems,337,5.17,1519,903,FIGURE 5.17 Impulse response for various root locations in the s-plane. (The ­conjugate root is not shown.),ok
+_ambiguos/pagina-0339_semlegenda1.png,Chapter 5. The Performance of Feedback Control Systems,339,,547,155,,ambiguo
+_ambiguos/pagina-0340_semlegenda1.png,Chapter 5. The Performance of Feedback Control Systems,340,,548,156,,ambiguo
+cap05-the-performance-of-feedback-control-systems/pagina-0341_fig5-18.png,Chapter 5. The Performance of Feedback Control Systems,341,5.18,1534,498,FIGURE 5.18 Block diagram of steering control system for a mobile robot.,ok
+cap05-the-performance-of-feedback-control-systems/pagina-0341_fig5-19.png,Chapter 5. The Performance of Feedback Control Systems,341,5.19,1159,507,FIGURE 5.19 Triangular wave response.,ok
+cap05-the-performance-of-feedback-control-systems/pagina-0342_fig5-20.png,Chapter 5. The Performance of Feedback Control Systems,342,5.20,1568,413,FIGURE 5.20 A speed control system.,ok
+cap05-the-performance-of-feedback-control-systems/pagina-0342_fig5-21.png,Chapter 5. The Performance of Feedback Control Systems,342,5.21,1137,301,FIGURE 5.21 The speed control system of Figure 5.20 with,ok
+cap05-the-performance-of-feedback-control-systems/pagina-0344_fig5-22.png,Chapter 5. The Performance of Feedback Control Systems,344,5.22,1241,413,FIGURE 5.22 A system with a feedback,ok
+cap05-the-performance-of-feedback-control-systems/pagina-0346_fig5-23.png,Chapter 5. The Performance of Feedback Control Systems,346,5.23,908,1424,FIGURE 5.23 The calculation of the Integral squared error.,ok
+cap05-the-performance-of-feedback-control-systems/pagina-0347_fig5-24.png,Chapter 5. The Performance of Feedback Control Systems,347,5.24,1449,1359,FIGURE 5.24 A space telescope pointing control system. (a) Block diagram. (b) Signal- flow graph.,ok
+cap05-the-performance-of-feedback-control-systems/pagina-0348_fig5-25.png,Chapter 5. The Performance of Feedback Control Systems,348,5.25,929,546,FIGURE 5.25 The performance indices of the ­telescope control system versus,ok
+cap05-the-performance-of-feedback-control-systems/pagina-0349_fig5-26.png,Chapter 5. The Performance of Feedback Control Systems,349,5.26,1241,1969,"FIGURE 5.26 Step responses of a normalized ­transfer function using ­optimum ­coefficients for (a) ISE, (b) IAE, and (c) ITAE. The response is for ­normalized time,",ok
+cap05-the-performance-of-feedback-control-systems/pagina-0350_fig5-26.png,Chapter 5. The Performance of Feedback Control Systems,350,5.26,1240,1034,FIGURE 5.26 (Continued),ok
+cap05-the-performance-of-feedback-control-systems/pagina-0354_fig5-27.png,Chapter 5. The Performance of Feedback Control Systems,354,5.27,1181,1460,"FIGURE 5.27 (a) The Hubble telescope pointing system, (b) reduced block diagram, and (c) system response to a unit step input command and a unit step ­disturbance input.",ok
+_ambiguos/pagina-0354_semlegenda1.png,Chapter 5. The Performance of Feedback Control Systems,354,,1065,424,,ambiguo
+cap05-the-performance-of-feedback-control-systems/pagina-0356_fig5-28.png,Chapter 5. The Performance of Feedback Control Systems,356,5.28,1169,507,FIGURE 5.28 Control of the bank angle of an airplane using differential deflections of the ailerons.,ok
+cap05-the-performance-of-feedback-control-systems/pagina-0357_fig5-29.png,Chapter 5. The Performance of Feedback Control Systems,357,5.29,1313,978,FIGURE 5.29 control example.,ok
+_ambiguos/pagina-0357_semlegenda1.png,Chapter 5. The Performance of Feedback Control Systems,357,,599,159,,ambiguo
+cap05-the-performance-of-feedback-control-systems/pagina-0360_fig5-30.png,Chapter 5. The Performance of Feedback Control Systems,360,5.30,1437,474,FIGURE 5.30 Bank angle control autopilot.,ok
+cap05-the-performance-of-feedback-control-systems/pagina-0364_fig5-31.png,Chapter 5. The Performance of Feedback Control Systems,364,5.31,1296,1027,FIGURE 5.31 approximation.,ok
+cap05-the-performance-of-feedback-control-systems/pagina-0365_fig5-32.png,Chapter 5. The Performance of Feedback Control Systems,365,5.32,1145,840,FIGURE 5.32 Step response of the third-order ­aircraft model with,ok
+cap05-the-performance-of-feedback-control-systems/pagina-0366_fig5-33.png,Chapter 5. The Performance of Feedback Control Systems,366,5.33,1195,820,FIGURE 5.33,ok
+cap05-the-performance-of-feedback-control-systems/pagina-0367_fig5-34.png,Chapter 5. The Performance of Feedback Control Systems,367,5.34,1110,1816,FIGURE 5.34 (a) Response of a second-order ­system to a step input. (b) m-file script.,ok
+cap05-the-performance-of-feedback-control-systems/pagina-0368_fig5-35.png,Chapter 5. The Performance of Feedback Control Systems,368,5.35,1174,1757,FIGURE 5.35 (a) Response of a second-order sys- tem to an impulse function input. (b) m-file script.,ok
+_ambiguos/pagina-0368_semlegenda1.png,Chapter 5. The Performance of Feedback Control Systems,368,,1148,465,,ambiguo
+cap05-the-performance-of-feedback-control-systems/pagina-0369_fig5-36.png,Chapter 5. The Performance of Feedback Control Systems,369,5.36,1292,781,FIGURE 5.36 The Isim function.,ok
+cap05-the-performance-of-feedback-control-systems/pagina-0369_fig5-37.png,Chapter 5. The Performance of Feedback Control Systems,369,5.37,1173,1000,FIGURE 5.37 (a) Transient ­response of the mobile robot ­steering control system to a ramp input. (b) m-file script.,ok
+cap05-the-performance-of-feedback-control-systems/pagina-0370_fig5-38.png,Chapter 5. The Performance of Feedback Control Systems,370,5.38,1285,1495,FIGURE 5.38 actual transfer function. (b) m-file script.,ok
+cap05-the-performance-of-feedback-control-systems/pagina-0371_fig5-39.png,Chapter 5. The Performance of Feedback Control Systems,371,5.39,1458,331,FIGURE 5.39 Control system model with a ­second-order model of the motor and load.,ok
+cap05-the-performance-of-feedback-control-systems/pagina-0372_fig5-40.png,Chapter 5. The Performance of Feedback Control Systems,372,5.40,1168,1336,"FIGURE 5.40 Response of the system to a unit step input,",ok
+cap05-the-performance-of-feedback-control-systems/pagina-0373_fig5-41.png,Chapter 5. The Performance of Feedback Control Systems,373,5.41,1159,1294,"FIGURE 5.41 Response of the system to a unit step disturbance,",ok
+cap05-the-performance-of-feedback-control-systems/pagina-0374_fig5-42.png,Chapter 5. The Performance of Feedback Control Systems,374,5.42,966,317,FIGURE 5.42,ok
+cap05-the-performance-of-feedback-control-systems/pagina-0375_fig5-43.png,Chapter 5. The Performance of Feedback Control Systems,375,5.43,1374,498,FIGURE 5.43,ok
+_ambiguos/pagina-0377_semlegenda1.png,Chapter 5. The Performance of Feedback Control Systems,377,,501,251,,ambiguo
+_ambiguos/pagina-0378_semlegenda1.png,Chapter 5. The Performance of Feedback Control Systems,378,,491,300,,ambiguo
+_ambiguos/pagina-0378_semlegenda2.png,Chapter 5. The Performance of Feedback Control Systems,378,,883,260,,ambiguo
+_ambiguos/pagina-0378_semlegenda3.png,Chapter 5. The Performance of Feedback Control Systems,378,,676,357,,ambiguo
+_ambiguos/pagina-0378_semlegenda4.png,Chapter 5. The Performance of Feedback Control Systems,378,,801,606,,ambiguo
+_ambiguos/pagina-0379_semlegenda1.png,Chapter 5. The Performance of Feedback Control Systems,379,,1100,387,,ambiguo
+_ambiguos/pagina-0379_semlegenda2.png,Chapter 5. The Performance of Feedback Control Systems,379,,1161,360,,ambiguo
+_ambiguos/pagina-0379_semlegenda3.png,Chapter 5. The Performance of Feedback Control Systems,379,,757,284,,ambiguo
+_ambiguos/pagina-0380_semlegenda1.png,Chapter 5. The Performance of Feedback Control Systems,380,,669,209,,ambiguo
+_ambiguos/pagina-0380_semlegenda2.png,Chapter 5. The Performance of Feedback Control Systems,380,,759,436,,ambiguo
+_ambiguos/pagina-0380_semlegenda3.png,Chapter 5. The Performance of Feedback Control Systems,380,,595,306,,ambiguo
+_ambiguos/pagina-0381_semlegenda1.png,Chapter 5. The Performance of Feedback Control Systems,381,,901,999,,ambiguo
+_ambiguos/pagina-0381_semlegenda2.png,Chapter 5. The Performance of Feedback Control Systems,381,,598,645,,ambiguo
+_ambiguos/pagina-0381_semlegenda3.png,Chapter 5. The Performance of Feedback Control Systems,381,,719,242,,ambiguo
+_ambiguos/pagina-0382_semlegenda1.png,Chapter 5. The Performance of Feedback Control Systems,382,,1166,743,,ambiguo
+_ambiguos/pagina-0382_semlegenda2.png,Chapter 5. The Performance of Feedback Control Systems,382,,1107,872,,ambiguo
+_ambiguos/pagina-0382_semlegenda3.png,Chapter 5. The Performance of Feedback Control Systems,382,,639,246,,ambiguo
+_ambiguos/pagina-0383_semlegenda1.png,Chapter 5. The Performance of Feedback Control Systems,383,,1464,1296,,ambiguo
+_ambiguos/pagina-0383_semlegenda2.png,Chapter 5. The Performance of Feedback Control Systems,383,,780,456,,ambiguo
+_ambiguos/pagina-0384_semlegenda1.png,Chapter 5. The Performance of Feedback Control Systems,384,,851,599,,ambiguo
+_ambiguos/pagina-0385_semlegenda1.png,Chapter 5. The Performance of Feedback Control Systems,385,,1243,912,,ambiguo
+_ambiguos/pagina-0385_semlegenda2.png,Chapter 5. The Performance of Feedback Control Systems,385,,776,201,,ambiguo
+_ambiguos/pagina-0385_semlegenda3.png,Chapter 5. The Performance of Feedback Control Systems,385,,440,276,,ambiguo
+_ambiguos/pagina-0386_semlegenda1.png,Chapter 5. The Performance of Feedback Control Systems,386,,586,306,,ambiguo
+_ambiguos/pagina-0386_semlegenda2.png,Chapter 5. The Performance of Feedback Control Systems,386,,560,201,,ambiguo
+_ambiguos/pagina-0386_semlegenda3.png,Chapter 5. The Performance of Feedback Control Systems,386,,559,201,,ambiguo
+_ambiguos/pagina-0386_semlegenda4.png,Chapter 5. The Performance of Feedback Control Systems,386,,841,377,,ambiguo
+_ambiguos/pagina-0387_semlegenda1.png,Chapter 5. The Performance of Feedback Control Systems,387,,883,259,,ambiguo
+_ambiguos/pagina-0387_semlegenda2.png,Chapter 5. The Performance of Feedback Control Systems,387,,938,383,,ambiguo
+_ambiguos/pagina-0387_semlegenda3.png,Chapter 5. The Performance of Feedback Control Systems,387,,991,358,,ambiguo
+_ambiguos/pagina-0388_semlegenda1.png,Chapter 5. The Performance of Feedback Control Systems,388,,1037,259,,ambiguo
+_ambiguos/pagina-0388_semlegenda2.png,Chapter 5. The Performance of Feedback Control Systems,388,,1136,301,,ambiguo
+_ambiguos/pagina-0388_semlegenda3.png,Chapter 5. The Performance of Feedback Control Systems,388,,1201,379,,ambiguo
+_ambiguos/pagina-0389_semlegenda1.png,Chapter 5. The Performance of Feedback Control Systems,389,,866,303,,ambiguo
+_ambiguos/pagina-0389_semlegenda2.png,Chapter 5. The Performance of Feedback Control Systems,389,,720,286,,ambiguo
+_ambiguos/pagina-0389_semlegenda3.png,Chapter 5. The Performance of Feedback Control Systems,389,,726,293,,ambiguo
+_ambiguos/pagina-0390_semlegenda1.png,Chapter 5. The Performance of Feedback Control Systems,390,,455,285,,ambiguo
+_ambiguos/pagina-0390_semlegenda2.png,Chapter 5. The Performance of Feedback Control Systems,390,,1039,701,,ambiguo
+_ambiguos/pagina-0390_semlegenda3.png,Chapter 5. The Performance of Feedback Control Systems,390,,1546,579,,ambiguo
+_ambiguos/pagina-0391_semlegenda1.png,Chapter 5. The Performance of Feedback Control Systems,391,,1306,1110,,ambiguo
+_ambiguos/pagina-0392_semlegenda1.png,Chapter 5. The Performance of Feedback Control Systems,392,,979,259,,ambiguo
+_ambiguos/pagina-0392_semlegenda2.png,Chapter 5. The Performance of Feedback Control Systems,392,,854,826,,ambiguo
+_ambiguos/pagina-0393_semlegenda1.png,Chapter 5. The Performance of Feedback Control Systems,393,,485,285,,ambiguo
+_ambiguos/pagina-0393_semlegenda2.png,Chapter 5. The Performance of Feedback Control Systems,393,,779,201,,ambiguo
+_ambiguos/pagina-0393_semlegenda3.png,Chapter 5. The Performance of Feedback Control Systems,393,,1324,549,,ambiguo
+_ambiguos/pagina-0395_semlegenda1.png,Chapter 6. The Stability of Linear Feedback Systems,395,,351,487,,ambiguo
+cap06-the-stability-of-linear-feedback-systems/pagina-0397_fig6-1.png,Chapter 6. The Stability of Linear Feedback Systems,397,6.1,967,416,FIGURE 6.1 Illustration of stability.,ok
+cap06-the-stability-of-linear-feedback-systems/pagina-0397_fig6-2.png,Chapter 6. The Stability of Linear Feedback Systems,397,6.2,1167,318,FIGURE 6.2 Stability in the s-plane.,ok
+cap06-the-stability-of-linear-feedback-systems/pagina-0399_fig6-3.png,Chapter 6. The Stability of Linear Feedback Systems,399,6.3,855,1135,FIGURE 6.3 Vigorous exer­ cising on the 12th floor likely led to mechanical resonance of the building trigger- ing a two-day evacuation. (Photo courtesy of Truth Leem/ Reuters.),ok
+cap06-the-stability-of-linear-feedback-systems/pagina-0400_fig6-4.png,Chapter 6. The Stability of Linear Feedback Systems,400,6.4,774,1127,FIGURE 6.4 Team IHMC on the rubble on the first day of the DARPA Robotics Challenge 2015. (DOD Photo/Alamy Stock Photo.),ok
+cap06-the-stability-of-linear-feedback-systems/pagina-0406_fig6-5.png,Chapter 6. The Stability of Linear Feedback Systems,406,6.5,1241,705,FIGURE 6.5 Welding head ­position control.,ok
+cap06-the-stability-of-linear-feedback-systems/pagina-0408_fig6-6.png,Chapter 6. The Stability of Linear Feedback Systems,408,6.6,668,505,FIGURE 6.6 Root locations in the s-plane.,ok
+cap06-the-stability-of-linear-feedback-systems/pagina-0410_fig6-7.png,Chapter 6. The Stability of Linear Feedback Systems,410,6.7,1239,1071,FIGURE 6.7 (a) Flow graph model for state variable equations of Example 6.7. (b) Block diagram model.,ok
+cap06-the-stability-of-linear-feedback-systems/pagina-0412_fig6-8.png,Chapter 6. The Stability of Linear Feedback Systems,412,6.8,1314,890,FIGURE 6.8 (a) Turning ­control system for a ­two-track vehicle. (b) Block diagram.,ok
+cap06-the-stability-of-linear-feedback-systems/pagina-0413_fig6-9.png,Chapter 6. The Stability of Linear Feedback Systems,413,6.9,828,785,FIGURE 6.9 The stable region.,ok
+cap06-the-stability-of-linear-feedback-systems/pagina-0414_fig6-10.png,Chapter 6. The Stability of Linear Feedback Systems,414,6.10,861,619,FIGURE 6.10 The robot-­ controlled motorcycle.,ok
+cap06-the-stability-of-linear-feedback-systems/pagina-0415_fig6-11.png,Chapter 6. The Stability of Linear Feedback Systems,415,6.11,1336,978,FIGURE 6.11 motorcycle example.,ok
+_ambiguos/pagina-0415_semlegenda1.png,Chapter 6. The Stability of Linear Feedback Systems,415,,600,159,,ambiguo
+cap06-the-stability-of-linear-feedback-systems/pagina-0417_fig6-12.png,Chapter 6. The Stability of Linear Feedback Systems,417,6.12,1320,612,FIGURE 6.12 The robot-­controlled ­motorcyle ­feedback system block diagram.,ok
+cap06-the-stability-of-linear-feedback-systems/pagina-0419_fig6-13.png,Chapter 6. The Stability of Linear Feedback Systems,419,6.13,1225,1413,FIGURE 6.13 Disturbance response with,ok
+cap06-the-stability-of-linear-feedback-systems/pagina-0419_fig6-14.png,Chapter 6. The Stability of Linear Feedback Systems,419,6.14,1214,1015,FIGURE 6.14 Roots of the characteristic equation as the motorcycle velocity varies.,ok
+cap06-the-stability-of-linear-feedback-systems/pagina-0420_fig6-15.png,Chapter 6. The Stability of Linear Feedback Systems,420,6.15,1049,267,FIGURE 6.15 Closed-loop con- trol system with,ok
+cap06-the-stability-of-linear-feedback-systems/pagina-0420_fig6-16.png,Chapter 6. The Stability of Linear Feedback Systems,420,6.16,979,370,FIGURE 6.16 Routh array for the closed-loop control system with,ok
+cap06-the-stability-of-linear-feedback-systems/pagina-0421_fig6-17.png,Chapter 6. The Stability of Linear Feedback Systems,421,6.17,867,568,FIGURE 6.17 Using the pole function to ­compute the closed-loop control system poles of the ­system shown in Figure 6.16.,ok
+cap06-the-stability-of-linear-feedback-systems/pagina-0421_fig6-18.png,Chapter 6. The Stability of Linear Feedback Systems,421,6.18,952,268,FIGURE 6.18 Closed-loop con- trol system with,ok
+cap06-the-stability-of-linear-feedback-systems/pagina-0422_fig6-19.png,Chapter 6. The Stability of Linear Feedback Systems,422,6.19,1318,1367,FIGURE 6.19 (a) Plot of root locations of,ok
+cap06-the-stability-of-linear-feedback-systems/pagina-0422_fig6-20.png,Chapter 6. The Stability of Linear Feedback Systems,422,6.20,1134,918,FIGURE 6.20 The for function and an illustrative example.,ok
+cap06-the-stability-of-linear-feedback-systems/pagina-0423_fig6-21.png,Chapter 6. The Stability of Linear Feedback Systems,423,6.21,1300,1239,FIGURE 6.21 (a) Stability region for a and K for ­two-track vehicle turning control. (b) m-file script.,ok
+cap06-the-stability-of-linear-feedback-systems/pagina-0424_fig6-22.png,Chapter 6. The Stability of Linear Feedback Systems,424,6.22,1147,1459,FIGURE 6.22 (a) Ramp response for K track vehicle turning control. (b) m-file script.,ok
+cap06-the-stability-of-linear-feedback-systems/pagina-0425_fig6-23.png,Chapter 6. The Stability of Linear Feedback Systems,425,6.23,1053,818,FIGURE 6.23 Computing the characteristic ­polynomial of A with the poly function.,ok
+cap06-the-stability-of-linear-feedback-systems/pagina-0426_fig6-24.png,Chapter 6. The Stability of Linear Feedback Systems,426,6.24,1560,583,FIGURE 6.24 The closed-loop disk drive head system with an optional velocity feedback.,ok
+cap06-the-stability-of-linear-feedback-systems/pagina-0427_fig6-25.png,Chapter 6. The Stability of Linear Feedback Systems,427,6.25,1245,392,FIGURE 6.25 Equivalent system with the velocity feedback switch closed.,ok
+cap06-the-stability-of-linear-feedback-systems/pagina-0428_fig6-26.png,Chapter 6. The Stability of Linear Feedback Systems,428,6.26,1221,1732,FIGURE 6.26 Response of the system with velocity feedback. (a) m-file script. (b) Response with K,ok
+cap06-the-stability-of-linear-feedback-systems/pagina-0429_fig6-27.png,Chapter 6. The Stability of Linear Feedback Systems,429,6.27,1094,351,FIGURE 6.27,ok
+_ambiguos/pagina-0432_semlegenda1.png,Chapter 6. The Stability of Linear Feedback Systems,432,,952,285,,ambiguo
+_ambiguos/pagina-0432_semlegenda2.png,Chapter 6. The Stability of Linear Feedback Systems,432,,842,251,,ambiguo
+_ambiguos/pagina-0433_semlegenda1.png,Chapter 6. The Stability of Linear Feedback Systems,433,,743,284,,ambiguo
+_ambiguos/pagina-0434_semlegenda1.png,Chapter 6. The Stability of Linear Feedback Systems,434,,603,201,,ambiguo
+_ambiguos/pagina-0434_semlegenda2.png,Chapter 6. The Stability of Linear Feedback Systems,434,,1288,484,,ambiguo
+_ambiguos/pagina-0434_semlegenda3.png,Chapter 6. The Stability of Linear Feedback Systems,434,,836,586,,ambiguo
+_ambiguos/pagina-0435_semlegenda1.png,Chapter 6. The Stability of Linear Feedback Systems,435,,743,285,,ambiguo
+_ambiguos/pagina-0435_semlegenda2.png,Chapter 6. The Stability of Linear Feedback Systems,435,,1139,384,,ambiguo
+_ambiguos/pagina-0435_semlegenda3.png,Chapter 6. The Stability of Linear Feedback Systems,435,,890,347,,ambiguo
+_ambiguos/pagina-0436_semlegenda1.png,Chapter 6. The Stability of Linear Feedback Systems,436,,1196,301,,ambiguo
+_ambiguos/pagina-0436_semlegenda2.png,Chapter 6. The Stability of Linear Feedback Systems,436,,1292,301,,ambiguo
+_ambiguos/pagina-0436_semlegenda3.png,Chapter 6. The Stability of Linear Feedback Systems,436,,1154,301,,ambiguo
+_ambiguos/pagina-0437_semlegenda1.png,Chapter 6. The Stability of Linear Feedback Systems,437,,1301,571,,ambiguo
+_ambiguos/pagina-0438_semlegenda1.png,Chapter 6. The Stability of Linear Feedback Systems,438,,1049,251,,ambiguo
+_ambiguos/pagina-0438_semlegenda2.png,Chapter 6. The Stability of Linear Feedback Systems,438,,963,992,,ambiguo
+_ambiguos/pagina-0439_semlegenda1.png,Chapter 6. The Stability of Linear Feedback Systems,439,,877,337,,ambiguo
+_ambiguos/pagina-0439_semlegenda2.png,Chapter 6. The Stability of Linear Feedback Systems,439,,1493,422,,ambiguo
+_ambiguos/pagina-0439_semlegenda3.png,Chapter 6. The Stability of Linear Feedback Systems,439,,900,201,,ambiguo
+_ambiguos/pagina-0440_semlegenda1.png,Chapter 6. The Stability of Linear Feedback Systems,440,,1240,749,,ambiguo
+_ambiguos/pagina-0440_semlegenda2.png,Chapter 6. The Stability of Linear Feedback Systems,440,,1394,976,,ambiguo
+_ambiguos/pagina-0440_semlegenda3.png,Chapter 6. The Stability of Linear Feedback Systems,440,,1701,434,,ambiguo
+_ambiguos/pagina-0441_semlegenda1.png,Chapter 6. The Stability of Linear Feedback Systems,441,,1178,1243,,ambiguo
+_ambiguos/pagina-0442_semlegenda1.png,Chapter 6. The Stability of Linear Feedback Systems,442,,999,326,,ambiguo
+_ambiguos/pagina-0442_semlegenda2.png,Chapter 6. The Stability of Linear Feedback Systems,442,,826,628,,ambiguo
+_ambiguos/pagina-0442_semlegenda3.png,Chapter 6. The Stability of Linear Feedback Systems,442,,1144,502,,ambiguo
+_ambiguos/pagina-0443_semlegenda1.png,Chapter 6. The Stability of Linear Feedback Systems,443,,743,264,,ambiguo
+_ambiguos/pagina-0443_semlegenda2.png,Chapter 6. The Stability of Linear Feedback Systems,443,,1032,267,,ambiguo
+_ambiguos/pagina-0443_semlegenda3.png,Chapter 6. The Stability of Linear Feedback Systems,443,,962,310,,ambiguo
+_ambiguos/pagina-0444_semlegenda1.png,Chapter 6. The Stability of Linear Feedback Systems,444,,850,449,,ambiguo
+_ambiguos/pagina-0444_semlegenda2.png,Chapter 6. The Stability of Linear Feedback Systems,444,,743,284,,ambiguo
+_ambiguos/pagina-0445_semlegenda1.png,Chapter 6. The Stability of Linear Feedback Systems,445,,767,201,,ambiguo
+_ambiguos/pagina-0445_semlegenda2.png,Chapter 6. The Stability of Linear Feedback Systems,445,,1191,304,,ambiguo
+_ambiguos/pagina-0445_semlegenda3.png,Chapter 6. The Stability of Linear Feedback Systems,445,,527,384,,ambiguo
+_ambiguos/pagina-0447_semlegenda1.png,Chapter 7. The Root Locus Method,447,,351,487,,ambiguo
+cap07-the-root-locus-method/pagina-0448_fig7-1.png,Chapter 7. The Root Locus Method,448,7.1,965,704,FIGURE 7.1 Closed-loop control system with a vari- able parameter K.,ok
+cap07-the-root-locus-method/pagina-0449_fig7-2.png,Chapter 7. The Root Locus Method,449,7.2,1020,1010,FIGURE 7.2 Unity feedback control system. The gain K is a variable parameter.,ok
+cap07-the-root-locus-method/pagina-0450_fig7-3.png,Chapter 7. The Root Locus Method,450,7.3,797,817,FIGURE 7.3 Root locus for a second-order system when,ok
+cap07-the-root-locus-method/pagina-0450_fig7-4.png,Chapter 7. The Root Locus Method,450,7.4,718,668,FIGURE 7.4 Evaluation of the angle and gain at s1 for gain,ok
+cap07-the-root-locus-method/pagina-0451_fig7-5.png,Chapter 7. The Root Locus Method,451,7.5,1529,1260,"FIGURE 7.5 (a) Single-loop sys- tem. (b) Root locus as a function of the parameter a, where",ok
+cap07-the-root-locus-method/pagina-0454_fig7-6.png,Chapter 7. The Root Locus Method,454,7.6,1515,460,"FIGURE 7.6 (a) The zero and poles of a second- order system, (b) the root locus ­segments, and (c) the magnitude of each vector at s .",ok
+_ambiguos/pagina-0455_semlegenda1.png,Chapter 7. The Root Locus Method,455,,1264,214,,ambiguo
+cap07-the-root-locus-method/pagina-0458_fig7-7.png,Chapter 7. The Root Locus Method,458,7.7,1348,906,FIGURE 7.7 A fourth-order ­system with (a) a zero and (b) root locus.,ok
+cap07-the-root-locus-method/pagina-0459_fig7-8.png,Chapter 7. The Root Locus Method,459,7.8,1366,691,FIGURE 7.8 Illustration of the breakaway point (a) for a simple second-order system and (b) for a fourth-order system.,ok
+cap07-the-root-locus-method/pagina-0459_fig7-9.png,Chapter 7. The Root Locus Method,459,7.9,722,514,FIGURE 7.9 A graphical ­evaluation of the breakaway point.,ok
+cap07-the-root-locus-method/pagina-0461_fig7-10.png,Chapter 7. The Root Locus Method,461,7.10,819,451,FIGURE 7.10 Closed-loop system.,ok
+cap07-the-root-locus-method/pagina-0462_fig7-11.png,Chapter 7. The Root Locus Method,462,7.11,1305,768,FIGURE 7.11 Evaluation of the (a) asymptotes and (b) breakaway point.,ok
+cap07-the-root-locus-method/pagina-0463_fig7-12.png,Chapter 7. The Root Locus Method,463,7.12,1237,918,FIGURE 7.12 Illustration of the angle of departure. (a) Test point infin- itesimal distance from −p . departure vector at −p .,ok
+cap07-the-root-locus-method/pagina-0463_fig7-13.png,Chapter 7. The Root Locus Method,463,7.13,614,613,FIGURE 7.13 Evaluation of the angle of departure.,ok
+cap07-the-root-locus-method/pagina-0465_fig7-14.png,Chapter 7. The Root Locus Method,465,7.14,1561,1052,FIGURE 7.14 The root locus for Example 7.4. Locating (a) the poles and (b) the asymptotes.,ok
+cap07-the-root-locus-method/pagina-0469_fig7-15.png,Chapter 7. The Root Locus Method,469,7.15,1562,790,FIGURE 7.15 Root loci as a func- tion of α and β. ies. (b) Loci as β varies for one value of α,ok
+cap07-the-root-locus-method/pagina-0470_fig7-16.png,Chapter 7. The Root Locus Method,470,7.16,1302,973,FIGURE 7.16 Block diagram of welding head ­control system.,ok
+cap07-the-root-locus-method/pagina-0471_fig7-17.png,Chapter 7. The Root Locus Method,471,7.17,616,753,FIGURE 7.17 A region in the s-plane for desired root location.,ok
+cap07-the-root-locus-method/pagina-0471_fig7-18.png,Chapter 7. The Root Locus Method,471,7.18,1397,905,FIGURE 7.18 Root loci as a func- tion of (a) α and,ok
+cap07-the-root-locus-method/pagina-0472_fig7-19.png,Chapter 7. The Root Locus Method,472,7.19,815,1069,FIGURE 7.19 Two-parameter root locus. The loci for α varying are solid; ing are dashed.,ok
+cap07-the-root-locus-method/pagina-0474_fig7-20.png,Chapter 7. The Root Locus Method,474,7.20,862,318,FIGURE 7.20 A feedback control system.,ok
+cap07-the-root-locus-method/pagina-0475_fig7-21.png,Chapter 7. The Root Locus Method,475,7.21,680,696,FIGURE 7.21 The root locus for K.,ok
+cap07-the-root-locus-method/pagina-0476_fig7-22.png,Chapter 7. The Root Locus Method,476,7.22,778,1173,FIGURE 7.22 The root locus for the parameter β.,ok
+cap07-the-root-locus-method/pagina-0479_fig7-23.png,Chapter 7. The Root Locus Method,479,7.23,1229,293,FIGURE 7.23 Closed-loop system with a controller.,ok
+cap07-the-root-locus-method/pagina-0480_fig7-24.png,Chapter 7. The Root Locus Method,480,7.24,905,916,FIGURE 7.24 Root locus for plant with a PID controller with complex zeros.,ok
+cap07-the-root-locus-method/pagina-0481_fig7-25.png,Chapter 7. The Root Locus Method,481,7.25,1429,354,FIGURE 7.25 Unity feedback control system with PID controller.,ok
+cap07-the-root-locus-method/pagina-0482_fig7-26.png,Chapter 7. The Root Locus Method,482,7.26,1207,920,FIGURE 7.26 (a) Step response with KD KI locus showing,ok
+cap07-the-root-locus-method/pagina-0482_fig7-27.png,Chapter 7. The Root Locus Method,482,7.27,555,732,FIGURE 7.27 Step response with,ok
+cap07-the-root-locus-method/pagina-0483_fig7-28.png,Chapter 7. The Root Locus Method,483,7.28,1033,781,FIGURE 7.28 Root locus for,ok
+cap07-the-root-locus-method/pagina-0483_fig7-29.png,Chapter 7. The Root Locus Method,483,7.29,1242,1018,FIGURE 7.29 Percent overshoot and settling time with KI 5,ok
+cap07-the-root-locus-method/pagina-0484_fig7-30.png,Chapter 7. The Root Locus Method,484,7.30,1254,947,FIGURE 7.30 Root locus for,ok
+cap07-the-root-locus-method/pagina-0485_fig7-31.png,Chapter 7. The Root Locus Method,485,7.31,1244,992,FIGURE 7.31 Percent overshoot and settling time with KD 50,ok
+cap07-the-root-locus-method/pagina-0485_fig7-32.png,Chapter 7. The Root Locus Method,485,7.32,1030,730,FIGURE 7.32 Percent overshoot and settling time with final design,ok
+cap07-the-root-locus-method/pagina-0486_fig7-33.png,Chapter 7. The Root Locus Method,486,7.33,1023,750,FIGURE 7.33 Time response for the Ziegler–Nichols PID tuning with,ok
+cap07-the-root-locus-method/pagina-0487_fig7-34.png,Chapter 7. The Root Locus Method,487,7.34,1006,891,FIGURE 7.34 Disturbance ­response for the Ziegler–Nichols PID tuning versus the manual tuning.,ok
+cap07-the-root-locus-method/pagina-0487_fig7-35.png,Chapter 7. The Root Locus Method,487,7.35,668,833,FIGURE 7.35 Reaction curve illustrating param- eters R and ∆T required for the Ziegler–Nichols open-loop tuning method.,ok
+cap07-the-root-locus-method/pagina-0489_fig7-36.png,Chapter 7. The Root Locus Method,489,7.36,1019,751,FIGURE 7.36 Reaction curve with,ok
+cap07-the-root-locus-method/pagina-0489_fig7-37.png,Chapter 7. The Root Locus Method,489,7.37,1117,841,FIGURE 7.37 Time response for the Ziegler–Nichols PI tuning with,ok
+cap07-the-root-locus-method/pagina-0491_fig7-38.png,Chapter 7. The Root Locus Method,491,7.38,1513,1212,"FIGURE 7.38 (a) Signal flow graph and (b) block diagram of unity feedback system with controller gain, K.",ok
+cap07-the-root-locus-method/pagina-0491_fig7-39.png,Chapter 7. The Root Locus Method,491,7.39,1338,755,FIGURE 7.39 (a) Root locus for,ok
+cap07-the-root-locus-method/pagina-0494_fig7-40.png,Chapter 7. The Root Locus Method,494,7.40,646,790,FIGURE 7.40 Wind turbine placed offshore can help alleviate energy needs. (IS-200501/ Cultura RM/Alamy Stock Photo),ok
+cap07-the-root-locus-method/pagina-0495_fig7-41.png,Chapter 7. The Root Locus Method,495,7.41,1485,409,FIGURE 7.41 Wind turbine generator speed control system.,ok
+cap07-the-root-locus-method/pagina-0496_fig7-42.png,Chapter 7. The Root Locus Method,496,7.42,1092,867,FIGURE 7.42 Wind turbine gener- ator speed control root locus with a PI controller.,ok
+cap07-the-root-locus-method/pagina-0497_fig7-43.png,Chapter 7. The Root Locus Method,497,7.43,1104,867,FIGURE 7.43 Step response of the wind turbine generator speed control system using the first-order model in Equation (7.93) with the de- signed PI controller showing all specifi- cations are satisfied,ok
+cap07-the-root-locus-method/pagina-0497_fig7-44.png,Chapter 7. The Root Locus Method,497,7.44,1120,847,FIGURE 7.44 Step response of the third-order model in Equation (7.92) with the PI controller showing that all specifica- tions are satisfied with Ts Tr,ok
+cap07-the-root-locus-method/pagina-0498_fig7-45.png,Chapter 7. The Root Locus Method,498,7.45,967,837,FIGURE 7.45 Disturbance response of the wind turbine generator speed control system with a PI controller shows excellent disturbance rejection characteristics.,ok
+cap07-the-root-locus-method/pagina-0499_fig7-46.png,Chapter 7. The Root Locus Method,499,7.46,1465,785,FIGURE 7.46 Automated highway system.,ok
+cap07-the-root-locus-method/pagina-0499_fig7-47.png,Chapter 7. The Root Locus Method,499,7.47,1390,390,FIGURE 7.47 Vehicle velocity control system.,ok
+cap07-the-root-locus-method/pagina-0500_fig7-48.png,Chapter 7. The Root Locus Method,500,7.48,919,979,FIGURE 7.48 control example.,ok
+_ambiguos/pagina-0500_semlegenda1.png,Chapter 7. The Root Locus Method,500,,601,158,,ambiguo
+cap07-the-root-locus-method/pagina-0501_fig7-49.png,Chapter 7. The Root Locus Method,501,7.49,844,688,FIGURE 7.49 Desired region in the complex plane for locating the dominant system poles.,ok
+cap07-the-root-locus-method/pagina-0503_fig7-50.png,Chapter 7. The Root Locus Method,503,7.50,1378,1084,FIGURE 7.50 Root locus for,ok
+cap07-the-root-locus-method/pagina-0504_fig7-51.png,Chapter 7. The Root Locus Method,504,7.51,1387,1084,FIGURE 7.51 Automobile velocity control using the PI controller in Equation (7.101).,ok
+cap07-the-root-locus-method/pagina-0505_fig7-52.png,Chapter 7. The Root Locus Method,505,7.52,824,417,FIGURE 7.52 The rlocus function.,ok
+cap07-the-root-locus-method/pagina-0505_fig7-53.png,Chapter 7. The Root Locus Method,505,7.53,990,1043,"FIGURE 7.53 The root locus for the characteristic equation, Equation (7.102).",ok
+cap07-the-root-locus-method/pagina-0506_fig7-54.png,Chapter 7. The Root Locus Method,506,7.54,1025,1061,FIGURE 7.54 Using the rlocfind function.,ok
+cap07-the-root-locus-method/pagina-0507_fig7-55.png,Chapter 7. The Root Locus Method,507,7.55,1230,1367,FIGURE 7.55 Partial fraction ­expansion of Equation (7.104).,ok
+cap07-the-root-locus-method/pagina-0508_fig7-56.png,Chapter 7. The Root Locus Method,508,7.56,1068,668,FIGURE 7.56 The residue function.,ok
+cap07-the-root-locus-method/pagina-0508_fig7-57.png,Chapter 7. The Root Locus Method,508,7.57,1568,1031,FIGURE 7.57 Step response for the closed- loop system in Figure 7.10 with,ok
+cap07-the-root-locus-method/pagina-0509_fig7-58.png,Chapter 7. The Root Locus Method,509,7.58,899,370,FIGURE 7.58 Converting a partial fraction expansion back to a rational function.,ok
+cap07-the-root-locus-method/pagina-0510_fig7-59.png,Chapter 7. The Root Locus Method,510,7.59,904,599,FIGURE 7.59 Sensitivity calculations for the root locus for a 5% change in,ok
+cap07-the-root-locus-method/pagina-0510_fig7-60.png,Chapter 7. The Root Locus Method,510,7.60,1567,413,FIGURE 7.60 Disk drive control system with a PD controller.,ok
+cap07-the-root-locus-method/pagina-0511_fig7-61.png,Chapter 7. The Root Locus Method,511,7.61,1051,663,FIGURE 7.61 Sketch of the root locus.,ok
+_ambiguos/pagina-0512_semlegenda1.png,Chapter 7. The Root Locus Method,512,,484,472,,ambiguo
+_ambiguos/pagina-0512_semlegenda2.png,Chapter 7. The Root Locus Method,512,,234,388,,ambiguo
+_ambiguos/pagina-0512_semlegenda3.png,Chapter 7. The Root Locus Method,512,,457,431,,ambiguo
+_ambiguos/pagina-0512_semlegenda4.png,Chapter 7. The Root Locus Method,512,,453,215,,ambiguo
+_ambiguos/pagina-0512_semlegenda5.png,Chapter 7. The Root Locus Method,512,,233,315,,ambiguo
+_ambiguos/pagina-0512_semlegenda6.png,Chapter 7. The Root Locus Method,512,,462,446,,ambiguo
+_ambiguos/pagina-0513_semlegenda1.png,Chapter 7. The Root Locus Method,513,,889,339,,ambiguo
+_ambiguos/pagina-0513_semlegenda2.png,Chapter 7. The Root Locus Method,513,,407,353,,ambiguo
+_ambiguos/pagina-0513_semlegenda3.png,Chapter 7. The Root Locus Method,513,,406,406,,ambiguo
+_ambiguos/pagina-0513_semlegenda4.png,Chapter 7. The Root Locus Method,513,,411,415,,ambiguo
+_ambiguos/pagina-0513_semlegenda5.png,Chapter 7. The Root Locus Method,513,,423,356,,ambiguo
+_ambiguos/pagina-0514_semlegenda1.png,Chapter 7. The Root Locus Method,514,,411,445,,ambiguo
+_ambiguos/pagina-0514_semlegenda2.png,Chapter 7. The Root Locus Method,514,,891,496,,ambiguo
+cap07-the-root-locus-method/pagina-0515_fig7-62.png,Chapter 7. The Root Locus Method,515,7.62,1089,309,FIGURE 7.62  Block diagram for the Skills Check.,ok
+_ambiguos/pagina-0516_semlegenda1.png,Chapter 7. The Root Locus Method,516,,1287,1144,,ambiguo
+_ambiguos/pagina-0518_semlegenda1.png,Chapter 7. The Root Locus Method,518,,1354,1307,,ambiguo
+_ambiguos/pagina-0519_semlegenda1.png,Chapter 7. The Root Locus Method,519,,370,359,,ambiguo
+_ambiguos/pagina-0520_semlegenda1.png,Chapter 7. The Root Locus Method,520,,886,584,,ambiguo
+_ambiguos/pagina-0521_semlegenda1.png,Chapter 7. The Root Locus Method,521,,693,171,,ambiguo
+_ambiguos/pagina-0522_semlegenda1.png,Chapter 7. The Root Locus Method,522,,743,285,,ambiguo
+_ambiguos/pagina-0522_semlegenda2.png,Chapter 7. The Root Locus Method,522,,743,284,,ambiguo
+_ambiguos/pagina-0522_semlegenda3.png,Chapter 7. The Root Locus Method,522,,890,346,,ambiguo
+_ambiguos/pagina-0523_semlegenda1.png,Chapter 7. The Root Locus Method,523,,743,284,,ambiguo
+_ambiguos/pagina-0523_semlegenda2.png,Chapter 7. The Root Locus Method,523,,1499,494,,ambiguo
+_ambiguos/pagina-0524_semlegenda1.png,Chapter 7. The Root Locus Method,524,,1207,301,,ambiguo
+_ambiguos/pagina-0524_semlegenda2.png,Chapter 7. The Root Locus Method,524,,1478,464,,ambiguo
+_ambiguos/pagina-0524_semlegenda3.png,Chapter 7. The Root Locus Method,524,,1501,384,,ambiguo
+_ambiguos/pagina-0525_semlegenda1.png,Chapter 7. The Root Locus Method,525,,1311,443,,ambiguo
+_ambiguos/pagina-0525_semlegenda2.png,Chapter 7. The Root Locus Method,525,,1076,783,,ambiguo
+_ambiguos/pagina-0526_semlegenda1.png,Chapter 7. The Root Locus Method,526,,1498,619,,ambiguo
+_ambiguos/pagina-0526_semlegenda2.png,Chapter 7. The Root Locus Method,526,,538,665,,ambiguo
+_ambiguos/pagina-0527_semlegenda1.png,Chapter 7. The Root Locus Method,527,,1292,483,,ambiguo
+_ambiguos/pagina-0527_semlegenda2.png,Chapter 7. The Root Locus Method,527,,1498,350,,ambiguo
+_ambiguos/pagina-0527_semlegenda3.png,Chapter 7. The Root Locus Method,527,,1090,435,,ambiguo
+_ambiguos/pagina-0528_semlegenda1.png,Chapter 7. The Root Locus Method,528,,630,501,,ambiguo
+_ambiguos/pagina-0528_semlegenda2.png,Chapter 7. The Root Locus Method,528,,899,251,,ambiguo
+_ambiguos/pagina-0528_semlegenda3.png,Chapter 7. The Root Locus Method,528,,1296,1083,,ambiguo
+_ambiguos/pagina-0529_semlegenda1.png,Chapter 7. The Root Locus Method,529,,1013,1553,,ambiguo
+_ambiguos/pagina-0530_semlegenda1.png,Chapter 7. The Root Locus Method,530,,590,223,,ambiguo
+_ambiguos/pagina-0530_semlegenda2.png,Chapter 7. The Root Locus Method,530,,1500,274,,ambiguo
+_ambiguos/pagina-0531_semlegenda1.png,Chapter 7. The Root Locus Method,531,,1417,865,,ambiguo
+_ambiguos/pagina-0532_semlegenda1.png,Chapter 7. The Root Locus Method,532,,856,201,,ambiguo
+_ambiguos/pagina-0532_semlegenda2.png,Chapter 7. The Root Locus Method,532,,909,251,,ambiguo
+_ambiguos/pagina-0533_semlegenda1.png,Chapter 7. The Root Locus Method,533,,1067,974,,ambiguo
+_ambiguos/pagina-0533_semlegenda2.png,Chapter 7. The Root Locus Method,533,,945,883,,ambiguo
+_ambiguos/pagina-0534_semlegenda1.png,Chapter 7. The Root Locus Method,534,,874,251,,ambiguo
+_ambiguos/pagina-0534_semlegenda2.png,Chapter 7. The Root Locus Method,534,,866,372,,ambiguo
+_ambiguos/pagina-0534_semlegenda3.png,Chapter 7. The Root Locus Method,534,,944,251,,ambiguo
+_ambiguos/pagina-0535_semlegenda1.png,Chapter 7. The Root Locus Method,535,,690,284,,ambiguo
+_ambiguos/pagina-0535_semlegenda2.png,Chapter 7. The Root Locus Method,535,,1048,257,,ambiguo
+_ambiguos/pagina-0535_semlegenda3.png,Chapter 7. The Root Locus Method,535,,905,251,,ambiguo
+_ambiguos/pagina-0535_semlegenda4.png,Chapter 7. The Root Locus Method,535,,932,338,,ambiguo
+_ambiguos/pagina-0535_semlegenda5.png,Chapter 7. The Root Locus Method,535,,846,338,,ambiguo
+_ambiguos/pagina-0536_semlegenda1.png,Chapter 7. The Root Locus Method,536,,1253,287,,ambiguo
+_ambiguos/pagina-0536_semlegenda2.png,Chapter 7. The Root Locus Method,536,,772,316,,ambiguo
+_ambiguos/pagina-0536_semlegenda3.png,Chapter 7. The Root Locus Method,536,,1319,349,,ambiguo
+_ambiguos/pagina-0537_semlegenda1.png,Chapter 7. The Root Locus Method,537,,969,304,,ambiguo
+_ambiguos/pagina-0537_semlegenda2.png,Chapter 7. The Root Locus Method,537,,1104,251,,ambiguo
+_ambiguos/pagina-0537_semlegenda3.png,Chapter 7. The Root Locus Method,537,,1091,430,,ambiguo
+_ambiguos/pagina-0538_semlegenda1.png,Chapter 7. The Root Locus Method,538,,1086,254,,ambiguo
+_ambiguos/pagina-0538_semlegenda2.png,Chapter 7. The Root Locus Method,538,,702,251,,ambiguo
+_ambiguos/pagina-0538_semlegenda3.png,Chapter 7. The Root Locus Method,538,,933,1067,,ambiguo
+_ambiguos/pagina-0539_semlegenda1.png,Chapter 7. The Root Locus Method,539,,725,357,,ambiguo
+_ambiguos/pagina-0539_semlegenda2.png,Chapter 7. The Root Locus Method,539,,571,459,,ambiguo
+_ambiguos/pagina-0539_semlegenda3.png,Chapter 7. The Root Locus Method,539,,1041,409,,ambiguo
+_ambiguos/pagina-0539_semlegenda4.png,Chapter 7. The Root Locus Method,539,,1486,699,,ambiguo
+_ambiguos/pagina-0540_semlegenda1.png,Chapter 7. The Root Locus Method,540,,1474,457,,ambiguo
+_ambiguos/pagina-0540_semlegenda2.png,Chapter 7. The Root Locus Method,540,,726,464,,ambiguo
+_ambiguos/pagina-0541_semlegenda1.png,Chapter 7. The Root Locus Method,541,,697,472,,ambiguo
+_ambiguos/pagina-0541_semlegenda2.png,Chapter 7. The Root Locus Method,541,,1042,254,,ambiguo
+_ambiguos/pagina-0541_semlegenda3.png,Chapter 7. The Root Locus Method,541,,1089,573,,ambiguo
+_ambiguos/pagina-0541_semlegenda4.png,Chapter 7. The Root Locus Method,541,,1318,540,,ambiguo
+_ambiguos/pagina-0542_semlegenda1.png,Chapter 7. The Root Locus Method,542,,655,169,,ambiguo
+_ambiguos/pagina-0542_semlegenda2.png,Chapter 7. The Root Locus Method,542,,751,284,,ambiguo
+_ambiguos/pagina-0543_semlegenda1.png,Chapter 7. The Root Locus Method,543,,1139,680,,ambiguo
+_ambiguos/pagina-0543_semlegenda2.png,Chapter 7. The Root Locus Method,543,,735,738,,ambiguo
+_ambiguos/pagina-0544_semlegenda1.png,Chapter 7. The Root Locus Method,544,,1059,303,,ambiguo
+_ambiguos/pagina-0544_semlegenda2.png,Chapter 7. The Root Locus Method,544,,583,201,,ambiguo
+_ambiguos/pagina-0546_semlegenda1.png,Chapter 8. Frequency Response Methods,546,,351,487,,ambiguo
+_ambiguos/pagina-0548_semlegenda1.png,Chapter 8. Frequency Response Methods,548,,634,159,,ambiguo
+_ambiguos/pagina-0548_semlegenda2.png,Chapter 8. Frequency Response Methods,548,,827,168,,ambiguo
+_ambiguos/pagina-0548_semlegenda3.png,Chapter 8. Frequency Response Methods,548,,695,157,,ambiguo
+_ambiguos/pagina-0548_semlegenda4.png,Chapter 8. Frequency Response Methods,548,,850,153,,ambiguo
+cap08-frequency-response-methods/pagina-0550_fig8-1.png,Chapter 8. Frequency Response Methods,550,8.1,763,380,FIGURE 8.1 The polar plane.,ok
+cap08-frequency-response-methods/pagina-0550_fig8-2.png,Chapter 8. Frequency Response Methods,550,8.2,710,328,FIGURE 8.2 An RC filter.,ok
+cap08-frequency-response-methods/pagina-0551_fig8-3.png,Chapter 8. Frequency Response Methods,551,8.3,854,670,FIGURE 8.3 Polar plot for RC filter.,ok
+cap08-frequency-response-methods/pagina-0552_fig8-4.png,Chapter 8. Frequency Response Methods,552,8.4,791,869,FIGURE 8.4 Polar plot for G jω K,ok
+cap08-frequency-response-methods/pagina-0553_fig8-5.png,Chapter 8. Frequency Response Methods,553,8.5,686,672,FIGURE 8.5 Two vectors on the s-plane to evaluate,ok
+cap08-frequency-response-methods/pagina-0554_fig8-6.png,Chapter 8. Frequency Response Methods,554,8.6,1284,1535,FIGURE 8.6 Bode plot for,ok
+cap08-frequency-response-methods/pagina-0555_fig8-7.png,Chapter 8. Frequency Response Methods,555,8.7,745,478,FIGURE 8.7 Asymptotic curve for,ok
+_ambiguos/pagina-0556_semlegenda1.png,Chapter 8. Frequency Response Methods,556,,972,271,,ambiguo
+_ambiguos/pagina-0557_semlegenda1.png,Chapter 8. Frequency Response Methods,557,,521,157,,ambiguo
+_ambiguos/pagina-0557_semlegenda2.png,Chapter 8. Frequency Response Methods,557,,563,183,,ambiguo
+cap08-frequency-response-methods/pagina-0558_fig8-8.png,Chapter 8. Frequency Response Methods,558,8.8,1479,1156,FIGURE 8.8 Bode plot for,ok
+cap08-frequency-response-methods/pagina-0559_fig8-9.png,Chapter 8. Frequency Response Methods,559,8.9,1545,1247,FIGURE 8.9 Bode diagram for,ok
+cap08-frequency-response-methods/pagina-0560_fig8-10.png,Chapter 8. Frequency Response Methods,560,8.10,1528,1700,FIGURE 8.10 Bode diagram for,ok
+_ambiguos/pagina-0560_semlegenda1.png,Chapter 8. Frequency Response Methods,560,,735,453,,ambiguo
+cap08-frequency-response-methods/pagina-0561_fig8-11.png,Chapter 8. Frequency Response Methods,561,8.11,1207,1494,FIGURE 8.11 The maximum Mpω of the frequency response and the resonant frequency,ok
+cap08-frequency-response-methods/pagina-0562_fig8-12.png,Chapter 8. Frequency Response Methods,562,8.12,1010,1140,FIGURE 8.12 Vector evaluation of the frequency ­response for ­selected values ω,ok
+cap08-frequency-response-methods/pagina-0563_fig8-13.png,Chapter 8. Frequency Response Methods,563,8.13,1137,734,FIGURE 8.13 Bode diagram for complex conjugate poles.,ok
+cap08-frequency-response-methods/pagina-0563_fig8-14.png,Chapter 8. Frequency Response Methods,563,8.14,871,439,FIGURE 8.14 Twin-T network.,ok
+_ambiguos/pagina-0564_semlegenda1.png,Chapter 8. Frequency Response Methods,564,,1368,1999,,ambiguo
+cap08-frequency-response-methods/pagina-0565_fig8-15.png,Chapter 8. Frequency Response Methods,565,8.15,1529,840,FIGURE 8.15 Twin-T ­network. (a) Pole–zero ­pattern. (b) Frequency response.,ok
+cap08-frequency-response-methods/pagina-0566_fig8-16.png,Chapter 8. Frequency Response Methods,566,8.16,1503,491,FIGURE 8.16 Pole–zero patterns giving the same amplitude response and different phase characteristics.,ok
+cap08-frequency-response-methods/pagina-0566_fig8-17.png,Chapter 8. Frequency Response Methods,566,8.17,1521,1127,FIGURE 8.17 The phase ­characteristics for the minimum phase and nonminimum phase transfer function.,ok
+cap08-frequency-response-methods/pagina-0566_fig8-18.png,Chapter 8. Frequency Response Methods,566,8.18,1530,1087,"FIGURE 8.18 The all-pass ­network (a) pole– zero pattern, (b) ­frequency ­response, and (c) a lattice network.",ok
+cap08-frequency-response-methods/pagina-0567_fig8-19.png,Chapter 8. Frequency Response Methods,567,8.19,1576,705,FIGURE 8.19 Magnitude ­asymptotes of poles and zeros used in the example.,ok
+cap08-frequency-response-methods/pagina-0568_fig8-20.png,Chapter 8. Frequency Response Methods,568,8.20,1289,901,FIGURE 8.20 Magnitude characteristic.,ok
+cap08-frequency-response-methods/pagina-0569_fig8-21.png,Chapter 8. Frequency Response Methods,569,8.21,1618,916,FIGURE 8.21 Phase characteristic.,ok
+cap08-frequency-response-methods/pagina-0570_fig8-22.png,Chapter 8. Frequency Response Methods,570,8.22,1473,564,FIGURE 8.22 The Bode plot of the Equation (8.42).,ok
+cap08-frequency-response-methods/pagina-0571_fig8-23.png,Chapter 8. Frequency Response Methods,571,8.23,1211,1655,FIGURE 8.23 A Bode plot for a system with an unidentified transfer function.,ok
+_ambiguos/pagina-0571_semlegenda1.png,Chapter 8. Frequency Response Methods,571,,751,379,,ambiguo
+cap08-frequency-response-methods/pagina-0572_fig8-24.png,Chapter 8. Frequency Response Methods,572,8.24,833,371,FIGURE 8.24 A second-­order closed-loop system.,ok
+cap08-frequency-response-methods/pagina-0572_fig8-25.png,Chapter 8. Frequency Response Methods,572,8.25,695,482,"FIGURE 8.25 Magnitude ­characteristic of the second-order system closed-loop transfer function, ( ).",ok
+cap08-frequency-response-methods/pagina-0573_fig8-26.png,Chapter 8. Frequency Response Methods,573,8.26,1160,976,"FIGURE 8.26 Normalized ­bandwidth, versus ζ for a ­second-order ­system (Equation 8.46). The linear ­approximation",ok
+cap08-frequency-response-methods/pagina-0576_fig8-28.png,Chapter 8. Frequency Response Methods,576,8.28,1884,1273,FIGURE 8.28 for G,ok
+cap08-frequency-response-methods/pagina-0577_fig8-29.png,Chapter 8. Frequency Response Methods,577,8.29,1274,405,FIGURE 8.29 Photovoltaic ­generator feedback control system to a track reference input voltage.,ok
+cap08-frequency-response-methods/pagina-0578_fig8-30.png,Chapter 8. Frequency Response Methods,578,8.30,1160,909,FIGURE 8.30 Bode plot of compensated system with Gc(s) =,ok
+cap08-frequency-response-methods/pagina-0578_fig8-31.png,Chapter 8. Frequency Response Methods,578,8.31,1115,854,FIGURE 8.31 Step response of the closed-loop system.,ok
+cap08-frequency-response-methods/pagina-0579_fig8-32.png,Chapter 8. Frequency Response Methods,579,8.32,1382,972,FIGURE 8.32 An artist’s ­conception of the six-legged Ambler.,ok
+cap08-frequency-response-methods/pagina-0579_fig8-33.png,Chapter 8. Frequency Response Methods,579,8.33,1293,664,FIGURE 8.33 Elements of the control system design process emphasized in this six-legged robot example.,ok
+cap08-frequency-response-methods/pagina-0580_fig8-34.png,Chapter 8. Frequency Response Methods,580,8.34,1732,561,FIGURE 8.34,ok
+cap08-frequency-response-methods/pagina-0583_fig8-35.png,Chapter 8. Frequency Response Methods,583,8.35,1216,946,FIGURE 8.35 Step response using the controller in Equation (8.65).,ok
+cap08-frequency-response-methods/pagina-0584_fig8-37.png,Chapter 8. Frequency Response Methods,584,8.37,1441,613,FIGURE 8.37 Output response of the closed-loop system when the input is a sinusoi- dal signal of frequency,ok
+cap08-frequency-response-methods/pagina-0584_fig8-36.png,Chapter 8. Frequency Response Methods,584,8.36,1169,943,FIGURE 8.36 Magnitude plot of the closed- loop system with the controller in Equation (8.65).,ok
+cap08-frequency-response-methods/pagina-0585_fig8-38.png,Chapter 8. Frequency Response Methods,585,8.38,1226,942,FIGURE 8.38 Output response of the closed-loop system when the input is a sinusoidal signal of frequency,ok
+cap08-frequency-response-methods/pagina-0586_fig8-39.png,Chapter 8. Frequency Response Methods,586,8.39,1237,968,FIGURE 8.39 The Bode plot associated with Equation (8.66).,ok
+cap08-frequency-response-methods/pagina-0586_fig8-40.png,Chapter 8. Frequency Response Methods,586,8.40,1134,1167,"FIGURE 8.40 The bode function, given G s",ok
+cap08-frequency-response-methods/pagina-0587_fig8-41.png,Chapter 8. Frequency Response Methods,587,8.41,1255,1368,FIGURE 8.41 The logspace function.,ok
+cap08-frequency-response-methods/pagina-0587_fig8-42.png,Chapter 8. Frequency Response Methods,587,8.42,1264,453,FIGURE 8.42 The script for the Bode plot in Figure 8.39.,ok
+cap08-frequency-response-methods/pagina-0587_fig8-43.png,Chapter 8. Frequency Response Methods,587,8.43,746,472,FIGURE 8.43 The bode function with a state variable model.,ok
+_ambiguos/pagina-0587_semlegenda1.png,Chapter 8. Frequency Response Methods,587,,780,191,,ambiguo
+cap08-frequency-response-methods/pagina-0588_fig8-44.png,Chapter 8. Frequency Response Methods,588,8.44,1197,951,FIGURE 8.44 (a) The relationship between Mp and second-order ­system. (b) m-file script.,ok
+cap08-frequency-response-methods/pagina-0589_fig8-45.png,Chapter 8. Frequency Response Methods,589,8.45,1221,1204,FIGURE 8.45 Engraving machine block diagram model.,ok
+cap08-frequency-response-methods/pagina-0589_fig8-46.png,Chapter 8. Frequency Response Methods,589,8.46,1326,1419,FIGURE 8.46 Frequency design functional block diagram for the ­engraving machine.,ok
+cap08-frequency-response-methods/pagina-0590_fig8-47.png,Chapter 8. Frequency Response Methods,590,8.47,1333,969,FIGURE 8.47 Script for the ­design of an ­engraving machine.,ok
+cap08-frequency-response-methods/pagina-0591_fig8-49.png,Chapter 8. Frequency Response Methods,591,8.49,763,364,"FIGURE 8.49 Spring, mass, ­friction model of flexure and head.",ok
+cap08-frequency-response-methods/pagina-0591_fig8-48.png,Chapter 8. Frequency Response Methods,591,8.48,1080,1270,FIGURE 8.48 (a) Engraving ­machine step ­response for K (b) m-file script.,ok
+cap08-frequency-response-methods/pagina-0592_fig8-50.png,Chapter 8. Frequency Response Methods,592,8.50,1916,337,FIGURE 8.50,ok
+cap08-frequency-response-methods/pagina-0592_fig8-51.png,Chapter 8. Frequency Response Methods,592,8.51,1422,881,FIGURE 8.51 Sketch of the Bode diagram magnitude for the system of Figure 8.50.,ok
+cap08-frequency-response-methods/pagina-0593_fig8-52.png,Chapter 8. Frequency Response Methods,593,8.52,1015,1644,FIGURE 8.52 transfer function and (b) the closed-loop system.,ok
+_ambiguos/pagina-0593_semlegenda1.png,Chapter 8. Frequency Response Methods,593,,918,583,,ambiguo
+_ambiguos/pagina-0594_semlegenda1.png,Chapter 8. Frequency Response Methods,594,,380,570,,ambiguo
+_ambiguos/pagina-0594_semlegenda2.png,Chapter 8. Frequency Response Methods,594,,326,580,,ambiguo
+_ambiguos/pagina-0594_semlegenda3.png,Chapter 8. Frequency Response Methods,594,,398,583,,ambiguo
+_ambiguos/pagina-0594_semlegenda4.png,Chapter 8. Frequency Response Methods,594,,323,560,,ambiguo
+_ambiguos/pagina-0594_semlegenda5.png,Chapter 8. Frequency Response Methods,594,,368,575,,ambiguo
+_ambiguos/pagina-0594_semlegenda6.png,Chapter 8. Frequency Response Methods,594,,367,574,,ambiguo
+_ambiguos/pagina-0595_semlegenda1.png,Chapter 8. Frequency Response Methods,595,,331,573,,ambiguo
+_ambiguos/pagina-0595_semlegenda2.png,Chapter 8. Frequency Response Methods,595,,331,584,,ambiguo
+_ambiguos/pagina-0595_semlegenda3.png,Chapter 8. Frequency Response Methods,595,,359,574,,ambiguo
+_ambiguos/pagina-0595_semlegenda4.png,Chapter 8. Frequency Response Methods,595,,310,572,,ambiguo
+_ambiguos/pagina-0595_semlegenda5.png,Chapter 8. Frequency Response Methods,595,,370,425,,ambiguo
+_ambiguos/pagina-0595_semlegenda6.png,Chapter 8. Frequency Response Methods,595,,306,572,,ambiguo
+_ambiguos/pagina-0596_semlegenda1.png,Chapter 8. Frequency Response Methods,596,,338,577,,ambiguo
+_ambiguos/pagina-0596_semlegenda2.png,Chapter 8. Frequency Response Methods,596,,407,590,,ambiguo
+_ambiguos/pagina-0596_semlegenda3.png,Chapter 8. Frequency Response Methods,596,,367,572,,ambiguo
+cap08-frequency-response-methods/pagina-0597_fig8-53.png,Chapter 8. Frequency Response Methods,597,8.53,1095,351,FIGURE 8.53,ok
+cap08-frequency-response-methods/pagina-0598_fig8-54.png,Chapter 8. Frequency Response Methods,598,8.54,1828,1270,FIGURE 8.54,ok
+_ambiguos/pagina-0598_semlegenda1.png,Chapter 8. Frequency Response Methods,598,,745,199,,ambiguo
+_ambiguos/pagina-0598_semlegenda2.png,Chapter 8. Frequency Response Methods,598,,745,199,,ambiguo
+cap08-frequency-response-methods/pagina-0599_fig8-55.png,Chapter 8. Frequency Response Methods,599,8.55,1744,1048,FIGURE 8.55,ok
+cap08-frequency-response-methods/pagina-0600_fig8-56.png,Chapter 8. Frequency Response Methods,600,8.56,1689,1039,FIGURE 8.56,ok
+_ambiguos/pagina-0602_semlegenda1.png,Chapter 8. Frequency Response Methods,602,,1155,710,,ambiguo
+_ambiguos/pagina-0603_semlegenda1.png,Chapter 8. Frequency Response Methods,603,,1311,654,,ambiguo
+_ambiguos/pagina-0603_semlegenda2.png,Chapter 8. Frequency Response Methods,603,,889,562,,ambiguo
+_ambiguos/pagina-0604_semlegenda1.png,Chapter 8. Frequency Response Methods,604,,951,721,,ambiguo
+_ambiguos/pagina-0604_semlegenda2.png,Chapter 8. Frequency Response Methods,604,,1044,251,,ambiguo
+_ambiguos/pagina-0604_semlegenda3.png,Chapter 8. Frequency Response Methods,604,,961,776,,ambiguo
+_ambiguos/pagina-0605_semlegenda1.png,Chapter 8. Frequency Response Methods,605,,1056,251,,ambiguo
+_ambiguos/pagina-0605_semlegenda2.png,Chapter 8. Frequency Response Methods,605,,1096,401,,ambiguo
+_ambiguos/pagina-0605_semlegenda3.png,Chapter 8. Frequency Response Methods,605,,848,366,,ambiguo
+_ambiguos/pagina-0606_semlegenda1.png,Chapter 8. Frequency Response Methods,606,,1336,502,,ambiguo
+_ambiguos/pagina-0606_semlegenda2.png,Chapter 8. Frequency Response Methods,606,,857,398,,ambiguo
+_ambiguos/pagina-0606_semlegenda3.png,Chapter 8. Frequency Response Methods,606,,894,921,,ambiguo
+_ambiguos/pagina-0607_semlegenda1.png,Chapter 8. Frequency Response Methods,607,,1003,338,,ambiguo
+_ambiguos/pagina-0607_semlegenda2.png,Chapter 8. Frequency Response Methods,607,,636,338,,ambiguo
+_ambiguos/pagina-0607_semlegenda3.png,Chapter 8. Frequency Response Methods,607,,993,251,,ambiguo
+_ambiguos/pagina-0607_semlegenda4.png,Chapter 8. Frequency Response Methods,607,,1147,598,,ambiguo
+_ambiguos/pagina-0608_semlegenda1.png,Chapter 8. Frequency Response Methods,608,,1224,745,,ambiguo
+_ambiguos/pagina-0609_semlegenda1.png,Chapter 8. Frequency Response Methods,609,,848,348,,ambiguo
+_ambiguos/pagina-0609_semlegenda2.png,Chapter 8. Frequency Response Methods,609,,1134,778,,ambiguo
+_ambiguos/pagina-0610_semlegenda1.png,Chapter 8. Frequency Response Methods,610,,1436,824,,ambiguo
+_ambiguos/pagina-0610_semlegenda2.png,Chapter 8. Frequency Response Methods,610,,1396,562,,ambiguo
+_ambiguos/pagina-0610_semlegenda3.png,Chapter 8. Frequency Response Methods,610,,833,356,,ambiguo
+_ambiguos/pagina-0611_semlegenda1.png,Chapter 8. Frequency Response Methods,611,,1562,709,,ambiguo
+_ambiguos/pagina-0611_semlegenda2.png,Chapter 8. Frequency Response Methods,611,,1059,1183,,ambiguo
+_ambiguos/pagina-0612_semlegenda1.png,Chapter 8. Frequency Response Methods,612,,876,501,,ambiguo
+_ambiguos/pagina-0612_semlegenda2.png,Chapter 8. Frequency Response Methods,612,,1836,642,,ambiguo
+_ambiguos/pagina-0613_semlegenda1.png,Chapter 8. Frequency Response Methods,613,,1845,635,,ambiguo
+_ambiguos/pagina-0613_semlegenda2.png,Chapter 8. Frequency Response Methods,613,,908,701,,ambiguo
+_ambiguos/pagina-0614_semlegenda1.png,Chapter 8. Frequency Response Methods,614,,1828,663,,ambiguo
+_ambiguos/pagina-0614_semlegenda2.png,Chapter 8. Frequency Response Methods,614,,744,398,,ambiguo
+_ambiguos/pagina-0614_semlegenda3.png,Chapter 8. Frequency Response Methods,614,,730,280,,ambiguo
+_ambiguos/pagina-0615_semlegenda1.png,Chapter 8. Frequency Response Methods,615,,1043,267,,ambiguo
+_ambiguos/pagina-0615_semlegenda2.png,Chapter 8. Frequency Response Methods,615,,538,470,,ambiguo
+_ambiguos/pagina-0615_semlegenda3.png,Chapter 8. Frequency Response Methods,615,,1201,368,,ambiguo
+_ambiguos/pagina-0615_semlegenda4.png,Chapter 8. Frequency Response Methods,615,,599,504,,ambiguo
+_ambiguos/pagina-0616_semlegenda1.png,Chapter 8. Frequency Response Methods,616,,401,266,,ambiguo
+_ambiguos/pagina-0616_semlegenda2.png,Chapter 8. Frequency Response Methods,616,,704,358,,ambiguo
+_ambiguos/pagina-0616_semlegenda3.png,Chapter 8. Frequency Response Methods,616,,1053,301,,ambiguo
+_ambiguos/pagina-0617_semlegenda1.png,Chapter 8. Frequency Response Methods,617,,877,918,,ambiguo
+_ambiguos/pagina-0618_semlegenda1.png,Chapter 8. Frequency Response Methods,618,,729,396,,ambiguo
+_ambiguos/pagina-0618_semlegenda2.png,Chapter 8. Frequency Response Methods,618,,1472,845,,ambiguo
+_ambiguos/pagina-0618_semlegenda3.png,Chapter 8. Frequency Response Methods,618,,1079,251,,ambiguo
+_ambiguos/pagina-0619_semlegenda1.png,Chapter 8. Frequency Response Methods,619,,898,828,,ambiguo
+_ambiguos/pagina-0619_semlegenda2.png,Chapter 8. Frequency Response Methods,619,,901,323,,ambiguo
+_ambiguos/pagina-0619_semlegenda3.png,Chapter 8. Frequency Response Methods,619,,1050,251,,ambiguo
+_ambiguos/pagina-0620_semlegenda1.png,Chapter 8. Frequency Response Methods,620,,685,201,,ambiguo
+_ambiguos/pagina-0620_semlegenda2.png,Chapter 8. Frequency Response Methods,620,,898,201,,ambiguo
+_ambiguos/pagina-0621_semlegenda1.png,Chapter 8. Frequency Response Methods,621,,1108,573,,ambiguo
+_ambiguos/pagina-0621_semlegenda2.png,Chapter 8. Frequency Response Methods,621,,562,372,,ambiguo
+_ambiguos/pagina-0623_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,623,,351,365,,ambiguo
+cap09-stability-in-the-frequency-domain/pagina-0625_fig9-1.png,Chapter 9. Stability in the Frequency Domain,625,9.1,1495,1002,FIGURE 9.1 Unity ­feedback control system.,ok
+cap09-stability-in-the-frequency-domain/pagina-0625_fig9-2.png,Chapter 9. Stability in the Frequency Domain,625,9.2,1784,530,FIGURE 9.2 Mapping a square contour by F s s,ok
+cap09-stability-in-the-frequency-domain/pagina-0627_fig9-3.png,Chapter 9. Stability in the Frequency Domain,627,9.3,1558,732,FIGURE 9.3 Mapping for,ok
+cap09-stability-in-the-frequency-domain/pagina-0629_fig9-4.png,Chapter 9. Stability in the Frequency Domain,629,9.4,1558,730,FIGURE 9.4 Mapping for,ok
+cap09-stability-in-the-frequency-domain/pagina-0629_fig9-5.png,Chapter 9. Stability in the Frequency Domain,629,9.5,1399,793,FIGURE 9.5 Evaluation of the net angle of ΓF.,ok
+cap09-stability-in-the-frequency-domain/pagina-0630_fig9-6.png,Chapter 9. Stability in the Frequency Domain,630,9.6,1560,724,FIGURE 9.6 Example of Cauchy’s theorem with three zeros and one pole within,ok
+cap09-stability-in-the-frequency-domain/pagina-0630_fig9-7.png,Chapter 9. Stability in the Frequency Domain,630,9.7,1550,702,FIGURE 9.7 Example of Cauchy’s theorem with one pole within,ok
+cap09-stability-in-the-frequency-domain/pagina-0631_fig9-8.png,Chapter 9. Stability in the Frequency Domain,631,9.8,812,1123,FIGURE 9.8 Nyquist contour is shown as the heavy line.,ok
+cap09-stability-in-the-frequency-domain/pagina-0633_fig9-9.png,Chapter 9. Stability in the Frequency Domain,633,9.9,1546,742,FIGURE 9.9 Nyquist contour and mapping for L(s) =,ok
+cap09-stability-in-the-frequency-domain/pagina-0634_fig9-10.png,Chapter 9. Stability in the Frequency Domain,634,9.10,1486,726,FIGURE 9.10 Nyquist contour and mapping for L(s) =,ok
+cap09-stability-in-the-frequency-domain/pagina-0636_fig9-11.png,Chapter 9. Stability in the Frequency Domain,636,9.11,896,1399,FIGURE 9.11 Nyquist plot for L(s) =,ok
+cap09-stability-in-the-frequency-domain/pagina-0637_fig9-12.png,Chapter 9. Stability in the Frequency Domain,637,9.12,1916,752,FIGURE 9.12,ok
+cap09-stability-in-the-frequency-domain/pagina-0639_fig9-13.png,Chapter 9. Stability in the Frequency Domain,639,9.13,1387,479,FIGURE 9.13 Nyquist contour plot for L (s) =,ok
+cap09-stability-in-the-frequency-domain/pagina-0639_fig9-14.png,Chapter 9. Stability in the Frequency Domain,639,9.14,1049,647,FIGURE 9.14 Second-order ­feedback ­control system. (a) Signal- flow graph. (b) Block diagram.,ok
+cap09-stability-in-the-frequency-domain/pagina-0640_fig9-15.png,Chapter 9. Stability in the Frequency Domain,640,9.15,858,546,FIGURE 9.15 Nyquist plot for,ok
+cap09-stability-in-the-frequency-domain/pagina-0641_fig9-16.png,Chapter 9. Stability in the Frequency Domain,641,9.16,1048,1676,FIGURE 9.16 Nyquist plot for L (s) =,ok
+cap09-stability-in-the-frequency-domain/pagina-0642_fig9-17.png,Chapter 9. Stability in the Frequency Domain,642,9.17,1735,1058,FIGURE 9.17 Nyquist plot for Example 9.6 for,ok
+cap09-stability-in-the-frequency-domain/pagina-0643_fig9-18.png,Chapter 9. Stability in the Frequency Domain,643,9.18,872,1135,FIGURE 9.18 Nyquist plot for,ok
+cap09-stability-in-the-frequency-domain/pagina-0645_fig9-19.png,Chapter 9. Stability in the Frequency Domain,645,9.19,1122,850,FIGURE 9.19 Bode plot for,ok
+cap09-stability-in-the-frequency-domain/pagina-0646_fig9-20.png,Chapter 9. Stability in the Frequency Domain,646,9.20,1228,1330,FIGURE 9.20 Log-magnitude– phase curves for L1 and L .,ok
+cap09-stability-in-the-frequency-domain/pagina-0647_fig9-21.png,Chapter 9. Stability in the Frequency Domain,647,9.21,1182,1249,FIGURE 9.21 Damping ratio ­versus phase ­margin for a ­second-order system.,ok
+cap09-stability-in-the-frequency-domain/pagina-0648_fig9-22.png,Chapter 9. Stability in the Frequency Domain,648,9.22,1562,1321,FIGURE 9.22 (a) Gain margin versus gain K. (b) Phase margin versus gain K. (c) Gain margin ­versus phase margin.,ok
+cap09-stability-in-the-frequency-domain/pagina-0650_fig9-23.png,Chapter 9. Stability in the Frequency Domain,650,9.23,994,1185,FIGURE 9.23 Constant circles.,ok
+cap09-stability-in-the-frequency-domain/pagina-0651_fig9-24.png,Chapter 9. Stability in the Frequency Domain,651,9.24,1811,673,FIGURE 9.24 (,ok
+cap09-stability-in-the-frequency-domain/pagina-0653_fig9-26.png,Chapter 9. Stability in the Frequency Domain,653,9.26,1437,1972,FIGURE 9.26 curves.,ok
+_ambiguos/pagina-0653_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,653,,740,423,,ambiguo
+cap09-stability-in-the-frequency-domain/pagina-0654_fig9-27.png,Chapter 9. Stability in the Frequency Domain,654,9.27,1034,1389,FIGURE 9.27 Nichols chart for,ok
+cap09-stability-in-the-frequency-domain/pagina-0655_fig9-28.png,Chapter 9. Stability in the Frequency Domain,655,9.28,1033,1384,FIGURE 9.28 Nichols chart for,ok
+cap09-stability-in-the-frequency-domain/pagina-0657_fig9-29.png,Chapter 9. Stability in the Frequency Domain,657,9.29,1382,1538,FIGURE 9.29 Response of two second-order systems.,ok
+cap09-stability-in-the-frequency-domain/pagina-0657_fig9-30.png,Chapter 9. Stability in the Frequency Domain,657,9.30,796,351,FIGURE 9.30 Steel rolling mill control system.,ok
+cap09-stability-in-the-frequency-domain/pagina-0659_fig9-31.png,Chapter 9. Stability in the Frequency Domain,659,9.31,1473,1346,FIGURE 9.31 (a) Liquid level control system. (b) Block diagram.,ok
+cap09-stability-in-the-frequency-domain/pagina-0659_fig9-32.png,Chapter 9. Stability in the Frequency Domain,659,9.32,1044,880,FIGURE 9.32 Bode plot for the liquid level control system.,ok
+cap09-stability-in-the-frequency-domain/pagina-0661_fig9-33.png,Chapter 9. Stability in the Frequency Domain,661,9.33,1171,873,"FIGURE 9.33 (a) Vertical axis wind turbine (photo courtesy of Visions of America/ SuperStock), and (b) horizontal axis wind turbine (photo courtesy of David Williams/Alamy).",ok
+cap09-stability-in-the-frequency-domain/pagina-0662_fig9-34.png,Chapter 9. Stability in the Frequency Domain,662,9.34,1555,1349,FIGURE 9.34 (a) Block diagram model of the wind turbine system. (b) Block diagram for control system design.,ok
+cap09-stability-in-the-frequency-domain/pagina-0663_fig9-35.png,Chapter 9. Stability in the Frequency Domain,663,9.35,1228,891,FIGURE 9.35 Bode plot with,ok
+cap09-stability-in-the-frequency-domain/pagina-0664_fig9-36.png,Chapter 9. Stability in the Frequency Domain,664,9.36,1116,881,FIGURE 9.36 Closed-loop step response to a unit step showing rise time and time to peak specifications are satisfied.,ok
+cap09-stability-in-the-frequency-domain/pagina-0664_fig9-37.png,Chapter 9. Stability in the Frequency Domain,664,9.37,1106,843,FIGURE 9.37 Disturbance ­response showing the rotor speed deviation from the rated speed.,ok
+cap09-stability-in-the-frequency-domain/pagina-0665_fig9-38.png,Chapter 9. Stability in the Frequency Domain,665,9.38,1364,1215,FIGURE 9.38 (a) Remotely controlled recon- naissance vehicle. (b) Speed control system.,ok
+cap09-stability-in-the-frequency-domain/pagina-0666_fig9-39.png,Chapter 9. Stability in the Frequency Domain,666,9.39,1063,1386,FIGURE 9.39 Nichols chart for the design example when for two reduced gains.,ok
+cap09-stability-in-the-frequency-domain/pagina-0667_fig9-40.png,Chapter 9. Stability in the Frequency Domain,667,9.40,1303,1648,FIGURE 9.40 The response of the system for three values of K for a unit step input ( ).,ok
+cap09-stability-in-the-frequency-domain/pagina-0668_fig9-41.png,Chapter 9. Stability in the Frequency Domain,668,9.41,1296,783,FIGURE 9.41 Artist’s depiction of the hot ingot robot control system.,ok
+cap09-stability-in-the-frequency-domain/pagina-0669_fig9-42.png,Chapter 9. Stability in the Frequency Domain,669,9.42,1440,913,FIGURE 9.42 Hot ingot robot control system block diagram.,ok
+cap09-stability-in-the-frequency-domain/pagina-0670_fig9-43.png,Chapter 9. Stability in the Frequency Domain,670,9.43,919,984,FIGURE 9.43,ok
+cap09-stability-in-the-frequency-domain/pagina-0670_fig9-44.png,Chapter 9. Stability in the Frequency Domain,670,9.44,1480,384,FIGURE 9.44 Hot ingot robot control system block diagram with the propor- tional controller and no time-delay.,ok
+_ambiguos/pagina-0670_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,670,,553,159,,ambiguo
+cap09-stability-in-the-frequency-domain/pagina-0671_fig9-45.png,Chapter 9. Stability in the Frequency Domain,671,9.45,1219,1250,FIGURE 9.45 Bode plot with,ok
+cap09-stability-in-the-frequency-domain/pagina-0672_fig9-46.png,Chapter 9. Stability in the Frequency Domain,672,9.46,1207,869,FIGURE 9.46 Nyquist plot with,ok
+cap09-stability-in-the-frequency-domain/pagina-0673_fig9-47.png,Chapter 9. Stability in the Frequency Domain,673,9.47,1457,1255,"FIGURE 9.47 Nyquist plot with T two ­encirclements of the −1 point,",ok
+cap09-stability-in-the-frequency-domain/pagina-0674_fig9-48.png,Chapter 9. Stability in the Frequency Domain,674,9.48,1524,1097,FIGURE 9.48,ok
+cap09-stability-in-the-frequency-domain/pagina-0676_fig9-49.png,Chapter 9. Stability in the Frequency Domain,676,9.49,1653,1030,FIGURE 9.49 Uncompensated Bode plot with,ok
+cap09-stability-in-the-frequency-domain/pagina-0677_fig9-50.png,Chapter 9. Stability in the Frequency Domain,677,9.50,1686,852,FIGURE 9.50 Compensated Bode plot with T PI controller.,ok
+cap09-stability-in-the-frequency-domain/pagina-0677_fig9-51.png,Chapter 9. Stability in the Frequency Domain,677,9.51,1330,1003,FIGURE 9.51 Hot ingot robot control step ­response with the PI controller.,ok
+cap09-stability-in-the-frequency-domain/pagina-0678_fig9-52.png,Chapter 9. Stability in the Frequency Domain,678,9.52,1050,1174,FIGURE 9.52 Bode plot for a PID controller using the asymptomatic approximation for the magnitude curve with,ok
+cap09-stability-in-the-frequency-domain/pagina-0679_fig9-53.png,Chapter 9. Stability in the Frequency Domain,679,9.53,960,1000,FIGURE 9.53,ok
+cap09-stability-in-the-frequency-domain/pagina-0680_fig9-54.png,Chapter 9. Stability in the Frequency Domain,680,9.54,1162,1124,FIGURE 9.54,ok
+cap09-stability-in-the-frequency-domain/pagina-0680_fig9-55.png,Chapter 9. Stability in the Frequency Domain,680,9.55,955,268,FIGURE 9.55 and Bode with ­relative stability.,ok
+cap09-stability-in-the-frequency-domain/pagina-0681_fig9-56.png,Chapter 9. Stability in the Frequency Domain,681,9.56,1459,1097,FIGURE 9.56 The margin function.,ok
+cap09-stability-in-the-frequency-domain/pagina-0681_fig9-57.png,Chapter 9. Stability in the Frequency Domain,681,9.57,1155,840,FIGURE 9.57 The Bode plot for the system in Figure 9.55 with the gain margin and the phase ­margin ­indicated on the plots.,ok
+cap09-stability-in-the-frequency-domain/pagina-0682_fig9-58.png,Chapter 9. Stability in the Frequency Domain,682,9.58,1097,1098,FIGURE 9.58 (b) m-file script.,ok
+_ambiguos/pagina-0682_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,682,,1094,808,,ambiguo
+cap09-stability-in-the-frequency-domain/pagina-0683_fig9-59.png,Chapter 9. Stability in the Frequency Domain,683,9.59,1077,1475,FIGURE 9.59 The nichols function.,ok
+cap09-stability-in-the-frequency-domain/pagina-0683_fig9-60.png,Chapter 9. Stability in the Frequency Domain,683,9.60,1039,785,FIGURE 9.60 Nichols chart for the system of Equation (9.97).,ok
+cap09-stability-in-the-frequency-domain/pagina-0684_fig9-61.png,Chapter 9. Stability in the Frequency Domain,684,9.61,693,572,FIGURE 9.61 The pade function.,ok
+cap09-stability-in-the-frequency-domain/pagina-0685_fig9-62.png,Chapter 9. Stability in the Frequency Domain,685,9.62,1364,1710,FIGURE 9.62 (a) Bode plot for the liquid level control system. (b) m-file script.,ok
+_ambiguos/pagina-0685_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,685,,1294,612,,ambiguo
+cap09-stability-in-the-frequency-domain/pagina-0686_fig9-63.png,Chapter 9. Stability in the Frequency Domain,686,9.63,1181,1540,FIGURE 9.63 Remotely ­controlled vehicle. (a) Closed-loop ­system Bode plot. (b) m-file script.,ok
+cap09-stability-in-the-frequency-domain/pagina-0687_fig9-64.png,Chapter 9. Stability in the Frequency Domain,687,9.64,1265,1571,FIGURE 9.64 Remotely controlled vehicle. (a) Step response. (b) m-file script.,ok
+cap09-stability-in-the-frequency-domain/pagina-0688_fig9-65.png,Chapter 9. Stability in the Frequency Domain,688,9.65,1334,1955,FIGURE 9.65 Remotely controlled vehicle. (a) Nichols chart. (b) m-file script.,ok
+_ambiguos/pagina-0688_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,688,,714,363,,ambiguo
+_ambiguos/pagina-0688_semlegenda2.png,Chapter 9. Stability in the Frequency Domain,688,,122,626,,ambiguo
+cap09-stability-in-the-frequency-domain/pagina-0689_fig9-66.png,Chapter 9. Stability in the Frequency Domain,689,9.66,926,1339,FIGURE 9.66 (a) Nyquist plot for the remotely controlled ­vehicle with (b) m-file script.,ok
+cap09-stability-in-the-frequency-domain/pagina-0689_fig9-67.png,Chapter 9. Stability in the Frequency Domain,689,9.67,1475,946,FIGURE 9.67 Bode plot of the disk drive read system.,ok
+cap09-stability-in-the-frequency-domain/pagina-0690_fig9-68.png,Chapter 9. Stability in the Frequency Domain,690,9.68,1443,1127,FIGURE 9.68 Response of the disk drive read system to a step input.,ok
+_ambiguos/pagina-0691_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,691,,314,327,,ambiguo
+_ambiguos/pagina-0691_semlegenda2.png,Chapter 9. Stability in the Frequency Domain,691,,591,391,,ambiguo
+_ambiguos/pagina-0691_semlegenda3.png,Chapter 9. Stability in the Frequency Domain,691,,340,407,,ambiguo
+_ambiguos/pagina-0691_semlegenda4.png,Chapter 9. Stability in the Frequency Domain,691,,599,321,,ambiguo
+_ambiguos/pagina-0691_semlegenda5.png,Chapter 9. Stability in the Frequency Domain,691,,360,362,,ambiguo
+_ambiguos/pagina-0691_semlegenda6.png,Chapter 9. Stability in the Frequency Domain,691,,588,381,,ambiguo
+_ambiguos/pagina-0691_semlegenda7.png,Chapter 9. Stability in the Frequency Domain,691,,455,401,,ambiguo
+_ambiguos/pagina-0691_semlegenda8.png,Chapter 9. Stability in the Frequency Domain,691,,583,325,,ambiguo
+_ambiguos/pagina-0692_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,692,,461,455,,ambiguo
+_ambiguos/pagina-0692_semlegenda2.png,Chapter 9. Stability in the Frequency Domain,692,,362,421,,ambiguo
+_ambiguos/pagina-0692_semlegenda3.png,Chapter 9. Stability in the Frequency Domain,692,,299,344,,ambiguo
+_ambiguos/pagina-0692_semlegenda4.png,Chapter 9. Stability in the Frequency Domain,692,,457,856,,ambiguo
+_ambiguos/pagina-0692_semlegenda5.png,Chapter 9. Stability in the Frequency Domain,692,,447,740,,ambiguo
+_ambiguos/pagina-0693_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,693,,370,404,,ambiguo
+_ambiguos/pagina-0693_semlegenda2.png,Chapter 9. Stability in the Frequency Domain,693,,588,358,,ambiguo
+_ambiguos/pagina-0693_semlegenda3.png,Chapter 9. Stability in the Frequency Domain,693,,370,403,,ambiguo
+_ambiguos/pagina-0693_semlegenda4.png,Chapter 9. Stability in the Frequency Domain,693,,580,367,,ambiguo
+_ambiguos/pagina-0693_semlegenda5.png,Chapter 9. Stability in the Frequency Domain,693,,451,418,,ambiguo
+_ambiguos/pagina-0693_semlegenda6.png,Chapter 9. Stability in the Frequency Domain,693,,579,330,,ambiguo
+_ambiguos/pagina-0693_semlegenda7.png,Chapter 9. Stability in the Frequency Domain,693,,411,403,,ambiguo
+_ambiguos/pagina-0693_semlegenda8.png,Chapter 9. Stability in the Frequency Domain,693,,616,331,,ambiguo
+_ambiguos/pagina-0694_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,694,,263,448,,ambiguo
+_ambiguos/pagina-0694_semlegenda2.png,Chapter 9. Stability in the Frequency Domain,694,,427,1014,,ambiguo
+_ambiguos/pagina-0694_semlegenda3.png,Chapter 9. Stability in the Frequency Domain,694,,461,454,,ambiguo
+_ambiguos/pagina-0694_semlegenda4.png,Chapter 9. Stability in the Frequency Domain,694,,349,369,,ambiguo
+_ambiguos/pagina-0694_semlegenda5.png,Chapter 9. Stability in the Frequency Domain,694,,325,990,,ambiguo
+_ambiguos/pagina-0694_semlegenda6.png,Chapter 9. Stability in the Frequency Domain,694,,391,271,,ambiguo
+_ambiguos/pagina-0695_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,695,,428,453,,ambiguo
+_ambiguos/pagina-0695_semlegenda2.png,Chapter 9. Stability in the Frequency Domain,695,,578,344,,ambiguo
+_ambiguos/pagina-0695_semlegenda3.png,Chapter 9. Stability in the Frequency Domain,695,,451,403,,ambiguo
+_ambiguos/pagina-0695_semlegenda4.png,Chapter 9. Stability in the Frequency Domain,695,,576,302,,ambiguo
+_ambiguos/pagina-0695_semlegenda5.png,Chapter 9. Stability in the Frequency Domain,695,,451,451,,ambiguo
+_ambiguos/pagina-0695_semlegenda6.png,Chapter 9. Stability in the Frequency Domain,695,,434,363,,ambiguo
+_ambiguos/pagina-0695_semlegenda7.png,Chapter 9. Stability in the Frequency Domain,695,,404,400,,ambiguo
+_ambiguos/pagina-0695_semlegenda8.png,Chapter 9. Stability in the Frequency Domain,695,,583,302,,ambiguo
+_ambiguos/pagina-0696_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,696,,357,392,,ambiguo
+_ambiguos/pagina-0696_semlegenda2.png,Chapter 9. Stability in the Frequency Domain,696,,342,424,,ambiguo
+_ambiguos/pagina-0696_semlegenda3.png,Chapter 9. Stability in the Frequency Domain,696,,319,391,,ambiguo
+_ambiguos/pagina-0696_semlegenda4.png,Chapter 9. Stability in the Frequency Domain,696,,361,425,,ambiguo
+_ambiguos/pagina-0696_semlegenda5.png,Chapter 9. Stability in the Frequency Domain,696,,401,363,,ambiguo
+_ambiguos/pagina-0696_semlegenda6.png,Chapter 9. Stability in the Frequency Domain,696,,327,421,,ambiguo
+_ambiguos/pagina-0696_semlegenda7.png,Chapter 9. Stability in the Frequency Domain,696,,372,394,,ambiguo
+_ambiguos/pagina-0696_semlegenda8.png,Chapter 9. Stability in the Frequency Domain,696,,324,426,,ambiguo
+_ambiguos/pagina-0697_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,697,,446,416,,ambiguo
+_ambiguos/pagina-0697_semlegenda2.png,Chapter 9. Stability in the Frequency Domain,697,,578,365,,ambiguo
+_ambiguos/pagina-0697_semlegenda3.png,Chapter 9. Stability in the Frequency Domain,697,,404,451,,ambiguo
+_ambiguos/pagina-0697_semlegenda4.png,Chapter 9. Stability in the Frequency Domain,697,,586,451,,ambiguo
+_ambiguos/pagina-0697_semlegenda5.png,Chapter 9. Stability in the Frequency Domain,697,,1055,428,,ambiguo
+_ambiguos/pagina-0698_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,698,,411,371,,ambiguo
+_ambiguos/pagina-0698_semlegenda2.png,Chapter 9. Stability in the Frequency Domain,698,,488,905,,ambiguo
+_ambiguos/pagina-0698_semlegenda3.png,Chapter 9. Stability in the Frequency Domain,698,,416,414,,ambiguo
+_ambiguos/pagina-0698_semlegenda4.png,Chapter 9. Stability in the Frequency Domain,698,,444,419,,ambiguo
+_ambiguos/pagina-0698_semlegenda5.png,Chapter 9. Stability in the Frequency Domain,698,,417,392,,ambiguo
+cap09-stability-in-the-frequency-domain/pagina-0699_fig9-69.png,Chapter 9. Stability in the Frequency Domain,699,9.69,1094,351,FIGURE 9.69,ok
+_ambiguos/pagina-0703_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,703,,769,562,,ambiguo
+_ambiguos/pagina-0703_semlegenda2.png,Chapter 9. Stability in the Frequency Domain,703,,871,864,,ambiguo
+_ambiguos/pagina-0704_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,704,,912,1236,,ambiguo
+_ambiguos/pagina-0705_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,705,,1207,1881,,ambiguo
+_ambiguos/pagina-0706_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,706,,817,268,,ambiguo
+_ambiguos/pagina-0706_semlegenda2.png,Chapter 9. Stability in the Frequency Domain,706,,860,731,,ambiguo
+_ambiguos/pagina-0707_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,707,,663,662,,ambiguo
+_ambiguos/pagina-0707_semlegenda2.png,Chapter 9. Stability in the Frequency Domain,707,,422,284,,ambiguo
+_ambiguos/pagina-0707_semlegenda3.png,Chapter 9. Stability in the Frequency Domain,707,,927,346,,ambiguo
+_ambiguos/pagina-0708_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,708,,772,632,,ambiguo
+_ambiguos/pagina-0708_semlegenda2.png,Chapter 9. Stability in the Frequency Domain,708,,870,284,,ambiguo
+_ambiguos/pagina-0709_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,709,,629,367,,ambiguo
+_ambiguos/pagina-0709_semlegenda2.png,Chapter 9. Stability in the Frequency Domain,709,,1493,538,,ambiguo
+_ambiguos/pagina-0709_semlegenda3.png,Chapter 9. Stability in the Frequency Domain,709,,884,400,,ambiguo
+_ambiguos/pagina-0710_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,710,,1519,545,,ambiguo
+_ambiguos/pagina-0710_semlegenda2.png,Chapter 9. Stability in the Frequency Domain,710,,703,701,,ambiguo
+_ambiguos/pagina-0711_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,711,,1466,1206,,ambiguo
+_ambiguos/pagina-0711_semlegenda2.png,Chapter 9. Stability in the Frequency Domain,711,,901,762,,ambiguo
+_ambiguos/pagina-0712_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,712,,684,701,,ambiguo
+_ambiguos/pagina-0712_semlegenda2.png,Chapter 9. Stability in the Frequency Domain,712,,1260,226,,ambiguo
+_ambiguos/pagina-0712_semlegenda3.png,Chapter 9. Stability in the Frequency Domain,712,,953,510,,ambiguo
+_ambiguos/pagina-0713_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,713,,822,310,,ambiguo
+_ambiguos/pagina-0713_semlegenda2.png,Chapter 9. Stability in the Frequency Domain,713,,1110,303,,ambiguo
+_ambiguos/pagina-0713_semlegenda3.png,Chapter 9. Stability in the Frequency Domain,713,,865,496,,ambiguo
+_ambiguos/pagina-0714_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,714,,1343,336,,ambiguo
+_ambiguos/pagina-0714_semlegenda2.png,Chapter 9. Stability in the Frequency Domain,714,,1432,384,,ambiguo
+_ambiguos/pagina-0714_semlegenda3.png,Chapter 9. Stability in the Frequency Domain,714,,1376,994,,ambiguo
+_ambiguos/pagina-0715_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,715,,1038,403,,ambiguo
+_ambiguos/pagina-0715_semlegenda2.png,Chapter 9. Stability in the Frequency Domain,715,,1352,391,,ambiguo
+_ambiguos/pagina-0715_semlegenda3.png,Chapter 9. Stability in the Frequency Domain,715,,1499,304,,ambiguo
+_ambiguos/pagina-0716_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,716,,1022,1376,,ambiguo
+_ambiguos/pagina-0717_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,717,,1628,775,,ambiguo
+_ambiguos/pagina-0717_semlegenda2.png,Chapter 9. Stability in the Frequency Domain,717,,1089,660,,ambiguo
+_ambiguos/pagina-0718_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,718,,904,384,,ambiguo
+_ambiguos/pagina-0718_semlegenda2.png,Chapter 9. Stability in the Frequency Domain,718,,1218,927,,ambiguo
+_ambiguos/pagina-0719_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,719,,1045,246,,ambiguo
+_ambiguos/pagina-0719_semlegenda2.png,Chapter 9. Stability in the Frequency Domain,719,,1461,367,,ambiguo
+_ambiguos/pagina-0720_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,720,,1125,201,,ambiguo
+_ambiguos/pagina-0720_semlegenda2.png,Chapter 9. Stability in the Frequency Domain,720,,946,464,,ambiguo
+_ambiguos/pagina-0721_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,721,,1028,974,,ambiguo
+_ambiguos/pagina-0721_semlegenda2.png,Chapter 9. Stability in the Frequency Domain,721,,1298,379,,ambiguo
+_ambiguos/pagina-0722_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,722,,999,2278,,ambiguo
+_ambiguos/pagina-0723_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,723,,926,251,,ambiguo
+_ambiguos/pagina-0723_semlegenda2.png,Chapter 9. Stability in the Frequency Domain,723,,899,304,,ambiguo
+_ambiguos/pagina-0724_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,724,,743,272,,ambiguo
+_ambiguos/pagina-0724_semlegenda2.png,Chapter 9. Stability in the Frequency Domain,724,,483,596,,ambiguo
+_ambiguos/pagina-0724_semlegenda3.png,Chapter 9. Stability in the Frequency Domain,724,,871,251,,ambiguo
+_ambiguos/pagina-0724_semlegenda4.png,Chapter 9. Stability in the Frequency Domain,724,,933,385,,ambiguo
+_ambiguos/pagina-0725_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,725,,1196,301,,ambiguo
+_ambiguos/pagina-0725_semlegenda2.png,Chapter 9. Stability in the Frequency Domain,725,,715,254,,ambiguo
+_ambiguos/pagina-0725_semlegenda3.png,Chapter 9. Stability in the Frequency Domain,725,,1109,423,,ambiguo
+_ambiguos/pagina-0725_semlegenda4.png,Chapter 9. Stability in the Frequency Domain,725,,947,560,,ambiguo
+_ambiguos/pagina-0726_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,726,,1259,727,,ambiguo
+_ambiguos/pagina-0727_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,727,,1170,669,,ambiguo
+_ambiguos/pagina-0728_semlegenda1.png,Chapter 9. Stability in the Frequency Domain,728,,774,335,,ambiguo
+_ambiguos/pagina-0729_semlegenda1.png,Chapter 10. The Design of Feedback Control Systems,729,,351,365,,ambiguo
+cap10-the-design-of-feedback-control-systems/pagina-0731_fig10-1.png,Chapter 10. The Design of Feedback Control Systems,731,10.1,1555,745,"FIGURE 10.1 Types of ­compensation. (a) Cascade compensation. (b) Feedback compensation. (c) Output, or load, ­compensation. (d) Input compensation.",ok
+cap10-the-design-of-feedback-control-systems/pagina-0733_fig10-2.png,Chapter 10. The Design of Feedback Control Systems,733,10.2,980,499,FIGURE 10.2 Pole–zero diagram of the phase-lead compensator.,ok
+cap10-the-design-of-feedback-control-systems/pagina-0734_fig10-3.png,Chapter 10. The Design of Feedback Control Systems,734,10.3,1190,1747,FIGURE 10.3 Bode plot of the phase-lead compensator.,ok
+_ambiguos/pagina-0734_semlegenda1.png,Chapter 10. The Design of Feedback Control Systems,734,,555,344,,ambiguo
+cap10-the-design-of-feedback-control-systems/pagina-0735_fig10-4.png,Chapter 10. The Design of Feedback Control Systems,735,10.4,996,486,FIGURE 10.4 Maximum phase angle m for a phase-lead compensator.,ok
+cap10-the-design-of-feedback-control-systems/pagina-0735_fig10-5.png,Chapter 10. The Design of Feedback Control Systems,735,10.5,821,950,FIGURE 10.5 Pole–zero diagram of the phase-lag compensator.,ok
+cap10-the-design-of-feedback-control-systems/pagina-0736_fig10-6.png,Chapter 10. The Design of Feedback Control Systems,736,10.6,1721,1081,FIGURE 10.6,ok
+cap10-the-design-of-feedback-control-systems/pagina-0738_fig10-7.png,Chapter 10. The Design of Feedback Control Systems,738,10.7,1566,789,FIGURE 10.7 Bode plot for Example 10.1.,ok
+cap10-the-design-of-feedback-control-systems/pagina-0740_fig10-8.png,Chapter 10. The Design of Feedback Control Systems,740,10.8,943,2308,FIGURE 10.8 (a) Bode plot for Example 10.2. (b) Nichols chart for Example 10.2.,ok
+_ambiguos/pagina-0740_semlegenda1.png,Chapter 10. The Design of Feedback Control Systems,740,,1075,1057,,ambiguo
+cap10-the-design-of-feedback-control-systems/pagina-0743_fig10-9.png,Chapter 10. The Design of Feedback Control Systems,743,10.9,1570,1141,FIGURE 10.9 Compensation on the s-plane using a phase-lead compensator.,ok
+cap10-the-design-of-feedback-control-systems/pagina-0744_fig10-10.png,Chapter 10. The Design of Feedback Control Systems,744,10.10,726,1152,FIGURE 10.10 Phase-lead ­compensator ­design for Example 10.3.,ok
+cap10-the-design-of-feedback-control-systems/pagina-0747_fig10-11.png,Chapter 10. The Design of Feedback Control Systems,747,10.11,1127,1853,FIGURE 10.11 (a) Design of a phase-lead ­compensator on the s-plane for Example 10.4. (b) Step response of the ­compensated system of Example 10.4.,ok
+_ambiguos/pagina-0747_semlegenda1.png,Chapter 10. The Design of Feedback Control Systems,747,,504,187,,ambiguo
+cap10-the-design-of-feedback-control-systems/pagina-0748_fig10-12.png,Chapter 10. The Design of Feedback Control Systems,748,10.12,1011,443,FIGURE 10.12 Single-loop feed- back control system.,ok
+cap10-the-design-of-feedback-control-systems/pagina-0750_fig10-13.png,Chapter 10. The Design of Feedback Control Systems,750,10.13,866,679,FIGURE 10.13 The s-plane design of an integration compensator.,ok
+cap10-the-design-of-feedback-control-systems/pagina-0752_fig10-14.png,Chapter 10. The Design of Feedback Control Systems,752,10.14,529,766,FIGURE 10.14 Root locus of the uncompensated system of Example 10.6.,ok
+cap10-the-design-of-feedback-control-systems/pagina-0753_fig10-15.png,Chapter 10. The Design of Feedback Control Systems,753,10.15,1412,1114,FIGURE 10.15 Root locus of the compensated ­system of Example 10.6. Note that the actual root will ­differ from the desired root by a slight amount. The ­vertical ­portion of the locus leaves the σ ax,ok
+cap10-the-design-of-feedback-control-systems/pagina-0754_fig10-16.png,Chapter 10. The Design of Feedback Control Systems,754,10.16,1217,996,FIGURE 10.16 Design of a phase- lag compensator on the s-plane.,ok
+cap10-the-design-of-feedback-control-systems/pagina-0756_fig10-17.png,Chapter 10. The Design of Feedback Control Systems,756,10.17,1401,1159,FIGURE 10.17 response to a step input for the uncompensated system (solid line) and the compensated system (dashed line) of Example 10.8.,ok
+_ambiguos/pagina-0756_semlegenda1.png,Chapter 10. The Design of Feedback Control Systems,756,,1546,1073,,ambiguo
+cap10-the-design-of-feedback-control-systems/pagina-0758_fig10-18.png,Chapter 10. The Design of Feedback Control Systems,758,10.18,1561,1086,FIGURE 10.18 Design of a phase- lag compensator on the Bode plot for Example 10.9.,ok
+cap10-the-design-of-feedback-control-systems/pagina-0761_fig10-19.png,Chapter 10. The Design of Feedback Control Systems,761,10.19,1171,946,FIGURE 10.19 Control system with a prefilter G,ok
+cap10-the-design-of-feedback-control-systems/pagina-0764_fig10-20.png,Chapter 10. The Design of Feedback Control Systems,764,10.20,1563,895,FIGURE 10.20 The deadbeat ­response. A is the magnitude of the step input.,ok
+cap10-the-design-of-feedback-control-systems/pagina-0766_fig10-21.png,Chapter 10. The Design of Feedback Control Systems,766,10.21,1170,1106,FIGURE 10.21 (a) Rotor winder control system. (b) Block diagram.,ok
+cap10-the-design-of-feedback-control-systems/pagina-0767_fig10-22.png,Chapter 10. The Design of Feedback Control Systems,767,10.22,1016,1018,FIGURE 10.22 Root locus for lead compensator.,ok
+cap10-the-design-of-feedback-control-systems/pagina-0768_fig10-23.png,Chapter 10. The Design of Feedback Control Systems,768,10.23,1845,676,FIGURE 10.23,ok
+cap10-the-design-of-feedback-control-systems/pagina-0769_fig10-24.png,Chapter 10. The Design of Feedback Control Systems,769,10.24,1498,750,FIGURE 10.24 A depiction of the milling machine.,ok
+cap10-the-design-of-feedback-control-systems/pagina-0769_fig10-25.png,Chapter 10. The Design of Feedback Control Systems,769,10.25,1566,547,FIGURE 10.25 A simplified block diagram of the ­milling machine feedback system.,ok
+cap10-the-design-of-feedback-control-systems/pagina-0770_fig10-26.png,Chapter 10. The Design of Feedback Control Systems,770,10.26,1293,978,FIGURE 10.26 control system design example.,ok
+_ambiguos/pagina-0770_semlegenda1.png,Chapter 10. The Design of Feedback Control Systems,770,,600,159,,ambiguo
+cap10-the-design-of-feedback-control-systems/pagina-0771_fig10-27.png,Chapter 10. The Design of Feedback Control Systems,771,10.27,1363,1065,FIGURE 10.27 Hypothetical ­impulse response of the milling machine.,ok
+cap10-the-design-of-feedback-control-systems/pagina-0774_fig10-28.png,Chapter 10. The Design of Feedback Control Systems,774,10.28,1255,978,FIGURE 10.28 Root locus for the uncompensated system.,ok
+cap10-the-design-of-feedback-control-systems/pagina-0775_fig10-29.png,Chapter 10. The Design of Feedback Control Systems,775,10.29,1223,952,FIGURE 10.29 Step response for the compensated system.,ok
+cap10-the-design-of-feedback-control-systems/pagina-0776_fig10-30.png,Chapter 10. The Design of Feedback Control Systems,776,10.30,1029,1473,FIGURE 10.30 (a) Transient ­response for ­simple gain controller. (b) m-file script.,ok
+cap10-the-design-of-feedback-control-systems/pagina-0778_fig10-31.png,Chapter 10. The Design of Feedback Control Systems,778,10.31,1174,1532,FIGURE 10.31 (a) Bode plot. (b) m-file script.,ok
+cap10-the-design-of-feedback-control-systems/pagina-0779_fig10-32.png,Chapter 10. The Design of Feedback Control Systems,779,10.32,1167,1142,"FIGURE 10.32 Phase-lead ­compensator: (a) compensated Bode plot, (b) m-file script.",ok
+cap10-the-design-of-feedback-control-systems/pagina-0779_fig10-33.png,Chapter 10. The Design of Feedback Control Systems,779,10.33,950,816,"FIGURE 10.33 Phase-lead ­compensator: (a) step response, (b) m-file script.",ok
+cap10-the-design-of-feedback-control-systems/pagina-0780_fig10-34.png,Chapter 10. The Design of Feedback Control Systems,780,10.34,949,1408,"FIGURE 10.34 Phase-lag ­compensator: (a) uncompensated root locus, (b) m-file script.",ok
+cap10-the-design-of-feedback-control-systems/pagina-0781_fig10-35.png,Chapter 10. The Design of Feedback Control Systems,781,10.35,976,1382,"FIGURE 10.35 Phase-lag ­compensator: (a) compensated root locus, (b) m-file script.",ok
+cap10-the-design-of-feedback-control-systems/pagina-0782_fig10-36.png,Chapter 10. The Design of Feedback Control Systems,782,10.36,1015,1326,"FIGURE 10.36 Phase-lag ­compensator: (a) step response, (b) m-file response.",ok
+cap10-the-design-of-feedback-control-systems/pagina-0783_fig10-37.png,Chapter 10. The Design of Feedback Control Systems,783,10.37,1800,386,FIGURE 10.37,ok
+cap10-the-design-of-feedback-control-systems/pagina-0785_fig10-38.png,Chapter 10. The Design of Feedback Control Systems,785,10.38,1292,1214,FIGURE 10.38,ok
+_ambiguos/pagina-0785_semlegenda1.png,Chapter 10. The Design of Feedback Control Systems,785,,1041,663,,ambiguo
+_ambiguos/pagina-0785_semlegenda2.png,Chapter 10. The Design of Feedback Control Systems,785,,558,234,,ambiguo
+_ambiguos/pagina-0790_semlegenda1.png,Chapter 10. The Design of Feedback Control Systems,790,,1208,1104,,ambiguo
+_ambiguos/pagina-0791_semlegenda1.png,Chapter 10. The Design of Feedback Control Systems,791,,1100,251,,ambiguo
+_ambiguos/pagina-0791_semlegenda2.png,Chapter 10. The Design of Feedback Control Systems,791,,974,201,,ambiguo
+_ambiguos/pagina-0792_semlegenda1.png,Chapter 10. The Design of Feedback Control Systems,792,,1065,301,,ambiguo
+_ambiguos/pagina-0792_semlegenda2.png,Chapter 10. The Design of Feedback Control Systems,792,,746,333,,ambiguo
+_ambiguos/pagina-0792_semlegenda3.png,Chapter 10. The Design of Feedback Control Systems,792,,1000,385,,ambiguo
+_ambiguos/pagina-0793_semlegenda1.png,Chapter 10. The Design of Feedback Control Systems,793,,1308,288,,ambiguo
+_ambiguos/pagina-0793_semlegenda2.png,Chapter 10. The Design of Feedback Control Systems,793,,1854,497,,ambiguo
+_ambiguos/pagina-0793_semlegenda3.png,Chapter 10. The Design of Feedback Control Systems,793,,1177,418,,ambiguo
+_ambiguos/pagina-0794_semlegenda1.png,Chapter 10. The Design of Feedback Control Systems,794,,1704,1217,,ambiguo
+_ambiguos/pagina-0795_semlegenda1.png,Chapter 10. The Design of Feedback Control Systems,795,,1489,524,,ambiguo
+_ambiguos/pagina-0795_semlegenda2.png,Chapter 10. The Design of Feedback Control Systems,795,,1023,193,,ambiguo
+_ambiguos/pagina-0796_semlegenda1.png,Chapter 10. The Design of Feedback Control Systems,796,,827,251,,ambiguo
+_ambiguos/pagina-0796_semlegenda2.png,Chapter 10. The Design of Feedback Control Systems,796,,1080,321,,ambiguo
+_ambiguos/pagina-0796_semlegenda3.png,Chapter 10. The Design of Feedback Control Systems,796,,865,201,,ambiguo
+_ambiguos/pagina-0797_semlegenda1.png,Chapter 10. The Design of Feedback Control Systems,797,,1486,691,,ambiguo
+_ambiguos/pagina-0797_semlegenda2.png,Chapter 10. The Design of Feedback Control Systems,797,,1240,441,,ambiguo
+_ambiguos/pagina-0798_semlegenda1.png,Chapter 10. The Design of Feedback Control Systems,798,,1163,518,,ambiguo
+_ambiguos/pagina-0798_semlegenda2.png,Chapter 10. The Design of Feedback Control Systems,798,,1273,392,,ambiguo
+_ambiguos/pagina-0799_semlegenda1.png,Chapter 10. The Design of Feedback Control Systems,799,,1402,453,,ambiguo
+_ambiguos/pagina-0799_semlegenda2.png,Chapter 10. The Design of Feedback Control Systems,799,,902,251,,ambiguo
+_ambiguos/pagina-0800_semlegenda1.png,Chapter 10. The Design of Feedback Control Systems,800,,1176,279,,ambiguo
+_ambiguos/pagina-0801_semlegenda1.png,Chapter 10. The Design of Feedback Control Systems,801,,1139,644,,ambiguo
+_ambiguos/pagina-0801_semlegenda2.png,Chapter 10. The Design of Feedback Control Systems,801,,1118,276,,ambiguo
+_ambiguos/pagina-0801_semlegenda3.png,Chapter 10. The Design of Feedback Control Systems,801,,1102,251,,ambiguo
+_ambiguos/pagina-0801_semlegenda4.png,Chapter 10. The Design of Feedback Control Systems,801,,997,251,,ambiguo
+_ambiguos/pagina-0801_semlegenda5.png,Chapter 10. The Design of Feedback Control Systems,801,,974,253,,ambiguo
+_ambiguos/pagina-0802_semlegenda1.png,Chapter 10. The Design of Feedback Control Systems,802,,1288,410,,ambiguo
+_ambiguos/pagina-0803_semlegenda1.png,Chapter 10. The Design of Feedback Control Systems,803,,893,276,,ambiguo
+_ambiguos/pagina-0803_semlegenda2.png,Chapter 10. The Design of Feedback Control Systems,803,,1230,987,,ambiguo
+_ambiguos/pagina-0803_semlegenda3.png,Chapter 10. The Design of Feedback Control Systems,803,,1237,345,,ambiguo
+_ambiguos/pagina-0803_semlegenda4.png,Chapter 10. The Design of Feedback Control Systems,803,,888,201,,ambiguo
+_ambiguos/pagina-0804_semlegenda1.png,Chapter 10. The Design of Feedback Control Systems,804,,1057,325,,ambiguo
+_ambiguos/pagina-0804_semlegenda2.png,Chapter 10. The Design of Feedback Control Systems,804,,534,664,,ambiguo
+_ambiguos/pagina-0805_semlegenda1.png,Chapter 10. The Design of Feedback Control Systems,805,,800,795,,ambiguo
+_ambiguos/pagina-0806_semlegenda1.png,Chapter 10. The Design of Feedback Control Systems,806,,1197,1029,,ambiguo
+_ambiguos/pagina-0806_semlegenda2.png,Chapter 10. The Design of Feedback Control Systems,806,,908,276,,ambiguo
+_ambiguos/pagina-0806_semlegenda3.png,Chapter 10. The Design of Feedback Control Systems,806,,855,642,,ambiguo
+_ambiguos/pagina-0807_semlegenda1.png,Chapter 10. The Design of Feedback Control Systems,807,,988,226,,ambiguo
+_ambiguos/pagina-0807_semlegenda2.png,Chapter 10. The Design of Feedback Control Systems,807,,1205,308,,ambiguo
+_ambiguos/pagina-0808_semlegenda1.png,Chapter 10. The Design of Feedback Control Systems,808,,957,276,,ambiguo
+_ambiguos/pagina-0808_semlegenda2.png,Chapter 10. The Design of Feedback Control Systems,808,,462,392,,ambiguo
+_ambiguos/pagina-0808_semlegenda3.png,Chapter 10. The Design of Feedback Control Systems,808,,1430,795,,ambiguo
+_ambiguos/pagina-0808_semlegenda4.png,Chapter 10. The Design of Feedback Control Systems,808,,988,352,,ambiguo
+_ambiguos/pagina-0809_semlegenda1.png,Chapter 10. The Design of Feedback Control Systems,809,,1160,884,,ambiguo
+_ambiguos/pagina-0809_semlegenda2.png,Chapter 10. The Design of Feedback Control Systems,809,,1498,234,,ambiguo
+_ambiguos/pagina-0809_semlegenda3.png,Chapter 10. The Design of Feedback Control Systems,809,,727,172,,ambiguo
+_ambiguos/pagina-0810_semlegenda1.png,Chapter 10. The Design of Feedback Control Systems,810,,934,301,,ambiguo
+_ambiguos/pagina-0810_semlegenda2.png,Chapter 10. The Design of Feedback Control Systems,810,,1557,301,,ambiguo
+_ambiguos/pagina-0811_semlegenda1.png,Chapter 10. The Design of Feedback Control Systems,811,,1259,663,,ambiguo
+_ambiguos/pagina-0811_semlegenda2.png,Chapter 10. The Design of Feedback Control Systems,811,,912,234,,ambiguo
+_ambiguos/pagina-0813_semlegenda1.png,Chapter 11. The Design of State Variable Feedback Systems,813,,351,365,,ambiguo
+cap11-the-design-of-state-variable-feedback-systems/pagina-0814_fig11-1.png,Chapter 11. The Design of State Variable Feedback Systems,814,11.1,1293,678,FIGURE 11.1 State variable ­compensator ­employing full-state feedback in series with a full-state observer.,ok
+cap11-the-design-of-state-variable-feedback-systems/pagina-0816_fig11-2.png,Chapter 11. The Design of State Variable Feedback Systems,816,11.2,1355,974,FIGURE 11.2 Third-order ­system. (a) Signal-flow graph model. (b) Block diagram model.,ok
+cap11-the-design-of-state-variable-feedback-systems/pagina-0817_fig11-3.png,Chapter 11. The Design of State Variable Feedback Systems,817,11.3,1552,777,FIGURE 11.3 (a) Flow graph model for Example 11.2. (b) Block ­diagram model.,ok
+cap11-the-design-of-state-variable-feedback-systems/pagina-0819_fig11-4.png,Chapter 11. The Design of State Variable Feedback Systems,819,11.4,1391,1379,FIGURE 11.4 Two state system model for Example 11.4. (a) Signal-flow graph model. (b) Block diagram model.,ok
+cap11-the-design-of-state-variable-feedback-systems/pagina-0821_fig11-5.png,Chapter 11. The Design of State Variable Feedback Systems,821,11.5,679,544,FIGURE 11.5 Full-state feedback block diagram (with no reference input).,ok
+cap11-the-design-of-state-variable-feedback-systems/pagina-0826_fig11-6.png,Chapter 11. The Design of State Variable Feedback Systems,826,11.6,979,473,FIGURE 11.6 The full-state observer.,ok
+cap11-the-design-of-state-variable-feedback-systems/pagina-0828_fig11-7.png,Chapter 11. The Design of State Variable Feedback Systems,828,11.7,1127,919,FIGURE 11.7 Second-order ­observer response to initial estimation errors.,ok
+cap11-the-design-of-state-variable-feedback-systems/pagina-0830_fig11-8.png,Chapter 11. The Design of State Variable Feedback Systems,830,11.8,1497,497,FIGURE 11.8 State variable ­compensator with integrated full-state feedback and observer.,ok
+cap11-the-design-of-state-variable-feedback-systems/pagina-0834_fig11-9.png,Chapter 11. The Design of State Variable Feedback Systems,834,11.9,1145,925,"FIGURE 11.9 System pole map: open-loop poles, desired closed-loop poles, and observer poles.",ok
+cap11-the-design-of-state-variable-feedback-systems/pagina-0835_fig11-10.png,Chapter 11. The Design of State Variable Feedback Systems,835,11.10,1801,807,FIGURE 11.10,ok
+_ambiguos/pagina-0836_semlegenda1.png,Chapter 11. The Design of State Variable Feedback Systems,836,,1591,683,,ambiguo
+cap11-the-design-of-state-variable-feedback-systems/pagina-0837_fig11-12.png,Chapter 11. The Design of State Variable Feedback Systems,837,11.12,1374,602,FIGURE 11.12 State variable compensator with reference input and,ok
+cap11-the-design-of-state-variable-feedback-systems/pagina-0838_fig11-13.png,Chapter 11. The Design of State Variable Feedback Systems,838,11.13,1629,417,FIGURE 11.13 State variable compensator with reference input and and M,ok
+cap11-the-design-of-state-variable-feedback-systems/pagina-0840_fig11-14.png,Chapter 11. The Design of State Variable Feedback Systems,840,11.14,745,184,FIGURE 11.14 Open-loop ­control system of Example 11.11.,ok
+_ambiguos/pagina-0840_semlegenda1.png,Chapter 11. The Design of State Variable Feedback Systems,840,,676,149,,ambiguo
+cap11-the-design-of-state-variable-feedback-systems/pagina-0842_fig11-16.png,Chapter 11. The Design of State Variable Feedback Systems,842,11.16,1547,519,FIGURE 11.16 Performance index versus the parameter,ok
+cap11-the-design-of-state-variable-feedback-systems/pagina-0844_fig11-17.png,Chapter 11. The Design of State Variable Feedback Systems,844,11.17,1095,1575,FIGURE 11.17 Performance index versus the feed- back gain k for Example 11.12.,ok
+cap11-the-design-of-state-variable-feedback-systems/pagina-0846_fig11-18.png,Chapter 11. The Design of State Variable Feedback Systems,846,11.18,1063,1431,FIGURE 11.18 Performance index versus the ­feedback gain k for Example 11.13.,ok
+cap11-the-design-of-state-variable-feedback-systems/pagina-0847_fig11-19.png,Chapter 11. The Design of State Variable Feedback Systems,847,11.19,1432,412,FIGURE 11.19 Internal model design for a step input.,ok
+cap11-the-design-of-state-variable-feedback-systems/pagina-0849_fig11-20.png,Chapter 11. The Design of State Variable Feedback Systems,849,11.20,1578,426,FIGURE 11.20 Internal model design for a ramp input. Note that,ok
+cap11-the-design-of-state-variable-feedback-systems/pagina-0850_fig11-21.png,Chapter 11. The Design of State Variable Feedback Systems,850,11.21,1544,994,FIGURE 11.21 Diesel electric ­locomotive system.,ok
+cap11-the-design-of-state-variable-feedback-systems/pagina-0850_fig11-22.png,Chapter 11. The Design of State Variable Feedback Systems,850,11.22,918,820,FIGURE 11.22 Elements of the control system design process emphasized in this diesel elec- tric locomotive example.,ok
+cap11-the-design-of-state-variable-feedback-systems/pagina-0851_fig11-23.png,Chapter 11. The Design of State Variable Feedback Systems,851,11.23,1868,1176,FIGURE 11.23 feedback loops are shown in green.,ok
+cap11-the-design-of-state-variable-feedback-systems/pagina-0853_fig11-24.png,Chapter 11. The Design of State Variable Feedback Systems,853,11.24,1145,397,FIGURE 11.24 Block diagram representation of the diesel electric locomotive.,ok
+cap11-the-design-of-state-variable-feedback-systems/pagina-0855_fig11-25.png,Chapter 11. The Design of State Variable Feedback Systems,855,11.25,1356,708,"FIGURE 11.25 Desired location of the closed-loop poles (that is, the eigenvalues of",ok
+cap11-the-design-of-state-variable-feedback-systems/pagina-0855_fig11-26.png,Chapter 11. The Design of State Variable Feedback Systems,855,11.26,1261,1006,FIGURE 11.26 Closed-loop step response of the diesel electric locomotive.,ok
+cap11-the-design-of-state-variable-feedback-systems/pagina-0856_fig11-27.png,Chapter 11. The Design of State Variable Feedback Systems,856,11.27,1885,825,FIGURE 11.27 and obsv functions.,ok
+cap11-the-design-of-state-variable-feedback-systems/pagina-0857_fig11-29.png,Chapter 11. The Design of State Variable Feedback Systems,857,11.29,1568,1075,"FIGURE 11.29 Controllability with radial thrusters only: (a) m-file script, (b) output.",ok
+cap11-the-design-of-state-variable-feedback-systems/pagina-0858_fig11-30.png,Chapter 11. The Design of State Variable Feedback Systems,858,11.30,1568,1081,"FIGURE 11.30 Controllability with tangential ­thrusters only: (a) m-file script, (b) output.",ok
+cap11-the-design-of-state-variable-feedback-systems/pagina-0859_fig11-31.png,Chapter 11. The Design of State Variable Feedback Systems,859,11.31,1062,1529,FIGURE 11.31 (a) Root locus. (b) m-file script.,ok
+cap11-the-design-of-state-variable-feedback-systems/pagina-0860_fig11-32.png,Chapter 11. The Design of State Variable Feedback Systems,860,11.32,930,743,FIGURE 11.32 Step response.,ok
+cap11-the-design-of-state-variable-feedback-systems/pagina-0860_fig11-33.png,Chapter 11. The Design of State Variable Feedback Systems,860,11.33,1247,383,FIGURE 11.33 The acker function.,ok
+cap11-the-design-of-state-variable-feedback-systems/pagina-0861_fig11-34.png,Chapter 11. The Design of State Variable Feedback Systems,861,11.34,591,506,FIGURE 11.34 Using acker to compute K to place the poles at,ok
+cap11-the-design-of-state-variable-feedback-systems/pagina-0862_fig11-36.png,Chapter 11. The Design of State Variable Feedback Systems,862,11.36,1563,472,FIGURE 11.36 Closed-loop ­system with feed- back of the two state variables.,ok
+cap11-the-design-of-state-variable-feedback-systems/pagina-0862_fig11-35.png,Chapter 11. The Design of State Variable Feedback Systems,862,11.35,1557,467,FIGURE 11.35 Open-loop model of head control system.,ok
+cap11-the-design-of-state-variable-feedback-systems/pagina-0863_fig11-37.png,Chapter 11. The Design of State Variable Feedback Systems,863,11.37,1048,284,FIGURE 11.37,ok
+cap11-the-design-of-state-variable-feedback-systems/pagina-0865_fig11-38.png,Chapter 11. The Design of State Variable Feedback Systems,865,11.38,1318,434,FIGURE 11.38,ok
+_ambiguos/pagina-0867_semlegenda1.png,Chapter 11. The Design of State Variable Feedback Systems,867,,608,953,,ambiguo
+_ambiguos/pagina-0868_semlegenda1.png,Chapter 11. The Design of State Variable Feedback Systems,868,,1200,618,,ambiguo
+_ambiguos/pagina-0869_semlegenda1.png,Chapter 11. The Design of State Variable Feedback Systems,869,,1193,540,,ambiguo
+_ambiguos/pagina-0870_semlegenda1.png,Chapter 11. The Design of State Variable Feedback Systems,870,,656,390,,ambiguo
+_ambiguos/pagina-0870_semlegenda2.png,Chapter 11. The Design of State Variable Feedback Systems,870,,542,271,,ambiguo
+_ambiguos/pagina-0872_semlegenda1.png,Chapter 11. The Design of State Variable Feedback Systems,872,,1118,368,,ambiguo
+_ambiguos/pagina-0872_semlegenda2.png,Chapter 11. The Design of State Variable Feedback Systems,872,,598,752,,ambiguo
+_ambiguos/pagina-0873_semlegenda1.png,Chapter 11. The Design of State Variable Feedback Systems,873,,649,612,,ambiguo
+_ambiguos/pagina-0873_semlegenda2.png,Chapter 11. The Design of State Variable Feedback Systems,873,,582,151,,ambiguo
+_ambiguos/pagina-0874_semlegenda1.png,Chapter 11. The Design of State Variable Feedback Systems,874,,1514,468,,ambiguo
+_ambiguos/pagina-0875_semlegenda1.png,Chapter 11. The Design of State Variable Feedback Systems,875,,856,285,,ambiguo
+_ambiguos/pagina-0875_semlegenda2.png,Chapter 11. The Design of State Variable Feedback Systems,875,,381,284,,ambiguo
+_ambiguos/pagina-0875_semlegenda3.png,Chapter 11. The Design of State Variable Feedback Systems,875,,1519,1811,,ambiguo
+_ambiguos/pagina-0876_semlegenda1.png,Chapter 11. The Design of State Variable Feedback Systems,876,,1333,426,,ambiguo
+_ambiguos/pagina-0876_semlegenda2.png,Chapter 11. The Design of State Variable Feedback Systems,876,,902,467,,ambiguo
+_ambiguos/pagina-0877_semlegenda1.png,Chapter 11. The Design of State Variable Feedback Systems,877,,659,852,,ambiguo
+_ambiguos/pagina-0877_semlegenda2.png,Chapter 11. The Design of State Variable Feedback Systems,877,,1166,546,,ambiguo
+_ambiguos/pagina-0877_semlegenda3.png,Chapter 11. The Design of State Variable Feedback Systems,877,,871,635,,ambiguo
+_ambiguos/pagina-0878_semlegenda1.png,Chapter 11. The Design of State Variable Feedback Systems,878,,426,684,,ambiguo
+_ambiguos/pagina-0879_semlegenda1.png,Chapter 11. The Design of State Variable Feedback Systems,879,,1217,500,,ambiguo
+_ambiguos/pagina-0881_semlegenda1.png,Chapter 11. The Design of State Variable Feedback Systems,881,,771,854,,ambiguo
+_ambiguos/pagina-0881_semlegenda2.png,Chapter 11. The Design of State Variable Feedback Systems,881,,902,468,,ambiguo
+_ambiguos/pagina-0883_semlegenda1.png,Chapter 12. Robust Control Systems,883,,351,365,,ambiguo
+cap12-robust-control-systems/pagina-0884_fig12-1.png,Chapter 12. Robust Control Systems,884,12.1,1513,1177,FIGURE 12.1 Closed-loop ­control system. (a) Signal flow graph. (b) Block diagram.,ok
+cap12-robust-control-systems/pagina-0886_fig12-2.png,Chapter 12. Robust Control Systems,886,12.2,671,267,FIGURE 12.2 A first-order system.,ok
+cap12-robust-control-systems/pagina-0886_fig12-3.png,Chapter 12. Robust Control Systems,886,12.3,675,268,FIGURE 12.3 A second-order system.,ok
+cap12-robust-control-systems/pagina-0886_fig12-4.png,Chapter 12. Robust Control Systems,886,12.4,79,22,FIGURE 12.4 second-order system in Figure 12.3. The asymptotic approximations are shown for,ok
+cap12-robust-control-systems/pagina-0886_fig12-5.png,Chapter 12. Robust Control Systems,886,12.5,1889,787,FIGURE 12.5  The step response for selected gain K.,ok
+cap12-robust-control-systems/pagina-0887_fig12-6.png,Chapter 12. Robust Control Systems,887,12.6,917,1256,FIGURE 12.6 A system with a PD controller.,ok
+cap12-robust-control-systems/pagina-0888_fig12-7.png,Chapter 12. Robust Control Systems,888,12.7,1889,681,FIGURE 12.7 order system in Figure 12.6.,ok
+cap12-robust-control-systems/pagina-0888_fig12-9.png,Chapter 12. Robust Control Systems,888,12.9,1333,509,FIGURE 12.9 Step response of the system in Figure 12.8 with,ok
+_ambiguos/pagina-0889_semlegenda1.png,Chapter 12. Robust Control Systems,889,,485,151,,ambiguo
+_ambiguos/pagina-0889_semlegenda2.png,Chapter 12. Robust Control Systems,889,,492,156,,ambiguo
+_ambiguos/pagina-0889_semlegenda3.png,Chapter 12. Robust Control Systems,889,,810,160,,ambiguo
+cap12-robust-control-systems/pagina-0891_fig12-10.png,Chapter 12. Robust Control Systems,891,12.10,1049,1584,FIGURE 12.10 The robust ­stability criterion for Example 12.3.,ok
+cap12-robust-control-systems/pagina-0894_fig12-11.png,Chapter 12. Robust Control Systems,894,12.11,1183,362,FIGURE 12.11 A system with a disturbance.,ok
+cap12-robust-control-systems/pagina-0895_fig12-12.png,Chapter 12. Robust Control Systems,895,12.12,1266,621,FIGURE 12.12 Bode plot for 20 log,ok
+cap12-robust-control-systems/pagina-0896_fig12-13.png,Chapter 12. Robust Control Systems,896,12.13,944,742,FIGURE 12.13 Sensitivity and percent overshoot for a second-order system.,ok
+cap12-robust-control-systems/pagina-0896_fig12-14.png,Chapter 12. Robust Control Systems,896,12.14,1581,821,FIGURE 12.14 Bode plot for Example 12.6.,ok
+cap12-robust-control-systems/pagina-0898_fig12-15.png,Chapter 12. Robust Control Systems,898,12.15,1396,1928,FIGURE 12.15 Nichols chart for Example 12.7.,ok
+_ambiguos/pagina-0898_semlegenda1.png,Chapter 12. Robust Control Systems,898,,956,779,,ambiguo
+cap12-robust-control-systems/pagina-0899_fig12-16.png,Chapter 12. Robust Control Systems,899,12.16,1333,664,FIGURE 12.16 Feedback control system with a ­desired input R s and an undesired input Td s .,ok
+cap12-robust-control-systems/pagina-0899_fig12-17.png,Chapter 12. Robust Control Systems,899,12.17,1006,775,FIGURE 12.17 Root locus with,ok
+cap12-robust-control-systems/pagina-0902_fig12-18.png,Chapter 12. Robust Control Systems,902,12.18,1353,1060,FIGURE 12.18 Response of the closed loop system in the presence of uncertainty in K and τ.,ok
+cap12-robust-control-systems/pagina-0902_fig12-19.png,Chapter 12. Robust Control Systems,902,12.19,1352,711,FIGURE 12.19 The internal model control system.,ok
+cap12-robust-control-systems/pagina-0903_fig12-20.png,Chapter 12. Robust Control Systems,903,12.20,1568,1307,FIGURE 12.20 An internal model control with state variable feedback and Gc s( ) .,ok
+cap12-robust-control-systems/pagina-0905_fig12-21.png,Chapter 12. Robust Control Systems,905,12.21,1574,627,FIGURE 12.21 Turning machine control system.,ok
+cap12-robust-control-systems/pagina-0906_fig12-22.png,Chapter 12. Robust Control Systems,906,12.22,924,727,FIGURE 12.22 Root locus for ­velocity loop as,ok
+cap12-robust-control-systems/pagina-0907_fig12-23.png,Chapter 12. Robust Control Systems,907,12.23,867,1505,FIGURE 12.23 The root locus for,ok
+cap12-robust-control-systems/pagina-0908_fig12-24.png,Chapter 12. Robust Control Systems,908,12.24,1282,351,FIGURE 12.24 A feedback system with a time delay in the loop.,ok
+cap12-robust-control-systems/pagina-0908_fig12-25.png,Chapter 12. Robust Control Systems,908,12.25,1349,416,FIGURE 12.25 Multiplicative uncertainty representation.,ok
+cap12-robust-control-systems/pagina-0908_fig12-26.png,Chapter 12. Robust Control Systems,908,12.26,512,416,FIGURE 12.26 Equivalent block diagram depiction of the multiplicative uncertainty.,ok
+cap12-robust-control-systems/pagina-0909_fig12-27.png,Chapter 12. Robust Control Systems,909,12.27,1458,1169,FIGURE 12.27 Magnitude plot of T and 1.,ok
+cap12-robust-control-systems/pagina-0910_fig12-28.png,Chapter 12. Robust Control Systems,910,12.28,1071,719,FIGURE 12.28 Digital audio tape driver mechanism.,ok
+cap12-robust-control-systems/pagina-0911_fig12-29.png,Chapter 12. Robust Control Systems,911,12.29,1266,961,FIGURE 12.29 tape speed control design.,ok
+cap12-robust-control-systems/pagina-0911_fig12-30.png,Chapter 12. Robust Control Systems,911,12.30,1082,351,FIGURE 12.30 Block diagram of the digital audio tape speed control system.,ok
+_ambiguos/pagina-0911_semlegenda1.png,Chapter 12. Robust Control Systems,911,,600,159,,ambiguo
+cap12-robust-control-systems/pagina-0913_fig12-31.png,Chapter 12. Robust Control Systems,913,12.31,1489,1127,FIGURE 12.31 Root locus for the DAT system with τ =,ok
+cap12-robust-control-systems/pagina-0913_fig12-32.png,Chapter 12. Robust Control Systems,913,12.32,1426,1073,FIGURE 12.32 Unit step ­response for the DAT system with,ok
+cap12-robust-control-systems/pagina-0914_fig12-33.png,Chapter 12. Robust Control Systems,914,12.33,1374,1098,FIGURE 12.33 A family of step responses for the DAT system for ­various values of the process ­parameters K,ok
+cap12-robust-control-systems/pagina-0915_fig12-34.png,Chapter 12. Robust Control Systems,915,12.34,1366,1119,FIGURE 12.34 Stability ­robustness to a time delay of uncertain magnitude.,ok
+cap12-robust-control-systems/pagina-0916_fig12-35.png,Chapter 12. Robust Control Systems,916,12.35,1355,238,FIGURE 12.35 Feedback system.,ok
+cap12-robust-control-systems/pagina-0916_fig12-36.png,Chapter 12. Robust Control Systems,916,12.36,867,1035,FIGURE 12.36 Root locus for,ok
+cap12-robust-control-systems/pagina-0918_fig12-37.png,Chapter 12. Robust Control Systems,918,12.37,1008,913,FIGURE 12.37 Root locus for the PID-compensated temperature ­controller as Kˆ varies.,ok
+cap12-robust-control-systems/pagina-0919_fig12-38.png,Chapter 12. Robust Control Systems,919,12.38,1138,1340,FIGURE 12.38 Step response of the PID temperature controller.,ok
+cap12-robust-control-systems/pagina-0920_fig12-39.png,Chapter 12. Robust Control Systems,920,12.39,1023,1439,FIGURE 12.39 Robust PID ­controller analysis with variations in c0.,ok
+cap12-robust-control-systems/pagina-0921_fig12-40.png,Chapter 12. Robust Control Systems,921,12.40,1760,358,FIGURE 12.40,ok
+cap12-robust-control-systems/pagina-0921_fig12-41.png,Chapter 12. Robust Control Systems,921,12.41,1400,1019,FIGURE 12.41 A sketch of a root locus at KD increases for estimated root locations with a desirable system response.,ok
+cap12-robust-control-systems/pagina-0922_fig12-42.png,Chapter 12. Robust Control Systems,922,12.42,1204,875,FIGURE 12.42 Actual root locus for the second-­ order model.,ok
+cap12-robust-control-systems/pagina-0923_fig12-43.png,Chapter 12. Robust Control Systems,923,12.43,1315,677,FIGURE 12.43 Operational ­amplifier circuit used for PID controller.,ok
+cap12-robust-control-systems/pagina-0923_fig12-44.png,Chapter 12. Robust Control Systems,923,12.44,1076,979,FIGURE 12.44 Intelligence ­required versus uncertainty for modern control systems.,ok
+cap12-robust-control-systems/pagina-0924_fig12-45.png,Chapter 12. Robust Control Systems,924,12.45,1313,292,FIGURE 12.45,ok
+_ambiguos/pagina-0928_semlegenda1.png,Chapter 12. Robust Control Systems,928,,848,553,,ambiguo
+_ambiguos/pagina-0928_semlegenda2.png,Chapter 12. Robust Control Systems,928,,1288,410,,ambiguo
+_ambiguos/pagina-0929_semlegenda1.png,Chapter 12. Robust Control Systems,929,,1273,331,,ambiguo
+_ambiguos/pagina-0930_semlegenda1.png,Chapter 12. Robust Control Systems,930,,994,283,,ambiguo
+_ambiguos/pagina-0930_semlegenda2.png,Chapter 12. Robust Control Systems,930,,1288,282,,ambiguo
+_ambiguos/pagina-0931_semlegenda1.png,Chapter 12. Robust Control Systems,931,,525,465,,ambiguo
+_ambiguos/pagina-0931_semlegenda2.png,Chapter 12. Robust Control Systems,931,,701,517,,ambiguo
+_ambiguos/pagina-0931_semlegenda3.png,Chapter 12. Robust Control Systems,931,,1101,376,,ambiguo
+_ambiguos/pagina-0931_semlegenda4.png,Chapter 12. Robust Control Systems,931,,1171,301,,ambiguo
+_ambiguos/pagina-0932_semlegenda1.png,Chapter 12. Robust Control Systems,932,,985,620,,ambiguo
+_ambiguos/pagina-0932_semlegenda2.png,Chapter 12. Robust Control Systems,932,,1013,290,,ambiguo
+_ambiguos/pagina-0932_semlegenda3.png,Chapter 12. Robust Control Systems,932,,1438,690,,ambiguo
+_ambiguos/pagina-0933_semlegenda1.png,Chapter 12. Robust Control Systems,933,,1328,301,,ambiguo
+_ambiguos/pagina-0934_semlegenda1.png,Chapter 12. Robust Control Systems,934,,1229,1506,,ambiguo
+_ambiguos/pagina-0934_semlegenda2.png,Chapter 12. Robust Control Systems,934,,1000,182,,ambiguo
+_ambiguos/pagina-0935_semlegenda1.png,Chapter 12. Robust Control Systems,935,,718,301,,ambiguo
+_ambiguos/pagina-0936_semlegenda1.png,Chapter 12. Robust Control Systems,936,,1342,1614,,ambiguo
+_ambiguos/pagina-0936_semlegenda2.png,Chapter 12. Robust Control Systems,936,,439,445,,ambiguo
+_ambiguos/pagina-0937_semlegenda1.png,Chapter 12. Robust Control Systems,937,,1443,707,,ambiguo
+_ambiguos/pagina-0938_semlegenda1.png,Chapter 12. Robust Control Systems,938,,1463,1024,,ambiguo
+_ambiguos/pagina-0938_semlegenda2.png,Chapter 12. Robust Control Systems,938,,987,251,,ambiguo
+_ambiguos/pagina-0938_semlegenda3.png,Chapter 12. Robust Control Systems,938,,1032,304,,ambiguo
+_ambiguos/pagina-0939_semlegenda1.png,Chapter 12. Robust Control Systems,939,,1663,1175,,ambiguo
+_ambiguos/pagina-0940_semlegenda1.png,Chapter 12. Robust Control Systems,940,,1499,1307,,ambiguo
+_ambiguos/pagina-0941_semlegenda1.png,Chapter 12. Robust Control Systems,941,,1492,304,,ambiguo
+_ambiguos/pagina-0941_semlegenda2.png,Chapter 12. Robust Control Systems,941,,1137,965,,ambiguo
+_ambiguos/pagina-0942_semlegenda1.png,Chapter 12. Robust Control Systems,942,,954,296,,ambiguo
+_ambiguos/pagina-0942_semlegenda2.png,Chapter 12. Robust Control Systems,942,,779,251,,ambiguo
+_ambiguos/pagina-0942_semlegenda3.png,Chapter 12. Robust Control Systems,942,,848,251,,ambiguo
+_ambiguos/pagina-0943_semlegenda1.png,Chapter 12. Robust Control Systems,943,,679,180,,ambiguo
+_ambiguos/pagina-0943_semlegenda2.png,Chapter 12. Robust Control Systems,943,,955,251,,ambiguo
+_ambiguos/pagina-0943_semlegenda3.png,Chapter 12. Robust Control Systems,943,,1101,251,,ambiguo
+_ambiguos/pagina-0944_semlegenda1.png,Chapter 12. Robust Control Systems,944,,1358,408,,ambiguo
+_ambiguos/pagina-0944_semlegenda2.png,Chapter 12. Robust Control Systems,944,,657,596,,ambiguo
+_ambiguos/pagina-0946_semlegenda1.png,Chapter 13. Digital Control Systems,946,,351,365,,ambiguo
+cap13-digital-control-systems/pagina-0947_fig13-1.png,Chapter 13. Digital Control Systems,947,13.1,1559,432,"FIGURE 13.1 A block diagram of a computer control system, including the signal ­converters. The ­signal is indicated as digital or analog.",ok
+cap13-digital-control-systems/pagina-0948_fig13-2.png,Chapter 13. Digital Control Systems,948,13.2,974,832,FIGURE 13.2 The development of ­microprocessors measured in ­millions of transistors.,ok
+cap13-digital-control-systems/pagina-0948_fig13-3.png,Chapter 13. Digital Control Systems,948,13.3,1199,857,FIGURE 13.3 The flight deck of the Boeing 787 Dreamliner features digital control elec- tronics. The aircraft is equipped with a complete suite of navigation and communication avionics. (Courtesy of C,ok
+cap13-digital-control-systems/pagina-0949_fig13-4.png,Chapter 13. Digital Control Systems,949,13.4,1367,407,FIGURE 13.4 A digital control system.,ok
+cap13-digital-control-systems/pagina-0949_fig13-5.png,Chapter 13. Digital Control Systems,949,13.5,665,267,FIGURE 13.5 An ideal sampler with an input r(t).,ok
+cap13-digital-control-systems/pagina-0950_fig13-6.png,Chapter 13. Digital Control Systems,950,13.6,709,769,FIGURE 13.6 (a) An input ­signal r(t). (b) The ­sampled signal r*(t) =,ok
+cap13-digital-control-systems/pagina-0950_fig13-8.png,Chapter 13. Digital Control Systems,950,13.8,494,470,"FIGURE 13.8 The response of a zero-order hold to an ­impulse input r(kT), which equals unity when equals zero when",ok
+cap13-digital-control-systems/pagina-0950_fig13-7.png,Chapter 13. Digital Control Systems,950,13.7,823,285,FIGURE 13.7 A sampler and zero-order hold circuit.,ok
+cap13-digital-control-systems/pagina-0951_fig13-9.png,Chapter 13. Digital Control Systems,951,13.9,996,1224,FIGURE 13.9 The response of a sampler and ­zero-order hold for a ramp input,ok
+cap13-digital-control-systems/pagina-0951_fig13-10.png,Chapter 13. Digital Control Systems,951,13.10,998,1294,FIGURE 13.10 The response of a sampler and ­zero-order hold to an input ( ) = for two values of sampling period T.,ok
+_ambiguos/pagina-0952_semlegenda1.png,Chapter 13. Digital Control Systems,952,,618,151,,ambiguo
+cap13-digital-control-systems/pagina-0955_fig13-11.png,Chapter 13. Digital Control Systems,955,13.11,988,1239,"FIGURE 13.11 An open-loop, ­sampled-data system (without feedback).",ok
+cap13-digital-control-systems/pagina-0956_fig13-12.png,Chapter 13. Digital Control Systems,956,13.12,910,184,FIGURE 13.12 System with ­sampled output.,ok
+cap13-digital-control-systems/pagina-0956_fig13-13.png,Chapter 13. Digital Control Systems,956,13.13,423,185,FIGURE 13.13 The z-transform transfer function in block diagram form.,ok
+cap13-digital-control-systems/pagina-0957_fig13-14.png,Chapter 13. Digital Control Systems,957,13.14,1310,676,"FIGURE 13.14 Feedback control system with unity feedback. G(z) is the z-transform ­corresponding to G(s), which ­represents the process and the zero-order hold.",ok
+cap13-digital-control-systems/pagina-0957_fig13-15.png,Chapter 13. Digital Control Systems,957,13.15,958,836,FIGURE 13.15 (a) Feedback control system with a digital ­controller. (b) Block diagram model. Note that G(z) =,ok
+cap13-digital-control-systems/pagina-0958_fig13-16.png,Chapter 13. Digital Control Systems,958,13.16,1305,367,"FIGURE 13.16 A closed-loop, sampled-data system.",ok
+cap13-digital-control-systems/pagina-0958_fig13-17.png,Chapter 13. Digital Control Systems,958,13.17,1128,711,"FIGURE 13.17 The response of a second-­ order ­system: (a) ­continuous ( pled; (b) sampled system,",ok
+cap13-digital-control-systems/pagina-0959_fig13-18.png,Chapter 13. Digital Control Systems,959,13.18,1305,368,FIGURE 13.18 A closed-loop ­sampled system.,ok
+cap13-digital-control-systems/pagina-0961_fig13-19.png,Chapter 13. Digital Control Systems,961,13.19,1071,1154,FIGURE 13.19 The maximum percent overshoot for a second-order sampled system for a unit step input.,ok
+cap13-digital-control-systems/pagina-0961_fig13-20.png,Chapter 13. Digital Control Systems,961,13.20,1069,704,FIGURE 13.20 The loci of integral squared error for a second-order sampled system for constant values of I.,ok
+cap13-digital-control-systems/pagina-0962_fig13-21.png,Chapter 13. Digital Control Systems,962,13.21,1044,1632,FIGURE 13.21 The steady- state error of a ­second-order sampled system for a unit ramp input,ok
+cap13-digital-control-systems/pagina-0963_fig13-22.png,Chapter 13. Digital Control Systems,963,13.22,1086,659,FIGURE 13.22 The response of a sampled-data ­second-order ­system to a unit step input.,ok
+cap13-digital-control-systems/pagina-0964_fig13-23.png,Chapter 13. Digital Control Systems,964,13.23,1060,318,FIGURE 13.23 The continuous system model of a sampled system.,ok
+cap13-digital-control-systems/pagina-0965_fig13-24.png,Chapter 13. Digital Control Systems,965,13.24,1478,933,FIGURE 13.24 Closed-loop ­system with a digital controller.,ok
+cap13-digital-control-systems/pagina-0967_fig13-25.png,Chapter 13. Digital Control Systems,967,13.25,1032,795,FIGURE 13.25 Root locus for Example 13.8.,ok
+cap13-digital-control-systems/pagina-0968_fig13-26.png,Chapter 13. Digital Control Systems,968,13.26,1236,921,FIGURE 13.26 Root locus for Example 13.9.,ok
+cap13-digital-control-systems/pagina-0968_fig13-27.png,Chapter 13. Digital Control Systems,968,13.27,1320,867,FIGURE 13.27 Curves of constant ζ on the z-plane.,ok
+cap13-digital-control-systems/pagina-0970_fig13-28.png,Chapter 13. Digital Control Systems,970,13.28,1567,935,FIGURE 13.28 A table motion ­control system: (a) actuator and table; (b) block diagram.,ok
+cap13-digital-control-systems/pagina-0971_fig13-29.png,Chapter 13. Digital Control Systems,971,13.29,1537,795,FIGURE 13.29 Model of the wheel control for a work table.,ok
+cap13-digital-control-systems/pagina-0971_fig13-30.png,Chapter 13. Digital Control Systems,971,13.30,1490,1839,FIGURE 13.30 Root locus for L(s) =,ok
+cap13-digital-control-systems/pagina-0973_fig13-31.png,Chapter 13. Digital Control Systems,973,13.31,1539,1405,FIGURE 13.31 (a) Fly-by-wire ­aircraft control ­surface system and (b) block ­diagram. The ­sampling ­period is 0.1 second.,ok
+cap13-digital-control-systems/pagina-0974_fig13-32.png,Chapter 13. Digital Control Systems,974,13.32,1438,1234,FIGURE 13.32 Elements of the control system design process emphasized in this fly-by-wire aircraft control surface example.,ok
+cap13-digital-control-systems/pagina-0975_fig13-33.png,Chapter 13. Digital Control Systems,975,13.33,1455,1024,FIGURE 13.33 Root locus for,ok
+cap13-digital-control-systems/pagina-0976_fig13-34.png,Chapter 13. Digital Control Systems,976,13.34,1324,941,FIGURE 13.34 Root locus for,ok
+cap13-digital-control-systems/pagina-0977_fig13-35.png,Chapter 13. Digital Control Systems,977,13.35,1325,1032,FIGURE 13.35 Compensated root locus.,ok
+cap13-digital-control-systems/pagina-0977_fig13-36.png,Chapter 13. Digital Control Systems,977,13.36,1257,964,FIGURE 13.36 Closed-loop system step response.,ok
+cap13-digital-control-systems/pagina-0978_fig13-37.png,Chapter 13. Digital Control Systems,978,13.37,1410,1266,FIGURE 13.37 (a) The tf ­function. (b) The c2d ­function. (c) The d2c function.,ok
+cap13-digital-control-systems/pagina-0979_fig13-38.png,Chapter 13. Digital Control Systems,979,13.38,1080,676,FIGURE 13.38 Using the c2d function to convert,ok
+cap13-digital-control-systems/pagina-0979_fig13-39.png,Chapter 13. Digital Control Systems,979,13.39,1166,670,FIGURE 13.39,ok
+cap13-digital-control-systems/pagina-0980_fig13-40.png,Chapter 13. Digital Control Systems,980,13.40,1152,671,FIGURE 13.40 The impulse ­function generates the output y(t) for an impulse input.,ok
+cap13-digital-control-systems/pagina-0980_fig13-41.png,Chapter 13. Digital Control Systems,980,13.41,1166,577,FIGURE 13.41 The Isim function generates the output y(kT) for an arbitrary input.,ok
+cap13-digital-control-systems/pagina-0981_fig13-42.png,Chapter 13. Digital Control Systems,981,13.42,1288,1264,FIGURE 13.42 to a unit step.,ok
+cap13-digital-control-systems/pagina-0982_fig13-43.png,Chapter 13. Digital Control Systems,982,13.43,1203,1220,FIGURE 13.43 Figure 13.16.,ok
+cap13-digital-control-systems/pagina-0983_fig13-44.png,Chapter 13. Digital Control Systems,983,13.44,1165,1440,FIGURE 13.44 The rlocus function for sampled-data systems.,ok
+cap13-digital-control-systems/pagina-0984_fig13-46.png,Chapter 13. Digital Control Systems,984,13.46,750,658,FIGURE 13.46 Root locus.,ok
+cap13-digital-control-systems/pagina-0984_fig13-45.png,Chapter 13. Digital Control Systems,984,13.45,966,267,FIGURE 13.45 Feedback control system with a digital controller. Note that G(z) =,ok
+cap13-digital-control-systems/pagina-0985_fig13-47.png,Chapter 13. Digital Control Systems,985,13.47,1322,368,FIGURE 13.47,ok
+_ambiguos/pagina-0990_semlegenda1.png,Chapter 13. Digital Control Systems,990,,630,685,,ambiguo
+_ambiguos/pagina-0990_semlegenda2.png,Chapter 13. Digital Control Systems,990,,911,572,,ambiguo
+_ambiguos/pagina-0990_semlegenda3.png,Chapter 13. Digital Control Systems,990,,1451,926,,ambiguo
+_ambiguos/pagina-0991_semlegenda1.png,Chapter 13. Digital Control Systems,991,,1099,301,,ambiguo
+_ambiguos/pagina-0991_semlegenda2.png,Chapter 13. Digital Control Systems,991,,429,218,,ambiguo
+_ambiguos/pagina-0991_semlegenda3.png,Chapter 13. Digital Control Systems,991,,429,217,,ambiguo
+_ambiguos/pagina-0992_semlegenda1.png,Chapter 13. Digital Control Systems,992,,829,502,,ambiguo
+_ambiguos/pagina-0992_semlegenda2.png,Chapter 13. Digital Control Systems,992,,777,201,,ambiguo
+_ambiguos/pagina-0993_semlegenda1.png,Chapter 13. Digital Control Systems,993,,882,809,,ambiguo
+_ambiguos/pagina-0994_semlegenda1.png,Chapter 13. Digital Control Systems,994,,958,301,,ambiguo
+_ambiguos/pagina-0994_semlegenda2.png,Chapter 13. Digital Control Systems,994,,975,337,,ambiguo
+_ambiguos/pagina-0995_semlegenda1.png,Chapter 13. Digital Control Systems,995,,1285,253,,ambiguo
+_ambiguos/pagina-0995_semlegenda2.png,Chapter 13. Digital Control Systems,995,,1177,537,,ambiguo
+_ambiguos/pagina-0995_semlegenda3.png,Chapter 13. Digital Control Systems,995,,1410,318,,ambiguo
+_ambiguos/pagina-0996_semlegenda1.png,Chapter 13. Digital Control Systems,996,,739,251,,ambiguo
