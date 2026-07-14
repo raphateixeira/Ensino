@@ -1,0 +1,82 @@
+\documentclass[12pt, addpoints]{exam}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazilian]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage[top=1.5cm, bottom=1.5cm, left=2cm, right=2cm, headheight=14pt, headsep=8pt, footskip=10pt, includehead, includefoot]{geometry}
+
+\marksnotpoints
+\pointsinrightmargin
+\marginpointname{ pts}
+
+% Configuracao de Cabecalho e Rodape
+\pagestyle{headandfoot}
+\runningheader{Álgebra Linear}{}{Página \thepage\ de \numpages}
+\footer{}{}{}
+
+
+
+\begin{document}
+
+% -----------------------------------------------------------
+% Cabecalho
+% -----------------------------------------------------------
+\begin{center}
+    \textsc{\textbf{Universidade Federal do Pará} \\
+    CAMTUC -- FEE: Álgebra Linear} -- Prof.\ Dr.\ Raphael Teixeira \\
+    \vspace{0.1cm}
+    Avaliação 3: Espaços com Produto Interno \hspace{0.6cm}-\hspace{0.6cm} \rule{2.5cm}{0.1pt}/2026.
+\end{center}
+\vspace{0.3cm}
+\noindent
+\textbf{Aluno(a):} \rule{8cm}{0.1pt} \quad \textbf{Matrícula:} \rule{3.5cm}{0.1pt}
+\vspace{0.0cm}
+% -----------------------------------------------------------
+\begin{questions}
+
+% ============================================================
+%  QUESTAO 1 -- Comprimento, Vetor Unitario e Distancia (5.1)
+% ============================================================
+\question
+Considere os vetores $u=(1,\,2,\,-2,\,4)$ e $v=(3,\,-1,\,0,\,2)$, em $\mathbb{R}^4$.
+
+\textbf{(a, 1.0 pt)} Calcule o comprimento (norma) $\|u\|$.
+
+\textbf{(b, 1.0 pt)} Determine o vetor unitário na direção de $u$.
+
+\textbf{(c, 1.5 pt)} Calcule a distância $d(u,v)$ entre os vetores $u$ e $v$.
+
+% ============================================================
+%  QUESTAO 2 -- Produto Escalar e Projecao Ortogonal (5.1)
+% ============================================================
+\question
+Considere os vetores $u=(2,\,-1,\,3)$ e $v=(1,\,2,\,-2)$, em $\mathbb{R}^3$.
+
+\textbf{(a, 1.0 pt)} Calcule o produto escalar $u\cdot v$.
+
+\textbf{(b, 1.0 pt)} Calcule $v\cdot v$.
+
+\textbf{(c, 1.5 pt)} Determine a projeção ortogonal de $u$ em $v$, isto é, $\text{proj}_v\,u = \dfrac{u\cdot v}{v\cdot v}\,v$.
+
+% ============================================================
+%  QUESTAO 3 -- Processo de Gram-Schmidt: Ortogonalizacao e Ortonormalizacao (5.3)
+% ============================================================
+\question
+Considere a base $B=\{v_1,\,v_2,\,v_3\}$ de $\mathbb{R}^3$, dada por
+\[
+  v_1=(1,\,1,\,1), \qquad v_2=(0,\,1,\,1), \qquad v_3=(0,\,0,\,1).
+\]
+
+\textbf{(a, 1.5 pt)} Aplique o processo de ortogonalização de Gram-Schmidt para obter uma base ortogonal $B'=\{w_1,\,w_2,\,w_3\}$ de $\mathbb{R}^3$.
+
+\textbf{(b, 1.5 pt)} A partir da base ortogonal $B'$ obtida no item anterior, determine a base ortonormal $B''=\{u_1,\,u_2,\,u_3\}$, normalizando cada vetor $w_i$.
+
+\end{questions}
+\end{document}

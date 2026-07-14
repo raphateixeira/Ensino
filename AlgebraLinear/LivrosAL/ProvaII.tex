@@ -1,0 +1,101 @@
+\documentclass[12pt, addpoints]{exam}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazilian]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage[top=1.5cm, bottom=1.5cm, left=2cm, right=2cm, headheight=14pt, headsep=8pt, footskip=10pt, includehead, includefoot]{geometry}
+
+\marksnotpoints
+\pointsinrightmargin
+\marginpointname{ pts}
+
+% Configuracao de Cabecalho e Rodape
+\pagestyle{headandfoot}
+\runningheader{Álgebra Linear}{}{Página \thepage\ de \numpages}
+\footer{}{}{}
+
+
+
+\begin{document}
+
+% -----------------------------------------------------------
+% Cabecalho
+% -----------------------------------------------------------
+\begin{center}
+    \textsc{\textbf{Universidade Federal do Pará} \\
+    CAMTUC -- FEE: Álgebra Linear} -- Prof.\ Dr.\ Raphael Teixeira \\
+    \vspace{0.1cm}
+    Avaliação 2: Determinantes e Espaços Vetoriais \hspace{0.6cm}-\hspace{0.6cm} 22/06/2026.
+\end{center}
+\vspace{0.3cm}
+\noindent
+\textbf{Aluno(a):} \rule{8cm}{0.1pt} \quad \textbf{Matrícula:} \rule{3.5cm}{0.1pt}
+\vspace{0.0cm}
+% -----------------------------------------------------------
+\begin{questions}
+
+% ============================================================
+%  QUESTAO 1 -- Determinantes / Regra de Cramer
+% ============================================================
+\question
+Considere os dois sistemas lineares abaixo:
+\[
+  \text{(I)}\quad
+  \begin{cases}
+    \phantom{2}x - \phantom{2}y + 2z = 7 \\[2pt]
+    2x + \phantom{2}y - \phantom{2}z = 2 \\[2pt]
+    \phantom{2}x + 2y + \phantom{2}z = 7
+  \end{cases}
+  \qquad\qquad
+  \text{(II)}\quad
+  \begin{cases}
+    \phantom{2}x + \phantom{2}y + \phantom{2}z = 4 \\[2pt]
+    2x - \phantom{2}y + 3z = 3 \\[2pt]
+    3x \phantom{{}+y{}} + 4z = 5
+  \end{cases}
+\]
+
+\textbf{(a, 1.5 pts)} Verifique, por meio de determinante, qual dos dois possui solução única. Justifique. \textbf{(b, 1.5 pt)} Para o sistema que admite solução única, utilize a \textbf{regra de Cramer} para determinar o valor de $y$.
+
+% ============================================================
+%  QUESTAO 2 -- Independencia Linear, Base e Dimensao (4.4 e 4.5)
+% ============================================================
+
+
+\question
+Considere os vetores $v_1=(3,\,1,\,-1)$, $v_2=(2,\,1,\,0)$ e $v_3=(0,\,1,\,2)$, em $\mathbb{R}^3$.
+
+\textbf{(a, 1.5 pts)} Verifique se o conjunto $\{v_1, v_2, v_3\}$ é linearmente dependente. Em caso afirmativo, exiba uma relação de dependência linear entre eles.
+
+\textbf{(b, 1.5 pts)} Mostre que $u=(-1,\,-1,\,-1)$ pertence ao subespaço gerado por $\{v_1, v_2, v_3\}$, então escreva $u$ como combinação da base deste subespaço.
+
+% ============================================================
+%  QUESTAO 3 -- Posto, Espaco Coluna, Espaco Nulo e Solucao Geral (4.6)
+% ============================================================
+\question
+Considere o sistema linear $A\mathbf{x} = \mathbf{b}$ dado por
+\[
+  \begin{cases}
+    \phantom{2}x_1 \phantom{{}+x_2{}} + 2x_3 - \phantom{2}x_4 = 3\\[3pt]
+    \phantom{2}x_1 + \phantom{2}x_2 + \phantom{2}x_3 + 2x_4 = 5\\[3pt]
+    2x_1 + \phantom{2}x_2 + 3x_3 + \phantom{2}x_4 = 8
+  \end{cases}
+\]
+
+\textbf{(a, 1.0 pt)} Determine o \textbf{posto} e a \textbf{nulidade} de $A$.
+
+\textbf{(b, 0.5 pt)} Indique, entre os vetores-coluna \emph{originais} de $A$, quais formam uma \textbf{base do espaço coluna} de $A$.
+
+\textbf{(c, 1.5 pt)} Determine uma \textbf{solução particular} $\mathbf{x}_p$ do sistema $A\mathbf{x} = \mathbf{b}$ e escreva a \textbf{solução geral} do sistema na forma $\mathbf{x} = \mathbf{x}_p + \mathbf{x}_h$.
+
+\textbf{(d, 1.0 pt)} Determine uma \textbf{base do espaço nulo} de $A$.
+
+\end{questions}
+\end{document}
