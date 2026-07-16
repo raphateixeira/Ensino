@@ -6,18 +6,18 @@ author: "Prof. Dr. Raphael Teixeira"
 lang: pt
 format:
   revealjs:
-    theme: [default, ../Tema.scss]
+    theme: [simple, ../tema-revealjs.scss]
     self-contained: true
-    transition: slide
+    transition: fade
     slide-number: true
     width: 1600
     height: 900
     footer: " "
     center: true
     title-slide-attributes:
-      data-background-image: "imgs/UFPA.png"
-      data-background-size: "100px"
-      data-background-position: "top 40px center"
+      data-background-image: "imgs/ufpa-colorido.png"
+      data-background-size: "84px"
+      data-background-position: "top 45px center"
 engine: knitr
 ---
 
