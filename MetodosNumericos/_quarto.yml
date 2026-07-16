@@ -20,7 +20,7 @@ website:
         menu:
           - text: "0 · Plano de Ensino"
             href: Notas/CN00PlanoEnsino.qmd
-          - text: "1 · Erros e Ponto Flutuante"
+          - text: "1 · Introdução: Raízes e Erros Numéricos"
             href: Notas/CN01Erros.qmd
           - text: "2 · Zeros — Métodos Intervalares"
             href: Notas/CN02ZerosIntervalares.qmd

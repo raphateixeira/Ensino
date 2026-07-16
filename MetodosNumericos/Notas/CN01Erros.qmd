@@ -1,31 +1,266 @@
 ---
-title: "Erros e Aritmética de Ponto Flutuante"
+title: "Introdução: Raízes de Funções e Erros Numéricos"
 subtitle: "Cálculo Numérico"
 institute: "Universidade Federal do Pará"
 author: "Prof. Dr. Raphael Teixeira"
-format: 
+format:
   revealjs:
-    theme: [default, ../TemaCN.scss] 
+    theme: [simple, ../tema.scss]
     self-contained: true
-    transition: slide
+    transition: fade
     slide-number: true
-    width: 1600 
+    width: 1600
     height: 900
     footer: " "
     center: true
     title-slide-attributes:
-      data-background-image: "imgs/UFPA.png"
-      data-background-size: "100px"
-      data-background-position: "top 40px center"
+      data-background-image: "imgs/ufpa-colorido.png"
+      data-background-size: "84px"
+      data-background-position: "top 45px center"
 engine: knitr
 ---
 
-## Por que estudar erros?
+## O que é Cálculo Numérico?
 
-O computador representa apenas um subconjunto **finito** dos números reais. Toda simulação de Engenharia carrega erro — a questão é **quantificá-lo e controlá-lo**.
+Grande parte dos modelos de Engenharia — estruturas, circuitos, escoamentos, controle — resulta em equações que **não têm solução analítica fechada**.
 
-- Um método pode **convergir na teoria** e falhar na aritmética finita.
-- Erros pequenos podem ser **amplificados** ao longo do cálculo.
+O Cálculo Numérico é o conjunto de técnicas para obter uma **aproximação** dessa solução, com controle sobre a qualidade do resultado.
+
+::: {.callout-note}
+O fio condutor de toda a disciplina é este: **como aproximar um valor numérico** — uma raiz, uma solução de sistema, uma integral, uma derivada — sabendo o quão distante estamos do valor exato.
+:::
+
+---
+
+## Panorama da disciplina
+
+Cada bloco do curso ataca um tipo de valor a aproximar:
+
+| Bloco | O que se aproxima |
+|:--|:--|
+| **Zeros de funções** *(hoje!)* | a raiz $x^{*}$ de $f(x)=0$ |
+| Sistemas lineares | o vetor solução $\mathbf{x}$ de $A\mathbf{x}=\mathbf{b}$ |
+| Interpolação e ajuste | uma função que representa dados discretos |
+| Integração e diferenciação | uma área ou uma taxa de variação |
+| Equações diferenciais | uma trajetória $x(t)$ ao longo do tempo |
+
+::: {.callout-tip}
+Hoje entramos pela porta mais intuitiva: **raízes de funções transcendentais**.
+:::
+
+---
+
+## Problema motivador — quanto óleo há no tanque?
+
+::: {.columns}
+::: {.column width="46%"}
+
+Um tanque cilíndrico horizontal, parcialmente cheio, é comum em plantas industriais e postos de combustível.
+
+Uma régua (dipstick) mede a altura $h$ do líquido. O problema de engenharia é o **inverso**: sabendo o **volume** $V^{*}$ desejado (ou medido por outro instrumento), qual é a altura $h$ correspondente?
+
+:::
+::: {.column width="54%"}
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 6.5
+\usetikzlibrary{arrows.meta}
+\input{imgs/tikz/TanqueCombustivel.tikz}
+```
+
+:::
+:::
+
+---
+
+## Modelando o problema
+
+Para um tanque de raio $r$ e comprimento $L$, o volume de líquido até a altura $h$ ($0 \le h \le 2r$) é:
+
+$$V(h) = L\left[\, r^{2}\cos^{-1}\!\left(\frac{r-h}{r}\right) - (r-h)\sqrt{2rh - h^{2}} \,\right]$$
+
+Dado um volume alvo $V^{*}$, queremos resolver:
+
+$$V(h) = V^{*}$$
+
+::: {.callout-important}
+$h$ aparece dentro de um **arco-cosseno** e dentro de uma **raiz quadrada**, simultaneamente. Não é uma equação polinomial simples.
+:::
+
+---
+
+## Por que não dá para isolar $h$?
+
+Para uma equação do 2º grau existe a fórmula de Bhaskara. Até o 4º grau existem fórmulas fechadas (embora complicadas).
+
+::: {.callout-important}
+O **Teorema de Abel–Ruffini** garante que polinômios de grau $\geq 5$, em geral, **não têm fórmula fechada por radicais**.
+:::
+
+Equações que misturam potências com $\cos$, $\sin$, $\exp$, $\ln$ — como a do tanque — são chamadas **transcendentais**: quase nunca é possível isolar a incógnita algebricamente.
+
+**Conclusão prática:** não vamos resolver $V(h) = V^{*}$ por manipulação algébrica. Vamos **aproximar** $h$ numericamente.
+
+---
+
+## Zeros de funções — forma padrão
+
+Qualquer equação $g(x) = c$ pode ser reescrita como um problema de raiz:
+
+$$f(x) = g(x) - c = 0$$
+
+::: {.columns}
+::: {.column width="45%"}
+
+Um exemplo clássico e simples: resolver $x = \cos(x)$, ou seja, encontrar o zero de
+
+$$f(x) = \cos(x) - x$$
+
+Note como as duas curvas — a reta $y=x$ e a curva $y=\cos x$ — se cruzam em um único ponto $x^{*}$.
+
+:::
+::: {.column width="55%"}
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 6
+\usetikzlibrary{arrows.meta}
+\input{imgs/tikz/RaizIntersecao.tikz}
+```
+
+:::
+:::
+
+---
+
+## Graficamente: onde está a raiz?
+
+Voltando ao tanque: definimos $f(h) = V(h) - V^{*}$. Resolver o problema é achar onde o **gráfico cruza o eixo** $h$.
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 7
+\usetikzlibrary{arrows.meta}
+\input{imgs/tikz/TanqueFuncao.tikz}
+```
+
+Se conseguirmos dois pontos $a, b$ com $f(a)$ e $f(b)$ de **sinais opostos**, sabemos que a raiz está entre eles.
+
+---
+
+## Teorema de Bolzano
+
+Se $f$ é **contínua** em $[a,b]$ e $f(a)\,f(b) < 0$, então existe pelo menos uma raiz $x^{*} \in (a,b)$.
+
+::: {.callout-note}
+É um resultado de **existência**, não de construção: não diz como calcular $x^{*}$, apenas que ele existe no intervalo. É a base de toda uma família de métodos — os **métodos intervalares**.
+:::
+
+No exemplo do tanque: se um volume abaixo do alvo corresponde a uma altura $a$ e um volume acima corresponde a uma altura $b$, a altura certa está em algum ponto entre $a$ e $b$.
+
+---
+
+## Método da bisseção
+
+A ideia mais simples possível: **dividir o intervalo ao meio, repetidamente**, mantendo sempre o lado onde ocorre a troca de sinal.
+
+$$m = \frac{a+b}{2}, \qquad
+\begin{cases}
+f(a)\,f(m) < 0 \Rightarrow \text{raiz em } [a,m],\ b \leftarrow m \\
+\text{caso contrário} \Rightarrow \text{raiz em } [m,b],\ a \leftarrow m
+\end{cases}$$
+
+A cada passo, o intervalo que contém a raiz **encolhe pela metade** — e com ele, a incerteza sobre onde está $x^{*}$.
+
+::: {.callout-tip}
+Esta é a nossa primeira aproximação de fato: um **método clássico, simples e sempre convergente**. Métodos mais rápidos (falsa posição, Newton, secante) vêm nas próximas aulas.
+:::
+
+---
+
+## Bisseção passo a passo
+
+Para $f(x) = \cos(x) - x$, com $f(0) = 1 > 0$ e $f(1) \approx -0{,}46 < 0$:
+
+| $n$ | $a$ | $b$ | $m$ | $f(m)$ |
+|:--:|:--:|:--:|:--:|:--:|
+| 0 | 0,0000 | 1,0000 | 0,5000 | $+0{,}3776$ |
+| 1 | 0,5000 | 1,0000 | 0,7500 | $-0{,}0183$ |
+| 2 | 0,5000 | 0,7500 | 0,6250 | $+0{,}1859$ |
+| 3 | 0,6250 | 0,7500 | 0,6875 | $+0{,}0852$ |
+| 4 | 0,6875 | 0,7500 | 0,7188 | $+0{,}0334$ |
+
+A cada linha, o intervalo $[a,b]$ encolhe e $m$ se aproxima de $x^{*} \approx 0{,}739085$.
+
+---
+
+## Convergência da bisseção
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 7.5
+\usetikzlibrary{arrows.meta}
+\input{imgs/tikz/BissecaoIteracoes.tikz}
+```
+
+O intervalo que contém $x^{*}$ é sempre a **metade** do anterior — a convergência é garantida, ainda que lenta.
+
+---
+
+## Bisseção em Python — de volta ao tanque
+
+```python
+import numpy as np
+
+def bissecao(f, a, b, tol=1e-6, nmax=100):
+    for _ in range(nmax):
+        m = (a + b) / 2
+        if abs(f(m)) < tol:
+            return m
+        if f(a) * f(m) < 0:
+            b = m
+        else:
+            a = m
+    return m
+
+r, L, V_alvo = 1.5, 6.0, 15.0        # raio, comprimento, volume desejado (m³)
+
+def V(h):
+    return L * (r**2 * np.arccos((r - h) / r) - (r - h) * np.sqrt(2*r*h - h**2))
+
+f = lambda h: V(h) - V_alvo
+h_estimado = bissecao(f, 0.01, 2*r - 0.01)
+print(h_estimado)             # ~1.151 m
+```
+
+O tanque tem óleo até **≈ 1,15 m** de altura — obtido sem nunca isolar $h$ algebricamente.
+
+---
+
+## O mapa dos métodos de zeros
+
+| Família | Métodos | Característica |
+|:--|:--|:--|
+| **Intervalares** | Bisseção *(hoje)*, Falsa posição | Sempre convergem; mais lentos |
+| **Abertos** | Ponto fixo, Newton-Raphson, Secante | Mais rápidos; exigem boa estimativa inicial |
+
+::: {.callout-tip}
+Nas próximas duas aulas aprofundamos cada família: análise de convergência, custo computacional e implementação completa em Python.
+:::
+
+---
+
+## De volta aos erros: o que significa "aproximar bem"?
+
+Na bisseção, paramos quando $|f(m)| < \text{tol}$ ou quando o intervalo é suficientemente pequeno. Mas o que é "suficientemente pequeno"?
+
+- Toda aproximação numérica carrega um **erro** — a questão é **quantificá-lo e controlá-lo**.
+- A tolerância que escolhemos não pode ser arbitrariamente pequena: a própria aritmética do computador impõe um limite.
 
 ::: {.callout-note}
 O objetivo não é eliminar o erro, mas garantir que ele permaneça **abaixo da tolerância** exigida pela aplicação.
@@ -42,7 +277,7 @@ O objetivo não é eliminar o erro, mas garantir que ele permaneça **abaixo da 
 | **Truncamento** | substituir um processo infinito por um finito |
 | **Arredondamento** | representação finita dos números |
 
-O cálculo numérico atua sobre os erros de **truncamento** e **arredondamento**.
+A bisseção introduz erro de **truncamento**: paramos a iteração infinita em um passo finito. O cálculo numérico atua sobre truncamento e arredondamento.
 
 ---
 
@@ -67,21 +302,27 @@ Um número é armazenado como $\;\pm\, (1.f) \times 2^{e}$:
 $$\underbrace{s}_{1\text{ bit}} \;\; \underbrace{e}_{11\text{ bits}} \;\; \underbrace{f}_{52\text{ bits}} \qquad (\text{precisão dupla})$$
 
 ::: {.columns}
-::: {.column width="50%"}
-
-- **Sinal** $s$;
-- **Expoente** $e$ (com viés);
-- **Mantissa** $f$ (fração).
-
-:::
-::: {.column width="50%"}
+::: {.column width="45%"}
 
 - $\approx 15$–$16$ dígitos decimais;
 - maior valor $\approx 1{,}8\times 10^{308}$;
 - menor positivo normal $\approx 2{,}2\times 10^{-308}$.
 
 :::
+::: {.column width="55%"}
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 6
+\usetikzlibrary{arrows.meta}
+\input{imgs/tikz/PontoFlutuante.tikz}
+```
+
 :::
+:::
+
+Os números representáveis **não são igualmente espaçados**: ficam densos perto de zero e mais esparsos para magnitudes grandes.
 
 ---
 
@@ -100,7 +341,7 @@ print(1.0 + np.finfo(float).eps != 1.0)   # True
 ```
 
 ::: {.callout-important}
-$0{,}1$ **não** tem representação exata em binário: `0.1 + 0.2 == 0.3` resulta `False`.
+$0{,}1$ **não** tem representação exata em binário: `0.1 + 0.2 == 0.3` resulta `False`. É também por isso que a tolerância da bisseção não pode ser arbitrariamente pequena.
 :::
 
 ---
@@ -150,7 +391,7 @@ def raizes(a, b, c):
 print(raizes(1.0, 1e8, 1.0))   # estável para ambas as raízes
 ```
 
-A forma estável calcula uma raiz com sinal seguro e a outra por $x_1 x_2 = c/a$.
+A forma estável calcula uma raiz com sinal seguro e a outra por $x_1 x_2 = c/a$ — o mesmo problema de **raízes**, agora sob a ótica da estabilidade numérica.
 
 ---
 
@@ -165,9 +406,24 @@ $$\kappa = \left| \frac{x\, f'(x)}{f(x)} \right|$$
 
 ---
 
+## Síntese da aula
+
+- Cálculo Numérico existe porque a maioria dos problemas de Engenharia **não tem solução fechada** — inclusive equações transcendentais simples, como a do tanque.
+- **Zeros de funções** são a porta de entrada: reescrever $g(x)=c$ como $f(x)=0$ é uma ideia que se repete o curso todo.
+- A **bisseção** já resolve o problema — de forma lenta, porém confiável.
+- Toda aproximação carrega **erro**; controlá-lo exige entender ponto flutuante, épsilon de máquina e condicionamento.
+
+::: {.callout-tip}
+Próximas aulas: métodos intervalares mais eficientes (falsa posição) e métodos abertos, mais rápidos (Newton, secante).
+:::
+
+---
+
 ## Exercícios
 
 1. Mostre, em Python, que `0.1 + 0.2 != 0.3` e quantifique o erro absoluto.
 2. Calcule $E_{\text{abs}}$ e $E_{\text{rel}}$ ao aproximar $e$ pela série $\sum_{k=0}^{5} 1/k!$.
 3. Avalie $f(x) = \dfrac{e^x - 1}{x}$ em $x = 10^{-10}$ e proponha uma forma numericamente estável.
 4. Determine $\kappa$ de $f(x) = \sqrt{x}$ e discuta seu condicionamento.
+5. Implemente a função `bissecao` do slide anterior e tabule $a_n, b_n, m_n, f(m_n)$ para $f(x) = e^{-x} - x$ em $[0,1]$.
+6. Para o tanque cilíndrico ($r=1{,}5$ m, $L=6$ m), determine o volume correspondente a $h = 2{,}5$ m e verifique o resultado com `scipy.optimize.bisect`.
