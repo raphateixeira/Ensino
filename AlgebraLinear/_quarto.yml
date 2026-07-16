@@ -12,7 +12,12 @@ format:
     theme: [cosmo, TemaRTx.scss]
     lang: pt-BR
   revealjs:
-    theme: [default, TemaRTx.scss]
+    theme: [simple, tema.scss]
     lang: pt-BR
     width: 1600
     height: 900
+    transition: fade
+    title-slide-attributes:
+      data-background-image: "imgs/ufpa-colorido.png"
+      data-background-size: "84px"
+      data-background-position: "top 45px center"
