@@ -53,6 +53,8 @@ Quanto menor $|g'(x^{*})|$, mais rápida a convergência (linear).
 
 A escolha de $g$ **não é única** e determina a convergência.
 
+🎥 [Animação (Manim)](https://raphateixeira.github.io/Manim/VideosMetodosNumericos/PontoFixo.mp4)
+
 :::
 :::
 
@@ -87,6 +89,8 @@ Convergência **quadrática** próximo da raiz: o número de dígitos corretos *
 Falha se $f'(x_k) \approx 0$ ou se a estimativa inicial estiver distante da raiz.
 :::
 
+🎥 [Animação (Manim)](https://raphateixeira.github.io/Manim/VideosMetodosNumericos/NewtonRaphson.mp4)
+
 ---
 
 ## Método da secante
@@ -101,6 +105,8 @@ $$x_{k+1} = x_k - f(x_k)\,\frac{x_k - x_{k-1}}{f(x_k) - f(x_{k-1})}$$
 ::: {.callout-tip}
 Útil quando a derivada é cara ou indisponível analiticamente.
 :::
+
+🎥 [Animação (Manim)](https://raphateixeira.github.io/Manim/VideosMetodosNumericos/Secante.mp4)
 
 ---
 

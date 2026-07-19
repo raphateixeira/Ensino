@@ -60,6 +60,8 @@ O erro é reduzido **pela metade** a cada iteração:
 
 $$|x^{*} - m_n| \leq \frac{b-a}{2^{\,n+1}}$$
 
+🎥 [Animação (Manim)](https://raphateixeira.github.io/Manim/VideosMetodosNumericos/Bisseccao.mp4)
+
 ---
 
 ## Bisseção — convergência e implementação
@@ -92,6 +94,8 @@ Em vez do ponto médio, usa-se a **interseção da corda** com o eixo $x$:
 $$x_r = \frac{a\,f(b) - b\,f(a)}{f(b) - f(a)}$$
 
 A seleção do subintervalo segue a mesma regra de sinal da bisseção.
+
+🎥 [Animação (Manim)](https://raphateixeira.github.io/Manim/VideosMetodosNumericos/FalsaPosicao.mp4)
 
 ```python
 def falsa_posicao(f, a, b, tol=1e-10, nmax=100):

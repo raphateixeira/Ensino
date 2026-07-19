@@ -11,6 +11,8 @@ format:
 
 Notas de aula de Cálculo Numérico — implementações em **Python** (NumPy · SciPy · Matplotlib), com ênfase em aplicações de Engenharia.
 
+Veja também as [animações Manim dos métodos de zeros de função](https://raphateixeira.github.io/Manim/#zeros-de-funcoes) (bisseção, falsa posição, Newton-Raphson, secante e ponto fixo), usadas nas Aulas 2 e 3.
+
 ```{=html}
 <div class="categoria-grid">
 <a class="categoria-card" href="Notas/CN00PlanoEnsino.qmd">
@@ -19,7 +21,7 @@ Notas de aula de Cálculo Numérico — implementações em **Python** (NumPy ·
 </a>
 <a class="categoria-card" href="Notas/CN01Erros.qmd">
   <h3>Aula 1</h3>
-  <p>Erros e Aritmética de Ponto Flutuante</p>
+  <p>Introdução: Raízes de Funções e Erros Numéricos</p>
 </a>
 <a class="categoria-card" href="Notas/CN02ZerosIntervalares.qmd">
   <h3>Aula 2</h3>

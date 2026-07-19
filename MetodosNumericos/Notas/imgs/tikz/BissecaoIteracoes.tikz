@@ -1,0 +1,32 @@
+% Convergência da bisseção: intervalos aninhados a cada iteração
+% Bibliotecas (chunk .qmd): arrows.meta
+\begin{tikzpicture}[>=Latex, xscale=2.6, line width=0.9pt]
+  \def\xstar{2.2}
+
+  % iteração 0
+  \draw[gray!40] (0.3,0) -- (3.4,0);
+  \draw[line width=1.6pt] (0.3,0) -- (3.4,0);
+  \fill (0.3,0) circle (1.4pt); \fill (3.4,0) circle (1.4pt);
+  \node[left, font=\small] at (0.1,0) {$n=0$};
+
+  % iteração 1
+  \draw[gray!40] (0.3,-0.7) -- (3.4,-0.7);
+  \draw[line width=1.6pt] (1.85,-0.7) -- (3.4,-0.7);
+  \fill (1.85,-0.7) circle (1.4pt); \fill (3.4,-0.7) circle (1.4pt);
+  \node[left, font=\small] at (0.1,-0.7) {$n=1$};
+
+  % iteração 2
+  \draw[gray!40] (0.3,-1.4) -- (3.4,-1.4);
+  \draw[line width=1.6pt] (1.85,-1.4) -- (2.625,-1.4);
+  \fill (1.85,-1.4) circle (1.4pt); \fill (2.625,-1.4) circle (1.4pt);
+  \node[left, font=\small] at (0.1,-1.4) {$n=2$};
+
+  % iteração 3
+  \draw[gray!40] (0.3,-2.1) -- (3.4,-2.1);
+  \draw[line width=1.6pt] (2.1,-2.1) -- (2.35,-2.1);
+  \fill (2.1,-2.1) circle (1.4pt); \fill (2.35,-2.1) circle (1.4pt);
+  \node[left, font=\small] at (0.1,-2.1) {$n=3$};
+
+  \draw[dashed, red!70!black] (\xstar,0.35) -- (\xstar,-2.45);
+  \node[below, font=\small] at (\xstar,-2.47) {$x^{*}$};
+\end{tikzpicture}
