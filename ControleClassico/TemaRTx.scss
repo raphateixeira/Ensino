@@ -50,30 +50,39 @@ $font-family-monospace: "Fira Code", monospace !default;
 $font-family-heading: "Lato", sans-serif;
 
 // --- Tamanhos de fonte ---
-$font-size-root: 32px;
+$slide-font-size-root: 38px;
 $font-size: 1em !default;
 $font-size-medium-small: 0.8em !default;
 $font-size-small: 0.75em !default;
 $font-size-tiny: 0.4em !default;
 
 // --- Espaçamentos ---
-$spacing-xxs: 0.25rem;
-$spacing-xs: 0.5rem;
-$spacing-sm: 0.75rem;
-$spacing-md: 1rem;
-$spacing-lg: 1.5rem;
-$spacing-xl: 2rem;
-$spacing-xxl: 3rem;
+// Múltiplos fixos de $slide-font-size-root (não rem): estas medidas descrevem o
+// slide dos decks revealjs (canvas lógico 1600x900, ver $slide-font-size-root
+// abaixo) e precisam do mesmo valor não importa onde a regra seja aplicada.
+// "rem" dependeria do font-size do <html> real da página, que agora é o
+// padrão do navegador nas páginas HTML comuns (ver seção "Base").
+$spacing-xxs: 0.25 * $slide-font-size-root;
+$spacing-xs: 0.5 * $slide-font-size-root;
+$spacing-sm: 0.75 * $slide-font-size-root;
+$spacing-md: 1 * $slide-font-size-root;
+$spacing-lg: 1.5 * $slide-font-size-root;
+$spacing-xl: 2 * $slide-font-size-root;
+$spacing-xxl: 3 * $slide-font-size-root;
 
 // --- Alturas de linha ---
 $line-height-body: 1.5;
 $line-height-heading: 1.2;
 
 // --- Variáveis de apresentação (Quarto) ---
-$presentation-font-size-root: $font-size-root;
-$presentation-h1-font-size: 2.2em !default;
-$presentation-h2-font-size: 1.6em !default;
-$presentation-h3-font-size: 1.1em !default;
+$presentation-font-size-root: $slide-font-size-root;
+// Múltiplos fixos de $slide-font-size-root (não em): o título de um slide
+// precisa do mesmo tamanho não importa se o slide usa {.small-slide} (que
+// reduz o font-size do conteúdo do slide todo) — em "em" o título encolheria
+// junto, dando títulos inconsistentes entre slides.
+$presentation-h1-font-size: 2.3 * $slide-font-size-root !default;
+$presentation-h2-font-size: 1.85 * $slide-font-size-root !default;
+$presentation-h3-font-size: 1.1 * $slide-font-size-root !default;
 $presentation-heading-font: $font-family-heading !default;
 $presentation-heading-color: $primary;
 $presentation-heading-line-height: $line-height-heading;
@@ -82,10 +91,10 @@ $presentation-font-smaller: $font-size-medium-small !default;
 // --- Blocos de código ---
 $code-line-height: 1.4 !default;
 $code-font-family: $font-family-monospace !default;
-// rem (não em): tamanho do código fica igual em qualquer slide, mesmo
-// dentro de .small-slide (que reduz o font-size ambiente do slide todo,
-// incluindo o código, se usado em em — rem ignora esse contexto local).
-$code-block-font-size: 0.78rem !default;
+// Múltiplo fixo de $slide-font-size-root (não rem/em): tamanho do código fica
+// igual em qualquer slide, mesmo dentro de .small-slide (que reduz o
+// font-size ambiente do slide todo, incluindo o código, se usado em em).
+$code-block-font-size: 0.78 * $slide-font-size-root !default;
 $code-block-bg: #f0f3f7 !default;
 $code-output-bg: #f8f9fa !default;
 
@@ -99,10 +108,6 @@ $code-output-bg: #f8f9fa !default;
 // Base
 // ============================================================
 
-html {
-    font-size: $presentation-font-size-root;
-}
-
 body {
     margin: 0;
     padding: 0;
@@ -113,7 +118,12 @@ body {
     line-height: $line-height-body;
 }
 
+// $slide-font-size-root (32px) é o tamanho-base do canvas lógico dos slides
+// (1600x900 no revealjs) — fica em .reveal, não em html, para não inflar
+// o tamanho de texto das páginas HTML comuns (índice, notas de pesquisa),
+// que devem usar o tamanho padrão do navegador.
 .reveal {
+    font-size: $presentation-font-size-root;
     font-family: $font-family-sans-serif;
     color: $body-color;
     background-color: $body-bg;
@@ -142,6 +152,14 @@ body {
 // Títulos
 // ============================================================
 
+// IMPORTANTE: cada apresentação precisa de "center: false" no bloco
+// format.revealjs do seu .qmd. O default do revealjs (center: true)
+// centraliza verticalmente o bloco inteiro (título + conteúdo) do slide,
+// então o título "flutua" para cima ou para baixo conforme o slide tem
+// mais ou menos conteúdo abaixo. Com center: false, os slides usam o
+// fluxo normal (título sempre no topo); só a capa (#title-slide, ver
+// abaixo) restaura a centralização via flex.
+
 .reveal h1 {
     color: $heading-h1-color;
     font-weight: 600;
@@ -155,8 +173,9 @@ body {
 
 .reveal h2 {
     color: $heading-h2-color;
-    font-weight: 500;
+    font-weight: 600;
     font-size: $presentation-h2-font-size;
+    font-family: $heading-font-family;
     text-align: center;
     margin: 0 0 $spacing-xl 0;
     padding: 0;
@@ -477,16 +496,23 @@ body {
 }
 
 // ============================================================
-// Slide de título
+// Slide de título (apresentações revealjs)
 // ============================================================
 
 #title-slide {
     text-align: center;
 
-    // Capa no estilo usado em Métodos Numéricos / ControleClassico: logo
-    // pequeno no topo (via data-background-image no title-slide-attributes
-    // do .qmd, não como pseudo-elemento) e bloco de texto centralizado
-    // verticalmente pelo próprio Reveal.js (sem ancoragem/flex customizados).
+    // Cada apresentação define "center: false" no format.revealjs do .qmd
+    // (veja o comentário em ".reveal .slides section" mais abaixo) para que
+    // os slides comuns fiquem ancorados no topo. Isso também tira a
+    // centralização automática da capa, então ela é restaurada aqui, só
+    // para a capa, via flex: logo pequeno no topo (via data-background-image
+    // no title-slide-attributes do .qmd) e bloco de texto centralizado.
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 
     // .title é um <h1>, então zera o padding grande herdado de `.reveal h1`
     .title {
@@ -738,4 +764,171 @@ body {
             color: lighten($accent, 15%);
         }
     }
+}
+
+// ============================================================
+// Páginas HTML (portal / índice) — fora do contexto .reveal
+// ============================================================
+
+.title {
+    font-size: 2.0em !important;
+    color: $primary !important;
+    line-height: 1.1;
+    margin-bottom: 0.5em !important;
+}
+
+.subtitle {
+    font-size: 1.4em !important;
+    color: #555 !important;
+    margin-bottom: 1.5em !important;
+}
+
+.quarto-title-authors {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 80px !important;
+    margin-top: 2em !important;
+    font-size: 1.0em !important;
+}
+
+// --- Grid de links (index.qmd) ---
+.categoria-grid {
+    display: grid;
+    // 260px (não 220px): com page-layout:article o conteúdo é estreito, e
+    // títulos de uma palavra só (ex.: "Koopman") precisam desse mínimo para
+    // não quebrar no meio da palavra.
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.categoria-card {
+    display: block;
+    // min-width:0 evita que um item de grid cresça além da própria coluna
+    // por causa de uma palavra longa sem ponto de quebra (ex.: "Apresentação");
+    // o default do CSS Grid é min-width:auto, que respeita o conteúdo e
+    // pode empurrar o card para cima do vizinho.
+    min-width: 0;
+    padding: 1.2rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-decoration: none !important;
+    color: $body-color !important;
+    transition: box-shadow 0.15s ease, border-color 0.15s ease;
+
+    h3 { color: $primary; margin-bottom: 0.3rem; overflow-wrap: break-word; }
+    p  { margin: 0; color: #666; font-size: 0.9em; }
+
+    &:hover {
+        border-color: $primary;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+}
+
+// ============================================================
+// Galerias de figuras/animações (páginas de categoria: TikZ, Manim)
+// ============================================================
+
+.hero-figura {
+    text-align: center;
+    margin: 0.5rem 0 2rem;
+
+    img {
+        max-width: 100%;
+        width: 720px;
+        height: auto;
+    }
+}
+
+.categoria-vazia {
+    color: #888;
+    font-style: italic;
+    padding: 1.5rem 0;
+}
+
+.figura-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.figura-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+}
+
+.figura-preview {
+    background: #fafafa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 160px;
+    padding: 0.75rem;
+    border-bottom: 1px solid #eee;
+
+    img, video { max-width: 100%; max-height: 260px; }
+}
+
+.figura-pendente {
+    font-size: 0.85em;
+    color: #999;
+    text-align: center;
+    padding: 1rem;
+}
+
+.figura-body {
+    padding: 0.9rem 1rem;
+
+    h3 { font-size: 1.05em; color: $primary; margin: 0 0 0.3rem; }
+    p  { font-size: 0.9em; color: #555; margin: 0 0 0.5rem; }
+
+    details {
+        font-size: 0.85em;
+
+        summary { cursor: pointer; color: $secondary; }
+        pre { max-height: 260px; overflow: auto; font-size: 0.85em; }
+    }
+}
+
+.figura-tags {
+    margin-bottom: 0.6rem;
+}
+
+.figura-tag {
+    display: inline-block;
+    font-size: 0.72em;
+    background: lighten($primary, 55%);
+    color: $primary;
+    border-radius: 999px;
+    padding: 0.15em 0.7em;
+    margin: 0 0.25em 0.25em 0;
+}
+
+.figura-downloads {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.figura-download {
+    font-size: 0.8em;
+    border: 1px solid $primary;
+    color: $primary !important;
+    border-radius: 5px;
+    padding: 0.2em 0.6em;
+    text-decoration: none !important;
+
+    &:hover { background: $primary; color: #fff !important; }
+}
+
+// --- Layout de duas colunas (alinhamento vertical centralizado) ---
+.columns {
+    display: flex !important;
+    align-items: center !important;
 }
