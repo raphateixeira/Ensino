@@ -50,7 +50,7 @@ website:
 
 format:
   html:
-    theme: [cosmo, TemaCN.scss]
+    theme: [cosmo, TemaRTx.scss]
     toc: true
     toc-title: "Nesta página"
     page-layout: article

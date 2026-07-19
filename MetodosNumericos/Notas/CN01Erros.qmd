@@ -5,7 +5,7 @@ institute: "Universidade Federal do Pará"
 author: "Prof. Dr. Raphael Teixeira"
 format:
   revealjs:
-    theme: [simple, ../tema.scss]
+    theme: [simple, ../TemaRTx.scss]
     self-contained: true
     transition: fade
     slide-number: true
