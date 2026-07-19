@@ -1,0 +1,28 @@
+% ---------------------------------------------------------------------
+% Supermalha: fonte de corrente Ix é o único ramo compartilhado pelas
+% malhas 1 e 2 (sem impedância em paralelo com ela), exigindo o
+% tratamento como uma única supermalha. Requer circuitikz.
+% ---------------------------------------------------------------------
+\ctikzset{bipoles/length=2.2cm}
+\begin{circuitikz}[scale=2.2, line width=1.5pt, font=\Large]
+\draw (0,0)
+  to[sinusoidal voltage source, l=$\mathbf{V}_{s}$] (0,4)
+  to[short] (1.5,4)
+  to[generic, l=$\mathbf{Z}_1$] (4.5,4)
+  to[short] (6.5,4)
+  to[generic, l=$\mathbf{Z}_2$] (9.5,4)
+  to[short] (9.5,0)
+  to[short] (0,0);
+\draw (4.5,4) to[I, l=$\mathbf{I}_x$] (4.5,0);
+\draw (4.5,0) to[short] (1.5,0) to[short] (0,0);
+\draw (4.5,0) to[short] (9.5,0);
+
+\draw[-latex, thick] (2.4,2.6) arc (100:-190:0.55);
+\node at (2.4,2.0) {$\mathbf{I}_1$};
+
+\draw[-latex, thick] (7.2,2.6) arc (100:-190:0.55);
+\node at (7.2,2.0) {$\mathbf{I}_2$};
+
+\draw[dashed, gray] (0.7,4.5) rectangle (8.8,-0.6);
+\node[gray] at (4.5,4.8) {supermalha};
+\end{circuitikz}

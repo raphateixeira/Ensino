@@ -1,0 +1,47 @@
+% ---------------------------------------------------------------------
+% Transformação estrela-triângulo (Y-Delta) de impedâncias.
+% Painel esquerdo: triângulo (Delta) com impedâncias Z12, Z23, Z31.
+% Painel direito: estrela (Y) com impedâncias Z1, Z2, Z3 a partir do
+% nó central "o" até os nós 1, 2 e 3.
+% Tikz puro (sem circuitikz).
+% ---------------------------------------------------------------------
+\begin{tikzpicture}[>=Latex, line width=1.8pt, font=\Large,
+  no/.style={circle, fill=black, inner sep=1.6pt}]
+
+% ---------- Delta (triângulo), à esquerda ----------
+\begin{scope}
+  \coordinate (1) at (0,3.2);
+  \coordinate (2) at (-2.6,-1.2);
+  \coordinate (3) at (2.6,-1.2);
+
+  \draw (1) -- (2) node[midway, left=4pt] {$\mathbf{Z}_{12}$};
+  \draw (2) -- (3) node[midway, below=4pt] {$\mathbf{Z}_{23}$};
+  \draw (3) -- (1) node[midway, right=4pt] {$\mathbf{Z}_{31}$};
+
+  \node[no] at (1) {}; \node[above] at (1) {$1$};
+  \node[no] at (2) {}; \node[below left] at (2) {$2$};
+  \node[no] at (3) {}; \node[below right] at (3) {$3$};
+
+  \node[below] at (0,-2.4) {$\Delta$ (triângulo)};
+\end{scope}
+
+% ---------- Y (estrela), à direita ----------
+\begin{scope}[xshift=8.5cm]
+  \coordinate (o) at (0,0.3);
+  \coordinate (1) at (0,3.2);
+  \coordinate (2) at (-2.6,-1.2);
+  \coordinate (3) at (2.6,-1.2);
+
+  \draw (o) -- (1) node[midway, right=4pt] {$\mathbf{Z}_1$};
+  \draw (o) -- (2) node[midway, above left=1pt] {$\mathbf{Z}_2$};
+  \draw (o) -- (3) node[midway, above right=1pt] {$\mathbf{Z}_3$};
+
+  \node[no] at (o) {};
+  \node[no] at (1) {}; \node[above] at (1) {$1$};
+  \node[no] at (2) {}; \node[below left] at (2) {$2$};
+  \node[no] at (3) {}; \node[below right] at (3) {$3$};
+
+  \node[below] at (0,-2.4) {$Y$ (estrela)};
+\end{scope}
+
+\end{tikzpicture}

@@ -1,0 +1,19 @@
+% ---------------------------------------------------------------------
+% Circuito para análise nodal: dois nós não-referência (1 e 2), duas
+% fontes de corrente senoidais e três impedâncias (Za, Zb, Zc).
+% Requer circuitikz.
+% ---------------------------------------------------------------------
+\ctikzset{bipoles/length=2.2cm}
+\begin{circuitikz}[scale=2.2, line width=1.5pt, font=\Large]
+% nó de referência (terra) ao longo da base
+\draw (0,0) -- (12,0);
+\draw (0,0) to[sinusoidal current source, l=$\mathbf{I}_{s1}$, invert] (0,3.2);
+\draw (0,3.2) to[short, -*] (2.4,3.2) node[above] {$1$};
+\draw (2.4,3.2) to[generic, l=$\mathbf{Z}_a$] (2.4,0);
+\draw (2.4,3.2) to[generic, l_=$\mathbf{Z}_b$, i=$\mathbf{I}_b$] (6,3.2) node[above, xshift=6mm] {$2$};
+\draw (6,3.2) to[short, -*] (7.2,3.2);
+\draw (7.2,3.2) to[generic, l=$\mathbf{Z}_c$] (7.2,0);
+\draw (9.6,3.2) to[sinusoidal current source, l=$\mathbf{I}_{s2}$, invert] (9.6,0);
+\draw (7.2,3.2) to[short] (9.6,3.2);
+\draw [-latex, thick] (0,-0.9) -- (0.01,-0.9) node[right] {\normalsize nó de referência (terra)};
+\end{circuitikz}

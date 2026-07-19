@@ -1,0 +1,18 @@
+% ---------------------------------------------------------------------
+% Circuito com duas fontes independentes (Vs em série com Z1, e Is) e
+% dois ramos passivos (Z2, Z3), todos entre o nó A e a referência.
+% Corrente de interesse: I3, no ramo de Z3. Requer circuitikz.
+% ---------------------------------------------------------------------
+\ctikzset{bipoles/length=1.9cm}
+\begin{circuitikz}[scale=2.0, line width=1.5pt, font=\Large]
+\draw (0,0) -- (12,0);
+\draw (12,0) -- (12,3.6) -- (0,3.6);
+\node[above] at (6,3.6) {$A$};
+\node[circle, fill=black, inner sep=1.6pt] at (6,3.6) {};
+
+\draw (0,3.6) to[short] (0,3.6);
+\draw (1.2,0) to[sinusoidal voltage source, l=$\mathbf{V}_s$] (1.2,1.6) to[generic, l=$\mathbf{Z}_1$] (1.2,3.6);
+\draw (4.4,0) to[sinusoidal current source, l=$\mathbf{I}_s$] (4.4,3.6);
+\draw (7.6,0) to[generic, l=$\mathbf{Z}_2$] (7.6,3.6);
+\draw (10.8,0) to[generic, l=$\mathbf{Z}_3$, i=$\mathbf{I}_3$] (10.8,3.6);
+\end{circuitikz}

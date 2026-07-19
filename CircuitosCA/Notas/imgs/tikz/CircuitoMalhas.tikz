@@ -1,0 +1,25 @@
+% ---------------------------------------------------------------------
+% Circuito para análise de malhas: duas malhas com correntes I1 e I2,
+% duas fontes de tensão senoidais e três impedâncias (Z1, Z2, Z3).
+% Requer circuitikz.
+% ---------------------------------------------------------------------
+\ctikzset{bipoles/length=2.2cm}
+\begin{circuitikz}[scale=2.2, line width=1.5pt, font=\Large]
+\draw (0,0)
+  to[sinusoidal voltage source, l=$\mathbf{V}_{s1}$] (0,4)
+  to[short] (1.5,4)
+  to[generic, l=$\mathbf{Z}_1$] (4.5,4)
+  to[short] (6,4)
+  to[sinusoidal voltage source, l=$\mathbf{V}_{s2}$, invert] (10.5,4)
+  to[short] (10.5,0)
+  to[short] (0,0);
+\draw (6,4) to[generic, l_=$\mathbf{Z}_3$] (6,0) to[short] (10.5,0);
+\draw (4.5,4) to[generic, l=$\mathbf{Z}_2$, i=$\mathbf{I}_b$] (4.5,0) to[short] (6,0);
+\draw (4.5,0) to[short] (1.5,0) to[short] (0,0);
+
+\draw[-latex, thick] (2.4,2.6) arc (100:-190:0.55);
+\node at (2.4,2.0) {$\mathbf{I}_1$};
+
+\draw[-latex, thick] (7.6,2.6) arc (100:-190:0.55);
+\node at (7.6,2.0) {$\mathbf{I}_2$};
+\end{circuitikz}

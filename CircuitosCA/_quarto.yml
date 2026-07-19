@@ -36,6 +36,14 @@ website:
             href: Notas/Aula01Senoides.qmd
           - text: "2 · Relações Tensão-Corrente em CA"
             href: Notas/Aula02Impedancia.qmd
+          - text: "3 · Leis Circuitais e Métodos de Análise"
+            href: Notas/Aula03LeisCircuitais.qmd
+          - text: "4 · Teoremas de Circuitos em CA"
+            href: Notas/Aula04Teoremas.qmd
+          - text: "5 · Potência em CA"
+            href: Notas/Aula05Potencia.qmd
+          - text: "6 · Circuitos Trifásicos"
+            href: Notas/Aula06Trifasico.qmd
       - text: "Avaliações"
         menu:
           # Adicione/edite uma entrada por avaliação:

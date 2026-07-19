@@ -1,0 +1,34 @@
+% ---------------------------------------------------------------------
+% Painel esquerdo: rede original de dois terminais (a,b) com fonte Vs,
+% Z1 em série, Z2 em paralelo e Z3 em série até o terminal a.
+% Painel direito: equivalente de Thévenin (Vth em série com Zth).
+% Requer circuitikz.
+% ---------------------------------------------------------------------
+\ctikzset{bipoles/length=1.7cm}
+\begin{circuitikz}[scale=1.85, line width=1.5pt, font=\Large]
+
+% ---------- Rede original ----------
+\draw (0,0) to[sinusoidal voltage source, l=$\mathbf{V}_s$] (0,3)
+  to[short] (1.3,3)
+  to[generic, l=$\mathbf{Z}_1$] (3.9,3);
+\draw (3.9,3) to[generic, l_=$\mathbf{Z}_2$] (3.9,0);
+\draw (3.9,3) to[short] (5.0,3) to[generic, l=$\mathbf{Z}_3$] (7.6,3);
+\draw (3.9,0) to[short] (7.6,0);
+\draw (0,0) to[short] (3.9,0);
+
+\draw (7.6,3) circle (0.06) node[right] {$a$};
+\draw (7.6,0) circle (0.06) node[right] {$b$};
+
+\node at (9.4,1.5) {$\Longrightarrow$};
+
+% ---------- Equivalente de Thévenin ----------
+\begin{scope}[xshift=10.6cm]
+\draw (0,0) to[sinusoidal voltage source, l=$\mathbf{V}_{th}$] (0,3)
+  to[short] (1.3,3)
+  to[generic, l=$\mathbf{Z}_{th}$] (3.9,3);
+\draw (0,0) to[short] (3.9,0);
+\draw (3.9,3) circle (0.06) node[right] {$a$};
+\draw (3.9,0) circle (0.06) node[right] {$b$};
+\end{scope}
+
+\end{circuitikz}

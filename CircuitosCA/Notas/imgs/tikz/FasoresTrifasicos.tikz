@@ -1,0 +1,24 @@
+% ---------------------------------------------------------------------
+% Diagrama fasorial trifásico equilibrado, sequência positiva (abc):
+% Van, Vbn, Vcn a 120° entre si, e a tensão de linha Vab = Van - Vbn,
+% ilustrando Vab = sqrt(3) Van∠30°. Tikz puro.
+% ---------------------------------------------------------------------
+\begin{tikzpicture}[>=Latex, line width=2pt, font=\Large, scale=1.7]
+
+  \draw[->] (-2.4,0) -- (2.7,0) node[right] {Re};
+  \draw[->] (0,-2.4) -- (0,2.4) node[above] {Im};
+
+  \draw[->, blue!70!black] (0,0) -- (1.8,0) node[right] {$\mathbf{V}_{an}$};
+  \draw[->, red!70!black] (0,0) -- ({1.8*cos(-120)},{1.8*sin(-120)}) node[below left] {$\mathbf{V}_{bn}$};
+  \draw[->, orange!85!black] (0,0) -- ({1.8*cos(120)},{1.8*sin(120)}) node[above left] {$\mathbf{V}_{cn}$};
+
+  % Vab = Van - Vbn: soma vetorial (paralelogramo) partindo de Vbn até Van
+  \draw[->, violet, line width=2.6pt]
+    ({1.8*cos(-120)},{1.8*sin(-120)}) -- (1.8,0);
+  \draw[->, violet, line width=2.6pt] (0,0) -- ({1.8*sqrt(3)*cos(30)},{1.8*sqrt(3)*sin(30)})
+    node[above right] {$\mathbf{V}_{ab}=\sqrt{3}\,\mathbf{V}_{an}\angle 30^\circ$};
+
+  \draw[gray] (0.55,0) arc (0:120:0.55);
+  \node[gray] at (0.35,0.55) {$120^\circ$};
+
+\end{tikzpicture}

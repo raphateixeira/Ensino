@@ -1,0 +1,287 @@
+---
+title: "Leis Circuitais e Métodos de Análise em CA"
+subtitle: "Circuitos Elétricos II — CA"
+institute: "Universidade Federal do Pará"
+author: "Prof. Dr. Raphael Teixeira"
+format:
+  revealjs:
+    theme: [simple, ../TemaRTx.scss]
+    self-contained: true
+    transition: fade
+    slide-number: true
+    width: 1600
+    height: 900
+    footer: " "
+    center: true
+    title-slide-attributes:
+      data-background-image: "imgs/ufpa-colorido.png"
+      data-background-size: "84px"
+      data-background-position: "top 45px center"
+engine: knitr
+---
+
+```{r setup, include=FALSE}
+# Habilita circuitikz (diagramas de circuito) nos chunks {tikz} desta aula.
+knitr::opts_chunk$set(engine.opts = list(
+  extra.preamble = c("\\usepackage{circuitikz}"),
+  # standalone's crop padrão só reconhece \begin{tikzpicture}; circuitikz usa
+  # \begin{circuitikz}, então precisa ser listado explicitamente em "multi".
+  classoption = "tikz,multi=circuitikz"
+))
+```
+
+## Leis de Kirchhoff no Domínio Fasorial
+
+::: {.callout-tip}
+## A grande simplificação
+As leis de Kirchhoff (LKT e LKC) **continuam válidas**, termo a termo, quando tensões e correntes são substituídas por seus **fasores** — desde que todas as fontes operem na **mesma frequência** $\omega$.
+:::
+
+$$\text{LKT:}\quad \sum_{k} v_k(t) = 0 \;\;\Longleftrightarrow\;\; \sum_{k} \mathbf{V}_k = 0 \qquad\qquad \text{LKC:}\quad \sum_{k} i_k(t) = 0 \;\;\Longleftrightarrow\;\; \sum_{k} \mathbf{I}_k = 0$$
+
+A justificativa é a **linearidade** da transformação fasorial: $\text{Re}\!\left[\left(\sum_k \mathbf{X}_k\right) e^{j\omega t}\right] = \sum_k \text{Re}\!\left[\mathbf{X}_k e^{j\omega t}\right]$.
+
+---
+
+## Consequência Prática
+
+Toda a teoria de circuitos resistivos (CC) desenvolvida em Circuitos Elétricos I se transporta **diretamente** para CA, bastando substituir:
+
+| Circuitos Elétricos I (CC) | Circuitos Elétricos II (CA) |
+|---|---|
+| Resistência $R$ | Impedância $\mathbf{Z}$ |
+| Tensões e correntes (reais) | Fasores (complexos) |
+| Álgebra real | Álgebra complexa |
+
+::: {.callout-important}
+Análise nodal, análise de malhas, superposição, Thévenin, Norton — **todos** os métodos e teoremas se aplicam sem modificação conceitual, apenas trocando aritmética real por complexa.
+:::
+
+---
+
+## Análise Nodal em CA — Ideia
+
+**Objetivo:** encontrar as tensões de nó (fasoriais) em relação a um nó de referência (terra), usando a LKC.
+
+**Passos:**
+
+1. Escolha o **nó de referência** (geralmente o de maior número de conexões) e atribua $0$ V a ele.
+2. Nomeie as tensões de nó $\mathbf{V}_1, \mathbf{V}_2, \ldots$ dos demais nós.
+3. Para cada nó não-referência, aplique a LKC: **soma das correntes que saem do nó = soma das correntes injetadas por fontes**, escrevendo cada corrente de ramo como $\dfrac{\mathbf{V}_{\text{nó}}-\mathbf{V}_{\text{vizinho}}}{\mathbf{Z}_{\text{ramo}}}$.
+4. Resolva o sistema linear complexo resultante.
+
+---
+
+## Análise Nodal — Circuito de Exemplo
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 12
+\input{imgs/tikz/CircuitoNodal.tikz}
+```
+
+**Dados:** $\mathbf{I}_{s1}=4\angle 0°$ A, $\mathbf{I}_{s2}=2\angle{-90°}$ A, $\mathbf{Z}_a=j4\ \Omega$, $\mathbf{Z}_b=4\ \Omega$, $\mathbf{Z}_c=-j2\ \Omega$.
+
+---
+
+## Análise Nodal — Montagem das Equações
+
+Em cada nó, a soma das correntes que **saem** é igual à corrente **injetada** pela fonte conectada:
+
+**Nó 1:** $\quad \dfrac{\mathbf{V}_1}{\mathbf{Z}_a} + \dfrac{\mathbf{V}_1-\mathbf{V}_2}{\mathbf{Z}_b} = \mathbf{I}_{s1}$
+
+**Nó 2:** $\quad \dfrac{\mathbf{V}_2-\mathbf{V}_1}{\mathbf{Z}_b} + \dfrac{\mathbf{V}_2}{\mathbf{Z}_c} = \mathbf{I}_{s2}$
+
+Reorganizando em admitâncias ($\mathbf{Y}=1/\mathbf{Z}$):
+
+$$(\mathbf{Y}_a+\mathbf{Y}_b)\,\mathbf{V}_1 - \mathbf{Y}_b\,\mathbf{V}_2 = \mathbf{I}_{s1}, \qquad -\mathbf{Y}_b\,\mathbf{V}_1 + (\mathbf{Y}_b+\mathbf{Y}_c)\,\mathbf{V}_2 = \mathbf{I}_{s2}$$
+
+---
+
+## Análise Nodal — Solução
+
+Com $\mathbf{Y}_a = -j0{,}25$ S, $\mathbf{Y}_b = 0{,}25$ S e $\mathbf{Y}_c = j0{,}5$ S, o sistema é:
+
+$$(0{,}25-j0{,}25)\,\mathbf{V}_1 - 0{,}25\,\mathbf{V}_2 = 4 \qquad\qquad -0{,}25\,\mathbf{V}_1 + (0{,}25+j0{,}5)\,\mathbf{V}_2 = -j2$$
+
+Resolvendo (por substituição, matriz ou determinantes):
+
+$$\boxed{\mathbf{V}_1 = 12{,}90\angle 29{,}7°\ \text{V}} \qquad\qquad \boxed{\mathbf{V}_2 = 5{,}06\angle{-71{,}6°}\ \text{V}}$$
+
+A corrente no ramo compartilhado: $\mathbf{I}_b = \dfrac{\mathbf{V}_1-\mathbf{V}_2}{\mathbf{Z}_b} = 3{,}69\angle 49{,}4°\ \text{A}$
+
+---
+
+## Análise Nodal com Fontes Dependentes
+
+Uma fonte dependente **não muda o método** — apenas acrescenta uma equação extra (a **equação de restrição**) que expressa a variável controladora em termos das próprias tensões de nó.
+
+**Exemplo:** uma fonte de corrente controlada por tensão $\mathbf{I}_x = 0{,}5\,\mathbf{V}_1$ (em ampères, com $\mathbf{V}_1$ em volts) injetada no nó 2 soma-se ao lado direito da equação do nó 2:
+
+$$-\mathbf{Y}_b\,\mathbf{V}_1 + (\mathbf{Y}_b+\mathbf{Y}_c)\,\mathbf{V}_2 = \mathbf{I}_{s2} + 0{,}5\,\mathbf{V}_1$$
+
+::: {.callout-warning}
+Rearranje sempre para deixar as incógnitas ($\mathbf{V}_1,\mathbf{V}_2,\ldots$) do lado esquerdo: aqui, subtraia $0{,}5\,\mathbf{V}_1$ e some ao coeficiente de $\mathbf{V}_1$ na equação.
+:::
+
+---
+
+## Supernó
+
+Quando uma **fonte de tensão** conecta diretamente dois nós não-referência (sem impedância em série), não é possível escrever a LKC isoladamente em cada um — os dois nós formam um **supernó**.
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 10
+\input{imgs/tikz/CircuitoSupernodal.tikz}
+```
+
+---
+
+## Supernó — Equacionamento
+
+**Duas equações são necessárias** para o supernó:
+
+**1. LKC combinada** (soma de todas as correntes que saem do supernó, tratando-o como um único nó):
+
+$$\dfrac{\mathbf{V}_1}{\mathbf{Z}_a} + \dfrac{\mathbf{V}_2}{\mathbf{Z}_b} = \mathbf{I}_s$$
+
+**2. Equação de restrição** (a fonte impõe a diferença de tensão entre os nós):
+
+$$\mathbf{V}_1 - \mathbf{V}_2 = \mathbf{V}_x$$
+
+::: {.callout-tip}
+O supernó "recupera" o grau de liberdade perdido: uma incógnita a menos na LKC é compensada pela equação de restrição da fonte.
+:::
+
+---
+
+## Análise de Malhas em CA — Ideia
+
+**Objetivo:** encontrar as correntes de malha (fasoriais) usando a LKT, aplicável a circuitos **planares**.
+
+**Passos:**
+
+1. Atribua uma corrente de malha $\mathbf{I}_1, \mathbf{I}_2,\ldots$ a cada laço independente, todas no mesmo sentido (convencionalmente horário).
+2. Para cada malha, aplique a LKT: **soma das quedas de tensão ao longo do laço = 0**, escrevendo cada queda como $\mathbf{Z}\cdot(\text{corrente de ramo})$, onde a corrente de ramo é a soma/diferença das correntes de malha que o percorrem.
+3. Resolva o sistema linear complexo resultante.
+
+---
+
+## Análise de Malhas — Circuito de Exemplo
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 12
+\input{imgs/tikz/CircuitoMalhas.tikz}
+```
+
+**Dados:** $\mathbf{V}_{s1}=12\angle 0°$ V, $\mathbf{V}_{s2}=6\angle 45°$ V, $\mathbf{Z}_1=1+j2\ \Omega$, $\mathbf{Z}_2=3-j1\ \Omega$, $\mathbf{Z}_3=2+j3\ \Omega$.
+
+---
+
+## Análise de Malhas — Montagem das Equações
+
+Percorrendo cada malha no sentido horário (mesmo sentido de $\mathbf{I}_1$ e $\mathbf{I}_2$):
+
+**Malha 1:** $\quad -\mathbf{V}_{s1} + \mathbf{Z}_1\mathbf{I}_1 + \mathbf{Z}_2(\mathbf{I}_1-\mathbf{I}_2) = 0$
+
+**Malha 2:** $\quad \mathbf{Z}_2(\mathbf{I}_2-\mathbf{I}_1) + \mathbf{Z}_3\mathbf{I}_2 - \mathbf{V}_{s2} = 0$
+
+Reorganizando:
+
+$$(\mathbf{Z}_1+\mathbf{Z}_2)\,\mathbf{I}_1 - \mathbf{Z}_2\,\mathbf{I}_2 = \mathbf{V}_{s1}, \qquad -\mathbf{Z}_2\,\mathbf{I}_1 + (\mathbf{Z}_2+\mathbf{Z}_3)\,\mathbf{I}_2 = \mathbf{V}_{s2}$$
+
+---
+
+## Análise de Malhas — Solução
+
+$$(4+j1)\,\mathbf{I}_1 - (3-j1)\,\mathbf{I}_2 = 12 \qquad\qquad -(3-j1)\,\mathbf{I}_1 + (5+j2)\,\mathbf{I}_2 = 6\angle 45°$$
+
+Resolvendo o sistema:
+
+$$\boxed{\mathbf{I}_1 = 3{,}89\angle{-39{,}4°}\ \text{A}} \qquad\qquad \boxed{\mathbf{I}_2 = 2{,}31\angle{-51{,}5°}\ \text{A}}$$
+
+A corrente no ramo compartilhado ($\mathbf{Z}_2$, sentido de $\mathbf{I}_1$ para $\mathbf{I}_2$): $\mathbf{I}_1-\mathbf{I}_2 = 1{,}70\angle{-22{,}8°}\ \text{A}$
+
+---
+
+## Análise de Malhas com Fontes Dependentes
+
+Assim como na análise nodal, uma fonte dependente adiciona apenas uma **equação de restrição**.
+
+**Exemplo:** uma fonte de tensão controlada por corrente $\mathbf{V}_x = 2\,\mathbf{I}_1$ (em volts, com $\mathbf{I}_1$ em ampères) inserida na malha 2 entra como mais um termo na LKT dessa malha:
+
+$$-\mathbf{Z}_2\,\mathbf{I}_1 + (\mathbf{Z}_2+\mathbf{Z}_3)\,\mathbf{I}_2 = \mathbf{V}_{s2} + 2\,\mathbf{I}_1$$
+
+::: {.callout-warning}
+Novamente, reorganize para manter as incógnitas ($\mathbf{I}_1,\mathbf{I}_2,\ldots$) do lado esquerdo antes de montar a matriz do sistema.
+:::
+
+---
+
+## Supermalha
+
+Quando uma **fonte de corrente** é compartilhada por duas malhas (sem impedância em paralelo com ela no mesmo ramo), a LKT não pode ser aplicada isoladamente em cada malha — elas formam uma **supermalha**.
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 12
+\input{imgs/tikz/CircuitoSupermalha.tikz}
+```
+
+---
+
+## Supermalha — Equacionamento
+
+**Duas equações são necessárias** para a supermalha:
+
+**1. LKT combinada** (contorno externo às duas malhas, ignorando o ramo interior da fonte de corrente):
+
+$$-\mathbf{V}_s + \mathbf{Z}_1\mathbf{I}_1 + \mathbf{Z}_2\mathbf{I}_2 = 0$$
+
+**2. Equação de restrição** (a fonte impõe a diferença entre as correntes de malha no ramo que compartilham):
+
+$$\mathbf{I}_1 - \mathbf{I}_2 = \mathbf{I}_x$$
+
+::: {.callout-tip}
+Regra prática: **elimine o ramo da fonte de corrente** ao somar as quedas de tensão da supermalha, e complete o sistema com a relação que a fonte impõe entre as correntes de malha.
+:::
+
+---
+
+## Nodal vs. Malhas — Quando Escolher Cada Método
+
+| | Análise Nodal | Análise de Malhas |
+|---|---|---|
+| **Baseia-se em** | LKC | LKT |
+| **Incógnitas** | Tensões de nó | Correntes de malha |
+| **Nº de equações** | $n_{\text{nós}}-1$ | $n_{\text{ramos}}-n_{\text{nós}}+1$ |
+| **Fonte de corrente** | Simples (soma direta) | Gera supermalha |
+| **Fonte de tensão** | Gera supernó | Simples (soma direta) |
+| **Aplicável a** | Qualquer circuito | Apenas circuitos planares |
+
+::: {.callout-note}
+Escolha o método com **menos incógnitas**: circuitos com muitos nós favorecem malhas; circuitos com muitas malhas favorecem análise nodal.
+:::
+
+---
+
+## Exercícios
+
+1. No circuito nodal do exemplo, recalcule $\mathbf{V}_1$ e $\mathbf{V}_2$ se $\mathbf{Z}_b$ dobrar para $8\ \Omega$.
+2. No circuito de malhas do exemplo, verifique por substituição direta que os valores de $\mathbf{I}_1$ e $\mathbf{I}_2$ satisfazem as duas equações originais.
+3. Um circuito tem três nós não-referência. Quantas equações nodais são necessárias? E se dois desses nós forem ligados por uma fonte de tensão ideal?
+4. Refaça o exemplo de análise nodal com fonte dependente ($\mathbf{I}_x=0{,}5\,\mathbf{V}_1$ no nó 2) e obtenha $\mathbf{V}_1$ e $\mathbf{V}_2$ numericamente.
+5. Explique, em uma frase, por que a supermalha "ignora" o ramo da fonte de corrente ao somar as quedas de tensão.
+
+---
+
+## Referências
+
+::: {#refs}
+:::

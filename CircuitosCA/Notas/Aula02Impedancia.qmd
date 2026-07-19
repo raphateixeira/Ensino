@@ -25,6 +25,7 @@ engine: knitr
 # chunks {tikz} desta aula.
 knitr::opts_chunk$set(engine.opts = list(
   extra.preamble = c("\\usepackage{circuitikz}", "\\usepackage{pgfplots}",
+                      "\\usetikzlibrary{arrows.meta}",
                       "\\pgfplotsset{compat=1.18}"),
   # standalone's crop padrão só reconhece \begin{tikzpicture}; circuitikz usa
   # \begin{circuitikz}, então precisa ser listado explicitamente em "multi".
@@ -283,6 +284,123 @@ $$\boxed{i(t) = 2{,}77\cos(500t-33{,}7°)\ \text{A}}$$
 
 ---
 
+## Divisor de Tensão em CA
+
+Para impedâncias em **série**, a tensão sobre cada uma é proporcional à sua fração da impedância total — mesma regra do CC, agora com números complexos:
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 8
+\input{imgs/tikz/DivisorTensaoCA.tikz}
+```
+
+$$\mathbf{I} = \frac{\mathbf{V}_s}{\mathbf{Z}_1+\mathbf{Z}_2}, \qquad \mathbf{V}_1 = \frac{\mathbf{Z}_1}{\mathbf{Z}_1+\mathbf{Z}_2}\,\mathbf{V}_s, \qquad \mathbf{V}_2 = \frac{\mathbf{Z}_2}{\mathbf{Z}_1+\mathbf{Z}_2}\,\mathbf{V}_s$$
+
+::: {.callout-warning}
+A fração $\mathbf{Z}_k/\mathbf{Z}_{eq}$ é, em geral, um número **complexo**: ela redistribui tanto módulo quanto fase entre os elementos.
+:::
+
+---
+
+## Divisor de Tensão — Exemplo Numérico
+
+**Problema:** $\mathbf{Z}_1 = 3+j4\ \Omega$ e $\mathbf{Z}_2 = 6-j2\ \Omega$ em série são alimentados por $\mathbf{V}_s = 20\angle 0°$ V. Encontre $\mathbf{V}_1$ e $\mathbf{V}_2$.
+
+**Solução:**
+
+$$\mathbf{Z}_{eq} = \mathbf{Z}_1+\mathbf{Z}_2 = 9+j2\ \Omega = 9{,}22\angle 12{,}5°\ \Omega$$
+
+$$\mathbf{V}_1 = \frac{3+j4}{9+j2}(20\angle 0°) = \frac{5\angle 53{,}1°}{9{,}22\angle 12{,}5°}(20\angle 0°) = 10{,}85\angle 40{,}6°\ \text{V}$$
+
+$$\mathbf{V}_2 = \frac{6-j2}{9+j2}(20\angle 0°) = \frac{6{,}32\angle{-18{,}4°}}{9{,}22\angle 12{,}5°}(20\angle 0°) = 13{,}72\angle{-31{,}0°}\ \text{V}$$
+
+::: {.callout-note}
+## Verificação
+$\mathbf{V}_1+\mathbf{V}_2$ deve reconstituir $\mathbf{V}_s = 20\angle 0°$ V (LKT) — confirme somando as formas retangulares.
+:::
+
+---
+
+## Divisor de Corrente em CA
+
+Para impedâncias em **paralelo**, a corrente em cada ramo é proporcional à **admitância** desse ramo (ou, com dois elementos, ao inverso das impedâncias cruzadas):
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 8
+\input{imgs/tikz/DivisorCorrenteCA.tikz}
+```
+
+$$\mathbf{I}_1 = \frac{\mathbf{Z}_2}{\mathbf{Z}_1+\mathbf{Z}_2}\,\mathbf{I}_s, \qquad \mathbf{I}_2 = \frac{\mathbf{Z}_1}{\mathbf{Z}_1+\mathbf{Z}_2}\,\mathbf{I}_s \qquad \text{(apenas para dois ramos)}$$
+
+Com $N$ ramos, use admitâncias: $\mathbf{I}_k = \dfrac{\mathbf{Y}_k}{\mathbf{Y}_{eq}}\,\mathbf{I}_s$, com $\mathbf{Y}_{eq}=\sum_k \mathbf{Y}_k$.
+
+---
+
+## Divisor de Corrente — Exemplo Numérico
+
+**Problema:** $\mathbf{Z}_1 = j10\ \Omega$ e $\mathbf{Z}_2 = 5\ \Omega$ em paralelo são alimentados por $\mathbf{I}_s = 4\angle 0°$ A. Encontre $\mathbf{I}_1$ e $\mathbf{I}_2$.
+
+**Solução:**
+
+$$\mathbf{I}_1 = \frac{\mathbf{Z}_2}{\mathbf{Z}_1+\mathbf{Z}_2}\,\mathbf{I}_s = \frac{5}{5+j10}(4\angle 0°) = \frac{5\angle 0°}{11{,}18\angle 63{,}4°}(4\angle 0°) = 1{,}79\angle{-63{,}4°}\ \text{A}$$
+
+$$\mathbf{I}_2 = \frac{\mathbf{Z}_1}{\mathbf{Z}_1+\mathbf{Z}_2}\,\mathbf{I}_s = \frac{j10}{5+j10}(4\angle 0°) = \frac{10\angle 90°}{11{,}18\angle 63{,}4°}(4\angle 0°) = 3{,}58\angle 26{,}6°\ \text{A}$$
+
+> Note que $|\mathbf{I}_1|+|\mathbf{I}_2| \neq |\mathbf{I}_s|$: os módulos **não** se somam diretamente porque as correntes estão defasadas entre si (apenas a soma **fasorial** reconstitui $\mathbf{I}_s$).
+
+---
+
+## Transformação Estrela-Triângulo (Y-$\Delta$)
+
+Circuitos com impedâncias que não estão em série nem em paralelo puro (ex.: pontes, redes com três terminais) podem ser simplificados convertendo entre as configurações $\Delta$ e $Y$:
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 12
+\input{imgs/tikz/TransformacaoYDelta.tikz}
+```
+
+::: {.callout-tip}
+A transformação **preserva** as impedâncias vistas entre cada par de terminais (1-2, 2-3, 3-1) — os dois circuitos são eletricamente equivalentes nesses três terminais.
+:::
+
+---
+
+## Fórmulas de Conversão Y-$\Delta$
+
+**De $\Delta$ para $Y$** (divide pela soma das impedâncias do triângulo):
+
+$$\mathbf{Z}_1 = \frac{\mathbf{Z}_{12}\mathbf{Z}_{31}}{\mathbf{Z}_{12}+\mathbf{Z}_{23}+\mathbf{Z}_{31}}, \quad \mathbf{Z}_2 = \frac{\mathbf{Z}_{12}\mathbf{Z}_{23}}{\mathbf{Z}_{12}+\mathbf{Z}_{23}+\mathbf{Z}_{31}}, \quad \mathbf{Z}_3 = \frac{\mathbf{Z}_{23}\mathbf{Z}_{31}}{\mathbf{Z}_{12}+\mathbf{Z}_{23}+\mathbf{Z}_{31}}$$
+
+**De $Y$ para $\Delta$** (soma dos produtos dois a dois, dividida pelo braço oposto):
+
+$$\mathbf{Z}_{12} = \frac{\mathbf{Z}_1\mathbf{Z}_2+\mathbf{Z}_2\mathbf{Z}_3+\mathbf{Z}_3\mathbf{Z}_1}{\mathbf{Z}_3}, \quad \mathbf{Z}_{23} = \frac{\mathbf{Z}_1\mathbf{Z}_2+\mathbf{Z}_2\mathbf{Z}_3+\mathbf{Z}_3\mathbf{Z}_1}{\mathbf{Z}_1}, \quad \mathbf{Z}_{31} = \frac{\mathbf{Z}_1\mathbf{Z}_2+\mathbf{Z}_2\mathbf{Z}_3+\mathbf{Z}_3\mathbf{Z}_1}{\mathbf{Z}_2}$$
+
+::: {.callout-important}
+## Caso balanceado
+Se $\mathbf{Z}_{12}=\mathbf{Z}_{23}=\mathbf{Z}_{31}=\mathbf{Z}_\Delta$ e $\mathbf{Z}_1=\mathbf{Z}_2=\mathbf{Z}_3=\mathbf{Z}_Y$, as fórmulas se reduzem a $\mathbf{Z}_Y = \mathbf{Z}_\Delta/3$ (ou $\mathbf{Z}_\Delta = 3\mathbf{Z}_Y$) — relação que reaparece na Unidade 6 (circuitos trifásicos).
+:::
+
+---
+
+## Transformação Y-$\Delta$ — Exemplo Numérico
+
+**Problema:** Um triângulo balanceado tem $\mathbf{Z}_{12}=\mathbf{Z}_{23}=\mathbf{Z}_{31} = 12+j6\ \Omega$. Encontre a estrela equivalente.
+
+**Solução:** pelo caso balanceado, $\mathbf{Z}_Y = \dfrac{\mathbf{Z}_\Delta}{3} = \dfrac{12+j6}{3}$
+
+$$\boxed{\mathbf{Z}_1=\mathbf{Z}_2=\mathbf{Z}_3 = 4+j2\ \Omega}$$
+
+**Verificação (fórmula geral, braço $\mathbf{Z}_1$):**
+
+$$\mathbf{Z}_1 = \frac{(12+j6)(12+j6)}{3(12+j6)} = \frac{12+j6}{3} = 4+j2\ \Omega \quad\checkmark$$
+
+---
+
 ## Exercícios
 
 1. Um resistor de $R = 100\,\Omega$ tem corrente $i(t) = 2\cos(1000t)$ A. Encontre $v(t)$ e a impedância $\mathbf{Z}_R$.
@@ -290,6 +408,8 @@ $$\boxed{i(t) = 2{,}77\cos(500t-33{,}7°)\ \text{A}}$$
 3. Um capacitor de $C = 220\,\mu\text{F}$ opera em $f = 60$ Hz. Calcule $X_C$ e $\mathbf{Z}_C$.
 4. Para o circuito RL do Exemplo 3, recalcule $\mathbf{I}$, $\mathbf{V}_R$ e $\mathbf{V}_L$ se a frequência dobrar ($\omega = 1000$ rad/s).
 5. Dois elementos com $\mathbf{Z}_1 = 4+j3\ \Omega$ e $\mathbf{Z}_2 = 2-j2\ \Omega$ estão em paralelo. Calcule $\mathbf{Z}_{eq}$ usando admitâncias.
+6. No divisor de tensão do primeiro exemplo desta seção, verifique por soma fasorial que $\mathbf{V}_1+\mathbf{V}_2 = \mathbf{V}_s$.
+7. Um triângulo tem $\mathbf{Z}_{12}=10\ \Omega$, $\mathbf{Z}_{23}=j5\ \Omega$ e $\mathbf{Z}_{31}=-j5\ \Omega$. Calcule a estrela equivalente $\mathbf{Z}_1,\mathbf{Z}_2,\mathbf{Z}_3$.
 
 ---
 

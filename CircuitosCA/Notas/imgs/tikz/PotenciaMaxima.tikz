@@ -1,0 +1,22 @@
+% ---------------------------------------------------------------------
+% Potência média entregue à carga em função de R_L, com X_L = -X_th
+% fixo (reatância já casada). Mostra o máximo em R_L = R_th.
+% P(R_L) = |Vth_rms|^2 * R_L / (Rth+R_L)^2, Vth_rms = 35.777/sqrt(2) V,
+% Rth = 6.2 ohm (valores do Exemplo de máxima transferência de potência).
+% Requer pgfplots.
+% ---------------------------------------------------------------------
+\begin{tikzpicture}
+\begin{axis}[
+  width=13cm, height=9cm,
+  xlabel={$R_L\ (\Omega)$}, ylabel={$P_L$ (W)},
+  label style={font=\Large}, tick label style={font=\Large},
+  domain=0.01:25, samples=150,
+  ymin=0, xmin=0,
+  thick,
+]
+\addplot[blue!70!black, line width=2.6pt] {640.1*x/((6.2+x)^2)};
+\addplot[red!70!black, dashed, line width=1.8pt] coordinates {(6.2,0) (6.2,26)};
+\node[red!70!black, font=\Large] at (axis cs:6.2,27.5) {$R_L=R_{th}$};
+\node[blue!70!black, font=\Large] at (axis cs:15,20) {$P_{max}=25{,}8$ W};
+\end{axis}
+\end{tikzpicture}

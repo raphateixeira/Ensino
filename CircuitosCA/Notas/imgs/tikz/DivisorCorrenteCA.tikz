@@ -1,0 +1,12 @@
+% ---------------------------------------------------------------------
+% Divisor de corrente em CA: duas impedâncias em paralelo alimentadas
+% por fonte de corrente senoidal. Requer circuitikz.
+% ---------------------------------------------------------------------
+\ctikzset{bipoles/length=2.2cm}
+\begin{circuitikz}[scale=2.6, line width=1.6pt, font=\Large]
+\draw (0,0)
+  to[sinusoidal current source, l=$\mathbf{I}_s$] (0,4);
+\draw (0,4) to[short, -*] (3,4);
+\draw (3,4) to[generic, l=$\mathbf{Z}_1$, i=$\mathbf{I}_1$] (3,0) to[short, -*] (0,0);
+\draw (3,4) to[short] (6,4) to[generic, l=$\mathbf{Z}_2$, i=$\mathbf{I}_2$] (6,0) to[short] (3,0);
+\end{circuitikz}
