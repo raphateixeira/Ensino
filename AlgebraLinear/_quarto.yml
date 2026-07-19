@@ -12,7 +12,7 @@ format:
     theme: [cosmo, TemaRTx.scss]
     lang: pt-BR
   revealjs:
-    theme: [simple, tema.scss]
+    theme: [simple, TemaRTx.scss]
     lang: pt-BR
     width: 1600
     height: 900
