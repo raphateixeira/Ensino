@@ -10,7 +10,7 @@ institute: "Universidade Federal do Pará"
 author: "Prof. Dr. Raphael Teixeira"
 format: 
   revealjs:
-    theme: [simple, ../tema-slides.scss]
+    theme: [simple, ../TemaRTx.scss]
     self-contained: true          # gera um .html único, sem dependências externas
     transition: fade
     slide-number: true
