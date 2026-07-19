@@ -10,6 +10,9 @@ website:
   site-url: https://raphateixeira.github.io/DeepLearning
   repo-url: https://github.com/raphateixeira/DeepLearning
 
+bibliography: references.bib
+csl: apa.csl
+
 format:
   html:
     theme: [cosmo, TemaRTx.scss]

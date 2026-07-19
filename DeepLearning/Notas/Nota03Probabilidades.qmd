@@ -1,0 +1,39 @@
+---
+title: "Probabilidades (Bishop - Capítulo 2)"
+subtitle: "Deep Learning"
+institute: ""
+author: "Prof. Dr. Raphael Teixeira"
+lang: pt-BR
+format: 
+  revealjs:
+    theme: [simple, ../tema.scss]
+    transition: fade
+    slide-number: true
+    width: 1600
+    height: 900
+    footer: "UFPA - NDAE - PPCA "
+    center: true
+    title-slide-attributes:
+      data-background-image: "../imgs/ufpa-colorido.png"
+      data-background-size: "84px"
+      data-background-position: "top 45px center"
+---
+
+## Probabilidades: Introdução
+
+Nas sobre estudo de probabilidades no livro de [@bishop2024deeplearning], capítulo 2.
+
+- Incerteza em problemas de aprendizado de máquina.
+
+- Incerteza epistêmica / sistemática: incerteza sobre o modelo - o conjunto de dados de treinamento é limitado, e o modelo pode não ser capaz de capturar a complexidade do problema.
+
+- Incerteza aleatória / irreduzível: incerteza sobre os dados - mesmo com um modelo perfeito, a natureza estocástica do problema significa que não podemos prever com certeza o resultado.
+
+- Estas incertezas podem ser modeladas usando distribuições de probabilidade. Esta teoria tem duas regras fundamentais: a regra da soma e a regra do produto. Quando combinada com a teoria da decisão, a teoria da probabilidade fornece uma base para o aprendizado de máquina.
+
+---
+
+## Referências:
+
+
+
