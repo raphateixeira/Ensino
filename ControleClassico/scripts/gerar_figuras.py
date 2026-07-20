@@ -359,6 +359,30 @@ def fig_erro_tipo():
 # Aula 07 — Lugar Geométrico das Raízes (LGR)
 # =====================================================================
 
+def fig_objetivo_lgr():
+    """LGR de K/[s(s+2)(s+4)], recortado perto do eixo real para destacar
+    os polos em -2 e -4 e o ponto de quebra, no mesmo padrão estético
+    (título, eixos rotulados, grade) das demais figuras — usada no box
+    de dica do slide Objetivo Geral."""
+    fig, ax = plt.subplots(figsize=(6.6, 4.4))
+    ax.axhline(0, color=MUTED, lw=0.8, zorder=0)
+    ax.axvline(0, color=MUTED, lw=0.8, zorder=0)
+    sys = ct.tf([1], [1, 6, 8, 0])   # G(s) = 1 / [s(s+2)(s+4)]
+    rlist = ct.root_locus_map(sys).loci
+    for i in range(rlist.shape[1]):
+        ax.plot(rlist[:, i].real, rlist[:, i].imag, color=BLUE, lw=2.0, zorder=1)
+    poles = ct.poles(sys)
+    ax.plot(poles.real, poles.imag, "x", color=RED, ms=12, mew=2.5, zorder=2,
+            label="polos de malha aberta")
+    ax.set_xlim(-5.5, 1.5)
+    ax.set_ylim(-3.3, 3.3)
+    ax.set_xlabel(r"Re$(s)$")
+    ax.set_ylabel(r"Im$(s)$")
+    ax.set_title(r"LGR — $G(s)H(s)=\dfrac{K}{s(s+2)(s+4)}$")
+    ax.legend(fontsize=9, loc="upper right")
+    save(fig, "fig_objetivo_lgr")
+
+
 def fig_lgr_exemplo1():
     fig, ax = plt.subplots(figsize=(6.4, 5.2))
     sys = ct.tf([1], [1, 6, 8, 0])   # G(s) = 1 / [s(s+2)(s+4)]
@@ -522,6 +546,7 @@ if __name__ == "__main__":
     fig_efeito_zero()
     fig_efeito_polo_extra()
     fig_erro_tipo()
+    fig_objetivo_lgr()
     fig_lgr_exemplo1()
     fig_lgr_exemplo2()
     fig_bode_exemplo()

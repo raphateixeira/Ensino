@@ -13,7 +13,7 @@
 \newcommand{\disciplina}{Sistemas de Controle I}
 \newcommand{\carater}{Obrigatória}
 \newcommand{\cargahoraria}{60h}
-\newcommand{\regime}{Extensivo}
+\newcommand{\regime}{Paralelo}
 \newcommand{\periodo}{31/08/2026 a 19/12/2026}
 \newcommand{\prerequisito}{Análise de Sistemas Lineares}
 \newcommand{\periodoletivo}{2026.4}
@@ -139,29 +139,29 @@ Ao final da disciplina, espera-se que o discente seja capaz de modelar sistemas 
       \item Redução de diagramas com múltiplas malhas por álgebra de blocos (malhas aninhadas).
     \end{itemize}
 
-    \item \textbf{Unidade 3 --- Resposta transitória}
+    \item \textbf{Unidade 3 --- Resposta transitória e erro de regime permanente}
     \begin{itemize}
       \item Sistemas de primeira ordem: constante de tempo, resposta ao degrau, à rampa e ao impulso.
       \item Sistemas de segunda ordem: frequência natural, coeficiente de amortecimento, classificação (sub, criticamente e sobreamortecido).
       \item Especificações de desempenho: sobressinal, tempo de pico, tempo de acomodação, tempo de subida.
       \item Sistemas de ordem superior: polos dominantes; efeito de polos e zeros adicionais; zeros de fase não-mínima.
+      \item Erro de regime permanente: teorema do valor final; tipo de sistema; constantes de erro estático (posição, velocidade, aceleração).
     \end{itemize}
 
-    \item \textbf{Unidade 4 --- Erro de regime permanente e estabilidade}
+    \item \textbf{Unidade 4 --- Estabilidade e lugar geométrico das raízes (LGR)}
     \begin{itemize}
-      \item Erro de regime permanente; teorema do valor final.
-      \item Tipo de sistema; constantes de erro estático (posição, velocidade, aceleração).
       \item Conceito de estabilidade BIBO; critério de estabilidade de Routh-Hurwitz.
       \item Casos especiais do array de Routh (zero na primeira coluna; linha inteiramente nula).
-    \end{itemize}
-
-    \item \textbf{Unidade 5 --- Lugar geométrico das raízes e resposta em frequência}
-    \begin{itemize}
       \item Condições de ângulo e de módulo; regras de construção do lugar geométrico das raízes (LGR).
       \item Assíntotas, pontos de quebra, ângulos de partida/chegada, cruzamento do eixo imaginário.
       \item Projeto de ganho por LGR.
+    \end{itemize}
+
+    \item \textbf{Unidade 5 --- Resposta em frequência}
+    \begin{itemize}
       \item Resposta em frequência: diagrama de Bode (assíntotas, fatores básicos).
-      \item Margens de ganho e de fase; relação entre margem de fase e amortecimento; noção do critério de Nyquist.
+      \item Margens de ganho e de fase; relação entre margem de fase e amortecimento.
+      \item Noção do critério de Nyquist.
     \end{itemize}
 
     \item \textbf{Unidade 6 --- Controladores PID}
@@ -240,9 +240,9 @@ Encontros semanais às segundas e sextas-feiras, das 14h às 15h40. Datas em con
 	  \hline
 	   08 & 28/09 (seg) & Unidade 3 --- sistemas de segunda ordem: frequência natural, coeficiente de amortecimento, classificação \\
 	  \hline
-	   09 & 02/10 (sex) & Unidade 3 --- especificações de desempenho: sobressinal, tempo de pico, de acomodação e de subida \\
+	   09 & 02/10 (sex) & Unidade 3 --- especificações de desempenho; ordem superior: polos dominantes \\
 	  \hline
-	   10 & 05/10 (seg) & Unidade 3 --- sistemas de ordem superior: polos dominantes; efeito de polos e zeros adicionais; lista de exercícios \\
+	   10 & 05/10 (seg) & Unidade 3 --- erro de regime permanente: teorema do valor final, tipo de sistema, constantes de erro estático; lista de exercícios \\
 	  \hline
 	   11 & 09/10 (sex) & Revisão geral para a Prova Bimestral \\
 	  \hline
@@ -250,23 +250,23 @@ Encontros semanais às segundas e sextas-feiras, das 14h às 15h40. Datas em con
 	  \hline
 	   12 & 16/10 (sex) & \textbf{Prova Bimestral (A1)} \\
 	  \hline
-	   13 & 19/10 (seg) & \textbf{Prova Substitutiva} \\
+	   13 & 19/10 (seg) & Unidade 4 --- estabilidade BIBO; critério de Routh-Hurwitz \\
 	  \hline
-	   14 & 23/10 (sex) & Unidade 4 --- erro de regime permanente; teorema do valor final; tipo de sistema \\
+	   14 & 23/10 (sex) & Unidade 4 --- casos especiais do array de Routh; lista de exercícios \\
 	  \hline
-	   15 & 26/10 (seg) & Unidade 4 --- constantes de erro estático (posição, velocidade, aceleração); estabilidade BIBO \\
+	   15 & 26/10 (seg) & Unidade 4 --- condições de ângulo e de módulo; construção do lugar geométrico das raízes (LGR) \\
 	  \hline
-	   16 & 30/10 (sex) & Unidade 4 --- critério de Routh-Hurwitz; casos especiais do array de Routh \\
+	   16 & 30/10 (sex) & Unidade 4 --- assíntotas, pontos de quebra, ângulos de partida/chegada \\
 	  \hline
 	   --- & 02/11 (seg) & \textit{Feriado --- Finados (não haverá aula)} \\
 	  \hline
-	   17 & 06/11 (sex) & Unidade 5 --- condições de ângulo e de módulo; regras de construção do lugar geométrico das raízes (LGR) \\
+	   17 & 06/11 (sex) & Unidade 4 --- cruzamento do eixo imaginário; projeto de ganho por LGR \\
 	  \hline
-	   18 & 09/11 (seg) & Unidade 5 --- assíntotas, pontos de quebra, ângulos de partida/chegada, cruzamento do eixo imaginário; projeto de ganho por LGR \\
+	   18 & 09/11 (seg) & Unidade 5 --- resposta em frequência: diagrama de Bode (assíntotas, fatores básicos) \\
 	  \hline
-	   19 & 13/11 (sex) & Unidade 5 --- resposta em frequência: diagrama de Bode (assíntotas, fatores básicos) \\
+	   19 & 13/11 (sex) & Unidade 5 --- margens de ganho e de fase; relação com o amortecimento \\
 	  \hline
-	   20 & 16/11 (seg) & Unidade 5 --- margens de ganho e de fase; noção do critério de Nyquist; lista de exercícios \\
+	   20 & 16/11 (seg) & Unidade 5 --- noção do critério de Nyquist; lista de exercícios \\
 	  \hline
 	   --- & 20/11 (sex) & \textit{Feriado --- Consciência Negra (não haverá aula)} \\
 	  \hline
@@ -274,23 +274,22 @@ Encontros semanais às segundas e sextas-feiras, das 14h às 15h40. Datas em con
 	  \hline
 	   22 & 27/11 (sex) & Unidade 6 --- sintonia de Ziegler-Nichols; aspectos práticos (windup integral, ruído na ação derivativa) \\
 	  \hline
-	   23 & 30/11 (seg) & Apresentação da atividade de projeto (pontuação extra): orientações, formação de grupos e definição de temas envolvendo conceitos amplos da disciplina \\
+	   23 & 30/11 (seg) & Lista de exercícios geral (unidades 4 a 6) \\
 	  \hline
-	   24 & 04/12 (sex) & Orientação dos projetos; lista de exercícios geral (unidades 4 a 6) \\
+	   24 & 04/12 (sex) & Atendimento a dúvidas e resolução de exercícios \\
 	  \hline
 	   25 & 07/12 (seg) & Revisão geral da disciplina \\
 	  \hline
-	   26 & 11/12 (sex) & Encerramento do conteúdo. \textbf{Apresentação dos projetos} (atividade de pontuação extra) \\
+	   26 & 11/12 (sex) & Encerramento do conteúdo \\
 	  \hline
 	   27 & 14/12 (seg) & \textbf{Prova Final (A2)} \\
 	  \hline
-	   28 & 18/12 (sex) & \textbf{Prova de Recuperação} \\
+	   28 & 18/12 (sex) & Devolutiva de resultados e encerramento do semestre \\
       \hline
 
 	\end{longtable}
 \vspace{3mm}
 
-A atividade de projeto, valendo pontuação extra ($P_l$), consiste na aplicação integrada de conceitos amplos discutidos ao longo da disciplina (modelagem, resposta transitória, estabilidade, LGR, resposta em frequência e/ou controladores PID) a um sistema dinâmico escolhido pelo(s) discente(s), com apresentação na aula de encerramento (aula 26).
 % Referências bibliográficas-------------------------------------------
 \vspace{10pt}
 \nocite{*}
