@@ -12,7 +12,6 @@ format:
     theme: [cosmo, TemaRTx.scss]
 ---
 
-Notas de Aula:
+Notas de Estudo - Deep Learning:
 
-* [Aula 01](Notas/Aula01Introducao.html) - Aprendizagem de Máquina;
-* [Aula 02](Notas/Aula02Regressao.html) - Regressão Polinomial;
+* [Aula 01](Notas/Aula01DeepLearning.html) - Deep Learning: Introdução, Fundamentos e Aplicações;

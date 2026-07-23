@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pdftotext -f 21 -l 21 \"Deep Learning Foundations and C - Desconhecido.pdf\" -)",
+      "Bash(pdftotext -f 42 -l 43 \"Deep Learning Foundations and C - Desconhecido.pdf\" -)",
+      "Bash(pdftotext -layout -f 21 -l 42 \"Deep Learning Foundations and C - Desconhecido.pdf\" /private/tmp/claude-501/-Users-raphateixeira-GitRTx-DeepLearning/b475333a-ec7b-43fa-ab55-6c92b637228e/scratchpad/cap1.txt)",
+      "Bash(pdfimages -list -f 21 -l 42 \"Deep Learning Foundations and C - Desconhecido.pdf\" -)",
+      "Bash(pdfimages -list -f 21 -l 42 \"Deep Learning Foundations and C - Desconhecido.pdf\" /tmp/test_out)",
+      "Bash(mkdir -p imgs/bishop-cap1)",
+      "Bash(cp __TRACKED_VAR__/fig1_1_lesoes.png imgs/bishop-cap1/fig1-1-lesoes.png)",
+      "Bash(cp __TRACKED_VAR__/p24-000.png imgs/bishop-cap1/fig1-2-proteina.png)",
+      "Bash(cp __TRACKED_VAR__/fig1_3_faces.png imgs/bishop-cap1/fig1-3-faces-sinteticas.png)",
+      "Bash(cp __TRACKED_VAR__/p36-000.png imgs/bishop-cap1/fig1-12-neuronios.png)",
+      "Bash(pdftotext -f 43 -l 43 \"Deep Learning Foundations and C - Desconhecido.pdf\" -)",
+      "Bash(pdftotext -f 78 -l 79 \"Deep Learning Foundations and C - Desconhecido.pdf\" -)",
+      "Bash(pdftotext -layout -f 43 -l 78 'Deep Learning Foundations and C - Desconhecido.pdf' /private/tmp/claude-501/-Users-raphateixeira-GitRTx-DeepLearning/b475333a-ec7b-43fa-ab55-6c92b637228e/scratchpad/cap2.txt)",
+      "Bash(pdfimages -list \"Deep Learning Foundations and C - Desconhecido.pdf\")",
+      "Bash(awk 'NR<=2 || \\($1>=43 && $1<=78\\)')",
+      "Bash(awk '{print $1}')"
+    ]
+  }
+}

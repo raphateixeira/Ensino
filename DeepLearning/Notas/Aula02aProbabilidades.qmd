@@ -1,0 +1,410 @@
+---
+title: "Probabilidades"
+subtitle: "Parte 1: Regras da Probabilidade, Densidades e Distribuição Gaussiana"
+institute: ""
+author: "Prof. Dr. Raphael Teixeira"
+lang: pt-BR
+format:
+  revealjs:
+    theme: [simple, ../TemaRTx.scss]
+    transition: fade
+    slide-number: true
+    width: 1600
+    height: 900
+    center: true
+    title-slide-attributes:
+      data-background-image: "../imgs/ufpa-colorido.png"
+      data-background-size: "84px"
+      data-background-position: "top 45px center"
+---
+
+## Probabilidades
+
+Baseado no Capítulo 2 — *Probabilities* — de:
+
+> C. M. Bishop & H. Bishop, **Deep Learning: Foundations and Concepts**, Springer, 2024.
+
+Capítulo grande — dividido em duas partes. Parte 1:
+
+1. **Regras da probabilidade** — soma, produto, Bayes
+2. **Densidades de probabilidade**
+3. **Distribuição Gaussiana**
+
+---
+
+## Incerteza em aprendizado de máquina
+
+Toda aplicação de ML lida com incerteza. Dois tipos:
+
+* **Incerteza epistêmica** (sistemática) — vem de termos apenas um conjunto finito de dados; **diminui** com mais dados
+* **Incerteza aleatória** (irredutível) — ruído intrínseco, informação parcial sobre o mundo; **não** desaparece só com mais dados do mesmo tipo
+
+> Exemplo: uma biópsia é mais informativa que a imagem da lesão sozinha — reduz a incerteza aleatória ao acrescentar uma nova fonte de informação.
+
+Ambas são tratadas com o mesmo formalismo: **teoria da probabilidade**.
+
+---
+
+## A moeda tortuosa
+
+::: {.columns}
+::: {.column width="45%"}
+![](../imgs/bishop-cap2/fig2-2-moeda-concava.png){width="90%"}
+![](../imgs/bishop-cap2/fig2-2-moeda-convexa.png){width="90%"}
+:::
+::: {.column .v-center-column width="55%"}
+* Lado côncavo: 60% das vezes. Lado convexo: 40%
+* **Frequentista**: probabilidade = frequência em repetições infinitas
+* **Bayesiana**: probabilidade = grau de crença/incerteza, mesmo em eventos não repetíveis (qual lado é "cara"?)
+* A visão bayesiana **generaliza** a frequentista
+:::
+:::
+
+---
+
+## 2.1 Rastreio de câncer: o problema
+
+Rastrear uma população para detecção precoce de câncer:
+
+* 1% da população tem câncer (**prevalência**)
+* **Falso positivo**: 3% dos saudáveis testam positivo
+* **Falso negativo**: 10% dos doentes testam negativo
+
+```{python}
+#| echo: false
+#| output: true
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
+
+fig, axes = plt.subplots(1, 2, figsize=(9, 3.8))
+configs = [(3, "#dc2626", "#93c5fd"), (90, "#dc2626", "#93c5fd")]
+for ax, (npos, cpos, cneg) in zip(axes, configs):
+    for i in range(100):
+        r, c = divmod(i, 10)
+        color = cpos if i < npos else cneg
+        ax.add_patch(mpatches.Rectangle((c, 9-r), 0.85, 0.85, facecolor=color, edgecolor="white"))
+    ax.set_xlim(-0.2, 10); ax.set_ylim(-0.2, 10)
+    ax.set_aspect("equal"); ax.axis("off")
+axes[0].set_title("Sem câncer: 3% falso positivo", fontsize=11)
+axes[1].set_title("Com câncer: 90% verdadeiro positivo", fontsize=11)
+plt.tight_layout(); plt.show()
+```
+
+*Quem testa positivo tem câncer? Vamos calcular adiante.*
+
+---
+
+## Regra da soma e regra do produto
+
+::: {.columns}
+::: {.column width="45%"}
+```{python}
+#| echo: false
+#| output: true
+np.random.seed(0)
+L, M = 5, 3
+counts = np.random.randint(1, 8, size=(M, L))
+fig, ax = plt.subplots(figsize=(5, 3.4))
+for i in range(L):
+    for j in range(M):
+        ax.add_patch(mpatches.Rectangle((i, j), 0.92, 0.92, facecolor="#dbeafe", edgecolor="#2563eb"))
+        ax.text(i+0.46, j+0.46, str(counts[j, i]), ha="center", va="center", fontsize=13)
+for i in range(L):
+    ax.text(i+0.46, M+0.3, f"$x_{i+1}$", ha="center", fontsize=11)
+for j in range(M):
+    ax.text(-0.4, j+0.46, f"$y_{j+1}$", ha="center", va="center", fontsize=11)
+ax.set_xlim(-1, L+0.2); ax.set_ylim(-0.2, M+0.8)
+ax.axis("off")
+plt.tight_layout(); plt.show()
+```
+:::
+::: {.column .v-center-column width="55%"}
+Cada célula: $n_{ij}$ ocorrências de $X{=}x_i, Y{=}y_j$
+
+$$\text{soma:}\quad p(X) = \sum_Y p(X,Y)$$
+
+$$\text{produto:}\quad p(X,Y) = p(Y|X)\,p(X)$$
+
+* $p(X,Y)$: probabilidade **conjunta**
+* $p(X)$: probabilidade **marginal** (soma sobre $Y$)
+* $p(Y|X)$: probabilidade **condicional**
+:::
+:::
+
+---
+
+## Marginais e condicionais na prática
+
+```{python}
+#| echo: false
+#| output: true
+np.random.seed(7)
+N = 300
+means = [(2,0),(6,0),(4,1)]
+xs, ys = [], []
+for _ in range(N):
+    k = np.random.choice([0,1,2], p=[0.3,0.3,0.4])
+    mx, my = means[k]
+    xs.append(np.random.normal(mx, 0.8))
+    ys.append(0 if np.random.rand() < 0.5 else 1)
+xs = np.array(xs); ys = np.array(ys)
+
+fig, axes = plt.subplots(2, 2, figsize=(8, 5.2))
+axes[0,0].scatter(xs, ys + np.random.uniform(-0.05,0.05,N), s=12, alpha=0.6, color="#2563eb")
+axes[0,0].set_title("amostra $p(X,Y)$"); axes[0,0].set_yticks([0,1])
+axes[0,1].hist(ys, bins=[-.5,.5,1.5], rwidth=0.6, color="#16a34a")
+axes[0,1].set_xticks([0,1]); axes[0,1].set_title("$p(Y)$")
+axes[1,0].hist(xs, bins=20, color="#f59e0b"); axes[1,0].set_title("$p(X)$")
+axes[1,1].hist(xs[ys==0], bins=20, color="#dc2626"); axes[1,1].set_title("$p(X|Y=0)$")
+plt.tight_layout(); plt.show()
+```
+
+---
+
+## Teorema de Bayes
+
+Da regra do produto e da simetria $p(X,Y)=p(Y,X)$:
+
+$$p(Y|X) = \frac{p(X|Y)\,p(Y)}{p(X)} \qquad\text{com}\qquad p(X) = \sum_Y p(X|Y)\,p(Y)$$
+
+* Relaciona $p(Y|X)$ com a condicional **invertida** $p(X|Y)$
+* O denominador é só uma **normalização** — garante que a soma sobre $Y$ dê 1
+* Uma das ferramentas mais importantes do aprendizado de máquina
+
+---
+
+## Rastreio de câncer: a resposta
+
+```{python}
+#| echo: true
+#| output: true
+pC1, pC0 = 0.01, 0.99          # prevalência
+pT1_C1, pT1_C0 = 0.90, 0.03    # p(T=1|C=1), p(T=1|C=0)
+
+pT1 = pT1_C1 * pC1 + pT1_C0 * pC0        # regra da soma
+pC1_T1 = (pT1_C1 * pC1) / pT1            # teorema de Bayes
+
+print(f"p(T=1)     = {pT1:.4f}")
+print(f"p(C=1|T=1) = {pC1_T1:.4f}")
+```
+
+Um teste "de 90%/97%" deixa só **23%** de chance real — a **prevalência baixa** domina.
+
+---
+
+## Prior, posterior e independência
+
+* $p(C)$ **antes** do teste: probabilidade **a priori**
+* $p(C|T)$ **depois** do teste: probabilidade **a posteriori**
+* Prior 1% $\to$ posterior 23%: o teste positivo é evidência forte, mas parte de uma base rara
+* $X$ e $Y$ são **independentes** se $p(X,Y) = p(X)p(Y)$, ou equivalentemente $p(Y|X) = p(Y)$
+* Um teste independente do diagnóstico ($p(T|C){=}p(T)$) não mudaria a probabilidade de câncer — seria **inútil**
+
+---
+
+## 2.2 Densidades de probabilidade
+
+Para variáveis **contínuas**, $p(x=\text{valor exato})=0$. Definimos a **densidade** $p(x)$:
+
+$$p(x \in (a,b)) = \int_a^b p(x)\,dx \qquad p(x) \geqslant 0 \qquad \int_{-\infty}^{\infty} p(x)\,dx = 1$$
+
+```{python}
+#| echo: false
+#| output: true
+from scipy.stats import norm
+xg = np.linspace(-4,4,300)
+fig, ax = plt.subplots(figsize=(6.5,3.6))
+ax.plot(xg, norm.pdf(xg), color="#2563eb", label="$p(x)$")
+ax.plot(xg, norm.cdf(xg), color="#dc2626", label="$P(x)$ (acumulada)")
+x0, dx = 0.5, 0.4
+ax.fill_between([x0, x0+dx], 0, [norm.pdf(x0), norm.pdf(x0+dx)], color="#93c5fd", alpha=0.6)
+ax.text(x0+dx/2, -0.08, r"$\delta x$", ha="center")
+ax.legend(); ax.set_xlabel("x")
+plt.tight_layout(); plt.show()
+```
+
+$P(z) = \int_{-\infty}^z p(x)\,dx$ é a **função de distribuição acumulada**, com $P'(x) = p(x)$.
+
+---
+
+## Distribuições exemplo
+
+```{python}
+#| echo: false
+#| output: true
+xg = np.linspace(-2, 4, 400)
+uniform = np.where((xg>=-1)&(xg<=1), 0.5, 0)
+expo = np.where(xg>=0, np.exp(-xg), 0)
+laplace = 0.5*np.exp(-np.abs(xg-1))
+plt.figure(figsize=(7,4.3))
+plt.plot(xg, uniform, color="#dc2626", label="Uniforme (-1,1)")
+plt.plot(xg, expo, color="#2563eb", label=r"Exponencial ($\lambda=1$)")
+plt.plot(xg, laplace, color="#16a34a", label=r"Laplace ($\mu=1,\gamma=1$)")
+plt.xlabel("x"); plt.ylabel("p(x)"); plt.legend()
+plt.tight_layout(); plt.show()
+```
+
+* **Delta de Dirac** $\delta(x-\mu)$: pico infinito em $\mu$, área unitária — útil para representar dados observados como distribuição empírica $p(x|D) = \tfrac{1}{N}\sum_n \delta(x-x_n)$
+
+---
+
+## Esperança, variância e covariância
+
+**Esperança** (média ponderada de $f(x)$ sob $p(x)$):
+
+$$\mathbb{E}[f] = \sum_x p(x)f(x) \qquad\text{ou}\qquad \mathbb{E}[f] = \int p(x)f(x)\,dx$$
+
+Com $N$ amostras: $\;\mathbb{E}[f] \approx \frac{1}{N}\sum_{n=1}^N f(x_n)$
+
+**Variância** e **covariância**:
+
+$$\text{var}[f] = \mathbb{E}[(f(x)-\mathbb{E}[f(x)])^2] = \mathbb{E}[f(x)^2] - \mathbb{E}[f(x)]^2$$
+
+$$\text{cov}[x,y] = \mathbb{E}_{x,y}[xy] - \mathbb{E}[x]\mathbb{E}[y]$$
+
+---
+
+## 2.3 A distribuição Gaussiana
+
+$$N(x|\mu,\sigma^2) = \frac{1}{(2\pi\sigma^2)^{1/2}}\exp\left(-\frac{1}{2\sigma^2}(x-\mu)^2\right)$$
+
+```{python}
+#| echo: false
+#| output: true
+mu, sigma = 1.0, 1.2
+xg = np.linspace(mu-4*sigma, mu+4*sigma, 300)
+plt.figure(figsize=(6.5,3.6))
+plt.plot(xg, norm.pdf(xg, mu, sigma), color="#2563eb", linewidth=2)
+plt.axvline(mu, color="#dc2626", linestyle="--")
+plt.annotate("", xy=(mu+sigma, norm.pdf(mu+sigma,mu,sigma)), xytext=(mu-sigma, norm.pdf(mu+sigma,mu,sigma)),
+             arrowprops=dict(arrowstyle="<->", color="#16a34a"))
+plt.text(mu, norm.pdf(mu+sigma,mu,sigma)+0.01, r"$2\sigma$", ha="center", color="#16a34a")
+plt.text(mu, -0.025, r"$\mu$", ha="center", color="#dc2626")
+plt.xlabel("x"); plt.ylabel(r"$N(x|\mu,\sigma^2)$")
+plt.tight_layout(); plt.show()
+```
+
+* $\mu$: **média**  $\quad$ $\sigma^2$: **variância**  $\quad$ $\sigma$: desvio padrão  $\quad$ $\beta{=}1/\sigma^2$: **precisão**
+
+---
+
+## Verossimilhança (likelihood)
+
+Dado $\mathbf{x}=(x_1,\ldots,x_N)$ i.i.d. de uma Gaussiana, a **verossimilhança** é o produto:
+
+$$p(\mathbf{x}|\mu,\sigma^2) = \prod_{n=1}^N N(x_n|\mu,\sigma^2)$$
+
+```{python}
+#| echo: false
+#| output: true
+np.random.seed(5)
+data = np.random.normal(0, 1, 6)
+xg = np.linspace(-3.5, 3.5, 300)
+plt.figure(figsize=(6.5,3.6))
+plt.plot(xg, norm.pdf(xg, 0, 1), color="#dc2626", linewidth=2)
+plt.scatter(data, np.zeros_like(data), color="#334155", zorder=4, label="dados $x_n$")
+for d in data:
+    plt.plot([d,d],[0, norm.pdf(d,0,1)], color="#2563eb", linestyle=":")
+    plt.scatter([d],[norm.pdf(d,0,1)], color="#2563eb", zorder=5)
+plt.xlabel("x"); plt.ylabel("p(x)"); plt.legend()
+plt.tight_layout(); plt.show()
+```
+
+Maximizar a verossimilhança = escolher $\mu,\sigma^2$ que melhor explicam os dados.
+
+---
+
+## Máxima verossimilhança: solução
+
+Maximizando o log da verossimilhança (mais conveniente numericamente):
+
+$$\mu_{ML} = \frac{1}{N}\sum_{n=1}^N x_n \qquad\qquad \sigma^2_{ML} = \frac{1}{N}\sum_{n=1}^N (x_n - \mu_{ML})^2$$
+
+* $\mu_{ML}$: a **média amostral** $\quad$ $\sigma^2_{ML}$: a **variância amostral**
+* Otimização conjunta, mas $\mu_{ML}$ pode ser calculada primeiro e reaproveitada em $\sigma^2_{ML}$
+
+---
+
+## Máxima verossimilhança: em código
+
+```{python}
+#| echo: true
+#| output: true
+np.random.seed(0)
+mu_true, sigma_true = 2.0, 1.5
+data = np.random.normal(mu_true, sigma_true, 20)
+
+mu_ml = data.mean()
+var_ml = np.mean((data - mu_ml)**2)
+
+print(f"mu_ML     = {mu_ml:.3f}  (verdadeiro: {mu_true})")
+print(f"sigma2_ML = {var_ml:.3f}  (verdadeiro: {sigma_true**2})")
+```
+
+---
+
+## Viés da máxima verossimilhança
+
+```{python}
+#| echo: false
+#| output: true
+np.random.seed(11)
+true_mu, true_sigma = 0, 1
+fig, axes = plt.subplots(1,3, figsize=(9,3.2))
+xg = np.linspace(-4,4,300)
+for ax in axes:
+    pts = np.random.normal(true_mu, true_sigma, 2)
+    mu_ml = pts.mean(); var_ml = np.mean((pts-mu_ml)**2)
+    ax.plot(xg, norm.pdf(xg, true_mu, true_sigma), color="#dc2626", label="verdadeira")
+    ax.plot(xg, norm.pdf(xg, mu_ml, np.sqrt(max(var_ml,1e-3))), color="#2563eb", label="ajustada (ML)")
+    ax.scatter(pts, [0,0], color="#16a34a", zorder=5)
+    ax.set_yticks([])
+axes[0].legend(fontsize=8)
+plt.tight_layout(); plt.show()
+```
+
+$$\mathbb{E}[\mu_{ML}] = \mu \qquad\qquad \mathbb{E}[\sigma^2_{ML}] = \frac{N-1}{N}\sigma^2$$
+
+A variância estimada é **sistematicamente subestimada** — a versão corrigida usa $\tfrac{1}{N-1}$ no lugar de $\tfrac{1}{N}$.
+
+---
+
+## Regressão linear: visão probabilística
+
+```{python}
+#| echo: false
+#| output: true
+x_true = np.linspace(0, 1, 200)
+y_true = np.sin(2*np.pi*x_true)
+fig, ax = plt.subplots(figsize=(6.5, 4))
+ax.plot(x_true, y_true, color="#16a34a", linewidth=2, label=r"$y(x,\mathbf{w})$")
+x0 = 0.65; y0 = np.sin(2*np.pi*x0); sigma = 0.25
+yy = np.linspace(y0-3*sigma, y0+3*sigma, 100)
+gauss_scaled = norm.pdf(yy, y0, sigma); gauss_scaled = gauss_scaled/gauss_scaled.max()*0.25
+ax.plot(x0 + gauss_scaled, yy, color="#2563eb", linewidth=2)
+ax.fill_betweenx(yy, x0, x0+gauss_scaled, color="#93c5fd", alpha=0.5)
+ax.axvline(x0, color="#94a3b8", linestyle=":")
+ax.plot([x0],[y0], 'o', color="#dc2626")
+ax.set_xlabel("x"); ax.set_ylabel("t"); ax.set_ylim(-1.7, 1.7)
+ax.legend(loc="upper left")
+plt.tight_layout(); plt.show()
+```
+
+$$p(t|x,\mathbf{w},\sigma^2) = N(t\,|\,y(x,\mathbf{w}),\,\sigma^2)$$
+
+Maximizar essa verossimilhança $\equiv$ minimizar o erro quadrático do Capítulo 1!
+
+---
+
+## Ideias-chave da Parte 1
+
+* Incerteza epistêmica (dados finitos) $\times$ aleatória (ruído intrínseco) — a probabilidade modela ambas
+* **Regra da soma** ($p(X)=\sum_Y p(X,Y)$) e **regra do produto** ($p(X,Y){=}p(Y|X)p(X)$) são a base de tudo
+* **Teorema de Bayes** inverte condicionais: posterior $\propto$ verossimilhança $\times$ prior
+* Densidades contínuas generalizam probabilidades discretas via integrais
+* A **Gaussiana** é a distribuição contínua mais usada em ML — média e variância bastam para descrevê-la
+* **Máxima verossimilhança** é enviesada, mas o viés desaparece quando $N\to\infty$
+* O erro quadrático do Capítulo 1 é a verossimilhança de um ruído gaussiano
+
+*Próxima parte: transformação de densidades, teoria da informação e probabilidade bayesiana.*

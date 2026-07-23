@@ -8,5 +8,5 @@ de aprendizado supervisionado, não supervisionado e redes neurais.
 ## Conteúdo
 
 - `Notas/Aula01Introducao.qmd` — introdução.
-- `Notas/Aula02Regressao.qmd` — regressão.
-- `ClassificaPenguins.ipynb`, `ClassificacaoSklearn01.ipynb`, `ClassificacaoSKlearn02.ipynb`, `RegressaoSklearn.ipynb` — notebooks de classificação e regressão com scikit-learn.
+- `Rascunhos/` — notas em elaboração (não publicadas no site).
+- `MachineLearning/ClassificaPenguins.ipynb`, `ClassificacaoSklearn01.ipynb`, `ClassificacaoSKlearn02.ipynb`, `RegressaoSklearn.ipynb` — notebooks de classificação e regressão com scikit-learn.
