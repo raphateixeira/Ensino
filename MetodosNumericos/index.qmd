@@ -15,51 +15,51 @@ Veja também as [animações Manim dos métodos de zeros de função](https://ra
 
 ```{=html}
 <div class="categoria-grid">
-<a class="categoria-card" href="Notas/CN00PlanoEnsino.qmd">
+<a class="categoria-card" href="Aulas/CN00PlanoEnsino.qmd">
   <h3>Aula 0</h3>
   <p>Plano de Ensino</p>
 </a>
-<a class="categoria-card" href="Notas/CN01Erros.qmd">
+<a class="categoria-card" href="Aulas/CN01Erros.qmd">
   <h3>Aula 1</h3>
   <p>Introdução: Raízes de Funções e Erros Numéricos</p>
 </a>
-<a class="categoria-card" href="Notas/CN02ZerosIntervalares.qmd">
+<a class="categoria-card" href="Aulas/CN02ZerosIntervalares.qmd">
   <h3>Aula 2</h3>
   <p>Zeros de Funções — Métodos Intervalares</p>
 </a>
-<a class="categoria-card" href="Notas/CN03ZerosAbertos.qmd">
+<a class="categoria-card" href="Aulas/CN03ZerosAbertos.qmd">
   <h3>Aula 3</h3>
   <p>Zeros de Funções — Métodos Abertos</p>
 </a>
-<a class="categoria-card" href="Notas/CN04SistemasDiretos.qmd">
+<a class="categoria-card" href="Aulas/CN04SistemasDiretos.qmd">
   <h3>Aula 4</h3>
   <p>Sistemas Lineares — Métodos Diretos</p>
 </a>
-<a class="categoria-card" href="Notas/CN05SistemasIterativos.qmd">
+<a class="categoria-card" href="Aulas/CN05SistemasIterativos.qmd">
   <h3>Aula 5</h3>
   <p>Sistemas Lineares — Métodos Iterativos</p>
 </a>
-<a class="categoria-card" href="Notas/CN06Interpolacao.qmd">
+<a class="categoria-card" href="Aulas/CN06Interpolacao.qmd">
   <h3>Aula 6</h3>
   <p>Interpolação Polinomial</p>
 </a>
-<a class="categoria-card" href="Notas/CN07AjusteSplines.qmd">
+<a class="categoria-card" href="Aulas/CN07AjusteSplines.qmd">
   <h3>Aula 7</h3>
   <p>Ajuste de Curvas e Splines</p>
 </a>
-<a class="categoria-card" href="Notas/CN08Integracao.qmd">
+<a class="categoria-card" href="Aulas/CN08Integracao.qmd">
   <h3>Aula 8</h3>
   <p>Integração Numérica</p>
 </a>
-<a class="categoria-card" href="Notas/CN09Diferenciacao.qmd">
+<a class="categoria-card" href="Aulas/CN09Diferenciacao.qmd">
   <h3>Aula 9</h3>
   <p>Diferenciação Numérica</p>
 </a>
-<a class="categoria-card" href="Notas/CN10EDOsEuler.qmd">
+<a class="categoria-card" href="Aulas/CN10EDOsEuler.qmd">
   <h3>Aula 10</h3>
   <p>EDOs — Euler e Runge-Kutta</p>
 </a>
-<a class="categoria-card" href="Notas/CN11EDOsSistemas.qmd">
+<a class="categoria-card" href="Aulas/CN11EDOsSistemas.qmd">
   <h3>Aula 11</h3>
   <p>EDOs — Sistemas e Estabilidade</p>
 </a>

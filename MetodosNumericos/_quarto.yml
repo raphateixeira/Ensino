@@ -3,6 +3,7 @@ project:
   output-dir: _site
   render:
     - index.qmd
+    - Aulas/*.qmd
     - Notas/*.qmd
 
 website:
@@ -16,32 +17,32 @@ website:
     left:
       - text: "Início"
         href: index.qmd
-      - text: "Notas de Aula"
+      - text: "Aulas"
         menu:
           - text: "0 · Plano de Ensino"
-            href: Notas/CN00PlanoEnsino.qmd
+            href: Aulas/CN00PlanoEnsino.qmd
           - text: "1 · Introdução: Raízes e Erros Numéricos"
-            href: Notas/CN01Erros.qmd
+            href: Aulas/CN01Erros.qmd
           - text: "2 · Zeros — Métodos Intervalares"
-            href: Notas/CN02ZerosIntervalares.qmd
+            href: Aulas/CN02ZerosIntervalares.qmd
           - text: "3 · Zeros — Métodos Abertos"
-            href: Notas/CN03ZerosAbertos.qmd
+            href: Aulas/CN03ZerosAbertos.qmd
           - text: "4 · Sistemas Lineares — Diretos"
-            href: Notas/CN04SistemasDiretos.qmd
+            href: Aulas/CN04SistemasDiretos.qmd
           - text: "5 · Sistemas Lineares — Iterativos"
-            href: Notas/CN05SistemasIterativos.qmd
+            href: Aulas/CN05SistemasIterativos.qmd
           - text: "6 · Interpolação Polinomial"
-            href: Notas/CN06Interpolacao.qmd
+            href: Aulas/CN06Interpolacao.qmd
           - text: "7 · Ajuste de Curvas e Splines"
-            href: Notas/CN07AjusteSplines.qmd
+            href: Aulas/CN07AjusteSplines.qmd
           - text: "8 · Integração Numérica"
-            href: Notas/CN08Integracao.qmd
+            href: Aulas/CN08Integracao.qmd
           - text: "9 · Diferenciação Numérica"
-            href: Notas/CN09Diferenciacao.qmd
+            href: Aulas/CN09Diferenciacao.qmd
           - text: "10 · EDOs — Euler e Runge-Kutta"
-            href: Notas/CN10EDOsEuler.qmd
+            href: Aulas/CN10EDOsEuler.qmd
           - text: "11 · EDOs — Sistemas e Estabilidade"
-            href: Notas/CN11EDOsSistemas.qmd
+            href: Aulas/CN11EDOsSistemas.qmd
   page-footer:
     border: false
     left: "Cálculo Numérico — Métodos Numéricos em Python"
