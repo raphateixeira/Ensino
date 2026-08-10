@@ -52,8 +52,3 @@ Notas de aula sobre análise de circuitos elétricos em regime permanente senoid
 </a>
 </div>
 ```
-<!-- Duplique um bloco <a class="categoria-card"> acima conforme adicionar aulas. -->
-
-## Avaliações
-
-<!-- * Avaliação x - [Título](Avaliacoes/Avaliacao02Titulo.qmd) -->

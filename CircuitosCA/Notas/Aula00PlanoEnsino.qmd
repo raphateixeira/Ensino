@@ -17,29 +17,59 @@ format:
       data-background-image: "imgs/ufpa-colorido.png"
       data-background-size: "84px"
       data-background-position: "top 45px center"
+engine: knitr
 ---
 
-## Identificação
+```{r setup, include=FALSE}
+# Habilita circuitikz nos chunks {tikz} desta aula (roadmap de unidades).
+knitr::opts_chunk$set(engine.opts = list(
+  extra.preamble = c("\\usepackage{circuitikz}"),
+  classoption = "tikz,multi=circuitikz"
+))
+```
+
+## Identificação {.smaller}
 
 ::: {.columns}
 ::: {.column width="50%"}
 
+- **Universidade:** Universidade Federal do Pará
+- **Campus:** Campus Universitário de Tucuruí
+- **Faculdade:** Faculdade de Engenharia Elétrica
+- **Curso:** Engenharia Elétrica
 - **Professor:** Dr. Raphael Barros Teixeira
 - **E-mail:** raphaelbt@ufpa.br
-- **Curso:** Engenharia Elétrica
-- **Disciplina:** Circuitos Elétricos II
-- **Caráter:** Obrigatória
 
 :::
 ::: {.column width="50%"}
 
+- **Disciplina:** Circuitos Elétricos II
+- **Caráter:** Obrigatória
 - **Carga horária:** 60h (30 aulas de 2h, terças e quintas)
-- **Regime:** Extensivo
+- **Regime de oferta:** Extensivo
 - **Período de oferta:** 31/08/2026 a 19/12/2026
 - **Período letivo:** 2026.4
 - **Pré-requisitos:** Circuitos Elétricos I, Análise de Sistemas Lineares, Funções de uma Variável Complexa
 
 :::
+:::
+
+---
+
+## Panorama da Disciplina {.smaller}
+
+Circuitos Elétricos II estende, para o regime **senoidal permanente (CA)**, todo o ferramental de análise de circuitos resistivos visto em Circuitos Elétricos I — fasores no lugar de números reais, impedância no lugar de resistência.
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 15
+\usetikzlibrary{arrows.meta, positioning}
+\input{imgs/tikz/RoadmapUnidades.tikz}
+```
+
+::: {.callout-tip}
+Cada unidade retoma, em CA, um conceito já visto em Circuitos Elétricos I para circuitos resistivos em regime contínuo (CC).
 :::
 
 ---
@@ -58,10 +88,6 @@ complexa e fator de potência. Correção do fator de potência. Circuitos
 trifásicos equilibrados nas configurações estrela e triângulo; cálculo de
 potência em sistemas trifásicos.
 
-::: {.callout-note}
-Cada unidade retoma, em regime CA, um conceito já visto em Circuitos Elétricos I para circuitos resistivos em regime contínuo (CC).
-:::
-
 ---
 
 ## Objetivo Geral
@@ -70,6 +96,11 @@ Capacitar o(a) estudante a analisar circuitos elétricos lineares em regime
 permanente senoidal, utilizando a representação fasorial e os métodos
 sistemáticos de análise de circuitos, com aplicação ao cálculo de potência em
 sistemas monofásicos e trifásicos.
+
+Ao final da disciplina, espera-se que o(a) discente seja capaz de analisar
+circuitos elétricos em regime senoidal permanente utilizando fasores,
+impedâncias, teoremas de circuitos e os métodos de malhas e de nós, além de
+determinar a potência envolvida em circuitos monofásicos e trifásicos.
 
 ---
 
@@ -94,8 +125,24 @@ sistemas monofásicos e trifásicos.
 - Calcular a potência em circuitos monofásicos e trifásicos.
 
 ::: {.callout-note}
-Competências relacionadas à seção 3.4 (Competências e Habilidades) do PPC de Engenharia Elétrica de 2012.
+Competências relacionadas à seção 3.4 (Competências e Habilidades), p. 13, do PPC de Engenharia Elétrica de 2012.
 :::
+
+---
+
+## Conteúdo Programático — Visão Geral {.smaller}
+
+| Unidade | Conteúdo | Aulas | Carga horária |
+|:--:|:--|:--:|:--:|
+| 1 | Senoides e fasores | 2 | 4h |
+| 2 | Impedância, admitância e associações em CA | 4 | 8h |
+| 3 | Leis circuitais e métodos de análise em CA | 4 | 8h |
+| — | Exercícios, revisão e **Prova A1** (Unidades 1–3) | 4 | 8h |
+| 4 | Teoremas de circuitos em CA | 4 | 8h |
+| 5 | Potência em circuitos de corrente alternada | 5 | 10h |
+| 6 | Circuitos trifásicos | 4 | 8h |
+| — | Exercícios, revisão e **Prova A2** (Unidades 4–6) | 3 | 6h |
+| | **Total** | **30** | **60h** |
 
 ---
 
@@ -199,41 +246,121 @@ públicos.
 
 ---
 
-## Avaliação
+## Avaliação {.smaller}
 
-A avaliação será feita por meio de duas provas escritas bimestrais (A1 e A2),
-cada uma valendo 10,0 pontos, e de uma lista de exercícios por bimestre
-($Pl_1$, $Pl_2$), valendo no máximo 1,0 ponto cada (0,5 pela entrega da lista
-+ 0,5 pela resolução, em sala, de uma questão sorteada da lista).
+A avaliação da aprendizagem será feita por meio de duas provas escritas
+bimestrais (A1 e A2), cada uma valendo 10,0 pontos, e de uma lista de
+exercícios por bimestre ($Pl_1$, $Pl_2$), valendo no máximo 1,0 ponto cada
+(0,5 pela entrega da lista + 0,5 pela resolução, em sala, de uma questão
+sorteada da lista). A avaliação poderá ainda ser complementada por trabalhos
+individuais ou em grupo, seminários e atividades práticas, a critério do
+docente.
 
 $$\mathrm{NF} = \dfrac{A_1 + A_2}{2} + Pl_1 + Pl_2$$
 
 ::: {.callout-warning}
 ## Critério de aprovação
-Frequência mínima de 75% da carga horária **e** nota final $\geq 5,0$ (Regulamento de graduação da UFPA). Avaliações escritas limitadas a, no máximo, duas aplicações no período, nas semanas de prova do calendário acadêmico.
+Frequência mínima de 75% da carga horária **e** nota final $\geq 5,0$
+(Regulamento de graduação da UFPA). Avaliações escritas limitadas a, no
+máximo, duas aplicações por bimestre, nas semanas de prova do calendário
+acadêmico.
+:::
+
+Critérios, instrumentos e cronograma avaliativo poderão ser ajustados por
+motivos pedagógicos, mediante comunicação prévia aos discentes.
+
+---
+
+## Cronograma — 1º Bimestre (1/2) {.smaller}
+
+| Aulas | Datas | Conteúdo |
+|:--:|:--|:--|
+| 01 | 01/09 | Apresentação da disciplina; sinal senoidal (amplitude, $\omega$, período, fase); seno $\times$ cosseno; complexos (retangular, polar) |
+| 02 | 03/09 | Complexos (forma exponencial); transformação fasorial; relações fasoriais para R, L e C |
+| 03 | 08/09 | Impedância complexa: definição, resistência e reatância |
+| 04 | 10/09 | Admitância complexa; diagramas de impedância e triângulo de impedâncias |
+| 05 | 15/09 | Associação de impedâncias em série e em paralelo |
+| 06 | 17/09 | Divisores de tensão e corrente em CA; transformação Y-$\Delta$ |
+| 07 | 22/09 | Leis de Kirchhoff (LKT e LKC) em regime fasorial |
+
+---
+
+## Cronograma — 1º Bimestre (2/2) {.smaller}
+
+| Aulas | Datas | Conteúdo |
+|:--:|:--|:--|
+| 08 | 24/09 | Análise nodal (fontes independentes e dependentes) |
+| 09 | 29/09 | Análise de malhas (fontes independentes e dependentes) |
+| 10 | 01/10 | Fontes de tensão e corrente em CA; supernó e supermalha |
+| 11 | 06/10 | Aula de exercícios — lista Unidades 1–3 |
+| 12 | 08/10 | Revisão para a Prova 1 — Unidades 1–3 |
+| 13 | 13/10 | **Prova Bimestral (A1)** — Unidades 1–3 |
+| 14 | 15/10 | Prova substitutiva (referente à A1) |
+
+---
+
+## Cronograma — 2º Bimestre (1/2) {.smaller}
+
+| Aulas | Datas | Conteúdo |
+|:--:|:--|:--|
+| 15 | 20/10 | Teorema da superposição em circuitos com múltiplas fontes senoidais |
+| 16 | 22/10 | Teorema de Thévenin em regime senoidal |
+| 17 | 27/10 | Teorema de Norton em regime senoidal |
+| 18 | 29/10 | Transferência de máxima potência com carga complexa |
+| 19 | 03/11 | Potência instantânea e potência média (ativa) |
+| 20 | 05/11 | Valor eficaz (RMS) de tensão e corrente |
+| 21 | 10/11 | Potência reativa e aparente; potência complexa e triângulo de potências |
+
+---
+
+## Cronograma — 2º Bimestre (2/2) {.smaller}
+
+| Aulas | Datas | Conteúdo |
+|:--:|:--|:--|
+| 22 | 12/11 | Fator de potência: definição, natureza indutiva e capacitiva |
+| 23 | 17/11 | Correção do fator de potência; máxima transferência de potência média |
+| 24 | 19/11 | Geração de tensões trifásicas; sequência de fases |
+| 25 | 24/11 | Configurações Y e $\Delta$; circuitos trifásicos equilibrados (Y-Y, Y-$\Delta$, $\Delta$-$\Delta$, $\Delta$-Y) |
+| 26 | 26/11 | Relações entre grandezas de fase e de linha; introdução a desequilibrados |
+| 27 | 01/12 | Potência em sistemas trifásicos equilibrados; método dos dois wattímetros |
+| 28 | 03/12 | Aula de exercícios — lista Unidades 4–6 |
+| 29 | 08/12 | Revisão para a Prova Final — Unidades 4–6 |
+| 30 | 10/12 | **Prova Final (A2)** — Unidades 4–6 |
+
+---
+
+## Bibliografia {.smaller}
+
+::: {.columns}
+::: {.column width="22%"}
+![](imgs/livros/sadiku.jpg){fig-align="center" height="300px"}
+:::
+::: {.column width="28%"}
+**Bibliografia básica**
+
+**Sadiku & Alexander** — *Fundamentos de Circuitos Elétricos*. 5ª ed. AMGH/Bookman [@alexander2013fundamentos].
+:::
+::: {.column width="22%"}
+![](imgs/livros/dorf.jpg){fig-align="center" height="300px"}
+:::
+::: {.column width="28%"}
+**Bibliografia complementar**
+
+**Dorf & Svoboda** — *Introdução a Circuitos Elétricos*. 9ª ed. LTC [@dorf2016introducao].
+:::
 :::
 
 ---
 
-## Cronograma {.smaller}
+## Referências {.smaller}
 
-| Aulas | Datas | Unidade / Conteúdo |
-|:--:|:--|:--|
-| 1–2 | 01/09, 03/09 | Unidade 1 — Senoides e fasores |
-| 3–6 | 08/09 a 17/09 | Unidade 2 — Impedância, admitância e associações |
-| 7–10 | 22/09 a 01/10 | Unidade 3 — Leis circuitais e métodos de análise |
-| 11–12 | 06/10, 08/10 | Exercícios e revisão (Unidades 1–3) |
-| 13 | 13/10 | **Prova Bimestral A1** |
-| 14 | 15/10 | Prova substitutiva (referente à A1) |
-| 15–18 | 20/10 a 29/10 | Unidade 4 — Teoremas de circuitos em CA |
-| 19–23 | 03/11 a 17/11 | Unidade 5 — Potência em CA |
-| 24–27 | 19/11 a 01/12 | Unidade 6 — Circuitos trifásicos |
-| 28–29 | 03/12, 08/12 | Exercícios e revisão (Unidades 4–6) |
-| 30 | 10/12 | **Prova Final A2** |
+::: {#refs}
+:::
 
 ---
 
-## Bibliografia
+## Dúvidas? {.smaller}
 
-- **Sadiku & Alexander** — *Fundamentos de Circuitos Elétricos*. 5ª ed. AMGH/Bookman [@sadiku2013].
-- **Dorf & Svoboda** — *Introdução a Circuitos Elétricos*. 9ª ed. LTC [@dorf2019].
+- **E-mail:** raphaelbt@ufpa.br
+- **SIGAA:** avisos, materiais e listas de exercícios
+- Bom semestre a todos(as)!

@@ -1,0 +1,55 @@
+% ---------------------------------------------------------------------
+% Roadmap das 6 unidades da disciplina, com as duas provas bimestrais
+% marcando o fim de cada bloco de 3 unidades. Cores alinhadas à
+% paleta do TemaRTx.scss (primary #1B365D, accent #4A6FA5,
+% highlight #E8C547, vermelho-ufpa #B23A48).
+% ---------------------------------------------------------------------
+\definecolor{primaryRTx}{HTML}{1B365D}
+\definecolor{accentRTx}{HTML}{4A6FA5}
+\definecolor{highlightRTx}{HTML}{E8C547}
+\definecolor{provaRTx}{HTML}{B23A48}
+
+\begin{tikzpicture}[>=Latex, line width=1.6pt, font=\Large,
+  unidade/.style={draw=primaryRTx, line width=1.6pt, rounded corners=2pt,
+                  minimum width=4.0cm, minimum height=2.1cm,
+                  fill=accentRTx!12, align=center, text=primaryRTx},
+  prova/.style={draw=provaRTx, line width=1.6pt, rounded corners=2pt,
+                minimum width=2.4cm, minimum height=2.1cm,
+                fill=highlightRTx!35, align=center, text=provaRTx},
+  legenda/.style={font=\normalsize, align=center, text=black!65}]
+
+  % ---------- Linha 1: Unidades 1-3 + Prova A1 ----------
+  \node[unidade] (u1) at (0,0)    {\textbf{U1}\\Senoides\\e fasores};
+  \node[unidade] (u2) at (5.2,0)  {\textbf{U2}\\Impedância\\e associações};
+  \node[unidade] (u3) at (10.4,0) {\textbf{U3}\\Leis e métodos\\de análise};
+  \node[prova]   (a1) at (14.6,0) {\textbf{A1}\\Prova\\bimestral};
+
+  \draw[->] (u1) -- (u2);
+  \draw[->] (u2) -- (u3);
+  \draw[->] (u3) -- (a1);
+
+  \node[legenda] at (0,-1.55)    {aulas 1--2};
+  \node[legenda] at (5.2,-1.55)  {aulas 3--6};
+  \node[legenda] at (10.4,-1.55) {aulas 7--10};
+  \node[legenda] at (14.6,-1.55) {aula 13};
+
+  % ---------- Linha 2: Unidades 4-6 + Prova A2 ----------
+  \node[unidade] (u4) at (0,-4.0)    {\textbf{U4}\\Teoremas\\em CA};
+  \node[unidade] (u5) at (5.2,-4.0)  {\textbf{U5}\\Potência\\em CA};
+  \node[unidade] (u6) at (10.4,-4.0) {\textbf{U6}\\Circuitos\\trifásicos};
+  \node[prova]   (a2) at (14.6,-4.0) {\textbf{A2}\\Prova\\final};
+
+  \draw[->] (u4) -- (u5);
+  \draw[->] (u5) -- (u6);
+  \draw[->] (u6) -- (a2);
+
+  \node[legenda] at (0,-5.55)    {aulas 15--18};
+  \node[legenda] at (5.2,-5.55)  {aulas 19--23};
+  \node[legenda] at (10.4,-5.55) {aulas 24--27};
+  \node[legenda] at (14.6,-5.55) {aula 30};
+
+  % ---------- Conexão entre as duas linhas ----------
+  \draw[->, line width=1.6pt, draw=black!55]
+    (a1.south) -- ++(0,-1.35) -| (u4.north);
+
+\end{tikzpicture}
