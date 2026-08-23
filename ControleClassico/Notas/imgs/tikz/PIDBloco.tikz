@@ -28,7 +28,7 @@
 
   \draw[seta] (s2) -- node[above, font=\small]{$u(t)$} (g);
   \draw[seta] (g) -- (y);
-  \draw[seta] (g.south) |- ++(0,-1.3) -| (s1.south);
+  \draw[seta] (g.south) |- ++(0,-2.2) -| (s1.south);
 
   \node[font=\small] at ($(s1.north west)+(-0.12,0.12)$) {$+$};
   \node[font=\small] at ($(s1.south west)+(-0.12,-0.12)$) {$-$};

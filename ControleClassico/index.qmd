@@ -55,14 +55,3 @@ Notas de aula de Sistemas de Controle I — Controle Clássico: modelagem por fu
 </a>
 </div>
 ```
-
-## Avaliações
-
-```{=html}
-<div class="categoria-grid">
-<a class="categoria-card" href="Avaliacoes/Avaliacao01Exemplo.qmd">
-  <h3>Avaliação 1</h3>
-  <p>Avaliação Exemplo (modelo)</p>
-</a>
-</div>
-```

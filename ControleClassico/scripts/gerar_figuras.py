@@ -355,6 +355,43 @@ def fig_erro_tipo():
     save(fig, "fig_erro_tipo")
 
 
+def fig_erro_tipo_stack():
+    """Mesmo conteúdo de fig_erro_tipo, mas empilhado (2 linhas x 1 coluna)
+    em vez de lado a lado — encaixa melhor numa coluna estreita, como no
+    slide de Unidade 3 do plano de ensino."""
+    fig, axs = plt.subplots(2, 1, figsize=(5.0, 6.6))
+
+    t = np.linspace(0, 6, 900)
+    G0 = ct.tf([10], [1, 5, 4])
+    T0 = ct.feedback(G0, 1)
+    _, y0 = ct.step_response(T0, T=t)
+    ess0 = 1 - y0[-1]
+    axs[0].plot(t, y0, color=BLUE, label="$y(t)$")
+    axs[0].axhline(1.0, color=MUTED, lw=1, ls="--", label="$r(t)=1$")
+    axs[0].annotate(rf"$e_{{ss}}\approx{ess0:.2f}$", (t[-1], y0[-1]), textcoords="offset points",
+                     xytext=(-6, 10), color=RED, ha="right")
+    axs[0].set_title(r"Tipo 0, degrau — $G(s)=\dfrac{10}{(s+1)(s+4)}$", fontsize=12)
+    axs[0].set_xlabel("tempo $t$ [s]")
+    axs[0].set_ylabel("$y(t)$")
+    axs[0].legend(fontsize=9, loc="lower right")
+
+    t2 = np.linspace(0, 25, 2500)
+    G1 = ct.tf([8], [1, 5, 4, 0])
+    T1 = ct.feedback(G1, 1)
+    ramp = t2
+    _, y1 = ct.forced_response(T1, T=t2, U=ramp)
+    axs[1].plot(t2, ramp, color=MUTED, ls="--", label="$r(t)=t$")
+    axs[1].plot(t2, y1, color=BLUE, label="$y(t)$")
+    axs[1].annotate(r"$e_{ss}\to 0{,}5$", (16, 16), color=RED, ha="left")
+    axs[1].set_title(r"Tipo 1, rampa — $G(s)=\dfrac{8}{s(s+1)(s+4)}$", fontsize=12)
+    axs[1].set_xlabel("tempo $t$ [s]")
+    axs[1].set_ylabel("saída")
+    axs[1].legend(fontsize=9, loc="upper left")
+
+    fig.tight_layout()
+    save(fig, "fig_erro_tipo_stack")
+
+
 # =====================================================================
 # Aula 07 — Lugar Geométrico das Raízes (LGR)
 # =====================================================================
@@ -402,22 +439,25 @@ def fig_lgr_exemplo1():
 
 
 def fig_lgr_exemplo2():
-    fig, ax = plt.subplots(figsize=(6.4, 5.2))
+    fig, ax = plt.subplots(figsize=(6.6, 4.6))
+    ax.axhline(0, color=MUTED, lw=0.8, zorder=0)
+    ax.axvline(0, color=MUTED, lw=0.8, zorder=0)
     sys = ct.tf([1, 3], [1, 6, 5, 0])   # G(s) = (s+3) / [s(s+1)(s+5)]
     rlist = ct.root_locus_map(sys).loci
     for i in range(rlist.shape[1]):
-        ax.plot(rlist[:, i].real, rlist[:, i].imag, color=BLUE, lw=1.6)
+        ax.plot(rlist[:, i].real, rlist[:, i].imag, color=BLUE, lw=1.8, zorder=1)
     poles = ct.poles(sys)
     zeros = ct.zeros(sys)
-    ax.plot(poles.real, poles.imag, "x", color=RED, ms=12, mew=2.5, label="polos de malha aberta")
-    ax.plot(zeros.real, zeros.imag, "o", color=GREEN, ms=9, mfc="none", mew=2.2, label="zero de malha aberta")
-    ax.axhline(0, color=MUTED, lw=0.8)
-    ax.axvline(0, color=MUTED, lw=0.8)
+    ax.plot(poles.real, poles.imag, "x", color=RED, ms=12, mew=2.5, zorder=2,
+            label="polos de malha aberta")
+    ax.plot(zeros.real, zeros.imag, "o", color=GREEN, ms=9, mfc="none", mew=2.2, zorder=2,
+            label="zero de malha aberta")
+    ax.set_xlim(-6.5, 1.5)
+    ax.set_ylim(-3.5, 3.5)
     ax.set_xlabel(r"Re$(s)$")
     ax.set_ylabel(r"Im$(s)$")
     ax.set_title(r"LGR — $G(s)H(s)=\dfrac{K(s+3)}{s(s+1)(s+5)}$")
     ax.legend(fontsize=9, loc="upper right")
-    ax.set_aspect("equal")
     save(fig, "fig_lgr_exemplo2")
 
 
@@ -546,6 +586,7 @@ if __name__ == "__main__":
     fig_efeito_zero()
     fig_efeito_polo_extra()
     fig_erro_tipo()
+    fig_erro_tipo_stack()
     fig_objetivo_lgr()
     fig_lgr_exemplo1()
     fig_lgr_exemplo2()

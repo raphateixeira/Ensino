@@ -10,6 +10,8 @@ project:
     - index.qmd
     - Notas/*.qmd
     - Avaliacoes/*.qmd
+  resources:
+    - Notas/apps/**
 
 # Bibliografia compartilhada por todas as páginas do site (aulas e
 # avaliações). Cite com @chave no texto; veja Referencias.bib.

@@ -13,7 +13,7 @@ format:
     width: 1600
     height: 900
     footer: " "
-    center: true
+    center: false
     title-slide-attributes:
       data-background-image: "imgs/ufpa-colorido.png"
       data-background-size: "84px"
@@ -200,24 +200,19 @@ Seis unidades, em ordem crescente de abstração: do **tempo** (U1–U3) ao **pl
 
 ## Unidade 2 — Modelagem e Função de Transferência
 
-::: {.columns}
-::: {.column width="60%"}
 - Revisão da Transformada de Laplace: propriedades e pares notáveis
 - Função de transferência: definição, polos e zeros, equação característica
 - Modelagem de sistemas mecânicos (massa-mola-amortecedor) e eletromecânicos (motor CC)
 - Diagrama de blocos: elementos, álgebra de blocos (série, paralelo, realimentação)
 - Redução de diagramas com múltiplas malhas aninhadas
-:::
-::: {.column width="40%"}
+
 ```{tikz}
 %| echo: false
 %| fig-align: center
-%| fig-width: 8
+%| fig-width: 13
 \usetikzlibrary{arrows.meta, decorations.pathmorphing}
 \input{imgs/tikz/MotorCC.tikz}
 ```
-:::
-:::
 
 ---
 
@@ -231,7 +226,7 @@ Seis unidades, em ordem crescente de abstração: do **tempo** (U1–U3) ao **pl
 - Erro de regime permanente: teorema do valor final; tipo de sistema; constantes de erro estático
 :::
 ::: {.column width="40%"}
-![Erro de regime em sistema Tipo 0](imgs/plots/fig_erro_tipo.png){width="100%" fig-align="center"}
+![Erro de regime em sistema Tipo 0 e Tipo 1](imgs/plots/fig_erro_tipo_stack.png){width="85%" fig-align="center"}
 :::
 :::
 
@@ -306,16 +301,16 @@ Avaliações podem incluir questões de **ENADE** e **concursos públicos**.
 
 ---
 
-## Recursos Didáticos
+## Simulação Computacional
 
-- Quadro e apoio de recursos audiovisuais (data-show)
 - Softwares de simulação: MATLAB/Simulink, Python (`python-control`)
-- SIGAA — UFPA
 
 ::: {style="display:flex; gap:2.5em; justify-content:center; align-items:center; margin-top:1.5em;"}
-![](imgs/logos/matlab-simulink.png){height="90px"}
-![](imgs/logos/python.png){height="90px"}
+![](imgs/logos/matlab-simulink.png){style="height:150px; width:auto;"}
+![](imgs/logos/python.png){style="height:150px; width:auto;"}
 :::
+
+- Recursos de vídeo, com tópicos de modelagem, análise e projeto de sistemas de controle, soluções de exercícios e implementações computacionais.
 
 ---
 
@@ -344,10 +339,10 @@ Avaliações escritas: **no máximo duas** por período, nas semanas de provas d
 
 ::: {.columns}
 ::: {.column width="50%"}
-![](imgs/capas/ogata.jpg){height="480px" fig-align="center"}
+![](imgs/capas/ogata.jpg){style="height:480px; width:auto;" fig-align="center"}
 :::
 ::: {.column width="50%"}
-![](imgs/capas/nise.jpg){height="480px" fig-align="center"}
+![](imgs/capas/nise.jpg){style="height:480px; width:auto;" fig-align="center"}
 :::
 :::
 
@@ -366,10 +361,10 @@ Avaliações escritas: **no máximo duas** por período, nas semanas de provas d
 
 ::: {.columns}
 ::: {.column width="50%"}
-![](imgs/capas/dorf.jpg){height="480px" fig-align="center"}
+![](imgs/capas/dorf.jpg){style="height:480px; width:auto;" fig-align="center"}
 :::
 ::: {.column width="50%"}
-![](imgs/capas/franklin.jpg){height="480px" fig-align="center"}
+![](imgs/capas/franklin.jpg){style="height:480px; width:auto;" fig-align="center"}
 :::
 :::
 

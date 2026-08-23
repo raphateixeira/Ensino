@@ -12,7 +12,7 @@ format:
     width: 1600
     height: 900
     footer: " "
-    center: true
+    center: false
     title-slide-attributes:
       data-background-image: "imgs/ufpa-colorido.png"
       data-background-size: "84px"
@@ -138,6 +138,19 @@ $$y(t) = 1 - e^{-\omega_n t}(1+\omega_n t)$$
 $$y(t) = 1 + \frac{e^{s_1 t}}{s_2}\cdot\frac{s_2}{s_1-s_2}\cdots \quad\text{(soma de duas exponenciais)}$$
 
 - Comporta-se como **dois sistemas de 1ª ordem em cascata** — o polo mais lento (mais próximo do eixo $j\omega$) domina a resposta.
+
+---
+
+## Simulador Interativo
+
+Ajuste $K$, $\zeta$ e $\omega_n$ e observe a resposta ao degrau, o overshoot, o tempo de pico e o tempo de acomodação mudarem em tempo real.
+
+```{=html}
+<iframe src="apps/sistema_segunda_ordem.html" style="width:100%; height:560px; border:1px solid #ccc; border-radius:8px;" title="Simulador — resposta ao degrau de sistema de segunda ordem"></iframe>
+<p style="text-align:center; margin-top:10px;">
+  <a href="apps/sistema_segunda_ordem.html" target="_blank" rel="noopener">Abrir em tela cheia ↗</a>
+</p>
+```
 
 ---
 

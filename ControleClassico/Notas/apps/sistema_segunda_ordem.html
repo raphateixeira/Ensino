@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema de Segunda Ordem — Resposta ao Degrau</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<style>
+  /* ---------- Design tokens (light default, dark via prefers-color-scheme / data-theme) ---------- */
+  :root {
+    color-scheme: light;
+    --surface-1:      #fcfcfb;
+    --page-plane:     #f9f9f7;
+    --text-primary:   #0b0b0b;
+    --text-secondary: #52514e;
+    --text-muted:     #898781;
+    --gridline:       #e1e0d9;
+    --baseline:       #c3c2b7;
+    --border:         rgba(11,11,11,0.10);
+    --series-1:       #2a78d6;  /* resposta y(t) */
+    --series-1-fill:  rgba(42,120,214,0.10);
+    --ref-line:       #898781;  /* referência do degrau */
+    --card-shadow:    0 1px 2px rgba(11,11,11,0.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --surface-1:      #1a1a19;
+      --page-plane:     #0d0d0d;
+      --text-primary:   #ffffff;
+      --text-secondary: #c3c2b7;
+      --text-muted:     #898781;
+      --gridline:       #2c2c2a;
+      --baseline:       #383835;
+      --border:         rgba(255,255,255,0.10);
+      --series-1:       #3987e5;
+      --series-1-fill:  rgba(57,135,229,0.14);
+      --ref-line:       #898781;
+      --card-shadow:    0 1px 2px rgba(0,0,0,0.4);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --surface-1:      #1a1a19;
+    --page-plane:     #0d0d0d;
+    --text-primary:   #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted:     #898781;
+    --gridline:       #2c2c2a;
+    --baseline:       #383835;
+    --border:         rgba(255,255,255,0.10);
+    --series-1:       #3987e5;
+    --series-1-fill:  rgba(57,135,229,0.14);
+    --ref-line:       #898781;
+    --card-shadow:    0 1px 2px rgba(0,0,0,0.4);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--page-plane);
+    color: var(--text-primary);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+
+  .app { max-width: 1180px; margin: 0 auto; padding: 24px 20px 48px; }
+
+  header { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+  header h1 { font-size: 1.4rem; margin: 0; }
+  header p { margin: 4px 0 0; color: var(--text-secondary); font-size: 0.9rem; }
+
+  #theme-toggle {
+    border: 1px solid var(--border);
+    background: var(--surface-1);
+    color: var(--text-secondary);
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+  #theme-toggle:hover { color: var(--text-primary); }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+  @media (max-width: 820px) {
+    .layout { grid-template-columns: 1fr; }
+  }
+
+  .card {
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    padding: 18px 20px;
+  }
+
+  /* ---------- Controls panel ---------- */
+  .controls h2, .characteristics h2 { font-size: 0.95rem; margin: 0 0 14px; color: var(--text-primary); }
+
+  .slider-group { margin-bottom: 18px; }
+  .slider-group:last-child { margin-bottom: 0; }
+  .slider-label {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 6px;
+  }
+  .slider-label span.value {
+    font-variant-numeric: tabular-nums;
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+  input[type="range"] {
+    width: 100%;
+    accent-color: var(--series-1);
+    height: 4px;
+  }
+  .slider-range {
+    display: flex; justify-content: space-between;
+    font-size: 0.7rem; color: var(--text-muted); margin-top: 2px;
+  }
+
+  .case-badge {
+    margin-top: 18px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: var(--page-plane);
+    border: 1px solid var(--border);
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+  }
+  .case-badge strong { color: var(--text-primary); display: block; margin-bottom: 2px; font-size: 0.88rem; }
+
+  .equation {
+    margin-top: 18px;
+    padding: 12px;
+    border-radius: 8px;
+    background: var(--page-plane);
+    border: 1px solid var(--border);
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    overflow-x: auto;
+  }
+  .equation .eq-line { white-space: nowrap; color: var(--text-primary); font-size: 0.88rem; margin-bottom: 6px; }
+  .equation sup { font-size: 0.7em; }
+
+  /* ---------- Chart area ---------- */
+  .chart-card { margin-bottom: 20px; }
+  .chart-wrap { position: relative; height: 420px; }
+
+  .legend-row {
+    display: flex; gap: 18px; flex-wrap: wrap;
+    margin-top: 10px; padding-top: 12px; border-top: 1px solid var(--gridline);
+    font-size: 0.8rem; color: var(--text-secondary);
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-swatch { width: 16px; height: 2px; border-radius: 1px; display: inline-block; }
+
+  /* ---------- Characteristics ---------- */
+  .characteristics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 14px;
+  }
+  .stat-tile {
+    background: var(--page-plane);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+  .stat-tile .label { font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 4px; }
+  .stat-tile .value { font-size: 1.15rem; font-weight: 600; color: var(--text-primary); }
+  .stat-tile .value.muted { color: var(--text-muted); font-weight: 500; font-size: 0.95rem; }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header>
+    <div>
+      <h1>Resposta ao Degrau — Sistema de Segunda Ordem</h1>
+      <p>G(s) = K·ω<sub>n</sub>² / (s² + 2·ζ·ω<sub>n</sub>·s + ω<sub>n</sub>²)</p>
+    </div>
+    <button id="theme-toggle" type="button">Alternar tema</button>
+  </header>
+
+  <div class="layout">
+
+    <!-- ===================== Controls ===================== -->
+    <aside class="card controls">
+      <h2>Parâmetros</h2>
+
+      <div class="slider-group">
+        <div class="slider-label">
+          <label for="slider-k">Ganho K</label>
+          <span class="value" id="value-k">1.0</span>
+        </div>
+        <input type="range" id="slider-k" min="0" max="5" step="0.1" value="1">
+        <div class="slider-range"><span>0</span><span>5</span></div>
+      </div>
+
+      <div class="slider-group">
+        <div class="slider-label">
+          <label for="slider-zeta">Amortecimento ζ</label>
+          <span class="value" id="value-zeta">0.30</span>
+        </div>
+        <input type="range" id="slider-zeta" min="0" max="2" step="0.05" value="0.3">
+        <div class="slider-range"><span>0</span><span>2</span></div>
+      </div>
+
+      <div class="slider-group">
+        <div class="slider-label">
+          <label for="slider-wn">Freq. natural ω<sub>n</sub> (rad/s)</label>
+          <span class="value" id="value-wn">2.0</span>
+        </div>
+        <input type="range" id="slider-wn" min="0.1" max="5" step="0.1" value="2">
+        <div class="slider-range"><span>0.1</span><span>5</span></div>
+      </div>
+
+      <div class="case-badge">
+        <strong id="case-title">Subamortecido</strong>
+        <span id="case-desc">ζ &lt; 1 — resposta oscilatória com overshoot.</span>
+      </div>
+
+      <div class="equation">
+        <div class="eq-line" id="eq-line">G(s) = 1.0·2.0² / (s² + 2·0.30·2.0·s + 2.0²)</div>
+        Polos, overshoot e tempos de resposta são recalculados a cada ajuste.
+      </div>
+    </aside>
+
+    <!-- ===================== Chart + characteristics ===================== -->
+    <main>
+      <div class="card chart-card">
+        <div class="chart-wrap">
+          <canvas id="chart"></canvas>
+        </div>
+        <div class="legend-row">
+          <span class="legend-item"><span class="legend-swatch" style="background:var(--series-1)"></span>Resposta y(t)</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:var(--ref-line); border-top:2px dashed var(--ref-line); height:0;"></span>Referência do degrau (K)</span>
+        </div>
+      </div>
+
+      <div class="card characteristics">
+        <h2>Características da resposta</h2>
+        <div class="characteristics-grid">
+          <div class="stat-tile">
+            <div class="label">Valor final</div>
+            <div class="value" id="stat-final">1.00</div>
+          </div>
+          <div class="stat-tile">
+            <div class="label">Tempo de pico (T<sub>p</sub>)</div>
+            <div class="value" id="stat-tp">—</div>
+          </div>
+          <div class="stat-tile">
+            <div class="label">Overshoot (M<sub>p</sub>)</div>
+            <div class="value" id="stat-mp">—</div>
+          </div>
+          <div class="stat-tile">
+            <div class="label">Tempo de acomodação (2%)</div>
+            <div class="value" id="stat-ts">—</div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  // ---------------------------------------------------------------------
+  // Analytic step response of a standard second-order system
+  //   G(s) = K*wn^2 / (s^2 + 2*zeta*wn*s + wn^2)
+  // Three regimes: underdamped (0<=zeta<1), critically damped (zeta=1),
+  // overdamped (zeta>1). Formulas derived from partial-fraction inversion
+  // of Y(s) = G(s)/s.
+  // ---------------------------------------------------------------------
+  function stepResponse(K, zeta, wn, t) {
+    if (zeta < 1 - 1e-9) {
+      if (zeta < 1e-9) {
+        return K * (1 - Math.cos(wn * t));
+      }
+      const wd = wn * Math.sqrt(1 - zeta * zeta);
+      const phi = Math.acos(zeta);
+      return K * (1 - (Math.exp(-zeta * wn * t) / Math.sqrt(1 - zeta * zeta)) * Math.sin(wd * t + phi));
+    }
+    if (Math.abs(zeta - 1) <= 1e-9) {
+      return K * (1 - Math.exp(-wn * t) * (1 + wn * t));
+    }
+    // overdamped: two distinct real poles p1 (slow), p2 (fast)
+    const sq = Math.sqrt(zeta * zeta - 1);
+    const p1 = -wn * (zeta - sq);
+    const p2 = -wn * (zeta + sq);
+    return K * (1 + (wn * wn / (p1 * (p1 - p2))) * Math.exp(p1 * t) + (wn * wn / (p2 * (p2 - p1))) * Math.exp(p2 * t));
+  }
+
+  // Dominant real-part magnitude (used both for t_final sizing and Ts)
+  function dominantSigma(zeta, wn) {
+    if (zeta < 1) return zeta * wn;
+    const sq = Math.sqrt(zeta * zeta - 1);
+    return wn * (zeta - sq); // -> wn as zeta->1, continuous with the underdamped branch
+  }
+
+  function computeCharacteristics(K, zeta, wn) {
+    const sigma = dominantSigma(zeta, wn);
+    const ts = sigma > 1e-9 ? 4 / sigma : Infinity;
+    let tp = null, mp = null;
+    if (zeta < 1) {
+      const wd = wn * Math.sqrt(1 - zeta * zeta);
+      tp = Math.PI / wd;
+      mp = Math.exp(-zeta * Math.PI / Math.sqrt(Math.max(1e-9, 1 - zeta * zeta))) * 100;
+    }
+    return { finalValue: K, tp, mp, ts };
+  }
+
+  function classify(zeta) {
+    if (zeta < 1e-9) return { title: "Não amortecido", desc: "ζ = 0 — oscilação sustentada, nunca se estabiliza." };
+    if (zeta < 1 - 1e-9) return { title: "Subamortecido", desc: "ζ < 1 — resposta oscilatória com overshoot." };
+    if (Math.abs(zeta - 1) <= 1e-9) return { title: "Criticamente amortecido", desc: "ζ = 1 — retorno mais rápido possível sem oscilar." };
+    return { title: "Superamortecido", desc: "ζ > 1 — resposta lenta, sem oscilação." };
+  }
+
+  // t_final: enough horizon to show settling (or a handful of periods when undamped)
+  function timeHorizon(zeta, wn) {
+    const sigma = dominantSigma(zeta, wn);
+    const tdom = sigma > 1e-9 ? 1 / sigma : (2 * Math.PI / wn) * 3;
+    return Math.min(60, Math.max(10, 5 * tdom));
+  }
+
+  const N_POINTS = 500;
+
+  function buildSeries(K, zeta, wn) {
+    const tFinal = timeHorizon(zeta, wn);
+    const dt = tFinal / N_POINTS;
+    const points = new Array(N_POINTS + 1);
+    const refPoints = new Array(N_POINTS + 1);
+    for (let i = 0; i <= N_POINTS; i++) {
+      const t = i * dt;
+      points[i] = { x: t, y: stepResponse(K, zeta, wn, t) };
+      refPoints[i] = { x: t, y: K };
+    }
+    return { points, refPoints, tFinal };
+  }
+
+  // ---------------------------------------------------------------------
+  // Chart.js setup
+  // ---------------------------------------------------------------------
+  const css = getComputedStyle(document.documentElement);
+  function cssVar(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+
+  const ctx = document.getElementById("chart").getContext("2d");
+  const chart = new Chart(ctx, {
+    type: "line",
+    data: {
+      datasets: [
+        {
+          label: "Resposta y(t)",
+          data: [],
+          borderColor: cssVar("--series-1"),
+          backgroundColor: cssVar("--series-1-fill"),
+          borderWidth: 2,
+          pointRadius: 0,
+          pointHoverRadius: 4,
+          pointHitRadius: 12,
+          fill: true,
+          tension: 0,
+          cubicInterpolationMode: "monotone",
+          order: 1
+        },
+        {
+          label: "Referência do degrau (K)",
+          data: [],
+          borderColor: cssVar("--ref-line"),
+          borderWidth: 2,
+          borderDash: [6, 4],
+          pointRadius: 0,
+          pointHitRadius: 0,
+          fill: false,
+          tension: 0,
+          order: 2
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: false,
+      interaction: { mode: "index", intersect: false, axis: "x" },
+      parsing: false,
+      scales: {
+        x: {
+          type: "linear",
+          title: { display: true, text: "Tempo (s)", color: cssVar("--text-secondary") },
+          grid: { color: cssVar("--gridline"), drawTicks: false },
+          border: { color: cssVar("--baseline") },
+          ticks: { color: cssVar("--text-muted") }
+        },
+        y: {
+          title: { display: true, text: "Amplitude", color: cssVar("--text-secondary") },
+          grid: { color: cssVar("--gridline"), drawTicks: false },
+          border: { color: cssVar("--baseline") },
+          ticks: { color: cssVar("--text-muted") }
+        }
+      },
+      plugins: {
+        legend: { display: false }, // custom legend row below the chart
+        tooltip: {
+          backgroundColor: cssVar("--surface-1"),
+          titleColor: cssVar("--text-primary"),
+          bodyColor: cssVar("--text-primary"),
+          borderColor: cssVar("--border"),
+          borderWidth: 1,
+          padding: 10,
+          callbacks: {
+            title: (items) => "t = " + Number(items[0].parsed.x).toFixed(2) + " s",
+            label: (item) => item.dataset.label + ": " + Number(item.parsed.y).toFixed(3)
+          }
+        }
+      }
+    },
+    plugins: [{
+      // lightweight crosshair so hover has a clear x reference
+      id: "crosshair",
+      afterDraw(c) {
+        if (c.tooltip && c.tooltip._active && c.tooltip._active.length) {
+          const x = c.tooltip._active[0].element.x;
+          const area = c.chartArea;
+          const yctx = c.ctx;
+          yctx.save();
+          yctx.beginPath();
+          yctx.moveTo(x, area.top);
+          yctx.lineTo(x, area.bottom);
+          yctx.lineWidth = 1;
+          yctx.strokeStyle = cssVar("--baseline");
+          yctx.stroke();
+          yctx.restore();
+        }
+      }
+    }]
+  });
+
+  // ---------------------------------------------------------------------
+  // Wire up controls
+  // ---------------------------------------------------------------------
+  const sliderK = document.getElementById("slider-k");
+  const sliderZeta = document.getElementById("slider-zeta");
+  const sliderWn = document.getElementById("slider-wn");
+
+  const valueK = document.getElementById("value-k");
+  const valueZeta = document.getElementById("value-zeta");
+  const valueWn = document.getElementById("value-wn");
+
+  const caseTitle = document.getElementById("case-title");
+  const caseDesc = document.getElementById("case-desc");
+  const eqLine = document.getElementById("eq-line");
+
+  const statFinal = document.getElementById("stat-final");
+  const statTp = document.getElementById("stat-tp");
+  const statMp = document.getElementById("stat-mp");
+  const statTs = document.getElementById("stat-ts");
+
+  function fmt(n, d) { return Number(n).toFixed(d); }
+
+  function update() {
+    const K = parseFloat(sliderK.value);
+    const zeta = parseFloat(sliderZeta.value);
+    const wn = parseFloat(sliderWn.value);
+
+    valueK.textContent = fmt(K, 1);
+    valueZeta.textContent = fmt(zeta, 2);
+    valueWn.textContent = fmt(wn, 1);
+
+    const { title, desc } = classify(zeta);
+    caseTitle.textContent = title;
+    caseDesc.textContent = desc;
+
+    eqLine.textContent =
+      "G(s) = " + fmt(K, 1) + "·" + fmt(wn, 1) + "² / (s² + 2·" + fmt(zeta, 2) + "·" + fmt(wn, 1) + "·s + " + fmt(wn, 1) + "²)";
+
+    const { points, refPoints } = buildSeries(K, zeta, wn);
+    chart.data.datasets[0].data = points;
+    chart.data.datasets[1].data = refPoints;
+    chart.update("none");
+
+    const chars = computeCharacteristics(K, zeta, wn);
+    statFinal.textContent = fmt(chars.finalValue, 2);
+    statTp.textContent = chars.tp !== null ? fmt(chars.tp, 2) + " s" : "N/A (ζ ≥ 1)";
+    statMp.textContent = chars.mp !== null ? fmt(chars.mp, 1) + " %" : "N/A (ζ ≥ 1)";
+    statTs.textContent = isFinite(chars.ts) ? fmt(chars.ts, 2) + " s" : "não se acomoda";
+  }
+
+  [sliderK, sliderZeta, sliderWn].forEach((el) => el.addEventListener("input", update));
+
+  // ---------------------------------------------------------------------
+  // Theme toggle (manual override on top of prefers-color-scheme)
+  // ---------------------------------------------------------------------
+  const themeToggle = document.getElementById("theme-toggle");
+  themeToggle.addEventListener("click", () => {
+    const root = document.documentElement;
+    const current = root.getAttribute("data-theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    let next;
+    if (!current) next = prefersDark ? "light" : "dark";
+    else next = current === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    refreshChartTheme();
+  });
+
+  function refreshChartTheme() {
+    chart.data.datasets[0].borderColor = cssVar("--series-1");
+    chart.data.datasets[0].backgroundColor = cssVar("--series-1-fill");
+    chart.data.datasets[1].borderColor = cssVar("--ref-line");
+    chart.options.scales.x.title.color = cssVar("--text-secondary");
+    chart.options.scales.y.title.color = cssVar("--text-secondary");
+    chart.options.scales.x.ticks.color = cssVar("--text-muted");
+    chart.options.scales.y.ticks.color = cssVar("--text-muted");
+    chart.options.scales.x.grid.color = cssVar("--gridline");
+    chart.options.scales.y.grid.color = cssVar("--gridline");
+    chart.options.scales.x.border.color = cssVar("--baseline");
+    chart.options.scales.y.border.color = cssVar("--baseline");
+    chart.options.plugins.tooltip.backgroundColor = cssVar("--surface-1");
+    chart.options.plugins.tooltip.titleColor = cssVar("--text-primary");
+    chart.options.plugins.tooltip.bodyColor = cssVar("--text-primary");
+    chart.options.plugins.tooltip.borderColor = cssVar("--border");
+    chart.update("none");
+  }
+
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", refreshChartTheme);
+
+  update();
+})();
+</script>
+
+</body>
+</html>
