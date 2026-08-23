@@ -1,0 +1,1672 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR">
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="quarto-1.9.38" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+
+<meta name="author" content="Prof. Dr. Raphael Teixeira" />
+
+<title>Representações Numéricas no Computador – Cálculo Numérico</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<!-- htmldependencies:E3FAD763 -->
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="/index.html">
+    <span class="navbar-title">Cálculo Numérico</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Procurar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+  aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Alternar de navegação"
+  onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="/index.html"> 
+<span class="menu-text">Início</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-aulas" role="link" data-bs-toggle="dropdown" aria-expanded="false" >
+ <span class="menu-text">Aulas</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-aulas">    
+        <li>
+    <a class="dropdown-item" href="/Aulas/CN00PlanoEnsino.html">
+ <span class="dropdown-text">0 · Plano de Ensino</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/Aulas/CN01Erros.html">
+ <span class="dropdown-text">1 · Introdução: Raízes e Erros Numéricos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/Aulas/CN02ZerosDeFuncoes.html">
+ <span class="dropdown-text">2 · Zeros de Funções</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/Aulas/CN03Interpolacao.html">
+ <span class="dropdown-text">3 · Interpolação Polinomial</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/Aulas/CN04AjusteCurvas.html">
+ <span class="dropdown-text">4 · Ajuste de Curvas</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/Aulas/CN05Integracao.html">
+ <span class="dropdown-text">5 · Integração Numérica</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/Aulas/CN06Diferenciacao.html">
+ <span class="dropdown-text">6 · Diferenciação Numérica</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/Aulas/CN07EDOsEuler.html">
+ <span class="dropdown-text">7 · EDOs — Euler e Runge-Kutta</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/Aulas/CN08EDOsSistemas.html">
+ <span class="dropdown-text">8 · EDOs — Sistemas e Estabilidade</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/Aulas/CN09OtimizacaoNaoRestrita.html">
+ <span class="dropdown-text">9 · Otimização Não Restrita</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Alternar modo de leitor">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <div id="quarto-toc-target"></div>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Representações Numéricas no Computador</h1>
+<p class="subtitle lead">Fundamentos Computacionais para Cálculo Numérico</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Autor</div>
+    <div class="quarto-title-meta-contents">
+             <p>Prof. Dr. Raphael Teixeira </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Data de Publicação</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">15 de agosto de 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+<nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#introdução-o-abismo-entre-matemática-e-computação" id="toc-introdução-o-abismo-entre-matemática-e-computação"><span class="header-section-number">1</span> Introdução: O abismo entre matemática e computação</a></li>
+  <li><a href="#sistemas-de-numeração-posicional" id="toc-sistemas-de-numeração-posicional"><span class="header-section-number">2</span> Sistemas de Numeração Posicional</a></li>
+  <li><a href="#inteiros-em-máquina-aritmética-de-ponto-fixo" id="toc-inteiros-em-máquina-aritmética-de-ponto-fixo"><span class="header-section-number">3</span> Inteiros em Máquina: Aritmética de Ponto Fixo</a></li>
+  <li><a href="#números-reais-em-máquina-ponto-flutuante" id="toc-números-reais-em-máquina-ponto-flutuante"><span class="header-section-number">4</span> Números Reais em Máquina: Ponto Flutuante</a></li>
+  <li><a href="#padrão-ieee-754" id="toc-padrão-ieee-754"><span class="header-section-number">5</span> Padrão IEEE 754</a></li>
+  <li><a href="#precisão-e-erros-de-máquina" id="toc-precisão-e-erros-de-máquina"><span class="header-section-number">6</span> Precisão e Erros de Máquina</a></li>
+  <li><a href="#arredondamento" id="toc-arredondamento"><span class="header-section-number">7</span> Arredondamento</a></li>
+  <li><a href="#operações-aritméticas-em-ponto-flutuante" id="toc-operações-aritméticas-em-ponto-flutuante"><span class="header-section-number">8</span> Operações Aritméticas em Ponto Flutuante</a></li>
+  <li><a href="#implementação-em-computador" id="toc-implementação-em-computador"><span class="header-section-number">9</span> Implementação em Computador</a></li>
+  <li><a href="#aplicações-e-conexões-com-cálculo-numérico" id="toc-aplicações-e-conexões-com-cálculo-numérico"><span class="header-section-number">10</span> Aplicações e Conexões com Cálculo Numérico</a></li>
+  <li><a href="#exercícios-propostos" id="toc-exercícios-propostos"><span class="header-section-number">11</span> Exercícios Propostos</a></li>
+  <li><a href="#referências" id="toc-referências"><span class="header-section-number">12</span> Referências</a></li>
+  <li><a href="#anexo-código-python-completo-para-experimentos" id="toc-anexo-código-python-completo-para-experimentos"><span class="header-section-number">13</span> Anexo: Código Python Completo para Experimentos</a></li>
+  </ul>
+</nav>
+<section id="introdução-o-abismo-entre-matemática-e-computação" class="level2" data-number="1">
+<h2 data-number="1"><span class="header-section-number">1</span> Introdução: O abismo entre matemática e computação</h2>
+<p>Na matemática, operamos com números reais em <strong>precisão infinita</strong>. O conjunto <span class="math inline">\(\mathbb{R}\)</span> é denso: entre dois reais quaisquer existe sempre outro real. Podemos trabalhar com <span class="math inline">\(\pi\)</span>, <span class="math inline">\(e\)</span>, ou <span class="math inline">\(\sqrt{2}\)</span> sem restrições.</p>
+<p><strong>No computador, tudo muda.</strong></p>
+<p>Um computador tem memória <strong>finita</strong>. Se cada número real precisasse de infinitos dígitos para representação exata, seria impossível armazená-lo. Logo, <strong>todo número é uma aproximação</strong>.</p>
+<section id="por-que-isso-importa-para-cálculo-numérico" class="level3" data-number="1.1">
+<h3 data-number="1.1"><span class="header-section-number">1.1</span> Por que isso importa para Cálculo Numérico</h3>
+<ol type="1">
+<li><strong>Erros de arredondamento</strong> — cada operação introduz pequenos erros</li>
+<li><strong>Propagação de erros</strong> — erros crescem ao longo de algoritmos<br />
+</li>
+<li><strong>Instabilidade numérica</strong> — alguns algoritmos amplificam erros, outros os controlam</li>
+<li><strong>Escolha de método</strong> — um algoritmo “bom” matematicamente pode ser ruim em máquina</li>
+</ol>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class='callout-icon'></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Aviso</span>Exemplo clássico
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Resolver <span class="math inline">\(x^2 - 1000x + 1 = 0\)</span> com a fórmula de Bhaskara pode resultar em <strong>catastrófica perda de dígitos significativos</strong> devido a cancelamento numérico.</p>
+</div>
+</div>
+<hr />
+</section>
+</section>
+<section id="sistemas-de-numeração-posicional" class="level2" data-number="2">
+<h2 data-number="2"><span class="header-section-number">2</span> Sistemas de Numeração Posicional</h2>
+<section id="base-decimal-base-10" class="level3" data-number="2.1">
+<h3 data-number="2.1"><span class="header-section-number">2.1</span> Base decimal (base 10)</h3>
+<p>Um número em base 10 é representado como: <span class="math display">\[N = d_n \cdot 10^n + d_{n-1} \cdot 10^{n-1} + \cdots + d_1 \cdot 10 + d_0 + d_{-1} \cdot 10^{-1} + \cdots\]</span></p>
+<p>onde cada <span class="math inline">\(d_i \in \{0, 1, \ldots, 9\}\)</span>.</p>
+<p><strong>Exemplo:</strong> <span class="math inline">\(1234.56 = 1 \cdot 10^3 + 2 \cdot 10^2 + 3 \cdot 10 + 4 + 5 \cdot 10^{-1} + 6 \cdot 10^{-2}\)</span></p>
+</section>
+<section id="base-binária-base-2" class="level3" data-number="2.2">
+<h3 data-number="2.2"><span class="header-section-number">2.2</span> Base binária (base 2)</h3>
+<p>Um número em base 2 usa apenas dígitos <span class="math inline">\(\{0, 1\}\)</span> (bits): <span class="math display">\[N = b_n \cdot 2^n + b_{n-1} \cdot 2^{n-1} + \cdots + b_0 + b_{-1} \cdot 2^{-1} + b_{-2} \cdot 2^{-2} + \cdots\]</span></p>
+<p>onde cada <span class="math inline">\(b_i \in \{0, 1\}\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class='callout-icon'></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Exemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\((1101.101)_2 = 1 \cdot 2^3 + 1 \cdot 2^2 + 0 \cdot 2^1 + 1 \cdot 2^0 + 1 \cdot 2^{-1} + 0 \cdot 2^{-2} + 1 \cdot 2^{-3}\)</span></p>
+<p><span class="math inline">\(= 8 + 4 + 0 + 1 + 0.5 + 0 + 0.125 = 13.625\)</span> em decimal</p>
+</div>
+</div>
+</section>
+<section id="conversão-decimal-para-binário" class="level3" data-number="2.3">
+<h3 data-number="2.3"><span class="header-section-number">2.3</span> Conversão decimal para binário</h3>
+<p><strong>Parte inteira:</strong> divisões sucessivas por 2, tomando os restos.</p>
+<p><strong>Parte fracionária:</strong> multiplicações sucessivas por 2, tomando as partes inteiras.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class='callout-icon'></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Exemplo: Converter 0.375
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<pre><code>0.375 × 2 = 0.75    (dígito: 0)
+0.75 × 2 = 1.5      (dígito: 1)
+0.5 × 2 = 1.0       (dígito: 1)</code></pre>
+<p>Logo, <span class="math inline">\((0.375)_{10} = (0.011)_2\)</span></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class='callout-icon'></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Aviso</span>Atenção
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Nem todo número decimal tem representação binária <strong>finita</strong>!</p>
+<p>Por exemplo, <span class="math inline">\((0.1)_{10} = (0.0001100110011\ldots)_2\)</span> é dízima periódica infinita.</p>
+<p><strong>Implicação:</strong> 0.1 não pode ser representado exatamente em computador!</p>
+</div>
+</div>
+<div id="982a5235" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python cell-code"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Demonstração: 0.1 não é exato em binário</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">0.1</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;0.1 em Python (16 casas): </span><span class="sc">{</span>x<span class="sc">:.16f}</span><span class="ss">&quot;</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;0.1 em Python (20 casas): </span><span class="sc">{</span>x<span class="sc">:.20f}</span><span class="ss">&quot;</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Isso causa problemas</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;</span><span class="ch">\n</span><span class="ss">0.1 + 0.2 = </span><span class="sc">{</span><span class="fl">0.1</span> <span class="op">+</span> <span class="fl">0.2</span><span class="sc">:.20f}</span><span class="ss">&quot;</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Esperado:  0.3&quot;</span>)</span></code></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.1 em Python (16 casas): 0.1000000000000000
+0.1 em Python (20 casas): 0.10000000000000000555
+
+0.1 + 0.2 = 0.30000000000000004441
+Esperado:  0.3</code></pre>
+</div>
+</div>
+<hr />
+</section>
+</section>
+<section id="inteiros-em-máquina-aritmética-de-ponto-fixo" class="level2" data-number="3">
+<h2 data-number="3"><span class="header-section-number">3</span> Inteiros em Máquina: Aritmética de Ponto Fixo</h2>
+<section id="inteiros-sem-sinal-unsigned-integers" class="level3" data-number="3.1">
+<h3 data-number="3.1"><span class="header-section-number">3.1</span> Inteiros sem sinal (unsigned integers)</h3>
+<p>Um inteiro sem sinal com <span class="math inline">\(n\)</span> bits pode representar inteiros de <span class="math inline">\(0\)</span> a <span class="math inline">\(2^n - 1\)</span>.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Bits</th>
+<th>Intervalo</th>
+<th>Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>8</td>
+<td>[0, 255]</td>
+<td>1 byte</td>
+</tr>
+<tr class="even">
+<td>16</td>
+<td>[0, 65535]</td>
+<td>2 bytes</td>
+</tr>
+<tr class="odd">
+<td>32</td>
+<td>[0, 4.3 × 10⁹]</td>
+<td>4 bytes</td>
+</tr>
+<tr class="even">
+<td>64</td>
+<td>[0, 1.8 × 10¹⁹]</td>
+<td>8 bytes</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="inteiros-com-sinal-complemento-de-dois" class="level3" data-number="3.2">
+<h3 data-number="3.2"><span class="header-section-number">3.2</span> Inteiros com sinal: Complemento de dois</h3>
+<p><strong>Padrão moderno</strong> para representar negativos (sem ambiguidade).</p>
+<p>Um inteiro com sinal em <span class="math inline">\(n\)</span> bits é representado por: <span class="math display">\[N = -b_{n-1} \cdot 2^{n-1} + \sum_{i=0}^{n-2} b_i \cdot 2^i\]</span></p>
+<p>onde o bit mais significativo (MSB) é o <strong>bit de sinal</strong>.</p>
+<p><strong>Intervalo:</strong> <span class="math inline">\(-2^{n-1}\)</span> a <span class="math inline">\(2^{n-1} - 1\)</span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class='callout-icon'></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Exemplo com 8 bits
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><span class="math inline">\((00000101)_2 = 5\)</span></li>
+<li><span class="math inline">\((11111011)_2 = -5\)</span></li>
+<li><span class="math inline">\((10000000)_2 = -128\)</span> (menor valor)</li>
+<li><span class="math inline">\((01111111)_2 = 127\)</span> (maior valor)</li>
+</ul>
+<p><strong>Intervalo:</strong> <span class="math inline">\([-128, 127]\)</span></p>
+</div>
+</div>
+</section>
+<section id="overflow-inteiro" class="level3" data-number="3.3">
+<h3 data-number="3.3"><span class="header-section-number">3.3</span> Overflow inteiro</h3>
+<p>Se o resultado de uma operação inteira exceder o intervalo representável, ocorre <strong>overflow</strong>.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class='callout-icon'></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Aviso</span>Comportamentos diferentes por linguagem
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>C/Fortran:</strong> comportamento indefinido ou truncamento silencioso</li>
+<li><strong>Python:</strong> inteiros crescem dinamicamente (sem overflow)</li>
+<li><strong>Java:</strong> wraparound (volta ao intervalo válido)</li>
+</ul>
+<p><strong>Cuidado:</strong> Em linguagens compiladas, overflow silencioso é perigoso!</p>
+</div>
+</div>
+<hr />
+</section>
+</section>
+<section id="números-reais-em-máquina-ponto-flutuante" class="level2" data-number="4">
+<h2 data-number="4"><span class="header-section-number">4</span> Números Reais em Máquina: Ponto Flutuante</h2>
+<section id="notação-científica" class="level3" data-number="4.1">
+<h3 data-number="4.1"><span class="header-section-number">4.1</span> Notação científica</h3>
+<p>Em matemática, qualquer número real pode ser escrito em notação científica: <span class="math display">\[x = \pm d_0.d_1 d_2 d_3 \ldots \times 10^e\]</span></p>
+<p>onde <span class="math inline">\(d_0 \in \{1, 2, \ldots, 9\}\)</span> (um dígito antes do ponto) e <span class="math inline">\(e\)</span> é o expoente.</p>
+<p><strong>Exemplo:</strong> <span class="math inline">\(1234.56 = 1.23456 \times 10^3\)</span></p>
+</section>
+<section id="representação-de-ponto-flutuante-normalizada" class="level3" data-number="4.2">
+<h3 data-number="4.2"><span class="header-section-number">4.2</span> Representação de ponto flutuante normalizada</h3>
+<p>Em base 2, um número de ponto flutuante tem a forma: <span class="math display">\[x = \pm (1.d_1 d_2 d_3 \ldots) \times 2^e\]</span></p>
+<p>onde: - O bit implícito na posição <span class="math inline">\(2^0\)</span> é sempre 1 (em representação normalizada) - <span class="math inline">\(d_i \in \{0, 1\}\)</span> são os dígitos da mantissa (ou fração) - <span class="math inline">\(e\)</span> é o expoente</p>
+<p><strong>Componentes:</strong> 1. <strong>Sinal:</strong> 1 bit (0 = positivo, 1 = negativo) 2. <strong>Expoente:</strong> <span class="math inline">\(e\)</span> bits (codificado com bias) 3. <strong>Mantissa/Fração:</strong> <span class="math inline">\(p\)</span> bits (precisão)</p>
+<p><strong>Precisão total:</strong> <span class="math inline">\(p + 1\)</span> dígitos binários (o “+1” é o bit implícito)</p>
+<hr />
+</section>
+</section>
+<section id="padrão-ieee-754" class="level2" data-number="5">
+<h2 data-number="5"><span class="header-section-number">5</span> Padrão IEEE 754</h2>
+<p>IEEE 754 (IEEE Standard for Floating-Point Arithmetic) é o padrão internacional para aritmética de ponto flutuante. Garante consistência entre plataformas.</p>
+<section id="formatos-principais" class="level3" data-number="5.1">
+<h3 data-number="5.1"><span class="header-section-number">5.1</span> Formatos principais</h3>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Tipo</th>
+<th>Bits</th>
+<th>Sinal</th>
+<th>Exp</th>
+<th>Mant</th>
+<th>Bias</th>
+<th>Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>float32</strong></td>
+<td>32</td>
+<td>1</td>
+<td>8</td>
+<td>23</td>
+<td>127</td>
+<td>Gráficos, GPUs</td>
+</tr>
+<tr class="even">
+<td><strong>float64</strong></td>
+<td>64</td>
+<td>1</td>
+<td>11</td>
+<td>52</td>
+<td>1023</td>
+<td>Ciência, padrão Python</td>
+</tr>
+<tr class="odd">
+<td><strong>float80</strong></td>
+<td>80</td>
+<td>1</td>
+<td>15</td>
+<td>64</td>
+<td>16383</td>
+<td>Cálculos intermediários</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class='callout-icon'></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Foco neste curso
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Trabalharemos principalmente com <strong>float64</strong> (precisão dupla, 64 bits), que é o padrão em Python, MATLAB e linguagens científicas.</p>
+</div>
+</div>
+</section>
+<section id="estrutura-de-um-número-double-64-bits" class="level3" data-number="5.2">
+<h3 data-number="5.2"><span class="header-section-number">5.2</span> Estrutura de um número double (64 bits)</h3>
+<pre><code>┌─────────┬───────────────────┬────────────────────────────────────────────────────┐
+│  Sinal  │   Expoente (11)   │              Mantissa (52 bits)                    │
+│ (1 bit) │                   │                                                    │
+└─────────┴───────────────────┴────────────────────────────────────────────────────┘</code></pre>
+<p><strong>Decodificação:</strong> <span class="math display">\[\text{valor} = (-1)^S \times 2^{E - 1023} \times (1.M)_2\]</span></p>
+<p>onde <span class="math inline">\((1.M)_2 = 1 + \sum_{i=1}^{52} M_i \cdot 2^{-i}\)</span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class='callout-icon'></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Exemplo de decodificação
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Considere o padrão IEEE 754 double:</p>
+<pre><code>0 01111111100 0000000000000000000000000000000000000000000000000000</code></pre>
+<p><strong>Decodificação:</strong> - <span class="math inline">\(S = 0\)</span> (positivo) - <span class="math inline">\(E = (01111111100)_2 = 1020\)</span> (expoente com bias) - <span class="math inline">\(M = 0\)</span> (mantissa nula) - Expoente real: <span class="math inline">\(1020 - 1023 = -3\)</span> - <strong>Valor:</strong> <span class="math inline">\(1 \times 2^{-3} \times 1.0 = 0.125\)</span></p>
+</div>
+</div>
+</section>
+<section id="valores-especiais-em-ieee-754" class="level3" data-number="5.3">
+<h3 data-number="5.3"><span class="header-section-number">5.3</span> Valores especiais em IEEE 754</h3>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Padrão</th>
+<th>Sinal</th>
+<th>Expoente</th>
+<th>Mantissa</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Zeros</td>
+<td>±0</td>
+<td>0</td>
+<td>0</td>
+<td>+0, -0</td>
+</tr>
+<tr class="even">
+<td>Desnormalizados</td>
+<td>±</td>
+<td>0</td>
+<td>≠ 0</td>
+<td>Muito pequenos (precisão reduzida)</td>
+</tr>
+<tr class="odd">
+<td>Normalizados</td>
+<td>±</td>
+<td>1 a 2046</td>
+<td>qualquer</td>
+<td>Números regulares</td>
+</tr>
+<tr class="even">
+<td>Infinitos</td>
+<td>±</td>
+<td>máximo</td>
+<td>0</td>
+<td><span class="math inline">\(\pm \infty\)</span></td>
+</tr>
+<tr class="odd">
+<td>NaN</td>
+<td>qualquer</td>
+<td>máximo</td>
+<td>≠ 0</td>
+<td>Not a Number</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class='callout-icon'></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Exemplos de operações especiais
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">0</span>)          <span class="co"># inf</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="op">-</span><span class="dv">1</span><span class="op">/</span><span class="dv">0</span>)         <span class="co"># -inf</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">0</span><span class="op">/</span><span class="dv">0</span>)          <span class="co"># nan</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">float</span>(<span class="st">&#39;inf&#39;</span>) <span class="op">-</span> <span class="bu">float</span>(<span class="st">&#39;inf&#39;</span>))  <span class="co"># nan</span></span></code></pre></div>
+</div>
+</div>
+</section>
+<section id="números-desnormalizados-subnormal" class="level3" data-number="5.4">
+<h3 data-number="5.4"><span class="header-section-number">5.4</span> Números desnormalizados (subnormal)</h3>
+<p>Quando o expoente atinge seu mínimo (<span class="math inline">\(E = 0\)</span>), números menores que o “mínimo normal” podem ser representados com precisão reduzida:</p>
+<p><span class="math display">\[x = \pm (0.d_1 d_2 \ldots) \times 2^{e_{\text{min}}}\]</span></p>
+<p>Isto fornece <strong>underflow gradual</strong> ao invés de queda abrupta para zero.</p>
+<hr />
+</section>
+</section>
+<section id="precisão-e-erros-de-máquina" class="level2" data-number="6">
+<h2 data-number="6"><span class="header-section-number">6</span> Precisão e Erros de Máquina</h2>
+<section id="machine-epsilon-epsilon" class="level3" data-number="6.1">
+<h3 data-number="6.1"><span class="header-section-number">6.1</span> Machine epsilon (<span class="math inline">\(\epsilon\)</span>)</h3>
+<p><strong>Definição:</strong> Menor número <span class="math inline">\(\epsilon\)</span> tal que <span class="math inline">\(1 + \epsilon \neq 1\)</span> em aritmética de ponto flutuante.</p>
+<p><strong>Fórmula:</strong> <span class="math display">\[\epsilon = 2^{-p}\]</span></p>
+<p>onde <span class="math inline">\(p\)</span> é o número de dígitos binários de precisão (após o bit implícito).</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Formato</th>
+<th><span class="math inline">\(p\)</span></th>
+<th>Machine epsilon</th>
+<th>Valor aproximado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>float32</td>
+<td>24</td>
+<td><span class="math inline">\(2^{-23}\)</span></td>
+<td><span class="math inline">\(1.19 \times 10^{-7}\)</span></td>
+</tr>
+<tr class="even">
+<td>float64</td>
+<td>53</td>
+<td><span class="math inline">\(2^{-52}\)</span></td>
+<td><span class="math inline">\(2.22 \times 10^{-16}\)</span></td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class='callout-icon'></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Aviso</span>Interpretação
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Machine epsilon é uma medida da <strong>precisão relativa</strong>: em máquina, qualquer número é representado com erro relativo no máximo da ordem de <span class="math inline">\(\epsilon / 2\)</span>.</p>
+</div>
+</div>
+<div id="2da56014" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python cell-code"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar machine epsilon em Python</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>eps32 <span class="op">=</span> np.finfo(np.float32).eps</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>eps64 <span class="op">=</span> np.finfo(np.float64).eps</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Machine epsilon (float32): </span><span class="sc">{</span>eps32<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Machine epsilon (float64): </span><span class="sc">{</span>eps64<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;</span><span class="ch">\n</span><span class="ss">Teórico (2^-23): </span><span class="sc">{</span><span class="dv">2</span><span class="op">**</span>(<span class="op">-</span><span class="dv">23</span>)<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Teórico (2^-52): </span><span class="sc">{</span><span class="dv">2</span><span class="op">**</span>(<span class="op">-</span><span class="dv">52</span>)<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar experimentalmente</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_epsilon(dtype):</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    eps <span class="op">=</span> dtype(<span class="fl">1.0</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> dtype(<span class="fl">1.0</span>) <span class="op">+</span> eps <span class="op">!=</span> dtype(<span class="fl">1.0</span>):</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        eps <span class="op">=</span> eps <span class="op">/</span> dtype(<span class="fl">2.0</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> eps <span class="op">*</span> <span class="dv">2</span>  <span class="co"># Volta um passo</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;</span><span class="ch">\n</span><span class="ss">Experimental float64: </span><span class="sc">{</span>find_epsilon(np.float64)<span class="sc">}</span><span class="ss">&quot;</span>)</span></code></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Machine epsilon (float32): 1.1920928955078125e-07
+Machine epsilon (float64): 2.220446049250313e-16
+
+Teórico (2^-23): 1.1920928955078125e-07
+Teórico (2^-52): 2.220446049250313e-16
+
+Experimental float64: 2.220446049250313e-16</code></pre>
+</div>
+</div>
+</section>
+<section id="maior-e-menor-número-representável" class="level3" data-number="6.2">
+<h3 data-number="6.2"><span class="header-section-number">6.2</span> Maior e menor número representável</h3>
+<table class="caption-top">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 57%" />
+<col style="width: 18%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Formato</th>
+<th>Menor positivo normal</th>
+<th>Maior</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>float32</td>
+<td><span class="math inline">\(\approx 1.18 \times 10^{-38}\)</span></td>
+<td><span class="math inline">\(\approx 3.40 \times 10^{38}\)</span></td>
+</tr>
+<tr class="even">
+<td>float64</td>
+<td><span class="math inline">\(\approx 2.23 \times 10^{-308}\)</span></td>
+<td><span class="math inline">\(\approx 1.80 \times 10^{308}\)</span></td>
+</tr>
+</tbody>
+</table>
+<div id="f0a0d12f" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python cell-code"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar limites em Python</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>info32 <span class="op">=</span> np.finfo(np.float32)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>info64 <span class="op">=</span> np.finfo(np.float64)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Float32:&quot;</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;  Menor: </span><span class="sc">{</span>info32<span class="sc">.</span>tiny<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;  Maior: </span><span class="sc">{</span>info32<span class="sc">.</span><span class="bu">max</span><span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">Float64:&quot;</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;  Menor: </span><span class="sc">{</span>info64<span class="sc">.</span>tiny<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;  Maior: </span><span class="sc">{</span>info64<span class="sc">.</span><span class="bu">max</span><span class="sc">}</span><span class="ss">&quot;</span>)</span></code></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Float32:
+  Menor: 1.1754943508222875e-38
+  Maior: 3.4028234663852886e+38
+
+Float64:
+  Menor: 2.2250738585072014e-308
+  Maior: 1.7976931348623157e+308</code></pre>
+</div>
+</div>
+</section>
+<section id="dígitos-significativos-decimais" class="level3" data-number="6.3">
+<h3 data-number="6.3"><span class="header-section-number">6.3</span> Dígitos significativos decimais</h3>
+<p>Número de dígitos decimais significativos: <span class="math display">\[\text{# dígitos decimais} \approx p \times \log_{10}(2)\]</span></p>
+<ul>
+<li><strong>float32</strong> (<span class="math inline">\(p = 24\)</span>): <span class="math inline">\(\approx 24 \times 0.301 \approx 7\)</span> dígitos</li>
+<li><strong>float64</strong> (<span class="math inline">\(p = 53\)</span>): <span class="math inline">\(\approx 53 \times 0.301 \approx 16\)</span> dígitos</li>
+</ul>
+<div id="53cb5b46" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python cell-code"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Demonstração</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>x_float32 <span class="op">=</span> np.float32(<span class="fl">1.23456789</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>x_float64 <span class="op">=</span> np.float64(<span class="fl">1.23456789</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Entrada:  1.23456789&quot;</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;float32: </span><span class="sc">{</span>x_float32<span class="sc">:.8f}</span><span class="ss">&quot;</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;float64: </span><span class="sc">{</span>x_float64<span class="sc">:.16f}</span><span class="ss">&quot;</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Valores maiores</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>x_large32 <span class="op">=</span> np.float32(<span class="fl">123456789.0</span>)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>x_large64 <span class="op">=</span> np.float64(<span class="fl">123456789.0</span>)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;</span><span class="ch">\n</span><span class="ss">Entrada:  123456789.0&quot;</span>)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;float32: </span><span class="sc">{</span>x_large32<span class="sc">:.1f}</span><span class="ss">&quot;</span>)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;float64: </span><span class="sc">{</span>x_large64<span class="sc">:.10f}</span><span class="ss">&quot;</span>)</span></code></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Entrada:  1.23456789
+float32: 1.23456788
+float64: 1.2345678899999999
+
+Entrada:  123456789.0
+float32: 123456792.0
+float64: 123456789.0000000000</code></pre>
+</div>
+</div>
+<hr />
+</section>
+</section>
+<section id="arredondamento" class="level2" data-number="7">
+<h2 data-number="7"><span class="header-section-number">7</span> Arredondamento</h2>
+<section id="estratégias-de-arredondamento" class="level3" data-number="7.1">
+<h3 data-number="7.1"><span class="header-section-number">7.1</span> Estratégias de arredondamento</h3>
+<p>Quando um número não cabe exatamente em <span class="math inline">\(p\)</span> bits, deve-se arredondar. IEEE 754 suporta 4 modos:</p>
+<ol type="1">
+<li><strong>Round to nearest (padrão):</strong> arredonda ao número flutuante mais próximo; em caso de empate, arredonda ao par</li>
+<li><strong>Round toward zero (truncation):</strong> descarta os dígitos fora de <span class="math inline">\(p\)</span> bits</li>
+<li><strong>Round toward +infinity:</strong> sempre arredonda para cima</li>
+<li><strong>Round toward -infinity:</strong> sempre arredonda para baixo</li>
+</ol>
+</section>
+<section id="erro-de-arredondamento" class="level3" data-number="7.2">
+<h3 data-number="7.2"><span class="header-section-number">7.2</span> Erro de arredondamento</h3>
+<p>Se <span class="math inline">\(x\)</span> é um número real e <span class="math inline">\(\text{fl}(x)\)</span> é sua representação em máquina, o erro relativo é limitado por:</p>
+<p><span class="math display">\[\frac{|x - \text{fl}(x)|}{|x|} \leq \frac{\epsilon}{2}\]</span></p>
+<p>onde <span class="math inline">\(\epsilon\)</span> é a machine epsilon.</p>
+<hr />
+</section>
+</section>
+<section id="operações-aritméticas-em-ponto-flutuante" class="level2" data-number="8">
+<h2 data-number="8"><span class="header-section-number">8</span> Operações Aritméticas em Ponto Flutuante</h2>
+<section id="perda-de-significância-catastrophic-cancellation" class="level3" data-number="8.1">
+<h3 data-number="8.1"><span class="header-section-number">8.1</span> Perda de significância (catastrophic cancellation)</h3>
+<p>Um problema grave ocorre quando <strong>subtraímos dois números muito próximos</strong>.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class='callout-icon'></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Aviso</span>Exemplo clássico
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Calcular <span class="math inline">\(\sqrt{x^2 + 1} - x\)</span> para <span class="math inline">\(x = 10^8\)</span>.</p>
+<p><strong>Matematicamente</strong>, para <span class="math inline">\(x\)</span> grande: <span class="math display">\[\sqrt{x^2 + 1} - x \approx \frac{1}{2x}\]</span></p>
+<p><strong>Em máquina</strong>, <span class="math inline">\(\sqrt{x^2 + 1} \approx x\)</span> (pois <span class="math inline">\(x\)</span> é muito grande), então: <span class="math display">\[\sqrt{x^2 + 1} - x \approx 0 \quad \text{❌ resultado errado!}\]</span></p>
+<p><strong>Solução:</strong> Racionalizar <span class="math display">\[\sqrt{x^2 + 1} - x = \frac{(x^2 + 1) - x^2}{\sqrt{x^2 + 1} + x} = \frac{1}{\sqrt{x^2 + 1} + x}\]</span></p>
+<p>que é numericamente estável. ✓</p>
+</div>
+</div>
+<div id="40abaf12" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python cell-code"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">1e8</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Método instável</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>result1 <span class="op">=</span> math.sqrt(x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">1</span>) <span class="op">-</span> x</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Instável: sqrt(x^2 + 1) - x = </span><span class="sc">{</span>result1<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Método estável</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>result2 <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> (math.sqrt(x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">1</span>) <span class="op">+</span> x)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Estável:  1/(sqrt(x^2 + 1) + x) = </span><span class="sc">{</span>result2<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparação</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;</span><span class="ch">\n</span><span class="ss">Valor teórico: 1/(2x) = </span><span class="sc">{</span><span class="dv">1</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>x)<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Erro instável:  </span><span class="sc">{</span><span class="bu">abs</span>(result1 <span class="op">-</span> <span class="dv">1</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>x))<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Erro estável:   </span><span class="sc">{</span><span class="bu">abs</span>(result2 <span class="op">-</span> <span class="dv">1</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>x))<span class="sc">}</span><span class="ss">&quot;</span>)</span></code></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Instável: sqrt(x^2 + 1) - x = 0.0
+Estável:  1/(sqrt(x^2 + 1) + x) = 5e-09
+
+Valor teórico: 1/(2x) = 5e-09
+Erro instável:  5e-09
+Erro estável:   0.0</code></pre>
+</div>
+</div>
+</section>
+<section id="associatividade-quebrada" class="level3" data-number="8.2">
+<h3 data-number="8.2"><span class="header-section-number">8.2</span> Associatividade quebrada</h3>
+<p>Operações não são associativas em ponto flutuante: <span class="math display">\[(a + b) + c \neq a + (b + c)\]</span></p>
+<div id="bf3d3b6f" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python cell-code"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Demonstração</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="fl">1e-16</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> <span class="op">-</span><span class="fl">1e-16</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>result1 <span class="op">=</span> (a <span class="op">+</span> b) <span class="op">+</span> c</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>result2 <span class="op">=</span> a <span class="op">+</span> (b <span class="op">+</span> c)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;(a + b) + c = </span><span class="sc">{</span>result1<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;a + (b + c) = </span><span class="sc">{</span>result2<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Iguais? </span><span class="sc">{</span>result1 <span class="op">==</span> result2<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Outro exemplo</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="fl">1e10</span>, <span class="dv">1</span>, <span class="op">-</span><span class="fl">1e10</span>]</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;</span><span class="ch">\n</span><span class="ss">Soma esquerda: ((1e10 + 1) - 1e10) = </span><span class="sc">{</span>(x[<span class="dv">0</span>] <span class="op">+</span> x[<span class="dv">1</span>]) <span class="op">+</span> x[<span class="dv">2</span>]<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Soma direita:  (1e10 + (1 - 1e10)) = </span><span class="sc">{</span>x[<span class="dv">0</span>] <span class="op">+</span> (x[<span class="dv">1</span>] <span class="op">+</span> x[<span class="dv">2</span>])<span class="sc">}</span><span class="ss">&quot;</span>)</span></code></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>(a + b) + c = 0.9999999999999999
+a + (b + c) = 1.0
+Iguais? False
+
+Soma esquerda: ((1e10 + 1) - 1e10) = 1.0
+Soma direita:  (1e10 + (1 - 1e10)) = 1.0</code></pre>
+</div>
+</div>
+</section>
+<section id="absorção-numérica" class="level3" data-number="8.3">
+<h3 data-number="8.3"><span class="header-section-number">8.3</span> Absorção numérica</h3>
+<p>Se <span class="math inline">\(|a| \gg |b|\)</span>, então <span class="math inline">\(a + b \approx a\)</span> em máquina (o <span class="math inline">\(b\)</span> é “absorvido”).</p>
+<div id="ac89c5d8" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python cell-code"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Demonstração</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">1e16</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> a <span class="op">+</span> b <span class="op">-</span> a</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;(1e16 + 1) - 1e16 = </span><span class="sc">{</span>result<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Esperado: 1&quot;</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Obtido: </span><span class="sc">{</span>result<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;</span><span class="ch">\n</span><span class="ss">Comparação:&quot;</span>)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;1e16 + 1 = </span><span class="sc">{</span>a <span class="op">+</span> b<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;1e16     = </span><span class="sc">{</span>a<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;São iguais? </span><span class="sc">{</span>a <span class="op">+</span> b <span class="op">==</span> a<span class="sc">}</span><span class="ss">&quot;</span>)</span></code></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>(1e16 + 1) - 1e16 = 0.0
+Esperado: 1
+Obtido: 0.0
+
+Comparação:
+1e16 + 1 = 1e+16
+1e16     = 1e+16
+São iguais? True</code></pre>
+</div>
+</div>
+<hr />
+</section>
+</section>
+<section id="implementação-em-computador" class="level2" data-number="9">
+<h2 data-number="9"><span class="header-section-number">9</span> Implementação em Computador</h2>
+<section id="verificação-de-machine-epsilon-em-python" class="level3" data-number="9.1">
+<h3 data-number="9.1"><span class="header-section-number">9.1</span> Verificação de machine epsilon em Python</h3>
+<div id="e5f90ea4" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python cell-code"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Método 1: usando numpy</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>eps64 <span class="op">=</span> np.finfo(np.float64).eps</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;NumPy epsilon (float64): </span><span class="sc">{</span>eps64<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Método 2: encontrar experimentalmente</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_machine_epsilon():</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    epsilon <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="fl">1.0</span> <span class="op">+</span> epsilon <span class="op">!=</span> <span class="fl">1.0</span>:</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>        epsilon <span class="op">=</span> epsilon <span class="op">/</span> <span class="fl">2.0</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> epsilon <span class="op">*</span> <span class="dv">2</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>eps_experimental <span class="op">=</span> find_machine_epsilon()</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Experimental:           </span><span class="sc">{</span>eps_experimental<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Método 3: usando sys</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;sys.float_info.epsilon: </span><span class="sc">{</span>sys<span class="sc">.</span>float_info<span class="sc">.</span>epsilon<span class="sc">}</span><span class="ss">&quot;</span>)</span></code></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>NumPy epsilon (float64): 2.220446049250313e-16
+Experimental:           2.220446049250313e-16
+sys.float_info.epsilon: 2.220446049250313e-16</code></pre>
+</div>
+</div>
+</section>
+<section id="manipulação-de-representação-binária" class="level3" data-number="9.2">
+<h3 data-number="9.2"><span class="header-section-number">9.2</span> Manipulação de representação binária</h3>
+<div id="f5f739a8" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python cell-code"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> float_to_binary(f):</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Converte float64 para representação binária&quot;&quot;&quot;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    bits <span class="op">=</span> struct.pack(<span class="st">&#39;&gt;d&#39;</span>, f)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">&#39;&#39;</span>.join(<span class="ss">f&#39;</span><span class="sc">{</span>b<span class="sc">:08b}</span><span class="ss">&#39;</span> <span class="cf">for</span> b <span class="kw">in</span> bits)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> analyze_float(x):</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Analisa componentes de um float64&quot;&quot;&quot;</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    bits <span class="op">=</span> float_to_binary(x)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    sign <span class="op">=</span> bits[<span class="dv">0</span>]</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    exponent <span class="op">=</span> bits[<span class="dv">1</span>:<span class="dv">12</span>]</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    mantissa <span class="op">=</span> bits[<span class="dv">12</span>:]</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    exp_value <span class="op">=</span> <span class="bu">int</span>(exponent, <span class="dv">2</span>)</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    exp_real <span class="op">=</span> exp_value <span class="op">-</span> <span class="dv">1023</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;Número: </span><span class="sc">{</span>x<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;Binário: </span><span class="sc">{</span>bits<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;  Sinal:    </span><span class="sc">{</span>sign<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span><span class="st">&#39;+&#39;</span> <span class="cf">if</span> sign <span class="op">==</span> <span class="st">&#39;0&#39;</span> <span class="cf">else</span> <span class="st">&#39;-&#39;</span><span class="sc">}</span><span class="ss">)&quot;</span>)</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;  Expoente: </span><span class="sc">{</span>exponent<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>exp_value<span class="sc">}</span><span class="ss"> → real: </span><span class="sc">{</span>exp_real<span class="sc">}</span><span class="ss">)&quot;</span>)</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;  Mantissa: </span><span class="sc">{</span>mantissa[:<span class="dv">16</span>]<span class="sc">}</span><span class="ss">... (</span><span class="sc">{</span>mantissa<span class="sc">}</span><span class="ss">)&quot;</span>)</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>()</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemplos</span></span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>analyze_float(<span class="fl">1.0</span>)</span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>analyze_float(<span class="fl">0.5</span>)</span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>analyze_float(<span class="fl">0.1</span>)</span></code></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Número: 1.0
+Binário: 0011111111110000000000000000000000000000000000000000000000000000
+  Sinal:    0 (+)
+  Expoente: 01111111111 (1023 → real: 0)
+  Mantissa: 0000000000000000... (0000000000000000000000000000000000000000000000000000)
+
+Número: 0.5
+Binário: 0011111111100000000000000000000000000000000000000000000000000000
+  Sinal:    0 (+)
+  Expoente: 01111111110 (1022 → real: -1)
+  Mantissa: 0000000000000000... (0000000000000000000000000000000000000000000000000000)
+
+Número: 0.1
+Binário: 0011111110111001100110011001100110011001100110011001100110011010
+  Sinal:    0 (+)
+  Expoente: 01111111011 (1019 → real: -4)
+  Mantissa: 1001100110011001... (1001100110011001100110011001100110011001100110011010)
+</code></pre>
+</div>
+</div>
+</section>
+<section id="verificação-de-overflowunderflow" class="level3" data-number="9.3">
+<h3 data-number="9.3"><span class="header-section-number">9.3</span> Verificação de overflow/underflow</h3>
+<div id="b88401df" class="cell" data-execution_count="11">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python cell-code"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Limites</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>info <span class="op">=</span> np.finfo(np.float64)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Float64 limits:&quot;</span>)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;  Epsilon:            </span><span class="sc">{</span>info<span class="sc">.</span>eps<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;  Tiny (min normal):  </span><span class="sc">{</span>info<span class="sc">.</span>tiny<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;  Max:                </span><span class="sc">{</span>info<span class="sc">.</span><span class="bu">max</span><span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Gerar overflow</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.float64(<span class="fl">1e308</span>)</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;</span><span class="ch">\n</span><span class="ss">1e308 * 10 = </span><span class="sc">{</span>x <span class="op">*</span> <span class="dv">10</span><span class="sc">}</span><span class="ss">&quot;</span>)  <span class="co"># inf</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Underflow gradual</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.float64(<span class="fl">1e-320</span>)</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;1e-320 = </span><span class="sc">{</span>y<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;1e-330 = </span><span class="sc">{</span>np<span class="sc">.</span>float64(<span class="fl">1e-330</span>)<span class="sc">}</span><span class="ss">&quot;</span>)  <span class="co"># Desnormalizado</span></span></code></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Float64 limits:
+  Epsilon:            2.220446049250313e-16
+  Tiny (min normal):  2.2250738585072014e-308
+  Max:                1.7976931348623157e+308
+
+1e308 * 10 = inf
+1e-320 = 1e-320
+1e-330 = 0.0</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/var/folders/bm/kxnd_r6x0vd3_b38fvf0rrgr0000gn/T/ipykernel_11738/740743619.py:12: RuntimeWarning: overflow encountered in scalar multiply
+  print(f&quot;\n1e308 * 10 = {x * 10}&quot;)  # inf</code></pre>
+</div>
+</div>
+<hr />
+</section>
+</section>
+<section id="aplicações-e-conexões-com-cálculo-numérico" class="level2" data-number="10">
+<h2 data-number="10"><span class="header-section-number">10</span> Aplicações e Conexões com Cálculo Numérico</h2>
+<section id="por-que-isso-importa" class="level3" data-number="10.1">
+<h3 data-number="10.1"><span class="header-section-number">10.1</span> Por que isso importa</h3>
+<ol type="1">
+<li><strong>Propagação de erros:</strong> Pequenos erros de arredondamento crescem ao longo de algoritmos iterativos</li>
+<li><strong>Escolha de algoritmo:</strong> Métodos numericamente estáveis são essenciais</li>
+<li><strong>Análise de erro:</strong> Devemos estimar como erros se propagam em nossas contas</li>
+<li><strong>Teste de convergência:</strong> Saber <span class="math inline">\(\epsilon\)</span> ajuda a definir tolerâncias apropriadas</li>
+</ol>
+</section>
+<section id="próximos-capítulos" class="level3" data-number="10.2">
+<h3 data-number="10.2"><span class="header-section-number">10.2</span> Próximos capítulos</h3>
+<ul>
+<li><strong>Cap 1: Propagação de Erros</strong> — Como estimar e controlar erros</li>
+<li><strong>Cap 2: Sistemas Lineares</strong> — Resolução estável via métodos diretos e iterativos</li>
+<li><strong>Cap 3: Interpolação</strong> — Aproximação de funções e análise de erro</li>
+<li><strong>Cap 4: Integração Numérica</strong> — Quadraturas e fórmulas compostas</li>
+</ul>
+<hr />
+</section>
+</section>
+<section id="exercícios-propostos" class="level2" data-number="11">
+<h2 data-number="11"><span class="header-section-number">11</span> Exercícios Propostos</h2>
+<ol type="1">
+<li><strong>Conversão de bases</strong>
+<ul>
+<li>Converter <span class="math inline">\((101.11)_2\)</span> para decimal</li>
+<li>Converter <span class="math inline">\((0.1)_{10}\)</span> para binário (até 16 dígitos)</li>
+</ul></li>
+<li><strong>Machine epsilon</strong>
+<ul>
+<li>Qual é o machine epsilon para float32 e float64?</li>
+<li>Implementar um algoritmo em Python que encontre experimentalmente</li>
+</ul></li>
+<li><strong>Limites numéricos</strong>
+<ul>
+<li>Em double precision IEEE 754, qual é o maior expoente?</li>
+<li>Qual é o valor máximo representável?</li>
+</ul></li>
+<li><strong>Não-associatividade</strong>
+<ul>
+<li>Verificar numericamente que <span class="math inline">\((a + b) + c \neq a + (b + c)\)</span> com valores apropriados</li>
+</ul></li>
+<li><strong>Cancelamento numérico</strong>
+<ul>
+<li>Implementar ambas as formulações de <span class="math inline">\(\sqrt{x^2 + 1} - x\)</span> em Python</li>
+<li>Comparar resultados para <span class="math inline">\(x = 10^{10}\)</span></li>
+</ul></li>
+<li><strong>Absorção numérica</strong>
+<ul>
+<li>Verificar que <span class="math inline">\((10^{16} + 1) - 10^{16} = 0\)</span> em float64</li>
+<li>Explorar diferentes valores de <span class="math inline">\(10^k\)</span> para encontrar threshold</li>
+</ul></li>
+</ol>
+<hr />
+</section>
+<section id="referências" class="level2" data-number="12">
+<h2 data-number="12"><span class="header-section-number">12</span> Referências</h2>
+<ul>
+<li><p><strong>Burden, R. L., &amp; Faires, J. D. (2016).</strong> <em>Numerical analysis</em> (10th ed.). Cengage Learning.</p></li>
+<li><p><strong>Goldberg, D. (1991).</strong> What every computer scientist should know about floating-point arithmetic. <em>ACM Computing Surveys</em>, 23(1), 5–48.</p></li>
+<li><p><strong>Higham, N. J. (2002).</strong> <em>Accuracy and stability of numerical algorithms</em> (2nd ed.). SIAM.</p></li>
+<li><p><strong>IEEE. (2019).</strong> IEEE 754-2019: IEEE standard for floating-point arithmetic. Institute of Electrical and Electronics Engineers.</p></li>
+<li><p><strong>Knuth, D. E. (1997).</strong> <em>The art of computer programming: Seminumerical algorithms</em> (Vol. 2, 3rd ed.). Addison-Wesley.</p></li>
+</ul>
+<hr />
+</section>
+<section id="anexo-código-python-completo-para-experimentos" class="level2" data-number="13">
+<h2 data-number="13"><span class="header-section-number">13</span> Anexo: Código Python Completo para Experimentos</h2>
+<div id="331bf0e1" class="cell" data-execution_count="12">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python cell-code"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Código para experimentos com representação numérica</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> struct</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> FloatAnalyzer:</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Classe para analisar representações de ponto flutuante&quot;&quot;&quot;</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">@staticmethod</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> to_binary(x):</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>        <span class="co">&quot;&quot;&quot;Converte float64 para binário&quot;&quot;&quot;</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>        bits <span class="op">=</span> struct.pack(<span class="st">&#39;&gt;d&#39;</span>, x)</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">&#39;&#39;</span>.join(<span class="ss">f&#39;</span><span class="sc">{</span>b<span class="sc">:08b}</span><span class="ss">&#39;</span> <span class="cf">for</span> b <span class="kw">in</span> bits)</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">@staticmethod</span></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> from_binary(bits_str):</span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>        <span class="co">&quot;&quot;&quot;Converte binário para float64&quot;&quot;&quot;</span></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>        bytes_val <span class="op">=</span> <span class="bu">bytes</span>(<span class="bu">int</span>(bits_str[i:i<span class="op">+</span><span class="dv">8</span>], <span class="dv">2</span>) </span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>                         <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">64</span>, <span class="dv">8</span>))</span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> struct.unpack(<span class="st">&#39;&gt;d&#39;</span>, bytes_val)[<span class="dv">0</span>]</span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">@staticmethod</span></span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> analyze(x):</span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>        <span class="co">&quot;&quot;&quot;Analisa componentes de float64&quot;&quot;&quot;</span></span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>        bits <span class="op">=</span> FloatAnalyzer.to_binary(x)</span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>        sign_bit <span class="op">=</span> bits[<span class="dv">0</span>]</span>
+<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>        exp_bits <span class="op">=</span> bits[<span class="dv">1</span>:<span class="dv">12</span>]</span>
+<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a>        mant_bits <span class="op">=</span> bits[<span class="dv">12</span>:]</span>
+<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a>        exp_val <span class="op">=</span> <span class="bu">int</span>(exp_bits, <span class="dv">2</span>)</span>
+<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a>        exp_real <span class="op">=</span> exp_val <span class="op">-</span> <span class="dv">1023</span></span>
+<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> {</span>
+<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;valor&#39;</span>: x,</span>
+<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;binario&#39;</span>: bits,</span>
+<span id="cb26-37"><a href="#cb26-37" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;sinal&#39;</span>: sign_bit,</span>
+<span id="cb26-38"><a href="#cb26-38" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;expoente_bits&#39;</span>: exp_bits,</span>
+<span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;expoente_valor&#39;</span>: exp_val,</span>
+<span id="cb26-40"><a href="#cb26-40" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;expoente_real&#39;</span>: exp_real,</span>
+<span id="cb26-41"><a href="#cb26-41" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;mantissa&#39;</span>: mant_bits</span>
+<span id="cb26-42"><a href="#cb26-42" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb26-43"><a href="#cb26-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-44"><a href="#cb26-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemplos de uso</span></span>
+<span id="cb26-45"><a href="#cb26-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;=== Análise de Números em IEEE 754 ===</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb26-46"><a href="#cb26-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-47"><a href="#cb26-47" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> num <span class="kw">in</span> [<span class="fl">1.0</span>, <span class="fl">0.5</span>, <span class="fl">2.0</span>, <span class="fl">0.1</span>]:</span>
+<span id="cb26-48"><a href="#cb26-48" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> FloatAnalyzer.analyze(num)</span>
+<span id="cb26-49"><a href="#cb26-49" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;Número: </span><span class="sc">{</span>num<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb26-50"><a href="#cb26-50" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;  Expoente real: </span><span class="sc">{</span>result[<span class="st">&#39;expoente_real&#39;</span>]<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb26-51"><a href="#cb26-51" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;  Binário: </span><span class="sc">{</span>result[<span class="st">&#39;binario&#39;</span>][:<span class="dv">16</span>]<span class="sc">}</span><span class="ss">...&quot;</span>)</span>
+<span id="cb26-52"><a href="#cb26-52" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>()</span></code></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== Análise de Números em IEEE 754 ===
+
+Número: 1.0
+  Expoente real: 0
+  Binário: 0011111111110000...
+
+Número: 0.5
+  Expoente real: -1
+  Binário: 0011111111100000...
+
+Número: 2.0
+  Expoente real: 1
+  Binário: 0100000000000000...
+
+Número: 0.1
+  Expoente real: -4
+  Binário: 0011111110111001...
+</code></pre>
+</div>
+</div>
+<hr />
+<p><em>Última atualização: 2024</em></p>
+<div id="quarto-navigation-envelope" class="hidden">
+<p><span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyLXRpdGxl">Cálculo Numérico</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXItdGl0bGU=">Cálculo Numérico</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6SW7DrWNpbw==">Início</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2luZGV4Lmh0bWw=">/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6QXVsYXM=">Aulas</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6MCDCtyBQbGFubyBkZSBFbnNpbm8=">0 · Plano de Ensino</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L0F1bGFzL0NOMDBQbGFub0Vuc2luby5odG1s">/Aulas/CN00PlanoEnsino.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6MSDCtyBJbnRyb2R1w6fDo286IFJhw616ZXMgZSBFcnJvcyBOdW3DqXJpY29z">1 · Introdução: Raízes e Erros Numéricos</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L0F1bGFzL0NOMDFFcnJvcy5odG1s">/Aulas/CN01Erros.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6MiDCtyBaZXJvcyBkZSBGdW7Dp8O1ZXM=">2 · Zeros de Funções</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L0F1bGFzL0NOMDJaZXJvc0RlRnVuY29lcy5odG1s">/Aulas/CN02ZerosDeFuncoes.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6MyDCtyBJbnRlcnBvbGHDp8OjbyBQb2xpbm9taWFs">3 · Interpolação Polinomial</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L0F1bGFzL0NOMDNJbnRlcnBvbGFjYW8uaHRtbA==">/Aulas/CN03Interpolacao.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6NCDCtyBBanVzdGUgZGUgQ3VydmFz">4 · Ajuste de Curvas</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L0F1bGFzL0NOMDRBanVzdGVDdXJ2YXMuaHRtbA==">/Aulas/CN04AjusteCurvas.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6NSDCtyBJbnRlZ3Jhw6fDo28gTnVtw6lyaWNh">5 · Integração Numérica</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L0F1bGFzL0NOMDVJbnRlZ3JhY2FvLmh0bWw=">/Aulas/CN05Integracao.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6NiDCtyBEaWZlcmVuY2lhw6fDo28gTnVtw6lyaWNh">6 · Diferenciação Numérica</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L0F1bGFzL0NOMDZEaWZlcmVuY2lhY2FvLmh0bWw=">/Aulas/CN06Diferenciacao.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6NyDCtyBFRE9zIOKAlCBFdWxlciBlIFJ1bmdlLUt1dHRh">7 · EDOs — Euler e Runge-Kutta</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L0F1bGFzL0NOMDdFRE9zRXVsZXIuaHRtbA==">/Aulas/CN07EDOsEuler.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6OCDCtyBFRE9zIOKAlCBTaXN0ZW1hcyBlIEVzdGFiaWxpZGFkZQ==">8 · EDOs — Sistemas e Estabilidade</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L0F1bGFzL0NOMDhFRE9zU2lzdGVtYXMuaHRtbA==">/Aulas/CN08EDOsSistemas.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6OSDCtyBPdGltaXphw6fDo28gTsOjbyBSZXN0cml0YQ==">9 · Otimização Não Restrita</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L0F1bGFzL0NOMDlPdGltaXphY2FvTmFvUmVzdHJpdGEuaHRtbA==">/Aulas/CN09OtimizacaoNaoRestrita.html</span></p>
+<div class="hidden quarto-markdown-envelope-contents" data-render-id="Zm9vdGVyLWxlZnQ=">
+<p>Cálculo Numérico — Métodos Numéricos em Python</p>
+</div>
+<div class="hidden quarto-markdown-envelope-contents" data-render-id="Zm9vdGVyLWNlbnRlcg==">
+<p>FEE · CAMTUC · UFPA</p>
+</div>
+<div class="hidden quarto-markdown-envelope-contents" data-render-id="Zm9vdGVyLXJpZ2h0">
+<p>Prof. Dr. Raphael Teixeira</p>
+</div>
+</div>
+<div id="quarto-meta-markdown" class="hidden">
+<p><span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW1ldGF0aXRsZQ==">Representações Numéricas no Computador – Cálculo Numérico</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLXR3aXR0ZXJjYXJkdGl0bGU=">Representações Numéricas no Computador – Cálculo Numérico</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW9nY2FyZHRpdGxl">Representações Numéricas no Computador – Cálculo Numérico</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW1ldGFzaXRlbmFtZQ==">Cálculo Numérico</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLXR3aXR0ZXJjYXJkZGVzYw==">Fundamentos Computacionais para Cálculo Numérico</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW9nY2FyZGRkZXNj">Fundamentos Computacionais para Cálculo Numérico</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW1ldGFzaXRlZGVzYw==">Notas de aula — Métodos Numéricos em Python · UFPA</span></p>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id = "quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      <div class='footer-contents'>Cálculo Numérico — Métodos Numéricos em Python</div>  
+    </div>   
+    <div class="nav-footer-center">
+      <div class='footer-contents'>FEE · CAMTUC · UFPA</div>  
+    </div>
+    <div class="nav-footer-right">
+      <div class='footer-contents'>Prof. Dr. Raphael Teixeira</div>  
+    </div>
+  </div>
+</footer>
+
+</body>
+
+</html>

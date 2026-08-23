@@ -8,3 +8,4 @@ Material de aula de Cálculo Numérico — implementações em Python (NumPy · 
 - [Notas/](Notas/) — anotações de estudo, nível básico e avançado.
 - [Aplicacoes/](Aplicacoes/) — códigos de apoio às Aulas/Notas, cada um com sua própria documentação.
 - `Material/` — livros, PDFs e links de apoio (local, não versionada no GitHub).
+- `Atividades/` — apresentações (beamer) com atividades avaliativas, renderizadas em PDF (local, não versionada no GitHub).

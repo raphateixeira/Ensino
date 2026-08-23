@@ -1,0 +1,267 @@
+---
+title: "Otimização Não Restrita"
+subtitle: "Cálculo Numérico"
+institute: "Universidade Federal do Pará"
+author: "Prof. Dr. Raphael Teixeira"
+format:
+  revealjs:
+    theme: [simple, ../TemaRTx.scss]
+    self-contained: true
+    transition: fade
+    slide-number: true
+    width: 1600
+    height: 900
+    footer: " "
+    center: true
+    title-slide-attributes:
+      data-background-image: "imgs/ufpa-colorido.png"
+      data-background-size: "84px"
+      data-background-position: "top 45px center"
+engine: knitr
+---
+
+## O problema da otimização não restrita
+
+Dada $f:\mathbb{R}^n\to\mathbb{R}$ diferenciável, busca-se
+
+$$x^{*} = \arg\min_{x\in\mathbb{R}^n} f(x)$$
+
+**sem** restrições sobre $x$ — diferente de zeros de funções ($f(x)=0$), aqui o alvo é um **ponto de mínimo**.
+
+::: {.callout-note}
+Caso mais simples: $f(x) = ax^2+bx+c$ (parábola, $n=1$), com mínimo analítico $x^{*} = -b/(2a)$ se $a>0$. Serve de fio condutor para introduzir o **método do gradiente**, que se aplica quando não há fórmula fechada.
+:::
+
+---
+
+## Condições de otimalidade
+
+Para $x^{*}$ ser um **mínimo local** de $f\in C^2$:
+
+$$\text{1ª ordem (necessária):}\quad \nabla f(x^{*}) = 0 \qquad \text{(ponto estacionário)}$$
+
+$$\text{2ª ordem (suficiente):}\quad \nabla^2 f(x^{*}) \succ 0 \quad \text{(Hessiana positiva definida)}$$
+
+Em 1D: $f'(x^{*})=0$ e $f''(x^{*})>0$.
+
+::: {.callout-tip}
+Se $f$ é **convexa** (Hessiana positiva semidefinida em todo o domínio), todo ponto estacionário é **mínimo global** — é o caso da parábola com $a>0$.
+:::
+
+---
+
+## Direção de máxima descida
+
+Pela expansão de Taylor de 1ª ordem em torno de $x_k$, para um passo $d$ de norma fixa:
+
+$$f(x_k + d) \approx f(x_k) + \nabla f(x_k)^\top d$$
+
+Esse produto interno é **minimizado** (maior decréscimo) quando $d$ aponta na direção oposta ao gradiente:
+
+$$d_k = -\nabla f(x_k)$$
+
+::: {.callout-important}
+O gradiente $\nabla f(x)$ aponta na direção de **maior crescimento** local de $f$; $-\nabla f(x)$ aponta na direção de **maior decréscimo**. É informação local — não garante o caminho mais curto até $x^{*}$.
+:::
+
+---
+
+## Método do gradiente (steepest descent)
+
+Sequência de iterados que caminham na direção de máxima descida:
+
+$$x_{k+1} = x_k - \alpha_k\, \nabla f(x_k)$$
+
+- $\alpha_k > 0$: **tamanho do passo** (*learning rate*);
+- Repete-se até $\|\nabla f(x_k)\|$ ser suficientemente pequeno;
+- Converge para um **ponto estacionário** — mínimo local se $f$ satisfaz as condições de 2ª ordem, mínimo global se $f$ é convexa.
+
+::: {.callout-important}
+Passo $\alpha_k$ **muito grande**: diverge ou oscila. Passo **muito pequeno**: converge, porém lentamente. A escolha de $\alpha_k$ é o principal ajuste prático do método.
+:::
+
+---
+
+## Gradiente descendente — implementação em Python
+
+```python
+import numpy as np
+
+def gradiente_descendente(grad_f, x0, alpha=0.1, tol=1e-6, nmax=1000):
+    x = np.atleast_1d(np.asarray(x0, dtype=float))
+    for n in range(1, nmax + 1):
+        g = grad_f(x)
+        if np.linalg.norm(g) < tol:
+            return x, n
+        x = x - alpha * g
+    raise RuntimeError(f"não convergiu em {nmax} iterações")
+```
+
+Equivalente pronto no SciPy (Nelder-Mead, BFGS, CG, ... — não exige implementar o laço manualmente):
+
+```python
+from scipy.optimize import minimize
+
+res = minimize(f, x0=x0, jac=grad_f, method='BFGS')
+```
+
+---
+
+## Exemplo — mínimo de uma parábola
+
+$$f(x) = (x-3)^2 + 1, \qquad f'(x) = 2(x-3)$$
+
+Mínimo exato: $x^{*}=3$, $f(x^{*})=1$. Partindo de $x_0=0$, com $\alpha=0{,}2$:
+
+```python
+f  = lambda x: (x - 3)**2 + 1
+df = lambda x: 2 * (x - 3)
+
+x, n = gradiente_descendente(df, x0=0.0, alpha=0.2, tol=1e-6)
+print(x, n)          # 3.0 (aprox.), poucas iterações
+```
+
+| $k$ | $x_k$ | $f'(x_k)$ |
+|:--:|:--:|:--:|
+| 0 | 0,00000 | $-6{,}00000$ |
+| 1 | 1,20000 | $-3{,}60000$ |
+| 2 | 1,92000 | $-2{,}16000$ |
+| 3 | 2,35200 | $-1{,}29600$ |
+| 4 | 2,61120 | $-0{,}77760$ |
+| 5 | 2,76672 | $-0{,}46656$ |
+
+O erro $|x_k - x^{*}|$ decai **geometricamente**: cada passo reduz a distância ao mínimo por um fator constante $|1-2\alpha|$.
+
+---
+
+## Passo ótimo para funções quadráticas
+
+Para $f(x) = \tfrac{1}{2}x^\top A x - b^\top x$ ($A$ simétrica positiva definida), o **passo exato** que minimiza $f$ ao longo da direção $-\nabla f(x_k)$ tem fórmula fechada:
+
+$$\alpha_k = \frac{r_k^\top r_k}{r_k^\top A\, r_k}, \qquad r_k = -\nabla f(x_k) = b - Ax_k$$
+
+Para a parábola $f(x)=(x-3)^2+1$: $A=2$ (escalar), e $\alpha_k = 1/2$ é o passo ótimo — converge em **uma única iteração**.
+
+::: {.callout-tip}
+Em geral (não quadrático), busca-se $\alpha_k$ por **busca em linha** (*line search*), resolvendo aproximadamente $\min_\alpha f(x_k - \alpha\nabla f(x_k))$ a cada passo, em vez de fixar $\alpha$.
+:::
+
+---
+
+## Múltiplas variáveis — paraboloide
+
+$$f(x,y) = x^2 + 10y^2, \qquad \nabla f(x,y) = (2x,\ 20y)$$
+
+Mínimo em $(0,0)$. Com $A = \operatorname{diag}(2,20)$, a **razão entre autovalores** ($\kappa = 20/2=10$) determina o comportamento:
+
+::: {.columns}
+::: {.column width="50%"}
+
+- $\kappa$ próximo de 1 (curvas de nível ≈ circulares): convergência rápida, quase direta;
+- $\kappa$ grande (curvas de nível alongadas): a direção de descida **não** aponta para o mínimo — trajetória em **zigue-zague**.
+
+:::
+::: {.column width="50%"}
+
+```python
+grad = lambda v: np.array([2*v[0], 20*v[1]])
+x, n = gradiente_descendente(
+    grad, x0=[8.0, 1.0], alpha=0.09, tol=1e-6)
+print(x, n)
+```
+
+:::
+:::
+
+---
+
+## Taxa de convergência
+
+Para $f$ quadrática com Hessiana $A$ de autovalores $\lambda_{\min}, \lambda_{\max}$ e passo ótimo a cada iteração, o método do gradiente converge **linearmente**:
+
+$$\|x_{k+1}-x^{*}\| \leq \left(\frac{\kappa-1}{\kappa+1}\right)\|x_k-x^{*}\|, \qquad \kappa = \frac{\lambda_{\max}}{\lambda_{\min}} \text{ (número de condição)}$$
+
+::: {.callout-important}
+Quanto **mais mal-condicionada** a Hessiana ($\kappa \gg 1$), mais lenta a convergência e mais evidente o zigue-zague — mesmo com passo ótimo a cada iteração. É a principal limitação prática do método.
+:::
+
+---
+
+## Critérios de parada
+
+| Critério | Condição |
+|:--|:--|
+| Norma do gradiente | $\|\nabla f(x_k)\| < \varepsilon$ |
+| Variação do iterado | $\|x_k - x_{k-1}\| < \varepsilon$ |
+| Variação do valor da função | $|f(x_k)-f(x_{k-1})| < \varepsilon$ |
+| Iterações | $k > k_{\max}$ |
+
+::: {.callout-tip}
+Como em zeros de funções, combinam-se critérios: um gradiente pequeno não garante proximidade de $x^{*}$ se $f$ for muito "achatada" perto do mínimo (curvatura pequena).
+:::
+
+---
+
+## Método de Newton para otimização
+
+Usa a **curvatura** ($\nabla^2 f$) além da inclinação, aproximando $f$ por uma quadrática em cada iterado:
+
+$$x_{k+1} = x_k - \bigl[\nabla^2 f(x_k)\bigr]^{-1} \nabla f(x_k)$$
+
+Em 1D: $x_{k+1} = x_k - f'(x_k)/f''(x_k)$ — é exatamente o método de Newton para achar o zero de $f'$.
+
+::: {.callout-important}
+Convergência **quadrática** perto de $x^{*}$, mas exige calcular (e inverter) a Hessiana a cada passo, e $\nabla^2 f(x_k) \succ 0$ para garantir direção de descida. Caro em alta dimensão — daí a popularidade de métodos **quase-Newton** (BFGS) que aproximam a Hessiana.
+:::
+
+---
+
+## Gradiente × Newton — resumo
+
+| Método | Ordem | Informação exigida | Custo por iteração |
+|:--|:--:|:--|:--|
+| Gradiente descendente | linear (depende de $\kappa$) | $\nabla f$ | baixo |
+| Newton | quadrática | $\nabla f,\ \nabla^2 f$ | alto (inverter Hessiana) |
+| Quase-Newton (BFGS) | super-linear | $\nabla f$ (Hessiana aproximada) | intermediário |
+
+::: {.callout-tip}
+Na prática, `scipy.optimize.minimize` com `method='BFGS'` é o ponto de partida usual: rápido, não exige Hessiana explícita, e mais robusto que o gradiente puro para problemas mal-condicionados.
+:::
+
+---
+
+## Otimização com SciPy
+
+```python
+import numpy as np
+from scipy.optimize import minimize
+
+f    = lambda v: v[0]**2 + 10*v[1]**2
+grad = lambda v: np.array([2*v[0], 20*v[1]])
+
+res = minimize(f, x0=[8.0, 1.0], jac=grad, method='BFGS')
+print(res.x, res.fun, res.nit)   # ~[0,0], ~0, poucas iterações
+```
+
+`minimize` expõe diversos algoritmos (`'Nelder-Mead'`, `'CG'`, `'BFGS'`, `'Newton-CG'`, ...) sob interface única — raramente se implementa o laço manualmente em produção, assim como `brentq`/`newton` para zeros de funções.
+
+---
+
+## Síntese da aula
+
+- Otimização não restrita busca $x^{*}$ com $\nabla f(x^{*})=0$ e Hessiana positiva (semi)definida.
+- **Gradiente descendente**: passo na direção $-\nabla f(x_k)$, convergência linear, sensível ao número de condição da Hessiana.
+- **Newton**: usa a Hessiana, convergência quadrática, custo maior por iteração.
+- Para a parábola $f(x)=(x-3)^2+1$, o método do gradiente converge ao mínimo exato $x^{*}=3$; o passo ótimo leva a convergência em uma única iteração.
+
+📓 [Notebook complementar](../Aplicacoes/OtimizacaoGradiente.ipynb) — gradiente descendente na parábola com derivada exata, com derivada aproximada (diferença finita) e via `scipy.optimize.minimize`.
+
+---
+
+## Exercícios
+
+1. Implemente `gradiente_descendente` e tabule $x_k, f'(x_k)$ para $f(x) = (x+2)^2 - 5$ a partir de $x_0=4$, com $\alpha = 0{,}3$.
+2. Para a mesma função do Exercício 1, calcule o passo ótimo $\alpha^{*}$ (fórmula fechada da quadrática) e confirme que a convergência ocorre em uma única iteração.
+3. Aplique o gradiente descendente a $f(x,y) = x^2 + 10y^2$ a partir de $(8,1)$ com $\alpha = 0{,}09$ e $\alpha = 0{,}045$; compare o número de iterações até $\|\nabla f\| < 10^{-6}$.
+4. Implemente o método de Newton para $f(x) = (x-3)^2+1$ a partir de $x_0=0$ e compare o número de iterações com o gradiente descendente (Exercício do slide "Exemplo — mínimo de uma parábola").
+5. Use `scipy.optimize.minimize` com `method='BFGS'` para minimizar $f(x,y)=(x-1)^2+100(y-x^2)^2$ (função de Rosenbrock) a partir de $(-1,1)$, e compare o número de iterações com uma tentativa (manual) de gradiente descendente de passo fixo.

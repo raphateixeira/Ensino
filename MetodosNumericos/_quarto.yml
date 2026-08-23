@@ -6,6 +6,7 @@ project:
     - Aulas/*.qmd
     - Notas/*.qmd
 
+
 website:
   title: "Cálculo Numérico"
   description: "Notas de aula — Métodos Numéricos em Python · UFPA"
@@ -23,26 +24,22 @@ website:
             href: Aulas/CN00PlanoEnsino.qmd
           - text: "1 · Introdução: Raízes e Erros Numéricos"
             href: Aulas/CN01Erros.qmd
-          - text: "2 · Zeros — Métodos Intervalares"
-            href: Aulas/CN02ZerosIntervalares.qmd
-          - text: "3 · Zeros — Métodos Abertos"
-            href: Aulas/CN03ZerosAbertos.qmd
-          - text: "4 · Sistemas Lineares — Diretos"
-            href: Aulas/CN04SistemasDiretos.qmd
-          - text: "5 · Sistemas Lineares — Iterativos"
-            href: Aulas/CN05SistemasIterativos.qmd
-          - text: "6 · Interpolação Polinomial"
-            href: Aulas/CN06Interpolacao.qmd
-          - text: "7 · Ajuste de Curvas e Splines"
-            href: Aulas/CN07AjusteSplines.qmd
-          - text: "8 · Integração Numérica"
-            href: Aulas/CN08Integracao.qmd
-          - text: "9 · Diferenciação Numérica"
-            href: Aulas/CN09Diferenciacao.qmd
-          - text: "10 · EDOs — Euler e Runge-Kutta"
-            href: Aulas/CN10EDOsEuler.qmd
-          - text: "11 · EDOs — Sistemas e Estabilidade"
-            href: Aulas/CN11EDOsSistemas.qmd
+          - text: "2 · Zeros de Funções"
+            href: Aulas/CN02ZerosDeFuncoes.qmd
+          - text: "3 · Interpolação Polinomial"
+            href: Aulas/CN03Interpolacao.qmd
+          - text: "4 · Ajuste de Curvas"
+            href: Aulas/CN04AjusteCurvas.qmd
+          - text: "5 · Integração Numérica"
+            href: Aulas/CN05Integracao.qmd
+          - text: "6 · Diferenciação Numérica"
+            href: Aulas/CN06Diferenciacao.qmd
+          - text: "7 · EDOs — Euler e Runge-Kutta"
+            href: Aulas/CN07EDOsEuler.qmd
+          - text: "8 · EDOs — Sistemas e Estabilidade"
+            href: Aulas/CN08EDOsSistemas.qmd
+          - text: "9 · Otimização Não Restrita"
+            href: Aulas/CN09OtimizacaoNaoRestrita.qmd
   page-footer:
     border: false
     left: "Cálculo Numérico — Métodos Numéricos em Python"

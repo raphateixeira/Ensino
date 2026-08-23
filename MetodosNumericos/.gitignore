@@ -5,3 +5,8 @@
 .DS_Store
 /Prompts/
 /Material/
+/Atividades/
+.claude/
+*.pdf
+__pycache__/
+.ipynb_checkpoints/

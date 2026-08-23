@@ -142,6 +142,8 @@ t, y = sol.t, sol.y[0]
 `solve_ivp` controla o passo **adaptativamente** pela tolerância — preferível a passo fixo para a maioria das aplicações.
 :::
 
+📓 [Notebook complementar](../Aplicacoes/MassaMolaAmortecedor.ipynb) — sistema de 2ª ordem forçado, comparando Euler explícito e `solve_ivp` (ver também a aula CN08, sobre sistemas).
+
 ---
 
 ## Exercícios

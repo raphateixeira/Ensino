@@ -1,15 +1,15 @@
 ---
-title: "Zeros de Funções — Métodos Intervalares"
+title: "Zeros de Funções"
 subtitle: "Cálculo Numérico"
 institute: "Universidade Federal do Pará"
 author: "Prof. Dr. Raphael Teixeira"
-format: 
+format:
   revealjs:
     theme: [simple, ../TemaRTx.scss]
     self-contained: true
     transition: fade
     slide-number: true
-    width: 1600 
+    width: 1600
     height: 900
     footer: " "
     center: true
@@ -22,12 +22,12 @@ engine: knitr
 
 ## O problema dos zeros
 
-Dada $f:\mathbb{R}\to\mathbb{R}$ contínua, busca-se $x^{*}$ tal que $f(x^{*}) = 0$.
+Dada $f:\mathbb{R}\to\mathbb{R}$ contínua, busca-se $x^{*}$ (a **raiz**, ou **zero**) tal que $f(x^{*}) = 0$.
 
-Raramente há solução analítica — recorre-se a métodos **iterativos**, que geram uma sequência $x_0, x_1, x_2, \ldots \to x^{*}$.
+Raramente há solução analítica — recorre-se a métodos **iterativos**, que geram uma sequência $p_0, p_1, p_2, \ldots \to x^{*}$.
 
 ::: {.callout-note}
-**Métodos intervalares** (ou de confinamento) mantêm a raiz dentro de um intervalo e **sempre convergem**, à custa de velocidade.
+Nesta aula: **bisseção** (intervalar, sempre converge), **Newton-Raphson** e **secante** (abertos, mais rápidos, exigem boa estimativa inicial). Todos os exemplos numéricos seguem Burden & Faires, *Análise Numérica*, 10ª ed., Cap. 2.
 :::
 
 ---
@@ -44,112 +44,338 @@ Se $f$ é contínua em $[a,b]$ e $f(a)\,f(b) < 0$, então existe ao menos uma ra
 \input{imgs/tikz/Bissecao.tikz}
 ```
 
+É um resultado de **existência**: garante que a raiz está lá, mas não diz como calculá-la. É a base do método da bisseção.
+
 ---
 
 ## Método da bisseção
 
 A cada passo, calcula-se o ponto médio e seleciona-se o subintervalo que mantém a troca de sinal:
 
-$$m = \frac{a+b}{2}, \qquad
+$$p_n = \frac{a_n+b_n}{2}, \qquad
 \begin{cases}
-f(a)\,f(m) < 0 \Rightarrow b \leftarrow m \\
-\text{caso contrário} \Rightarrow a \leftarrow m
+f(a_n)\,f(p_n) < 0 \Rightarrow \text{raiz em } (a_n,p_n),\ b_{n+1} \leftarrow p_n \\
+\text{caso contrário} \Rightarrow \text{raiz em } (p_n,b_n),\ a_{n+1} \leftarrow p_n
 \end{cases}$$
 
-O erro é reduzido **pela metade** a cada iteração:
+O intervalo que contém a raiz é reduzido **pela metade** a cada iteração:
 
-$$|x^{*} - m_n| \leq \frac{b-a}{2^{\,n+1}}$$
+$$|x^{*} - p_n| \leq \frac{b-a}{2^{\,n}}, \qquad n \geq \log_2\!\left(\frac{b-a}{\delta}\right)\ \text{iterações para tolerância } \delta$$
+
+::: {.callout-tip}
+Convergência **linear**: sempre garantida, porém lenta (≈ 1 dígito decimal a cada 3,3 iterações).
+:::
 
 🎥 [Animação (Manim)](https://raphateixeira.github.io/Manim/VideosMetodosNumericos/Bisseccao.mp4)
 
 ---
 
-## Bisseção — convergência e implementação
-
-O número de iterações para uma tolerância $\delta$ é conhecido **a priori**:
-
-$$n \geq \log_2\!\left(\frac{b-a}{\delta}\right)$$
+## Bisseção — implementação em Python
 
 ```python
-import numpy as np
-from scipy.optimize import bisect
-
-f = lambda x: x**3 - 2*x - 5          # raiz em ~2.0946
-raiz = bisect(f, 1.0, 3.0, xtol=1e-10)
-
-n = int(np.ceil(np.log2((3.0 - 1.0) / 1e-10)))
-print(raiz, n)                        # 2.0945514815..., 35
+def bissecao(f, a, b, tol=1e-4, nmax=100):
+    fa = f(a)
+    for n in range(1, nmax + 1):
+        p = a + (b - a) / 2          # ponto médio
+        fp = f(p)
+        if fp == 0 or (b - a) / 2 < tol:
+            return p, n
+        if fa * fp > 0:
+            a, fa = p, fp             # raiz em (p, b)
+        else:
+            b = p                     # raiz em (a, p)
+    raise RuntimeError(f"não convergiu em {nmax} iterações")
 ```
 
-::: {.callout-tip}
-Convergência **linear**: garantida, porém lenta (≈ 1 dígito decimal a cada 3,3 iterações).
-:::
+Equivalente pronto no SciPy:
+
+```python
+from scipy.optimize import bisect
+
+f = lambda x: x**3 + 4*x**2 - 10
+raiz = bisect(f, 1.0, 2.0, xtol=1e-4)
+```
 
 ---
 
-## Método da falsa posição
+## Exemplo do livro (Burden & Faires, Ex. 1, Seção 2.1)
 
-Em vez do ponto médio, usa-se a **interseção da corda** com o eixo $x$:
+Mostrar que $f(x) = x^3 + 4x^2 - 10 = 0$ tem uma raiz em $[1,2]$ e aproximá-la com precisão $10^{-4}$.
 
-$$x_r = \frac{a\,f(b) - b\,f(a)}{f(b) - f(a)}$$
+Como $f(1) = -5$ e $f(2) = 14$ têm sinais opostos, o teorema de Bolzano garante uma raiz em $(1,2)$.
 
-A seleção do subintervalo segue a mesma regra de sinal da bisseção.
+O critério de parada usado no livro é o erro relativo:
 
-🎥 [Animação (Manim)](https://raphateixeira.github.io/Manim/VideosMetodosNumericos/FalsaPosicao.mp4)
+$$\frac{|p - p_n|}{\min\{|a_n|,|b_n|\}} < 10^{-4} \quad\Longleftarrow\quad \frac{(b-a)/2}{a_n} < 10^{-4}$$
+
+Aplicando `bissecao(f, 1, 2, tol=1e-4, nmax=13)` obtém-se a sequência de intervalos e pontos médios da **Tabela 2.1** do livro.
+
+---
+
+## Tabela do exemplo — bisseção
+
+| $n$ | $a_n$ | $b_n$ | $p_n$ | $f(p_n)$ |
+|:--:|:--:|:--:|:--:|:--:|
+| 1 | 1,0000000 | 2,0000000 | 1,5000000 | $2{,}37500$ |
+| 2 | 1,0000000 | 1,5000000 | 1,2500000 | $-1{,}79688$ |
+| 3 | 1,2500000 | 1,5000000 | 1,3750000 | $0{,}16211$ |
+| 4 | 1,2500000 | 1,3750000 | 1,3125000 | $-0{,}84839$ |
+| 5 | 1,3125000 | 1,3750000 | 1,3437500 | $-0{,}35098$ |
+| 6 | 1,3437500 | 1,3750000 | 1,3593750 | $-0{,}09641$ |
+| 7 | 1,3593750 | 1,3750000 | 1,3671875 | $0{,}03236$ |
+| 8 | 1,3593750 | 1,3671875 | 1,3632813 | $-0{,}03215$ |
+| 9 | 1,3632813 | 1,3671875 | 1,3652344 | $0{,}00007$ |
+| 10 | 1,3632813 | 1,3652344 | 1,3642578 | $-0{,}01605$ |
+| 11 | 1,3642578 | 1,3652344 | 1,3647461 | $-0{,}00799$ |
+| 12 | 1,3647461 | 1,3652344 | 1,3649902 | $-0{,}00396$ |
+| 13 | 1,3649902 | 1,3652344 | 1,3651123 | $-0{,}00194$ |
+
+Após 13 iterações, $p_{13} = 1{,}3651123$ aproxima a raiz $p \approx 1{,}365230013$ com $|p - p_{13}| < 0{,}000122$.
 
 ```python
-def falsa_posicao(f, a, b, tol=1e-10, nmax=100):
-    for _ in range(nmax):
-        xr = (a*f(b) - b*f(a)) / (f(b) - f(a))
-        if abs(f(xr)) < tol:
-            return xr
-        if f(a)*f(xr) < 0: b = xr
-        else:              a = xr
-    return xr
+p, n = bissecao(lambda x: x**3 + 4*x**2 - 10, 1.0, 2.0, tol=1e-4, nmax=100)
+print(p, n)          # 1.365112304..., 13
 ```
 
 ---
 
 ## Critérios de parada
 
-Combinam-se critérios para robustez:
+Combinam-se critérios para robustez — válidos para os três métodos desta aula:
 
 | Critério | Condição |
 |:--|:--|
-| Resíduo | $|f(x_k)| < \delta_f$ |
-| Variação | $|x_k - x_{k-1}| < \delta_x$ |
-| Iterações | $k > n_{\max}$ |
+| Variação absoluta | $|p_n - p_{n-1}| < \varepsilon$ |
+| Variação relativa | $|p_n - p_{n-1}|/|p_n| < \varepsilon,\ p_n \neq 0$ |
+| Resíduo | $|f(p_n)| < \varepsilon$ |
+| Iterações | $n > N_{\max}$ |
 
 ::: {.callout-important}
-Resíduo pequeno **não garante** raiz precisa em funções de baixa inclinação. Combine sempre com o critério de variação.
+Nenhum critério isolado é infalível: sequências podem convergir lentamente com diferenças pequenas, ou $f(p_n)$ pode ser pequeno sem que $p_n$ esteja próximo da raiz. Sempre limite o número máximo de iterações.
+:::
+
+---
+
+## Métodos abertos
+
+Dispensam o confinamento da raiz: partem de uma (ou duas) estimativas iniciais e iteram por uma **fórmula de recorrência** $p_n = g(p_{n-1})$.
+
+- **Mais rápidos** que a bisseção (convergência quadrática ou super-linear);
+- **Sem garantia** de convergência — dependem da proximidade da estimativa inicial em relação à raiz.
+
+Newton-Raphson e a secante são os dois métodos abertos mais usados na prática.
+
+---
+
+## Método de Newton-Raphson
+
+Aproxima $f$ pela **reta tangente** em $p_{n-1}$: do polinômio de Taylor de 1ª ordem em torno de $p_{n-1}$, com $f(p) = 0$,
+
+::: {.columns}
+::: {.column width="50%"}
+
+$$p_n = p_{n-1} - \frac{f(p_{n-1})}{f'(p_{n-1})}$$
+
+Convergência **quadrática** próximo da raiz, desde que $f\in C^2$, $f'(p)\neq 0$ e $p_0$ suficientemente próximo de $p$: o número de dígitos corretos **dobra** a cada passo.
+
+:::
+::: {.column width="50%"}
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 5.5
+\usetikzlibrary{arrows.meta}
+\input{imgs/tikz/Newton.tikz}
+```
+
+:::
+:::
+
+::: {.callout-important}
+Falha (ou diverge) se $f'(p_{n-1}) \approx 0$, ou se a estimativa inicial estiver longe da raiz.
+:::
+
+🎥 [Animação (Manim)](https://raphateixeira.github.io/Manim/VideosMetodosNumericos/NewtonRaphson.mp4)
+
+---
+
+## Newton — implementação em Python
+
+```python
+def newton(f, df, p0, tol=1e-10, nmax=100):
+    for n in range(1, nmax + 1):
+        p = p0 - f(p0) / df(p0)
+        if abs(p - p0) < tol:
+            return p, n
+        p0 = p
+    raise RuntimeError(f"não convergiu em {nmax} iterações")
+```
+
+Equivalente pronto no SciPy:
+
+```python
+from scipy.optimize import newton as newton_scipy
+
+f  = lambda x: np.cos(x) - x
+df = lambda x: -np.sin(x) - 1
+raiz = newton_scipy(f, x0=np.pi/4, fprime=df, tol=1e-12)
+```
+
+---
+
+## Exemplo do livro (Burden & Faires, Ex. 1, Seção 2.3)
+
+Considere $f(x) = \cos x - x$. O gráfico de $y=\cos x$ e $y=x$ mostra um único zero em $[0,\pi/2]$.
+
+Aplicando Newton a partir de $p_0 = \pi/4$, com $f'(x) = -\operatorname{sen} x - 1$:
+
+$$p_n = p_{n-1} - \frac{\cos p_{n-1} - p_{n-1}}{-\operatorname{sen}\, p_{n-1} - 1}$$
+
+```python
+import numpy as np
+f, df = lambda x: np.cos(x) - x, lambda x: -np.sin(x) - 1
+p, n = newton(f, df, np.pi/4, tol=1e-12)
+print(p, n)          # 0.7390851332151607, 4
+```
+
+Apenas **3 iterações** bastam para 9 casas decimais corretas — muito mais rápido que a bisseção.
+
+---
+
+## Tabela do exemplo — Newton
+
+**Tabela 2.4** — $f(x) = \cos x - x$, $p_0 = \pi/4$:
+
+| $n$ | $p_n$ |
+|:--:|:--:|
+| 0 | 0,7853981635 |
+| 1 | 0,7395361337 |
+| 2 | 0,7390851781 |
+| 3 | 0,7390851332 |
+| 4 | 0,7390851332 |
+
+Note a coincidência de $p_3$ e $p_4$ até todos os algarismos listados — sinal de convergência quadrática: o erro é elevado ao quadrado a cada passo.
+
+---
+
+## Método da secante
+
+O método de Newton exige $f'(x)$ em cada passo — nem sempre disponível ou barata de calcular. Substitui-se a derivada por uma **diferença finita** entre as duas últimas iterações:
+
+$$f'(p_{n-1}) \approx \frac{f(p_{n-1}) - f(p_{n-2})}{p_{n-1} - p_{n-2}}$$
+
+o que leva à fórmula da secante:
+
+$$p_n = p_{n-1} - f(p_{n-1})\,\frac{p_{n-1} - p_{n-2}}{f(p_{n-1}) - f(p_{n-2})}$$
+
+- Exige **duas** estimativas iniciais $p_0, p_1$;
+- Não exige $f'(x)$: apenas **um** cálculo de $f$ por iteração (após $p_2$);
+- Convergência super-linear, ordem $\alpha \approx 1{,}618$ (razão áurea) — mais lenta que Newton, mais rápida que a bisseção.
+
+🎥 [Animação (Manim)](https://raphateixeira.github.io/Manim/VideosMetodosNumericos/Secante.mp4)
+
+---
+
+## Secante — implementação em Python
+
+```python
+def secante(f, p0, p1, tol=1e-10, nmax=100):
+    q0, q1 = f(p0), f(p1)
+    for n in range(2, nmax + 1):
+        p = p1 - q1 * (p1 - p0) / (q1 - q0)
+        if abs(p - p1) < tol:
+            return p, n
+        p0, q0 = p1, q1
+        p1, q1 = p, f(p)
+    raise RuntimeError(f"não convergiu em {nmax} iterações")
+```
+
+Equivalente pronto no SciPy: `newton(f, x0=p0, x1=p1)` (sem `fprime`) usa a secante internamente.
+
+---
+
+## Exemplo do livro — secante × Newton (Burden & Faires, Ex. 2, Seção 2.3)
+
+Mesma função $f(x) = \cos x - x$, agora com **secante** a partir de $p_0 = 0{,}5$ e $p_1 = \pi/4$:
+
+```python
+p, n = secante(f, 0.5, np.pi/4, tol=1e-12)
+print(p, n)           # 0.7390851332150645, 5
+```
+
+**Tabela 2.5** — comparação lado a lado:
+
+| $n$ | Secante $p_n$ | Newton $p_n$ |
+|:--:|:--:|:--:|
+| 0 | 0,5000000000 | 0,7853981635 |
+| 1 | 0,7853981635 | 0,7395361337 |
+| 2 | 0,7363841388 | 0,7390851781 |
+| 3 | 0,7390581392 | 0,7390851332 |
+| 4 | 0,7390851493 | 0,7390851332 |
+| 5 | 0,7390851332 | — |
+
+A secante atinge a precisão de $p_2$ do Newton apenas em $p_5$: mais lenta, porém sem custo de derivada.
+
+---
+
+## Ordem de convergência — resumo
+
+| Método | Ordem | Estimativas iniciais | Garantia de convergência |
+|:--|:--:|:--:|:--:|
+| Bisseção | linear ($\alpha=1$) | 2 (com $f(a)f(b)<0$) | sempre |
+| Secante | super-linear ($\alpha\approx 1{,}618$) | 2 | local |
+| Newton | quadrática ($\alpha=2$) | 1 | local, exige $f'$ |
+
+::: {.callout-tip}
+Estratégia comum: usar a **bisseção** (ou `brentq`) para obter uma estimativa grosseira e confiável, e refinar com **Newton** ou **secante** para convergência rápida.
 :::
 
 ---
 
 ## Exemplo aplicado — Engenharia
 
-A função de Antoine relaciona pressão de vapor e temperatura. Determina-se $T$ para uma pressão alvo resolvendo $P(T) - P^{*} = 0$:
+A equação de Antoine relaciona pressão de vapor e temperatura. Determina-se $T$ de ebulição para uma pressão alvo resolvendo $P(T) - P^{*} = 0$:
 
 ```python
 import numpy as np
-from scipy.optimize import brentq
+from scipy.optimize import brentq, newton
 
 # log10(P) = A - B/(C+T)   (P em mmHg, T em °C) — água
 A, B, C = 8.07131, 1730.63, 233.426
-P_alvo = 760.0                         # ebulição (1 atm)
+P_alvo = 760.0                              # ebulição (1 atm)
 
-f = lambda T: 10**(A - B/(C + T)) - P_alvo
-T_eb = brentq(f, 50, 150)
-print(T_eb)                            # ~99.97 °C
+f  = lambda T: 10**(A - B/(C + T)) - P_alvo
+
+T_bissecao = brentq(f, 50, 150)             # combina bisseção + interpolação
+T_secante  = newton(f, x0=90.0, x1=100.0, tol=1e-10)
+
+print(T_bissecao, T_secante)                # ambos ~99.97 °C
 ```
 
-`brentq` combina bisseção com interpolação — robusto e rápido.
+`brentq` combina bisseção com interpolação — robusto e rápido; ilustra por que raramente se implementa bisseção "pura" em produção.
+
+---
+
+## Síntese da aula
+
+- **Bisseção**: intervalar, sempre converge, convergência linear — a base confiável.
+- **Newton-Raphson**: aberto, convergência quadrática, exige $f'(x)$ e boa estimativa inicial.
+- **Secante**: aberto, convergência super-linear ($\approx 1{,}618$), dispensa a derivada.
+- Os exemplos numéricos desta aula reproduzem exatamente as Tabelas 2.1, 2.4 e 2.5 de Burden & Faires — confira executando o código dos slides.
+
+::: {.callout-tip}
+Na prática (SciPy, MATLAB, etc.), os três métodos raramente são usados "puros": algoritmos como `brentq` já combinam confiabilidade com velocidade.
+:::
+
+📓 [Notebook complementar](../Aplicacoes/ZerosDeFuncoes.ipynb) — as três implementações com histórico completo de iterações, para visualizar a convergência.
 
 ---
 
 ## Exercícios
 
-1. Implemente a bisseção e tabele $a_k, b_k, m_k, f(m_k)$ para $f(x)=x^3-2x-5$ em $[1,3]$.
-2. Compare o número de iterações de bisseção e falsa posição para $\delta = 10^{-8}$.
-3. Determine a maior raiz real de $f(x)=x\,e^{x}-1$ no intervalo apropriado.
-4. Justifique por que a falsa posição pode estagnar um dos extremos do intervalo.
+1. Implemente `bissecao` e tabule $a_n, b_n, p_n, f(p_n)$ para $f(x) = x^3 - 2x - 5$ em $[2,3]$ com $\text{tol}=10^{-4}$.
+2. Aplique Newton a $f(x) = x^3 + 4x^2 - 10$ a partir de $p_0 = 1{,}5$ e compare o número de iterações com a Tabela 2.1 (bisseção) para a mesma tolerância.
+3. Aplique a secante à mesma função, com $p_0 = 1$ e $p_1 = 2$, e compare com os resultados dos exercícios 1 e 2.
+4. Aplique Newton a $f(x) = x^3 - 2x + 2$ a partir de $p_0 = 0$ e explique o comportamento observado (dica: $f'(0)=-2$, mas observe as iterações seguintes).
+5. Mostre, alterando `nmax` no código de `bissecao`, quantas iterações são necessárias para $\delta = 10^{-8}$ no Exercício 1, e confira com a fórmula $n \geq \log_2\!\big((b-a)/\delta\big)$.

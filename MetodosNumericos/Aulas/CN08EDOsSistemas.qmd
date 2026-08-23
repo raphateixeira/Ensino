@@ -49,6 +49,10 @@ x, v = sol.y                       # deslocamento e velocidade
 
 A solução vetorial fornece **todos os estados** simultaneamente.
 
+::: {.callout-tip}
+📓 [Notebook complementar](../Aplicacoes/MassaMolaAmortecedor.ipynb) — mesmo sistema, com força de excitação, comparando Euler explícito e `solve_ivp`, e relacionando os polos ($m s^2+cs+k$) à estabilidade.
+:::
+
 ---
 
 ## Estabilidade numérica
@@ -105,9 +109,36 @@ Na dúvida sobre rigidez, `LSODA` detecta e troca entre estratégias explícita 
 
 ---
 
+## Sistemas não-lineares e caos
+
+A análise de estabilidade anterior é **linear** — vale para $y'=\lambda y$ ou para a linearização de um
+sistema em torno de um ponto de equilíbrio. Sistemas **não-lineares** podem exibir comportamento que a
+teoria linear não prevê: o **caos determinístico**.
+
+O exemplo clássico é o **sistema de Lorenz**, modelo simplificado de convecção atmosférica:
+
+$$\begin{cases} \dot{x} = \sigma(y-x) \\ \dot{y} = x(\rho - z) - y \\ \dot{z} = xy - \beta z \end{cases}$$
+
+Sem nenhum termo aleatório, o sistema é **totalmente determinístico** — mas duas trajetórias com
+condições iniciais que diferem por $10^{-6}$ divergem exponencialmente após poucas dezenas de unidades
+de tempo, tornando a previsão de longo prazo impraticável.
+
+::: {.callout-important}
+Sensibilidade às condições iniciais **não é instabilidade numérica**: mesmo a solução exata do sistema
+tem esse comportamento. Ainda assim, a trajetória permanece confinada a uma região limitada do espaço
+de estados — o **atrator estranho**.
+:::
+
+📓 [Notebook complementar](../Aplicacoes/AtratorDeLorenz.ipynb) — integra duas trajetórias com condições
+iniciais quase idênticas e traça o atrator de Lorenz (retrato de fase e vista 3D).
+
+---
+
 ## Exercícios
 
 1. Converta $\dddot{y} + 3\ddot{y} + 2\dot{y} + y = 0$ em sistema de 1ª ordem e resolva com `solve_ivp`.
 2. Simule o massa-mola-amortecedor e trace o **retrato de fase** $(x, \dot{x})$.
 3. Determine o maior $h$ estável do Euler explícito para $y' = -50y$ e confirme numericamente.
 4. Resolva um sistema rígido com `RK45` e com `BDF`, comparando número de passos e tempo de execução.
+5. No sistema de Lorenz, mantenha $\sigma=10,\ \beta=8/3$ e reduza $\rho$ para $10$ (abaixo do limiar de
+   caos). Compare o comportamento da trajetória com o caso $\rho=28$ do notebook.
