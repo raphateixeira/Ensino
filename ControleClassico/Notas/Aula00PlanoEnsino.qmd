@@ -307,8 +307,7 @@ As oito etapas são **obrigatórias** e percorrem todo o ciclo de projeto: do mo
 | 07 | 25/09 (sex) | U3 — sistemas de 1ª ordem: constante de tempo, degrau, rampa e impulso |
 | 08 | 28/09 (seg) | U3 — sistemas de 2ª ordem: frequência natural, amortecimento, classificação |
 | 09 | 02/10 (sex) | U3 — especificações de desempenho; ordem superior: polos dominantes |
-| 10 | 05/10 (seg) | U3 — erro de regime permanente: valor final, tipo de sistema, constantes de erro; lista de exercícios |
-
+| 10 | 05/10 (seg) | U3 — **Prova Bimestral (A1)** |
 ---
 
 ## Cronograma — Bloco 2 (Avaliação 1 · Unidades 4–5)
@@ -317,7 +316,7 @@ As oito etapas são **obrigatórias** e percorrem todo o ciclo de projeto: do mo
 |:--:|:--:|:--|
 | 11 | 09/10 (sex) | Revisão geral para a Prova Bimestral |
 | — | 12/10 (seg) | *Feriado — Nossa Senhora Aparecida* |
-| 12 | 16/10 (sex) | **Prova Bimestral (A1)** |
+| 13 | 19/10 (seg) | U4 — estabilidade BIBO; critério de Routh-Hurwitz |
 | 13 | 19/10 (seg) | U4 — estabilidade BIBO; critério de Routh-Hurwitz |
 | 14 | 23/10 (sex) | U4 — casos especiais do array de Routh; lista de exercícios |
 | 15 | 26/10 (seg) | U4 — condições de ângulo e de módulo; construção do LGR |
@@ -339,9 +338,9 @@ As oito etapas são **obrigatórias** e percorrem todo o ciclo de projeto: do mo
 | 22 | 27/11 (sex) | U6 — sintonia de Ziegler-Nichols; windup integral, ruído na ação derivativa; lista de exercícios |
 | 23 | 30/11 (seg) | Lista de exercícios geral (U4–U6) |
 | 24 | 04/12 (sex) | Atendimento a dúvidas e resolução de exercícios |
-| 25 | 07/12 (seg) | Revisão geral da disciplina |
+| 25 | 07/12 (seg) | **Prova Final (A2)** |
 | 26 | 11/12 (sex) | Encerramento do conteúdo |
-| 27 | 14/12 (seg) | **Prova Final (A2)** |
+| 27 | 14/12 (seg) | Entrega de Projetos |
 | 28 | 18/12 (sex) | Devolutiva de resultados e encerramento do semestre |
 
 ---
@@ -352,12 +351,9 @@ As oito etapas são **obrigatórias** e percorrem todo o ciclo de projeto: do mo
 ::: {.column width="50%"}
 **Avaliações**
 
-- 16/10 (sex) — Prova Bimestral (A1)
-- 14/12 (seg) — Prova Final (A2)
+- 05/10 (sex) — Prova Bimestral (A1)
+- 09/12 (seg) — Prova Final (A2)
 
-::: {.callout-important}
-Não haverá prova substitutiva nem prova de recuperação.
-:::
 :::
 ::: {.column width="50%"}
 **Feriados (sem aula)**
