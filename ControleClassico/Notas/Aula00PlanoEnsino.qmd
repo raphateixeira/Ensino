@@ -30,7 +30,6 @@ engine: knitr
 |:--|:--|
 | **Curso** | Engenharia Elétrica |
 | **Disciplina** | Sistemas de Controle I |
-| **Caráter** | Obrigatória |
 | **Carga horária** | 60 horas |
 | **Regime** | Paralelo |
 | **Período de oferta** | 31/08/2026 a 19/12/2026 |
@@ -81,7 +80,7 @@ raphaelbt@ufpa.br
 :::
 
 ::: {.callout-note}
-Domínio **contínuo**, com a **função de transferência** como modelo central. Continua em Controle II (espaço de estados, controle digital).
+Domínio do tempo contínuo, com a **função de transferência** como modelo central.
 :::
 
 ---
@@ -175,129 +174,18 @@ Seis unidades, em ordem crescente de abstração: do **tempo** (U1–U3) ao **pl
 
 ---
 
-## Unidade 1 — Introdução a Sistemas de Controle
-
-::: {.columns}
-::: {.column width="60%"}
-- Conceito de controle automático; componentes do sistema (planta, atuador, sensor, controlador)
-- Sistemas em malha aberta e em malha fechada; realimentação negativa
-- Sinais e variáveis do sistema: referência, erro, sinal de controle, perturbação
-- Objetivos de projeto: estabilidade, resposta transitória e erro de regime permanente
-- Breve histórico do controle automático
-:::
-::: {.column width="40%"}
-```{tikz}
-%| echo: false
-%| fig-align: center
-%| fig-width: 8
-\usetikzlibrary{arrows.meta, positioning, calc}
-\input{imgs/tikz/ComponentesSistema.tikz}
-```
-:::
-:::
-
----
-
-## Unidade 2 — Modelagem e Função de Transferência
-
-- Revisão da Transformada de Laplace: propriedades e pares notáveis
-- Função de transferência: definição, polos e zeros, equação característica
-- Modelagem de sistemas mecânicos (massa-mola-amortecedor) e eletromecânicos (motor CC)
-- Diagrama de blocos: elementos, álgebra de blocos (série, paralelo, realimentação)
-- Redução de diagramas com múltiplas malhas aninhadas
-
-```{tikz}
-%| echo: false
-%| fig-align: center
-%| fig-width: 13
-\usetikzlibrary{arrows.meta, decorations.pathmorphing}
-\input{imgs/tikz/MotorCC.tikz}
-```
-
----
-
-## Unidade 3 — Resposta Transitória e Erro de Regime Permanente
-
-::: {.columns}
-::: {.column width="60%"}
-- Sistemas de 1ª e 2ª ordem: constante de tempo, frequência natural, amortecimento; classificação (sub, criticamente, sobreamortecido)
-- Especificações de desempenho: sobressinal, tempo de pico, de acomodação e de subida
-- Ordem superior: polos dominantes; efeito de polos e zeros adicionais
-- Erro de regime permanente: teorema do valor final; tipo de sistema; constantes de erro estático
-:::
-::: {.column width="40%"}
-![Erro de regime em sistema Tipo 0 e Tipo 1](imgs/plots/fig_erro_tipo_stack.png){width="85%" fig-align="center"}
-:::
-:::
-
----
-
-## Unidade 4 — Estabilidade e Lugar Geométrico das Raízes (LGR)
-
-::: {.columns}
-::: {.column width="60%"}
-- Estabilidade BIBO; critério de Routh-Hurwitz e seus casos especiais
-- Condições de ângulo e de módulo; regras de construção do LGR
-- Assíntotas, pontos de quebra, ângulos de partida/chegada, cruzamento do eixo imaginário
-- Projeto de ganho por LGR
-:::
-::: {.column width="40%"}
-![LGR de $K(s+3)/[s(s+1)(s+5)]$](imgs/plots/fig_lgr_exemplo2.png){width="100%" fig-align="center"}
-:::
-:::
-
----
-
-## Unidade 5 — Resposta em Frequência
-
-::: {.columns}
-::: {.column width="60%"}
-- Diagrama de Bode: assíntotas e fatores básicos
-- Margens de ganho e de fase; relação com o amortecimento
-- Noção do critério de Nyquist
-:::
-::: {.column width="40%"}
-![Margens de ganho e de fase](imgs/plots/fig_bode_exemplo.png){width="100%" fig-align="center"}
-:::
-:::
-
----
-
-## Unidade 6 — Controladores PID
-
-::: {.columns}
-::: {.column width="60%"}
-- Ação proporcional (P), integral (I) e derivativa (D): efeitos individuais sobre a resposta
-- Estruturas PI, PD e PID; efeito sobre o tipo do sistema e sobre a estabilidade
-- Aspectos práticos: windup integral, ruído na ação derivativa
-:::
-::: {.column width="40%"}
-```{tikz}
-%| echo: false
-%| fig-align: center
-%| fig-width: 10
-\usetikzlibrary{arrows.meta, positioning, calc, fit}
-\input{imgs/tikz/PIDBloco.tikz}
-```
-:::
-:::
-
----
-
 ## Procedimentos Metodológicos
 
 - Aulas **expositivas e dialogadas**, com apoio de recursos audiovisuais
 - **Simulações computacionais** (MATLAB/Simulink, Python)
 - Resolução de **listas de exercícios**
 - Discussão orientada de **estudos de caso** aplicados
+- **Projeto de controle em sistema real**, desenvolvido em dupla
 
 ::: {.callout-note}
 **Ferramentas:** MATLAB/Simulink e Python (`python-control`) para simulação dos conceitos.
 :::
 
-::: {.callout-tip}
-Avaliações podem incluir questões de **ENADE** e **concursos públicos**.
-:::
 
 ---
 
@@ -316,12 +204,13 @@ Avaliações podem incluir questões de **ENADE** e **concursos públicos**.
 
 ## Avaliação
 
-Avaliação: **prova escrita** e **listas de exercícios**.
+Avaliação: **prova escrita** e **projeto de controle em sistema real**.
 
-$$\mathrm{NF} = \dfrac{A_1 + A_2}{2} + P_l$$
+$$\mathrm{NF} = \dfrac{A_1 + A_2}{2} + P_{proj}$$
 
-- $A_1$ — Prova Bimestral &nbsp;·&nbsp; $A_2$ — Prova Final
-- $P_l$ — pontuação de atividades complementares (listas de exercícios)
+- $A_1$ — Prova Bimestral
+- $A_2$ — Prova Final
+- $P_{proj}$ — pontuação da atividade complementar (projeto de controle em sistema real), até **2,0 pontos**
 
 ::: {.fragment}
 ::: {.callout-important}
@@ -331,6 +220,31 @@ Aprovação: frequência mínima de **75%** da carga horária e $\mathrm{NF} \ge
 
 ::: {.fragment}
 Avaliações escritas: **no máximo duas** por período, nas semanas de provas do calendário acadêmico (Colegiado da FEE).
+:::
+
+---
+
+## Projeto de Controle em Sistema Real
+
+Trabalho em **dupla**, valendo até **2,0 pontos**, somados à média das avaliações ($P_{proj}$).
+
+::: {.columns}
+::: {.column width="50%"}
+1. Modelagem/identificação do sistema
+2. Análise e especificação de desempenho
+3. Projeto de controlador por LGR
+4. Projeto de controlador por resposta em frequência
+:::
+::: {.column width="50%"}
+5. Simulação computacional
+6. Implementação do controlador no sistema real
+7. Redação de artigo
+8. Apresentação dos resultados
+:::
+:::
+
+::: {.callout-note}
+As oito etapas são **obrigatórias** e percorrem todo o ciclo de projeto: do modelo à validação experimental.
 :::
 
 ---
