@@ -12,7 +12,7 @@ format:
     width: 1600
     height: 900
     footer: " "
-    center: true
+    center: false
     title-slide-attributes:
       data-background-image: "imgs/ufpa-colorido.png"
       data-background-size: "84px"
@@ -60,6 +60,10 @@ A **sequência de fases** descreve a ordem em que as tensões atingem seu valor 
 |---|---|---|
 | **Positiva** ($abc$) | $b$ atrasa $a$ em $120°$, $c$ atrasa $a$ em $240°$ | $\mathbf{V}_{an}=V_p\angle 0°$, $\mathbf{V}_{bn}=V_p\angle{-120°}$, $\mathbf{V}_{cn}=V_p\angle 120°$ |
 | **Negativa** ($acb$) | $c$ atrasa $a$ em $120°$, $b$ atrasa $a$ em $240°$ | $\mathbf{V}_{an}=V_p\angle 0°$, $\mathbf{V}_{cn}=V_p\angle{-120°}$, $\mathbf{V}_{bn}=V_p\angle 120°$ |
+
+---
+
+## Sequência de Fases — Importância Prática
 
 ::: {.callout-warning}
 A sequência de fases determina o **sentido de rotação** de motores trifásicos — trocar duas fases inverte a sequência e o sentido de giro.

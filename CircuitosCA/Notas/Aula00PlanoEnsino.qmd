@@ -12,7 +12,7 @@ format:
     width: 1600
     height: 900
     footer: " "
-    center: true
+    center: false
     title-slide-attributes:
       data-background-image: "imgs/ufpa-colorido.png"
       data-background-size: "84px"
@@ -28,7 +28,7 @@ knitr::opts_chunk$set(engine.opts = list(
 ))
 ```
 
-## Identificação {.smaller}
+## Identificação
 
 ::: {.columns}
 ::: {.column width="50%"}
@@ -56,7 +56,7 @@ knitr::opts_chunk$set(engine.opts = list(
 
 ---
 
-## Panorama da Disciplina {.smaller}
+## Panorama da Disciplina
 
 Circuitos Elétricos II estende, para o regime **senoidal permanente (CA)**, todo o ferramental de análise de circuitos resistivos visto em Circuitos Elétricos I — fasores no lugar de números reais, impedância no lugar de resistência.
 
@@ -74,7 +74,7 @@ Cada unidade retoma, em CA, um conceito já visto em Circuitos Elétricos I para
 
 ---
 
-## Ementa {.smaller}
+## Ementa
 
 Análise de circuitos elétricos em regime permanente senoidal (corrente alternada).
 Representação de sinais senoidais no domínio do tempo e no domínio fasorial.
@@ -104,19 +104,24 @@ determinar a potência envolvida em circuitos monofásicos e trifásicos.
 
 ---
 
-## Objetivos Específicos {.smaller}
+## Objetivos Específicos — Senoides a Análise de Circuitos
 
 - Compreender a representação de sinais senoidais por meio de fasores e a transformação entre os domínios do tempo e da frequência.
 - Determinar as relações tensão-corrente e a impedância dos elementos R, L e C em regime senoidal.
 - Resolver circuitos série, paralelo e mistos em CA utilizando impedância complexa.
 - Aplicar as leis de Kirchhoff, a análise nodal e a análise de malhas a circuitos em regime senoidal.
+
+---
+
+## Objetivos Específicos — Teoremas, Potência e Trifásico
+
 - Aplicar os teoremas de circuitos (superposição, Thévenin, Norton e máxima transferência de potência) a circuitos em CA.
 - Calcular potência instantânea, ativa, reativa, aparente e complexa, e realizar a correção do fator de potência.
 - Analisar circuitos trifásicos equilibrados e calcular a potência em sistemas trifásicos.
 
 ---
 
-## Competências e Habilidades {.smaller}
+## Competências e Habilidades
 
 - Representar grandezas senoidais na forma fasorial e operar com impedâncias de elementos resistivos, indutivos e capacitivos.
 - Analisar circuitos série e paralelo em regime senoidal permanente.
@@ -130,7 +135,7 @@ Competências relacionadas à seção 3.4 (Competências e Habilidades), p. 13, 
 
 ---
 
-## Conteúdo Programático — Visão Geral {.smaller}
+## Conteúdo Programático — Visão Geral (1/2)
 
 | Unidade | Conteúdo | Aulas | Carga horária |
 |:--:|:--|:--:|:--:|
@@ -138,6 +143,13 @@ Competências relacionadas à seção 3.4 (Competências e Habilidades), p. 13, 
 | 2 | Impedância, admitância e associações em CA | 4 | 8h |
 | 3 | Leis circuitais e métodos de análise em CA | 4 | 8h |
 | — | Exercícios, revisão e **Prova A1** (Unidades 1–3) | 4 | 8h |
+
+---
+
+## Conteúdo Programático — Visão Geral (2/2)
+
+| Unidade | Conteúdo | Aulas | Carga horária |
+|:--:|:--|:--:|:--:|
 | 4 | Teoremas de circuitos em CA | 4 | 8h |
 | 5 | Potência em circuitos de corrente alternada | 5 | 10h |
 | 6 | Circuitos trifásicos | 4 | 8h |
@@ -146,7 +158,7 @@ Competências relacionadas à seção 3.4 (Competências e Habilidades), p. 13, 
 
 ---
 
-## Conteúdo Programático — Unidade 1 {.smaller}
+## Conteúdo Programático — Unidade 1
 
 **Senoides e fasores**
 
@@ -158,7 +170,7 @@ Competências relacionadas à seção 3.4 (Competências e Habilidades), p. 13, 
 
 ---
 
-## Conteúdo Programático — Unidade 2 {.smaller}
+## Conteúdo Programático — Unidade 2
 
 **Impedância, admitância e associações em CA**
 
@@ -171,7 +183,7 @@ Competências relacionadas à seção 3.4 (Competências e Habilidades), p. 13, 
 
 ---
 
-## Conteúdo Programático — Unidade 3 {.smaller}
+## Conteúdo Programático — Unidade 3
 
 **Leis circuitais e métodos de análise em CA**
 
@@ -182,7 +194,7 @@ Competências relacionadas à seção 3.4 (Competências e Habilidades), p. 13, 
 
 ---
 
-## Conteúdo Programático — Unidade 4 {.smaller}
+## Conteúdo Programático — Unidade 4
 
 **Teoremas de circuitos em CA**
 
@@ -193,7 +205,7 @@ Competências relacionadas à seção 3.4 (Competências e Habilidades), p. 13, 
 
 ---
 
-## Conteúdo Programático — Unidade 5 {.smaller}
+## Conteúdo Programático — Unidade 5
 
 **Potência em circuitos de corrente alternada**
 
@@ -207,7 +219,7 @@ Competências relacionadas à seção 3.4 (Competências e Habilidades), p. 13, 
 
 ---
 
-## Conteúdo Programático — Unidade 6 {.smaller}
+## Conteúdo Programático — Unidade 6
 
 **Circuitos trifásicos**
 
@@ -219,7 +231,7 @@ Competências relacionadas à seção 3.4 (Competências e Habilidades), p. 13, 
 
 ---
 
-## Procedimentos e Recursos {.smaller}
+## Procedimentos e Recursos
 
 ::: {.columns}
 ::: {.column width="55%"}
@@ -246,7 +258,7 @@ públicos.
 
 ---
 
-## Avaliação {.smaller}
+## Avaliação
 
 A avaliação da aprendizagem será feita por meio de duas provas escritas
 bimestrais (A1 e A2), cada uma valendo 10,0 pontos, e de uma lista de
@@ -258,6 +270,10 @@ docente.
 
 $$\mathrm{NF} = \dfrac{A_1 + A_2}{2} + Pl_1 + Pl_2$$
 
+---
+
+## Avaliação — Critérios e Datas
+
 ::: {.callout-warning}
 ## Critério de aprovação
 Frequência mínima de 75% da carga horária **e** nota final $\geq 5,0$
@@ -266,62 +282,108 @@ máximo, duas aplicações por bimestre, nas semanas de prova do calendário
 acadêmico.
 :::
 
+As avaliações serão realizadas no período de **05 a 09 de outubro de 2026**
+(1ª Avaliação) e de **09 a 16 de dezembro de 2026** (2ª Avaliação), conforme
+deliberação do Colegiado da Faculdade de Engenharia Elétrica.
+
 Critérios, instrumentos e cronograma avaliativo poderão ser ajustados por
 motivos pedagógicos, mediante comunicação prévia aos discentes.
 
 ---
 
-## Cronograma — 1º Bimestre (1/2) {.smaller}
+## Cronograma — 1º Bimestre (1/5)
 
 | Aulas | Datas | Conteúdo |
 |:--:|:--|:--|
 | 01 | 01/09 | Apresentação da disciplina; sinal senoidal (amplitude, $\omega$, período, fase); seno $\times$ cosseno; complexos (retangular, polar) |
 | 02 | 03/09 | Complexos (forma exponencial); transformação fasorial; relações fasoriais para R, L e C |
 | 03 | 08/09 | Impedância complexa: definição, resistência e reatância |
-| 04 | 10/09 | Admitância complexa; diagramas de impedância e triângulo de impedâncias |
-| 05 | 15/09 | Associação de impedâncias em série e em paralelo |
-| 06 | 17/09 | Divisores de tensão e corrente em CA; transformação Y-$\Delta$ |
-| 07 | 22/09 | Leis de Kirchhoff (LKT e LKC) em regime fasorial |
 
 ---
 
-## Cronograma — 1º Bimestre (2/2) {.smaller}
+## Cronograma — 1º Bimestre (2/5)
 
 | Aulas | Datas | Conteúdo |
 |:--:|:--|:--|
-| 08 | 24/09 | Análise nodal (fontes independentes e dependentes) |
-| 09 | 29/09 | Análise de malhas (fontes independentes e dependentes) |
-| 10 | 01/10 | Fontes de tensão e corrente em CA; supernó e supermalha |
-| 11 | 06/10 | Aula de exercícios — lista Unidades 1–3 |
-| 12 | 08/10 | Revisão para a Prova 1 — Unidades 1–3 |
-| 13 | 13/10 | **Prova Bimestral (A1)** — Unidades 1–3 |
-| 14 | 15/10 | Prova substitutiva (referente à A1) |
+| 04 | 10/09 | Admitância complexa; diagramas de impedância e triângulo de impedâncias |
+| 05 | 15/09 | Associação de impedâncias em série e em paralelo |
+| 06 | 17/09 | Divisores de tensão e corrente em CA; transformação Y-$\Delta$ |
 
 ---
 
-## Cronograma — 2º Bimestre (1/2) {.smaller}
+## Cronograma — 1º Bimestre (3/5)
+
+| Aulas | Datas | Conteúdo |
+|:--:|:--|:--|
+| 07 | 22/09 | Leis de Kirchhoff (LKT e LKC) em regime fasorial |
+| 08 | 24/09 | Análise nodal (fontes independentes e dependentes) |
+| 09 | 29/09 | Análise de malhas (fontes independentes e dependentes) |
+
+---
+
+## Cronograma — 1º Bimestre (4/5)
+
+| Aulas | Datas | Conteúdo |
+|:--:|:--|:--|
+| 10 | 01/10 | Fontes de tensão e corrente em CA; supernó e supermalha |
+| 11 | 06/10 | Aula de exercícios e revisão para a Prova 1 — Unidades 1–3 |
+| 12 | 08/10 | **Prova Bimestral (A1)** — Unidades 1–3 |
+
+---
+
+## Cronograma — 1º Bimestre (5/5)
+
+| Aulas | Datas | Conteúdo |
+|:--:|:--|:--|
+| 13 | 13/10 | Aula de dúvidas e atendimento aos discentes |
+| 14 | 15/10 | Aula de exercícios complementares (reforço — Unidades 1–3) |
+
+---
+
+## Cronograma — 2º Bimestre (1/5)
 
 | Aulas | Datas | Conteúdo |
 |:--:|:--|:--|
 | 15 | 20/10 | Teorema da superposição em circuitos com múltiplas fontes senoidais |
 | 16 | 22/10 | Teorema de Thévenin em regime senoidal |
 | 17 | 27/10 | Teorema de Norton em regime senoidal |
-| 18 | 29/10 | Transferência de máxima potência com carga complexa |
-| 19 | 03/11 | Potência instantânea e potência média (ativa) |
-| 20 | 05/11 | Valor eficaz (RMS) de tensão e corrente |
-| 21 | 10/11 | Potência reativa e aparente; potência complexa e triângulo de potências |
 
 ---
 
-## Cronograma — 2º Bimestre (2/2) {.smaller}
+## Cronograma — 2º Bimestre (2/5)
 
 | Aulas | Datas | Conteúdo |
 |:--:|:--|:--|
+| 18 | 29/10 | Transferência de máxima potência com carga complexa |
+| 19 | 03/11 | Potência instantânea e potência média (ativa) |
+| 20 | 05/11 | Valor eficaz (RMS) de tensão e corrente |
+
+---
+
+## Cronograma — 2º Bimestre (3/5)
+
+| Aulas | Datas | Conteúdo |
+|:--:|:--|:--|
+| 21 | 10/11 | Potência reativa e aparente; potência complexa e triângulo de potências |
 | 22 | 12/11 | Fator de potência: definição, natureza indutiva e capacitiva |
 | 23 | 17/11 | Correção do fator de potência; máxima transferência de potência média |
+
+---
+
+## Cronograma — 2º Bimestre (4/5)
+
+| Aulas | Datas | Conteúdo |
+|:--:|:--|:--|
 | 24 | 19/11 | Geração de tensões trifásicas; sequência de fases |
 | 25 | 24/11 | Configurações Y e $\Delta$; circuitos trifásicos equilibrados (Y-Y, Y-$\Delta$, $\Delta$-$\Delta$, $\Delta$-Y) |
 | 26 | 26/11 | Relações entre grandezas de fase e de linha; introdução a desequilibrados |
+
+---
+
+## Cronograma — 2º Bimestre (5/5)
+
+| Aulas | Datas | Conteúdo |
+|:--:|:--|:--|
 | 27 | 01/12 | Potência em sistemas trifásicos equilibrados; método dos dois wattímetros |
 | 28 | 03/12 | Aula de exercícios — lista Unidades 4–6 |
 | 29 | 08/12 | Revisão para a Prova Final — Unidades 4–6 |
@@ -329,7 +391,7 @@ motivos pedagógicos, mediante comunicação prévia aos discentes.
 
 ---
 
-## Bibliografia {.smaller}
+## Bibliografia
 
 ::: {.columns}
 ::: {.column width="22%"}
@@ -352,14 +414,14 @@ motivos pedagógicos, mediante comunicação prévia aos discentes.
 
 ---
 
-## Referências {.smaller}
+## Referências
 
 ::: {#refs}
 :::
 
 ---
 
-## Dúvidas? {.smaller}
+## Dúvidas?
 
 - **E-mail:** raphaelbt@ufpa.br
 - **SIGAA:** avisos, materiais e listas de exercícios

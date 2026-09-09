@@ -1,0 +1,50 @@
+---
+title: "Relações CA em Circuitos RLC"
+subtitle: "Circuitos Elétricos II"
+institute: "Universidade Federal do Pará"
+author: "Prof. Dr. Raphael Teixeira"
+format:
+  revealjs:
+    theme: [simple, ../TemaRTx.scss]
+    self-contained: true
+    transition: fade
+    slide-number: true
+    width: 1600
+    height: 900
+    footer: " "
+    center: false
+    title-slide-attributes:
+      data-background-image: "imgs/ufpa-colorido.png"
+      data-background-size: "84px"
+      data-background-position: "top 45px center"
+engine: knitr
+---
+
+```{r setup, include=FALSE}
+# Habilita pgfplots nos chunks {tikz} desta aula (gráficos de senoides).
+knitr::opts_chunk$set(engine.opts = list(
+  extra.preamble = c("\\usepackage{pgfplots}", "\\pgfplotsset{compat=1.18}")
+))
+```
+
+
+---
+
+## Resistor
+
+Resistor $R$, corrente $i(t)$, tensão $v(t)$, Lei de Ohm:
+
+$$i(t) = I_m\cos(\omega t + \phi_i) \rightarrow v(t) = R i(t) = R I_m\cos(\omega t + \phi_i)$$
+
+Forma fasorial: $\;\mathbf{V} = R \mathbf{I} \qquad \rightarrow \qquad \mathbf{V} = V_m\angle\phi_v \text{ e } \mathbf{I} = I_m\angle\phi_i$
+
+::: {.columns}
+::: {.column width="50%"}
+![](imgs/Fig9p9TensaoCorrenteR.png){fig-align="center" width="520px"}
+:::
+::: {.column width="50%"}
+![](imgs/Fig9p10FasoresR.png){fig-align="center" width="520px"}
+:::
+:::
+
+## Resistor

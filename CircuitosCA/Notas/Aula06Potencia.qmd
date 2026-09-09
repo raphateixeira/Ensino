@@ -12,7 +12,7 @@ format:
     width: 1600
     height: 900
     footer: " "
-    center: true
+    center: false
     title-slide-attributes:
       data-background-image: "imgs/ufpa-colorido.png"
       data-background-size: "84px"
@@ -85,6 +85,10 @@ $$\boxed{Q = V_{rms}I_{rms}\sin\theta = \frac{1}{2}V_mI_m\sin(\theta_v-\theta_i)
 $Q$ **não representa consumo de energia líquido** — é a taxa de troca de energia entre a fonte e os campos elétrico/magnético de capacitores e indutores.
 :::
 
+---
+
+## Potência Reativa — Sinal por Elemento
+
 | Elemento | $\theta$ | $Q$ | Convenção |
 |---|:--:|:--:|---|
 | Indutor | $+90°$ | $Q>0$ | absorve reativo (convenção "indutivo") |
@@ -130,7 +134,11 @@ O **fator de potência** (fp) é a razão entre a potência ativa e a aparente:
 $$\text{fp} = \frac{P}{S} = \cos\theta$$
 :::
 
-Como $\cos\theta$ é uma função par, o fp por si só não diz se a corrente adianta ou atrasa a tensão — por isso é sempre qualificado:
+Como $\cos\theta$ é uma função par, o fp por si só não diz se a corrente adianta ou atrasa a tensão — por isso é sempre qualificado.
+
+---
+
+## Fator de Potência — Natureza da Carga
 
 | Natureza | Condição | Corrente em relação à tensão |
 |---|:--:|---|
@@ -196,6 +204,10 @@ $$\boxed{C = \frac{Q_c}{\omega V_{rms}^2}}$$
 $$\theta_1=\arccos(0{,}75)=41{,}4° \implies Q_1 = P\tan\theta_1 = 1058{,}3\ \text{var}, \quad S_1=\frac{P}{\text{fp}_1}=1600\ \text{VA}$$
 
 $$\theta_2=\arccos(0{,}95)=18{,}2° \implies Q_2 = P\tan\theta_2 = 394{,}4\ \text{var}, \quad S_2=\frac{P}{\text{fp}_2}=1263{,}2\ \text{VA}$$
+
+---
+
+## Correção do Fator de Potência — Capacitor de Compensação
 
 $$Q_c = Q_1-Q_2 = 663{,}9\ \text{var}$$
 

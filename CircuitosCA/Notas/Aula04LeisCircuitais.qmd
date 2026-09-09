@@ -12,7 +12,7 @@ format:
     width: 1600
     height: 900
     footer: " "
-    center: true
+    center: false
     title-slide-attributes:
       data-background-image: "imgs/ufpa-colorido.png"
       data-background-size: "84px"
@@ -261,6 +261,13 @@ Regra prática: **elimine o ramo da fonte de corrente** ao somar as quedas de te
 | **Baseia-se em** | LKC | LKT |
 | **Incógnitas** | Tensões de nó | Correntes de malha |
 | **Nº de equações** | $n_{\text{nós}}-1$ | $n_{\text{ramos}}-n_{\text{nós}}+1$ |
+
+---
+
+## Nodal vs. Malhas — Fontes e Aplicabilidade
+
+| | Análise Nodal | Análise de Malhas |
+|---|---|---|
 | **Fonte de corrente** | Simples (soma direta) | Gera supermalha |
 | **Fonte de tensão** | Gera supernó | Simples (soma direta) |
 | **Aplicável a** | Qualquer circuito | Apenas circuitos planares |

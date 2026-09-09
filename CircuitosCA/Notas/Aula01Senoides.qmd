@@ -12,7 +12,7 @@ format:
     width: 1600
     height: 900
     footer: " "
-    center: true
+    center: false
     title-slide-attributes:
       data-background-image: "imgs/ufpa-colorido.png"
       data-background-size: "84px"
@@ -27,38 +27,18 @@ knitr::opts_chunk$set(engine.opts = list(
 ))
 ```
 
-## Por que Corrente Alternada?
-
-- A geração e transmissão de energia elétrica é feita em **corrente alternada (CA)**
-- A rede elétrica brasileira opera em **60 Hz**
-- Transformadores só funcionam em CA — permitem elevar/reduzir tensões com alta eficiência
-- A análise em CA é fundamental para: **motores, filtros, antenas, conversores de energia**
-
-::: {.callout-note}
-A elevação de tensão reduz a corrente na linha de transmissão e, com isso, as perdas por efeito Joule ($P = RI^2$).
-:::
 
 ---
 
-## Sistema de Geração, Transmissão e Distribuição
+## O Sinal Senoidal
 
-```{tikz}
-%| echo: false
-%| fig-align: center
-%| fig-width: 13
-\usetikzlibrary{arrows.meta, positioning}
-\input{imgs/tikz/SistemaCA.tikz}
-```
+Em regime permanente senoidal, a tensão ou corrente elétrica é descrita por uma **senoide**:
+
+$$v(t) = V_m \cos(\omega t + \phi)$$
 
 ---
 
-## O Sinal Senoidal {.smaller}
-
-A tensão senoidal é descrita por:
-
-$$\boxed{v(t) = V_m \cos(\omega t + \phi)}$$
-
-**Parâmetros fundamentais:**
+## O Sinal Senoidal — Parâmetros
 
 | Símbolo | Nome | Unidade | Relação |
 |---------|------|---------|---------|
@@ -68,7 +48,6 @@ $$\boxed{v(t) = V_m \cos(\omega t + \phi)}$$
 | $\omega$ | Freq. angular | rad/s | $\omega = 2\pi f$ |
 | $\phi$ | Fase inicial | rad ou ° | — |
 
-> **Convenção:** usamos $\cos$ como referência padrão. Senos podem ser convertidos: $\sin(\theta) = \cos(\theta - 90°)$
 
 ---
 
@@ -113,26 +92,6 @@ $$v_1(t) = \cos(\omega t + 45°) \qquad\qquad v_2(t) = \cos(\omega t - 45°)$$
 
 ---
 
-## Valor Eficaz (RMS)
-
-::: {.callout-important}
-## Definição
-O **valor eficaz** (ou RMS — *Root Mean Square*) de um sinal periódico é o valor de CC que dissiparia a mesma potência em um resistor.
-:::
-
-Para uma senoide $v(t) = V_m \cos(\omega t + \phi)$:
-
-$$V_{rms} = \sqrt{\frac{1}{T}\int_0^T v^2(t)\,dt} = \frac{V_m}{\sqrt{2}} \approx 0{,}707\, V_m$$
-
-**Exemplos práticos:**
-
-| Aplicação | $V_{rms}$ | $V_m$ |
-|-----------|-----------|-------|
-| Tomada residencial (Brasil) | 127 V ou 220 V | 180 V ou 311 V |
-| Transmissão de alta tensão | 500 kV | 707 kV |
-
----
-
 ## Motivação para Fasores
 
 A análise direta no domínio do tempo é trabalhosa. Exemplo: circuito RLC em série com excitação senoidal requer resolver **equação diferencial**:
@@ -152,7 +111,7 @@ No regime permanente senoidal, todas as tensões e correntes têm a **mesma freq
 
 Um fasor é um **número complexo** que representa amplitude e fase de uma senoide.
 
-Usando a **fórmula de Euler**: $e^{j\theta} = \cos\theta + j\sin\theta$
+Pela relação de Euler: $e^{j\theta} = \cos\theta + j\sin\theta$
 
 A senoide $v(t) = V_m\cos(\omega t + \phi)$ é a parte real de:
 
@@ -174,7 +133,9 @@ Um fasor $\mathbf{V} = V_m\angle\phi$ pode ser escrito em três formas equivalen
 | Exponencial | $V_m e^{j\phi}$ | módulo e ângulo |
 | Retangular | $a + jb$ | parte real e imaginária |
 
-**Conversões:**
+---
+
+## Formas de Representação Fasorial — Conversões
 
 $$V_m = \sqrt{a^2 + b^2}, \qquad \phi = \arctan\!\left(\frac{b}{a}\right), \qquad a = V_m\cos\phi, \qquad b = V_m\sin\phi$$
 
@@ -187,11 +148,11 @@ Use $\arctan2(b, a)$ para obter o ângulo correto em todos os quadrantes.
 
 ## Transformação Tempo → Fasor
 
-**Domínio do tempo → Domínio fasorial:**
+**Domínio do tempo → Domínio fasorial: $v(t) = V_m\cos(\omega t + \phi) \quad\longleftrightarrow\quad \mathbf{V} = V_m\angle\phi$
 
-$$v(t) = V_m\cos(\omega t + \phi) \quad\longleftrightarrow\quad \mathbf{V} = V_m\angle\phi$$
+---
 
-**Exemplos:**
+## Transformação Tempo → Fasor — Exemplos
 
 | Domínio do tempo | Fasor |
 |-----------------|-------|
@@ -281,6 +242,13 @@ $$\therefore\quad v(t) = 14{,}43\cos(\omega t + 26{,}3°)$$
 | **Sinal** | $v(t) = V_m\cos(\omega t+\phi)$ | $\mathbf{V} = V_m\angle\phi$ |
 | **Adição** | Soma trigonométrica | Soma de complexos |
 | **Derivada** | $\frac{dv}{dt}$ | $j\omega\mathbf{V}$ |
+
+---
+
+## Resumo: Domínio do Tempo vs. Fasorial (cont.)
+
+| | Domínio do Tempo | Domínio Fasorial |
+|---|---|---|
 | **Integral** | $\int v\,dt$ | $\frac{\mathbf{V}}{j\omega}$ |
 | **Equações** | Diferenciais | Algébricas |
 | **Frequência** | Explícita em $\omega t$ | Implícita (fixada) |
@@ -324,12 +292,5 @@ $$\boxed{v(t) = 19{,}91\cos(377t + 16{,}0°) \text{ V}}$$
 
 1. Converta para a forma fasorial: $v(t) = 15\sin(200t - 20°)$ V.
 2. Dois sinais $i_1(t) = 4\cos(\omega t + 15°)$ A e $i_2(t) = 6\cos(\omega t - 75°)$ A alimentam o mesmo nó. Determine $i(t) = i_1(t) + i_2(t)$ usando fasores.
-3. Calcule o valor eficaz de $v(t) = 220\sqrt{2}\cos(377t)$ V e identifique a aplicação prática desse valor.
-4. Mostre, a partir da definição de fasor, que a integral de $v(t) = V_m\cos(\omega t+\phi)$ corresponde, no domínio fasorial, a $\mathbf{V}/(j\omega)$.
+3. Mostre, a partir da definição de fasor, que a integral de $v(t) = V_m\cos(\omega t+\phi)$ corresponde, no domínio fasorial, a $\mathbf{V}/(j\omega)$.
 
----
-
-## Referências
-
-::: {#refs}
-:::
