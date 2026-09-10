@@ -56,3 +56,14 @@ Notas de aula sobre análise de circuitos elétricos em regime permanente senoid
 </a>
 </div>
 ```
+
+## Listas de Exercícios:
+
+```{=html}
+<div class="categoria-grid">
+<a class="categoria-card" href="Listas/ListaExercicios01.qmd">
+  <h3>Lista de Exercícios 1</h3>
+  <p>Capítulo 9 (em edição)</p>
+</a>
+</div>
+```

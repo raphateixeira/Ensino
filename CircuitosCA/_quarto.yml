@@ -10,6 +10,7 @@ project:
     - index.qmd
     - Notas/*.qmd
     - Avaliacoes/*.qmd
+    - Listas/*.qmd
 
 # Bibliografia compartilhada por todas as páginas do site (aulas e
 # avaliações). Cite com @chave no texto; veja o exemplo em
@@ -46,6 +47,11 @@ website:
             href: Notas/Aula06Potencia.qmd
           - text: "7 · Circuitos Trifásicos"
             href: Notas/Aula07Trifasico.qmd
+      - text: "Listas de Exercícios"
+        menu:
+          # Adicione/edite uma entrada por lista:
+          - text: "1 · Capítulo 9 (em edição)"
+            href: Listas/ListaExercicios01.qmd
       - text: "Avaliações"
         menu:
           # Adicione/edite uma entrada por avaliação:

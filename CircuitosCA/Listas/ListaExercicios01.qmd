@@ -1,0 +1,65 @@
+---
+title: "Lista de Exercícios 1"
+subtitle: "Circuitos Elétricos II — Capítulo 9 (Sadiku & Alexander)"
+institute: "Universidade Federal do Pará"
+author: "Prof. Dr. Raphael Teixeira"
+date: ""
+format:
+  html:
+    toc: false
+    page-layout: article
+bibliography: ../Referencias.bib
+---
+
+::: {.callout-warning}
+## Em edição
+Esta lista está em elaboração — novas questões serão adicionadas ao longo do semestre.
+:::
+
+Resolva os exercícios abaixo do Capítulo 9 [@alexander2013fundamentos]. Os enunciados e as figuras correspondentes estão no livro-texto.
+
+## 9.2 — Senoides
+
+- Exercício 9.1
+- Exercício 9.2
+- Exercício 9.3
+- Exercício 9.5
+
+## 9.3 — Fasores
+
+- Exercício 9.19
+
+## 9.4 — Relações Fasoriais para Elementos de Circuito
+
+- Exercício 9.28
+- Exercício 9.29
+- Exercício 9.30
+- Exercício 9.31
+- Exercício 9.33
+- Exercício 9.34
+
+## 9.5 — Impedância e Admitância
+
+- Exercício 9.35
+- Exercício 9.37
+- Exercício 9.39
+- Exercício 9.40
+- Exercício 9.41
+- Exercício 9.42
+- Exercício 9.43
+- Exercício 9.44
+- Exercício 9.46
+- Exercício 9.47
+- Exercício 9.48
+- Exercício 9.49
+- Exercício 9.50
+- Exercício 9.51
+- Exercício 9.52
+- Exercício 9.54
+
+<!-- Adicione novas questões copiando o padrão "- Exercício X.Y" na seção correspondente. -->
+
+## Referências
+
+::: {#refs}
+:::
