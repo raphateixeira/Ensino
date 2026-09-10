@@ -97,6 +97,18 @@ Forma fasorial: $\;\mathbf{I} = j\omega C\, \mathbf{V} \qquad \rightarrow \qquad
 
 ---
 
+## Reatância
+
+A **reatância** $X$ é a parte imaginária da impedância — mede a oposição ao fluxo de corrente CA devida ao armazenamento de energia nos campos elétrico/magnético. Ao contrário da resistência, **não dissipa energia**.
+
+| Elemento | Reatância | Impedância | Com $\omega$ |
+|:--:|:--:|:--:|:--:|
+| Resistor | — | $R$ | Independente |
+| Indutor | $X_L = \omega L$ (**indutiva**) | $jX_L$ | Cresce |
+| Capacitor | $X_C = \dfrac{1}{\omega C}$ (**capacitiva**) | $-jX_C$ | Decresce |
+
+---
+
 ## Impedância
 
 As três relações tensão-corrente no domínio fasorial,

@@ -30,265 +30,200 @@ knitr::opts_chunk$set(engine.opts = list(
 ))
 ```
 
-## Leis de Kirchhoff no Domínio Fasorial
+## Lei de Kirchhoff das Tensões no Domínio Fasorial
 
-::: {.callout-tip}
-## A grande simplificação
-As leis de Kirchhoff (LKT e LKC) **continuam válidas**, termo a termo, quando tensões e correntes são substituídas por seus **fasores** — desde que todas as fontes operem na **mesma frequência** $\omega$.
-:::
+Para a LKT, sejam $v_1, v_2, \ldots, v_n$ as tensões em um laço fechado. Então:
 
-$$\text{LKT:}\quad \sum_{k} v_k(t) = 0 \;\;\Longleftrightarrow\;\; \sum_{k} \mathbf{V}_k = 0 \qquad\qquad \text{LKC:}\quad \sum_{k} i_k(t) = 0 \;\;\Longleftrightarrow\;\; \sum_{k} \mathbf{I}_k = 0$$
+$$v_1 + v_2 + \cdots + v_n = 0$$
 
-A justificativa é a **linearidade** da transformação fasorial: $\text{Re}\!\left[\left(\sum_k \mathbf{X}_k\right) e^{j\omega t}\right] = \sum_k \text{Re}\!\left[\mathbf{X}_k e^{j\omega t}\right]$.
+Em regime senoidal permanente, cada tensão pode ser escrita na forma de cosseno:
 
----
+$$V_{m1}\cos(\omega t+\theta_1) + V_{m2}\cos(\omega t+\theta_2) + \cdots + V_{mn}\cos(\omega t+\theta_n) = 0$$
 
-## Consequência Prática
+Usando $\cos(\cdot) = \text{Re}(e^{j(\cdot)})$ e fazendo $\mathbf{V}_k = V_{mk}e^{j\theta_k}$:
 
-Toda a teoria de circuitos resistivos (CC) desenvolvida em Circuitos Elétricos I se transporta **diretamente** para CA, bastando substituir:
+$$\text{Re}\!\left[(\mathbf{V}_1+\mathbf{V}_2+\cdots+\mathbf{V}_n)\,e^{j\omega t}\right] = 0$$
 
-| Circuitos Elétricos I (CC) | Circuitos Elétricos II (CA) |
-|---|---|
-| Resistência $R$ | Impedância $\mathbf{Z}$ |
-| Tensões e correntes (reais) | Fasores (complexos) |
-| Álgebra real | Álgebra complexa |
+Como $e^{j\omega t}\neq 0$ para todo $t$:
 
-::: {.callout-important}
-Análise nodal, análise de malhas, superposição, Thévenin, Norton — **todos** os métodos e teoremas se aplicam sem modificação conceitual, apenas trocando aritmética real por complexa.
-:::
+$$\boxed{\mathbf{V}_1 + \mathbf{V}_2 + \cdots + \mathbf{V}_n = 0}$$
 
 ---
 
-## Análise Nodal em CA — Ideia
+## Lei de Kirchhoff das Correntes no Domínio Fasorial
 
-**Objetivo:** encontrar as tensões de nó (fasoriais) em relação a um nó de referência (terra), usando a LKC.
+Para a LKC, sejam $i_1, i_2, \ldots, i_n$ as correntes que chegam a um nó. Então:
 
-**Passos:**
+$$i_1 + i_2 + \cdots + i_n = 0$$
 
-1. Escolha o **nó de referência** (geralmente o de maior número de conexões) e atribua $0$ V a ele.
-2. Nomeie as tensões de nó $\mathbf{V}_1, \mathbf{V}_2, \ldots$ dos demais nós.
-3. Para cada nó não-referência, aplique a LKC: **soma das correntes que saem do nó = soma das correntes injetadas por fontes**, escrevendo cada corrente de ramo como $\dfrac{\mathbf{V}_{\text{nó}}-\mathbf{V}_{\text{vizinho}}}{\mathbf{Z}_{\text{ramo}}}$.
-4. Resolva o sistema linear complexo resultante.
+Em regime senoidal permanente, cada corrente pode ser escrita na forma de cosseno:
 
----
+$$I_{m1}\cos(\omega t+\theta_1) + I_{m2}\cos(\omega t+\theta_2) + \cdots + I_{mn}\cos(\omega t+\theta_n) = 0$$
 
-## Análise Nodal — Circuito de Exemplo
+Usando $\cos(\cdot) = \text{Re}(e^{j(\cdot)})$ e fazendo $\mathbf{I}_k = I_{mk}e^{j\theta_k}$:
 
-```{tikz}
-%| echo: false
-%| fig-align: center
-%| fig-width: 12
-\input{imgs/tikz/CircuitoNodal.tikz}
-```
+$$\text{Re}\!\left[(\mathbf{I}_1+\mathbf{I}_2+\cdots+\mathbf{I}_n)\,e^{j\omega t}\right] = 0$$
 
-**Dados:** $\mathbf{I}_{s1}=4\angle 0°$ A, $\mathbf{I}_{s2}=2\angle{-90°}$ A, $\mathbf{Z}_a=j4\ \Omega$, $\mathbf{Z}_b=4\ \Omega$, $\mathbf{Z}_c=-j2\ \Omega$.
+Como $e^{j\omega t}\neq 0$ para todo $t$:
+
+$$\boxed{\mathbf{I}_1 + \mathbf{I}_2 + \cdots + \mathbf{I}_n = 0}$$
 
 ---
 
-## Análise Nodal — Montagem das Equações
+## Impedância Equivalente — Associação em Série
 
-Em cada nó, a soma das correntes que **saem** é igual à corrente **injetada** pela fonte conectada:
+![](imgs/Fig9p18ImpedanciaSerie.png){fig-align="center" width="850px"}
 
-**Nó 1:** $\quad \dfrac{\mathbf{V}_1}{\mathbf{Z}_a} + \dfrac{\mathbf{V}_1-\mathbf{V}_2}{\mathbf{Z}_b} = \mathbf{I}_{s1}$
+Aplicando a LKT ao laço: $\mathbf{V} = \mathbf{V}_1+\mathbf{V}_2+\cdots+\mathbf{V}_N = \mathbf{I}\mathbf{Z}_1+\mathbf{I}\mathbf{Z}_2+\cdots+\mathbf{I}\mathbf{Z}_N = \mathbf{I}(\mathbf{Z}_1+\mathbf{Z}_2+\cdots+\mathbf{Z}_N)$
 
-**Nó 2:** $\quad \dfrac{\mathbf{V}_2-\mathbf{V}_1}{\mathbf{Z}_b} + \dfrac{\mathbf{V}_2}{\mathbf{Z}_c} = \mathbf{I}_{s2}$
+A impedância equivalente vista pela fonte é:
 
-Reorganizando em admitâncias ($\mathbf{Y}=1/\mathbf{Z}$):
-
-$$(\mathbf{Y}_a+\mathbf{Y}_b)\,\mathbf{V}_1 - \mathbf{Y}_b\,\mathbf{V}_2 = \mathbf{I}_{s1}, \qquad -\mathbf{Y}_b\,\mathbf{V}_1 + (\mathbf{Y}_b+\mathbf{Y}_c)\,\mathbf{V}_2 = \mathbf{I}_{s2}$$
+$$\boxed{\mathbf{Z}_{eq} = \frac{\mathbf{V}}{\mathbf{I}} = \mathbf{Z}_1+\mathbf{Z}_2+\cdots+\mathbf{Z}_N = \sum_{n=1}^{N}\mathbf{Z}_n}$$
 
 ---
 
-## Análise Nodal — Solução
+## Divisor de Tensão
 
-Com $\mathbf{Y}_a = -j0{,}25$ S, $\mathbf{Y}_b = 0{,}25$ S e $\mathbf{Y}_c = j0{,}5$ S, o sistema é:
+Com base no resultado anterior, para dois elementos em série ($N=2$): $\mathbf{I} = \dfrac{\mathbf{V}}{\mathbf{Z}_1+\mathbf{Z}_2}$
 
-$$(0{,}25-j0{,}25)\,\mathbf{V}_1 - 0{,}25\,\mathbf{V}_2 = 4 \qquad\qquad -0{,}25\,\mathbf{V}_1 + (0{,}25+j0{,}5)\,\mathbf{V}_2 = -j2$$
+![](imgs/Fig9p19DivisorTensao.png){fig-align="center" width="550px"}
 
-Resolvendo (por substituição, matriz ou determinantes):
+Como $\mathbf{V}_n = \mathbf{I}\mathbf{Z}_n$, a tensão sobre cada impedância é:
 
-$$\boxed{\mathbf{V}_1 = 12{,}90\angle 29{,}7°\ \text{V}} \qquad\qquad \boxed{\mathbf{V}_2 = 5{,}06\angle{-71{,}6°}\ \text{V}}$$
-
-A corrente no ramo compartilhado: $\mathbf{I}_b = \dfrac{\mathbf{V}_1-\mathbf{V}_2}{\mathbf{Z}_b} = 3{,}69\angle 49{,}4°\ \text{A}$
+$$\boxed{\mathbf{V}_1 = \frac{\mathbf{Z}_1}{\mathbf{Z}_1+\mathbf{Z}_2}\,\mathbf{V}, \qquad \mathbf{V}_2 = \frac{\mathbf{Z}_2}{\mathbf{Z}_1+\mathbf{Z}_2}\,\mathbf{V}}$$
 
 ---
 
-## Análise Nodal com Fontes Dependentes
+## Impedância Equivalente — Associação em Paralelo
 
-Uma fonte dependente **não muda o método** — apenas acrescenta uma equação extra (a **equação de restrição**) que expressa a variável controladora em termos das próprias tensões de nó.
+![](imgs/Fig9p20ImpedanciaParalelo.png){fig-align="center" width="850px"}
 
-**Exemplo:** uma fonte de corrente controlada por tensão $\mathbf{I}_x = 0{,}5\,\mathbf{V}_1$ (em ampères, com $\mathbf{V}_1$ em volts) injetada no nó 2 soma-se ao lado direito da equação do nó 2:
+Aplicando a LKC ao nó superior: $\mathbf{I} = \mathbf{I}_1+\mathbf{I}_2+\cdots+\mathbf{I}_N = \dfrac{\mathbf{V}}{\mathbf{Z}_1}+\dfrac{\mathbf{V}}{\mathbf{Z}_2}+\cdots+\dfrac{\mathbf{V}}{\mathbf{Z}_N} = \mathbf{V}\left(\dfrac{1}{\mathbf{Z}_1}+\dfrac{1}{\mathbf{Z}_2}+\cdots+\dfrac{1}{\mathbf{Z}_N}\right)$
 
-$$-\mathbf{Y}_b\,\mathbf{V}_1 + (\mathbf{Y}_b+\mathbf{Y}_c)\,\mathbf{V}_2 = \mathbf{I}_{s2} + 0{,}5\,\mathbf{V}_1$$
+A impedância equivalente vista pela fonte é:
 
-::: {.callout-warning}
-Rearranje sempre para deixar as incógnitas ($\mathbf{V}_1,\mathbf{V}_2,\ldots$) do lado esquerdo: aqui, subtraia $0{,}5\,\mathbf{V}_1$ e some ao coeficiente de $\mathbf{V}_1$ na equação.
-:::
+$$\boxed{\frac{1}{\mathbf{Z}_{eq}} = \frac{\mathbf{I}}{\mathbf{V}} = \frac{1}{\mathbf{Z}_1}+\frac{1}{\mathbf{Z}_2}+\cdots+\frac{1}{\mathbf{Z}_N} = \sum_{n=1}^{N}\frac{1}{\mathbf{Z}_n}}$$
 
 ---
 
-## Supernó
+## Divisor de Corrente
 
-Quando uma **fonte de tensão** conecta diretamente dois nós não-referência (sem impedância em série), não é possível escrever a LKC isoladamente em cada um — os dois nós formam um **supernó**.
+Com base no resultado anterior, para dois elementos em paralelo ($N=2$): $\mathbf{Z}_{eq} = \dfrac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1+\mathbf{Z}_2}$
 
-```{tikz}
-%| echo: false
-%| fig-align: center
-%| fig-width: 10
-\input{imgs/tikz/CircuitoSupernodal.tikz}
-```
+![](imgs/Fig9p21DivisorCorrente.png){fig-align="center" width="550px"}
 
----
+Como $\mathbf{V} = \mathbf{I}\mathbf{Z}_{eq} = \mathbf{I}_1\mathbf{Z}_1 = \mathbf{I}_2\mathbf{Z}_2$, a corrente em cada impedância é:
 
-## Supernó — Equacionamento
-
-**Duas equações são necessárias** para o supernó:
-
-**1. LKC combinada** (soma de todas as correntes que saem do supernó, tratando-o como um único nó):
-
-$$\dfrac{\mathbf{V}_1}{\mathbf{Z}_a} + \dfrac{\mathbf{V}_2}{\mathbf{Z}_b} = \mathbf{I}_s$$
-
-**2. Equação de restrição** (a fonte impõe a diferença de tensão entre os nós):
-
-$$\mathbf{V}_1 - \mathbf{V}_2 = \mathbf{V}_x$$
-
-::: {.callout-tip}
-O supernó "recupera" o grau de liberdade perdido: uma incógnita a menos na LKC é compensada pela equação de restrição da fonte.
-:::
+$$\boxed{\mathbf{I}_1 = \frac{\mathbf{Z}_2}{\mathbf{Z}_1+\mathbf{Z}_2}\,\mathbf{I}, \qquad \mathbf{I}_2 = \frac{\mathbf{Z}_1}{\mathbf{Z}_1+\mathbf{Z}_2}\,\mathbf{I}}$$
 
 ---
 
-## Análise de Malhas em CA — Ideia
+## Exemplo: Impedância de Entrada
 
-**Objetivo:** encontrar as correntes de malha (fasoriais) usando a LKT, aplicável a circuitos **planares**.
+**Problema:** Determine a impedância de entrada $\mathbf{Z}_{in}$ do circuito abaixo, considerando $\omega = 50$ rad/s.
 
-**Passos:**
-
-1. Atribua uma corrente de malha $\mathbf{I}_1, \mathbf{I}_2,\ldots$ a cada laço independente, todas no mesmo sentido (convencionalmente horário).
-2. Para cada malha, aplique a LKT: **soma das quedas de tensão ao longo do laço = 0**, escrevendo cada queda como $\mathbf{Z}\cdot(\text{corrente de ramo})$, onde a corrente de ramo é a soma/diferença das correntes de malha que o percorrem.
-3. Resolva o sistema linear complexo resultante.
+![](imgs/FigEx9p101.png){fig-align="center" width="700px"}
 
 ---
 
-## Análise de Malhas — Circuito de Exemplo
+## Exemplo: Impedância de Entrada — Solução
 
-```{tikz}
-%| echo: false
-%| fig-align: center
-%| fig-width: 12
-\input{imgs/tikz/CircuitoMalhas.tikz}
-```
+Impedâncias dos elementos: $\mathbf{Z}_{C1} = \dfrac{1}{j\omega(2\text{ mF})} = -j10\ \Omega$, $\quad \mathbf{Z}_{C2} = \dfrac{1}{j\omega(10\text{ mF})} = -j2\ \Omega$, $\quad \mathbf{Z}_L = j\omega(0{,}2\text{ H}) = j10\ \Omega$
 
-**Dados:** $\mathbf{V}_{s1}=12\angle 0°$ V, $\mathbf{V}_{s2}=6\angle 45°$ V, $\mathbf{Z}_1=1+j2\ \Omega$, $\mathbf{Z}_2=3-j1\ \Omega$, $\mathbf{Z}_3=2+j3\ \Omega$.
+O ramo com $3\,\Omega$ e o capacitor de $10$ mF, em série, dá $3-j2\ \Omega$; o ramo com o indutor e o resistor de $8\,\Omega$, em série, dá $8+j10\ \Omega$. Esses dois ramos estão em paralelo:
 
----
+$$\mathbf{Z}_p = \frac{(3-j2)(8+j10)}{(3-j2)+(8+j10)} = \frac{44+j14}{11+j8} = 3{,}22 - j1{,}07\ \Omega$$
 
-## Análise de Malhas — Montagem das Equações
+Somando em série com o capacitor de $2$ mF:
 
-Percorrendo cada malha no sentido horário (mesmo sentido de $\mathbf{I}_1$ e $\mathbf{I}_2$):
-
-**Malha 1:** $\quad -\mathbf{V}_{s1} + \mathbf{Z}_1\mathbf{I}_1 + \mathbf{Z}_2(\mathbf{I}_1-\mathbf{I}_2) = 0$
-
-**Malha 2:** $\quad \mathbf{Z}_2(\mathbf{I}_2-\mathbf{I}_1) + \mathbf{Z}_3\mathbf{I}_2 - \mathbf{V}_{s2} = 0$
-
-Reorganizando:
-
-$$(\mathbf{Z}_1+\mathbf{Z}_2)\,\mathbf{I}_1 - \mathbf{Z}_2\,\mathbf{I}_2 = \mathbf{V}_{s1}, \qquad -\mathbf{Z}_2\,\mathbf{I}_1 + (\mathbf{Z}_2+\mathbf{Z}_3)\,\mathbf{I}_2 = \mathbf{V}_{s2}$$
+$$\boxed{\mathbf{Z}_{in} = -j10 + \mathbf{Z}_p = 3{,}22 - j11{,}07\ \Omega}$$
 
 ---
 
-## Análise de Malhas — Solução
+## Exemplo: Impedância de Entrada (2)
 
-$$(4+j1)\,\mathbf{I}_1 - (3-j1)\,\mathbf{I}_2 = 12 \qquad\qquad -(3-j1)\,\mathbf{I}_1 + (5+j2)\,\mathbf{I}_2 = 6\angle 45°$$
+**Problema:** Determine a impedância de entrada $\mathbf{Z}_{in}$ do circuito abaixo, considerando $\omega = 10$ rad/s.
 
-Resolvendo o sistema:
-
-$$\boxed{\mathbf{I}_1 = 3{,}89\angle{-39{,}4°}\ \text{A}} \qquad\qquad \boxed{\mathbf{I}_2 = 2{,}31\angle{-51{,}5°}\ \text{A}}$$
-
-A corrente no ramo compartilhado ($\mathbf{Z}_2$, sentido de $\mathbf{I}_1$ para $\mathbf{I}_2$): $\mathbf{I}_1-\mathbf{I}_2 = 1{,}70\angle{-22{,}8°}\ \text{A}$
+![](imgs/FigEx9p102.png){fig-align="center" width="850px"}
 
 ---
 
-## Análise de Malhas com Fontes Dependentes
+## Exemplo: Impedância de Entrada (2) — Solução
 
-Assim como na análise nodal, uma fonte dependente adiciona apenas uma **equação de restrição**.
+Impedâncias dos elementos: $\mathbf{Z}_{C1} = \mathbf{Z}_{C2} = \dfrac{1}{j\omega(1\text{ mF})} = -j100\ \Omega$, $\quad \mathbf{Z}_L = j\omega(8\text{ H}) = j80\ \Omega$
 
-**Exemplo:** uma fonte de tensão controlada por corrente $\mathbf{V}_x = 2\,\mathbf{I}_1$ (em volts, com $\mathbf{I}_1$ em ampères) inserida na malha 2 entra como mais um termo na LKT dessa malha:
+O ramo com o indutor e o resistor de $200\,\Omega$, em série, dá $200+j80\ \Omega$, em paralelo com o capacitor $\mathbf{Z}_{C2}$:
 
-$$-\mathbf{Z}_2\,\mathbf{I}_1 + (\mathbf{Z}_2+\mathbf{Z}_3)\,\mathbf{I}_2 = \mathbf{V}_{s2} + 2\,\mathbf{I}_1$$
+$$\mathbf{Z}_p = \frac{\mathbf{Z}_{C2}(200+j80)}{\mathbf{Z}_{C2}+200+j80} = \frac{-j100(200+j80)}{200-j20} = \frac{8000-j20000}{200-j20} = 49{,}5 - j95{,}05\ \Omega$$
 
-::: {.callout-warning}
-Novamente, reorganize para manter as incógnitas ($\mathbf{I}_1,\mathbf{I}_2,\ldots$) do lado esquerdo antes de montar a matriz do sistema.
-:::
+Somando em série com o resistor de $100\,\Omega$ e o capacitor de $1$ mF:
 
----
-
-## Supermalha
-
-Quando uma **fonte de corrente** é compartilhada por duas malhas (sem impedância em paralelo com ela no mesmo ramo), a LKT não pode ser aplicada isoladamente em cada malha — elas formam uma **supermalha**.
-
-```{tikz}
-%| echo: false
-%| fig-align: center
-%| fig-width: 12
-\input{imgs/tikz/CircuitoSupermalha.tikz}
-```
+$$\boxed{\mathbf{Z}_{in} = -j100 + 100 + \mathbf{Z}_p = 149{,}5 - j195{,}05\ \Omega}$$
 
 ---
 
-## Supermalha — Equacionamento
+## Exemplo: Tensão de Saída $v_o(t)$
 
-**Duas equações são necessárias** para a supermalha:
+**Problema:** Determine $v_o(t)$ no circuito abaixo.
 
-**1. LKT combinada** (contorno externo às duas malhas, ignorando o ramo interior da fonte de corrente):
-
-$$-\mathbf{V}_s + \mathbf{Z}_1\mathbf{I}_1 + \mathbf{Z}_2\mathbf{I}_2 = 0$$
-
-**2. Equação de restrição** (a fonte impõe a diferença entre as correntes de malha no ramo que compartilham):
-
-$$\mathbf{I}_1 - \mathbf{I}_2 = \mathbf{I}_x$$
-
-::: {.callout-tip}
-Regra prática: **elimine o ramo da fonte de corrente** ao somar as quedas de tensão da supermalha, e complete o sistema com a relação que a fonte impõe entre as correntes de malha.
-:::
+![](imgs/FigEx9p25.png){fig-align="center" width="750px"}
 
 ---
 
-## Nodal vs. Malhas — Quando Escolher Cada Método
+## Exemplo: Tensão de Saída — Domínio Fasorial
 
-| | Análise Nodal | Análise de Malhas |
-|---|---|---|
-| **Baseia-se em** | LKC | LKT |
-| **Incógnitas** | Tensões de nó | Correntes de malha |
-| **Nº de equações** | $n_{\text{nós}}-1$ | $n_{\text{ramos}}-n_{\text{nós}}+1$ |
+Fonte com $\omega = 4$ rad/s: $\mathbf{V}_s = 20\angle{-15°}$ V
 
----
+Impedâncias: $\mathbf{Z}_C = \dfrac{1}{j\omega(10\text{ mF})} = -j25\ \Omega, \qquad \mathbf{Z}_L = j\omega(5\text{ H}) = j20\ \Omega$
 
-## Nodal vs. Malhas — Fontes e Aplicabilidade
+O circuito equivalente no domínio da frequência:
 
-| | Análise Nodal | Análise de Malhas |
-|---|---|---|
-| **Fonte de corrente** | Simples (soma direta) | Gera supermalha |
-| **Fonte de tensão** | Gera supernó | Simples (soma direta) |
-| **Aplicável a** | Qualquer circuito | Apenas circuitos planares |
-
-::: {.callout-note}
-Escolha o método com **menos incógnitas**: circuitos com muitos nós favorecem malhas; circuitos com muitas malhas favorecem análise nodal.
-:::
+![](imgs/FigEx9p26.png){fig-align="center" width="750px"}
 
 ---
 
-## Exercícios
+## Exemplo: Tensão de Saída — Solução
 
-1. No circuito nodal do exemplo, recalcule $\mathbf{V}_1$ e $\mathbf{V}_2$ se $\mathbf{Z}_b$ dobrar para $8\ \Omega$.
-2. No circuito de malhas do exemplo, verifique por substituição direta que os valores de $\mathbf{I}_1$ e $\mathbf{I}_2$ satisfazem as duas equações originais.
-3. Um circuito tem três nós não-referência. Quantas equações nodais são necessárias? E se dois desses nós forem ligados por uma fonte de tensão ideal?
-4. Refaça o exemplo de análise nodal com fonte dependente ($\mathbf{I}_x=0{,}5\,\mathbf{V}_1$ no nó 2) e obtenha $\mathbf{V}_1$ e $\mathbf{V}_2$ numericamente.
-5. Explique, em uma frase, por que a supermalha "ignora" o ramo da fonte de corrente ao somar as quedas de tensão.
+O capacitor e o indutor estão em paralelo:
+
+$$\mathbf{Z}_p = \frac{\mathbf{Z}_C\mathbf{Z}_L}{\mathbf{Z}_C+\mathbf{Z}_L} = \frac{(-j25)(j20)}{-j25+j20} = \frac{500}{-j5} = j100\ \Omega$$
+
+Por divisor de tensão, $\mathbf{V}_o$ é a tensão sobre $\mathbf{Z}_p$:
+
+$$\mathbf{V}_o = \frac{\mathbf{Z}_p}{\mathbf{Z}_p+60}\,\mathbf{V}_s = \frac{j100}{60+j100}\,(20\angle{-15°}) = 17{,}15\angle 15{,}96°\ \text{V}$$
+
+$$\boxed{v_o(t) = 17{,}15\cos(4t+15{,}96°)\ \text{V}}$$
 
 ---
 
-## Referências
+## Exemplo: Tensão de Saída $v_o(t)$ (2)
 
-::: {#refs}
-:::
+**Problema:** Determine $v_o(t)$ no circuito abaixo.
+
+![](imgs/FigEx9p27.png){fig-align="center" width="800px"}
+
+---
+
+## Exemplo: Tensão de Saída (2) — Impedâncias
+
+Fonte com $\omega=10$ rad/s: $\mathbf{V}_s = 50\angle 30°$ V
+
+Impedâncias: $\mathbf{Z}_L = j\omega(0{,}5\text{ H}) = j5\ \Omega, \qquad \mathbf{Z}_C = \dfrac{1}{j\omega(1/20\text{ F})} = -j2\ \Omega$
+
+O indutor e o resistor de $10\,\Omega$ estão em paralelo:
+
+$$\mathbf{Z}_{LR} = \frac{\mathbf{Z}_L(10)}{\mathbf{Z}_L+10} = \frac{j5(10)}{10+j5} = 2+j4\ \Omega$$
+
+Essa combinação está em série com o capacitor:
+
+$$\boxed{\mathbf{Z} = \mathbf{Z}_{LR}+\mathbf{Z}_C = (2+j4)+(-j2) = 2+j2\ \Omega}$$
+
+---
+
+## Exemplo: Tensão de Saída (2) — Solução
+
+Corrente do laço: $\mathbf{I} = \dfrac{\mathbf{V}_s}{\mathbf{Z}} = \dfrac{50\angle 30°}{2+j2} = 17{,}68\angle{-15°}\ \text{A}$
+
+Tensão no capacitor: $\mathbf{V}_o = \mathbf{I}\,\mathbf{Z}_C = (17{,}68\angle{-15°})(2\angle{-90°}) = 35{,}36\angle{-105°}\ \text{V}$
+
+$$\boxed{v_o(t) = 35{,}36\cos(10t-105°)\ \text{V}}$$
