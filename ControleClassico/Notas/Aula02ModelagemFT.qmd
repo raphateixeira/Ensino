@@ -1,6 +1,6 @@
 ---
 title: "Modelagem e Função de Transferência"
-subtitle: "Sistemas de Controle I — Controle Clássico"
+subtitle: "Sistemas de Controle I"
 institute: "Universidade Federal do Pará"
 author: "Prof. Dr. Raphael Teixeira"
 lang: pt
@@ -46,14 +46,14 @@ knitr::opts_chunk$set(engine.opts = list(
 
 ## Transformada de Laplace
 
-$$\mathcal{L}\{f(t)\} = F(s) = \int_0^{\infty} f(t)\,e^{-st}\,dt, \qquad s = \sigma + j\omega \in \mathbb{C}$$
+$$\mathrm{L}\{f(t)\} = F(s) = \int_0^{\infty} f(t)\,e^{-st}\,dt, \qquad s = \sigma + j\omega \in \mathbb{C}$$
 
-$$\mathcal{L}\left\{\frac{d^n f}{dt^n}\right\} = s^n F(s) \qquad \text{(condições iniciais nulas)}$$
+$$\mathrm{L}\left\{\frac{d^n f}{dt^n}\right\} = s^n F(s) \qquad \text{(condições iniciais nulas)}$$
 
 | Propriedade | Expressão |
 |:------------|:----------|
-| Linearidade | $\mathcal{L}\{\alpha f + \beta g\} = \alpha F(s) + \beta G(s)$ |
-| Deslocamento em $s$ | $\mathcal{L}\{e^{-at}f(t)\} = F(s+a)$ |
+| Linearidade | $\mathrm{L}\{\alpha f + \beta g\} = \alpha F(s) + \beta G(s)$ |
+| Deslocamento em $s$ | $\mathrm{L}\{e^{-at}f(t)\} = F(s+a)$ |
 | Valor final | $\displaystyle\lim_{t\to\infty} f(t) = \lim_{s\to 0} sF(s)$ |
 | Valor inicial | $f(0^+) = \displaystyle\lim_{s\to\infty} sF(s)$ |
 
@@ -93,21 +93,47 @@ $$G(s) = \frac{Y(s)}{U(s)}, \qquad \text{condições iniciais nulas}$$
 
 ---
 
-## Exemplo Mínimo
+## Exemplo Mínimo: 1ª Ordem
 
-$$\frac{dc}{dt} + 2c(t) = r(t)$$
+Sistema genérico de 1ª ordem, ganho $K$ e constante de tempo $\tau$:
+$$\tau\,\dot{c}(t) + c(t) = K\,r(t)$$
 
 ::: {.fragment}
 Laplace (condições iniciais nulas):
-$$sC(s) + 2C(s) = R(s)$$
+$$\tau s\,C(s) + C(s) = K\,R(s)$$
 :::
 
 ::: {.fragment}
-$$\boxed{G(s) = \frac{C(s)}{R(s)} = \frac{1}{s+2}}$$
+$$\boxed{G(s) = \frac{C(s)}{R(s)} = \frac{K}{\tau s+1}}$$
 :::
 
 ::: {.callout-note}
 Três linhas — é só isso [@nise2015].
+:::
+
+---
+
+## Resposta ao Degrau
+
+Entrada degrau unitário: $r(t) = u(t) \;\Rightarrow\; R(s) = \dfrac{1}{s}$
+
+::: {.fragment}
+$$C(s) = G(s)\,R(s) = \frac{K}{s(\tau s+1)}$$
+:::
+
+::: {.fragment}
+Frações parciais:
+$$\frac{K}{s(\tau s+1)} = \frac{A}{s} + \frac{B}{\tau s+1}, \qquad A = K, \quad B = -K\tau$$
+$$C(s) = \frac{K}{s} - \frac{K}{s+\dfrac{1}{\tau}}$$
+:::
+
+::: {.fragment}
+Transformada inversa (par $e^{-at} \leftrightarrow \frac{1}{s+a}$):
+$$\boxed{c(t) = K\left(1 - e^{-t/\tau}\right)u(t)}$$
+:::
+
+::: {.callout-tip}
+Mesmo caminho vale para qualquer sistema de 1ª ordem — tema da próxima aula.
 :::
 
 ---
@@ -153,6 +179,45 @@ $$\boxed{G(s) = \frac{X(s)}{F(s)} = \frac{1}{m s^2 + b s + k}}$$
 
 ::: {.callout-tip}
 Mesma matemática de um circuito RLC série — domínios físicos diferentes, mesmo modelo.
+:::
+
+---
+
+## Exemplo: Circuito RLC
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 11
+\usetikzlibrary{arrows.meta, decorations.pathmorphing}
+\input{imgs/tikz/CircuitoRLC.tikz}
+```
+
+LKT (lei das tensões de Kirchhoff): $v(t) = v_R(t) + v_L(t) + v_C(t)$
+
+$$v_R(t) = R\,i(t), \qquad v_L(t) = L\,\dot{i}(t), \qquad i(t) = C\,\dot{v}_C(t)$$
+
+---
+
+## Circuito RLC — EDO e FT
+
+Substituindo $i(t) = C\,\dot v_C(t)$ na LKT:
+
+::: {.fragment}
+$$\boxed{LC\,\ddot{v}_C(t) + RC\,\dot{v}_C(t) + v_C(t) = v(t)}$$
+:::
+
+::: {.fragment}
+Laplace (condições iniciais nulas):
+$$LC\,s^2 V_C(s) + RC\,s\,V_C(s) + V_C(s) = V(s)$$
+:::
+
+::: {.fragment}
+$$\boxed{G(s) = \frac{V_C(s)}{V(s)} = \frac{1}{LCs^2+RCs+1}}$$
+:::
+
+::: {.callout-tip}
+Mesma estrutura do massa-mola-amortecedor: $L\leftrightarrow m$, $R\leftrightarrow b$, $1/C\leftrightarrow k$.
 :::
 
 ---

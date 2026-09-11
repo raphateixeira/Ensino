@@ -1,6 +1,6 @@
 ---
 title: "Plano de Ensino"
-subtitle: "Sistemas de Controle I — Controle Clássico"
+subtitle: "Sistemas de Controle I"
 institute: "UFPA - CAMTUC - FEE"
 author: "Prof. Dr. Raphael Teixeira"
 lang: pt

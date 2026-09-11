@@ -1,6 +1,6 @@
 ---
 title: "Lugar Geométrico das Raízes (LGR)"
-subtitle: "Sistemas de Controle I — Controle Clássico"
+subtitle: "Sistemas de Controle I"
 institute: "Universidade Federal do Pará"
 author: "Prof. Dr. Raphael Teixeira"
 format:

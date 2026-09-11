@@ -1,6 +1,6 @@
 ---
 title: "Sistemas de Segunda Ordem"
-subtitle: "Sistemas de Controle I — Controle Clássico"
+subtitle: "Sistemas de Controle I"
 institute: "Universidade Federal do Pará"
 author: "Prof. Dr. Raphael Teixeira"
 format:
@@ -86,6 +86,45 @@ No limite $\zeta \to 0$: oscilação **não amortecida** $y(t) = 1-\cos(\omega_n
 ## Especificações da Resposta Transitória
 
 ![Especificações de desempenho no domínio do tempo](imgs/plots/fig_2ordem_especificacoes.png){width="66%" fig-align="center"}
+
+---
+
+## Dedução: Tempo de Pico e Sobressinal
+
+Pico $\Rightarrow$ $\dot y(t_p) = 0$. Derivando $y(t)$, os termos de fase se cancelam:
+
+$$\dot y(t) = \frac{\omega_n}{\sqrt{1-\zeta^2}}\,e^{-\zeta\omega_n t}\sin(\omega_d t)$$
+
+::: {.fragment}
+Como $e^{-\zeta\omega_n t}\neq 0$, basta $\sin(\omega_d t)=0 \;\Rightarrow\; \omega_d t = n\pi$. O primeiro pico ($n=1$) dá:
+$$\boxed{t_p = \frac{\pi}{\omega_d}}$$
+:::
+
+::: {.fragment}
+Substituindo $t_p$ de volta em $y(t)$ — note que $\omega_d t_p+\phi=\pi+\phi \Rightarrow \sin(\cdot)=-\sin\phi=-\sqrt{1-\zeta^2}$:
+$$y(t_p) = 1+e^{-\zeta\omega_n t_p} = 1+e^{-\zeta\pi/\sqrt{1-\zeta^2}}$$
+$$\boxed{M_p = y(t_p)-1 = e^{-\zeta\pi/\sqrt{1-\zeta^2}}}$$
+:::
+
+---
+
+## Dedução: Tempo de Acomodação
+
+A oscilação fica presa na **envoltória** $1\pm\dfrac{e^{-\zeta\omega_n t}}{\sqrt{1-\zeta^2}}$ (pois $|\sin(\cdot)|\leq1$).
+
+::: {.fragment}
+Acomodar em 2% $\Leftrightarrow$ envoltória cai abaixo de $0{,}02$:
+$$\frac{e^{-\zeta\omega_n t_s}}{\sqrt{1-\zeta^2}} = 0{,}02 \;\Rightarrow\; \zeta\omega_n t_s = -\ln\!\left(0{,}02\sqrt{1-\zeta^2}\right)$$
+:::
+
+::: {.fragment}
+Para $\zeta$ na faixa usual, $\sqrt{1-\zeta^2}\approx O(1)$ e $-\ln(0{,}02)\approx 3{,}9\approx 4$:
+$$\boxed{t_s \approx \frac{4}{\zeta\omega_n} = \frac{4}{\sigma}} \qquad \text{(critério de 2\%; troque } 4\to3 \text{ para 5\%)}$$
+:::
+
+::: {.callout-note}
+$t_s$ depende só de $\sigma=\zeta\omega_n$ — a **parte real do polo**, não de $\omega_d$.
+:::
 
 ---
 

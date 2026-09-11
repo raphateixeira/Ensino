@@ -1,6 +1,6 @@
 ---
 title: "Sistemas de Primeira Ordem"
-subtitle: "Sistemas de Controle I — Controle Clássico"
+subtitle: "Sistemas de Controle I"
 institute: "Universidade Federal do Pará"
 author: "Prof. Dr. Raphael Teixeira"
 format:

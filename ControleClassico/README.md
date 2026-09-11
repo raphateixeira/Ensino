@@ -31,6 +31,8 @@ ControleClassico/
 │       ├── UFPA.png              logotipo da capa
 │       ├── plots/                 figuras geradas por scripts/gerar_figuras.py
 │       └── tikz/                  diagramas de blocos em TikZ
+├── Projeto/
+│   └── CatalogoModulos.qmd      catálogo de módulos didáticos para o projeto em dupla
 └── Avaliacoes/
     └── Avaliacao01Exemplo.qmd    molde de prova/lista de exercícios
 ```

@@ -1,0 +1,314 @@
+---
+title: "Projeto de Controle em Sistema Real"
+subtitle: "Catálogo de Módulos Didáticos Clássicos"
+institute: "Universidade Federal do Pará"
+author: "Prof. Dr. Raphael Teixeira"
+lang: pt
+format:
+  revealjs:
+    theme: [simple, ../TemaRTx.scss]
+    self-contained: true
+    transition: fade
+    slide-number: true
+    width: 1600
+    height: 900
+    footer: " "
+    center: false
+    title-slide-attributes:
+      data-background-image: "../Notas/imgs/ufpa-colorido.png"
+      data-background-size: "84px"
+      data-background-position: "top 45px center"
+engine: knitr
+---
+
+## O Projeto de Controle em Sistema Real
+
+- Trabalho em **dupla**, valendo até **2,0 pontos** somados à média das avaliações
+- Percorre o ciclo completo: **do modelo à bancada real**
+- As oito etapas estão detalhadas no [Plano de Ensino](../Notas/Aula00PlanoEnsino.qmd)
+
+::: {.callout-note}
+Esta apresentação cobre a **etapa zero**: escolher o sistema físico que a dupla vai modelar, analisar e controlar.
+:::
+
+---
+
+## As Oito Etapas (recapitulando)
+
+:::{.columns}
+::: {.column width="50%"}
+1. Modelagem/identificação do sistema
+2. Análise e especificação de desempenho
+3. Projeto de controlador por LGR
+4. Projeto de controlador por resposta em frequência
+:::
+::: {.column width="50%"}
+5. Simulação computacional
+6. Implementação do controlador no sistema real
+7. Redação de artigo
+8. Apresentação dos resultados
+:::
+:::
+
+::: {.callout-important}
+Tudo começa aqui: **qual planta a dupla vai controlar?**
+:::
+
+---
+
+## Como Escolher o Módulo
+
+- **Ordem da planta** — de 1ª ordem (sistema térmico) a 4ª ordem (ball and beam)
+- **Estabilidade em malha aberta** — maglev e ball and beam *exigem* controle para operar
+- **Natureza física** — mecânica, eletromecânica, eletrônica de potência, eletrônica analógica
+- **Sensores e atuadores** disponíveis no laboratório
+- **Afinidade da dupla** — o que vocês querem aprender fazendo
+
+::: {.callout-tip}
+Não existe módulo "mais fácil" — existe módulo mais **alinhado com o que a dupla quer explorar**.
+:::
+
+---
+
+## Motor DC com Encoder
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 9
+\usetikzlibrary{arrows.meta, decorations.pathmorphing}
+\input{../Notas/imgs/tikz/MotorCC.tikz}
+```
+
+::: {.columns}
+::: {.column width="50%"}
+- **Atuador:** tensão de armadura $v_a(t)$ (driver PWM)
+- **Sensor:** encoder incremental no eixo
+:::
+::: {.column width="50%"}
+- **Controlada:** velocidade $\omega(t)$ ou posição $\theta(t)$
+- **Planta:** 1ª ordem dominante — modelo clássico de eletromecânica
+:::
+:::
+
+::: {.callout-note}
+O módulo mais direto para validar identificação de parâmetros e malha de velocidade/posição.
+:::
+
+---
+
+## Aeropêndulo
+
+::: {.columns}
+::: {.column width="50%"}
+**O que é:** braço pivotado na horizontal; um motor com hélice numa das pontas gera empuxo, erguendo o ângulo do braço.
+
+- **Atuador:** motor + hélice (empuxo $\propto \text{PWM}^2$)
+- **Sensor:** potenciômetro ou encoder no eixo de pivô
+:::
+::: {.column width="50%"}
+- **Controlada:** ângulo do braço $\theta(t)$
+- **Planta:** análoga a um pêndulo — 2ª ordem, **não linear**, linearizada em torno do ponto de operação
+:::
+:::
+
+::: {.callout-important}
+Desafio central: o empuxo do motor não é linear com o PWM — exige escolher bem o ponto de operação.
+:::
+
+---
+
+## Inversor de Frequência Monofásico
+
+::: {.columns}
+::: {.column width="50%"}
+**O que é:** conversor CC–CA (PWM) alimentando um motor CA, com controle **V/f**.
+
+- **Atuador:** índice de modulação / frequência do PWM
+- **Sensor:** tacogerador ou encoder no eixo do motor
+:::
+::: {.column width="50%"}
+- **Controlada:** velocidade do motor CA
+- **Planta:** malha de velocidade dominada por 1ª ordem, sobre uma camada de eletrônica de potência
+:::
+:::
+
+::: {.callout-note}
+Único módulo do catálogo que expõe a dupla à **eletrônica de potência** (chaveamento, V/f constante).
+:::
+
+---
+
+## Sistema Térmico
+
+::: {.columns}
+::: {.column width="50%"}
+**O que é:** resistência de aquecimento + sensor de temperatura num volume isolado.
+
+- **Atuador:** potência no resistor (PWM via relé de estado sólido)
+- **Sensor:** termopar ou termistor
+:::
+::: {.column width="50%"}
+- **Controlada:** temperatura $T(t)$
+- **Planta:** 1ª ordem **com atraso de transporte** — $G(s) = \dfrac{K}{\tau s+1}e^{-\theta s}$
+:::
+:::
+
+::: {.callout-tip}
+Constantes de tempo de minutos — ótimo para comparar PID contínuo contra liga-desliga (histerese).
+:::
+
+---
+
+## Filtro Sallen-Key
+
+::: {.columns}
+::: {.column width="50%"}
+**O que é:** filtro ativo de 2ª ordem (passa-baixas) com amplificador operacional.
+
+- **"Atuador":** parâmetros do circuito ($\omega_n$, $\zeta$) ou tensão de excitação
+- **Sensor:** medição direta da tensão de saída
+:::
+::: {.column width="50%"}
+- **Controlada:** resposta em frequência / tensão de saída $v_o(t)$
+- **Planta:** 2ª ordem **puramente elétrica**, sem não linearidades mecânicas
+:::
+:::
+
+::: {.callout-note}
+O único módulo sem partes móveis — ideal para validar LGR e Bode em condições "de livro-texto".
+:::
+
+---
+
+## Ball and Beam
+
+::: {.columns}
+::: {.column width="50%"}
+**O que é:** uma bola rola livremente sobre uma viga; um servo inclina a viga numa extremidade.
+
+- **Atuador:** servomotor (ângulo da viga $\alpha$)
+- **Sensor:** posição da bola (resistivo, ultrassônico ou visão)
+:::
+::: {.column width="50%"}
+- **Controlada:** posição da bola $x(t)$ ao longo da viga
+- **Planta:** 4ª ordem em cascata — **duplo integrador instável** na malha de posição
+:::
+:::
+
+::: {.callout-important}
+Referência clássica de benchmark em controle — exige compensação por avanço de fase ou ação derivativa.
+:::
+
+---
+
+## Retificador CA-CC Controlado
+
+::: {.columns}
+::: {.column width="50%"}
+**O que é:** ponte retificadora controlada (tiristores ou PWM ativo) regulando a tensão CC de saída.
+
+- **Atuador:** ângulo de disparo $\alpha$ (ou razão cíclica)
+- **Sensor:** divisor resistivo na saída CC
+:::
+::: {.column width="50%"}
+- **Controlada:** tensão CC de saída $V_o(t)$
+- **Planta:** filtro LC de saída sobre um ganho **não linear** do ângulo de disparo
+:::
+:::
+
+::: {.callout-note}
+Segundo módulo de eletrônica de potência do catálogo — foco em regulação de tensão sob carga variável.
+:::
+
+---
+
+## Maglev — Levitação Magnética
+
+::: {.columns}
+::: {.column width="50%"}
+**O que é:** esfera ou disco ferromagnético levitado sob um eletroímã.
+
+- **Atuador:** corrente no eletroímã (driver de corrente)
+- **Sensor:** efeito Hall ou óptico, medindo a distância vertical
+:::
+::: {.column width="50%"}
+- **Controlada:** posição vertical $z(t)$
+- **Planta:** força $\propto i^2/z^2$ — linearizada, **instável em malha aberta** (polo real positivo)
+:::
+:::
+
+::: {.callout-important}
+O módulo mais exigente do catálogo: **não existe operação em malha aberta**. Mostra na prática por que se faz realimentação.
+:::
+
+---
+
+## Fanplate — Placa Acionada por Ventilador
+
+::: {.columns}
+::: {.column width="50%"}
+**O que é:** uma hélice na base empurra ar contra uma placa articulada, inclinando-a.
+
+- **Atuador:** motor + hélice (empuxo $\propto \text{PWM}^2$)
+- **Sensor:** potenciômetro ou encoder no eixo da placa
+:::
+::: {.column width="50%"}
+- **Controlada:** ângulo da placa $\theta(t)$
+- **Planta:** 2ª ordem não linear — mesma família do aeropêndulo, com acoplamento fluido-dinâmico diferente
+:::
+:::
+
+::: {.callout-tip}
+Boa dupla comparativa com o aeropêndulo: duas topologias distintas para o mesmo tipo de desafio.
+:::
+
+---
+
+## Quadro Comparativo
+
+| Módulo | Ordem | Instável em MA? | Atuador | Variável controlada |
+|:--|:--:|:--:|:--|:--|
+| Motor DC + encoder | 1ª/2ª | Não | Tensão de armadura | $\omega$ ou $\theta$ |
+| Aeropêndulo | 2ª (NL) | Não\* | Motor + hélice | $\theta$ |
+| Inversor monofásico | 1ª | Não | PWM (V/f) | Velocidade CA |
+| Sistema térmico | 1ª c/ atraso | Não | Potência (PWM) | $T(t)$ |
+| Filtro Sallen-Key | 2ª | Não | Excitação | $v_o(t)$ |
+| Ball and beam | 4ª | Sim (posição) | Servo | $x(t)$ |
+| Retificador CA-CC | 1ª/2ª | Não | Ângulo de disparo | $V_o$ CC |
+| Maglev | 2ª | Sim | Corrente | $z(t)$ |
+| Fanplate | 2ª (NL) | Não\* | Motor + hélice | $\theta$ |
+
+::: {.callout-note}
+\* estável apenas ao redor do ponto de equilíbrio (gravidade/mola de retorno) — a dinâmica em si continua não linear.
+:::
+
+---
+
+## Sugestão de Cronograma
+
+| Etapas | Conteúdo | Alinhado com |
+|:--:|:--|:--|
+| 0 | Escolha do módulo e formação da dupla | até 11/09 (aula 03) |
+| 1–2 | Modelagem, identificação e especificação | até 05/10 (A1) |
+| 3 | Projeto por LGR | a partir de 06/11 (aula 17) |
+| 4 | Projeto por resposta em frequência | a partir de 16/11 (aula 20) |
+| 5–6 | Simulação e implementação na bancada | 23/11–04/12 |
+| 7–8 | Artigo e apresentação | **14/12 — Entrega de Projetos** |
+
+::: {.callout-tip}
+Cronograma sugerido, não obrigatório — o que é fixo é a data de entrega final (14/12).
+:::
+
+---
+
+## Próximos Passos
+
+1. Formem a **dupla**
+2. Conversem sobre afinidades: mecânica? eletrônica de potência? eletrônica analógica?
+3. Escolham **um módulo** deste catálogo — ou proponham outro, sob aprovação
+4. Iniciem a Etapa 1: pesquisa e levantamento do modelo físico
+
+::: {.callout-important}
+Dúvidas sobre disponibilidade de bancada e material: procurem o professor **antes** de fechar a escolha.
+:::

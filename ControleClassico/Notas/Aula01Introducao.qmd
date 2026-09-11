@@ -1,6 +1,6 @@
 ---
 title: "Introdução a Sistemas de Controle"
-subtitle: "Sistemas de Controle I — Controle Clássico"
+subtitle: "Sistemas de Controle I"
 institute: "Universidade Federal do Pará"
 author: "Prof. Dr. Raphael Teixeira"
 lang: pt

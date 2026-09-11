@@ -9,6 +9,7 @@ project:
   render:
     - index.qmd
     - Notas/*.qmd
+    - Projeto/*.qmd
     - Avaliacoes/*.qmd
   resources:
     - Notas/apps/**
@@ -50,6 +51,10 @@ website:
             href: Notas/Aula08RespostaFrequencia.qmd
           - text: "9 · Controlador PID"
             href: Notas/Aula09PID.qmd
+      - text: "Projeto"
+        menu:
+          - text: "Catálogo de Módulos Didáticos"
+            href: Projeto/CatalogoModulos.qmd
       - text: "Avaliações"
         menu:
           - text: "1 · Avaliação Exemplo (modelo)"
