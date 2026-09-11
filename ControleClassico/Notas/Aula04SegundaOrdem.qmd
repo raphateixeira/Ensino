@@ -68,6 +68,46 @@ Retas radiais a partir da origem têm $\zeta$ constante; arcos de raio $\omega_n
 
 ---
 
+## Degrau na Forma Padrão
+
+Entrada degrau unitário $R(s)=1/s$ na forma padrão ($0<\zeta<1$):
+
+$$Y(s) = G(s)R(s) = \frac{\omega_n^2}{s\left(s^2+2\zeta\omega_n s+\omega_n^2\right)}$$
+
+::: {.fragment}
+Frações parciais: $\;Y(s) = \dfrac{A}{s} + \dfrac{Bs+C}{s^2+2\zeta\omega_n s+\omega_n^2}$
+:::
+
+::: {.fragment}
+Em $s=0$: $A=1$. Igualando os coeficientes de $s^2$ e $s$: $B=-1$, $C=-2\zeta\omega_n$
+:::
+
+::: {.fragment}
+$$\boxed{Y(s) = \frac{1}{s} - \frac{s+2\zeta\omega_n}{s^2+2\zeta\omega_n s+\omega_n^2}}$$
+:::
+
+---
+
+## Frações Parciais $\to$ Domínio do Tempo
+
+Completando o quadrado no denominador: $s^2+2\zeta\omega_n s+\omega_n^2 = (s+\zeta\omega_n)^2+\omega_d^2$
+
+::: {.fragment}
+Separando o numerador para casar com os pares $\mathrm{L}\{e^{-at}\cos bt\}$ e $\mathrm{L}\{e^{-at}\sin bt\}$:
+$$Y(s) = \frac{1}{s} - \underbrace{\frac{s+\zeta\omega_n}{(s+\zeta\omega_n)^2+\omega_d^2}}_{e^{-\zeta\omega_n t}\cos\omega_d t} - \frac{\zeta\omega_n}{\omega_d}\underbrace{\frac{\omega_d}{(s+\zeta\omega_n)^2+\omega_d^2}}_{e^{-\zeta\omega_n t}\sin\omega_d t}$$
+:::
+
+::: {.fragment}
+Transformada inversa ($\zeta\omega_n/\omega_d=\zeta/\sqrt{1-\zeta^2}$):
+$$y(t) = 1 - e^{-\zeta\omega_n t}\left[\cos\omega_d t + \frac{\zeta}{\sqrt{1-\zeta^2}}\sin\omega_d t\right]$$
+:::
+
+::: {.fragment}
+O colchete é $\dfrac{\sin(\omega_d t+\phi)}{\sqrt{1-\zeta^2}}$ com $\phi=\cos^{-1}\zeta$ (identidade $\sin(\theta+\phi)=\sin\theta\cos\phi+\cos\theta\sin\phi$) $\Rightarrow$ resultado do próximo slide.
+:::
+
+---
+
 ## Caso Subamortecido — Resposta ao Degrau
 
 Para $0 < \zeta < 1$, a resposta ao degrau unitário é:
