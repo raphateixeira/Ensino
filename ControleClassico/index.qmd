@@ -53,5 +53,13 @@ Notas de aula de Sistemas de Controle I — Controle Clássico: modelagem por fu
   <h3>Aula 9</h3>
   <p>Controlador PID</p>
 </a>
+<a class="categoria-card categoria-card--verde" href="Notas/GuiaBibliografico.qmd">
+  <h3>Guia de Estudos: Livros</h3>
+  <p>Onde estudar cada tema nos livros-texto</p>
+</a>
+<a class="categoria-card categoria-card--verde" href="Projeto/CatalogoModulos.qmd">
+  <h3>Catálogo de Temas dos Projetos</h3>
+  <p>Escolha do sistema físico para o projeto de controle</p>
+</a>
 </div>
 ```

@@ -1,6 +1,6 @@
 ---
-title: "Projeto de Controle em Sistema Real"
-subtitle: "Catálogo de Módulos Didáticos Clássicos"
+title: "Catálogo de Temas dos Projetos"
+subtitle: "Projeto de Controle em Sistema Real"
 institute: "Universidade Federal do Pará"
 author: "Prof. Dr. Raphael Teixeira"
 lang: pt
@@ -114,6 +114,8 @@ O módulo mais direto para validar identificação de parâmetros e malha de vel
 
 ::: {.callout-important}
 Desafio central: o empuxo do motor não é linear com o PWM — exige escolher bem o ponto de operação.
+
+**Projeto de pesquisa relacionado:** [Controle de Ângulo de Aeropêndulo →](https://raphateixeira.github.io/Projetos/06Aeropendulo.html)
 :::
 
 ---
@@ -156,6 +158,8 @@ Desafio central: o empuxo do motor não é linear com o PWM — exige escolher b
 
 ::: {.callout-tip}
 Constantes de tempo de minutos — ótimo para comparar PID contínuo contra liga-desliga (histerese).
+
+**Projeto de pesquisa relacionado:** [Identificação e Controle PID de Sistema Térmico →](https://raphateixeira.github.io/Projetos/02SistemaTermico.html)
 :::
 
 ---
@@ -177,6 +181,8 @@ Constantes de tempo de minutos — ótimo para comparar PID contínuo contra lig
 
 ::: {.callout-note}
 O único módulo sem partes móveis — ideal para validar LGR e Bode em condições "de livro-texto".
+
+**Projeto de pesquisa relacionado:** [Identificação e Ajuste de Filtro Ativo Sallen-Key →](https://raphateixeira.github.io/Projetos/01FiltroSallenKey.html)
 :::
 
 ---
@@ -198,6 +204,8 @@ O único módulo sem partes móveis — ideal para validar LGR e Bode em condiç
 
 ::: {.callout-important}
 Referência clássica de benchmark em controle — exige compensação por avanço de fase ou ação derivativa.
+
+**Projeto de pesquisa relacionado:** [Controle de Posição em Bancada Ball and Beam →](https://raphateixeira.github.io/Projetos/04BallBeam.html)
 :::
 
 ---
@@ -219,6 +227,8 @@ Referência clássica de benchmark em controle — exige compensação por avan�
 
 ::: {.callout-note}
 Segundo módulo de eletrônica de potência do catálogo — foco em regulação de tensão sob carga variável.
+
+**Projeto de pesquisa relacionado:** [Controle de Ângulo de Disparo em Retificador Controlado a Tiristores →](https://raphateixeira.github.io/Projetos/11RetificadorControlado.html)
 :::
 
 ---
@@ -265,7 +275,53 @@ Boa dupla comparativa com o aeropêndulo: duas topologias distintas para o mesmo
 
 ---
 
-## Quadro Comparativo
+## Drone — Controle de Atitude em Bancada
+
+::: {.columns}
+::: {.column width="50%"}
+**O que é:** quadrimotor fixado em bancada com liberdade rotacional limitada — controla roll/pitch sem o risco de voo livre.
+
+- **Atuador:** motores + hélices (ESCs, empuxo $\propto \text{PWM}^2$), um par por eixo
+- **Sensor:** IMU (acelerômetro + giroscópio)
+:::
+::: {.column width="50%"}
+- **Controlada:** ângulos de arfagem/rolagem $\theta_{\text{pitch}}(t)$, $\theta_{\text{roll}}(t)$
+- **Planta:** 2ª ordem por eixo, **não linear**, com acoplamento roll-pitch
+:::
+:::
+
+::: {.callout-note}
+Estende a família aeropêndulo/fanplate para dois eixos acoplados — bom desafio de controle em cascata por eixo.
+
+**Projeto de pesquisa relacionado:** [Controle de Atitude de Drone em Bancada de Testes →](https://raphateixeira.github.io/Projetos/03Drone.html)
+:::
+
+---
+
+## Sistema de Resposta Inversa (Fase Não Mínima)
+
+::: {.columns}
+::: {.column width="50%"}
+**O que é:** bancada com dois efeitos competindo em constantes de tempo distintas — a saída inicialmente se afasta da referência antes de convergir ao valor final.
+
+- **Atuador:** depende da implementação (ex.: par de resistências de aquecimento com dinâmicas opostas)
+- **Sensor:** sensor da variável de saída (ex.: temperatura ou nível)
+:::
+::: {.column width="50%"}
+- **Controlada:** variável de saída $y(t)$, com resposta inversa característica
+- **Planta:** função de transferência com **zero no semiplano direito**
+:::
+:::
+
+::: {.callout-important}
+Mostra na prática por que a resposta inversa impõe um limite fundamental à velocidade de malha fechada, qualquer que seja o controlador.
+
+**Projeto de pesquisa relacionado:** [Controle de Planta com Resposta Inversa (Sistema de Fase Não Mínima) →](https://raphateixeira.github.io/Projetos/09ControleInverso.html)
+:::
+
+---
+
+## Quadro Comparativo {.scrollable}
 
 | Módulo | Ordem | Instável em MA? | Atuador | Variável controlada |
 |:--|:--:|:--:|:--|:--|
@@ -278,6 +334,8 @@ Boa dupla comparativa com o aeropêndulo: duas topologias distintas para o mesmo
 | Retificador CA-CC | 1ª/2ª | Não | Ângulo de disparo | $V_o$ CC |
 | Maglev | 2ª | Sim | Corrente | $z(t)$ |
 | Fanplate | 2ª (NL) | Não\* | Motor + hélice | $\theta$ |
+| Drone (atitude) | 2ª (NL) | Não\* | Motor + hélice (ESC) | $\theta_{\text{pitch}}, \theta_{\text{roll}}$ |
+| Resposta inversa | — | Não | Depende da bancada | $y(t)$ |
 
 ::: {.callout-note}
 \* estável apenas ao redor do ponto de equilíbrio (gravidade/mola de retorno) — a dinâmica em si continua não linear.

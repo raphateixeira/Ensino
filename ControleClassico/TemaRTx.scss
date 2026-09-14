@@ -837,6 +837,15 @@ body {
         border-color: $primary;
         box-shadow: 0 2px 10px rgba(0,0,0,0.08);
     }
+
+    &.categoria-card--verde {
+        h3 {
+            color: $success;
+        }
+        &:hover {
+            border-color: $success;
+        }
+    }
 }
 
 // ============================================================

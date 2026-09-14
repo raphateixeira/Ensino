@@ -1,0 +1,108 @@
+---
+title: "Guia de Estudos: Livros"
+subtitle: "Onde encontrar cada tema nos livros-texto"
+institute: "Universidade Federal do Pará"
+author: "Prof. Dr. Raphael Teixeira"
+lang: pt-BR
+---
+
+Esta página indica, para cada aula da disciplina, os capítulos e seções correspondentes nos
+quatro livros-texto de referência. Use-a para aprofundar um tema visto em aula ou para
+comparar como diferentes autores tratam o mesmo assunto.
+
+::: {.callout-note}
+## Sobre as edições
+As referências de **Ogata** [@ogata2010] e **Franklin** [@franklin2013] correspondem
+exatamente às edições citadas na bibliografia da disciplina, com número de página conferido.
+Para **Dorf** e **Nise**, o professor tem em mãos edições um pouco diferentes das citadas em
+@dorf2018 e @nise2015 (respectivamente a 8ª ed. LTC/2001 e a 6ª ed. LTC/2013). A numeração de
+**capítulo e seção** é estável entre edições desses livros — por isso ela é a referência
+principal abaixo —, mas o número de página pode variar alguns pontos em relação à edição mais
+recente.
+:::
+
+## Aula 1 — Introdução a Sistemas de Controle
+
+| Livro | Onde encontrar |
+|:--|:--|
+| Ogata [@ogata2010] | Cap. 1 — Introdução aos sistemas de controle (p. 1–10) |
+| Franklin [@franklin2013] | Cap. 1 — Visão Geral e um Breve Histórico da Teoria de Controle Realimentado (p. 1–16) |
+| Dorf | Cap. 1 — Introdução aos Sistemas de Controle (p. 1–24) |
+| Nise | Cap. 1 — Introdução |
+
+## Aula 2 — Modelagem e Função de Transferência
+
+| Livro | Onde encontrar |
+|:--|:--|
+| Ogata [@ogata2010] | Cap. 2, §2.2 — Função de transferência e de resposta impulsiva (p. 12); Cap. 3 — Modelagem de sistemas mecânicos e elétricos (p. 56) |
+| Franklin [@franklin2013] | Cap. 2 — Modelos Dinâmicos (p. 17); Cap. 3, §3.1 — Revisão das transformadas de Laplace (p. 64) |
+| Dorf | Cap. 2, §2.4 — Transformada de Laplace (p. 32); §2.5 — Função de Transferência de Sistemas Lineares (p. 37) |
+| Nise | Cap. 2 — Modelagem no Domínio da Frequência, §2.2–2.3 |
+
+## Aula 3 — Sistemas de Primeira Ordem
+
+| Livro | Onde encontrar |
+|:--|:--|
+| Ogata [@ogata2010] | Cap. 5, §5.2 — **Sistemas de primeira ordem** (p. 147–149) — seção dedicada, com resposta ao degrau, rampa e impulso |
+| Franklin [@franklin2013] | Cap. 3, §3.3 — Efeitos da localização dos polos (p. 93); §3.4 — Especificações no domínio do tempo (p. 100). Não há seção exclusiva de 1ª ordem: o livro trata polo único como caso particular |
+| Dorf | Cap. 4, §4.3 — Controle da Resposta Transitória de Sistemas de Controle (p. 144). Tratamento introdutório, sem seção exclusiva |
+| Nise | Cap. 4, §4.3 — **Sistemas de Primeira Ordem** — seção dedicada, mesma abordagem usada em aula (τ, degrau, tempo de subida e de acomodação) |
+
+## Aula 4 — Sistemas de Segunda Ordem
+
+| Livro | Onde encontrar |
+|:--|:--|
+| Ogata [@ogata2010] | Cap. 5, §5.3 — Sistemas de segunda ordem (p. 149–163) |
+| Franklin [@franklin2013] | Cap. 3, §3.3–3.4 (mesmo enfoque geral de localização de polos, p. 93–104) |
+| Dorf | Cap. 5, §5.3 — **Desempenho de um Sistema de Segunda Ordem** (p. 183) |
+| Nise | Cap. 4, §4.4 — Introdução; §4.5 — O Sistema de Segunda Ordem Geral; §4.6 — Sistemas Subamortecidos |
+
+## Aula 5 — Resposta Transitória de Sistemas de Ordem Superior
+
+| Livro | Onde encontrar |
+|:--|:--|
+| Ogata [@ogata2010] | Cap. 5, §5.4 — Sistemas de ordem superior (p. 163); §5.6 — Critério de estabilidade de Routh (p. 191) |
+| Franklin [@franklin2013] | Cap. 3, §3.5 — Efeitos de zeros e polos adicionais (p. 104); §3.6 — Estabilidade / Routh (p. 112) |
+| Dorf | Cap. 5, §5.4 — Efeitos de um Terceiro Polo e de um Zero (p. 188); Cap. 6, §6.2 — Routh-Hurwitz (p. 232) |
+| Nise | Cap. 4, §4.7 — Resposta com Polos Adicionais; §4.8 — Resposta com Zeros; Cap. 6 — Estabilidade (Routh-Hurwitz) |
+
+## Aula 6 — Erro de Regime Permanente
+
+| Livro | Onde encontrar |
+|:--|:--|
+| Ogata [@ogata2010] | Cap. 5, §5.8 — Erros estacionários em sistemas com realimentação unitária (p. 203) |
+| Franklin [@franklin2013] | Cap. 4, §4.2 — Controle de erro em estado estacionário: tipo de sistemas (p. 153) |
+| Dorf | Cap. 4, §4.5 — Erro de Estado Estacionário (p. 150); Cap. 5, §5.7–5.8 — Erro com retroação unitária e não unitária (p. 194) |
+| Nise | Cap. 7 — **Erros em Regime Permanente** (capítulo inteiro), §7.2–7.4 |
+
+## Aula 7 — Lugar Geométrico das Raízes (LGR)
+
+| Livro | Onde encontrar |
+|:--|:--|
+| Ogata [@ogata2010] | Cap. 6 — Análise e projeto de sistemas pelo método do lugar das raízes (p. 246) |
+| Franklin [@franklin2013] | Cap. 5 — O Método do Lugar das Raízes (p. 189) |
+| Dorf | Cap. 7 — O Método do Lugar das Raízes (p. 262) |
+| Nise | Cap. 8 — Técnicas do Lugar Geométrico das Raízes; Cap. 9 — Projeto via Lugar Geométrico das Raízes |
+
+## Aula 8 — Resposta em Frequência
+
+| Livro | Onde encontrar |
+|:--|:--|
+| Ogata [@ogata2010] | Cap. 7 — Análise e projeto de sistemas pelo método de resposta em frequência (p. 366): Bode, Nyquist, margens de estabilidade |
+| Franklin [@franklin2013] | Cap. 6 — O Método de Projeto Baseado na Resposta em Frequência (p. 254) |
+| Dorf | Cap. 8 — Métodos de Resposta de Frequência (p. 322); Cap. 9 — Estabilidade no Domínio de Frequência / Nyquist (p. 370) |
+| Nise | Cap. 10 — Técnicas de Resposta em Frequência; Cap. 11 — Projeto através da Resposta em Frequência |
+
+## Aula 9 — Controlador PID
+
+| Livro | Onde encontrar |
+|:--|:--|
+| Ogata [@ogata2010] | Cap. 8 — **Controladores PID e controladores PID modificados** (p. 521) — capítulo inteiro dedicado |
+| Franklin [@franklin2013] | Cap. 4, §4.3 — Controlador de três termos: controlador PID (p. 160) |
+| Dorf | Cap. 7, §7.7 — Controladores de Três Termos, PID (p. 289); Cap. 9, §9.9 — Controladores PID no Domínio de Frequência (p. 401) |
+| Nise | Cap. 9, §9.4 — Melhorando o erro em regime permanente e a resposta transitória (projeto de PID via LGR) |
+
+## Referências
+
+::: {#refs}
+:::

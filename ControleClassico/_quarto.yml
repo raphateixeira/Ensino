@@ -51,9 +51,11 @@ website:
             href: Notas/Aula08RespostaFrequencia.qmd
           - text: "9 · Controlador PID"
             href: Notas/Aula09PID.qmd
+          - text: "Guia de Estudos: Livros"
+            href: Notas/GuiaBibliografico.qmd
       - text: "Projeto"
         menu:
-          - text: "Catálogo de Módulos Didáticos"
+          - text: "Catálogo de Temas dos Projetos"
             href: Projeto/CatalogoModulos.qmd
       - text: "Avaliações"
         menu:
