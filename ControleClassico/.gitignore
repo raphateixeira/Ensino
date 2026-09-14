@@ -1,6 +1,9 @@
 /.quarto/
 **/*.quarto_ipynb
 
+# Livros-texto (PDFs protegidos por direitos autorais - uso local apenas)
+LivrosControle/pdfs/
+
 /docs/
 /_site/
 *.log

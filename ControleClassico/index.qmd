@@ -61,5 +61,9 @@ Notas de aula de Sistemas de Controle I — Controle Clássico: modelagem por fu
   <h3>Catálogo de Temas dos Projetos</h3>
   <p>Escolha do sistema físico para o projeto de controle</p>
 </a>
+<a class="categoria-card categoria-card--verde" href="Exercicios/Lista01ModelagemPrimeiraSegundaOrdem.qmd">
+  <h3>Lista 1 de Exercícios</h3>
+  <p>Modelagem e resposta de sistemas de 1ª e 2ª ordem</p>
+</a>
 </div>
 ```

@@ -10,6 +10,7 @@ project:
     - index.qmd
     - Notas/*.qmd
     - Projeto/*.qmd
+    - Exercicios/*.qmd
     - Avaliacoes/*.qmd
   resources:
     - Notas/apps/**
@@ -57,6 +58,10 @@ website:
         menu:
           - text: "Catálogo de Temas dos Projetos"
             href: Projeto/CatalogoModulos.qmd
+      - text: "Exercícios"
+        menu:
+          - text: "Lista 1 · Modelagem e Resposta de 1ª e 2ª Ordem"
+            href: Exercicios/Lista01ModelagemPrimeiraSegundaOrdem.qmd
       - text: "Avaliações"
         menu:
           - text: "1 · Avaliação Exemplo (modelo)"
