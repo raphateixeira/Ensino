@@ -343,6 +343,76 @@ Mostra na prática por que a resposta inversa impõe um limite fundamental à ve
 
 ---
 
+## Sem Acesso a uma Bancada?
+
+- As vagas de bancada no LINCE são **limitadas** — nem toda dupla consegue uma para si ao longo do semestre
+- Alguns módulos deste catálogo (ex.: **Drone**, **Resposta Inversa**) são propostas de pesquisa ainda **não montadas** como bancada didática
+- A dupla pode ter estudado ou proposto um **protótipo próprio** que ainda não existe no laboratório
+
+::: {.callout-important}
+Para essas duplas existe uma **modalidade alternativa**: projetar e validar o controlador sobre um **modelo simulado**, com uma **animação** como camada de visualização.
+:::
+
+---
+
+## Modalidade Alternativa: Simulação com Animação
+
+- Em vez da bancada real, a dupla trabalha sobre um **modelo matemático validado na literatura** para a planta escolhida
+- Implementa o **mesmo controlador em malha fechada** (projetado por LGR e resposta em frequência, como nas demais duplas) sobre esse modelo simulado
+- Desenvolve uma **camada de animação**, separada do algoritmo de controle, que visualiza o comportamento da planta
+
+::: {.callout-note}
+A animação é só a **camada de visualização** — o controlador deve funcionar de forma independente dela, como funcionaria a interface entre um controlador real e um sistema supervisório.
+:::
+
+---
+
+## Passo a Passo da Modalidade Alternativa
+
+1. Escolher a planta — deste catálogo (sem bancada disponível) ou proposta/investigada pela dupla
+2. Levantar um **modelo matemático validado na literatura** (artigo, livro-texto ou tese, com parâmetros documentados)
+3. Implementar a planta como **simulação numérica** (função de transferência ou equações de estado)
+4. Projetar o controlador e fechar a malha sobre o modelo simulado
+5. Desenvolver a **camada de animação**, consumindo a saída da simulação sem alterar o algoritmo de controle
+6. Validar comparando a resposta simulada com o que a literatura reporta para a planta
+
+::: {.callout-tip}
+As etapas 1 a 4 e 7 a 8 do projeto continuam as mesmas — a modalidade alternativa substitui apenas a **etapa 6** (implementação na bancada real) por simulação + animação.
+:::
+
+---
+
+## Critérios de Avaliação da Modalidade Alternativa
+
+| Critério | O que é avaliado |
+|:--|:--|
+| **Desempenho do controlador** | Atendimento às especificações (sobressinal, tempo de acomodação, erro em regime); coerência entre o projeto por LGR/Bode e o resultado simulado |
+| **Qualidade da animação** | Fidelidade visual ao comportamento físico da planta, clareza da representação, sincronismo com a simulação |
+
+::: {.callout-important}
+As duas notas são **independentes**: uma animação bonita não compensa um controlador mal projetado, e um controlador correto não é penalizado por uma animação simples.
+:::
+
+---
+
+## Ferramentas Sugeridas
+
+::: {.columns}
+::: {.column width="50%"}
+- **Python** — `python-control`/`scipy.signal` para o controlador; `matplotlib.animation` ou Manim para a camada de visualização
+- **MATLAB** — Control System Toolbox para o projeto; funções gráficas (`patch`, App Designer) para a animação
+:::
+::: {.column width="50%"}
+- **Simulink** — diagrama de blocos para controlador + planta; Simulink 3D Animation ou Simscape Multibody para a camada visual
+:::
+:::
+
+::: {.callout-note}
+A ferramenta é livre — o que importa é manter a **separação clara** entre o algoritmo de controle e a camada de animação, qualquer que seja a stack escolhida.
+:::
+
+---
+
 ## Sugestão de Cronograma
 
 | Etapas | Conteúdo | Alinhado com |
@@ -351,7 +421,7 @@ Mostra na prática por que a resposta inversa impõe um limite fundamental à ve
 | 1–2 | Modelagem, identificação e especificação | até 05/10 (A1) |
 | 3 | Projeto por LGR | a partir de 06/11 (aula 17) |
 | 4 | Projeto por resposta em frequência | a partir de 16/11 (aula 20) |
-| 5–6 | Simulação e implementação na bancada | 23/11–04/12 |
+| 5–6 | Simulação e implementação na bancada (ou modelo simulado + animação, na modalidade alternativa) | 23/11–04/12 |
 | 7–8 | Artigo e apresentação | **14/12 — Entrega de Projetos** |
 
 ::: {.callout-tip}
@@ -365,7 +435,8 @@ Cronograma sugerido, não obrigatório — o que é fixo é a data de entrega fi
 1. Formem a **dupla**
 2. Conversem sobre afinidades: mecânica? eletrônica de potência? eletrônica analógica?
 3. Escolham **um módulo** deste catálogo — ou proponham outro, sob aprovação
-4. Iniciem a Etapa 1: pesquisa e levantamento do modelo físico
+4. Sem bancada disponível? Considerem a **modalidade alternativa** (simulação + animação)
+5. Iniciem a Etapa 1: pesquisa e levantamento do modelo físico
 
 ::: {.callout-important}
 Dúvidas sobre disponibilidade de bancada e material: procurem o professor **antes** de fechar a escolha.

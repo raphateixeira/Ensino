@@ -97,6 +97,10 @@ Separando o numerador para casar com os pares $\mathrm{L}\{e^{-at}\cos bt\}$ e $
 $$Y(s) = \frac{1}{s} - \underbrace{\frac{s+\zeta\omega_n}{(s+\zeta\omega_n)^2+\omega_d^2}}_{e^{-\zeta\omega_n t}\cos\omega_d t} - \frac{\zeta\omega_n}{\omega_d}\underbrace{\frac{\omega_d}{(s+\zeta\omega_n)^2+\omega_d^2}}_{e^{-\zeta\omega_n t}\sin\omega_d t}$$
 :::
 
+---
+
+## Da Transformada Inversa ao Resultado Final
+
 ::: {.fragment}
 Transformada inversa ($\zeta\omega_n/\omega_d=\zeta/\sqrt{1-\zeta^2}$):
 $$y(t) = 1 - e^{-\zeta\omega_n t}\left[\cos\omega_d t + \frac{\zeta}{\sqrt{1-\zeta^2}}\sin\omega_d t\right]$$
