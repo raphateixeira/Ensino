@@ -57,23 +57,19 @@ recente.
 | Dorf | Cap. 5, §5.3 — **Desempenho de um Sistema de Segunda Ordem** (p. 183) |
 | Nise | Cap. 4, §4.4 — Introdução; §4.5 — O Sistema de Segunda Ordem Geral; §4.6 — Sistemas Subamortecidos |
 
-## Aula 5 — Resposta Transitória de Sistemas de Ordem Superior
+## Aula 5 — Exercícios: Sistemas de Primeira e Segunda Ordem
+
+Aula de exercícios — sem conteúdo novo. Os problemas cobrem o mesmo material das Aulas 3 e 4
+(modelagem, forma padrão, resposta ao degrau); consulte as referências dessas duas aulas acima.
+
+## Aula 6 — Ordem Superior e Erro de Regime Permanente
 
 | Livro | Onde encontrar |
 |:--|:--|
-| Ogata [@ogata2010] | Cap. 5, §5.4 — Sistemas de ordem superior (p. 163); §5.6 — Critério de estabilidade de Routh (p. 191) |
-| Franklin [@franklin2013] | Cap. 3, §3.5 — Efeitos de zeros e polos adicionais (p. 104); §3.6 — Estabilidade / Routh (p. 112) |
-| Dorf | Cap. 5, §5.4 — Efeitos de um Terceiro Polo e de um Zero (p. 188); Cap. 6, §6.2 — Routh-Hurwitz (p. 232) |
-| Nise | Cap. 4, §4.7 — Resposta com Polos Adicionais; §4.8 — Resposta com Zeros; Cap. 6 — Estabilidade (Routh-Hurwitz) |
-
-## Aula 6 — Erro de Regime Permanente
-
-| Livro | Onde encontrar |
-|:--|:--|
-| Ogata [@ogata2010] | Cap. 5, §5.8 — Erros estacionários em sistemas com realimentação unitária (p. 203) |
-| Franklin [@franklin2013] | Cap. 4, §4.2 — Controle de erro em estado estacionário: tipo de sistemas (p. 153) |
-| Dorf | Cap. 4, §4.5 — Erro de Estado Estacionário (p. 150); Cap. 5, §5.7–5.8 — Erro com retroação unitária e não unitária (p. 194) |
-| Nise | Cap. 7 — **Erros em Regime Permanente** (capítulo inteiro), §7.2–7.4 |
+| Ogata [@ogata2010] | Cap. 5, §5.4 — Sistemas de ordem superior (p. 163); §5.6 — Critério de estabilidade de Routh (p. 191); §5.8 — Erros estacionários em sistemas com realimentação unitária (p. 203) |
+| Franklin [@franklin2013] | Cap. 3, §3.5 — Efeitos de zeros e polos adicionais (p. 104); §3.6 — Estabilidade / Routh (p. 112); Cap. 4, §4.2 — Controle de erro em estado estacionário: tipo de sistemas (p. 153) |
+| Dorf | Cap. 5, §5.4 — Efeitos de um Terceiro Polo e de um Zero (p. 188); Cap. 6, §6.2 — Routh-Hurwitz (p. 232); Cap. 4, §4.5 — Erro de Estado Estacionário (p. 150); Cap. 5, §5.7–5.8 — Erro com retroação unitária e não unitária (p. 194) |
+| Nise | Cap. 4, §4.7 — Resposta com Polos Adicionais; §4.8 — Resposta com Zeros; Cap. 6 — Estabilidade (Routh-Hurwitz); Cap. 7 — **Erros em Regime Permanente** (capítulo inteiro), §7.2–7.4 |
 
 ## Aula 7 — Lugar Geométrico das Raízes (LGR)
 
