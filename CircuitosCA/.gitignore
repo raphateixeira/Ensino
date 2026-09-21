@@ -12,3 +12,6 @@ PlanoEnsino/*.fls
 PlanoEnsino/*.log
 PlanoEnsino/*.out
 PlanoEnsino/*.run.xml
+
+# Livros-texto (PDFs protegidos por direitos autorais - uso local apenas)
+LivrosCircuitos/pdfs/

@@ -1,6 +1,6 @@
 ---
-title: "Relações CA em Circuitos RLC"
-subtitle: "Circuitos Elétricos II"
+title: "Impedância"
+subtitle: "Circuitos Elétricos II — CA"
 institute: "Universidade Federal do Pará"
 author: "Prof. Dr. Raphael Teixeira"
 format:
@@ -15,7 +15,7 @@ format:
     center: false
     title-slide-attributes:
       data-background-image: "imgs/ufpa-colorido.png"
-      data-background-size: "84px"
+      data-background-size: "101px"
       data-background-position: "top 45px center"
 engine: knitr
 ---
@@ -36,7 +36,7 @@ Resistor $R$, corrente $i(t)$, tensão $v(t)$, Lei de Ohm:
 
 $$i(t) = I_m\cos(\omega t + \phi_i) \rightarrow v(t) = R i(t) = R I_m\cos(\omega t + \phi_i)$$
 
-Forma fasorial: $\;\mathbf{V} = R \mathbf{I} \qquad \rightarrow \qquad \mathbf{V} = V_m\angle\phi_v \text{ e } \mathbf{I} = I_m\angle\phi_i$
+Forma fasorial: $\;\mathbf{V} = R \mathbf{I} \implies \mathbf{Z}_R = R \qquad \rightarrow \qquad \mathbf{V} = V_m\angle\phi_v \text{ e } \mathbf{I} = I_m\angle\phi_i$
 
 ::: {.columns}
 ::: {.column width="50%"}
@@ -49,13 +49,24 @@ Forma fasorial: $\;\mathbf{V} = R \mathbf{I} \qquad \rightarrow \qquad \mathbf{V
 
 ---
 
+## Resistor — Forma de Onda
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 11
+\input{imgs/tikz/FaseResistor.tikz}
+```
+
+---
+
 ## Indutor
 
 Indutor $L$, corrente $i(t)$, tensão $v(t)$:
 
 $$i(t) = I_m\cos(\omega t + \phi_i) \rightarrow v(t) = L\frac{di(t)}{dt} = \omega L I_m\cos(\omega t + \phi_i + 90°)$$
 
-Forma fasorial: $\;\mathbf{V} = j\omega L\, \mathbf{I} \qquad \rightarrow \qquad \mathbf{V} = V_m\angle\phi_v \text{ e } \mathbf{I} = I_m\angle\phi_i\text{, com }\phi_v = \phi_i + 90°$
+Forma fasorial: $\;\mathbf{V} = j\omega L\, \mathbf{I} \implies \mathbf{Z}_L = j\omega L$, com $\phi_v = \phi_i + 90°$ (**tensão adianta** a corrente)
 
 ::: {.columns}
 ::: {.column width="50%"}
@@ -68,13 +79,24 @@ Forma fasorial: $\;\mathbf{V} = j\omega L\, \mathbf{I} \qquad \rightarrow \qquad
 
 ---
 
+## Indutor — Forma de Onda
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 11
+\input{imgs/tikz/FaseIndutor.tikz}
+```
+
+---
+
 ## Capacitor
 
 Capacitor $C$, tensão $v(t)$, corrente $i(t)$:
 
 $$v(t) = V_m\cos(\omega t + \phi_v) \rightarrow i(t) = C\frac{dv(t)}{dt} = \omega C V_m\cos(\omega t + \phi_v + 90°)$$
 
-Forma fasorial: $\;\mathbf{I} = j\omega C\, \mathbf{V} \qquad \rightarrow \qquad \mathbf{V} = V_m\angle\phi_v \text{ e } \mathbf{I} = I_m\angle\phi_i\text{, com }\phi_i = \phi_v + 90°$
+Forma fasorial: $\;\mathbf{I} = j\omega C\, \mathbf{V} \implies \mathbf{Z}_C = 1/(j\omega C)$, com $\phi_i = \phi_v + 90°$ (**corrente adianta** a tensão)
 
 ::: {.columns}
 ::: {.column width="50%"}
@@ -84,6 +106,17 @@ Forma fasorial: $\;\mathbf{I} = j\omega C\, \mathbf{V} \qquad \rightarrow \qquad
 ![](imgs/Fig9p14FasoresC.png){fig-align="center" width="650px"}
 :::
 :::
+
+---
+
+## Capacitor — Forma de Onda
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 11
+\input{imgs/tikz/FaseCapacitor.tikz}
+```
 
 ---
 
@@ -109,6 +142,18 @@ A **reatância** $X$ é a parte imaginária da impedância — mede a oposição
 
 ---
 
+## Reatância — Gráficos
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 12
+\usepgfplotslibrary{groupplots}
+\input{imgs/tikz/Reatancias.tikz}
+```
+
+---
+
 ## Impedância
 
 As três relações tensão-corrente no domínio fasorial,
@@ -119,9 +164,16 @@ podem ser escritas em termos da razão entre o fasor de tensão e o fasor de cor
 
 $$\frac{\mathbf{V}}{\mathbf{I}} = R, \qquad \frac{\mathbf{V}}{\mathbf{I}} = j\omega L, \qquad \frac{\mathbf{V}}{\mathbf{I}} = \frac{1}{j\omega C}$$
 
-Dessas três expressões, obtemos a **Lei de Ohm na forma fasorial** para qualquer elemento:
+---
 
-$$\boxed{\mathbf{Z} = \frac{\mathbf{V}}{\mathbf{I}} \qquad \text{ou} \qquad \mathbf{V} = \mathbf{Z}\mathbf{I}}$$
+## Impedância — Lei de Ohm Fasorial
+
+Dessas três expressões, obtemos a lei de Ohm na forma fasorial para qualquer elemento:
+
+::: {.callout-tip}
+## Lei de Ohm Fasorial
+$$\mathbf{Z} = \frac{\mathbf{V}}{\mathbf{I}} \qquad \text{ou} \qquad \mathbf{V} = \mathbf{Z}\mathbf{I}$$
+:::
 
 ---
 
@@ -140,11 +192,23 @@ A **impedância** $\mathbf{Z}$ de um circuito é a razão entre o fasor de tens�
 
 ---
 
+## Impedância — Analogia com a Lei de Ohm
+
+::: {.callout-tip}
+## Analogia com a Lei de Ohm
+A impedância $\mathbf{Z}$ faz para circuitos CA o que a resistência $R$ faz para CC — as mesmas técnicas de análise (divisor de tensão, nós, malhas, Thévenin...) se aplicam, mas com **números complexos**.
+:::
+
+---
+
 ## Impedância — Retangular e Polar
 
 Comparando as formas retangular e polar, obtemos:
 
-$$\boxed{\mathbf{Z} = R + jX = |\mathbf{Z}|\angle\theta}$$
+::: {.callout-tip}
+## Forma Retangular e Polar
+$$\mathbf{Z} = R + jX = |\mathbf{Z}|\angle\theta$$
+:::
 
 onde
 
@@ -156,20 +220,38 @@ $$R = |\mathbf{Z}|\cos\theta, \qquad X = |\mathbf{Z}|\sin\theta$$
 
 ---
 
+## Tabela Resumo: R, L e C em CA
+
+| | Resistor | Indutor | Capacitor |
+|---|---|---|---|
+| **Relação v-i (tempo)** | $v = Ri$ | $v = L\dfrac{di}{dt}$ | $i = C\dfrac{dv}{dt}$ |
+| **Impedância** | $\mathbf{Z} = R$ | $\mathbf{Z} = j\omega L$ | $\mathbf{Z} = \dfrac{1}{j\omega C}$ |
+| **Módulo** | $R$ | $\omega L$ | $\dfrac{1}{\omega C}$ |
+| **Ângulo** | $0°$ | $+90°$ | $-90°$ |
+| **Defasagem v-i** | Em fase | $v$ adianta $i$ em 90° | $i$ adianta $v$ em 90° |
+| **Potência média** | $\dfrac{V_m I_m}{2}$ | $0$ | $0$ |
+
+---
+
 ## Admitância
 
 ::: {.callout-tip}
 ## Definição
-A **admitância** $\mathbf{Y}$ é o recíproco da impedância, medida em siemens (S).
+A **admitância** $\mathbf{Y}$ é o recíproco da impedância — a razão entre o fasor de corrente através de um elemento (ou circuito) e o fasor de tensão sobre ele, medida em siemens (S):
+
+$$\mathbf{Y} = \frac{1}{\mathbf{Z}} = \frac{\mathbf{I}}{\mathbf{V}}$$
 :::
 
-A admitância $\mathbf{Y}$ de um elemento (ou circuito) é a razão entre o fasor de corrente através dele e o fasor de tensão sobre ele:
+---
 
-$$\boxed{\mathbf{Y} = \frac{1}{\mathbf{Z}} = \frac{\mathbf{I}}{\mathbf{V}}}$$
+## Admitância — Forma Retangular
 
 Como grandeza complexa, podemos escrever $\mathbf{Y}$ como:
 
-$$\boxed{\mathbf{Y} = G + jB}$$
+::: {.callout-tip}
+## Forma Retangular
+$$\mathbf{Y} = G + jB$$
+:::
 
 onde $G=\text{Re}\,\mathbf{Y}$ é a **condutância** e $B=\text{Im}\,\mathbf{Y}$ é a **susceptância**, ambas em siemens.
 
@@ -183,7 +265,14 @@ $$G + jB = \frac{1}{R+jX}\cdot\frac{R-jX}{R-jX} = \frac{R-jX}{R^2+X^2}$$
 
 Igualando as partes real e imaginária:
 
-$$\boxed{G = \frac{R}{R^2+X^2}, \qquad B = -\frac{X}{R^2+X^2}}$$
+::: {.callout-tip}
+## Condutância e Susceptância em Função de R e X
+$$G = \frac{R}{R^2+X^2}, \qquad B = -\frac{X}{R^2+X^2}$$
+:::
+
+---
+
+## Admitância — Condutância e Susceptância (cont.)
 
 ::: {.callout-warning}
 ## Atenção
@@ -273,3 +362,11 @@ Tensão no indutor: $\mathbf{V} = \mathbf{I}\,\mathbf{Z}_L = (4{,}47\angle{-86{,
 
 $$\boxed{i(t) = 4{,}47\cos(10t - 86{,}57°)\ \text{A}}$$
 $$\boxed{v(t) = 8{,}94\cos(10t + 3{,}43°)\ \text{V}}$$
+
+---
+
+## Exercícios
+
+1. Um resistor de $R = 100\,\Omega$ tem corrente $i(t) = 2\cos(1000t)$ A. Encontre $v(t)$ e a impedância $\mathbf{Z}_R$.
+2. Um indutor de $L = 50$ mH opera em $\omega = 377$ rad/s. Calcule $X_L$ e $\mathbf{Z}_L$.
+3. Um capacitor de $C = 220\,\mu\text{F}$ opera em $f = 60$ Hz. Calcule $X_C$ e $\mathbf{Z}_C$.

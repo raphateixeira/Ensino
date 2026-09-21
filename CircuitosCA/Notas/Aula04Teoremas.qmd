@@ -15,7 +15,7 @@ format:
     center: false
     title-slide-attributes:
       data-background-image: "imgs/ufpa-colorido.png"
-      data-background-size: "84px"
+      data-background-size: "101px"
       data-background-position: "top 45px center"
 engine: knitr
 ---
@@ -209,9 +209,12 @@ $$P_L = \frac{1}{2}|\mathbf{I}|^2 R_L, \qquad \mathbf{I} = \frac{\mathbf{V}_{th}
 
 ## Máxima Transferência de Potência — Casamento Conjugado
 
-Maximizando $P_L$ em relação a $X_L$ e depois a $R_L$ (derivadas parciais nulas), obtém-se a condição de **casamento conjugado**:
+Maximizando $P_L$ em relação a $X_L$ e depois a $R_L$ (derivadas parciais nulas), obtém-se a condição de casamento conjugado:
 
-$$\boxed{\mathbf{Z}_L = \mathbf{Z}_{th}^{*} = R_{th}-jX_{th}}$$
+::: {.callout-tip}
+## Casamento Conjugado
+$$\mathbf{Z}_L = \mathbf{Z}_{th}^{*} = R_{th}-jX_{th}$$
+:::
 
 Nessa condição, a potência máxima entregue é:
 

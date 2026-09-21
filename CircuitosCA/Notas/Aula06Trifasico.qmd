@@ -15,7 +15,7 @@ format:
     center: false
     title-slide-attributes:
       data-background-image: "imgs/ufpa-colorido.png"
-      data-background-size: "84px"
+      data-background-size: "101px"
       data-background-position: "top 45px center"
 engine: knitr
 ---
@@ -82,9 +82,16 @@ Esta aula adota, salvo indicação contrária, a **sequência positiva** ($abc$)
 \input{imgs/tikz/FasoresTrifasicos.tikz}
 ```
 
+---
+
+## Relação Fase-Linha
+
 A **tensão de fase** ($\mathbf{V}_{an}$, entre linha e neutro) e a **tensão de linha** ($\mathbf{V}_{ab}$, entre duas linhas) se relacionam por:
 
-$$\boxed{\mathbf{V}_{ab} = \mathbf{V}_{an}-\mathbf{V}_{bn} = \sqrt{3}\,\mathbf{V}_{an}\angle 30°}$$
+::: {.callout-tip}
+## Relação Fase-Linha (Y)
+$$\mathbf{V}_{ab} = \mathbf{V}_{an}-\mathbf{V}_{bn} = \sqrt{3}\,\mathbf{V}_{an}\angle 30°$$
+:::
 
 ---
 
@@ -186,9 +193,16 @@ As perdas na linha são $P_{line}=3|\mathbf{I}_a|^2R_{line}=3(8{,}14)^2(1)\appro
 
 Como $V_L=\sqrt{3}V_p$ (conexão Y) e $I_L=I_p$, a potência total pode ser expressa diretamente em **grandezas de linha** — válida tanto para carga em Y quanto em $\Delta$:
 
-$$\boxed{P = \sqrt{3}\,V_L I_L\cos\theta \qquad Q=\sqrt{3}\,V_L I_L\sin\theta \qquad S=\sqrt{3}\,V_L I_L}$$
+::: {.callout-tip}
+## Potência em Grandezas de Linha
+$$P = \sqrt{3}\,V_L I_L\cos\theta \qquad Q=\sqrt{3}\,V_L I_L\sin\theta \qquad S=\sqrt{3}\,V_L I_L$$
+:::
 
 onde $\theta$ é o ângulo da impedância de carga (defasagem entre tensão e corrente **de fase**, não de linha).
+
+---
+
+## Potência em Grandezas de Linha — Observação
 
 ::: {.callout-warning}
 O $\sqrt{3}$ aqui **não** é o mesmo fator da relação $V_L=\sqrt{3}V_p$: é uma coincidência algébrica de se poder escrever a potência total das três fases diretamente em termos de $V_L$ e $I_L$. Verifique substituindo $V_L=\sqrt3 V_p$ na expressão $P=3V_pI_p\cos\theta$.
@@ -219,7 +233,14 @@ $$W_1 = V_LI_L\cos(\theta+30°) \qquad\qquad W_2 = V_LI_L\cos(\theta-30°)$$
 
 Somando e subtraindo, obtém-se a potência ativa e reativa **totais** das três fases:
 
-$$\boxed{P = W_1+W_2 = \sqrt{3}\,V_LI_L\cos\theta} \qquad\qquad \boxed{Q = \sqrt{3}\,(W_2-W_1) = \sqrt{3}\,V_LI_L\sin\theta}$$
+::: {.callout-tip}
+## Fórmulas dos Dois Wattímetros
+$$P = W_1+W_2 = \sqrt{3}\,V_LI_L\cos\theta \qquad\qquad Q = \sqrt{3}\,(W_2-W_1) = \sqrt{3}\,V_LI_L\sin\theta$$
+:::
+
+---
+
+## Dois Wattímetros — Fator de Potência
 
 ::: {.callout-tip}
 O fator de potência pode ser recuperado sem medir tensão/corrente separadamente: $\tan\theta = \sqrt{3}\,\dfrac{W_2-W_1}{W_1+W_2}$.

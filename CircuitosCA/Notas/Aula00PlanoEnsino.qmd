@@ -15,7 +15,7 @@ format:
     center: false
     title-slide-attributes:
       data-background-image: "imgs/ufpa-colorido.png"
-      data-background-size: "84px"
+      data-background-size: "101px"
       data-background-position: "top 45px center"
 engine: knitr
 ---

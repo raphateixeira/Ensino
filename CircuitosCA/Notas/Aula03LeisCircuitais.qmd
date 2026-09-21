@@ -15,7 +15,7 @@ format:
     center: false
     title-slide-attributes:
       data-background-image: "imgs/ufpa-colorido.png"
-      data-background-size: "84px"
+      data-background-size: "101px"
       data-background-position: "top 45px center"
 engine: knitr
 ---
@@ -44,9 +44,16 @@ Usando $\cos(\cdot) = \text{Re}(e^{j(\cdot)})$ e fazendo $\mathbf{V}_k = V_{mk}e
 
 $$\text{Re}\!\left[(\mathbf{V}_1+\mathbf{V}_2+\cdots+\mathbf{V}_n)\,e^{j\omega t}\right] = 0$$
 
+---
+
+## Lei de Kirchhoff das Tensões — Forma Fasorial
+
 Como $e^{j\omega t}\neq 0$ para todo $t$:
 
-$$\boxed{\mathbf{V}_1 + \mathbf{V}_2 + \cdots + \mathbf{V}_n = 0}$$
+::: {.callout-tip}
+## Lei de Kirchhoff das Tensões (LKT)
+$$\mathbf{V}_1 + \mathbf{V}_2 + \cdots + \mathbf{V}_n = 0$$
+:::
 
 ---
 
@@ -64,9 +71,25 @@ Usando $\cos(\cdot) = \text{Re}(e^{j(\cdot)})$ e fazendo $\mathbf{I}_k = I_{mk}e
 
 $$\text{Re}\!\left[(\mathbf{I}_1+\mathbf{I}_2+\cdots+\mathbf{I}_n)\,e^{j\omega t}\right] = 0$$
 
+---
+
+## Lei de Kirchhoff das Correntes — Forma Fasorial
+
 Como $e^{j\omega t}\neq 0$ para todo $t$:
 
-$$\boxed{\mathbf{I}_1 + \mathbf{I}_2 + \cdots + \mathbf{I}_n = 0}$$
+::: {.callout-tip}
+## Lei de Kirchhoff das Correntes (LKC)
+$$\mathbf{I}_1 + \mathbf{I}_2 + \cdots + \mathbf{I}_n = 0$$
+:::
+
+---
+
+## Álgebra de Impedâncias
+
+::: {.callout-warning}
+## Atenção
+Impedâncias são números **complexos** — as operações devem ser feitas com álgebra complexa, não com módulos diretamente.
+:::
 
 ---
 
@@ -78,7 +101,10 @@ Aplicando a LKT ao laço: $\mathbf{V} = \mathbf{V}_1+\mathbf{V}_2+\cdots+\mathbf
 
 A impedância equivalente vista pela fonte é:
 
-$$\boxed{\mathbf{Z}_{eq} = \frac{\mathbf{V}}{\mathbf{I}} = \mathbf{Z}_1+\mathbf{Z}_2+\cdots+\mathbf{Z}_N = \sum_{n=1}^{N}\mathbf{Z}_n}$$
+::: {.callout-tip}
+## Impedância Equivalente — Série
+$$\mathbf{Z}_{eq} = \frac{\mathbf{V}}{\mathbf{I}} = \mathbf{Z}_1+\mathbf{Z}_2+\cdots+\mathbf{Z}_N = \sum_{n=1}^{N}\mathbf{Z}_n$$
+:::
 
 ---
 
@@ -90,7 +116,31 @@ Com base no resultado anterior, para dois elementos em série ($N=2$): $\mathbf{
 
 Como $\mathbf{V}_n = \mathbf{I}\mathbf{Z}_n$, a tensão sobre cada impedância é:
 
-$$\boxed{\mathbf{V}_1 = \frac{\mathbf{Z}_1}{\mathbf{Z}_1+\mathbf{Z}_2}\,\mathbf{V}, \qquad \mathbf{V}_2 = \frac{\mathbf{Z}_2}{\mathbf{Z}_1+\mathbf{Z}_2}\,\mathbf{V}}$$
+::: {.callout-tip}
+## Divisor de Tensão
+$$\mathbf{V}_1 = \frac{\mathbf{Z}_1}{\mathbf{Z}_1+\mathbf{Z}_2}\,\mathbf{V}, \qquad \mathbf{V}_2 = \frac{\mathbf{Z}_2}{\mathbf{Z}_1+\mathbf{Z}_2}\,\mathbf{V}$$
+:::
+
+---
+
+## Divisor de Tensão — Exemplo Numérico
+
+**Problema:** $\mathbf{Z}_1 = 3+j4\ \Omega$ e $\mathbf{Z}_2 = 6-j2\ \Omega$ em série são alimentados por $\mathbf{V}_s = 20\angle 0°$ V. Encontre $\mathbf{V}_1$ e $\mathbf{V}_2$.
+
+$$\mathbf{Z}_{eq} = \mathbf{Z}_1+\mathbf{Z}_2 = 9+j2\ \Omega = 9{,}22\angle 12{,}5°\ \Omega$$
+
+---
+
+## Divisor de Tensão — Solução
+
+$$\mathbf{V}_1 = \frac{3+j4}{9+j2}(20\angle 0°) = \frac{5\angle 53{,}1°}{9{,}22\angle 12{,}5°}(20\angle 0°) = 10{,}85\angle 40{,}6°\ \text{V}$$
+
+$$\mathbf{V}_2 = \frac{6-j2}{9+j2}(20\angle 0°) = \frac{6{,}32\angle{-18{,}4°}}{9{,}22\angle 12{,}5°}(20\angle 0°) = 13{,}72\angle{-31{,}0°}\ \text{V}$$
+
+::: {.callout-note}
+## Verificação
+$\mathbf{V}_1+\mathbf{V}_2$ deve reconstituir $\mathbf{V}_s = 20\angle 0°$ V (LKT) — confirme somando as formas retangulares.
+:::
 
 ---
 
@@ -102,7 +152,10 @@ Aplicando a LKC ao nó superior: $\mathbf{I} = \mathbf{I}_1+\mathbf{I}_2+\cdots+
 
 A impedância equivalente vista pela fonte é:
 
-$$\boxed{\frac{1}{\mathbf{Z}_{eq}} = \frac{\mathbf{I}}{\mathbf{V}} = \frac{1}{\mathbf{Z}_1}+\frac{1}{\mathbf{Z}_2}+\cdots+\frac{1}{\mathbf{Z}_N} = \sum_{n=1}^{N}\frac{1}{\mathbf{Z}_n}}$$
+::: {.callout-tip}
+## Impedância Equivalente — Paralelo
+$$\frac{1}{\mathbf{Z}_{eq}} = \frac{\mathbf{I}}{\mathbf{V}} = \frac{1}{\mathbf{Z}_1}+\frac{1}{\mathbf{Z}_2}+\cdots+\frac{1}{\mathbf{Z}_N} = \sum_{n=1}^{N}\frac{1}{\mathbf{Z}_n}$$
+:::
 
 ---
 
@@ -114,7 +167,24 @@ Com base no resultado anterior, para dois elementos em paralelo ($N=2$): $\mathb
 
 Como $\mathbf{V} = \mathbf{I}\mathbf{Z}_{eq} = \mathbf{I}_1\mathbf{Z}_1 = \mathbf{I}_2\mathbf{Z}_2$, a corrente em cada impedância é:
 
-$$\boxed{\mathbf{I}_1 = \frac{\mathbf{Z}_2}{\mathbf{Z}_1+\mathbf{Z}_2}\,\mathbf{I}, \qquad \mathbf{I}_2 = \frac{\mathbf{Z}_1}{\mathbf{Z}_1+\mathbf{Z}_2}\,\mathbf{I}}$$
+::: {.callout-tip}
+## Divisor de Corrente
+$$\mathbf{I}_1 = \frac{\mathbf{Z}_2}{\mathbf{Z}_1+\mathbf{Z}_2}\,\mathbf{I}, \qquad \mathbf{I}_2 = \frac{\mathbf{Z}_1}{\mathbf{Z}_1+\mathbf{Z}_2}\,\mathbf{I}$$
+:::
+
+---
+
+## Divisor de Corrente — Exemplo Numérico
+
+**Problema:** $\mathbf{Z}_1 = j10\ \Omega$ e $\mathbf{Z}_2 = 5\ \Omega$ em paralelo são alimentados por $\mathbf{I}_s = 4\angle 0°$ A. Encontre $\mathbf{I}_1$ e $\mathbf{I}_2$.
+
+**Solução:**
+
+$$\mathbf{I}_1 = \frac{\mathbf{Z}_2}{\mathbf{Z}_1+\mathbf{Z}_2}\,\mathbf{I}_s = \frac{5}{5+j10}(4\angle 0°) = \frac{5\angle 0°}{11{,}18\angle 63{,}4°}(4\angle 0°) = 1{,}79\angle{-63{,}4°}\ \text{A}$$
+
+$$\mathbf{I}_2 = \frac{\mathbf{Z}_1}{\mathbf{Z}_1+\mathbf{Z}_2}\,\mathbf{I}_s = \frac{j10}{5+j10}(4\angle 0°) = \frac{10\angle 90°}{11{,}18\angle 63{,}4°}(4\angle 0°) = 3{,}58\angle 26{,}6°\ \text{A}$$
+
+> Note que $|\mathbf{I}_1|+|\mathbf{I}_2| \neq |\mathbf{I}_s|$: os módulos **não** se somam diretamente porque as correntes estão defasadas entre si (apenas a soma **fasorial** reconstitui $\mathbf{I}_s$).
 
 ---
 
@@ -227,3 +297,9 @@ Corrente do laço: $\mathbf{I} = \dfrac{\mathbf{V}_s}{\mathbf{Z}} = \dfrac{50\an
 Tensão no capacitor: $\mathbf{V}_o = \mathbf{I}\,\mathbf{Z}_C = (17{,}68\angle{-15°})(2\angle{-90°}) = 35{,}36\angle{-105°}\ \text{V}$
 
 $$\boxed{v_o(t) = 35{,}36\cos(10t-105°)\ \text{V}}$$
+
+---
+
+## Exercício
+
+Dois elementos com $\mathbf{Z}_1 = 4+j3\ \Omega$ e $\mathbf{Z}_2 = 2-j2\ \Omega$ estão em paralelo. Calcule $\mathbf{Z}_{eq}$ usando admitâncias.

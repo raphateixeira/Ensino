@@ -15,7 +15,7 @@ format:
     center: false
     title-slide-attributes:
       data-background-image: "imgs/ufpa-colorido.png"
-      data-background-size: "84px"
+      data-background-size: "101px"
       data-background-position: "top 45px center"
 engine: knitr
 ---
@@ -49,7 +49,10 @@ $$p(t) = v(t)\,i(t) = V_mI_m\cos(\omega t+\theta_v)\cos(\omega t+\theta_i)$$
 
 Usando a identidade produto-para-soma e definindo o **ângulo de potência** $\theta=\theta_v-\theta_i$:
 
-$$\boxed{p(t) = \underbrace{V_{rms}I_{rms}\cos\theta\,[1+\cos(2\omega t+2\theta_i)]}_{\text{parcela “resistiva”, sempre}\geq 0} \;-\; \underbrace{V_{rms}I_{rms}\sin\theta\,\sin(2\omega t+2\theta_i)}_{\text{parcela “reativa”, oscila em torno de }0}}$$
+::: {.callout-tip}
+## Potência Instantânea
+$$p(t) = \underbrace{V_{rms}I_{rms}\cos\theta\,[1+\cos(2\omega t+2\theta_i)]}_{\text{parcela “resistiva”, sempre}\geq 0} \;-\; \underbrace{V_{rms}I_{rms}\sin\theta\,\sin(2\omega t+2\theta_i)}_{\text{parcela “reativa”, oscila em torno de }0}$$
+:::
 
 com $V_{rms}=V_m/\sqrt{2}$, $I_{rms}=I_m/\sqrt 2$. Note que $p(t)$ oscila no **dobro** da frequência de $v(t)$ e $i(t)$.
 
@@ -65,7 +68,14 @@ com $V_{rms}=V_m/\sqrt{2}$, $I_{rms}=I_m/\sqrt 2$. Note que $p(t)$ oscila no **d
 
 A **potência média** é o valor médio de $p(t)$ ao longo de um período — apenas o primeiro termo da decomposição sobrevive à média (o segundo tem valor médio nulo):
 
-$$\boxed{P = V_{rms}I_{rms}\cos\theta = \frac{1}{2}V_mI_m\cos(\theta_v-\theta_i)} \qquad [\text{W}]$$
+::: {.callout-tip}
+## Potência Média (Ativa)
+$$P = V_{rms}I_{rms}\cos\theta = \frac{1}{2}V_mI_m\cos(\theta_v-\theta_i) \qquad [\text{W}]$$
+:::
+
+---
+
+## Potência Média (Ativa) — Observações
 
 ::: {.callout-tip}
 $P$ é a única componente que realiza **trabalho útil** (aquecimento, torque, luz) — é ela que a concessionária fatura em kWh.
@@ -79,7 +89,10 @@ $P$ é a única componente que realiza **trabalho útil** (aquecimento, torque, 
 
 A amplitude da parcela oscilante "reativa" de $p(t)$ define a **potência reativa**:
 
-$$\boxed{Q = V_{rms}I_{rms}\sin\theta = \frac{1}{2}V_mI_m\sin(\theta_v-\theta_i)} \qquad [\text{var}]$$
+::: {.callout-tip}
+## Potência Reativa
+$$Q = V_{rms}I_{rms}\sin\theta = \frac{1}{2}V_mI_m\sin(\theta_v-\theta_i) \qquad [\text{var}]$$
+:::
 
 ::: {.callout-important}
 $Q$ **não representa consumo de energia líquido** — é a taxa de troca de energia entre a fonte e os campos elétrico/magnético de capacitores e indutores.
@@ -105,7 +118,10 @@ $$S = V_{rms}I_{rms} \qquad [\text{VA}]$$
 
 A **potência complexa** combina $P$ e $Q$ em um único número complexo, calculado diretamente dos fasores:
 
-$$\boxed{\mathbf{S} = \frac{1}{2}\mathbf{V}\mathbf{I}^{*} = \mathbf{V}_{rms}\mathbf{I}_{rms}^{*} = P+jQ}$$
+::: {.callout-tip}
+## Potência Complexa
+$$\mathbf{S} = \frac{1}{2}\mathbf{V}\mathbf{I}^{*} = \mathbf{V}_{rms}\mathbf{I}_{rms}^{*} = P+jQ$$
+:::
 
 onde $\mathbf{I}^{*}$ é o **conjugado** do fasor de corrente. Note que $|\mathbf{S}|=S$ (a apparente é o módulo da complexa).
 
@@ -191,9 +207,16 @@ O capacitor **não altera $P$** (não dissipa potência ativa); ele reduz apenas
 
 $$Q_c = Q_1-Q_2 = P(\tan\theta_1-\tan\theta_2)$$
 
+---
+
+## Correção do Fator de Potência — Capacitância
+
 Como a reatância capacitiva fornece $Q_c = \omega C V_{rms}^2$ (potência reativa **negativa**, na convenção da carga):
 
-$$\boxed{C = \frac{Q_c}{\omega V_{rms}^2}}$$
+::: {.callout-tip}
+## Capacitância de Correção
+$$C = \frac{Q_c}{\omega V_{rms}^2}$$
+:::
 
 ---
 
