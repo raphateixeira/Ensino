@@ -183,7 +183,7 @@ $t_s$ depende só de $\sigma=\zeta\omega_n$ — a **parte real do polo**, não d
 | Tempo de subida (0–100%) | $t_r \approx \dfrac{1{,}8}{\omega_n}$ | aproximação para $0{,}3\lesssim\zeta\lesssim0{,}8$ |
 
 ::: {.callout-important}
-Note que $t_s$ depende apenas de $\sigma=\zeta\omega_n$ (a parte real do polo) — **por isso os polos dominantes** (Aula 5) bastam para estimar $t_s$ em sistemas de ordem superior.
+Note que $t_s$ depende apenas de $\sigma=\zeta\omega_n$ (a parte real do polo) — **por isso os polos dominantes** (Aula 6) bastam para estimar $t_s$ em sistemas de ordem superior.
 :::
 
 ---
