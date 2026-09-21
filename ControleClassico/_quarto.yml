@@ -42,8 +42,8 @@ website:
             href: Notas/Aula03PrimeiraOrdem.qmd
           - text: "4 · Sistemas de Segunda Ordem"
             href: Notas/Aula04SegundaOrdem.qmd
-          - text: "5 · Resposta Transitória"
-            href: Notas/Aula05RespostaTransitoria.qmd
+          - text: "5 · Exercícios: 1ª e 2ª Ordem"
+            href: Notas/Aula05ExerciciosPrimeiraSegundaOrdem.qmd
           - text: "6 · Erro de Regime Permanente"
             href: Notas/Aula06ErroRegimePermanente.qmd
           - text: "7 · Lugar Geométrico das Raízes"

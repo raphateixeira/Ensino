@@ -33,9 +33,9 @@ Notas de aula de Sistemas de Controle I — Controle Clássico: modelagem por fu
   <h3>Aula 4</h3>
   <p>Sistemas de Segunda Ordem</p>
 </a>
-<a class="categoria-card" href="Notas/Aula05RespostaTransitoria.qmd">
+<a class="categoria-card" href="Notas/Aula05ExerciciosPrimeiraSegundaOrdem.qmd">
   <h3>Aula 5</h3>
-  <p>Resposta Transitória de Sistemas de Ordem Superior</p>
+  <p>Exercícios: Sistemas de Primeira e Segunda Ordem</p>
 </a>
 <a class="categoria-card" href="Notas/Aula06ErroRegimePermanente.qmd">
   <h3>Aula 6</h3>
