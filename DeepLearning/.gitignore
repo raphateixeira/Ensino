@@ -1,5 +1,9 @@
 /.quarto/
 **/*.quarto_ipynb
 
-/docs/
 /Livros/
+/_site/
+
+# Tema compartilhado: baixado de raphateixeira/.github no build (ver GitRTx/atualizar-tema.sh)
+/TemaRTx.scss
+.claude/
