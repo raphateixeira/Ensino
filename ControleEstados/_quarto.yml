@@ -1,7 +1,6 @@
 project:
   type: website
-  output-dir: docs
-
+  output-dir: _site
 website:
   title: "Espaço de Estados"
   site-url: https://raphateixeira.github.io/ControleEstados/

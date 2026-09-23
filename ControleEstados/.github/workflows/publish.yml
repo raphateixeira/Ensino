@@ -18,4 +18,4 @@ jobs:
       needs_magick_system_deps: true
       needs_tinytex: true
       tinytex_packages: "pgf pgfplots xcolor"
-      output_dir: "docs"
+      output_dir: "_site"
