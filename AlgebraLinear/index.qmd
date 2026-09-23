@@ -9,6 +9,8 @@ format:
     theme: [cosmo, TemaRTx.scss]
 ---
 
+[⬅ Site principal](https://raphateixeira.github.io)
+
 Notas de Aula:
 
 * Aula 00: [Plano de Ensino](Notas/AL00PlanoEnsinoAlgebraLinear.qmd)
