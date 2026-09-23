@@ -9,6 +9,8 @@ format:
     page-layout: article
 ---
 
+[⬅ Site principal](https://raphateixeira.github.io)
+
 Notas de aula de Sistemas de Controle II - Espaço de Estados:
 
 Turma de 2024 da FEE - CAMTUC - UFPA.
