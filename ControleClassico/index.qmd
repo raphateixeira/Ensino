@@ -9,6 +9,8 @@ format:
     page-layout: article
 ---
 
+[⬅ Site principal](https://raphateixeira.github.io)
+
 Notas de aula de Sistemas de Controle I — Controle Clássico: modelagem por função de transferência, resposta transitória de sistemas de primeira e segunda ordem, erro de regime permanente, lugar geométrico das raízes, resposta em frequência e controladores PID.
 
 ```{=html}
