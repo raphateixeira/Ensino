@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(pdftoppm -png -r 120 -f 5 -l 6 PlanoEnsinoControleI.pdf /private/tmp/claude-501/-Users-raphateixeira-GitRTx-ControleClassico/3ad04c76-eb52-43a3-8215-406d3b7e7c5a/scratchpad/plano2)",
-      "Bash(pdfinfo PlanoEnsinoControleI.pdf)",
-      "Bash(python3 -c ' *)"
-    ]
-  }
-}

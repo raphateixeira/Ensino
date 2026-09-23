@@ -4,7 +4,6 @@
 # Livros-texto (PDFs protegidos por direitos autorais - uso local apenas)
 LivrosControle/pdfs/
 
-/docs/
 /_site/
 *.log
 .DS_Store
@@ -17,3 +16,7 @@ PlanoEnsino/*.fdb_latexmk
 PlanoEnsino/*.fls
 PlanoEnsino/*.out
 PlanoEnsino/*.run.xml
+
+# Tema compartilhado: baixado de raphateixeira/.github no build (ver GitRTx/atualizar-tema.sh)
+/TemaRTx.scss
+.claude/
