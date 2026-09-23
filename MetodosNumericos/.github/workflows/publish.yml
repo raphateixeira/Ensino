@@ -14,7 +14,6 @@ jobs:
     uses: raphateixeira/.github/.github/workflows/quarto-publish.yml@main
     with:
       needs_python: true
-      python_packages: "numpy scipy matplotlib"
       needs_r: true
       r_packages: "knitr, rmarkdown, reticulate, tikzDevice, magick, pdftools"
       needs_magick_system_deps: true
