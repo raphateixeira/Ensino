@@ -350,7 +350,7 @@ print(f"  Maior: {info64.max}")
 ### Dígitos significativos decimais
 
 Número de dígitos decimais significativos:
-$$\text{# dígitos decimais} \approx p \times \log_{10}(2)$$
+$$\text{n.º de dígitos decimais} \approx p \times \log_{10}(2)$$
 
 - **float32** ($p = 24$): $\approx 24 \times 0.301 \approx 7$ dígitos
 - **float64** ($p = 53$): $\approx 53 \times 0.301 \approx 16$ dígitos
