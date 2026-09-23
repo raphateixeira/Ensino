@@ -9,6 +9,8 @@ format:
     page-layout: article
 ---
 
+[⬅ Site principal](https://raphateixeira.github.io)
+
 Notas de aula de Cálculo Numérico — implementações em **Python** (NumPy · SciPy · Matplotlib), com ênfase em aplicações de Engenharia.
 
 Veja também as [animações Manim dos métodos de zeros de função](https://raphateixeira.github.io/Manim/#zeros-de-funcoes) (bisseção, Newton-Raphson e secante), usadas na Aula 2.
