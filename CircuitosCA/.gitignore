@@ -16,5 +16,5 @@ PlanoEnsino/*.run.xml
 # Livros-texto (PDFs protegidos por direitos autorais - uso local apenas)
 LivrosCircuitos/pdfs/
 
-# Tema compartilhado: baixado de raphateixeira/.github no build (ver GitRTx/atualizar-tema.sh)
+# Tema compartilhado: baixado de raphateixeira/.github no build (ver .github/scripts/atualizar-tema.sh na raiz de GitRTx)
 /TemaRTx.scss
