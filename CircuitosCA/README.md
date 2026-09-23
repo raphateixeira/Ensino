@@ -17,4 +17,4 @@ alternada: fasores, impedância, potência e regime permanente senoidal.
 - `Avaliacoes/` — provas e listas de exercícios.
 - `PlanoEnsino/` — plano de ensino em LaTeX (ementa, cronograma, bibliografia).
 
-Baseado no [TemplateNotas](https://github.com/raphateixeira/TemplateNotas), o modelo reutilizável de projeto Quarto para disciplinas.
+Segue o modelo de projeto Quarto para disciplinas usado em [AlgebraLinear](https://github.com/raphateixeira/AlgebraLinear).
