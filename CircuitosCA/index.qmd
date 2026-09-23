@@ -9,6 +9,8 @@ format:
     page-layout: article
 ---
 
+[⬅ Site principal](https://raphateixeira.github.io)
+
 <!-- Portal do projeto. Cada item aponta para um deck em Notas/.
      Duplique as linhas conforme adicionar aulas. -->
 
