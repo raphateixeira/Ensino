@@ -12,6 +12,8 @@ format:
     theme: [cosmo, TemaRTx.scss]
 ---
 
+[⬅ Site principal](https://raphateixeira.github.io)
+
 Notas de Estudo - Deep Learning:
 
 * [Aula 01](Notas/Aula01DeepLearning.html) - Deep Learning: Introdução, Fundamentos e Aplicações;
