@@ -22,11 +22,12 @@ ControleClassico/
 │   ├── Aula02ModelagemFT.qmd    Laplace, função de transferência, diagrama de blocos
 │   ├── Aula03PrimeiraOrdem.qmd  sistemas de primeira ordem
 │   ├── Aula04SegundaOrdem.qmd   sistemas de segunda ordem
-│   ├── Aula05RespostaTransitoria.qmd  polos dominantes, efeito de polos/zeros extras
-│   ├── Aula06ErroRegimePermanente.qmd erro em regime permanente, tipo de sistema
-│   ├── Aula07LGR.qmd            lugar geométrico das raízes
-│   ├── Aula08RespostaFrequencia.qmd   Bode, margens de estabilidade
-│   ├── Aula09PID.qmd            controlador PID e sintonia
+│   ├── Aula05ExerciciosPrimeiraSegundaOrdem.qmd  exercícios de 1ª e 2ª ordem
+│   ├── Aula06ErroRegimePermanente.qmd ordem superior, erro em regime permanente, tipo
+│   ├── Aula07Estabilidade.qmd   estabilidade, critério de Routh-Hurwitz, faixa de K
+│   ├── Aula08LGR.qmd            lugar geométrico das raízes
+│   ├── Aula09RespostaFrequencia.qmd   Bode, margens de estabilidade
+│   ├── Aula10PID.qmd            controlador PID e sintonia
 │   └── imgs/
 │       ├── UFPA.png              logotipo da capa
 │       ├── plots/                 figuras geradas por scripts/gerar_figuras.py

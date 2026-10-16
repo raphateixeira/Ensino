@@ -392,8 +392,314 @@ def fig_erro_tipo_stack():
     save(fig, "fig_erro_tipo_stack")
 
 
+def fig_erro_ganho_1ordem():
+    """Exemplo 1: planta de 1a ordem G(s)=1/(tau s+1) com ganho
+    proporcional K, malha fechada unitária. Mostra o degrau para
+    K=1,3,10: o erro de regime encolhe, mas nunca some (tipo 0)."""
+    fig, ax = plt.subplots(figsize=(7.6, 4.6))
+    t = np.linspace(0, 8, 1600)
+    tau = 1.0
+    planta = ct.tf([1], [tau, 1])
+
+    for k, color in zip([1, 3, 10], SERIES):
+        malha = ct.feedback(k * planta, 1)
+        _, y = ct.step_response(malha, T=t)
+        ess = 1 - y[-1]
+        ax.plot(t, y, color=color, label=rf"$K={k:g}$  ($e_{{ss}}\approx{ess:.3f}$)")
+    ax.axhline(1.0, color=MUTED, lw=1.2, ls="--", label="$r(t)=1$")
+    ax.set_xlabel("tempo $t$ [s]")
+    ax.set_ylabel("$y(t)$")
+    ax.set_title(r"$G(s)=\dfrac{K}{s+1}$, malha fechada — erro ao degrau encolhe com $K$")
+    ax.legend(fontsize=9, loc="lower right")
+    save(fig, "fig_erro_ganho_1ordem")
+
+
+def fig_erro_ganho_2ordem():
+    """Exemplo 2: planta de 2a ordem (integrador + polo real)
+    G(s)=K/[s(s+p)] com ganho proporcional K, malha fechada unitária.
+    Mostra a rampa para K=2,5,20: erro ao degrau é sempre zero (tipo 1),
+    mas o erro à rampa encolhe sem nunca zerar."""
+    fig, ax = plt.subplots(figsize=(7.6, 4.6))
+    p = 2.0
+    t = np.linspace(0, 10, 2000)
+    rampa = t
+
+    for k, color in zip([2, 5, 20], SERIES):
+        planta = ct.tf([k], [1, p, 0])
+        malha = ct.feedback(planta, 1)
+        _, y = ct.forced_response(malha, T=t, U=rampa)
+        ess = rampa[-1] - y[-1]
+        ax.plot(t, y, color=color, label=rf"$K={k:g}$  ($e_{{ss}}\approx{ess:.2f}$)")
+    ax.plot(t, rampa, color=MUTED, lw=1.2, ls="--", label="$r(t)=t$")
+    ax.set_xlabel("tempo $t$ [s]")
+    ax.set_ylabel("saída")
+    ax.set_title(r"$G(s)=\dfrac{K}{s(s+2)}$, malha fechada — erro à rampa encolhe com $K$")
+    ax.legend(fontsize=9, loc="upper left")
+    save(fig, "fig_erro_ganho_2ordem")
+
+
 # =====================================================================
-# Aula 07 — Lugar Geométrico das Raízes (LGR)
+# Aula 07 — Estabilidade e Critério de Routh-Hurwitz
+# =====================================================================
+
+def _plano_s(ax, lim_re=(-7, 1.5), lim_im=(-3, 3)):
+    ax.axhline(0, color=MUTED, lw=1, zorder=0)
+    ax.axvline(0, color=MUTED, lw=1, zorder=0)
+    ax.set_xlim(*lim_re)
+    ax.set_ylim(*lim_im)
+    ax.set_xlabel(r"Re$(s)$")
+    ax.set_ylabel(r"Im$(s)$")
+
+
+def fig_estab_modos():
+    """Sistema de 4ª ordem com um zero: mapa de polos e zeros (esq.) e
+    resposta ao degrau decomposta em modos (dir.). Os zeros só mudam os
+    resíduos; a natureza de cada modo é dada pelos polos."""
+    num = [10, 30]                                   # 10(s+3)
+    den = np.convolve(np.convolve([1, 1], [1, 2, 5]), [1, 6])
+    G = ct.tf(num, den)
+    fig, axs = plt.subplots(1, 2, figsize=(12.5, 4.6),
+                            gridspec_kw={"width_ratios": [1, 1.35]})
+
+    ax = axs[0]
+    _plano_s(ax, (-7, 1.5), (-3, 3))
+    p = ct.poles(G)
+    z = ct.zeros(G)
+    ax.plot(p.real, p.imag, "x", color=RED, ms=13, mew=3, label="polos")
+    ax.plot(z.real, z.imag, "o", color=GREEN, ms=11, mfc="none", mew=2.4, label="zero")
+    for pk in p:
+        if pk.imag >= 0:
+            lbl = f"${pk.real:.0f}$" if abs(pk.imag) < 1e-9 else rf"$-1\pm j2$"
+            ax.annotate(lbl, (pk.real, pk.imag), xytext=(4, 9),
+                        textcoords="offset points", fontsize=10, color=INK)
+    ax.annotate("$-3$", (-3, 0), xytext=(-6, -20), textcoords="offset points", fontsize=10)
+    ax.set_title(r"$G(s)=\dfrac{10(s+3)}{(s+1)(s^2+2s+5)(s+6)}$")
+    ax.legend(loc="upper left", fontsize=8, markerscale=0.6, handletextpad=0.3)
+
+    ax = axs[1]
+    t = np.linspace(0, 7, 1400)
+    # Y(s)=G(s)/s = 1/s - 1/(s+1) - (1/29)/(s+6) + (s-33)/[29(s^2+2s+5)]
+    m0 = np.ones_like(t)
+    m1 = -np.exp(-t)
+    m6 = -np.exp(-6 * t) / 29
+    # (s-33)/((s+1)^2+4) -> e^{-t}[cos2t - 17 sin2t]
+    mc = np.exp(-t) * (np.cos(2 * t) - 17 * np.sin(2 * t)) / 29
+    _, y = ct.step_response(G, T=t)
+    ax.plot(t, m1, color=ORANGE, lw=1.6, ls="--", label=r"modo $s=-1$: $-e^{-t}$")
+    ax.plot(t, mc, color=VIOLET, lw=1.6, ls="--", label=r"modo $s=-1\pm j2$: $e^{-t}(\cdots)$")
+    ax.plot(t, m6, color=AQUA, lw=1.6, ls="--", label=r"modo $s=-6$: $-\frac{1}{29}e^{-6t}$")
+    ax.plot(t, y, color=BLUE, lw=2.6, label=r"$y(t)$ = 1 + soma dos modos")
+    ax.axhline(1.0, color=MUTED, lw=1.1, ls=":")
+    ax.set_xlabel("tempo $t$ [s]")
+    ax.set_ylabel("amplitude")
+    ax.set_title("Resposta ao degrau = regime + soma de modos")
+    ax.legend(fontsize=9, loc="lower right")
+    fig.tight_layout()
+    save(fig, "fig_estab_modos")
+
+
+def fig_estab_bola():
+    """Analogia clássica: bola num vale (estável), num plano (marginal)
+    e no topo de uma colina (instável)."""
+    fig, axs = plt.subplots(1, 3, figsize=(12, 3.4))
+    x = np.linspace(-2, 2, 400)
+    casos = [
+        (0.5 * x**2, GREEN, "Estável", "perturbada, volta ao equilíbrio"),
+        (0 * x, YELLOW, "Marginalmente estável", "perturbada, fica onde parou"),
+        (-0.5 * x**2, RED, "Instável", "perturbada, afasta-se sem limite"),
+    ]
+    for ax, (h, c, tit, sub) in zip(axs, casos):
+        ax.fill_between(x, h, -2.2, color=GRID)
+        ax.plot(x, h, color=INK, lw=2)
+        y0 = h[200] + 0.2
+        ax.add_patch(plt.Circle((0, y0), 0.2, color=c, zorder=3))
+        ax.annotate("", xy=(0.75, y0 + 0.05), xytext=(0.25, y0 + 0.05),
+                    arrowprops=dict(arrowstyle="->", color=MUTED, lw=1.6))
+        ax.set_title(tit, color=c if c != YELLOW else "#b07a00", fontsize=13, fontweight="bold")
+        ax.text(0, -2.55, sub, ha="center", fontsize=10, color=INK)
+        ax.set_xlim(-2, 2)
+        ax.set_ylim(-2.8, 2.2)
+        ax.set_aspect("equal")
+        ax.axis("off")
+    fig.tight_layout()
+    save(fig, "fig_estab_bola")
+
+
+def fig_estab_polos_impulso():
+    """Resposta ao impulso conforme a posição dos polos: colunas SPE,
+    eixo jω, SPD; linhas polo real, par complexo. Cada painel traz o
+    mini plano s com a localização do(s) polo(s)."""
+    t = np.linspace(0, 10, 1500)
+    w = 2.0
+    casos = [
+        # (polos, resposta, cor, título)
+        ([-0.6], np.exp(-0.6 * t), GREEN, r"real no SPE: $e^{-0{,}6t}$"),
+        ([0.0], np.ones_like(t), YELLOW, r"na origem: constante"),
+        ([0.3], np.exp(0.3 * t), RED, r"real no SPD: $e^{0{,}3t}$"),
+        ([-0.4 + 2j, -0.4 - 2j], np.exp(-0.4 * t) * np.sin(w * t), GREEN,
+         r"complexo no SPE: oscilação amortecida"),
+        ([2j, -2j], np.sin(w * t), YELLOW, r"sobre o eixo $j\omega$: oscilação sustentada"),
+        ([0.2 + 2j, 0.2 - 2j], np.exp(0.2 * t) * np.sin(w * t), RED,
+         r"complexo no SPD: oscilação crescente"),
+    ]
+    fig, axs = plt.subplots(2, 3, figsize=(13, 6.6))
+    for ax, (pp, y, c, tit) in zip(axs.flat, casos):
+        cor = c if c != YELLOW else "#b07a00"
+        ax.plot(t, y, color=cor, lw=2.2)
+        ax.axhline(0, color=MUTED, lw=0.8)
+        ax.set_title(tit, fontsize=11)
+        ax.set_xlim(0, 10)
+        # folga no topo para o mini plano s não cobrir a curva
+        lim = 1.05 * np.max(np.abs(y))
+        ax.set_ylim(-lim if np.min(y) < -0.05 else -0.1 * lim, 2.0 * lim)
+        ax.set_xlabel("$t$ [s]", fontsize=10)
+        ins = ax.inset_axes([0.70, 0.62, 0.28, 0.34])
+        ins.axhline(0, color=MUTED, lw=0.8)
+        ins.axvline(0, color=MUTED, lw=0.8)
+        pa = np.array(pp, dtype=complex)
+        ins.plot(pa.real, pa.imag, "x", color=cor, ms=8, mew=2.2)
+        ins.set_xlim(-1, 1)
+        ins.set_ylim(-3, 3)
+        ins.set_xticks([])
+        ins.set_yticks([])
+        ins.set_facecolor("#fafaf7")
+        ins.grid(False)
+        for sp in ins.spines.values():
+            sp.set_visible(True)
+            sp.set_color(GRID)
+    for ax, lbl in zip(axs[:, 0], ["polo real", "par complexo"]):
+        ax.set_ylabel(lbl + "\n$h(t)$")
+    for ax, (lbl, c) in zip(axs[0], [("ESTÁVEL", GREEN), ("MARGINAL", "#b07a00"), ("INSTÁVEL", RED)]):
+        ax.text(0.03, 0.92, lbl, transform=ax.transAxes, fontsize=10,
+                fontweight="bold", color=c)
+    fig.tight_layout()
+    save(fig, "fig_estab_polos_impulso")
+
+
+def fig_estab_plano_modos():
+    """Plano s com polos típicos e, ao lado de cada um, a forma do modo
+    correspondente (resposta ao impulso) — um polo, um modo."""
+    fig, ax = plt.subplots(figsize=(11, 6.4))
+    ax.axvspan(-4.2, 0, color=GREEN, alpha=0.07, lw=0)
+    ax.axvspan(0, 3.4, color=RED, alpha=0.07, lw=0)
+    ax.axhline(0, color=MUTED, lw=1)
+    ax.axvline(0, color="#b07a00", lw=2.5)
+    t = np.linspace(0, 10, 400)
+    w = 3.0
+    casos = [
+        # (polos, x, y do centro do mini gráfico, curva, cor)
+        ([-2.5], -2.5, -1.15, np.exp(-0.6 * t), GREEN),
+        ([0.0], 0.0, -1.15, np.ones_like(t), "#b07a00"),
+        ([1.8], 1.8, -1.15, np.exp(0.3 * t), RED),
+        ([-2.5 + 2.5j, -2.5 - 2.5j], -2.5, 1.3, np.exp(-0.45 * t) * np.sin(w * t), GREEN),
+        ([2.5j, -2.5j], 0.0, 1.3, np.sin(w * t), "#b07a00"),
+        ([1.8 + 2.5j, 1.8 - 2.5j], 1.8, 1.3, np.exp(0.2 * t) * np.sin(w * t), RED),
+    ]
+    for polos, xc, yc, y, c in casos:
+        pa = np.array(polos, dtype=complex)
+        ax.plot(pa.real, pa.imag, "x", color=c, ms=13, mew=3, zorder=3)
+        # liga o polo (o de cima, se for par) ao seu mini gráfico
+        y_polo = pa.imag.max()
+        if y_polo > 0:
+            ax.plot([xc, xc], [y_polo - 0.25, yc + 0.6], ls=":", color=c, lw=1.4)
+        else:
+            ax.plot([xc, xc], [-0.25, yc + 0.6], ls=":", color=c, lw=1.4)
+        ins = ax.inset_axes([xc - 0.75, yc - 0.6, 1.5, 1.2], transform=ax.transData)
+        ins.plot(t, y, color=c, lw=1.8)
+        ins.axhline(0, color=MUTED, lw=0.6)
+        ins.set_xticks([])
+        ins.set_yticks([])
+        ins.grid(False)
+        ins.set_facecolor("white")
+        for sp in ins.spines.values():
+            sp.set_visible(True)
+            sp.set_color(GRID)
+    ax.text(-2.1, 3.15, "SPE: modos decaem", color=GREEN, fontsize=13,
+            fontweight="bold", ha="center")
+    ax.text(1.8, 3.15, "SPD: modos crescem", color=RED, fontsize=13,
+            fontweight="bold", ha="center")
+    ax.text(0.08, -3.3, r"eixo $j\omega$: nem decaem nem crescem", color="#b07a00",
+            fontsize=11)
+    ax.set_xlim(-4.2, 3.4)
+    ax.set_ylim(-3.5, 3.6)
+    ax.set_xlabel(r"Re$(s)=\sigma$")
+    ax.set_ylabel(r"Im$(s)=\omega$")
+    ax.grid(False)
+    save(fig, "fig_estab_plano_modos")
+
+
+def fig_estab_regioes():
+    """Plano s dividido em regiões de estabilidade."""
+    fig, ax = plt.subplots(figsize=(7.2, 5.2))
+    ax.axvspan(-4, 0, color=GREEN, alpha=0.10, lw=0)
+    ax.axvspan(0, 4, color=RED, alpha=0.10, lw=0)
+    ax.axhline(0, color=MUTED, lw=1)
+    ax.axvline(0, color="#b07a00", lw=4)
+    ax.text(-2, 2.5, "SPE — Re$(s)<0$\nmodos decaem\nESTÁVEL", ha="center",
+            color=GREEN, fontsize=12, fontweight="bold")
+    ax.text(2, 2.5, "SPD — Re$(s)>0$\nmodos crescem\nINSTÁVEL", ha="center",
+            color=RED, fontsize=12, fontweight="bold")
+    ax.annotate("eixo $j\\omega$ — Re$(s)=0$\nmodos nem crescem nem decaem\n"
+                "(polos simples: MARGINAL)", xy=(0, -1.6), xytext=(0.35, -2.9),
+                fontsize=10, color="#b07a00",
+                arrowprops=dict(arrowstyle="->", color="#b07a00"))
+    ax.plot([-1.5, -1.5, -3], [1.2, -1.2, 0], "x", color=GREEN, ms=11, mew=2.6)
+    ax.plot([1.2, 1.2, 2.5], [1, -1, 0], "x", color=RED, ms=11, mew=2.6)
+    ax.plot([0, 0], [1.5, -1.5], "x", color="#b07a00", ms=11, mew=2.6)
+    ax.set_xlim(-4, 4)
+    ax.set_ylim(-3.6, 3.6)
+    ax.set_xlabel(r"Re$(s)=\sigma$")
+    ax.set_ylabel(r"Im$(s)=\omega$")
+    ax.set_title("Estabilidade e a localização dos polos")
+    ax.grid(False)
+    save(fig, "fig_estab_regioes")
+
+
+def fig_estab_ganho_K():
+    """Malha fechada de K/[s(s+2)(s+4)] para K abaixo, igual e acima do
+    ganho crítico K_cr = 48 (Routh)."""
+    t = np.linspace(0, 15, 3000)
+    planta = ct.tf([1], [1, 6, 8, 0])
+    fig, ax = plt.subplots(figsize=(9, 5.0))
+    for k, c, lbl in [(10, GREEN, r"$K=10$ — estável"),
+                      (30, BLUE, r"$K=30$ — estável, mais oscilatório"),
+                      (48, YELLOW, r"$K=48=K_{cr}$ — oscilação sustentada ($\omega=\sqrt{8}$)"),
+                      (56, RED, r"$K=56$ — instável")]:
+        _, y = ct.step_response(ct.feedback(k * planta, 1), T=t)
+        ax.plot(t, y, color=c if c != YELLOW else "#b07a00", label=lbl)
+    ax.axhline(1.0, color=MUTED, lw=1, ls="--")
+    ax.set_ylim(-1, 3)
+    ax.set_xlabel("tempo $t$ [s]", fontsize=15)
+    ax.set_ylabel("$y(t)$", fontsize=15)
+    ax.tick_params(labelsize=13)
+    ax.legend(fontsize=16, loc="center left", bbox_to_anchor=(1.01, 0.5))
+    save(fig, "fig_estab_ganho_K")
+
+
+def fig_estab_polos_K():
+    """Polos de malha fechada de s^3+6s^2+8s+K para K de 0 a 100,
+    coloridos por K, marcando o cruzamento do eixo jω em K=48."""
+    Ks = np.linspace(0, 100, 1200)
+    fig, ax = plt.subplots(figsize=(8.2, 4.3))
+    _plano_s(ax, (-7, 1.6), (-4, 4))
+    raizes = np.array([np.roots([1, 6, 8, k]) for k in Ks])
+    for i in range(3):
+        sc = ax.scatter(raizes[:, i].real, raizes[:, i].imag, c=Ks, cmap="viridis",
+                        s=6, zorder=2)
+    ax.plot([0, -2, -4], [0, 0, 0], "x", color=RED, ms=12, mew=2.6, zorder=3,
+            label="$K=0$ (polos de malha aberta)")
+    wc = np.sqrt(8)
+    ax.plot([0, 0], [wc, -wc], "o", color=INK, ms=8, mfc="none", mew=2, zorder=3,
+            label=r"$K=48$: $s=\pm j\sqrt{8}$")
+    cb = fig.colorbar(sc, ax=ax)
+    cb.set_label("ganho $K$")
+    ax.set_title(r"Raízes de $s^3+6s^2+8s+K=0$ quando $K$ cresce")
+    ax.legend(fontsize=9, loc="upper left")
+    save(fig, "fig_estab_polos_K")
+
+
+# =====================================================================
+# Aula 08 — Lugar Geométrico das Raízes (LGR)
 # =====================================================================
 
 def fig_objetivo_lgr():
@@ -462,7 +768,7 @@ def fig_lgr_exemplo2():
 
 
 # =====================================================================
-# Aula 08 — Resposta em Frequência
+# Aula 09 — Resposta em Frequência
 # =====================================================================
 
 def fig_bode_exemplo():
@@ -507,7 +813,7 @@ def fig_bode_exemplo():
 
 
 # =====================================================================
-# Aula 09 — Controlador PID
+# Aula 10 — Controlador PID
 # =====================================================================
 
 def fig_pid_comparacao():
@@ -587,6 +893,15 @@ if __name__ == "__main__":
     fig_efeito_polo_extra()
     fig_erro_tipo()
     fig_erro_tipo_stack()
+    fig_erro_ganho_1ordem()
+    fig_erro_ganho_2ordem()
+    fig_estab_modos()
+    fig_estab_bola()
+    fig_estab_polos_impulso()
+    fig_estab_regioes()
+    fig_estab_plano_modos()
+    fig_estab_ganho_K()
+    fig_estab_polos_K()
     fig_objetivo_lgr()
     fig_lgr_exemplo1()
     fig_lgr_exemplo2()

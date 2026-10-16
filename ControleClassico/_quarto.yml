@@ -46,12 +46,14 @@ website:
             href: Notas/Aula05ExerciciosPrimeiraSegundaOrdem.qmd
           - text: "6 · Erro de Regime Permanente"
             href: Notas/Aula06ErroRegimePermanente.qmd
-          - text: "7 · Lugar Geométrico das Raízes"
-            href: Notas/Aula07LGR.qmd
-          - text: "8 · Resposta em Frequência"
-            href: Notas/Aula08RespostaFrequencia.qmd
-          - text: "9 · Controlador PID"
-            href: Notas/Aula09PID.qmd
+          - text: "7 · Estabilidade e Routh-Hurwitz"
+            href: Notas/Aula07Estabilidade.qmd
+          - text: "8 · Lugar Geométrico das Raízes"
+            href: Notas/Aula08LGR.qmd
+          - text: "9 · Resposta em Frequência"
+            href: Notas/Aula09RespostaFrequencia.qmd
+          - text: "10 · Controlador PID"
+            href: Notas/Aula10PID.qmd
           - text: "Guia de Estudos: Livros"
             href: Notas/GuiaBibliografico.qmd
       - text: "Projeto"

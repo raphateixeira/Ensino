@@ -1,0 +1,34 @@
+% ---------------------------------------------------------------
+% Comparação: mesmo G(s) com ganho K, em malha aberta e em malha
+% fechada com realimentação unitária -- para motivar por que o
+% erro de regime permanente importa.
+% ---------------------------------------------------------------
+\begin{tikzpicture}[>=Latex, line width=0.9pt, node distance=1.3cm,
+  bloco/.style={draw, minimum width=2.4cm, minimum height=1.1cm, fill=blue!8},
+  soma/.style={draw, circle, minimum size=0.65cm, inner sep=0pt},
+  seta/.style={->}]
+
+  % --- Malha aberta ---
+  \node[font=\bfseries] (t1) at (0,1.6) {Malha aberta};
+  \node (r1) at (0,0) {$R(s)$};
+  \node[bloco, right=1.1cm of r1] (g1) {$K\,G(s)$};
+  \node[right=1.1cm of g1] (y1) {$Y(s)$};
+  \draw[seta] (r1) -- (g1);
+  \draw[seta] (g1) -- (y1);
+  \node[font=\small, below=0.35cm of g1] {$Y(s) = K\,G(s)\,R(s)$};
+
+  % --- Malha fechada ---
+  \node (r2) [right=2.2cm of y1] {$R(s)$};
+  \node[font=\bfseries] at ($(r2)+(2.0,1.6)$) {Malha fechada (realim. unitária)};
+  \node[soma, right=0.9cm of r2] (sum) {};
+  \node[bloco, right=1.1cm of sum] (g2) {$K\,G(s)$};
+  \node[right=1.1cm of g2] (y2) {$Y(s)$};
+  \draw[seta] (r2) -- (sum);
+  \draw[seta] (sum) -- (g2);
+  \draw[seta] (g2) -- (y2);
+  \draw[seta] (y2.south) |- ++(0,-0.8cm) -| (sum.south);
+  \node[font=\small] at ($(sum.north west)+(-0.13,0.13)$) {$+$};
+  \node[font=\small] at ($(sum.south west)+(-0.13,-0.13)$) {$-$};
+  \node[font=\small, below=0.75cm of g2] {$Y(s) = \dfrac{K\,G(s)}{1+K\,G(s)}\,R(s)$};
+
+\end{tikzpicture}

@@ -185,7 +185,7 @@ O diagrama de Nyquist é o gráfico de $G(j\omega)H(j\omega)$ no **plano complex
 2. Para $G(s) = \dfrac{K}{s(s+4)}$, determine, em função de $K$, a frequência de cruzamento de ganho $\omega_{gc}$ e a margem de fase correspondente.
 3. Um sistema tem margem de fase medida de $45°$. Estime $\zeta$ e o sobressinal $M_p$ esperado em malha fechada.
 4. Explique, com base no critério de Nyquist, por que um sistema de fase mínima estável em malha aberta pode se tornar instável em malha fechada ao aumentar o ganho $K$.
-5. Compare as margens de ganho e fase do Exemplo desta aula ($G(s)=10/[s(s+1)(s+5)]$) com as do Exemplo 1 do LGR (Aula 7, mesma planta com $K=48$ no limite de estabilidade) — o que ocorre com a margem de fase quando $K\to K_{crít}$?
+5. Compare as margens de ganho e fase do Exemplo desta aula ($G(s)=10/[s(s+1)(s+5)]$) com as do Exemplo 1 do LGR (Aula 8, mesma planta com $K=48$ no limite de estabilidade) — o que ocorre com a margem de fase quando $K\to K_{crít}$?
 
 ---
 

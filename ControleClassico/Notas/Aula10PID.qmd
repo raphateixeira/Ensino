@@ -29,7 +29,7 @@ $$u(t) = K_p\,e(t) + K_i\int_0^t e(\tau)\,d\tau + K_d\,\frac{de(t)}{dt}$$
 $$C(s) = \frac{U(s)}{E(s)} = K_p + \frac{K_i}{s} + K_d s = K_d\,\frac{s^2 + \frac{K_p}{K_d}s + \frac{K_i}{K_d}}{s}$$
 
 ::: {.callout-tip}
-O PID adiciona **dois zeros** e **um polo na origem** à malha aberta — o polo na origem aumenta o tipo do sistema (elimina erro de regime permanente ao degrau, Aula 6); os zeros dão liberdade para formar o LGR (Aula 7) e ajustar as margens de fase (Aula 8).
+O PID adiciona **dois zeros** e **um polo na origem** à malha aberta — o polo na origem aumenta o tipo do sistema (elimina erro de regime permanente ao degrau, Aula 6); os zeros dão liberdade para formar o LGR (Aula 8) e ajustar as margens de fase (Aula 9).
 :::
 
 ---
@@ -55,7 +55,7 @@ $$C(s) = K_p \qquad\qquad u(t) = K_p\,e(t)$$
 - **Não elimina** erro de regime permanente em sistemas tipo 0 (apenas reduz)
 
 ::: {.callout-warning}
-Ganho proporcional muito alto pode levar o sistema à instabilidade — veja o LGR (Aula 7): aumentar $K_p$ move os polos ao longo do lugar geométrico, podendo cruzar para o semiplano direito.
+Ganho proporcional muito alto pode levar o sistema à instabilidade — veja o LGR (Aula 8): aumentar $K_p$ move os polos ao longo do lugar geométrico, podendo cruzar para o semiplano direito.
 :::
 
 ---
@@ -66,7 +66,7 @@ $$C(s) = \frac{K_i}{s} \qquad\qquad u(t) = K_i\int_0^t e(\tau)\,d\tau$$
 
 - Acumula o erro ao longo do tempo — mesmo um erro **pequeno** e persistente gera ação de controle crescente
 - Adiciona um **polo na origem**: aumenta o tipo do sistema em 1 $\implies$ **elimina** o erro de regime permanente ao degrau (sistemas tipo 0 → tipo 1)
-- **Custo:** adiciona $-90°$ de fase, reduzindo a margem de fase (Aula 8) e tornando a resposta mais lenta/oscilatória se $K_i$ for muito grande
+- **Custo:** adiciona $-90°$ de fase, reduzindo a margem de fase (Aula 9) e tornando a resposta mais lenta/oscilatória se $K_i$ for muito grande
 
 ::: {.callout-important}
 ## Windup integral
@@ -122,7 +122,7 @@ Planta $G(s)=\dfrac{1}{s(s+1)(s+2)}$ (tipo 1): note que **P** e **PID** eliminam
 
 Método experimental clássico [@ziegler1942], aplicável quando não se dispõe de um modelo preciso da planta:
 
-1. Com controlador **apenas proporcional** ($K_i=K_d=0$), aumente $K_p$ até que a saída apresente **oscilação sustentada** (amplitude constante) — esse é o **ganho crítico** $K_{cr}$ (relaciona-se ao $K_{crít}$ do cruzamento do LGR com o eixo $j\omega$, Aula 7)
+1. Com controlador **apenas proporcional** ($K_i=K_d=0$), aumente $K_p$ até que a saída apresente **oscilação sustentada** (amplitude constante) — esse é o **ganho crítico** $K_{cr}$ (relaciona-se ao $K_{crít}$ do cruzamento do LGR com o eixo $j\omega$, Aula 8)
 2. Meça o **período crítico** $T_{cr}$ da oscilação sustentada
 
 | Controlador | $K_p$ | $T_i$ | $T_d$ |
@@ -197,7 +197,7 @@ $$C(s) = K_p(1+T_d s)$$
 2. Um teste de malha fechada com controlador P puro apresentou oscilação sustentada para $K_p=K_{cr}=10$, com período $T_{cr}=2$ s. Calcule os parâmetros de um controlador PID pelo método de Ziegler-Nichols (malha fechada).
 3. Explique por que a ação derivativa pura ($C(s)=K_ds$) nunca é usada isoladamente em um controlador.
 4. Descreva o fenômeno de *windup* integral e proponha (em palavras) uma estratégia de anti-windup para um atuador com saturação em $\pm10$ V.
-5. Compare, para a planta $G(s)=1/[s(s+1)(s+2)]$ (Aula 9, exemplo de comparação), o motivo pelo qual o controlador PI apresenta mais oscilação do que o P puro, relacionando com a fase adicional introduzida pelo integrador (Aula 8).
+5. Compare, para a planta $G(s)=1/[s(s+1)(s+2)]$ (Aula 10, exemplo de comparação), o motivo pelo qual o controlador PI apresenta mais oscilação do que o P puro, relacionando com a fase adicional introduzida pelo integrador (Aula 9).
 
 ---
 

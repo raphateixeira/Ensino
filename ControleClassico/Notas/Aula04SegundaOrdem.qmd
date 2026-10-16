@@ -248,7 +248,7 @@ Ajuste $K$, $\zeta$ e $\omega_n$ e observe a resposta ao degrau, o overshoot, o 
 
 $$\boxed{\zeta = 0{,}6, \qquad \omega_n \geq 3{,}33 \text{ rad/s}}$$
 
-Esse par $(\zeta,\omega_n)$ define uma **região do plano $s$** onde os polos de malha fechada devem estar — ideia central do projeto por LGR (Aula 7).
+Esse par $(\zeta,\omega_n)$ define uma **região do plano $s$** onde os polos de malha fechada devem estar — ideia central do projeto por LGR (Aula 8).
 
 ---
 

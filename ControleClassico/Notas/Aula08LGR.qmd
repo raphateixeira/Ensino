@@ -25,7 +25,7 @@ Considere a malha fechada com ganho ajustável $K$:
 
 $$T(s) = \frac{KG(s)}{1+KG(s)H(s)}$$
 
-Os polos de malha fechada mudam de posição conforme $K$ varia de $0$ a $\infty$ — e a resposta transitória (Aulas 3–5) e a estabilidade (Aula 6) dependem **diretamente** dessas posições.
+Os polos de malha fechada mudam de posição conforme $K$ varia de $0$ a $\infty$ — e a resposta transitória (Aulas 3–5) e a estabilidade (Aula 7) dependem **diretamente** dessas posições.
 
 ::: {.callout-important}
 ## Definição
@@ -108,10 +108,10 @@ restritas às regiões do eixo real que pertencem ao LGR (regra anterior).
 
 ## Regras de Construção — Cruzamento do Eixo Imaginário
 
-O(s) ponto(s) onde o LGR cruza o eixo $j\omega$ (fronteira de estabilidade) e o **ganho crítico** $K_{crít}$ correspondente são obtidos por **Routh-Hurwitz** (Aula 6): o valor de $K$ que anula uma linha inteira do array de Routh é $K_{crít}$; o polinômio auxiliar formado com a linha anterior dá a frequência de cruzamento $\omega$.
+O(s) ponto(s) onde o LGR cruza o eixo $j\omega$ (fronteira de estabilidade) e o **ganho crítico** $K_{crít}$ correspondente são obtidos por **Routh-Hurwitz** (Aula 7): o valor de $K$ que anula uma linha inteira do array de Routh é $K_{crít}$; o polinômio auxiliar formado com a linha anterior dá a frequência de cruzamento $\omega$.
 
 ::: {.callout-important}
-Essa é a ponte direta entre o critério de Routh-Hurwitz (Aula 6) e o LGR: o array de Routh localiza **exatamente** onde o lugar cruza para o semiplano direito.
+Essa é a ponte direta entre o critério de Routh-Hurwitz (Aula 7) e o LGR: o array de Routh localiza **exatamente** onde o lugar cruza para o semiplano direito.
 :::
 
 ---
@@ -130,7 +130,7 @@ Essa é a ponte direta entre o critério de Routh-Hurwitz (Aula 6) e o LGR: o ar
 
 Equação característica: $s(s+2)(s+4)+K = s^3+6s^2+8s+K=0$.
 
-Array de Routh (mesma estrutura da Aula 6):
+Array de Routh (mesma estrutura da Aula 7):
 
 $$
 \begin{array}{c|cc}
@@ -164,7 +164,7 @@ O LGR permite escolher $K$ (ou projetar um controlador que reformula o LGR) para
 3. Identifique a interseção dessas retas com o LGR e leia (ou calcule pela condição de módulo) o $K$ correspondente
 
 ::: {.callout-tip}
-Se o LGR **não passa** pela região desejada, é necessário **modificar** a malha aberta — adicionando polos/zeros via um controlador (compensador de avanço/atraso de fase, ou PID — Aula 9) para "puxar" o lugar para a região desejada.
+Se o LGR **não passa** pela região desejada, é necessário **modificar** a malha aberta — adicionando polos/zeros via um controlador (compensador de avanço/atraso de fase, ou PID — Aula 10) para "puxar" o lugar para a região desejada.
 :::
 
 ---

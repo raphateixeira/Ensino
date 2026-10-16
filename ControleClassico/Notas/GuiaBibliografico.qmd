@@ -66,12 +66,21 @@ Aula de exercícios — sem conteúdo novo. Os problemas cobrem o mesmo material
 
 | Livro | Onde encontrar |
 |:--|:--|
-| Ogata [@ogata2010] | Cap. 5, §5.4 — Sistemas de ordem superior (p. 163); §5.6 — Critério de estabilidade de Routh (p. 191); §5.8 — Erros estacionários em sistemas com realimentação unitária (p. 203) |
-| Franklin [@franklin2013] | Cap. 3, §3.5 — Efeitos de zeros e polos adicionais (p. 104); §3.6 — Estabilidade / Routh (p. 112); Cap. 4, §4.2 — Controle de erro em estado estacionário: tipo de sistemas (p. 153) |
-| Dorf | Cap. 5, §5.4 — Efeitos de um Terceiro Polo e de um Zero (p. 188); Cap. 6, §6.2 — Routh-Hurwitz (p. 232); Cap. 4, §4.5 — Erro de Estado Estacionário (p. 150); Cap. 5, §5.7–5.8 — Erro com retroação unitária e não unitária (p. 194) |
-| Nise | Cap. 4, §4.7 — Resposta com Polos Adicionais; §4.8 — Resposta com Zeros; Cap. 6 — Estabilidade (Routh-Hurwitz); Cap. 7 — **Erros em Regime Permanente** (capítulo inteiro), §7.2–7.4 |
+| Ogata [@ogata2010] | Cap. 5, §5.4 — Sistemas de ordem superior (p. 163); §5.8 — Erros estacionários em sistemas com realimentação unitária (p. 203) |
+| Franklin [@franklin2013] | Cap. 3, §3.5 — Efeitos de zeros e polos adicionais (p. 104); Cap. 4, §4.2 — Controle de erro em estado estacionário: tipo de sistemas (p. 153) |
+| Dorf | Cap. 5, §5.4 — Efeitos de um Terceiro Polo e de um Zero (p. 188); Cap. 4, §4.5 — Erro de Estado Estacionário (p. 150); Cap. 5, §5.7–5.8 — Erro com retroação unitária e não unitária (p. 194) |
+| Nise | Cap. 4, §4.7 — Resposta com Polos Adicionais; §4.8 — Resposta com Zeros; Cap. 7 — **Erros em Regime Permanente** (capítulo inteiro), §7.2–7.4 |
 
-## Aula 7 — Lugar Geométrico das Raízes (LGR)
+## Aula 7 — Estabilidade e Critério de Routh-Hurwitz
+
+| Livro | Onde encontrar |
+|:--|:--|
+| Ogata [@ogata2010] | Cap. 5, §5.4 — Sistemas de ordem superior (p. 163); §5.6 — Critério de estabilidade de Routh (p. 191) |
+| Franklin [@franklin2013] | Cap. 3, §3.6 — Estabilidade: definição, polos e critério de Routh (p. 112) |
+| Dorf | Cap. 6 — A Estabilidade de Sistemas Lineares com Retroação; §6.2 — Routh-Hurwitz (p. 232) |
+| Nise | Cap. 6 — **Estabilidade** (capítulo inteiro): definições, Routh-Hurwitz, casos especiais, projeto de estabilidade via Routh |
+
+## Aula 8 — Lugar Geométrico das Raízes (LGR)
 
 | Livro | Onde encontrar |
 |:--|:--|
@@ -80,7 +89,7 @@ Aula de exercícios — sem conteúdo novo. Os problemas cobrem o mesmo material
 | Dorf | Cap. 7 — O Método do Lugar das Raízes (p. 262) |
 | Nise | Cap. 8 — Técnicas do Lugar Geométrico das Raízes; Cap. 9 — Projeto via Lugar Geométrico das Raízes |
 
-## Aula 8 — Resposta em Frequência
+## Aula 9 — Resposta em Frequência
 
 | Livro | Onde encontrar |
 |:--|:--|
@@ -89,7 +98,7 @@ Aula de exercícios — sem conteúdo novo. Os problemas cobrem o mesmo material
 | Dorf | Cap. 8 — Métodos de Resposta de Frequência (p. 322); Cap. 9 — Estabilidade no Domínio de Frequência / Nyquist (p. 370) |
 | Nise | Cap. 10 — Técnicas de Resposta em Frequência; Cap. 11 — Projeto através da Resposta em Frequência |
 
-## Aula 9 — Controlador PID
+## Aula 10 — Controlador PID
 
 | Livro | Onde encontrar |
 |:--|:--|
