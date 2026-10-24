@@ -1,19 +1,27 @@
 ---
-title: "Cálculo Numérico"
-subtitle: "Métodos Numéricos em Python"
-institute: "Universidade Federal do Pará"
-author: "Prof. Dr. Raphael Teixeira"
-date: ""
+pagetitle: "Cálculo Numérico"
 format: 
   html:
     page-layout: article
 ---
 
-[⬅ Site principal](https://raphateixeira.github.io)
+::: {.rtx-hero}
+[Disciplina · Engenharia Elétrica · 2026.3]{.rtx-eyebrow}
 
-Notas de aula de Cálculo Numérico — implementações em **Python** (NumPy · SciPy · Matplotlib), com ênfase em aplicações de Engenharia.
+# Cálculo Numérico {.unnumbered .unlisted}
+
+Notas de aula de Cálculo Numérico, com implementações em Python (NumPy, SciPy, Matplotlib) e ênfase em aplicações de Engenharia.
+
+[Prof. Dr. Raphael Teixeira]{.rtx-meta}
+
+::: {.rtx-acoes}
+[Plano de ensino](Aulas/CN00PlanoEnsino.qmd){.rtx-btn .rtx-btn-primario} [GitHub](https://github.com/raphateixeira/MetodosNumericos){.rtx-btn} [Site do professor](https://raphateixeira.github.io){.rtx-btn}
+:::
+:::
 
 Veja também as [animações Manim dos métodos de zeros de função](https://raphateixeira.github.io/Manim/#zeros-de-funcoes) (bisseção, Newton-Raphson e secante), usadas na Aula 2.
+
+## Notas de aula
 
 ```{=html}
 <div class="categoria-grid">
