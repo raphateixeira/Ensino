@@ -1,54 +1,164 @@
 ---
-title: "Álgebra Linear"
-subtitle: "Engenharia Elétrica"
-institute: "Universidade Federal do Pará"
-author: "Prof. Dr. Raphael Teixeira"
+pagetitle: "Álgebra Linear"
 lang: pt-BR
 format: 
   html:
     theme: [cosmo, TemaRTx.scss]
 ---
 
-[⬅ Site principal](https://raphateixeira.github.io)
+::: {.rtx-hero}
+[Disciplina · Engenharia Elétrica]{.rtx-eyebrow}
 
-Notas de Aula:
+# Álgebra Linear {.unnumbered .unlisted}
 
-* Aula 00: [Plano de Ensino](Notas/AL00PlanoEnsinoAlgebraLinear.qmd)
+Notas de aula: sistemas lineares e matrizes, espaços vetoriais, transformações lineares, autovalores e produto interno.
+
+[Prof. Dr. Raphael Teixeira]{.rtx-meta}
+
+::: {.rtx-acoes}
+[Plano de ensino](Notas/AL00PlanoEnsinoAlgebraLinear.qmd){.rtx-btn .rtx-btn-primario} [GitHub](https://github.com/raphateixeira/AlgebraLinear){.rtx-btn} [Site do professor](https://raphateixeira.github.io){.rtx-btn}
+:::
+:::
+
+## Notas de aula
+
+```{=html}
+<div class="categoria-grid">
+<a class="categoria-card" href="Notas/AL00PlanoEnsinoAlgebraLinear.qmd">
+  <h3>Aula 0</h3>
+  <p>Plano de Ensino</p>
+</a>
+</div>
+```
 
 ### Bloco 1 — Sistemas Lineares e Matrizes
 
-* Aula 01: [Sistemas de equações lineares e interpretação geométrica](Notas/AL01SistemasEquacoes.qmd)
-* Aula 02: [Matrizes e operações](Notas/AL02MatrizesOperacoes.qmd)
-* Aula 03: [Eliminação de Gauss e forma escalonada](Notas/AL03EliminacaoGauss.qmd)
-* Aula 04: [Gauss-Jordan, sistemas homogêneos e posto](Notas/AL04GaussJordanPosto.qmd)
-* Aula 05: [Matriz inversa](Notas/AL05MatrizInversa.qmd)
-* Aula 06: [Fatoração LU](Notas/AL06FatoracaoLU.qmd)
-* Aula 07: [Determinantes: cofatores e propriedades](Notas/AL07Determinantes.qmd)
-* Aula 08: [Regra de Cramer, adjunta e revisão do bloco](Notas/AL08CramerRevisao.qmd)
+```{=html}
+<div class="categoria-grid">
+<a class="categoria-card" href="Notas/AL01SistemasEquacoes.qmd">
+  <h3>Aula 1</h3>
+  <p>Sistemas de equações lineares e interpretação geométrica</p>
+</a>
+<a class="categoria-card" href="Notas/AL02MatrizesOperacoes.qmd">
+  <h3>Aula 2</h3>
+  <p>Matrizes e operações</p>
+</a>
+<a class="categoria-card" href="Notas/AL03EliminacaoGauss.qmd">
+  <h3>Aula 3</h3>
+  <p>Eliminação de Gauss e forma escalonada</p>
+</a>
+<a class="categoria-card" href="Notas/AL04GaussJordanPosto.qmd">
+  <h3>Aula 4</h3>
+  <p>Gauss-Jordan, sistemas homogêneos e posto</p>
+</a>
+<a class="categoria-card" href="Notas/AL05MatrizInversa.qmd">
+  <h3>Aula 5</h3>
+  <p>Matriz inversa</p>
+</a>
+<a class="categoria-card" href="Notas/AL06FatoracaoLU.qmd">
+  <h3>Aula 6</h3>
+  <p>Fatoração LU</p>
+</a>
+<a class="categoria-card" href="Notas/AL07Determinantes.qmd">
+  <h3>Aula 7</h3>
+  <p>Determinantes: cofatores e propriedades</p>
+</a>
+<a class="categoria-card" href="Notas/AL08CramerRevisao.qmd">
+  <h3>Aula 8</h3>
+  <p>Regra de Cramer, adjunta e revisão do bloco</p>
+</a>
+</div>
+```
 
 ### Bloco 2 — Espaços Vetoriais
 
-* Aula 09: [Espaços vetoriais: axiomas e exemplos](Notas/AL09EspacosVetoriais.qmd)
-* Aula 10: [Subespaços vetoriais](Notas/AL10SubespacosVetoriais.qmd)
-* Aula 11: [Combinação linear e espaço gerado](Notas/AL11CombinacaoLinearEspacoGerado.qmd)
-* Aula 12: [Dependência e independência linear](Notas/AL12DependenciaIndependenciaLinear.qmd)
-* Aula 13: [Base e dimensão](Notas/AL13BaseDimensao.qmd)
-* Aula 14: [Espaço linha/coluna, núcleo, posto e nulidade](Notas/AL14EspacoLinhaColunaNucleoPosto.qmd)
-* Aula 15: [Coordenadas e mudança de base](Notas/AL15CoordenadasMudancaBase.qmd)
+```{=html}
+<div class="categoria-grid">
+<a class="categoria-card" href="Notas/AL09EspacosVetoriais.qmd">
+  <h3>Aula 9</h3>
+  <p>Espaços vetoriais: axiomas e exemplos</p>
+</a>
+<a class="categoria-card" href="Notas/AL10SubespacosVetoriais.qmd">
+  <h3>Aula 10</h3>
+  <p>Subespaços vetoriais</p>
+</a>
+<a class="categoria-card" href="Notas/AL11CombinacaoLinearEspacoGerado.qmd">
+  <h3>Aula 11</h3>
+  <p>Combinação linear e espaço gerado</p>
+</a>
+<a class="categoria-card" href="Notas/AL12DependenciaIndependenciaLinear.qmd">
+  <h3>Aula 12</h3>
+  <p>Dependência e independência linear</p>
+</a>
+<a class="categoria-card" href="Notas/AL13BaseDimensao.qmd">
+  <h3>Aula 13</h3>
+  <p>Base e dimensão</p>
+</a>
+<a class="categoria-card" href="Notas/AL14EspacoLinhaColunaNucleoPosto.qmd">
+  <h3>Aula 14</h3>
+  <p>Espaço linha/coluna, núcleo, posto e nulidade</p>
+</a>
+<a class="categoria-card" href="Notas/AL15CoordenadasMudancaBase.qmd">
+  <h3>Aula 15</h3>
+  <p>Coordenadas e mudança de base</p>
+</a>
+</div>
+```
 
 ### Bloco 3 — Transformações Lineares
 
-* Aula 16: [Transformações lineares: definição e exemplos](Notas/AL16TransformacoesLineares.qmd)
-* Aula 17: [Núcleo e imagem de uma transformação linear](Notas/AL17NucleoImagem.qmd)
-* Aula 18: [Matriz de uma transformação linear](Notas/AL18MatrizTransformacaoLinear.qmd)
-* Aula 19: [Composição e inversa; mudança de base de operadores](Notas/AL19ComposicaoInversaMudancaBase.qmd)
-* Aula 20: [Transformações geométricas no plano e no espaço](Notas/AL20TransformacoesGeometricas.qmd)
+```{=html}
+<div class="categoria-grid">
+<a class="categoria-card" href="Notas/AL16TransformacoesLineares.qmd">
+  <h3>Aula 16</h3>
+  <p>Transformações lineares: definição e exemplos</p>
+</a>
+<a class="categoria-card" href="Notas/AL17NucleoImagem.qmd">
+  <h3>Aula 17</h3>
+  <p>Núcleo e imagem de uma transformação linear</p>
+</a>
+<a class="categoria-card" href="Notas/AL18MatrizTransformacaoLinear.qmd">
+  <h3>Aula 18</h3>
+  <p>Matriz de uma transformação linear</p>
+</a>
+<a class="categoria-card" href="Notas/AL19ComposicaoInversaMudancaBase.qmd">
+  <h3>Aula 19</h3>
+  <p>Composição e inversa; mudança de base de operadores</p>
+</a>
+<a class="categoria-card" href="Notas/AL20TransformacoesGeometricas.qmd">
+  <h3>Aula 20</h3>
+  <p>Transformações geométricas no plano e no espaço</p>
+</a>
+</div>
+```
 
 ### Bloco 4 — Autovalores, Autovetores e Produto Interno
 
-* Aula 21: [Autovalores, autovetores e polinômio característico](Notas/AL21AutovaloresAutovetores.qmd)
-* Aula 22: [Diagonalização de matrizes](Notas/AL22Diagonalizacao.qmd)
-* Aula 23: [Aplicações: sistemas dinâmicos e matrizes simétricas](Notas/AL23AplicacoesAutovalores.qmd)
-* Aula 24: [Norma, produto escalar e produto interno](Notas/AL24NormaProdutoInterno.qmd)
-* Aula 25: [Bases ortonormais e o processo de Gram-Schmidt](Notas/AL25BasesOrtonormaisGramSchmidt.qmd)
-* Aula 26: [Subespaços ortogonais, mínimos quadrados e encerramento](Notas/AL26SubespacosOrtogonaisMinimosQuadrados.qmd)
+```{=html}
+<div class="categoria-grid">
+<a class="categoria-card" href="Notas/AL21AutovaloresAutovetores.qmd">
+  <h3>Aula 21</h3>
+  <p>Autovalores, autovetores e polinômio característico</p>
+</a>
+<a class="categoria-card" href="Notas/AL22Diagonalizacao.qmd">
+  <h3>Aula 22</h3>
+  <p>Diagonalização de matrizes</p>
+</a>
+<a class="categoria-card" href="Notas/AL23AplicacoesAutovalores.qmd">
+  <h3>Aula 23</h3>
+  <p>Aplicações: sistemas dinâmicos e matrizes simétricas</p>
+</a>
+<a class="categoria-card" href="Notas/AL24NormaProdutoInterno.qmd">
+  <h3>Aula 24</h3>
+  <p>Norma, produto escalar e produto interno</p>
+</a>
+<a class="categoria-card" href="Notas/AL25BasesOrtonormaisGramSchmidt.qmd">
+  <h3>Aula 25</h3>
+  <p>Bases ortonormais e o processo de Gram-Schmidt</p>
+</a>
+<a class="categoria-card" href="Notas/AL26SubespacosOrtogonaisMinimosQuadrados.qmd">
+  <h3>Aula 26</h3>
+  <p>Subespaços ortogonais, mínimos quadrados e encerramento</p>
+</a>
+</div>
+```
