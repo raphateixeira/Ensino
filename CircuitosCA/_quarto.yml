@@ -22,8 +22,8 @@ website:
   description: "Notas de aula — Circuitos de Corrente Alternada (CA)"
   reader-mode: true
   navbar:
-    background: "#1F3A5F"                 # <<< EDITAR (igual à $cor-primaria do .scss)
-    foreground: "#FFFFFF"
+    background: "#FFFFFF"   # navbar branca (camada "Site" do TemaRTx.scss)
+    foreground: "#0F1B33"
     title: "Circuitos Elétricos II"
     left:
       - text: "Início"

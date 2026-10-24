@@ -1,26 +1,32 @@
 ---
-title: "Circuitos Elétricos II"
-subtitle: "Circuitos de Corrente Alternada (CA)"
-institute: "Universidade Federal do Pará"
-author: "Prof. Dr. Raphael Teixeira"
-date: ""
+pagetitle: "Circuitos Elétricos II"
 format: 
   html:
     page-layout: article
 ---
 
-[⬅ Site principal](https://raphateixeira.github.io)
+::: {.rtx-hero}
+[Disciplina · Engenharia Elétrica · 2026.4]{.rtx-eyebrow}
+
+# Circuitos Elétricos II {.unnumbered .unlisted}
+
+Notas de aula sobre análise de circuitos elétricos em regime permanente senoidal (CA): senoides, fasores, impedância e potência.
+
+[Prof. Dr. Raphael Teixeira]{.rtx-meta}
+
+::: {.rtx-acoes}
+[Plano de ensino](PlanoEnsino/PlanoEnsino.pdf){.rtx-btn .rtx-btn-primario} [GitHub](https://github.com/raphateixeira/CircuitosCA){.rtx-btn} [Site do professor](https://raphateixeira.github.io){.rtx-btn}
+:::
+:::
 
 <!-- Portal do projeto. Cada item aponta para um deck em Notas/.
      Duplique as linhas conforme adicionar aulas. -->
 
-Notas de aula sobre análise de circuitos elétricos em regime permanente senoidal (CA): senoides, fasores, impedância e potência.
-
-## Plano de Ensino:
+## Plano de ensino
 
 [Plano de ensino](PlanoEnsino/PlanoEnsino.pdf) da disciplina Circuitos Elétricos II, conforme [Resolução 002/2026 – FEE/CAMTUC](https://drive.google.com/file/d/1JtjL9buTB5QWKTA2logcqEF6UDcoIAck/view).
 
-## Notas de Aula:
+## Notas de aula
 
 ```{=html}
 <div class="categoria-grid">
@@ -55,7 +61,7 @@ Notas de aula sobre análise de circuitos elétricos em regime permanente senoid
 </div>
 ```
 
-## Listas de Exercícios:
+## Listas de exercícios
 
 ```{=html}
 <div class="categoria-grid">
