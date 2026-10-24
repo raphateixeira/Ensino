@@ -1,0 +1,20 @@
+% Eixo de motor com inércia e atrito viscoso — Aula 02 (tema Nova).
+\begin{tikzpicture}[line width=0.9pt, >=Stealth]
+  % eixo
+  \draw[line width=3pt, gray!70] (0,0) -- (6.2,0);
+  % mancal (atrito viscoso b)
+  \foreach \y in {0.18,-0.62} {
+    \draw[fill=gray!15] (1.6,\y) rectangle (2.4,\y+0.44);
+    \foreach \x in {1.7,1.9,2.1,2.3} \draw[gray] (\x,\y) -- (\x-0.1,\y+0.44);
+  }
+  \node[font=\small] at (2.0,-1.0) {mancal: atrito $b$};
+  % disco (inércia J)
+  \draw[fill=navy!12, draw=navy, line width=1.2pt] (3.6,-1.4) rectangle (4.2,1.4);
+  \node[font=\small, text=navy] at (3.9,1.75) {inércia $J$};
+  % torque de entrada
+  \draw[->, rose, line width=1.3pt] (0.5,0.55) arc[start angle=110, end angle=-200, x radius=0.35, y radius=0.62];
+  \node[text=rose] at (0.5,1.45) {$T_m(t)$};
+  % velocidade
+  \draw[->, blue!70!navy, line width=1.3pt] (5.4,0.55) arc[start angle=110, end angle=-200, x radius=0.35, y radius=0.62];
+  \node[text=blue!70!navy] at (5.4,1.45) {$\omega(t)$};
+\end{tikzpicture}

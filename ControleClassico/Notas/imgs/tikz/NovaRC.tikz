@@ -1,0 +1,11 @@
+% Circuito RC (circuitikz) — Aula 02 (tema Nova). Requer \usepackage{circuitikz}.
+\begin{circuitikz}[american, line width=0.8pt, scale=1.15, transform shape]
+  \draw (0,0) to[V, l=$v_e(t)$, invert, color=navy] (0,3)
+        to[R, l=$R$, i>^=$i(t)$] (4,3)
+        to[C, l_=$C$, *-*] (4,0) -- (0,0);
+  \draw (4,3) -- (5.6,3) node[ocirc]{};
+  \draw (4,0) -- (5.6,0) node[ocirc]{};
+  \node[rose] at (5.6,2.6) {$+$};
+  \node[rose] at (5.6,1.5) {$v_C(t)$};
+  \node[rose] at (5.6,0.4) {$-$};
+\end{circuitikz}

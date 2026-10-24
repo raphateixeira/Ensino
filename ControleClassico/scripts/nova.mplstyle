@@ -1,0 +1,25 @@
+# Estilo matplotlib casado com o tema Nova (papel quente, tinta escura,
+# paleta das equações). Uso: plt.style.use("scripts/nova.mplstyle")
+figure.facecolor: F7F5F0
+axes.facecolor: F7F5F0
+savefig.facecolor: F7F5F0
+axes.edgecolor: 77736A
+axes.labelcolor: 1D1C1A
+axes.titlecolor: 1D1C1A
+axes.spines.top: False
+axes.spines.right: False
+axes.grid: True
+grid.color: E2DDD2
+grid.linewidth: 0.8
+xtick.color: 77736A
+ytick.color: 77736A
+text.color: 1D1C1A
+axes.prop_cycle: cycler('color', ['3A6EDB', 'D0473B', '2E9C6B', '7B4FD0', 'D27A22', '2795B0', 'D2457E', '7A8A1C'])
+lines.linewidth: 2.2
+font.family: sans-serif
+font.sans-serif: Inter, Helvetica Neue, Arial, DejaVu Sans
+font.size: 13
+axes.titlesize: 15
+legend.frameon: False
+mathtext.fontset: cm
+savefig.transparent: True

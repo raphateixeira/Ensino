@@ -1,0 +1,17 @@
+% Forno (sistema térmico) — Aula 02 (tema Nova).
+\begin{tikzpicture}[line width=0.9pt, >=Stealth]
+  % ambiente
+  \node[font=\small, text=gray] at (-1.2,3.6) {ambiente $T_a$};
+  % parede (resistência térmica)
+  \draw[line width=5pt, color=navy!35] (0,0) rectangle (4.4,3.2);
+  \node[font=\small, text=navy] at (2.2,3.6) {parede: resistência térmica $R_t$};
+  % interior
+  \fill[rose!6] (0.1,0.1) rectangle (4.3,3.1);
+  \node at (2.2,2.15) {\large $T(t)$};
+  \node[font=\small] at (2.2,1.55) {capacidade térmica $C_t$};
+  % resistência de aquecimento
+  \draw[rose, line width=1.4pt] (0.8,0.55) -- (1.1,0.85) -- (1.4,0.55) -- (1.7,0.85) -- (2.0,0.55) -- (2.3,0.85) -- (2.6,0.55) -- (2.9,0.85) -- (3.2,0.55) -- (3.5,0.85);
+  \draw[->, rose, line width=1.1pt] (-1.4,0.7) -- node[above, font=\small]{$q(t)$ [W]} (0.75,0.7);
+  % perda de calor
+  \draw[->, navy, line width=1.1pt, dashed] (4.6,2.0) -- node[above, font=\small, align=center]{perda\\$\dfrac{T-T_a}{R_t}$} (6.4,2.0);
+\end{tikzpicture}

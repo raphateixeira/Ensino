@@ -1,0 +1,684 @@
+---
+title: "Sistemas de Primeira Ordem"
+subtitle: "Sistemas de Controle I · Aula 2"
+author: "Prof. Dr. Raphael Teixeira"
+institute: "Universidade Federal do Pará"
+format: nova-revealjs
+engine: knitr
+csl: ../apa.csl
+link-citations: true
+resources:
+  - "anims/*"
+---
+
+```{r}
+#| include: false
+reticulate::use_python(path.expand("~/miniforge3/bin/python"), required = TRUE)
+source("../scripts/matlab-engine.R")
+# TikZ: SVG nítido (dvisvgm), circuitikz e as cores do tema
+knitr::opts_chunk$set(engine.opts = list(
+  classoption = "tikz,dvisvgm", dvisvgm.opts = "--no-fonts",
+  extra.preamble = c("\\usepackage{circuitikz}",
+                     "\\usetikzlibrary{arrows.meta,positioning,decorations.pathmorphing}",
+                     "\\definecolor{navy}{HTML}{1B365D}", "\\definecolor{rose}{HTML}{A63D4A}")))
+```
+
+## Ao final desta aula, você será capaz de {.no-crumb}
+
+::: {.big}
+1. **Modelar** sistemas elétricos, térmicos e mecânicos de 1ª ordem até $G(s)$
+2. Escrever a **forma padrão** $K/(\tau s + 1)$ e interpretar **ganho** e **constante de tempo**
+3. Obter e esboçar a **resposta ao degrau**: transitório e regime permanente
+4. Calcular **tempo de subida**, **tempo de acomodação** e **valor final**
+5. Relacionar a **posição do polo** com a velocidade e a estabilidade
+6. **Identificar** $K$ e $\tau$ a partir de dados experimentais
+:::
+
+::: {.notes}
+Aula de ~100 min. Modelagem (30) · ganho, valor final e degrau (30) · polo e plano s (15) · além do degrau e identificação (20) · síntese (5).
+:::
+
+# Modelagem
+
+- Elétrico: RC
+- Térmico: forno
+- Mecânico: motor
+- Analogias
+
+## Elétrico: circuito RC
+
+:::: {.columns}
+::: {.column width="40%"}
+```{tikz}
+%| echo: false
+%| fig-ext: svg
+%| out-width: "100%"
+\input{imgs/tikz/NovaRC.tikz}
+```
+:::
+::: {.column width="60%"}
+::: {.eqx .deriv style="--deriv-lhs: 150px; --deriv-rhs: 430px"}
+::: {.step}
+[$v_e(t)$]{.lhs} [$= R\,\eq{a}{i(t)} + v_C(t)$]{.rhs} [LKT]{.why}
+:::
+::: {.step .fragment}
+[$\eq{a}{i(t)}$]{.lhs} [$= \eq{a}{C\,\dfrac{dv_C(t)}{dt}}$]{.rhs} [capacitor]{.why}
+:::
+::: {.step .fragment}
+[$v_e(t)$]{.lhs} [$= \eq{b}{RC}\,\dfrac{dv_C(t)}{dt} + v_C(t)$]{.rhs} [substituindo $i(t)$]{.why}
+:::
+::: {.step .fragment}
+[$V_e(s)$]{.lhs} [$= (\eq{b}{RC}\,s + 1)\,V_C(s)$]{.rhs} [Laplace, CI nulas]{.why}
+:::
+:::
+:::
+::::
+
+::: {.takeaway .fragment}
+$G(s) = \dfrac{V_C(s)}{V_e(s)} = \dfrac{\eq{c}{1}}{\eq{b}{RC}\,s + 1}$ $\quad\Rightarrow\quad$ $K = 1,\;\; \tau = RC$
+:::
+
+::: {.notes}
+K = 1: em regime o capacitor carrega até a tensão da fonte. Unidade de RC: segundos.
+:::
+
+## Térmico: forno elétrico
+
+:::: {.columns}
+::: {.column width="42%"}
+```{tikz}
+%| echo: false
+%| fig-ext: svg
+%| out-width: "100%"
+\input{imgs/tikz/NovaTermico.tikz}
+```
+:::
+::: {.column width="58%"}
+::: {.eqx .deriv style="--deriv-lhs: 170px; --deriv-rhs: 400px"}
+::: {.step}
+[$C_t\,\dfrac{dT(t)}{dt}$]{.lhs} [$= q(t) - \dfrac{T(t) - T_a}{R_t}$]{.rhs} [balanço de energia]{.why}
+:::
+::: {.step .fragment}
+[$\theta(t)$]{.lhs} [$= T(t) - T_a$]{.rhs} [variação sobre o ambiente]{.why}
+:::
+::: {.step .fragment}
+[$\eq{c}{R_t}\,q(t)$]{.lhs} [$= \eq{b}{R_t C_t}\,\dfrac{d\theta(t)}{dt} + \theta(t)$]{.rhs} [multiplicando por $R_t$]{.why}
+:::
+::: {.step .fragment}
+[$\eq{c}{R_t}\,Q(s)$]{.lhs} [$= (\eq{b}{R_t C_t}\,s + 1)\,\Theta(s)$]{.rhs} [Laplace, CI nulas]{.why}
+:::
+:::
+:::
+::::
+
+::: {.takeaway .fragment}
+$G(s) = \dfrac{\Theta(s)}{Q(s)} = \dfrac{\eq{c}{R_t}}{\eq{b}{R_t C_t}\,s + 1}$ $\quad\Rightarrow\quad$ $K = R_t$ [°C/W], $\;\tau = R_t C_t$
+:::
+
+::: {.notes}
+Calor que entra − calor que sai = calor armazenado. Pergunta: o que acontece com τ se a parede for mais isolante? (R_t cresce → τ e K crescem: esquenta mais, porém mais devagar).
+:::
+
+## Mecânico: velocidade de um motor
+
+:::: {.columns}
+::: {.column width="42%"}
+```{tikz}
+%| echo: false
+%| fig-ext: svg
+%| out-width: "100%"
+\input{imgs/tikz/NovaMotorEixo.tikz}
+```
+:::
+::: {.column width="58%"}
+::: {.eqx .deriv style="--deriv-lhs: 170px; --deriv-rhs: 400px"}
+::: {.step}
+[$J\,\dfrac{d\omega(t)}{dt}$]{.lhs} [$= T_m(t) - b\,\omega(t)$]{.rhs} [2ª lei de Newton (rotação)]{.why}
+:::
+::: {.step .fragment}
+[$\eq{c}{\tfrac{1}{b}}\,T_m(t)$]{.lhs} [$= \eq{b}{\tfrac{J}{b}}\,\dfrac{d\omega(t)}{dt} + \omega(t)$]{.rhs} [rearranjando e dividindo por $b$]{.why}
+:::
+::: {.step .fragment}
+[$\eq{c}{\tfrac{1}{b}}\,T_m(s)$]{.lhs} [$= (\eq{b}{\tfrac{J}{b}}\,s + 1)\,\Omega(s)$]{.rhs} [Laplace, CI nulas]{.why}
+:::
+:::
+:::
+::::
+
+::: {.takeaway .fragment}
+$G(s) = \dfrac{\Omega(s)}{T_m(s)} = \dfrac{\eq{c}{1/b}}{\eq{b}{(J/b)}\,s + 1}$ $\quad\Rightarrow\quad$ $K = 1/b,\;\; \tau = J/b$
+:::
+
+::: {.notes}
+Motor CC com entrada v_a e L_a ≈ 0: τ = J R_a / (b R_a + K_t K_b) e K = K_t / (b R_a + K_t K_b) — ver Nise, cap. 2.
+:::
+
+## Uma só forma para todos
+
+| Sistema | Entrada → saída | Armazena | Dissipa | $K$ | $\tau$ |
+|:--|:--|:--|:--|:-:|:-:|
+| Elétrico (RC) | $v_e \to v_C$ | capacitor $C$ | resistor $R$ | $1$ | $RC$ |
+| Térmico (forno) | $q \to \theta$ | capacidade $C_t$ | parede $R_t$ | $R_t$ | $R_t C_t$ |
+| Mecânico (motor) | $T_m \to \omega$ | inércia $J$ | atrito $b$ | $1/b$ | $J/b$ |
+| Hidráulico (tanque) | $q_e \to h$ | área $A$ | válvula $R_h$ | $R_h$ | $A\,R_h$ |
+
+: Analogias entre sistemas de 1ª ordem {tbl-colwidths="[18,16,18,18,12,18]"}
+
+::: {.takeaway .fragment}
+$\tau = (\text{o que armazena}) \times (\text{o que dissipa})$
+:::
+
+::: {.notes}
+Generalização útil: τ é sempre "capacidade × resistência". O tanque fica como exercício (A·dh/dt = q_e − h/R_h).
+:::
+
+## A mesma curva, escalas diferentes {.nostretch}
+
+```{python}
+#| echo: false
+#| fig-width: 15
+#| fig-height: 4.2
+#| out-width: "100%"
+import numpy as np, matplotlib.pyplot as plt
+plt.style.use("../scripts/nova.mplstyle")
+fig, axs = plt.subplots(1, 3, figsize=(15, 4.2))
+casos = [("Capacitor carregando", 1e-3, "ms", 5.0, "v_C (V)"),
+         ("Forno aquecendo", 60.0, "min", 180.0, "T − Tₐ (°C)"),
+         ("Motor acelerando", 1.0, "s", 1500.0, "ω (rpm)")]
+for ax, (tit, esc, un, fin, rot) in zip(axs, casos):
+    tau = {"ms": 2.0, "min": 12.0, "s": 0.8}[un]
+    t = np.linspace(0, 5 * tau, 400)
+    ax.plot(t, fin * (1 - np.exp(-t / tau)), color="#3A6EDB")
+    ax.set(title=tit, xlabel=f"t ({un})", ylabel=rot)
+fig.tight_layout()
+```
+
+::: {.takeaway .fragment}
+Escalas e físicas diferentes, **a mesma curva**: $\;\tau\,\dot y + y = K\,u$
+:::
+
+::: {.notes}
+Consolidação da modelagem: três físicas e três escalas de tempo (ms, min, s), mas a mesma equação. Pergunte qual é o armazenador e a dissipação de cada um.
+:::
+
+## Verificação
+
+::: {.quiz answer="b"}
+Num forno, **dobrar o isolamento** da parede ($R_t \to 2R_t$) faz:
+
+- $\tau$ cair pela metade
+- $K$ e $\tau$ dobrarem: aquece mais, porém mais devagar
+- só $K$ dobrar
+- nada mudar, pois a resistência elétrica é a mesma
+:::
+
+# Ganho, valor final e resposta ao degrau
+
+- Teorema do valor final
+- Ganho estático
+- Resposta ao degrau
+- Especificações
+
+## Teorema do valor final: demonstração
+
+Ponto de partida: a transformada da derivada, $\;\mathcal{L}\{\dot y\} = sY(s) - y(0)$
+
+::: {.eqx .deriv style="--deriv-lhs: 400px; --deriv-rhs: 480px"}
+::: {.step}
+[$\displaystyle\int_0^\infty \dot y(t)\,\eq{a}{e^{-st}}\,dt$]{.lhs} [$= sY(s) - y(0)$]{.rhs} [definição de $\mathcal{L}\{\dot y\}$]{.why}
+:::
+::: {.step .fragment}
+[$\displaystyle\lim_{s\to 0}\int_0^\infty \dot y(t)\,\eq{a}{e^{-st}}\,dt$]{.lhs} [$= \displaystyle\lim_{s\to 0} sY(s) - y(0)$]{.rhs} [fazendo $s \to 0$]{.why}
+:::
+::: {.step .fragment}
+[$\displaystyle\int_0^\infty \dot y(t)\,dt$]{.lhs} [$= \eq{b}{y(\infty) - y(0)}$]{.rhs} [$\eq{a}{e^{-st}} \to 1$; integral da derivada]{.why}
+:::
+::: {.step .fragment}
+[$\eq{b}{y(\infty)}$]{.lhs} [$= \displaystyle\lim_{s\to 0} s\,Y(s)$]{.rhs} [igualando: $y(0)$ cancela]{.why}
+:::
+:::
+
+::: {.callout-important .fragment title="Condição"}
+Só vale se $y(t)$ **converge**: todos os polos de $s\,Y(s)$ no semiplano esquerdo. Para um sistema instável o limite existe, mas **não** é o valor final.
+:::
+
+::: {.notes}
+A troca de limite e integral é justificada quando y converge. Exemplo de armadilha: G(s) = 1/(s − 2) com degrau dá lim sY(s) = −1/2, mas y(t) diverge.
+:::
+
+## Por que o ganho se obtém com $s \to 0$
+
+:::: {.columns}
+::: {.column width="50%"}
+#### No tempo: o equilíbrio
+
+Entrada constante $u = A$; em regime **nada varia** ($\dot y = 0$):
+
+::: {.eqx .deriv style="--deriv-lhs: 150px; --deriv-rhs: 220px"}
+::: {.step .fragment}
+[$\tau\,\eq{e}{\dot y} + y$]{.lhs} [$= K\,u$]{.rhs} [modelo]{.why}
+:::
+::: {.step .fragment}
+[$\tau\cdot\eq{e}{0} + y_{ss}$]{.lhs} [$= K\,A$]{.rhs} [$\eq{e}{\dot y = 0}$]{.why}
+:::
+::: {.step .fragment}
+[$y_{ss}/A$]{.lhs} [$= K$]{.rhs} [ganho estático]{.why}
+:::
+:::
+:::
+::: {.column width="50%"}
+#### Em Laplace: frequência zero
+
+[$\dfrac{d}{dt} \;\longleftrightarrow\; s$]{.fragment}: um sinal **constante** não varia, o que corresponde a [$s = 0$]{.rn-circle .fragment}.
+
+::: {.fragment}
+Pelo valor final, com degrau $A/s$:
+$$
+y_{ss} = \lim_{s\to 0} s\,G(s)\,\frac{A}{s} = G(0)\,A
+$$
+:::
+:::
+::::
+
+::: {.takeaway .fragment}
+$K = \dfrac{y_{ss}}{u_{ss}} = \lim_{s\to 0} G(s) = G(0) = \dfrac{K}{\tau\cdot 0 + 1}$
+:::
+
+::: {.notes}
+Teste com a turma: qual o ganho estático de G(s) = 10/(5s + 2)? G(0) = 5 — e não 10! Na forma padrão: 5/(2,5 s + 1).
+:::
+
+## A forma padrão
+
+::: {.eqx}
+$$
+\eq{b}{\tau}\,\dot y(t) + y(t) = \eq{a}{K}\,u(t)
+\qquad\Longleftrightarrow\qquad
+G(s) = \frac{Y(s)}{U(s)} = \frac{\eq{a}{K}}{\eq{b}{\tau}\, s + 1}
+$$
+
+::: {.eqx-text}
+O [ganho estático $K$]{.t-a .fragment .lightup} diz **quanto** a saída muda em regime para cada unidade de entrada. A [constante de tempo $\tau$]{.t-b .fragment .lightup} diz **quão rápido** ela chega lá.
+:::
+:::
+
+::: {.callout-definition .fragment}
+**Ganho estático** (ganho DC): $K = G(0)$. **Constante de tempo**: $\tau$, em segundos, só depende da física (capacidade × resistência). Atenção: só se lê $K$ e $\tau$ direto com o "+1" no denominador.
+:::
+
+## Resposta ao degrau, passo a passo
+
+Entrada degrau de amplitude $A$: $\;U(s) = A/s$
+
+::: {.eqx .deriv style="--deriv-lhs: 180px; --deriv-rhs: 520px"}
+::: {.step}
+[$Y(s)$]{.lhs} [$= \dfrac{K}{\tau s + 1}\cdot\dfrac{A}{s}$]{.rhs} [$Y = G\,U$]{.why}
+:::
+::: {.step .fragment}
+[$Y(s)$]{.lhs} [$= KA\left(\eq{a}{\dfrac{1}{s}} - \eq{e}{\dfrac{1}{s + 1/\tau}}\right)$]{.rhs} [frações parciais]{.why}
+:::
+::: {.step .fragment}
+[$y(t)$]{.lhs} [$= KA\left(\eq{a}{1} - \eq{e}{e^{-t/\tau}}\right)$]{.rhs} [transformada inversa]{.why}
+:::
+:::
+
+::: {.takeaway .fragment}
+$y(t) = KA\,\big(1 - e^{-t/\tau}\big),\quad t \ge 0$
+:::
+
+::: {.notes}
+Confira as frações parciais: 1/(s(τs+1)) = 1/s − τ/(τs+1) = 1/s − 1/(s+1/τ).
+:::
+
+## Transitório e regime permanente
+
+::: {.eqx}
+$$
+y(t) = \underbrace{\eq{b}{K A}}_{\text{regime}} \;\underbrace{\eq{e}{-\,K A\, e^{-t/\tau}}}_{\text{transitório}}
+$$
+
+::: {.eqx-text}
+A [resposta de regime permanente]{.t-b} é o que sobra quando $t \to \infty$: o valor final $KA$. A [resposta transitória]{.t-e} carrega a "memória" do sistema e se extingue exponencialmente — tanto mais rápido quanto **menor** for $\tau$.
+:::
+:::
+
+::: {.callout-insight .fragment}
+Confere com o teorema do valor final: $\;\lim_{s\to 0} s\,\dfrac{K}{\tau s+1}\,\dfrac{A}{s} = KA$ — sem resolver a equação diferencial.
+:::
+
+## Explore: ganho e constante de tempo
+
+::: {style="height: 690px"}
+<canvas class="nova-canvas" data-nova-anim="primeira-ordem" data-controls="k,tau" data-plano="false"></canvas>
+:::
+
+<script src="anims/nova-anim.js"></script>
+<script src="anims/primeira-ordem.js"></script>
+
+::: {.notes}
+Roteiro:
+1. Mude só K: a curva estica na vertical, o tempo não muda (os percentuais ficam nos mesmos instantes).
+2. Mude só τ: a curva estica na horizontal, o valor final não muda.
+3. Pergunte: em que instante a curva com τ = 2 s atinge 98 %? (8 s)
+:::
+
+## Especificações de tempo
+
+:::: {.columns}
+::: {.column width="52%"}
+::: {.eqx .deriv style="--deriv-lhs: 140px; --deriv-rhs: 300px"}
+::: {.step}
+[$t_{10}$]{.lhs} [$= \tau\ln\frac{10}{9}$]{.rhs} [10 % do final]{.why}
+:::
+::: {.step}
+[$t_{90}$]{.lhs} [$= \tau\ln 10$]{.rhs} [90 % do final]{.why}
+:::
+::: {.step .fragment}
+[$\eq{a}{t_r}$]{.lhs} [$= \tau\ln 9 \approx \eq{a}{2{,}2\,\tau}$]{.rhs} [tempo de subida]{.why}
+:::
+::: {.step .fragment}
+[$\eq{b}{t_s}$]{.lhs} [$= \tau\ln 50 \approx \eq{b}{4\,\tau}$]{.rhs} [acomodação (2 %)]{.why}
+:::
+:::
+:::
+::: {.column width="48%"}
+| Critério | $t_s$ |
+|:--|:-:|
+| 5 % | $3\,\tau$ |
+| 2 % | $4\,\tau$ |
+| 1 % | $4{,}6\,\tau$ |
+
+::: {.callout-note title="Sobressinal"}
+$M_p = 0$: a resposta de 1ª ordem **nunca ultrapassa** o valor final.
+:::
+:::
+::::
+
+::: {.takeaway .fragment}
+Todas as especificações de tempo são **múltiplos de $\tau$**.
+:::
+
+## Três leituras da constante de tempo
+
+::: {.panels}
+::: {.panel}
+**1 · 63,2 %**
+
+[Em $t = \tau$, a saída percorreu $1 - e^{-1} \approx 63{,}2\,\%$ do caminho até o valor final.]{.muted}
+:::
+::: {.panel .fragment}
+**2 · Tangente inicial**
+
+[Se mantivesse a velocidade inicial $\dot y(0^+) = KA/\tau$, chegaria ao valor final em exatamente $t = \tau$.]{.muted}
+:::
+::: {.panel .fragment}
+**3 · Polo**
+
+[O polo está em $s = -1/\tau$: $\tau$ é o inverso da distância do polo à origem.]{.muted}
+:::
+:::
+
+::: {.takeaway .fragment}
+Medir uma é medir todas: escolha a mais fácil no seu experimento.
+:::
+
+## Verificação
+
+::: {.quiz answer="c"}
+Um sensor de temperatura tem $\tau = 2$ s. Depois de um degrau, quanto tempo até a leitura ficar a menos de 2 % do valor final?
+
+- 2 s
+- 4 s
+- 8 s
+- 63,2 s
+:::
+
+# Polo e estabilidade
+
+- O polo e o modo
+- Polo × velocidade
+- Semiplano direito
+
+## O polo define o modo
+
+::: {.eqx}
+$$
+G(s) = \frac{K}{\tau s + 1} = \frac{K/\tau}{s + \eq{a}{p}}, \qquad \eq{a}{p} = \frac{1}{\tau}
+$$
+
+::: {.fragment}
+$$
+\text{polo:}\quad s + \eq{a}{p} = 0 \;\;\Longrightarrow\;\; \eq{e}{s = -p = -\tfrac{1}{\tau}}
+\qquad\qquad \text{modo:}\;\; e^{-\eq{a}{p}\,t} = e^{-t/\tau}
+$$
+:::
+
+::: {.eqx-text}
+O [polo]{.t-e} é a raiz do denominador e aparece no expoente da resposta. Com [$p = 5$]{.t-a} (polo em $s = -5$) o modo $e^{-5t}$ some em ~0,8 s; com $p = 0{,}5$ (polo em $s = -0{,}5$), leva ~8 s.
+:::
+:::
+
+::: {.callout-important .fragment title="Estabilidade"}
+Polo com parte real **negativa** → o modo decai → estável. Polo com parte real **positiva** → o modo cresce → **instável**.
+:::
+
+## O polo no plano s
+
+```{tikz}
+%| echo: false
+%| fig-ext: svg
+%| fig-align: center
+%| out-width: "82%"
+\input{imgs/tikz/NovaPlanoS.tikz}
+```
+
+::: {.takeaway .fragment}
+A distância do polo à origem é $1/\tau$: quanto mais longe, mais rápido.
+:::
+
+## Explore: arraste o polo
+
+::: {style="height: 690px"}
+<canvas class="nova-canvas" data-nova-anim="polo-resposta" data-controls="p"></canvas>
+:::
+
+<script src="anims/polo-resposta.js"></script>
+
+::: {.notes}
+O slider e o arraste mostram a posição do polo (s = −1/τ). Arraste o polo de −1 para −4: a resposta fica 4× mais rápida (as últimas curvas ficam esmaecidas para comparar). Depois cruze a origem: o modo cresce. Pergunte: o que um controlador precisa fazer com um polo instável? (Trazê-lo para a esquerda — é isso que a realimentação faz.)
+:::
+
+# Além do degrau
+
+- Impulso e rampa
+- Identificação experimental
+- Exemplos e código
+
+## Impulso, degrau e rampa {.nostretch}
+
+```{python}
+#| echo: false
+#| fig-width: 15
+#| fig-height: 4.3
+#| out-width: "100%"
+import numpy as np, matplotlib.pyplot as plt
+plt.style.use("../scripts/nova.mplstyle")
+K, tau = 1.0, 1.0
+t = np.linspace(0, 6, 600)
+fig, axs = plt.subplots(1, 3, figsize=(15, 4.3))
+axs[0].plot(t, K / tau * np.exp(-t / tau), color="#D0473B"); axs[0].set(title="impulso: (K/τ) e^(−t/τ)")
+axs[1].plot(t, K * (1 - np.exp(-t / tau)), color="#3A6EDB"); axs[1].axhline(K, ls="--", c="gray", lw=1)
+axs[1].set(title="degrau: K (1 − e^(−t/τ))")
+axs[2].plot(t, t, ls="--", c="gray", lw=1.4, label="entrada r = t")
+axs[2].plot(t, K * (t - tau + tau * np.exp(-t / tau)), color="#2E9C6B", label="saída")
+axs[2].annotate("", xy=(5, 5), xytext=(5, 4), arrowprops=dict(arrowstyle="<->", color="#A63D4A"))
+axs[2].text(5.1, 4.4, "erro = τ", color="#A63D4A"); axs[2].legend(loc="upper left")
+axs[2].set(title="rampa: K (t − τ + τ e^(−t/τ))")
+for ax in axs: ax.set(xlabel="t (s)")
+fig.tight_layout()
+```
+
+::: {.columns .small}
+::: {.column width="50%"}
+- A resposta ao **impulso** é a **derivada** da resposta ao degrau (multiplicar por $s$ em Laplace)
+:::
+::: {.column width="50%"}
+- Na **rampa**, a saída segue a entrada com **atraso constante** $\tau$ (para $K = 1$) — tema da Aula 6
+:::
+:::
+
+## Identificação experimental de $K$ e $\tau$
+
+:::: {.columns}
+::: {.column width="56%"}
+```{python}
+#| echo: false
+#| fig-width: 8.5
+#| fig-height: 5.4
+import numpy as np, matplotlib.pyplot as plt
+plt.style.use("../scripts/nova.mplstyle")
+rng = np.random.default_rng(11)
+A, K, tau, t0 = 2.0, 1.6, 3.0, 1.0
+t = np.arange(0, 20, 0.1)
+y = np.where(t >= t0, K * A * (1 - np.exp(-(t - t0) / tau)), 0) + rng.normal(0, 0.04, t.size)
+yf = y[t > 15].mean()
+fig, ax = plt.subplots(figsize=(8.5, 5.4))
+ax.plot(t, y, ".", ms=4, color="#3A6EDB", label="dados medidos")
+ax.axhline(yf, ls="--", c="#2E9C6B", lw=1.4); ax.text(15.3, yf + 0.08, "y(∞) ≈ %.2f" % yf, color="#2E9C6B")
+ax.axhline(0.632 * yf, ls=":", c="#7B4FD0", lw=1.4)
+i63 = np.argmax(y >= 0.632 * yf); ax.axvline(t[i63], ls=":", c="#7B4FD0", lw=1.4)
+ax.plot([t0, t0 + tau], [0, yf], "--", c="#D27A22", lw=1.4, label="tangente inicial")
+ax.text(t[i63] + 0.3, 0.3, "t = t₀ + τ", color="#7B4FD0")
+ax.set(xlabel="t (s)", ylabel="y(t)"); ax.legend(loc="lower right")
+fig.tight_layout()
+```
+:::
+::: {.column width="44%"}
+Degrau de amplitude $A$ aplicado em $t_0$:
+
+1. [$K = y(\infty)/A$]{.rn-underline .fragment}
+2. [$\tau$]{.rn-circle .fragment}: tempo até 63,2 % do valor final
+3. ou: onde a **tangente inicial** cruza $y(\infty)$
+
+::: {.callout-insight .fragment .small}
+Processos industriais têm também um **atraso** $\theta$: modelo $K e^{-\theta s}/(\tau s + 1)$, base da sintonia de Ziegler–Nichols [@ziegler1942].
+:::
+:::
+::::
+
+## Identifique você mesmo
+
+::: {.pyrun}
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+rng = np.random.default_rng()   # novo "experimento"
+A = 2.0
+K, tau = rng.uniform(0.5, 3), rng.uniform(0.5, 4)
+t = np.arange(0, 25, 0.05)
+ruido = rng.normal(0, 0.03, t.size)
+y = K * A * (1 - np.exp(-t / tau)) + ruido
+
+y_inf = y[t > 20].mean()        # valor final
+K_est = y_inf / A
+tau_est = t[np.argmax(y >= 0.632 * y_inf)]
+
+plt.plot(t, y, ".", ms=2)
+plt.axhline(0.632 * y_inf, ls=":")
+print(f"estimado: K = {K_est:.2f}, tau = {tau_est:.2f} s")
+print(f"real:     K = {K:.2f}, tau = {tau:.2f} s")
+```
+:::
+
+::: {.muted .smaller}
+Cada execução gera um novo sistema "desconhecido". Python roda no navegador (precisa de internet na primeira execução).
+:::
+
+## Exemplo resolvido
+
+**Problema.** Um sensor de temperatura recebe um degrau de 20 °C em $t = 0$. A leitura estabiliza em 20 °C e atinge 63,2 % do valor final em 3 s. Determine $G(s)$, $y(t)$, $t_r$ e $t_s$.
+
+::: {.eqx .deriv style="--deriv-lhs: 220px; --deriv-rhs: 640px"}
+::: {.step .fragment}
+[$K$]{.lhs} [$= 20/20 = 1$]{.rhs} [valor final ÷ amplitude]{.why}
+:::
+::: {.step .fragment}
+[$\tau$]{.lhs} [$= 3$ s]{.rhs} [tempo até 63,2 %]{.why}
+:::
+::: {.step .fragment}
+[$G(s),\; y(t)$]{.lhs} [$= \dfrac{1}{3s + 1},\quad 20\,(1 - e^{-t/3})$ °C]{.rhs} [forma padrão]{.why}
+:::
+::: {.step .fragment}
+[$t_r,\; t_s$]{.lhs} [$\approx 6{,}6$ s, $\;12$ s]{.rhs} [$2{,}2\,\tau$ e $4\,\tau$]{.why}
+:::
+:::
+
+## Em Python, executado na renderização
+
+```{python}
+#| echo: true
+#| output-location: column
+#| fig-width: 7
+#| fig-height: 4.6
+import control as ct
+import matplotlib.pyplot as plt
+plt.style.use("../scripts/nova.mplstyle")
+
+G = ct.tf([1], [3, 1])          # sensor: K = 1, tau = 3 s
+t, y = ct.step_response(20 * G, T=20)
+info = ct.step_info(20 * G)
+
+plt.plot(t, y)
+plt.xlabel("t (s)"); plt.ylabel("leitura (°C)")
+p = ct.poles(G)[0].real
+print(f"polo: {p:.3f}\n"
+      f"t_r = {info['RiseTime']:.2f} s\n"
+      f"t_s = {info['SettlingTime']:.2f} s")
+```
+
+## Em MATLAB, executado na renderização
+
+```{matlab}
+%| echo: true
+%| cache: true
+%| output-location: column
+s  = tf('s');
+G  = 1/(3*s + 1);       % sensor
+step(20*G, 20); grid on
+title(''); ylabel('leitura (°C)')
+
+S = stepinfo(20*G);
+fprintf('polo: %.3f\n', pole(G));
+fprintf('t_r = %.2f s\n', S.RiseTime);
+fprintf('t_s = %.2f s\n', S.SettlingTime);
+```
+
+## Resumo
+
+1. Um armazenador de energia + uma dissipação → modelo de **1ª ordem**: $\tau\dot y + y = Ku$
+2. **Forma padrão** $G(s) = K/(\tau s+1)$: $K$ = quanto, $\tau$ = quão rápido; $\tau$ = capacidade × resistência
+3. Degrau: $y(t) = KA(1 - e^{-t/\tau})$ = **regime** $KA$ + **transitório** que se extingue
+4. $t_r \approx 2{,}2\tau$, $t_s \approx 4\tau$ (2 %), sem sobressinal
+5. **Polo** em $-1/\tau$: mais à esquerda → mais rápido; no semiplano direito → **instável**
+6. **Valor final** pelo TVF: $y(\infty) = \lim_{s\to0} sY(s)$; ganho estático $K = G(0)$
+
+::: {.takeaway .fragment}
+Conheça $K$ e $\tau$ e você conhece o sistema de 1ª ordem inteiro.
+:::
+
+## Exercícios
+
+1. Para $G(s) = 2/(0{,}5s + 1)$: escreva $y(t)$ para degrau unitário e calcule $t_r$, $t_s$ (2 %) e o polo.
+2. A partir de $y(t) = 5(1 - e^{-2t})$ para degrau unitário, identifique $K$, $\tau$, o polo e $t_s$.
+3. Modele um tanque de área $A$ com vazão de entrada $q_e$ e saída $h/R_h$. Obtenha $K$ e $\tau$.
+4. Um motor atinge 63,2 % da velocidade final em 0,2 s. Estime $\tau$ e o tempo para chegar a 98 %.
+5. Para $G(s) = 10/(5s + 2)$: escreva na forma padrão, obtenha $K = G(0)$ e $\tau$, e use o teorema do valor final para o degrau de amplitude 3.
+6. Usando a propriedade de derivação de Laplace, mostre que a resposta ao impulso é a derivada da resposta ao degrau.
+
+## Referências {.nova-refs-slide .no-cites}
+
+::: {#refs}
+:::
+
+{{< include _encerramento-nova.qmd >}}
