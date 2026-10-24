@@ -9,6 +9,9 @@ project:
   render:
     - index.qmd
     - Notas/*.qmd
+    # Rascunhos no tema Nova: usam o motor do MATLAB (scripts/matlab-engine.R), que o CI não tem;
+    # renderize localmente com `quarto render Notas/<arquivo>Nova.qmd`
+    - "!Notas/*Nova.qmd"
     - Projeto/*.qmd
     - Exercicios/*.qmd
     - Avaliacoes/*.qmd
