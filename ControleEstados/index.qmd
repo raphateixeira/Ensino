@@ -1,19 +1,25 @@
 ---
-title: "Espaço de Estados"
-subtitle: "Sistemas de Controle II"
-institute: "Universidade Federal do Pará"
-author: "Prof. Dr. Raphael Teixeira"
-date: ""
+pagetitle: "Espaço de Estados"
 format: 
   html:
     page-layout: article
 ---
 
-[⬅ Site principal](https://raphateixeira.github.io)
+::: {.rtx-hero}
+[Disciplina · Sistemas de Controle II]{.rtx-eyebrow}
 
-Notas de aula de Sistemas de Controle II - Espaço de Estados:
+# Espaço de Estados {.unnumbered .unlisted}
 
-Turma de 2024 da FEE - CAMTUC - UFPA.
+Notas de aula de Sistemas de Controle II: modelagem, representações e controle no espaço de estados. Turma 2024 da FEE/CAMTUC/UFPA.
+
+[Prof. Dr. Raphael Teixeira]{.rtx-meta}
+
+::: {.rtx-acoes}
+[Plano de ensino](Notas/SS00PlanoEnsino.qmd){.rtx-btn .rtx-btn-primario} [GitHub](https://github.com/raphateixeira/ControleEstados){.rtx-btn} [Site do professor](https://raphateixeira.github.io){.rtx-btn}
+:::
+:::
+
+## Notas de aula
 
 ```{=html}
 <div class="categoria-grid">
