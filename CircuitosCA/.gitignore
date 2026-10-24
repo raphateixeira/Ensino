@@ -18,3 +18,6 @@ LivrosCircuitos/pdfs/
 
 # Tema compartilhado: baixado de raphateixeira/.github no build (ver .github/scripts/atualizar-tema.sh na raiz de GitRTx)
 /TemaRTx.scss
+
+# Gabaritos de avaliações (apresentações) — uso local apenas, nunca versionar
+/Gabaritos/

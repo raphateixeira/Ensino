@@ -124,6 +124,59 @@ O mesmo resultado é obtido resolvendo o circuito **de uma vez** por análise no
 
 ---
 
+## Superposição — Exemplo Resolvido
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 12
+\input{imgs/tikz/ExemploSuperposicao.tikz}
+```
+
+**Dados:** $v_s(t) = 20\cos(4t)$ V e $i_s(t) = 4\cos(2t)$ A. **Objetivo:** encontrar $v_o(t)$ sobre o indutor.
+
+As fontes têm frequências **diferentes**: cada contribuição usa sua própria impedância e a soma é feita **no tempo**.
+
+---
+
+## Superposição — Exemplo: Apenas $v_s$ ($\omega = 4$ rad/s)
+
+Com $i_s$ desativada (circuito aberto): $Z_L = j\omega L = j4\ \Omega$, e o circuito vira um divisor de tensão:
+
+$$\mathbf{V}_o' = \mathbf{V}_s\,\frac{Z_L}{R + Z_L} = 20\angle 0^\circ\cdot\frac{j4}{4 + j4} = \frac{20\,j}{1 + j} = 10 + j10 = 14{,}14\angle 45^\circ\ \text{V}$$
+
+$$v_o'(t) = 14{,}14\cos(4t + 45^\circ)\ \text{V}$$
+
+---
+
+## Superposição — Exemplo: Apenas $i_s$ ($\omega = 2$ rad/s)
+
+Com $v_s$ desativada (curto-circuito): $Z_L = j2\ \Omega$, e $R$ fica em **paralelo** com $L$:
+
+$$R \,\|\, Z_L = \frac{4\,(j2)}{4 + j2} = \frac{j8\,(4 - j2)}{20} = 0{,}8 + j1{,}6\ \Omega$$
+
+$$\mathbf{V}_o'' = \mathbf{I}_s\,(R\,\|\,Z_L) = 4\angle 0^\circ\,(0{,}8 + j1{,}6) = 3{,}2 + j6{,}4 = 7{,}16\angle 63{,}4^\circ\ \text{V}$$
+
+$$v_o''(t) = 7{,}16\cos(2t + 63{,}4^\circ)\ \text{V}$$
+
+---
+
+## Superposição — Exemplo: Resultado
+
+Os fasores $\mathbf{V}_o'$ e $\mathbf{V}_o''$ giram em frequências diferentes e **não podem ser somados**. A soma é feita no tempo:
+
+::: {.callout-tip}
+## Resposta
+$$v_o(t) = v_o'(t) + v_o''(t) = 14{,}14\cos(4t + 45^\circ) + 7{,}16\cos(2t + 63{,}4^\circ)\ \text{V}$$
+:::
+
+::: {.callout-note}
+## Erro comum
+Somar $\mathbf{V}_o' + \mathbf{V}_o'' = 13{,}2 + j16{,}4$ V não tem significado físico: cada fasor pressupõe uma frequência $\omega$ diferente.
+:::
+
+---
+
 ## Teorema de Thévenin
 
 ::: {.callout-theorem}
@@ -168,6 +221,65 @@ $$\mathbf{Z}_{th} = \mathbf{Z}_3 + \mathbf{Z}_1\|\mathbf{Z}_2 = (3-j4) + \frac{(
 
 ---
 
+## Thévenin — Exemplo Resolvido
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 9
+\input{imgs/tikz/ExemploThevenin.tikz}
+```
+
+**Objetivo:** encontrar o equivalente de Thévenin visto dos terminais $a$-$b$ e a corrente em uma carga $R_L = 5\ \Omega$ ligada entre $a$ e $b$.
+
+---
+
+## Thévenin — Exemplo Resolvido: $\mathbf{V}_{th}$ e $\mathbf{Z}_{th}$
+
+**$\mathbf{V}_{th}$:** com $a$-$b$ aberto não há corrente em $j5\ \Omega$, logo $\mathbf{V}_{th} = \mathbf{V}_x$ (divisor de tensão):
+
+$$\mathbf{V}_{th} = 50\angle 0^\circ\cdot\frac{-j10}{10 - j10} = \frac{50\,(-j)}{1 - j} = 25 - j25 = 35{,}36\angle{-45^\circ}\ \text{V}$$
+
+**$\mathbf{Z}_{th}$:** fonte de tensão em curto; $10\ \Omega \,\|\, (-j10\ \Omega)$ em série com $j5\ \Omega$:
+
+$$\mathbf{Z}_{th} = j5 + \frac{10\,(-j10)}{10 - j10} = j5 + (5 - j5) = 5 + j0 = 5\angle 0^\circ\ \Omega$$
+
+::: {.callout-note}
+## Observação
+A reatância do indutor cancela a parte reativa do paralelo: neste caso, $\mathbf{Z}_{th}$ é **puramente resistiva**.
+:::
+
+---
+
+## Thévenin — Exemplo Resolvido: Corrente na Carga
+
+:::: {.columns}
+::: {.column width="40%"}
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 6
+\input{imgs/tikz/ExemploTheveninCarga.tikz}
+```
+:::
+::: {.column width="60%"}
+$$
+\begin{aligned}
+\mathbf{I}_L &= \frac{\mathbf{V}_{th}}{\mathbf{Z}_{th} + R_L} = \frac{25 - j25}{5 + 5} \\[4pt]
+&= 2{,}5 - j2{,}5 = 3{,}54\angle{-45^\circ}\ \text{A} \\[8pt]
+\mathbf{V}_L &= R_L\,\mathbf{I}_L = 12{,}5 - j12{,}5 = 17{,}68\angle{-45^\circ}\ \text{V}
+\end{aligned}
+$$
+:::
+::::
+
+::: {.callout-tip}
+## Resposta
+$\mathbf{V}_{th} = 25 - j25 = 35{,}36\angle{-45^\circ}$ V, $\quad\mathbf{Z}_{th} = 5\ \Omega$, $\quad\mathbf{I}_L = 2{,}5 - j2{,}5 = 3{,}54\angle{-45^\circ}$ A
+:::
+
+---
+
 ## Teorema de Norton
 
 ::: {.callout-theorem}
@@ -195,6 +307,49 @@ $$\mathbf{I}_n = \frac{\mathbf{V}_{th}}{\mathbf{Z}_{th}} = \frac{35{,}78\angle 2
 
 ::: {.callout-tip}
 Essa é exatamente a **transformação de fonte** já conhecida de Circuitos Elétricos I, agora com impedâncias complexas no lugar de resistências.
+:::
+
+---
+
+## Norton — Exemplo Resolvido
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 9
+\input{imgs/tikz/ExemploNorton.tikz}
+```
+
+**Objetivo:** encontrar o equivalente de Norton visto dos terminais $a$-$b$ **diretamente** (corrente de curto-circuito) e a corrente em uma carga $\mathbf{Z}_L = 4 + j4\ \Omega$ ligada entre $a$ e $b$.
+
+---
+
+## Norton — Exemplo Resolvido: $\mathbf{I}_n$ e $\mathbf{Z}_n$
+
+**$\mathbf{I}_n$:** curto-circuitando $a$-$b$, o capacitor fica em curto e a fonte divide sua corrente entre $4\ \Omega$ e $j4\ \Omega$:
+
+$$\mathbf{I}_n = 10\angle 0^\circ\cdot\frac{4}{4 + j4} = \frac{10}{1 + j} = 5 - j5 = 7{,}07\angle{-45^\circ}\ \text{A}$$
+
+**$\mathbf{Z}_n$:** fonte de corrente aberta; $(4 + j4)$ em paralelo com $-j4$:
+
+$$\mathbf{Z}_n = \frac{(4 + j4)(-j4)}{4 + j4 - j4} = \frac{16 - j16}{4} = 4 - j4 = 5{,}66\angle{-45^\circ}\ \Omega$$
+
+---
+
+## Norton — Exemplo Resolvido: Corrente na Carga
+
+Com $\mathbf{Z}_L$ em paralelo com $\mathbf{Z}_n$, divisor de corrente:
+
+$$\mathbf{I}_L = \mathbf{I}_n\,\frac{\mathbf{Z}_n}{\mathbf{Z}_n + \mathbf{Z}_L} = (5 - j5)\,\frac{4 - j4}{8} = \frac{-j40}{8} = -j5\ \text{A}$$
+
+::: {.callout-tip}
+## Resposta
+$\mathbf{I}_n = 5 - j5 = 7{,}07\angle{-45^\circ}$ A, $\quad\mathbf{Z}_n = 4 - j4 = 5{,}66\angle{-45^\circ}\ \Omega$, $\quad\mathbf{I}_L = 0 - j5 = 5\angle{-90^\circ}$ A
+:::
+
+::: {.callout-note}
+## Verificação por Thévenin
+$\mathbf{V}_{th} = \mathbf{I}_n\mathbf{Z}_n = (5 - j5)(4 - j4) = -j40$ V e $\mathbf{I}_L = \dfrac{-j40}{(4 - j4) + (4 + j4)} = -j5$ A ✓. Note que $\mathbf{Z}_L = \mathbf{Z}_n^{*}$: a carga está casada para **máxima transferência de potência**.
 :::
 
 ---

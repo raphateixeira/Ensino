@@ -1,0 +1,20 @@
+% ---------------------------------------------------------------------
+% Exemplo resolvido de superposição com fontes de frequências diferentes:
+% vs(t) em série com R alimenta o nó a; L do nó a à referência;
+% is(t) injeta corrente no nó a. Saída: vo(t) sobre L. Requer circuitikz.
+% ---------------------------------------------------------------------
+\ctikzset{bipoles/length=1.7cm}
+\begin{circuitikz}[scale=1.85, line width=1.5pt, font=\Large]
+\draw (0,0) to[sinusoidal voltage source, l=$v_s(t)$] (0,3)
+  to[R, l=$4~\Omega$] (3.5,3)
+  to[L, l_=$1~\mathrm{H}$] (3.5,0) -- (0,0);
+\draw (3.5,3) -- (6.5,3);
+\draw (6.5,0) to[american current source, l_=$i_s(t)$] (6.5,3);
+\draw (3.5,0) -- (6.5,0);
+\draw (3.5,3) node[circle, fill=black, inner sep=1.6pt]{} node[above]{$a$};
+\node at (0.45,2.1) {$+$};
+\node at (0.45,0.9) {$-$};
+\node at (4.05,2.2) {$+$};
+\node at (4.05,0.8) {$-$};
+\node at (4.55,1.5) {$v_o(t)$};
+\end{circuitikz}

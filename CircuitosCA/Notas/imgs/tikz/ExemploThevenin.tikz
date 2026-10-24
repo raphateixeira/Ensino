@@ -1,0 +1,18 @@
+% ---------------------------------------------------------------------
+% Exemplo resolvido de Thévenin (domínio fasorial): Vs em série com 10 Ω
+% até o nó x; -j10 Ω de x à referência; j5 Ω de x ao terminal a.
+% Requer circuitikz.
+% ---------------------------------------------------------------------
+\ctikzset{bipoles/length=1.7cm}
+\begin{circuitikz}[scale=1.85, line width=1.5pt, font=\Large]
+\draw (0,0) to[sinusoidal voltage source, l=$50\angle 0^\circ~\mathrm{V}$] (0,3)
+  to[R, l=$10~\Omega$] (3.5,3);
+\draw (3.5,3) to[C, l_=$-j10~\Omega$] (3.5,0);
+\draw (3.5,3) to[L, l=$j5~\Omega$] (7,3);
+\draw (0,0) -- (7,0);
+\draw (3.5,3) node[circle, fill=black, inner sep=1.6pt]{} node[above]{$x$};
+\draw (7,3) circle (0.06) node[right] {$a$};
+\draw (7,0) circle (0.06) node[right] {$b$};
+\node at (0.45,2.1) {$+$};
+\node at (0.45,0.9) {$-$};
+\end{circuitikz}
