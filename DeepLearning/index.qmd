@@ -1,19 +1,32 @@
 ---
-title: "Aprendizagem de Máquina"
-subtitle: "UFPA - NDAE - PPCA"
-institute: 
-  - "Universidade Federal do Pará"
-author:
-  - "Prof. Dr. Raphael Teixeira"
-  - "Prof. Dr. Cleison Silva"
+pagetitle: "Aprendizagem de Máquina"
 lang: pt-BR
 format: 
   html:
     theme: [cosmo, TemaRTx.scss]
 ---
 
-[⬅ Site principal](https://raphateixeira.github.io)
+::: {.rtx-hero}
+[Disciplina · Mestrado em Computação Aplicada (PPCA)]{.rtx-eyebrow}
 
-Notas de Estudo - Deep Learning:
+# Aprendizagem de Máquina {.unnumbered .unlisted}
 
-* [Aula 01](Notas/Aula01DeepLearning.html) - Deep Learning: Introdução, Fundamentos e Aplicações;
+Notas de estudo de aprendizagem profunda: fundamentos de aprendizado supervisionado e não supervisionado e redes neurais.
+
+[Prof. Dr. Raphael Teixeira e Prof. Dr. Cleison Silva]{.rtx-meta}
+
+::: {.rtx-acoes}
+[GitHub](https://github.com/raphateixeira/DeepLearning){.rtx-btn} [Site do professor](https://raphateixeira.github.io){.rtx-btn}
+:::
+:::
+
+## Notas de aula
+
+```{=html}
+<div class="categoria-grid">
+<a class="categoria-card" href="Notas/Aula01DeepLearning.html">
+  <h3>Aula 1</h3>
+  <p>Deep Learning: introdução, fundamentos e aplicações</p>
+</a>
+</div>
+```
