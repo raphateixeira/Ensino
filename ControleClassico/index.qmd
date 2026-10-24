@@ -1,17 +1,25 @@
 ---
-title: "Sistemas de Controle I"
-subtitle: "Controle Clássico"
-institute: "Universidade Federal do Pará"
-author: "Prof. Dr. Raphael Teixeira"
-date: ""
+pagetitle: "Sistemas de Controle I"
 format:
   html:
     page-layout: article
 ---
 
-[⬅ Site principal](https://raphateixeira.github.io)
+::: {.rtx-hero}
+[Disciplina · Engenharia Elétrica · 2026.4]{.rtx-eyebrow}
 
-Notas de aula de Sistemas de Controle I — Controle Clássico: modelagem por função de transferência, resposta transitória de sistemas de primeira e segunda ordem, erro de regime permanente, estabilidade (Routh-Hurwitz), lugar geométrico das raízes, resposta em frequência e controladores PID.
+# Sistemas de Controle I {.unnumbered .unlisted}
+
+Controle clássico: modelagem por função de transferência, resposta transitória de sistemas de primeira e segunda ordem, erro de regime permanente, estabilidade (Routh-Hurwitz), lugar geométrico das raízes, resposta em frequência e controladores PID.
+
+[Prof. Dr. Raphael Teixeira]{.rtx-meta}
+
+::: {.rtx-acoes}
+[Plano de ensino](Notas/Aula00PlanoEnsino.qmd){.rtx-btn .rtx-btn-primario} [GitHub](https://github.com/raphateixeira/ControleClassico){.rtx-btn} [Site do professor](https://raphateixeira.github.io){.rtx-btn}
+:::
+:::
+
+## Notas de aula
 
 ```{=html}
 <div class="categoria-grid">
