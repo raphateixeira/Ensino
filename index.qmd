@@ -1,0 +1,406 @@
+---
+pagetitle: "Ensino"
+---
+
+<!-- Página única do repositório: uma seção por disciplina, com links diretos para cada aula.
+     Gerada a partir das páginas iniciais antigas de cada disciplina; ao criar uma aula, acrescente
+     o cartão na seção da disciplina. Âncoras usadas na navbar do _quarto.yml. -->
+
+::: {.rtx-hero}
+[Ensino · Engenharia Elétrica e PPCA]{.rtx-eyebrow}
+
+# Ensino {.unnumbered .unlisted}
+
+Notas de aula, listas, projetos e avaliações das disciplinas de graduação em Engenharia Elétrica e
+do Mestrado em Computação Aplicada (PPCA) da UFPA, Campus de Tucuruí.
+
+[Prof. Dr. Raphael Teixeira]{.rtx-meta}
+
+::: {.rtx-acoes}
+[Circuitos Elétricos II](#circuitos){.rtx-btn .rtx-btn-primario} [Sistemas de Controle I](#controle-classico){.rtx-btn .rtx-btn-primario} [Cálculo Numérico](#calculo-numerico){.rtx-btn} [Álgebra Linear](#algebra-linear){.rtx-btn} [Espaço de Estados](#controle-estados){.rtx-btn} [Aprendizagem de Máquina](#aprendizagem-maquina){.rtx-btn}
+:::
+:::
+
+Horários do semestre e calendário acadêmico na página [Ensino](https://raphateixeira.github.io/Ensino/) do site.
+
+## Circuitos Elétricos II {#circuitos}
+
+Graduação em Engenharia Elétrica · 2026.4. Análise de circuitos em regime permanente senoidal (CA):
+senoides, fasores, impedância e potência. [Plano de ensino](CircuitosCA/PlanoEnsino/PlanoEnsino.pdf),
+conforme a [Resolução 002/2026 – FEE/CAMTUC](https://drive.google.com/file/d/1JtjL9buTB5QWKTA2logcqEF6UDcoIAck/view).
+
+```{=html}
+<div class="categoria-grid">
+<a class="categoria-card" href="CircuitosCA/Notas/Aula00PlanoEnsino.html">
+  <h3>Aula 0</h3>
+  <p>Plano de ensino</p>
+</a>
+<a class="categoria-card" href="CircuitosCA/Notas/Aula01Senoides.html">
+  <h3>Aula 1</h3>
+  <p>Senoides e fasores</p>
+</a>
+<a class="categoria-card" href="CircuitosCA/Notas/Aula02Impedancia.html">
+  <h3>Aula 2</h3>
+  <p>Impedância</p>
+</a>
+<a class="categoria-card" href="CircuitosCA/Notas/Aula03LeisCircuitais.html">
+  <h3>Aula 3</h3>
+  <p>Leis circuitais e métodos de análise</p>
+</a>
+<a class="categoria-card" href="CircuitosCA/Notas/Aula04Teoremas.html">
+  <h3>Aula 4</h3>
+  <p>Teoremas de circuitos em CA</p>
+</a>
+<a class="categoria-card" href="CircuitosCA/Notas/Aula05Potencia.html">
+  <h3>Aula 5</h3>
+  <p>Potência em CA</p>
+</a>
+<a class="categoria-card" href="CircuitosCA/Notas/Aula06Trifasico.html">
+  <h3>Aula 6</h3>
+  <p>Circuitos trifásicos</p>
+</a>
+<a class="categoria-card categoria-card--verde" href="CircuitosCA/Listas/ListaExercicios01.html">
+  <h3>Lista de exercícios 1</h3>
+  <p>Capítulo 9 (em edição)</p>
+</a>
+</div>
+```
+
+## Sistemas de Controle I {#controle-classico}
+
+Graduação em Engenharia Elétrica · 2026.4. Controle clássico: modelagem por função de transferência,
+resposta transitória de 1ª e 2ª ordem, erro de regime permanente, estabilidade (Routh-Hurwitz), lugar
+geométrico das raízes, resposta em frequência e controladores PID.
+
+```{=html}
+<div class="categoria-grid">
+<a class="categoria-card" href="ControleClassico/Notas/Aula00PlanoEnsino.html">
+  <h3>Aula 0</h3>
+  <p>Plano de ensino</p>
+</a>
+<a class="categoria-card" href="ControleClassico/Notas/Aula01Introducao.html">
+  <h3>Aula 1</h3>
+  <p>Introdução a sistemas de controle</p>
+</a>
+<a class="categoria-card" href="ControleClassico/Notas/Aula02ModelagemFT.html">
+  <h3>Aula 2</h3>
+  <p>Modelagem e função de transferência</p>
+</a>
+<a class="categoria-card" href="ControleClassico/Notas/Aula03PrimeiraOrdem.html">
+  <h3>Aula 3</h3>
+  <p>Sistemas de primeira ordem</p>
+</a>
+<a class="categoria-card" href="ControleClassico/Notas/Aula04SegundaOrdem.html">
+  <h3>Aula 4</h3>
+  <p>Sistemas de segunda ordem</p>
+</a>
+<a class="categoria-card" href="ControleClassico/Notas/Aula05ExerciciosPrimeiraSegundaOrdem.html">
+  <h3>Aula 5</h3>
+  <p>Exercícios: sistemas de primeira e segunda ordem</p>
+</a>
+<a class="categoria-card" href="ControleClassico/Notas/Aula06ErroRegimePermanente.html">
+  <h3>Aula 6</h3>
+  <p>Erro de regime permanente</p>
+</a>
+<a class="categoria-card" href="ControleClassico/Notas/Aula07Estabilidade.html">
+  <h3>Aula 7</h3>
+  <p>Estabilidade e critério de Routh-Hurwitz</p>
+</a>
+<a class="categoria-card" href="ControleClassico/Notas/Aula08LGR.html">
+  <h3>Aula 8</h3>
+  <p>Lugar geométrico das raízes (LGR)</p>
+</a>
+<a class="categoria-card" href="ControleClassico/Notas/Aula09RespostaFrequencia.html">
+  <h3>Aula 9</h3>
+  <p>Resposta em frequência</p>
+</a>
+<a class="categoria-card" href="ControleClassico/Notas/Aula10PID.html">
+  <h3>Aula 10</h3>
+  <p>Controlador PID</p>
+</a>
+<a class="categoria-card categoria-card--verde" href="ControleClassico/Notas/GuiaBibliografico.html">
+  <h3>Guia de estudos</h3>
+  <p>Onde estudar cada tema nos livros-texto</p>
+</a>
+<a class="categoria-card categoria-card--verde" href="ControleClassico/Projeto/CatalogoModulos.html">
+  <h3>Projeto</h3>
+  <p>Catálogo de temas: escolha do sistema físico</p>
+</a>
+<a class="categoria-card categoria-card--verde" href="ControleClassico/Exercicios/Lista01ModelagemPrimeiraSegundaOrdem.html">
+  <h3>Lista de exercícios 1</h3>
+  <p>Modelagem e resposta de sistemas de 1ª e 2ª ordem</p>
+</a>
+</div>
+```
+
+## Cálculo Numérico {#calculo-numerico}
+
+Graduação · 2026.3 (turma fora de sede). Métodos numéricos com implementações em Python (NumPy, SciPy,
+Matplotlib) e ênfase em aplicações de Engenharia. Animações de apoio na
+[coleção Manim](https://raphateixeira.github.io/Notas/manim/#zeros-de-funcoes) (bisseção, Newton-Raphson e secante).
+
+```{=html}
+<div class="categoria-grid">
+<a class="categoria-card" href="MetodosNumericos/Aulas/CN00PlanoEnsino.html">
+  <h3>Aula 0</h3>
+  <p>Plano de ensino</p>
+</a>
+<a class="categoria-card" href="MetodosNumericos/Aulas/CN01Erros.html">
+  <h3>Aula 1</h3>
+  <p>Introdução: raízes de funções e erros numéricos</p>
+</a>
+<a class="categoria-card" href="MetodosNumericos/Aulas/CN02ZerosDeFuncoes.html">
+  <h3>Aula 2</h3>
+  <p>Zeros de funções</p>
+</a>
+<a class="categoria-card" href="MetodosNumericos/Aulas/CN03Interpolacao.html">
+  <h3>Aula 3</h3>
+  <p>Interpolação polinomial</p>
+</a>
+<a class="categoria-card" href="MetodosNumericos/Aulas/CN04AjusteCurvas.html">
+  <h3>Aula 4</h3>
+  <p>Ajuste de curvas</p>
+</a>
+<a class="categoria-card" href="MetodosNumericos/Aulas/CN05Integracao.html">
+  <h3>Aula 5</h3>
+  <p>Integração numérica</p>
+</a>
+<a class="categoria-card" href="MetodosNumericos/Aulas/CN06Diferenciacao.html">
+  <h3>Aula 6</h3>
+  <p>Diferenciação numérica</p>
+</a>
+<a class="categoria-card" href="MetodosNumericos/Aulas/CN07EDOsEuler.html">
+  <h3>Aula 7</h3>
+  <p>EDOs — Euler e Runge-Kutta</p>
+</a>
+<a class="categoria-card" href="MetodosNumericos/Aulas/CN08EDOsSistemas.html">
+  <h3>Aula 8</h3>
+  <p>EDOs — sistemas e estabilidade</p>
+</a>
+<a class="categoria-card" href="MetodosNumericos/Aulas/CN09OtimizacaoNaoRestrita.html">
+  <h3>Aula 9</h3>
+  <p>Otimização não restrita</p>
+</a>
+<a class="categoria-card categoria-card--verde" href="MetodosNumericos/Notas/NotaCN01.html">
+  <h3>Nota</h3>
+  <p>Representações numéricas no computador</p>
+</a>
+</div>
+```
+
+## Álgebra Linear {#algebra-linear}
+
+Graduação em Engenharia Elétrica. Sistemas lineares e matrizes, espaços vetoriais, transformações
+lineares, autovalores e produto interno.
+
+```{=html}
+<div class="categoria-grid">
+<a class="categoria-card" href="AlgebraLinear/Notas/AL00PlanoEnsinoAlgebraLinear.html">
+  <h3>Aula 0</h3>
+  <p>Plano de ensino</p>
+</a>
+</div>
+```
+
+### Bloco 1 — Sistemas lineares e matrizes
+
+```{=html}
+<div class="categoria-grid">
+<a class="categoria-card" href="AlgebraLinear/Notas/AL01SistemasEquacoes.html">
+  <h3>Aula 1</h3>
+  <p>Sistemas de equações lineares e interpretação geométrica</p>
+</a>
+<a class="categoria-card" href="AlgebraLinear/Notas/AL02MatrizesOperacoes.html">
+  <h3>Aula 2</h3>
+  <p>Matrizes e operações</p>
+</a>
+<a class="categoria-card" href="AlgebraLinear/Notas/AL03EliminacaoGauss.html">
+  <h3>Aula 3</h3>
+  <p>Eliminação de Gauss e forma escalonada</p>
+</a>
+<a class="categoria-card" href="AlgebraLinear/Notas/AL04GaussJordanPosto.html">
+  <h3>Aula 4</h3>
+  <p>Gauss-Jordan, sistemas homogêneos e posto</p>
+</a>
+<a class="categoria-card" href="AlgebraLinear/Notas/AL05MatrizInversa.html">
+  <h3>Aula 5</h3>
+  <p>Matriz inversa</p>
+</a>
+<a class="categoria-card" href="AlgebraLinear/Notas/AL06FatoracaoLU.html">
+  <h3>Aula 6</h3>
+  <p>Fatoração LU</p>
+</a>
+<a class="categoria-card" href="AlgebraLinear/Notas/AL07Determinantes.html">
+  <h3>Aula 7</h3>
+  <p>Determinantes: cofatores e propriedades</p>
+</a>
+<a class="categoria-card" href="AlgebraLinear/Notas/AL08CramerRevisao.html">
+  <h3>Aula 8</h3>
+  <p>Regra de Cramer, adjunta e revisão do bloco</p>
+</a>
+</div>
+```
+
+### Bloco 2 — Espaços vetoriais
+
+```{=html}
+<div class="categoria-grid">
+<a class="categoria-card" href="AlgebraLinear/Notas/AL09EspacosVetoriais.html">
+  <h3>Aula 9</h3>
+  <p>Espaços vetoriais: axiomas e exemplos</p>
+</a>
+<a class="categoria-card" href="AlgebraLinear/Notas/AL10SubespacosVetoriais.html">
+  <h3>Aula 10</h3>
+  <p>Subespaços vetoriais</p>
+</a>
+<a class="categoria-card" href="AlgebraLinear/Notas/AL11CombinacaoLinearEspacoGerado.html">
+  <h3>Aula 11</h3>
+  <p>Combinação linear e espaço gerado</p>
+</a>
+<a class="categoria-card" href="AlgebraLinear/Notas/AL12DependenciaIndependenciaLinear.html">
+  <h3>Aula 12</h3>
+  <p>Dependência e independência linear</p>
+</a>
+<a class="categoria-card" href="AlgebraLinear/Notas/AL13BaseDimensao.html">
+  <h3>Aula 13</h3>
+  <p>Base e dimensão</p>
+</a>
+<a class="categoria-card" href="AlgebraLinear/Notas/AL14EspacoLinhaColunaNucleoPosto.html">
+  <h3>Aula 14</h3>
+  <p>Espaço linha/coluna, núcleo, posto e nulidade</p>
+</a>
+<a class="categoria-card" href="AlgebraLinear/Notas/AL15CoordenadasMudancaBase.html">
+  <h3>Aula 15</h3>
+  <p>Coordenadas e mudança de base</p>
+</a>
+</div>
+```
+
+### Bloco 3 — Transformações lineares
+
+```{=html}
+<div class="categoria-grid">
+<a class="categoria-card" href="AlgebraLinear/Notas/AL16TransformacoesLineares.html">
+  <h3>Aula 16</h3>
+  <p>Transformações lineares: definição e exemplos</p>
+</a>
+<a class="categoria-card" href="AlgebraLinear/Notas/AL17NucleoImagem.html">
+  <h3>Aula 17</h3>
+  <p>Núcleo e imagem de uma transformação linear</p>
+</a>
+<a class="categoria-card" href="AlgebraLinear/Notas/AL18MatrizTransformacaoLinear.html">
+  <h3>Aula 18</h3>
+  <p>Matriz de uma transformação linear</p>
+</a>
+<a class="categoria-card" href="AlgebraLinear/Notas/AL19ComposicaoInversaMudancaBase.html">
+  <h3>Aula 19</h3>
+  <p>Composição e inversa; mudança de base de operadores</p>
+</a>
+<a class="categoria-card" href="AlgebraLinear/Notas/AL20TransformacoesGeometricas.html">
+  <h3>Aula 20</h3>
+  <p>Transformações geométricas no plano e no espaço</p>
+</a>
+</div>
+```
+
+### Bloco 4 — Autovalores, autovetores e produto interno
+
+```{=html}
+<div class="categoria-grid">
+<a class="categoria-card" href="AlgebraLinear/Notas/AL21AutovaloresAutovetores.html">
+  <h3>Aula 21</h3>
+  <p>Autovalores, autovetores e polinômio característico</p>
+</a>
+<a class="categoria-card" href="AlgebraLinear/Notas/AL22Diagonalizacao.html">
+  <h3>Aula 22</h3>
+  <p>Diagonalização de matrizes</p>
+</a>
+<a class="categoria-card" href="AlgebraLinear/Notas/AL23AplicacoesAutovalores.html">
+  <h3>Aula 23</h3>
+  <p>Aplicações: sistemas dinâmicos e matrizes simétricas</p>
+</a>
+<a class="categoria-card" href="AlgebraLinear/Notas/AL24NormaProdutoInterno.html">
+  <h3>Aula 24</h3>
+  <p>Norma, produto escalar e produto interno</p>
+</a>
+<a class="categoria-card" href="AlgebraLinear/Notas/AL25BasesOrtonormaisGramSchmidt.html">
+  <h3>Aula 25</h3>
+  <p>Bases ortonormais e o processo de Gram-Schmidt</p>
+</a>
+<a class="categoria-card" href="AlgebraLinear/Notas/AL26SubespacosOrtogonaisMinimosQuadrados.html">
+  <h3>Aula 26</h3>
+  <p>Subespaços ortogonais, mínimos quadrados e encerramento</p>
+</a>
+<a class="categoria-card" href="AlgebraLinear/Notas/AL27MatrizesSimetricasComplexas.html">
+  <h3>Aula 27</h3>
+  <p>Matrizes simétricas e complexas</p>
+</a>
+</div>
+```
+
+## Sistemas de Controle II — Espaço de Estados {#controle-estados}
+
+Graduação em Engenharia Elétrica (turma 2024). Modelagem, representações e controle no espaço de estados.
+
+```{=html}
+<div class="categoria-grid">
+<a class="categoria-card" href="ControleEstados/Notas/SS00PlanoEnsino.html">
+  <h3>Aula 0</h3>
+  <p>Plano de ensino</p>
+</a>
+<a class="categoria-card" href="ControleEstados/Notas/SS01Modelagem.html">
+  <h3>Aula 1</h3>
+  <p>Modelagem no espaço de estados</p>
+</a>
+<a class="categoria-card" href="ControleEstados/Notas/SS02ConversaoRepresentacoes.html">
+  <h3>Aula 2</h3>
+  <p>Conversão de representações</p>
+</a>
+<a class="categoria-card" href="ControleEstados/Notas/SS03FormasCanonicas.html">
+  <h3>Aula 3</h3>
+  <p>Formas canônicas</p>
+</a>
+<a class="categoria-card" href="ControleEstados/Notas/SS04SimulacaoMatlab.html">
+  <h3>Aula 4</h3>
+  <p>Simulação MATLAB/Simulink</p>
+</a>
+<a class="categoria-card" href="ControleEstados/Notas/SS05ControleAlocacao.html">
+  <h3>Aula 5</h3>
+  <p>Controle por alocação de polos</p>
+</a>
+<a class="categoria-card" href="ControleEstados/Notas/SS06ControleServosistema.html">
+  <h3>Aula 6</h3>
+  <p>Servossistemas com integrador</p>
+</a>
+<a class="categoria-card" href="ControleEstados/Notas/SS07ControleServosistemasIntegrador.html">
+  <h3>Aula 7</h3>
+  <p>Servossistemas sem integrador</p>
+</a>
+<a class="categoria-card categoria-card--verde" href="ControleEstados/Notas/AtividadeAvaliativaComputacional.html">
+  <h3>Atividade avaliativa</h3>
+  <p>Controle no espaço de estados (computacional)</p>
+</a>
+</div>
+```
+
+## Aprendizagem de Máquina {#aprendizagem-maquina}
+
+Mestrado em Computação Aplicada (PPCA) · com o Prof. Dr. Cleison Silva. Fundamentos de aprendizado
+supervisionado e não supervisionado e redes neurais.
+
+```{=html}
+<div class="categoria-grid">
+<a class="categoria-card" href="DeepLearning/Notas/Aula01DeepLearning.html">
+  <h3>Aula 1</h3>
+  <p>Deep Learning: introdução, fundamentos e aplicações</p>
+</a>
+<a class="categoria-card" href="DeepLearning/Notas/Aula02aProbabilidades.html">
+  <h3>Aula 2</h3>
+  <p>Probabilidades</p>
+</a>
+<a class="categoria-card categoria-card--verde" href="DeepLearning/Notas/NotaHaykin01.html">
+  <h3>Nota</h3>
+  <p>O perceptron (Haykin)</p>
+</a>
+</div>
+```

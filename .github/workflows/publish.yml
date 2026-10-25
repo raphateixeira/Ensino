@@ -1,4 +1,4 @@
-name: Publicar site Quarto
+name: Quarto Publish
 
 on:
   push:
@@ -13,8 +13,10 @@ jobs:
       id-token: write
     uses: raphateixeira/.github/.github/workflows/quarto-publish.yml@main
     with:
+      needs_python: true          # usa requirements.txt
       needs_r: true
-      r_packages: "knitr, rmarkdown, magick, pdftools"
+      r_packages: "knitr, rmarkdown, magick, pdftools, reticulate, tikzDevice, deSolve"
       needs_magick_system_deps: true
       needs_tinytex: true
-      tinytex_packages: "pgf pgfplots xcolor circuitikz"
+      tinytex_packages: "pgf pgfplots xcolor circuitikz standalone"
+      output_dir: "_site"

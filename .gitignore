@@ -1,0 +1,41 @@
+# Quarto
+/.quarto/
+**/*.quarto_ipynb
+/_site/
+*_cache/
+*_files/
+
+# Tema compartilhado: baixado de raphateixeira/.github no build (ver .github/scripts/atualizar-tema.sh na raiz de GitRTx)
+/TemaRTx.scss
+
+# DADOS DE ALUNOS E GABARITOS — uso local apenas, NUNCA versionar
+CircuitosCA/Gabaritos/
+ControleClassico/Resultados/
+
+# Livros-texto e material de terceiros (direitos autorais) — uso local apenas
+CircuitosCA/LivrosCircuitos/pdfs/
+ControleClassico/LivrosControle/pdfs/
+DeepLearning/Livros/
+MetodosNumericos/Prompts/
+MetodosNumericos/Material/
+MetodosNumericos/Atividades/
+MetodosNumericos/**/*.pdf
+
+# LaTeX dos planos de ensino
+**/PlanoEnsino/*.aux
+**/PlanoEnsino/*.bbl
+**/PlanoEnsino/*.bcf
+**/PlanoEnsino/*.blg
+**/PlanoEnsino/*.fdb_latexmk
+**/PlanoEnsino/*.fls
+**/PlanoEnsino/*.log
+**/PlanoEnsino/*.out
+**/PlanoEnsino/*.run.xml
+*.log
+
+# Sistema e ferramentas
+.DS_Store
+__pycache__/
+.ipynb_checkpoints/
+.claude/
+.luarc.json

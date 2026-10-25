@@ -1,0 +1,3 @@
+# Antes no _quarto.yml do DeepLearning
+bibliography: references.bib
+csl: apa.csl

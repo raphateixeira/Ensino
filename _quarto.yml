@@ -1,0 +1,69 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - index.qmd
+    - AlgebraLinear/Notas/*.qmd
+    - CircuitosCA/Notas/*.qmd
+    - CircuitosCA/Listas/*.qmd
+    - ControleClassico/Notas/*.qmd
+    # Rascunhos no tema Nova: usam o motor do MATLAB (ControleClassico/scripts/matlab-engine.R), que o CI não tem
+    - "!ControleClassico/Notas/*Nova.qmd"
+    - ControleClassico/Projeto/*.qmd
+    - ControleClassico/Exercicios/*.qmd
+    - ControleEstados/Notas/*.qmd
+    - MetodosNumericos/Aulas/*.qmd
+    - MetodosNumericos/Notas/*.qmd
+    - DeepLearning/Notas/*.qmd
+  resources:
+    - ControleClassico/Notas/apps/**
+    - ControleClassico/Animes/*.py
+    - MetodosNumericos/Aplicacoes/*.ipynb
+
+website:
+  title: "Ensino"
+  description: "Disciplinas do Prof. Dr. Raphael Teixeira — Engenharia Elétrica e PPCA, UFPA (Campus de Tucuruí)"
+  site-url: https://raphateixeira.github.io/Ensino/
+  repo-url: https://github.com/raphateixeira/Ensino
+  reader-mode: true
+  navbar:
+    background: "#FFFFFF"   # navbar branca (camada "Site" do TemaRTx.scss)
+    foreground: "#0F1B33"
+    title: "Ensino"
+    left:
+      - text: "Início"
+        href: https://raphateixeira.github.io/index.html
+      - text: "Ensino"
+        href: index.qmd
+    right:
+      - text: "Disciplinas"
+        menu:
+          - text: "Graduação — Engenharia Elétrica"
+          - text: "Circuitos Elétricos II"
+            href: index.qmd#circuitos
+          - text: "Sistemas de Controle I"
+            href: index.qmd#controle-classico
+          - text: "Cálculo Numérico"
+            href: index.qmd#calculo-numerico
+          - text: "Álgebra Linear"
+            href: index.qmd#algebra-linear
+          - text: "Sistemas de Controle II — Espaço de Estados"
+            href: index.qmd#controle-estados
+          - text: "---"
+          - text: "Pós-graduação — PPCA"
+          - text: "Aprendizagem de Máquina"
+            href: index.qmd#aprendizagem-maquina
+      - icon: github
+        href: https://github.com/raphateixeira/Ensino
+        aria-label: Repositório no GitHub
+  page-footer:
+    border: false
+    center: "©2026 Prof. Dr. Raphael Teixeira — UFPA-CAMTUC-FEE"
+
+format:
+  html:
+    theme: [cosmo, TemaRTx.scss]
+    lang: pt-BR
+    toc: true
+    toc-depth: 2
+    toc-expand: true
