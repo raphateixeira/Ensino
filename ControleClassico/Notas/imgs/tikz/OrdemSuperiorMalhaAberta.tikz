@@ -1,0 +1,27 @@
+% ---------------------------------------------------------------
+% Exemplo de ordem superior em malha aberta: motor CC com indutância
+% de armadura, saída em posição. Cada bloco dinâmico = um polo.
+% ---------------------------------------------------------------
+\begin{tikzpicture}[>=Latex, line width=0.9pt,
+  bloco/.style={draw, minimum width=2.3cm, minimum height=1.2cm, fill=blue!8},
+  polo/.style={font=\small, text=red!70!black, align=center},
+  seta/.style={->}]
+
+  \node (u) at (0,0) {$V_a(s)$};
+  \node[bloco, right=1.0cm of u] (el) {$\dfrac{1}{L_a s+R_a}$};
+  \node[bloco, right=1.0cm of el, minimum width=1.3cm] (kt) {$K_t$};
+  \node[bloco, right=1.0cm of kt] (me) {$\dfrac{1}{J s+b}$};
+  \node[bloco, right=1.0cm of me, minimum width=1.5cm] (in) {$\dfrac{1}{s}$};
+  \node[right=1.0cm of in] (y) {$\Theta(s)$};
+
+  \draw[seta] (u) -- (el);
+  \draw[seta] (el) -- node[above, font=\small]{$I_a$} (kt);
+  \draw[seta] (kt) -- node[above, font=\small]{$T$} (me);
+  \draw[seta] (me) -- node[above, font=\small]{$\Omega$} (in);
+  \draw[seta] (in) -- (y);
+
+  \node[polo, below=0.25cm of el] {elétrico\\polo em $-R_a/L_a$};
+  \node[polo, below=0.25cm of me] {mecânico\\polo em $-b/J$};
+  \node[polo, below=0.25cm of in] {posição\\polo em $0$};
+
+\end{tikzpicture}

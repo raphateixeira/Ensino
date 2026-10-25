@@ -1,0 +1,78 @@
+---
+title: "Lista 1 — Modelagem e Resposta de 1ª e 2ª Ordem"
+subtitle: "Exercícios selecionados de Ogata e Nise (versão preliminar)"
+institute: "Universidade Federal do Pará"
+author: "Prof. Dr. Raphael Teixeira"
+lang: pt-BR
+bibliography: ../Referencias.bib
+---
+
+Lista de exercícios extraída dos livros-texto **Ogata** [@ogata2010] e **Nise** [@nise2015],
+cobrindo três temas: modelagem de sistemas de primeira e segunda ordem, resposta de sistemas
+de primeira ordem e resposta de sistemas de segunda ordem. Cada item indica livro, capítulo,
+seção e número do problema original — resolva a partir do enunciado completo no livro; aqui
+consta apenas um resumo para localização e planejamento de estudo.
+
+::: {.callout-note}
+## Sobre esta versão
+Primeira seleção de exercícios, a ser revisada. Números de problema referem-se às edições já
+mapeadas no [Guia de Estudos: Livros](../Notas/GuiaBibliografico.qmd) (Ogata 5ª ed. Pearson/2010;
+Nise 6ª ed. LTC — numeração de capítulo/seção estável entre edições).
+:::
+
+## 1. Modelagem de Sistemas de Primeira e Segunda Ordem
+
+Obtenção do modelo (EDO, função de transferência) a partir da descrição física do sistema —
+circuitos elétricos e sistemas mecânicos translacionais.
+
+| Nº | Fonte | Resumo |
+|:--:|:--|:--|
+| 1 | Ogata, Cap. 3, Prob. B.3.2 | Obtenha o modelo matemático de dois sistemas massa-mola (sem atrito), um com uma mola e outro com duas molas. |
+| 2 | Ogata, Cap. 3, Prob. B.3.7 | Obtenha $E_o(s)/E_i(s)$ de um circuito RLC ($R_1$, $L$, $R_2$, $C$). |
+| 3 | Ogata, Cap. 3, Prob. B.3.8 | Obtenha $E_o(s)/E_i(s)$ de um circuito com dois estágios RC ($R_1C_1$, $R_2C_2$) pelo método do diagrama de blocos. |
+| 4 | Ogata, Cap. 3, Prob. B.3.9 | Deduza a função de transferência de um circuito RC de dois estágios e desenhe o sistema mecânico análogo. |
+| 5 | Ogata, Cap. 3, Prob. B.3.10 | Obtenha $E_o(s)/E_i(s)$ de um circuito ativo com amplificador operacional (rede $C$, $R_1$, $R_2$). |
+| 6 | Ogata, Cap. 3, Prob. B.3.12 | Obtenha, pela abordagem de impedâncias, a função de transferência de um circuito ativo com amplificador operacional. |
+| 7 | Nise, Cap. 2, §2.4, Prob. 16 | Determine $G(s)=V_s(s)/V_e(s)$ para os circuitos elétricos dados (Figura P2.3). |
+| 8 | Nise, Cap. 2, §2.4, Prob. 18–19 | Determine $G(s)=V_s(s)/V_e(s)$ de um circuito por análise de malhas e, em seguida, por equações nodais — compare os resultados. |
+| 9 | Nise, Cap. 2, §2.5, Prob. 23 | Determine $G(s)=X_1(s)/F(s)$ de um sistema mecânico translacional massa-mola-amortecedor. |
+| 10 | Nise, Cap. 2, §2.5, Prob. 29 | Escreva (sem resolver) as equações de movimento de um sistema mecânico translacional dado. |
+
+## 2. Resposta de Sistemas de Primeira Ordem
+
+Constante de tempo, tempo de subida, tempo de acomodação e resposta ao degrau de sistemas
+$G(s) = K/(\tau s + 1)$.
+
+| Nº | Fonte | Resumo |
+|:--:|:--|:--|
+| 1 | Ogata, Cap. 5, Prob. A.5.1 (resolvido) | Mostre que um sistema massa-mola dado é um elemento derivador e obtenha sua resposta a um degrau unitário. |
+| 2 | Ogata, Cap. 5, Prob. B.5.1 | Um termômetro (1ª ordem) leva 1 min para indicar 98% de uma entrada em degrau. Determine a constante de tempo e o erro ao medir uma temperatura que varia em rampa. |
+| 3 | Nise, Cap. 4, §4.2–4.3, Prob. 2 | Para os sistemas de 1ª ordem dados, obtenha $c(t)$, a constante de tempo, o tempo de subida e o tempo de acomodação. |
+| 4 | Nise, Cap. 4, §4.2–4.3, Prob. 4–5 | Determine a tensão no capacitor de um circuito RC após o fechamento de uma chave em $t=0$; obtenha constante de tempo, tempo de subida e de acomodação, e confira via MATLAB. |
+| 5 | Nise, Cap. 4, §4.2–4.3, Prob. 6 | Relacione o tempo de acomodação da velocidade de uma massa (sistema massa-atrito viscoso) com o parâmetro $M$ do sistema. |
+| 6 | Nise, Cap. 4, §4.2, Prob. 8 | Para as funções de transferência de 1ª ordem dadas, determine a posição dos polos e esboce $c(t)$ sem resolver a equação diferencial. |
+
+## 3. Resposta de Sistemas de Segunda Ordem
+
+Classificação por $\zeta$, $\omega_n$, e as especificações $M_p$, $t_p$, $t_s$, $t_r$ da resposta
+ao degrau subamortecida.
+
+| Nº | Fonte | Resumo |
+|:--:|:--|:--|
+| 1 | Ogata, Cap. 5, Prob. A.5.6 (resolvido) | Deduza o decremento logarítmico da resposta ao degrau de um sistema de 2ª ordem e descreva como estimar $\zeta$ experimentalmente a partir da razão de amplitudes sucessivas. |
+| 2 | Ogata, Cap. 5, Prob. A.5.7 (resolvido) | Sistema massa-mola-amortecedor com $m$, $b$, $k$ dados: obtenha $\omega_n$, $\zeta$, $\omega_d$ e a amplitude da oscilação após 4 ciclos. |
+| 3 | Ogata, Cap. 5, Prob. B.5.2 | Para $G(s)=1/[s(s+1)]$ em malha fechada unitária, obtenha $t_r$, $t_p$, $M_p$ e $t_s$ da resposta ao degrau unitário. |
+| 4 | Ogata, Cap. 5, Prob. B.5.3 | Determine $\zeta$ e $\omega_n$ para que a resposta ao degrau tenha $M_p\approx5\%$ e $t_s=2\,$s (critério de 2%). |
+| 5 | Ogata, Cap. 5, Prob. B.5.6 | A partir do gráfico de uma oscilação amortecida registrada, determine o coeficiente de amortecimento $\zeta$. |
+| 6 | Ogata, Cap. 5, Prob. B.5.9 | Num diagrama de blocos com ganho ajustável $k$, determine $k$ para $\zeta=0{,}5$ e calcule $t_r$, $t_p$, $M_p$, $t_s$. |
+| 7 | Ogata, Cap. 5, Prob. B.5.12 | Para $C(s)/R(s)=36/(s^2+2s+36)$, obtenha $t_r$, $t_p$, $M_p$, $t_s$ analítica e computacionalmente. |
+| 8 | Nise, Cap. 4, §4.4, Prob. 16 | Deduza a relação entre o fator de amortecimento $\zeta$ e a ultrapassagem percentual $\%UP$ (a fórmula vista em aula). |
+| 9 | Nise, Cap. 4, §4.5, Prob. 18–20 | Para os sistemas de 2ª ordem dados, determine $\zeta$, $\omega_n$, $T_s$, $T_p$, $T_r$ e $\%UP$; confira com o MATLAB. |
+| 10 | Nise, Cap. 4, §4.5, Prob. 23 | Para pares de especificações de projeto dados (ex.: $\%UP$ e $T_s$), determine a posição dos polos de malha fechada correspondente. |
+| 11 | Nise, Cap. 4, §4.6, Prob. 25 | Sistema mecânico massa-mola-amortecedor: obtenha as especificações da resposta transitória ao degrau. |
+
+::: {.callout-tip}
+Compare sempre a solução analítica (fórmulas de $M_p$, $t_p$, $t_s$, $t_r$ vistas na
+[Aula 4](../Notas/Aula04SegundaOrdem.qmd)) com a simulação numérica — é a melhor forma de
+verificar se o modelo foi montado corretamente antes de avançar para o projeto do controlador.
+:::

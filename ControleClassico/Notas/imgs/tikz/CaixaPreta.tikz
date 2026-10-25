@@ -1,0 +1,17 @@
+% ---------------------------------------------------------------
+% Descrição mais simples possível de um sistema de controle: uma
+% entrada (referência/excitação) produz, através do sistema, uma
+% saída (resposta).
+% ---------------------------------------------------------------
+\begin{tikzpicture}[>=Latex, line width=1.0pt,
+  bloco/.style={draw, minimum width=4.4cm, minimum height=1.6cm, fill=blue!8, font=\Large},
+  seta/.style={->}]
+
+  \node[bloco] (s) at (0,0) {Sistema de Controle};
+  \node[left=1.6cm of s, align=center] (r) {\large Entrada\\[-2pt]\footnotesize referência / excitação};
+  \node[right=1.6cm of s, align=center] (y) {\large Saída\\[-2pt]\footnotesize resposta};
+
+  \draw[seta] (r) -- (s);
+  \draw[seta] (s) -- (y);
+
+\end{tikzpicture}

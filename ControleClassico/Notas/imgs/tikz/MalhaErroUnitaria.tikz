@@ -1,0 +1,23 @@
+% ---------------------------------------------------------------
+% Malha fechada com realimentação unitária, com E(s) em destaque
+% para a definição do erro de regime permanente.
+% ---------------------------------------------------------------
+\begin{tikzpicture}[>=Latex, line width=0.9pt, node distance=1.5cm,
+  bloco/.style={draw, minimum width=2.4cm, minimum height=1.1cm, fill=blue!8},
+  soma/.style={draw, circle, minimum size=0.7cm, inner sep=0pt},
+  seta/.style={->}]
+
+  \node (r) at (0,0) {$R(s)$};
+  \node[soma, right=1.2cm of r]  (sum) {};
+  \node[bloco, right=1.6cm of sum] (g) {$G(s)$};
+  \node[right=1.4cm of g] (y) {$Y(s)$};
+
+  \draw[seta] (r) -- (sum);
+  \draw[seta] (sum) -- node[above, font=\small]{$E(s)$} (g);
+  \draw[seta] (g) -- (y);
+  \draw[seta] (y.south) |- ++(0,-0.9cm) -| node[below, pos=0.25, font=\small]{realimentação unitária} (sum.south);
+
+  \node[font=\small] at ($(sum.north west)+(-0.15,0.15)$) {$+$};
+  \node[font=\small] at ($(sum.south west)+(-0.15,-0.15)$) {$-$};
+
+\end{tikzpicture}

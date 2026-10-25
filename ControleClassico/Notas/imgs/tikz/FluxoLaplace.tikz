@@ -1,0 +1,14 @@
+% ---------------------------------------------------------------
+% Motivação da Transformada de Laplace: EDO no tempo -> equação
+% algébrica em s.
+% ---------------------------------------------------------------
+\begin{tikzpicture}[>=Latex, line width=1.0pt,
+  bloco/.style={draw, minimum width=5.0cm, minimum height=1.6cm, fill=blue!8, font=\large},
+  seta/.style={->, line width=1.2pt}]
+
+  \node[bloco] (edo) at (0,0) {EDO linear em $t$};
+  \node[bloco, right=5.2cm of edo] (alg) {Equação algébrica em $s$};
+
+  \draw[seta] (edo) -- node[above, font=\normalsize]{$\mathcal{L}\{\cdot\}$} node[below, font=\scriptsize]{Laplace} (alg);
+
+\end{tikzpicture}

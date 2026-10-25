@@ -1,0 +1,18 @@
+% Plano s com o polo de um sistema de 1ª ordem — Aula 02 (tema Nova).
+\begin{tikzpicture}[line width=0.9pt, >=Stealth, x=1.15cm, y=1.15cm]
+  \fill[green!50!black, opacity=0.07] (-5.4,-2.3) rectangle (0,2.3);
+  \fill[rose, opacity=0.08] (0,-2.3) rectangle (1.6,2.3);
+  \node[green!40!black, font=\itshape] at (-4.5,1.95) {estável};
+  \node[rose, font=\itshape] at (0.85,1.95) {instável};
+  \draw[->, gray] (-5.4,0) -- (1.7,0) node[right, black] {$\mathrm{Re}(s) = \sigma$};
+  \draw[->, gray] (0,-2.3) -- (0,2.45) node[above, black] {$\mathrm{Im}(s) = j\omega$};
+  \foreach \x in {-5,-4,-3,-2,-1,1} \draw[gray] (\x,0.07) -- (\x,-0.07) node[below, font=\small] {$\x$};
+  % polos para três constantes de tempo
+  \foreach \p/\c/\t/\h in {-4/navy!45/{\tau = 0{,}25\ \mathrm{s}}/0.2, -2/navy!70/{\tau = 0{,}5\ \mathrm{s}}/0.75, -1/rose/{\tau = 1\ \mathrm{s}}/0.2} {
+    \draw[\c, line width=2pt] (\p-0.13,-0.13) -- (\p+0.13,0.13) (\p-0.13,0.13) -- (\p+0.13,-0.13);
+    \node[\c, font=\small, above] at (\p,\h) {$\t$};
+  }
+  % distância 1/tau
+  \draw[<->, rose] (-1,-0.75) -- node[below, font=\small] {$1/\tau$} (0,-0.75);
+  \node[font=\small, align=center] at (-2.6,-1.6) {mais à esquerda $\Rightarrow$ $\tau$ menor $\Rightarrow$ resposta mais rápida};
+\end{tikzpicture}

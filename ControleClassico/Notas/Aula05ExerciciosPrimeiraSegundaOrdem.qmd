@@ -1,0 +1,190 @@
+---
+title: "Exercícios: Sistemas de Primeira e Segunda Ordem"
+subtitle: "Sistemas de Controle I"
+institute: "Universidade Federal do Pará"
+author: "Prof. Dr. Raphael Teixeira"
+format:
+  revealjs:
+    theme: [simple, ../TemaRTx.scss]
+    self-contained: true
+    transition: fade
+    slide-number: true
+    width: 1600
+    height: 900
+    footer: " "
+    center: false
+    title-slide-attributes:
+      data-background-image: "imgs/ufpa-colorido.png"
+      data-background-size: "84px"
+      data-background-position: "top 45px center"
+---
+
+## O Fluxo Completo de Análise
+
+Nesta aula praticamos o fluxo inteiro de análise, das Aulas 2–4, num único exemplo — e depois em
+10 exercícios (5 de 1ª ordem, 5 de 2ª ordem):
+
+::: {.columns}
+::: {.column width="50%"}
+1. **Sistema físico** — identificar entrada, saída, parâmetros
+2. **Equação diferencial** — leis físicas (Newton, Kirchhoff, ...)
+3. **Função de transferência** — transformada de Laplace, condições iniciais nulas
+:::
+::: {.column width="50%"}
+4. **Forma padrão** — $K/(\tau s+1)$ ou $\omega_n^2/(s^2+2\zeta\omega_ns+\omega_n^2)$
+5. **Análise** — classificação, polos, $\zeta$, $\omega_n$
+6. **Resposta ao degrau** — fórmulas + verificação no MATLAB
+:::
+:::
+
+::: {.callout-tip}
+Em cada etapa, o **MATLAB** confirma a conta feita à mão — é assim que você audita seu próprio resultado.
+:::
+
+---
+
+## Exemplo Resolvido — Sistema Físico
+
+**Massa-mola-amortecedor horizontal:** força de entrada $F(t)$ aplicada à massa; saída é o
+deslocamento $x(t)$ em relação ao equilíbrio (a mesma planta animada em Python na pasta
+[`Animes/`](../Animes/massa_mola_amortecedor.py)).
+
+- Massa $m = 1\,$kg
+- Amortecimento $b = 2\,$N·s/m
+- Rigidez da mola $k = 25\,$N/m
+
+::: {.callout-note}
+Sistema massa-mola-amortecedor **sem** integrador puro — é o protótipo físico de um sistema de
+**2ª ordem padrão**, o mesmo usado na Aula 4.
+:::
+
+---
+
+## Exemplo Resolvido — Equação Diferencial
+
+Pela 2ª Lei de Newton, somando as forças sobre a massa (mola, amortecedor, força aplicada):
+
+$$m\ddot{x}(t) + b\dot{x}(t) + kx(t) = F(t)$$
+
+Substituindo os valores numéricos:
+
+$$\ddot{x}(t) + 2\dot{x}(t) + 25x(t) = F(t)$$
+
+::: {.fragment}
+Condições iniciais nulas ($x(0)=0$, $\dot x(0)=0$) — sistema parte do repouso, em equilíbrio.
+:::
+
+---
+
+## Exemplo Resolvido — Função de Transferência
+
+Aplicando a transformada de Laplace (condições iniciais nulas):
+
+$$ms^2X(s) + bsX(s) + kX(s) = F(s) \quad\implies\quad \frac{X(s)}{F(s)} = \frac{1}{ms^2+bs+k}$$
+
+::: {.fragment}
+$$G(s) = \frac{X(s)}{F(s)} = \frac{1}{s^2+2s+25}$$
+:::
+
+---
+
+## Exemplo Resolvido — Forma Padrão
+
+Dividindo numerador e denominador por $k$ para isolar o ganho estático $K=1/k$:
+
+$$G(s) = \frac{1/k}{\frac{m}{k}s^2+\frac{b}{k}s+1} = \frac{K\,\omega_n^2}{s^2+2\zeta\omega_n s+\omega_n^2}$$
+
+com $\omega_n = \sqrt{k/m}$, $\zeta = \dfrac{b}{2\sqrt{mk}}$, $K=1/k$. Para os valores dados:
+
+$$\boxed{\omega_n = \sqrt{25} = 5\text{ rad/s} \qquad \zeta = \frac{2}{2\sqrt{25}} = 0{,}2 \qquad K = \frac{1}{25} = 0{,}04}$$
+
+---
+
+## Exemplo Resolvido — Análise
+
+Com $\zeta = 0{,}2 < 1$: sistema **subamortecido**. Polos:
+
+$$s_{1,2} = -\zeta\omega_n \pm j\omega_n\sqrt{1-\zeta^2} = -1 \pm j4{,}90$$
+
+::: {.fragment}
+Especificações da resposta ao degrau (fórmulas da Aula 4):
+$$M_p = e^{-\zeta\pi/\sqrt{1-\zeta^2}} \approx 52{,}7\% \qquad t_p = \frac{\pi}{\omega_d} \approx 0{,}641\text{ s} \qquad t_s \approx \frac{4}{\zeta\omega_n} = 4\text{ s (2\%)}$$
+:::
+
+::: {.callout-warning}
+$\zeta=0{,}2$ é **pouco amortecido** — sobressinal grande (52,7%). Na prática, ajustaríamos $b$
+(mais atrito) para reduzir $M_p$.
+:::
+
+---
+
+## Exemplo Resolvido — Resposta ao Degrau
+
+Para um degrau de força $F(t) = F_0\,u(t)$, o valor final é $x_{ss} = K F_0 = F_0/k$ (Lei de Hooke
+em regime: a mola sozinha sustenta a força aplicada). Com $F_0=1\,$N:
+
+$$x(t) = 0{,}04\left[1 - \frac{e^{-t}}{\sqrt{1-0{,}2^2}}\sin(4{,}90\,t+\phi)\right], \qquad \phi=\cos^{-1}(0{,}2)$$
+
+::: {.callout-tip}
+Confira: $x(\infty) = 0{,}04\,$m $= 1/k$ — a massa se desloca até a mola equilibrar a força de
+1 N aplicada.
+:::
+
+---
+
+## Exemplo Resolvido — Verificação no MATLAB
+
+```matlab
+% Sistema massa-mola-amortecedor: m*x'' + b*x' + k*x = F(t)
+m = 1; b = 2; k = 25;
+
+G = tf(1, [m b k]);         % X(s)/F(s) = 1 / (m s^2 + b s + k)
+
+[wn, zeta] = damp(G)        % confere wn = 5 rad/s, zeta = 0.2
+
+figure;
+step(G);
+grid on;
+title('Resposta ao degrau unitário de força');
+
+S = stepinfo(G)             % SettlingTime, Overshoot, PeakTime, RiseTime
+xss = dcgain(G)             % ganho estático: deve ser 1/k = 0.04
+```
+
+::: {.callout-note}
+`stepinfo` usa por padrão o critério de acomodação de **2%** — compare `S.SettlingTime` com o
+$t_s\approx4\,$s calculado à mão.
+:::
+
+---
+
+## Exercícios — Sistemas de Primeira Ordem {.scrollable}
+
+1. **Circuito RC:** $R=1\,\text{k}\Omega$, $C=100\,\mu\text{F}$, entrada $v_i(t)$, saída $v_o(t)$ no capacitor. Obtenha a EDO, a FT $V_o(s)/V_i(s)$ na forma padrão $K/(\tau s+1)$, e o tempo de acomodação (2%) para um degrau de 5 V. Confira com `tf`, `step` e `stepinfo` no MATLAB.
+2. **Termômetro:** modelo de 1ª ordem que leva 30 s para atingir 95% de uma variação em degrau de temperatura. Determine $\tau$ e escreva $G(s)$. Se o ambiente variar em rampa de $2\,^\circ\text{C/min}$, qual o erro do termômetro em regime?
+3. **Tanque de nível:** vazão de entrada $q_i(t)$, resistência de saída $R$, capacitância $C$ (área do tanque). Deduza a EDO do nível $h(t)$, coloque na forma padrão $K/(\tau s+1)$ e determine o novo nível em regime para um degrau na vazão de entrada.
+4. **Motor CC sem carga** (aproximação de 1ª ordem, desprezando a indutância de armadura): a partir de $R_a$, $K_t$, $K_b$, $J$ e do atrito viscoso $b$, obtenha $\tau$ e o ganho em regime da velocidade angular em relação à tensão de armadura. Verifique com valores típicos no MATLAB.
+5. Dado $G(s) = \dfrac{4}{2s+8}$, reescreva na forma padrão $K/(\tau s+1)$, identifique $K$ e $\tau$, esboce a resposta ao degrau unitário (valor inicial, final e $t_s$) e confira com `step(G)`.
+
+---
+
+## Exercícios — Sistemas de Segunda Ordem {.scrollable}
+
+1. **Massa-mola-amortecedor:** $m=2\,$kg, $b=4\,$N·s/m, $k=50\,$N/m. Obtenha a EDO, a FT, a forma padrão ($\omega_n$, $\zeta$), classifique o amortecimento, calcule os polos, $M_p$, $t_p$, $t_s$, $t_r$ da resposta ao degrau, e confira tudo no MATLAB.
+2. **Circuito RLC série** (saída na tensão do capacitor): dados $R$, $L$, $C$, obtenha a FT e a forma padrão, e determine se a resposta é sub, sobre ou criticamente amortecida.
+3. **Servo de posição:** $C(s)/R(s) = \omega_n^2/(s^2+2\zeta\omega_ns+\omega_n^2)$ com $\zeta=0{,}3$, $\omega_n=8\,$rad/s. Calcule $M_p$, $t_p$, $t_s$ (2%), $t_r$ à mão e confira com `step` e `stepinfo`.
+4. **Identificação a partir de dados experimentais:** um sistema de 2ª ordem tem, na resposta ao degrau medida, $M_p=15\%$ e $t_p=0{,}5\,$s. Determine $\zeta$, $\omega_n$ e escreva $G(s)$ na forma padrão. Reconstrua a resposta no MATLAB e compare visualmente com os dados.
+5. **Projeto:** determine $\zeta$ e $\omega_n$ de um sistema de 2ª ordem padrão para $M_p\leq5\%$ e $t_s\leq1\,$s (critério de 2%). Escreva a FT resultante e confirme as especificações simulando no MATLAB.
+
+::: {.callout-tip}
+Nos exercícios de identificação e projeto (2ª ordem, itens 4 e 5), use as fórmulas de
+$M_p\leftrightarrow\zeta$ e $t_s=4/(\zeta\omega_n)$ da Aula 4 **antes** de simular — o MATLAB
+confirma sua conta, não a substitui.
+:::
+
+---
+
+## Referências
+
+::: {#refs}
+:::

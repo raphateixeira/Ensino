@@ -1,0 +1,39 @@
+% ---------------------------------------------------------------
+% Malha de controle clássica: referência -> erro -> controlador
+% -> sistema -> saída, com retroação captada a partir do sinal
+% de saída y(t) (ponto de derivação após o bloco). Controlador e
+% sistema em cores distintas (paleta UFPA/TemaRTx).
+% ---------------------------------------------------------------
+\definecolor{UFPAAzul}{HTML}{1B365D}
+\definecolor{UFPAVermelho}{HTML}{B23A48}
+
+\begin{tikzpicture}[>=Latex, line width=1.0pt, node distance=1.7cm,
+  controlador/.style={draw=UFPAVermelho, minimum width=2.4cm, minimum height=1.3cm, fill=UFPAVermelho!12},
+  sistema/.style={draw=UFPAAzul, minimum width=2.4cm, minimum height=1.3cm, fill=UFPAAzul!10},
+  soma/.style={draw, circle, minimum size=0.7cm, inner sep=0pt},
+  seta/.style={->}]
+
+  \node (r) at (0,0) {$r(t)$};
+  \node[soma, right=1.0cm of r]          (sum) {};
+  \node[controlador, right=1.4cm of sum] (c) {\textcolor{UFPAVermelho}{$C(s)$}};
+  \node[sistema, right=of c]             (g) {\textcolor{UFPAAzul}{$G(s)$}};
+  \node[right=1.6cm of g] (y) {$y(t)$};
+
+  \draw[seta] (r) -- (sum);
+  \draw[seta] (sum) -- node[above, font=\small]{$e(t)$} (c);
+  \draw[seta] (c) -- node[above, font=\small]{$u(t)$} (g);
+
+  \coordinate (pickoff) at ($(g.east)!0.6!(y.west)$);
+  \draw[seta] (g) -- (y);
+  \filldraw (pickoff) circle (1.8pt);
+
+  \coordinate (fb) at ($(pickoff)+(0,-1.6)$);
+  \draw[seta] (pickoff) -- (fb) -| (sum.south);
+
+  \node[font=\small] at ($(sum.north west)+(-0.17,0.17)$) {$+$};
+  \node[font=\small] at ($(sum.south west)+(-0.17,-0.17)$) {$-$};
+
+  \node[font=\scriptsize, text=UFPAVermelho, below=0.12cm of c.south] {\textit{controlador}};
+  \node[font=\scriptsize, text=UFPAAzul, below=0.12cm of g.south] {\textit{sistema}};
+
+\end{tikzpicture}

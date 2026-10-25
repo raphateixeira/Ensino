@@ -1,0 +1,35 @@
+% ---------------------------------------------------------------
+% Exemplo de ordem superior em malha fechada: planta de 2a ordem,
+% controlador PI e sensor de 1a ordem -> 4 polos de malha fechada.
+% ---------------------------------------------------------------
+\begin{tikzpicture}[>=Latex, line width=0.9pt,
+  bloco/.style={draw, minimum width=2.4cm, minimum height=1.2cm, fill=blue!8},
+  soma/.style={draw, circle, minimum size=0.7cm, inner sep=0pt},
+  polo/.style={font=\small, text=red!70!black, align=center},
+  seta/.style={->}]
+
+  \node (r) at (0,0) {$R(s)$};
+  \node[soma, right=1.0cm of r] (sum) {};
+  \node[bloco, right=1.2cm of sum] (c) {$\dfrac{K_p(s+z)}{s}$};
+  \node[bloco, right=1.4cm of c] (g) {$\dfrac{\omega_n^2}{s^2+2\zeta\omega_n s+\omega_n^2}$};
+  \coordinate[right=1.0cm of g] (ramo);
+  \node[right=1.2cm of ramo] (y) {$Y(s)$};
+  \node[bloco, below=1.6cm of g] (h) {$\dfrac{1}{\tau_m s+1}$};
+
+  \draw[seta] (r) -- (sum);
+  \draw[seta] (sum) -- (c);
+  \draw[seta] (c) -- node[above, font=\small]{$U(s)$} (g);
+  \draw (g) -- (ramo);
+  \draw[seta] (ramo) -- (y);
+  \fill (ramo) circle (2pt);
+  \draw[seta] (ramo) |- (h);
+  \draw[seta] (h) -| (sum);
+
+  \node[font=\small] at ($(sum.north west)+(-0.15,0.15)$) {$+$};
+  \node[font=\small] at ($(sum.south west)+(-0.15,-0.15)$) {$-$};
+
+  \node[polo, above=0.2cm of c] {controlador PI: 1 polo};
+  \node[polo, above=0.2cm of g] {planta: 2 polos};
+  \node[polo, below=0.2cm of h] {sensor: 1 polo};
+
+\end{tikzpicture}

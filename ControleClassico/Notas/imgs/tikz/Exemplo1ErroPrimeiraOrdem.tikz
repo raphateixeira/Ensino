@@ -1,0 +1,23 @@
+% ---------------------------------------------------------------
+% Exemplo 1: planta de 1a ordem com ganho proporcional K,
+% malha fechada com realimentação unitária.
+% ---------------------------------------------------------------
+\begin{tikzpicture}[>=Latex, line width=0.9pt, node distance=1.5cm,
+  bloco/.style={draw, minimum width=2.6cm, minimum height=1.1cm, fill=blue!8},
+  soma/.style={draw, circle, minimum size=0.7cm, inner sep=0pt},
+  seta/.style={->}]
+
+  \node (r) at (0,0) {$R(s)$};
+  \node[soma, right=1.2cm of r]  (sum) {};
+  \node[bloco, right=1.6cm of sum] (g) {$\dfrac{K}{\tau s+1}$};
+  \node[right=1.4cm of g] (y) {$Y(s)$};
+
+  \draw[seta] (r) -- (sum);
+  \draw[seta] (sum) -- node[above, font=\small]{$E(s)$} (g);
+  \draw[seta] (g) -- (y);
+  \draw[seta] (y.south) |- ++(0,-0.9cm) -| (sum.south);
+
+  \node[font=\small] at ($(sum.north west)+(-0.15,0.15)$) {$+$};
+  \node[font=\small] at ($(sum.south west)+(-0.15,-0.15)$) {$-$};
+
+\end{tikzpicture}

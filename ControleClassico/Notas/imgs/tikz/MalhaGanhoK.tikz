@@ -1,0 +1,28 @@
+% ---------------------------------------------------------------
+% Malha fechada unitária com ganho ajustável K em série com G(s)
+% (análise de estabilidade em função de K).
+% ---------------------------------------------------------------
+\begin{tikzpicture}[>=Latex, line width=0.9pt, node distance=1.5cm,
+  bloco/.style={draw, minimum width=2.2cm, minimum height=1.1cm, fill=blue!8},
+  soma/.style={draw, circle, minimum size=0.7cm, inner sep=0pt},
+  seta/.style={->}]
+
+  \node (r) at (0,0) {$R(s)$};
+  \node[soma, right=1.2cm of r]  (sum) {};
+  \node[bloco, right=1.4cm of sum, minimum width=1.3cm] (k) {$K$};
+  \node[bloco, right=1.2cm of k] (g) {$G(s)$};
+  \coordinate[right=1.0cm of g] (ramo);
+  \node[right=1.2cm of ramo] (y) {$Y(s)$};
+
+  \draw[seta] (r) -- (sum);
+  \draw[seta] (sum) -- node[above, font=\small]{$E(s)$} (k);
+  \draw[seta] (k) -- (g);
+  \draw (g) -- (ramo);
+  \draw[seta] (ramo) -- (y);
+  \fill (ramo) circle (2pt);
+  \draw[seta] (ramo) |- ++(0,-1.3cm) -| (sum.south);
+
+  \node[font=\small] at ($(sum.north west)+(-0.15,0.15)$) {$+$};
+  \node[font=\small] at ($(sum.south west)+(-0.15,-0.15)$) {$-$};
+
+\end{tikzpicture}

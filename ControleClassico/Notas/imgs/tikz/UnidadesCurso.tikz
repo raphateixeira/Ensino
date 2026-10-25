@@ -1,0 +1,31 @@
+% ---------------------------------------------------------------
+% Roteiro das seis unidades do conteúdo programático, em disposição
+% de "cobra" (U1->U2->U3, desce, U4->U5->U6), com marcadores das
+% provas bimestral (após U3) e final (após U6).
+% ---------------------------------------------------------------
+\begin{tikzpicture}[>=Latex, line width=0.9pt,
+  bloco/.style={draw, rounded corners, minimum width=3.1cm, minimum height=1.5cm,
+                fill=blue!8, align=center, font=\small, text width=2.9cm},
+  marco/.style={draw, rounded corners, fill=orange!15, font=\scriptsize, align=center},
+  seta/.style={->, thick}]
+
+  \node[bloco] (u1) {\textbf{Unidade 1}\\[2pt]\footnotesize Introdução};
+  \node[bloco, right=1.1cm of u1] (u2) {\textbf{Unidade 2}\\[2pt]\footnotesize Modelagem e FT};
+  \node[bloco, right=1.1cm of u2] (u3) {\textbf{Unidade 3}\\[2pt]\footnotesize Resp. transitória e erro de regime};
+  \node[bloco, below=1.5cm of u3] (u4) {\textbf{Unidade 4}\\[2pt]\footnotesize Estabilidade e LGR};
+  \node[bloco, left=1.1cm of u4] (u5) {\textbf{Unidade 5}\\[2pt]\footnotesize Resposta em frequência};
+  \node[bloco, left=1.1cm of u5] (u6) {\textbf{Unidade 6}\\[2pt]\footnotesize Controladores PID};
+
+  \draw[seta] (u1) -- (u2);
+  \draw[seta] (u2) -- (u3);
+  \draw[seta] (u3.south) -- (u4.north);
+  \draw[seta] (u4) -- (u5);
+  \draw[seta] (u5) -- (u6);
+
+  \node[marco, above=0.6cm of u3] (a1) {Prova Bimestral\\(A1)};
+  \draw[dashed, seta, orange!70!black] (a1) -- (u3.north);
+
+  \node[marco, below=0.6cm of u6] (a2) {Prova Final\\(A2)};
+  \draw[dashed, seta, orange!70!black] (u6.south) -- (a2);
+
+\end{tikzpicture}

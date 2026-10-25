@@ -1,0 +1,83 @@
+---
+pagetitle: "Sistemas de Controle I"
+format:
+  html:
+    page-layout: article
+---
+
+::: {.rtx-hero}
+[Disciplina · Engenharia Elétrica · 2026.4]{.rtx-eyebrow}
+
+# Sistemas de Controle I {.unnumbered .unlisted}
+
+Controle clássico: modelagem por função de transferência, resposta transitória de sistemas de primeira e segunda ordem, erro de regime permanente, estabilidade (Routh-Hurwitz), lugar geométrico das raízes, resposta em frequência e controladores PID.
+
+[Prof. Dr. Raphael Teixeira]{.rtx-meta}
+
+::: {.rtx-acoes}
+[Plano de ensino](Notas/Aula00PlanoEnsino.qmd){.rtx-btn .rtx-btn-primario} [GitHub](https://github.com/raphateixeira/ControleClassico){.rtx-btn} [Site do professor](https://raphateixeira.github.io){.rtx-btn}
+:::
+:::
+
+## Notas de aula
+
+```{=html}
+<div class="categoria-grid">
+<a class="categoria-card" href="Notas/Aula00PlanoEnsino.qmd">
+  <h3>Aula 0</h3>
+  <p>Plano de Ensino</p>
+</a>
+<a class="categoria-card" href="Notas/Aula01Introducao.qmd">
+  <h3>Aula 1</h3>
+  <p>Introdução a Sistemas de Controle</p>
+</a>
+<a class="categoria-card" href="Notas/Aula02ModelagemFT.qmd">
+  <h3>Aula 2</h3>
+  <p>Modelagem e Função de Transferência</p>
+</a>
+<a class="categoria-card" href="Notas/Aula03PrimeiraOrdem.qmd">
+  <h3>Aula 3</h3>
+  <p>Sistemas de Primeira Ordem</p>
+</a>
+<a class="categoria-card" href="Notas/Aula04SegundaOrdem.qmd">
+  <h3>Aula 4</h3>
+  <p>Sistemas de Segunda Ordem</p>
+</a>
+<a class="categoria-card" href="Notas/Aula05ExerciciosPrimeiraSegundaOrdem.qmd">
+  <h3>Aula 5</h3>
+  <p>Exercícios: Sistemas de Primeira e Segunda Ordem</p>
+</a>
+<a class="categoria-card" href="Notas/Aula06ErroRegimePermanente.qmd">
+  <h3>Aula 6</h3>
+  <p>Erro de Regime Permanente</p>
+</a>
+<a class="categoria-card" href="Notas/Aula07Estabilidade.qmd">
+  <h3>Aula 7</h3>
+  <p>Estabilidade e Critério de Routh-Hurwitz</p>
+</a>
+<a class="categoria-card" href="Notas/Aula08LGR.qmd">
+  <h3>Aula 8</h3>
+  <p>Lugar Geométrico das Raízes (LGR)</p>
+</a>
+<a class="categoria-card" href="Notas/Aula09RespostaFrequencia.qmd">
+  <h3>Aula 9</h3>
+  <p>Resposta em Frequência</p>
+</a>
+<a class="categoria-card" href="Notas/Aula10PID.qmd">
+  <h3>Aula 10</h3>
+  <p>Controlador PID</p>
+</a>
+<a class="categoria-card categoria-card--verde" href="Notas/GuiaBibliografico.qmd">
+  <h3>Guia de Estudos: Livros</h3>
+  <p>Onde estudar cada tema nos livros-texto</p>
+</a>
+<a class="categoria-card categoria-card--verde" href="Projeto/CatalogoModulos.qmd">
+  <h3>Catálogo de Temas dos Projetos</h3>
+  <p>Escolha do sistema físico para o projeto de controle</p>
+</a>
+<a class="categoria-card categoria-card--verde" href="Exercicios/Lista01ModelagemPrimeiraSegundaOrdem.qmd">
+  <h3>Lista 1 de Exercícios</h3>
+  <p>Modelagem e resposta de sistemas de 1ª e 2ª ordem</p>
+</a>
+</div>
+```
