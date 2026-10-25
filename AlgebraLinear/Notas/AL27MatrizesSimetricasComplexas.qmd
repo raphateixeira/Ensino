@@ -1,0 +1,45 @@
+---
+title: "Matrizes Simétricas e Complexas"
+subtitle: "Álgebra Linear"
+author: "Prof. Dr. Raphael Teixeira"
+institute: "Universidade Federal do Pará"
+lang: pt-BR
+format:
+  revealjs:
+    theme: [simple, ../TemaRTx.scss]
+    transition: fade
+    slide-number: true
+    width: 1600
+    height: 900
+    center: true
+    title-slide-attributes:
+      data-background-image: "../imgs/ufpa-colorido.png"
+      data-background-size: "84px"
+      data-background-position: "top 45px center"
+---
+
+
+## Autovalores de Matrizes Simétricas são Reais
+
+**Teorema:** Se $S$ é uma matriz real e simétrica, então todos os seus autovalores são reais.
+
+### Demonstração
+
+Seja $\lambda$ um autovalor de $S$ e $\mathbf{v}$ um autovetor associado:
+$$S\mathbf{v} = \lambda \mathbf{v}, \quad \mathbf{v} \neq \mathbf{0}$$
+
+**Passo 1:** Multiplique ambos os lados pelo conjugado transposto de $\mathbf{v}$:
+$$\overline{\mathbf{v}}^T S\mathbf{v} = \lambda \overline{\mathbf{v}}^T \mathbf{v}$$
+
+**Passo 2:** Como $S$ é real e simétrica: $S = \overline{S}$ e $S^T = S$
+$$\overline{\mathbf{v}}^T S\mathbf{v} = \overline{(S\mathbf{v})^T \mathbf{v}} = \overline{(\lambda \mathbf{v})^T \mathbf{v}} = \overline{\lambda} \overline{\mathbf{v}}^T \mathbf{v}$$
+
+**Passo 3:** Comparando as duas expressões:
+$$\lambda \overline{\mathbf{v}}^T \mathbf{v} = \overline{\lambda} \overline{\mathbf{v}}^T \mathbf{v}$$
+
+**Passo 4:** Como $\mathbf{v} \neq \mathbf{0}$, temos $\overline{\mathbf{v}}^T \mathbf{v} > 0$:
+$$\lambda = \overline{\lambda}$$
+
+Portanto, $\lambda$ é real.
+
+
