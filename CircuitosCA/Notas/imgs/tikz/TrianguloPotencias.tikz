@@ -1,0 +1,16 @@
+% ---------------------------------------------------------------------
+% Triângulo de potências: P (base), Q (altura), S (hipotenusa) e o
+% ângulo de potência theta entre P e S. Tikz puro.
+% ---------------------------------------------------------------------
+\begin{tikzpicture}[>=Latex, line width=2pt, font=\Large]
+  \coordinate (O) at (0,0);
+  \coordinate (Pp) at (6,0);
+  \coordinate (Sp) at (6,3.5);
+
+  \draw[blue!70!black] (O) -- (Pp) node[midway, below] {$P$ (W)};
+  \draw[red!70!black] (Pp) -- (Sp) node[midway, right] {$Q$ (var)};
+  \draw[black!70!black] (O) -- (Sp) node[midway, above left] {$S$ (VA)};
+
+  \draw (0.9,0) arc (0:{atan(3.5/6)}:0.9);
+  \node at (1.55,0.42) {$\theta$};
+\end{tikzpicture}

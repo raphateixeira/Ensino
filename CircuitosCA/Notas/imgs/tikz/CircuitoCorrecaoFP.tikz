@@ -1,0 +1,16 @@
+% ---------------------------------------------------------------------
+% Correção do fator de potência: capacitor C instalado em paralelo com
+% a carga indutiva, visto pela fonte. Requer circuitikz.
+% ---------------------------------------------------------------------
+\ctikzset{bipoles/length=2.0cm}
+\begin{circuitikz}[scale=2.2, line width=1.5pt, font=\Large]
+\draw (0,0)
+  to[sinusoidal voltage source, l=$\mathbf{V}_s$] (0,3.4)
+  to[short, i=$\mathbf{I}_s$] (2.6,3.4);
+\draw (2.6,3.4) to[short, -*] (2.6,3.4);
+\draw (2.6,3.4) to[C, l=$C$, i=$\mathbf{I}_C$] (2.6,0);
+\draw (2.6,3.4) to[short] (5.6,3.4);
+\draw (5.6,3.4) to[generic, l=Carga, i=$\mathbf{I}_L$] (5.6,0);
+\draw (5.6,0) to[short] (2.6,0) to[short] (0,0);
+\node[align=center, font=\normalsize] at (5.6,-0.5) {(indutiva, pf$_1$ atrasado)};
+\end{circuitikz}

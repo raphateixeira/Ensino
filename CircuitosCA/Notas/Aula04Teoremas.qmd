@@ -1,0 +1,432 @@
+---
+title: "Teoremas de Circuitos em CA"
+subtitle: "Circuitos Elétricos II — CA"
+institute: "Universidade Federal do Pará"
+author: "Prof. Dr. Raphael Teixeira"
+format:
+  revealjs:
+    theme: [simple, ../TemaRTx.scss]
+    self-contained: true
+    transition: fade
+    slide-number: true
+    width: 1600
+    height: 900
+    footer: " "
+    center: false
+    title-slide-attributes:
+      data-background-image: "imgs/ufpa-colorido.png"
+      data-background-size: "101px"
+      data-background-position: "top 45px center"
+engine: knitr
+---
+
+```{r setup, include=FALSE}
+# Habilita circuitikz (diagramas de circuito) e pgfplots (gráfico de
+# potência) nos chunks {tikz} desta aula.
+knitr::opts_chunk$set(engine.opts = list(
+  extra.preamble = c("\\usepackage{circuitikz}", "\\usepackage{pgfplots}",
+                      "\\pgfplotsset{compat=1.18}"),
+  classoption = "tikz,multi=circuitikz"
+))
+```
+
+## Teoremas de Circuitos: Panorama
+
+Os mesmos teoremas de Circuitos Elétricos I se aplicam a CA, trocando resistências por impedâncias:
+
+- **Superposição** — decompõe um circuito com várias fontes em problemas menores, um por fonte.
+- **Thévenin e Norton** — substituem uma rede complexa vista de dois terminais por um equivalente simples.
+- **Máxima transferência de potência** — determina a carga que extrai a maior potência média de uma fonte real.
+
+::: {.callout-important}
+## Pré-requisito dos teoremas
+Todos exigem que o circuito seja **linear**. Em CA, exigem ainda que as fontes operem na **mesma frequência** $\omega$, para que a soma de fasores tenha sentido.
+:::
+
+---
+
+## Teorema da Superposição
+
+::: {.callout-theorem}
+Em um circuito linear com múltiplas fontes independentes, a resposta (tensão ou corrente) em qualquer elemento é a **soma algébrica** das respostas causadas por cada fonte atuando **isoladamente**, com as demais desativadas.
+:::
+
+**Regra de desativação** de uma fonte independente:
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 9
+\input{imgs/tikz/DesativacaoFontes.tikz}
+```
+
+---
+
+## Superposição em CA — Cuidados
+
+::: {.callout-warning}
+## Mesma frequência: some fasores
+Se **todas** as fontes têm a mesma frequência $\omega$, cada etapa gera um fasor e eles podem ser **somados diretamente** (como nos exemplos desta aula).
+:::
+
+::: {.callout-warning}
+## Frequências diferentes: some no tempo
+Se as fontes têm frequências **diferentes**, os fasores de cada etapa não podem ser somados (não faz sentido somar números complexos associados a $\omega$ distintos). Nesse caso, resolva cada etapa **separadamente no domínio do tempo** e some as formas de onda $v(t)$ resultantes.
+:::
+
+---
+
+## Superposição — Circuito de Exemplo
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 13
+\input{imgs/tikz/CircuitoSuperposicao.tikz}
+```
+
+**Dados:** $\mathbf{V}_s = 20\angle 0°$ V, $\mathbf{I}_s = 3\angle 90°$ A, $\mathbf{Z}_1 = 2\ \Omega$, $\mathbf{Z}_2 = 4\ \Omega$, $\mathbf{Z}_3 = -j2\ \Omega$. **Objetivo:** encontrar $\mathbf{I}_3$.
+
+---
+
+## Superposição — Passo 1: Apenas $\mathbf{V}_s$
+
+Com $\mathbf{I}_s$ desativada (circuito aberto), o circuito se reduz a $\mathbf{V}_s$ e $\mathbf{Z}_1$ em série com $\mathbf{Z}_2 \| \mathbf{Z}_3$ — um divisor de tensão:
+
+$$\mathbf{Z}_2\|\mathbf{Z}_3 = \frac{(4)(-j2)}{4-j2} = 0{,}8-j1{,}6\ \Omega$$
+
+$$\mathbf{V}_A' = \mathbf{V}_s\cdot\frac{\mathbf{Z}_2\|\mathbf{Z}_3}{\mathbf{Z}_1+\mathbf{Z}_2\|\mathbf{Z}_3} = 20\cdot\frac{0{,}8-j1{,}6}{2{,}8-j1{,}6} = 11{,}09\angle{-33{,}7°}\ \text{V}$$
+
+---
+
+## Superposição — Passo 2: Apenas $\mathbf{I}_s$
+
+Com $\mathbf{V}_s$ desativada (curto-circuito), $\mathbf{Z}_1$, $\mathbf{Z}_2$ e $\mathbf{Z}_3$ ficam **todos em paralelo**, vistos pela fonte de corrente:
+
+$$\mathbf{Z}_1\|\mathbf{Z}_2\|\mathbf{Z}_3 = \left(\frac{1}{2}+\frac{1}{4}+\frac{1}{-j2}\right)^{-1} = 0{,}92-j0{,}62\ \Omega$$
+
+$$\mathbf{V}_A'' = \mathbf{I}_s\cdot(\mathbf{Z}_1\|\mathbf{Z}_2\|\mathbf{Z}_3) = (3\angle 90°)(1{,}11\angle{-33{,}7°}) = 3{,}33\angle 56{,}3°\ \text{V}$$
+
+---
+
+## Superposição — Resultado Final
+
+Somando as duas contribuições (mesma frequência $\omega$, soma de fasores):
+
+$$\mathbf{V}_A = \mathbf{V}_A'+\mathbf{V}_A'' = 11{,}58\angle{-17{,}0°}\ \text{V}$$
+
+$$\boxed{\mathbf{I}_3 = \frac{\mathbf{V}_A}{\mathbf{Z}_3} = \frac{11{,}58\angle{-17{,}0°}}{2\angle{-90°}} = 5{,}79\angle 73{,}0°\ \text{A}}$$
+
+::: {.callout-note}
+## Verificação
+O mesmo resultado é obtido resolvendo o circuito **de uma vez** por análise nodal (sem superposição) — confira como exercício.
+:::
+
+---
+
+## Superposição — Exemplo Resolvido
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 12
+\input{imgs/tikz/ExemploSuperposicao.tikz}
+```
+
+**Dados:** $v_s(t) = 20\cos(4t)$ V e $i_s(t) = 4\cos(2t)$ A. **Objetivo:** encontrar $v_o(t)$ sobre o indutor.
+
+As fontes têm frequências **diferentes**: cada contribuição usa sua própria impedância e a soma é feita **no tempo**.
+
+---
+
+## Superposição — Exemplo: Apenas $v_s$ ($\omega = 4$ rad/s)
+
+Com $i_s$ desativada (circuito aberto): $Z_L = j\omega L = j4\ \Omega$, e o circuito vira um divisor de tensão:
+
+$$\mathbf{V}_o' = \mathbf{V}_s\,\frac{Z_L}{R + Z_L} = 20\angle 0^\circ\cdot\frac{j4}{4 + j4} = \frac{20\,j}{1 + j} = 10 + j10 = 14{,}14\angle 45^\circ\ \text{V}$$
+
+$$v_o'(t) = 14{,}14\cos(4t + 45^\circ)\ \text{V}$$
+
+---
+
+## Superposição — Exemplo: Apenas $i_s$ ($\omega = 2$ rad/s)
+
+Com $v_s$ desativada (curto-circuito): $Z_L = j2\ \Omega$, e $R$ fica em **paralelo** com $L$:
+
+$$R \,\|\, Z_L = \frac{4\,(j2)}{4 + j2} = \frac{j8\,(4 - j2)}{20} = 0{,}8 + j1{,}6\ \Omega$$
+
+$$\mathbf{V}_o'' = \mathbf{I}_s\,(R\,\|\,Z_L) = 4\angle 0^\circ\,(0{,}8 + j1{,}6) = 3{,}2 + j6{,}4 = 7{,}16\angle 63{,}4^\circ\ \text{V}$$
+
+$$v_o''(t) = 7{,}16\cos(2t + 63{,}4^\circ)\ \text{V}$$
+
+---
+
+## Superposição — Exemplo: Resultado
+
+Os fasores $\mathbf{V}_o'$ e $\mathbf{V}_o''$ giram em frequências diferentes e **não podem ser somados**. A soma é feita no tempo:
+
+::: {.callout-tip}
+## Resposta
+$$v_o(t) = v_o'(t) + v_o''(t) = 14{,}14\cos(4t + 45^\circ) + 7{,}16\cos(2t + 63{,}4^\circ)\ \text{V}$$
+:::
+
+::: {.callout-note}
+## Erro comum
+Somar $\mathbf{V}_o' + \mathbf{V}_o'' = 13{,}2 + j16{,}4$ V não tem significado físico: cada fasor pressupõe uma frequência $\omega$ diferente.
+:::
+
+---
+
+## Teorema de Thévenin
+
+::: {.callout-theorem}
+Qualquer rede linear de dois terminais $a$-$b$ pode ser substituída por uma fonte de tensão $\mathbf{V}_{th}$ em série com uma impedância $\mathbf{Z}_{th}$, onde:
+
+- $\mathbf{V}_{th}$ = tensão de **circuito aberto** entre $a$ e $b$;
+- $\mathbf{Z}_{th}$ = impedância vista dos terminais $a$-$b$ **com as fontes independentes desativadas**.
+:::
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 14
+\input{imgs/tikz/CircuitoThevenin.tikz}
+```
+
+---
+
+## Thévenin — Cálculo de $\mathbf{Z}_{th}$ com Fontes Dependentes
+
+::: {.callout-warning}
+Se a rede contém **fontes dependentes**, elas **não podem ser desativadas** — apenas as fontes independentes o são. Nesse caso, use o **método da fonte de teste**:
+
+1. Desative todas as fontes independentes (mantenha as dependentes).
+2. Aplique uma fonte de teste $\mathbf{I}_{teste}=1\angle 0°$ A (ou $\mathbf{V}_{teste}$) nos terminais $a$-$b$.
+3. Calcule $\mathbf{V}_{teste}$ resultante: $\mathbf{Z}_{th} = \mathbf{V}_{teste}/\mathbf{I}_{teste}$.
+:::
+
+---
+
+## Thévenin — Exemplo Numérico
+
+**Dados:** $\mathbf{V}_s=40\angle 0°$ V, $\mathbf{Z}_1=4\ \Omega$, $\mathbf{Z}_2=j8\ \Omega$, $\mathbf{Z}_3=3-j4\ \Omega$ (rede do slide anterior).
+
+**$\mathbf{V}_{th}$** (tensão de circuito aberto): como não há corrente por $\mathbf{Z}_3$ (terminal $a$ aberto), $\mathbf{V}_{th}$ é a tensão no nó entre $\mathbf{Z}_1$ e $\mathbf{Z}_2$ — um divisor de tensão simples:
+
+$$\mathbf{V}_{th} = \mathbf{V}_s\cdot\frac{\mathbf{Z}_2}{\mathbf{Z}_1+\mathbf{Z}_2} = 40\cdot\frac{j8}{4+j8} = 32+j16 = 35{,}78\angle 26{,}6°\ \text{V}$$
+
+**$\mathbf{Z}_{th}$** (fontes desativadas: $\mathbf{V}_s\to$ curto): $\mathbf{Z}_1\|\mathbf{Z}_2$ em série com $\mathbf{Z}_3$:
+
+$$\mathbf{Z}_{th} = \mathbf{Z}_3 + \mathbf{Z}_1\|\mathbf{Z}_2 = (3-j4) + \frac{(4)(j8)}{4+j8} = \boxed{6{,}2-j2{,}4\ \Omega}$$
+
+---
+
+## Thévenin — Exemplo Resolvido
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 9
+\input{imgs/tikz/ExemploThevenin.tikz}
+```
+
+**Objetivo:** encontrar o equivalente de Thévenin visto dos terminais $a$-$b$ e a corrente em uma carga $R_L = 5\ \Omega$ ligada entre $a$ e $b$.
+
+---
+
+## Thévenin — Exemplo Resolvido: $\mathbf{V}_{th}$ e $\mathbf{Z}_{th}$
+
+**$\mathbf{V}_{th}$:** com $a$-$b$ aberto não há corrente em $j5\ \Omega$, logo $\mathbf{V}_{th} = \mathbf{V}_x$ (divisor de tensão):
+
+$$\mathbf{V}_{th} = 50\angle 0^\circ\cdot\frac{-j10}{10 - j10} = \frac{50\,(-j)}{1 - j} = 25 - j25 = 35{,}36\angle{-45^\circ}\ \text{V}$$
+
+**$\mathbf{Z}_{th}$:** fonte de tensão em curto; $10\ \Omega \,\|\, (-j10\ \Omega)$ em série com $j5\ \Omega$:
+
+$$\mathbf{Z}_{th} = j5 + \frac{10\,(-j10)}{10 - j10} = j5 + (5 - j5) = 5 + j0 = 5\angle 0^\circ\ \Omega$$
+
+::: {.callout-note}
+## Observação
+A reatância do indutor cancela a parte reativa do paralelo: neste caso, $\mathbf{Z}_{th}$ é **puramente resistiva**.
+:::
+
+---
+
+## Thévenin — Exemplo Resolvido: Corrente na Carga
+
+:::: {.columns}
+::: {.column width="40%"}
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 6
+\input{imgs/tikz/ExemploTheveninCarga.tikz}
+```
+:::
+::: {.column width="60%"}
+$$
+\begin{aligned}
+\mathbf{I}_L &= \frac{\mathbf{V}_{th}}{\mathbf{Z}_{th} + R_L} = \frac{25 - j25}{5 + 5} \\[4pt]
+&= 2{,}5 - j2{,}5 = 3{,}54\angle{-45^\circ}\ \text{A} \\[8pt]
+\mathbf{V}_L &= R_L\,\mathbf{I}_L = 12{,}5 - j12{,}5 = 17{,}68\angle{-45^\circ}\ \text{V}
+\end{aligned}
+$$
+:::
+::::
+
+::: {.callout-tip}
+## Resposta
+$\mathbf{V}_{th} = 25 - j25 = 35{,}36\angle{-45^\circ}$ V, $\quad\mathbf{Z}_{th} = 5\ \Omega$, $\quad\mathbf{I}_L = 2{,}5 - j2{,}5 = 3{,}54\angle{-45^\circ}$ A
+:::
+
+---
+
+## Teorema de Norton
+
+::: {.callout-theorem}
+Qualquer rede linear de dois terminais $a$-$b$ pode ser substituída por uma fonte de corrente $\mathbf{I}_n$ em paralelo com uma impedância $\mathbf{Z}_n$, onde $\mathbf{I}_n$ é a corrente de **curto-circuito** entre $a$ e $b$.
+:::
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 6
+\input{imgs/tikz/CircuitoNorton.tikz}
+```
+
+**Relação direta com Thévenin:** $\mathbf{Z}_n = \mathbf{Z}_{th} \qquad\qquad \mathbf{I}_n = \dfrac{\mathbf{V}_{th}}{\mathbf{Z}_{th}}$
+
+---
+
+## Norton — Exemplo Numérico
+
+Usando os valores do exemplo anterior ($\mathbf{V}_{th}=35{,}78\angle 26{,}6°$ V, $\mathbf{Z}_{th}=6{,}2-j2{,}4\ \Omega = 6{,}65\angle{-21{,}2°}\ \Omega$):
+
+$$\mathbf{Z}_n = \mathbf{Z}_{th} = 6{,}2-j2{,}4\ \Omega$$
+
+$$\mathbf{I}_n = \frac{\mathbf{V}_{th}}{\mathbf{Z}_{th}} = \frac{35{,}78\angle 26{,}6°}{6{,}65\angle{-21{,}2°}} = \boxed{5{,}38\angle 47{,}7°\ \text{A}}$$
+
+::: {.callout-tip}
+Essa é exatamente a **transformação de fonte** já conhecida de Circuitos Elétricos I, agora com impedâncias complexas no lugar de resistências.
+:::
+
+---
+
+## Norton — Exemplo Resolvido
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 9
+\input{imgs/tikz/ExemploNorton.tikz}
+```
+
+**Objetivo:** encontrar o equivalente de Norton visto dos terminais $a$-$b$ **diretamente** (corrente de curto-circuito) e a corrente em uma carga $\mathbf{Z}_L = 4 + j4\ \Omega$ ligada entre $a$ e $b$.
+
+---
+
+## Norton — Exemplo Resolvido: $\mathbf{I}_n$ e $\mathbf{Z}_n$
+
+**$\mathbf{I}_n$:** curto-circuitando $a$-$b$, o capacitor fica em curto e a fonte divide sua corrente entre $4\ \Omega$ e $j4\ \Omega$:
+
+$$\mathbf{I}_n = 10\angle 0^\circ\cdot\frac{4}{4 + j4} = \frac{10}{1 + j} = 5 - j5 = 7{,}07\angle{-45^\circ}\ \text{A}$$
+
+**$\mathbf{Z}_n$:** fonte de corrente aberta; $(4 + j4)$ em paralelo com $-j4$:
+
+$$\mathbf{Z}_n = \frac{(4 + j4)(-j4)}{4 + j4 - j4} = \frac{16 - j16}{4} = 4 - j4 = 5{,}66\angle{-45^\circ}\ \Omega$$
+
+---
+
+## Norton — Exemplo Resolvido: Corrente na Carga
+
+Com $\mathbf{Z}_L$ em paralelo com $\mathbf{Z}_n$, divisor de corrente:
+
+$$\mathbf{I}_L = \mathbf{I}_n\,\frac{\mathbf{Z}_n}{\mathbf{Z}_n + \mathbf{Z}_L} = (5 - j5)\,\frac{4 - j4}{8} = \frac{-j40}{8} = -j5\ \text{A}$$
+
+::: {.callout-tip}
+## Resposta
+$\mathbf{I}_n = 5 - j5 = 7{,}07\angle{-45^\circ}$ A, $\quad\mathbf{Z}_n = 4 - j4 = 5{,}66\angle{-45^\circ}\ \Omega$, $\quad\mathbf{I}_L = 0 - j5 = 5\angle{-90^\circ}$ A
+:::
+
+::: {.callout-note}
+## Verificação por Thévenin
+$\mathbf{V}_{th} = \mathbf{I}_n\mathbf{Z}_n = (5 - j5)(4 - j4) = -j40$ V e $\mathbf{I}_L = \dfrac{-j40}{(4 - j4) + (4 + j4)} = -j5$ A ✓. Note que $\mathbf{Z}_L = \mathbf{Z}_n^{*}$: a carga está casada para **máxima transferência de potência**.
+:::
+
+---
+
+## Máxima Transferência de Potência — Dedução
+
+Uma fonte real (equivalente de Thévenin $\mathbf{V}_{th}$, $\mathbf{Z}_{th}=R_{th}+jX_{th}$) alimenta uma carga $\mathbf{Z}_L=R_L+jX_L$. A potência média entregue à carga é:
+
+$$P_L = \frac{1}{2}|\mathbf{I}|^2 R_L, \qquad \mathbf{I} = \frac{\mathbf{V}_{th}}{\mathbf{Z}_{th}+\mathbf{Z}_L}$$
+
+---
+
+## Máxima Transferência de Potência — Casamento Conjugado
+
+Maximizando $P_L$ em relação a $X_L$ e depois a $R_L$ (derivadas parciais nulas), obtém-se a condição de casamento conjugado:
+
+::: {.callout-tip}
+## Casamento Conjugado
+$$\mathbf{Z}_L = \mathbf{Z}_{th}^{*} = R_{th}-jX_{th}$$
+:::
+
+Nessa condição, a potência máxima entregue é:
+
+$$P_{max} = \frac{|\mathbf{V}_{th}|^2}{8R_{th}}$$
+
+---
+
+## Máxima Transferência de Potência — Gráfico
+
+Com $X_L=-X_{th}$ já casado, $P_L$ varia com $R_L$ e atinge o máximo exatamente em $R_L=R_{th}$:
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| fig-width: 11
+\input{imgs/tikz/PotenciaMaxima.tikz}
+```
+
+---
+
+## Máxima Transferência — Exemplo Numérico
+
+Usando o equivalente de Thévenin já calculado ($\mathbf{V}_{th}=35{,}78\angle 26{,}6°$ V, $\mathbf{Z}_{th}=6{,}2-j2{,}4\ \Omega$):
+
+$$\mathbf{Z}_L = \mathbf{Z}_{th}^{*} = 6{,}2+j2{,}4\ \Omega$$
+
+$$P_{max} = \frac{|\mathbf{V}_{th}|^2}{8R_{th}} = \frac{35{,}78^2}{8(6{,}2)} = \boxed{25{,}8\ \text{W}}$$
+
+::: {.callout-warning}
+## Caso a carga seja restrita a puramente resistiva
+Se $\mathbf{Z}_L$ só puder ser real ($X_L=0$, ex.: um resistor comum), o máximo ocorre em $R_L=|\mathbf{Z}_{th}|$, com $P_{max}=\dfrac{|\mathbf{V}_{th}|^2}{4\left(R_{th}+|\mathbf{Z}_{th}|\right)}$ — valor **menor** que o casamento conjugado (no exemplo anterior, $24{,}9$ W em vez de $25{,}8$ W).
+:::
+
+---
+
+## Resumo dos Teoremas
+
+| Teorema | Ideia central | Resultado |
+|---|---|---|
+| Superposição | Uma fonte por vez, some as respostas | Válido p/ tensão e corrente |
+| Thévenin | Rede → fonte de tensão + impedância série | $\mathbf{V}_{th}$, $\mathbf{Z}_{th}$ |
+| Norton | Rede → fonte de corrente + impedância paralela | $\mathbf{I}_n=\mathbf{V}_{th}/\mathbf{Z}_{th}$, $\mathbf{Z}_n=\mathbf{Z}_{th}$ |
+| Máxima potência | Carga casada com a fonte | $\mathbf{Z}_L=\mathbf{Z}_{th}^{*}$, $P_{max}=|\mathbf{V}_{th}|^2/8R_{th}$ |
+
+---
+
+## Exercícios
+
+1. No exemplo de superposição, resolva o circuito diretamente por análise nodal e confirme que $\mathbf{I}_3$ coincide com o resultado obtido por superposição.
+2. Para a rede do exemplo de Thévenin, calcule a corrente de curto-circuito entre $a$ e $b$ diretamente e confirme que $\mathbf{I}_{cc}=\mathbf{I}_n$.
+3. Encontre o equivalente de Thévenin visto pelos terminais $a$-$b$ se $\mathbf{Z}_3$ do exemplo for removido (terminais diretamente no nó entre $\mathbf{Z}_1$ e $\mathbf{Z}_2$).
+4. Uma fonte com $\mathbf{V}_{th}=100\angle 0°$ V e $\mathbf{Z}_{th}=50+j30\ \Omega$ alimenta uma carga. Determine $\mathbf{Z}_L$ para máxima transferência de potência e o valor de $P_{max}$.
+5. Repita o exercício anterior supondo que a carga deva ser puramente resistiva.
+
+---
+
+## Referências
+
+::: {#refs}
+:::

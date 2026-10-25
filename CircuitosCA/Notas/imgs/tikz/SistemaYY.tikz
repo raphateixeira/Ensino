@@ -1,0 +1,16 @@
+% ---------------------------------------------------------------------
+% Equivalente monofásico (por fase) de um sistema trifásico Y-Y
+% equilibrado: fonte de fase Van, impedância de linha Zline e carga
+% em estrela Zy, com o neutro fechando o circuito. Requer circuitikz.
+% ---------------------------------------------------------------------
+\ctikzset{bipoles/length=2.0cm}
+\begin{circuitikz}[scale=2.3, line width=1.5pt, font=\Large]
+\draw (0,0)
+  to[sinusoidal voltage source, l=$\mathbf{V}_{an}$] (0,3)
+  to[short] (1.2,3)
+  to[generic, l=$\mathbf{Z}_{line}$, i=$\mathbf{I}_a$] (4.2,3) node[above] {$a$}
+  to[short] (5.4,3)
+  to[generic, l=$\mathbf{Z}_Y$] (5.4,0) node[below] {$n$}
+  to[short] (0,0);
+\node[above, font=\normalsize] at (2.7,-0.5) {neutro (sequência equilibrada: $\mathbf{I}_n=0$)};
+\end{circuitikz}

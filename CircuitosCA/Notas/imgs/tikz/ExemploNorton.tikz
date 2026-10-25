@@ -1,0 +1,19 @@
+% ---------------------------------------------------------------------
+% Exemplo resolvido de Norton (domínio fasorial): fonte de corrente
+% 10∠0° A injeta no nó x; 4 Ω de x à referência; j4 Ω de x ao terminal a;
+% -j4 Ω entre a e b. Requer circuitikz.
+% ---------------------------------------------------------------------
+\ctikzset{bipoles/length=1.7cm}
+\begin{circuitikz}[scale=1.85, line width=1.5pt, font=\Large]
+\draw (0,0) to[american current source, l=$10\angle 0^\circ~\mathrm{A}$] (0,3) -- (2.5,3);
+\draw (2.5,3) to[R, l_=$4~\Omega$] (2.5,0);
+\draw (2.5,3) to[L, l=$j4~\Omega$] (5.5,3);
+\draw (5.5,3) to[C, l_=$-j4~\Omega$] (5.5,0);
+\draw (5.5,3) -- (7,3);
+\draw (0,0) -- (7,0);
+\draw (2.5,3) node[circle, fill=black, inner sep=1.6pt]{} node[above]{$x$};
+\draw (5.5,3) node[circle, fill=black, inner sep=1.6pt]{};
+\draw (5.5,0) node[circle, fill=black, inner sep=1.6pt]{};
+\draw (7,3) circle (0.06) node[right] {$a$};
+\draw (7,0) circle (0.06) node[right] {$b$};
+\end{circuitikz}

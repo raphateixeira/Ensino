@@ -1,0 +1,26 @@
+% ---------------------------------------------------------------------
+% Correção do fator de potência: triângulo de potências antes (S1, Q1)
+% e depois (S2, Q2) da instalação do capacitor, com P constante e
+% Qc = Q1 - Q2 suprido pelo capacitor. Tikz puro.
+% ---------------------------------------------------------------------
+\begin{tikzpicture}[>=Latex, line width=2pt, font=\Large]
+  \coordinate (O) at (0,0);
+  \coordinate (Pp) at (6,0);
+  \coordinate (Q1) at (6,3.6);
+  \coordinate (Q2) at (6,1.5);
+
+  \draw[blue!70!black] (O) -- (Pp) node[midway, below] {$P$};
+  \draw[red!70!black, dashed] (O) -- (Q1) node[midway, above left] {$S_1$};
+  \draw[red!70!black] (Pp) -- (Q1) node[midway, right] {$Q_1$};
+
+  \draw[green!45!black] (O) -- (Q2) node[midway, below left=1pt] {$S_2$};
+  \draw[green!45!black] (Pp) -- (Q2) node[midway, left=2pt] {$Q_2$};
+
+  \draw[violet, line width=2.6pt] (Q2) -- (Q1) node[midway, right] {$Q_c$};
+
+  \draw (0.9,0) arc (0:{atan(3.6/6)}:0.9);
+  \node at (1.6,0.5) {$\theta_1$};
+
+  \draw (1.5,0) arc (0:{atan(1.5/6)}:1.5);
+  \node[green!35!black] at (2.15,0.32) {$\theta_2$};
+\end{tikzpicture}

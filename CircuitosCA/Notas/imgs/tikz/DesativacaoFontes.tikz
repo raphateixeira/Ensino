@@ -1,0 +1,23 @@
+% ---------------------------------------------------------------------
+% Regra de desativação de fontes independentes para superposição:
+% fonte de tensão -> curto-circuito; fonte de corrente -> circuito aberto.
+% Requer circuitikz.
+% ---------------------------------------------------------------------
+\ctikzset{bipoles/length=1.8cm}
+\begin{circuitikz}[scale=2.0, line width=1.5pt, font=\Large]
+
+% Painel 1: fonte de tensão -> curto
+\draw (0,0) to[sinusoidal voltage source, l=$\mathbf{V}_s$] (2.4,0);
+\node at (3.6,0) {$\longrightarrow$};
+\draw (4.8,0) to[short] (7.2,0);
+\node[below] at (1.2,-0.9) {desativada (fonte de tensão)};
+\node[below] at (6.0,-0.9) {curto-circuito};
+
+% Painel 2: fonte de corrente -> aberto
+\draw (0,-3.2) to[sinusoidal current source, l=$\mathbf{I}_s$] (2.4,-3.2);
+\node at (3.6,-3.2) {$\longrightarrow$};
+\draw (4.8,-3.2) to[open] (7.2,-3.2);
+\node[below] at (1.2,-4.1) {desativada (fonte de corrente)};
+\node[below] at (6.0,-4.1) {circuito aberto};
+
+\end{circuitikz}

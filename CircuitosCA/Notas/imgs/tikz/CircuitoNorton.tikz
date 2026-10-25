@@ -1,0 +1,13 @@
+% ---------------------------------------------------------------------
+% Equivalente de Norton: fonte de corrente In em paralelo com Zn,
+% entre os terminais a e b. Requer circuitikz.
+% ---------------------------------------------------------------------
+\ctikzset{bipoles/length=1.9cm}
+\begin{circuitikz}[scale=2.0, line width=1.5pt, font=\Large]
+\draw (0,0) to[sinusoidal current source, l=$\mathbf{I}_n$] (0,3);
+\draw (0,3) to[short] (1.6,3);
+\draw (1.6,3) to[generic, l=$\mathbf{Z}_n$] (1.6,0);
+\draw (0,0) to[short] (1.6,0);
+\draw (1.6,3) to[short] (3.2,3) circle (0.06) node[right] {$a$};
+\draw (1.6,0) to[short] (3.2,0) circle (0.06) node[right] {$b$};
+\end{circuitikz}

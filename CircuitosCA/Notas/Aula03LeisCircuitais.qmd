@@ -1,0 +1,305 @@
+---
+title: "Leis Circuitais e Métodos de Análise em CA"
+subtitle: "Circuitos Elétricos II — CA"
+institute: "Universidade Federal do Pará"
+author: "Prof. Dr. Raphael Teixeira"
+format:
+  revealjs:
+    theme: [simple, ../TemaRTx.scss]
+    self-contained: true
+    transition: fade
+    slide-number: true
+    width: 1600
+    height: 900
+    footer: " "
+    center: false
+    title-slide-attributes:
+      data-background-image: "imgs/ufpa-colorido.png"
+      data-background-size: "101px"
+      data-background-position: "top 45px center"
+engine: knitr
+---
+
+```{r setup, include=FALSE}
+# Habilita circuitikz (diagramas de circuito) nos chunks {tikz} desta aula.
+knitr::opts_chunk$set(engine.opts = list(
+  extra.preamble = c("\\usepackage{circuitikz}"),
+  # standalone's crop padrão só reconhece \begin{tikzpicture}; circuitikz usa
+  # \begin{circuitikz}, então precisa ser listado explicitamente em "multi".
+  classoption = "tikz,multi=circuitikz"
+))
+```
+
+## Lei de Kirchhoff das Tensões no Domínio Fasorial
+
+Para a LKT, sejam $v_1, v_2, \ldots, v_n$ as tensões em um laço fechado. Então:
+
+$$v_1 + v_2 + \cdots + v_n = 0$$
+
+Em regime senoidal permanente, cada tensão pode ser escrita na forma de cosseno:
+
+$$V_{m1}\cos(\omega t+\theta_1) + V_{m2}\cos(\omega t+\theta_2) + \cdots + V_{mn}\cos(\omega t+\theta_n) = 0$$
+
+Usando $\cos(\cdot) = \text{Re}(e^{j(\cdot)})$ e fazendo $\mathbf{V}_k = V_{mk}e^{j\theta_k}$:
+
+$$\text{Re}\!\left[(\mathbf{V}_1+\mathbf{V}_2+\cdots+\mathbf{V}_n)\,e^{j\omega t}\right] = 0$$
+
+---
+
+## Lei de Kirchhoff das Tensões — Forma Fasorial
+
+Como $e^{j\omega t}\neq 0$ para todo $t$:
+
+::: {.callout-tip}
+## Lei de Kirchhoff das Tensões (LKT)
+$$\mathbf{V}_1 + \mathbf{V}_2 + \cdots + \mathbf{V}_n = 0$$
+:::
+
+---
+
+## Lei de Kirchhoff das Correntes no Domínio Fasorial
+
+Para a LKC, sejam $i_1, i_2, \ldots, i_n$ as correntes que chegam a um nó. Então:
+
+$$i_1 + i_2 + \cdots + i_n = 0$$
+
+Em regime senoidal permanente, cada corrente pode ser escrita na forma de cosseno:
+
+$$I_{m1}\cos(\omega t+\theta_1) + I_{m2}\cos(\omega t+\theta_2) + \cdots + I_{mn}\cos(\omega t+\theta_n) = 0$$
+
+Usando $\cos(\cdot) = \text{Re}(e^{j(\cdot)})$ e fazendo $\mathbf{I}_k = I_{mk}e^{j\theta_k}$:
+
+$$\text{Re}\!\left[(\mathbf{I}_1+\mathbf{I}_2+\cdots+\mathbf{I}_n)\,e^{j\omega t}\right] = 0$$
+
+---
+
+## Lei de Kirchhoff das Correntes — Forma Fasorial
+
+Como $e^{j\omega t}\neq 0$ para todo $t$:
+
+::: {.callout-tip}
+## Lei de Kirchhoff das Correntes (LKC)
+$$\mathbf{I}_1 + \mathbf{I}_2 + \cdots + \mathbf{I}_n = 0$$
+:::
+
+---
+
+## Álgebra de Impedâncias
+
+::: {.callout-warning}
+## Atenção
+Impedâncias são números **complexos** — as operações devem ser feitas com álgebra complexa, não com módulos diretamente.
+:::
+
+---
+
+## Impedância Equivalente — Associação em Série
+
+![](imgs/Fig9p18ImpedanciaSerie.png){fig-align="center" width="850px"}
+
+Aplicando a LKT ao laço: $\mathbf{V} = \mathbf{V}_1+\mathbf{V}_2+\cdots+\mathbf{V}_N = \mathbf{I}\mathbf{Z}_1+\mathbf{I}\mathbf{Z}_2+\cdots+\mathbf{I}\mathbf{Z}_N = \mathbf{I}(\mathbf{Z}_1+\mathbf{Z}_2+\cdots+\mathbf{Z}_N)$
+
+A impedância equivalente vista pela fonte é:
+
+::: {.callout-tip}
+## Impedância Equivalente — Série
+$$\mathbf{Z}_{eq} = \frac{\mathbf{V}}{\mathbf{I}} = \mathbf{Z}_1+\mathbf{Z}_2+\cdots+\mathbf{Z}_N = \sum_{n=1}^{N}\mathbf{Z}_n$$
+:::
+
+---
+
+## Divisor de Tensão
+
+Com base no resultado anterior, para dois elementos em série ($N=2$): $\mathbf{I} = \dfrac{\mathbf{V}}{\mathbf{Z}_1+\mathbf{Z}_2}$
+
+![](imgs/Fig9p19DivisorTensao.png){fig-align="center" width="550px"}
+
+Como $\mathbf{V}_n = \mathbf{I}\mathbf{Z}_n$, a tensão sobre cada impedância é:
+
+::: {.callout-tip}
+## Divisor de Tensão
+$$\mathbf{V}_1 = \frac{\mathbf{Z}_1}{\mathbf{Z}_1+\mathbf{Z}_2}\,\mathbf{V}, \qquad \mathbf{V}_2 = \frac{\mathbf{Z}_2}{\mathbf{Z}_1+\mathbf{Z}_2}\,\mathbf{V}$$
+:::
+
+---
+
+## Divisor de Tensão — Exemplo Numérico
+
+**Problema:** $\mathbf{Z}_1 = 3+j4\ \Omega$ e $\mathbf{Z}_2 = 6-j2\ \Omega$ em série são alimentados por $\mathbf{V}_s = 20\angle 0°$ V. Encontre $\mathbf{V}_1$ e $\mathbf{V}_2$.
+
+$$\mathbf{Z}_{eq} = \mathbf{Z}_1+\mathbf{Z}_2 = 9+j2\ \Omega = 9{,}22\angle 12{,}5°\ \Omega$$
+
+---
+
+## Divisor de Tensão — Solução
+
+$$\mathbf{V}_1 = \frac{3+j4}{9+j2}(20\angle 0°) = \frac{5\angle 53{,}1°}{9{,}22\angle 12{,}5°}(20\angle 0°) = 10{,}85\angle 40{,}6°\ \text{V}$$
+
+$$\mathbf{V}_2 = \frac{6-j2}{9+j2}(20\angle 0°) = \frac{6{,}32\angle{-18{,}4°}}{9{,}22\angle 12{,}5°}(20\angle 0°) = 13{,}72\angle{-31{,}0°}\ \text{V}$$
+
+::: {.callout-note}
+## Verificação
+$\mathbf{V}_1+\mathbf{V}_2$ deve reconstituir $\mathbf{V}_s = 20\angle 0°$ V (LKT) — confirme somando as formas retangulares.
+:::
+
+---
+
+## Impedância Equivalente — Associação em Paralelo
+
+![](imgs/Fig9p20ImpedanciaParalelo.png){fig-align="center" width="850px"}
+
+Aplicando a LKC ao nó superior: $\mathbf{I} = \mathbf{I}_1+\mathbf{I}_2+\cdots+\mathbf{I}_N = \dfrac{\mathbf{V}}{\mathbf{Z}_1}+\dfrac{\mathbf{V}}{\mathbf{Z}_2}+\cdots+\dfrac{\mathbf{V}}{\mathbf{Z}_N} = \mathbf{V}\left(\dfrac{1}{\mathbf{Z}_1}+\dfrac{1}{\mathbf{Z}_2}+\cdots+\dfrac{1}{\mathbf{Z}_N}\right)$
+
+A impedância equivalente vista pela fonte é:
+
+::: {.callout-tip}
+## Impedância Equivalente — Paralelo
+$$\frac{1}{\mathbf{Z}_{eq}} = \frac{\mathbf{I}}{\mathbf{V}} = \frac{1}{\mathbf{Z}_1}+\frac{1}{\mathbf{Z}_2}+\cdots+\frac{1}{\mathbf{Z}_N} = \sum_{n=1}^{N}\frac{1}{\mathbf{Z}_n}$$
+:::
+
+---
+
+## Divisor de Corrente
+
+Com base no resultado anterior, para dois elementos em paralelo ($N=2$): $\mathbf{Z}_{eq} = \dfrac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1+\mathbf{Z}_2}$
+
+![](imgs/Fig9p21DivisorCorrente.png){fig-align="center" width="550px"}
+
+Como $\mathbf{V} = \mathbf{I}\mathbf{Z}_{eq} = \mathbf{I}_1\mathbf{Z}_1 = \mathbf{I}_2\mathbf{Z}_2$, a corrente em cada impedância é:
+
+::: {.callout-tip}
+## Divisor de Corrente
+$$\mathbf{I}_1 = \frac{\mathbf{Z}_2}{\mathbf{Z}_1+\mathbf{Z}_2}\,\mathbf{I}, \qquad \mathbf{I}_2 = \frac{\mathbf{Z}_1}{\mathbf{Z}_1+\mathbf{Z}_2}\,\mathbf{I}$$
+:::
+
+---
+
+## Divisor de Corrente — Exemplo Numérico
+
+**Problema:** $\mathbf{Z}_1 = j10\ \Omega$ e $\mathbf{Z}_2 = 5\ \Omega$ em paralelo são alimentados por $\mathbf{I}_s = 4\angle 0°$ A. Encontre $\mathbf{I}_1$ e $\mathbf{I}_2$.
+
+**Solução:**
+
+$$\mathbf{I}_1 = \frac{\mathbf{Z}_2}{\mathbf{Z}_1+\mathbf{Z}_2}\,\mathbf{I}_s = \frac{5}{5+j10}(4\angle 0°) = \frac{5\angle 0°}{11{,}18\angle 63{,}4°}(4\angle 0°) = 1{,}79\angle{-63{,}4°}\ \text{A}$$
+
+$$\mathbf{I}_2 = \frac{\mathbf{Z}_1}{\mathbf{Z}_1+\mathbf{Z}_2}\,\mathbf{I}_s = \frac{j10}{5+j10}(4\angle 0°) = \frac{10\angle 90°}{11{,}18\angle 63{,}4°}(4\angle 0°) = 3{,}58\angle 26{,}6°\ \text{A}$$
+
+> Note que $|\mathbf{I}_1|+|\mathbf{I}_2| \neq |\mathbf{I}_s|$: os módulos **não** se somam diretamente porque as correntes estão defasadas entre si (apenas a soma **fasorial** reconstitui $\mathbf{I}_s$).
+
+---
+
+## Exemplo: Impedância de Entrada
+
+**Problema:** Determine a impedância de entrada $\mathbf{Z}_{in}$ do circuito abaixo, considerando $\omega = 50$ rad/s.
+
+![](imgs/FigEx9p101.png){fig-align="center" width="700px"}
+
+---
+
+## Exemplo: Impedância de Entrada — Solução
+
+Impedâncias dos elementos: $\mathbf{Z}_{C1} = \dfrac{1}{j\omega(2\text{ mF})} = -j10\ \Omega$, $\quad \mathbf{Z}_{C2} = \dfrac{1}{j\omega(10\text{ mF})} = -j2\ \Omega$, $\quad \mathbf{Z}_L = j\omega(0{,}2\text{ H}) = j10\ \Omega$
+
+O ramo com $3\,\Omega$ e o capacitor de $10$ mF, em série, dá $3-j2\ \Omega$; o ramo com o indutor e o resistor de $8\,\Omega$, em série, dá $8+j10\ \Omega$. Esses dois ramos estão em paralelo:
+
+$$\mathbf{Z}_p = \frac{(3-j2)(8+j10)}{(3-j2)+(8+j10)} = \frac{44+j14}{11+j8} = 3{,}22 - j1{,}07\ \Omega$$
+
+Somando em série com o capacitor de $2$ mF:
+
+$$\boxed{\mathbf{Z}_{in} = -j10 + \mathbf{Z}_p = 3{,}22 - j11{,}07\ \Omega}$$
+
+---
+
+## Exemplo: Impedância de Entrada (2)
+
+**Problema:** Determine a impedância de entrada $\mathbf{Z}_{in}$ do circuito abaixo, considerando $\omega = 10$ rad/s.
+
+![](imgs/FigEx9p102.png){fig-align="center" width="850px"}
+
+---
+
+## Exemplo: Impedância de Entrada (2) — Solução
+
+Impedâncias dos elementos: $\mathbf{Z}_{C1} = \mathbf{Z}_{C2} = \dfrac{1}{j\omega(1\text{ mF})} = -j100\ \Omega$, $\quad \mathbf{Z}_L = j\omega(8\text{ H}) = j80\ \Omega$
+
+O ramo com o indutor e o resistor de $200\,\Omega$, em série, dá $200+j80\ \Omega$, em paralelo com o capacitor $\mathbf{Z}_{C2}$:
+
+$$\mathbf{Z}_p = \frac{\mathbf{Z}_{C2}(200+j80)}{\mathbf{Z}_{C2}+200+j80} = \frac{-j100(200+j80)}{200-j20} = \frac{8000-j20000}{200-j20} = 49{,}5 - j95{,}05\ \Omega$$
+
+Somando em série com o resistor de $100\,\Omega$ e o capacitor de $1$ mF:
+
+$$\boxed{\mathbf{Z}_{in} = -j100 + 100 + \mathbf{Z}_p = 149{,}5 - j195{,}05\ \Omega}$$
+
+---
+
+## Exemplo: Tensão de Saída $v_o(t)$
+
+**Problema:** Determine $v_o(t)$ no circuito abaixo.
+
+![](imgs/FigEx9p25.png){fig-align="center" width="750px"}
+
+---
+
+## Exemplo: Tensão de Saída — Domínio Fasorial
+
+Fonte com $\omega = 4$ rad/s: $\mathbf{V}_s = 20\angle{-15°}$ V
+
+Impedâncias: $\mathbf{Z}_C = \dfrac{1}{j\omega(10\text{ mF})} = -j25\ \Omega, \qquad \mathbf{Z}_L = j\omega(5\text{ H}) = j20\ \Omega$
+
+O circuito equivalente no domínio da frequência:
+
+![](imgs/FigEx9p26.png){fig-align="center" width="750px"}
+
+---
+
+## Exemplo: Tensão de Saída — Solução
+
+O capacitor e o indutor estão em paralelo:
+
+$$\mathbf{Z}_p = \frac{\mathbf{Z}_C\mathbf{Z}_L}{\mathbf{Z}_C+\mathbf{Z}_L} = \frac{(-j25)(j20)}{-j25+j20} = \frac{500}{-j5} = j100\ \Omega$$
+
+Por divisor de tensão, $\mathbf{V}_o$ é a tensão sobre $\mathbf{Z}_p$:
+
+$$\mathbf{V}_o = \frac{\mathbf{Z}_p}{\mathbf{Z}_p+60}\,\mathbf{V}_s = \frac{j100}{60+j100}\,(20\angle{-15°}) = 17{,}15\angle 15{,}96°\ \text{V}$$
+
+$$\boxed{v_o(t) = 17{,}15\cos(4t+15{,}96°)\ \text{V}}$$
+
+---
+
+## Exemplo: Tensão de Saída $v_o(t)$ (2)
+
+**Problema:** Determine $v_o(t)$ no circuito abaixo.
+
+![](imgs/FigEx9p27.png){fig-align="center" width="800px"}
+
+---
+
+## Exemplo: Tensão de Saída (2) — Impedâncias
+
+Fonte com $\omega=10$ rad/s: $\mathbf{V}_s = 50\angle 30°$ V
+
+Impedâncias: $\mathbf{Z}_L = j\omega(0{,}5\text{ H}) = j5\ \Omega, \qquad \mathbf{Z}_C = \dfrac{1}{j\omega(1/20\text{ F})} = -j2\ \Omega$
+
+O indutor e o resistor de $10\,\Omega$ estão em paralelo:
+
+$$\mathbf{Z}_{LR} = \frac{\mathbf{Z}_L(10)}{\mathbf{Z}_L+10} = \frac{j5(10)}{10+j5} = 2+j4\ \Omega$$
+
+Essa combinação está em série com o capacitor:
+
+$$\boxed{\mathbf{Z} = \mathbf{Z}_{LR}+\mathbf{Z}_C = (2+j4)+(-j2) = 2+j2\ \Omega}$$
+
+---
+
+## Exemplo: Tensão de Saída (2) — Solução
+
+Corrente do laço: $\mathbf{I} = \dfrac{\mathbf{V}_s}{\mathbf{Z}} = \dfrac{50\angle 30°}{2+j2} = 17{,}68\angle{-15°}\ \text{A}$
+
+Tensão no capacitor: $\mathbf{V}_o = \mathbf{I}\,\mathbf{Z}_C = (17{,}68\angle{-15°})(2\angle{-90°}) = 35{,}36\angle{-105°}\ \text{V}$
+
+$$\boxed{v_o(t) = 35{,}36\cos(10t-105°)\ \text{V}}$$
+
+---
+
+## Exercício
+
+Dois elementos com $\mathbf{Z}_1 = 4+j3\ \Omega$ e $\mathbf{Z}_2 = 2-j2\ \Omega$ estão em paralelo. Calcule $\mathbf{Z}_{eq}$ usando admitâncias.
