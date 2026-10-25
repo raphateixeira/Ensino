@@ -17,11 +17,33 @@ do Mestrado em Computação Aplicada (PPCA) da UFPA, Campus de Tucuruí.
 [Prof. Dr. Raphael Teixeira]{.rtx-meta}
 
 ::: {.rtx-acoes}
-[Circuitos Elétricos II](#circuitos){.rtx-btn .rtx-btn-primario} [Sistemas de Controle I](#controle-classico){.rtx-btn .rtx-btn-primario} [Cálculo Numérico](#calculo-numerico){.rtx-btn} [Álgebra Linear](#algebra-linear){.rtx-btn} [Espaço de Estados](#controle-estados){.rtx-btn} [Aprendizagem de Máquina](#aprendizagem-maquina){.rtx-btn}
+[Semestre 2026.4](#semestre){.rtx-btn .rtx-btn-primario} [Circuitos Elétricos II](#circuitos){.rtx-btn} [Sistemas de Controle I](#controle-classico){.rtx-btn} [Cálculo Numérico](#calculo-numerico){.rtx-btn} [Álgebra Linear](#algebra-linear){.rtx-btn} [Espaço de Estados](#controle-estados){.rtx-btn} [Aprendizagem de Máquina](#aprendizagem-maquina){.rtx-btn}
 :::
 :::
 
-Horários do semestre e calendário acadêmico na página [Ensino](https://raphateixeira.github.io/Ensino/) do site.
+## Semestre 2026.4 {#semestre}
+
+Turma 2024 · Tarde (Bloco 5) · 31 de agosto a 19 de dezembro de 2026 ·
+[Calendário Acadêmico 2026 da UFPA](https://proeg.ufpa.br/images/Artigos/Academico/Calendarios/UFPACalendarioAcademico2026-final.pdf){target="_blank"}.
+Cálculo Numérico (2026.3) é turma fora de sede e não entra na grade ·
+[planilha completa](https://docs.google.com/spreadsheets/d/1LqINcllVoeH0PUd6EK-DNR3v5XXYFc5P/edit){target="_blank"}.
+
+<!-- A cada semestre: atualizar horarios.csv e o texto acima -->
+```{python}
+#| echo: false
+import pandas as pd
+
+dias = ["Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira"]
+df = pd.read_csv("horarios.csv")
+df["dia"] = pd.Categorical(df["dia"], categories=dias, ordered=True)
+df["horário"] = df["inicio"] + "–" + df["fim"]
+tabela = df.pivot_table(index="horário", columns="dia", values="disciplina", aggfunc="first", observed=False)
+tabela = tabela.reindex(columns=dias).fillna("—")
+tabela = tabela.sort_index(key=lambda idx: idx.str.split("–").str[0])
+tabela.columns.name = None
+tabela.index.name = None
+tabela
+```
 
 ## Circuitos Elétricos II {#circuitos}
 

@@ -38,6 +38,9 @@ website:
     right:
       - text: "Disciplinas"
         menu:
+          - text: "Semestre 2026.4 (horários)"
+            href: index.qmd#semestre
+          - text: "---"
           - text: "Graduação — Engenharia Elétrica"
           - text: "Circuitos Elétricos II"
             href: index.qmd#circuitos
