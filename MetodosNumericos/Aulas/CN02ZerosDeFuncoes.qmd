@@ -66,7 +66,7 @@ $$|x^{*} - p_n| \leq \frac{b-a}{2^{\,n}}, \qquad n \geq \log_2\!\left(\frac{b-a}
 Convergência **linear**: sempre garantida, porém lenta (≈ 1 dígito decimal a cada 3,3 iterações).
 :::
 
-🎥 [Animação (Manim)](https://raphateixeira.github.io/Manim/VideosMetodosNumericos/Bisseccao.mp4)
+🎥 [Animação (Manim)](https://raphateixeira.github.io/Notas/manim/VideosMetodosNumericos/Bisseccao.mp4)
 
 ---
 
@@ -196,7 +196,7 @@ Convergência **quadrática** próximo da raiz, desde que $f\in C^2$, $f'(p)\neq
 Falha (ou diverge) se $f'(p_{n-1}) \approx 0$, ou se a estimativa inicial estiver longe da raiz.
 :::
 
-🎥 [Animação (Manim)](https://raphateixeira.github.io/Manim/VideosMetodosNumericos/NewtonRaphson.mp4)
+🎥 [Animação (Manim)](https://raphateixeira.github.io/Notas/manim/VideosMetodosNumericos/NewtonRaphson.mp4)
 
 ---
 
@@ -273,7 +273,7 @@ $$p_n = p_{n-1} - f(p_{n-1})\,\frac{p_{n-1} - p_{n-2}}{f(p_{n-1}) - f(p_{n-2})}$
 - Não exige $f'(x)$: apenas **um** cálculo de $f$ por iteração (após $p_2$);
 - Convergência super-linear, ordem $\alpha \approx 1{,}618$ (razão áurea) — mais lenta que Newton, mais rápida que a bisseção.
 
-🎥 [Animação (Manim)](https://raphateixeira.github.io/Manim/VideosMetodosNumericos/Secante.mp4)
+🎥 [Animação (Manim)](https://raphateixeira.github.io/Notas/manim/VideosMetodosNumericos/Secante.mp4)
 
 ---
 

@@ -4,8 +4,8 @@ project:
 
 website:
   title: "Introdução aos Sistemas de Controle"
-  site-url: https://raphateixeira.github.io/ControleClassico/
-  repo-url: https://github.com/raphateixeira/ControleClassico/
+  site-url: https://raphateixeira.github.io/Ensino/#controle-classico
+  repo-url: https://github.com/raphateixeira/Ensino/tree/main/ControleClassico
 
 format:
   html:

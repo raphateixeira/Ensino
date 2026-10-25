@@ -3,7 +3,7 @@
 Notas de aula da disciplina Aprendizagem de Máquina (UFPA/PPCA): fundamentos
 de aprendizado supervisionado, não supervisionado e redes neurais.
 
-🔗 Site: https://raphateixeira.github.io/DeepLearning/
+🔗 Site: https://raphateixeira.github.io/Ensino/#aprendizagem-maquina
 
 ## Conteúdo
 

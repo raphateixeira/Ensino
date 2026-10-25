@@ -3,7 +3,7 @@
 Notas de aula da disciplina Circuitos Elétricos II — circuitos em corrente
 alternada: fasores, impedância, potência e regime permanente senoidal.
 
-🔗 Site: https://raphateixeira.github.io/CircuitosCA/
+🔗 Site: https://raphateixeira.github.io/Ensino/#circuitos
 
 ## Conteúdo
 
@@ -17,4 +17,4 @@ alternada: fasores, impedância, potência e regime permanente senoidal.
 - `Avaliacoes/` — provas e listas de exercícios.
 - `PlanoEnsino/` — plano de ensino em LaTeX (ementa, cronograma, bibliografia).
 
-Segue o modelo de projeto Quarto para disciplinas usado em [AlgebraLinear](https://github.com/raphateixeira/AlgebraLinear).
+Segue o modelo de projeto Quarto para disciplinas usado em [AlgebraLinear](https://github.com/raphateixeira/Ensino/tree/main/AlgebraLinear).
