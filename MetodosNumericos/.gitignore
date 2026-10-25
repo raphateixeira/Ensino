@@ -1,0 +1,14 @@
+/.quarto/
+**/*.quarto_ipynb
+/_site/
+.DS_Store
+/Prompts/
+/Material/
+/Atividades/
+.claude/
+*.pdf
+__pycache__/
+.ipynb_checkpoints/
+
+# Tema compartilhado: baixado de raphateixeira/.github no build (ver .github/scripts/atualizar-tema.sh na raiz de GitRTx)
+/TemaRTx.scss

@@ -1,0 +1,1269 @@
+% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  11pt,
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrartcl}
+\usepackage{xcolor}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
+
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
+\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
+\definecolor{quarto-callout-color}{HTML}{909090}
+\definecolor{quarto-callout-note-color}{HTML}{0758E5}
+\definecolor{quarto-callout-important-color}{HTML}{CC1914}
+\definecolor{quarto-callout-warning-color}{HTML}{EB9113}
+\definecolor{quarto-callout-tip-color}{HTML}{00A047}
+\definecolor{quarto-callout-caution-color}{HTML}{FC5300}
+\definecolor{quarto-callout-color-frame}{HTML}{acacac}
+\definecolor{quarto-callout-note-color-frame}{HTML}{4582ec}
+\definecolor{quarto-callout-important-color-frame}{HTML}{d9534f}
+\definecolor{quarto-callout-warning-color-frame}{HTML}{f0ad4e}
+\definecolor{quarto-callout-tip-color-frame}{HTML}{02b875}
+\definecolor{quarto-callout-caution-color-frame}{HTML}{fd7e14}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Representações Numéricas no Computador},
+  pdfauthor={Prof.~Dr.~Raphael Teixeira},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\title{Representações Numéricas no Computador}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{Fundamentos Computacionais para Cálculo Numérico}
+\author{Prof.~Dr.~Raphael Teixeira}
+\date{2026-08-15}
+\begin{document}
+\maketitle
+
+\renewcommand*\contentsname{Table of contents}
+{
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+
+\section{Introdução: O abismo entre matemática e
+computação}\label{introduuxe7uxe3o-o-abismo-entre-matemuxe1tica-e-computauxe7uxe3o}
+
+Na matemática, operamos com números reais em \textbf{precisão infinita}.
+O conjunto \(\mathbb{R}\) é denso: entre dois reais quaisquer existe
+sempre outro real. Podemos trabalhar com \(\pi\), \(e\), ou \(\sqrt{2}\)
+sem restrições.
+
+\textbf{No computador, tudo muda.}
+
+Um computador tem memória \textbf{finita}. Se cada número real
+precisasse de infinitos dígitos para representação exata, seria
+impossível armazená-lo. Logo, \textbf{todo número é uma aproximação}.
+
+\subsection{Por que isso importa para Cálculo
+Numérico}\label{por-que-isso-importa-para-cuxe1lculo-numuxe9rico}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Erros de arredondamento} --- cada operação introduz pequenos
+  erros
+\item
+  \textbf{Propagação de erros} --- erros crescem ao longo de
+  algoritmos\\
+\item
+  \textbf{Instabilidade numérica} --- alguns algoritmos amplificam
+  erros, outros os controlam
+\item
+  \textbf{Escolha de método} --- um algoritmo ``bom'' matematicamente
+  pode ser ruim em máquina
+\end{enumerate}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-warning-color!10!white, colframe=quarto-callout-warning-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{Exemplo clássico}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Resolver \(x^2 - 1000x + 1 = 0\) com a fórmula de Bhaskara pode resultar
+em \textbf{catastrófica perda de dígitos significativos} devido a
+cancelamento numérico.
+
+\end{tcolorbox}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Sistemas de Numeração
+Posicional}\label{sistemas-de-numerauxe7uxe3o-posicional}
+
+\subsection{Base decimal (base 10)}\label{base-decimal-base-10}
+
+Um número em base 10 é representado como:
+\[N = d_n \cdot 10^n + d_{n-1} \cdot 10^{n-1} + \cdots + d_1 \cdot 10 + d_0 + d_{-1} \cdot 10^{-1} + \cdots\]
+
+onde cada \(d_i \in \{0, 1, \ldots, 9\}\).
+
+\textbf{Exemplo:}
+\(1234.56 = 1 \cdot 10^3 + 2 \cdot 10^2 + 3 \cdot 10 + 4 + 5 \cdot 10^{-1} + 6 \cdot 10^{-2}\)
+
+\subsection{Base binária (base 2)}\label{base-binuxe1ria-base-2}
+
+Um número em base 2 usa apenas dígitos \(\{0, 1\}\) (bits):
+\[N = b_n \cdot 2^n + b_{n-1} \cdot 2^{n-1} + \cdots + b_0 + b_{-1} \cdot 2^{-1} + b_{-2} \cdot 2^{-2} + \cdots\]
+
+onde cada \(b_i \in \{0, 1\}\).
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Exemplo}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+\((1101.101)_2 = 1 \cdot 2^3 + 1 \cdot 2^2 + 0 \cdot 2^1 + 1 \cdot 2^0 + 1 \cdot 2^{-1} + 0 \cdot 2^{-2} + 1 \cdot 2^{-3}\)
+
+\(= 8 + 4 + 0 + 1 + 0.5 + 0 + 0.125 = 13.625\) em decimal
+
+\end{tcolorbox}
+
+\subsection{Conversão decimal para
+binário}\label{conversuxe3o-decimal-para-binuxe1rio}
+
+\textbf{Parte inteira:} divisões sucessivas por 2, tomando os restos.
+
+\textbf{Parte fracionária:} multiplicações sucessivas por 2, tomando as
+partes inteiras.
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Exemplo: Converter 0.375}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+\begin{verbatim}
+0.375 × 2 = 0.75    (dígito: 0)
+0.75 × 2 = 1.5      (dígito: 1)
+0.5 × 2 = 1.0       (dígito: 1)
+\end{verbatim}
+
+Logo, \((0.375)_{10} = (0.011)_2\)
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-warning-color!10!white, colframe=quarto-callout-warning-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{Atenção}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Nem todo número decimal tem representação binária \textbf{finita}!
+
+Por exemplo, \((0.1)_{10} = (0.0001100110011\ldots)_2\) é dízima
+periódica infinita.
+
+\textbf{Implicação:} 0.1 não pode ser representado exatamente em
+computador!
+
+\end{tcolorbox}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Demonstração: 0.1 não é exato em binário}
+\NormalTok{x }\OperatorTok{=} \FloatTok{0.1}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"0.1 em Python (16 casas): }\SpecialCharTok{\{}\NormalTok{x}\SpecialCharTok{:.16f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"0.1 em Python (20 casas): }\SpecialCharTok{\{}\NormalTok{x}\SpecialCharTok{:.20f\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Isso causa problemas}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{0.1 + 0.2 = }\SpecialCharTok{\{}\FloatTok{0.1} \OperatorTok{+} \FloatTok{0.2}\SpecialCharTok{:.20f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Esperado:  0.3"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+0.1 em Python (16 casas): 0.1000000000000000
+0.1 em Python (20 casas): 0.10000000000000000555
+
+0.1 + 0.2 = 0.30000000000000004441
+Esperado:  0.3
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Inteiros em Máquina: Aritmética de Ponto
+Fixo}\label{inteiros-em-muxe1quina-aritmuxe9tica-de-ponto-fixo}
+
+\subsection{Inteiros sem sinal (unsigned
+integers)}\label{inteiros-sem-sinal-unsigned-integers}
+
+Um inteiro sem sinal com \(n\) bits pode representar inteiros de \(0\) a
+\(2^n - 1\).
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Bits & Intervalo & Uso \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+8 & {[}0, 255{]} & 1 byte \\
+16 & {[}0, 65535{]} & 2 bytes \\
+32 & {[}0, 4.3 × 10⁹{]} & 4 bytes \\
+64 & {[}0, 1.8 × 10¹⁹{]} & 8 bytes \\
+\end{longtable}
+}
+
+\subsection{Inteiros com sinal: Complemento de
+dois}\label{inteiros-com-sinal-complemento-de-dois}
+
+\textbf{Padrão moderno} para representar negativos (sem ambiguidade).
+
+Um inteiro com sinal em \(n\) bits é representado por:
+\[N = -b_{n-1} \cdot 2^{n-1} + \sum_{i=0}^{n-2} b_i \cdot 2^i\]
+
+onde o bit mais significativo (MSB) é o \textbf{bit de sinal}.
+
+\textbf{Intervalo:} \(-2^{n-1}\) a \(2^{n-1} - 1\)
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Exemplo com 8 bits}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+\begin{itemize}
+\tightlist
+\item
+  \((00000101)_2 = 5\)
+\item
+  \((11111011)_2 = -5\)
+\item
+  \((10000000)_2 = -128\) (menor valor)
+\item
+  \((01111111)_2 = 127\) (maior valor)
+\end{itemize}
+
+\textbf{Intervalo:} \([-128, 127]\)
+
+\end{tcolorbox}
+
+\subsection{Overflow inteiro}\label{overflow-inteiro}
+
+Se o resultado de uma operação inteira exceder o intervalo
+representável, ocorre \textbf{overflow}.
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-warning-color!10!white, colframe=quarto-callout-warning-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{Comportamentos diferentes por linguagem}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{C/Fortran:} comportamento indefinido ou truncamento silencioso
+\item
+  \textbf{Python:} inteiros crescem dinamicamente (sem overflow)
+\item
+  \textbf{Java:} wraparound (volta ao intervalo válido)
+\end{itemize}
+
+\textbf{Cuidado:} Em linguagens compiladas, overflow silencioso é
+perigoso!
+
+\end{tcolorbox}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Números Reais em Máquina: Ponto
+Flutuante}\label{nuxfameros-reais-em-muxe1quina-ponto-flutuante}
+
+\subsection{Notação científica}\label{notauxe7uxe3o-cientuxedfica}
+
+Em matemática, qualquer número real pode ser escrito em notação
+científica: \[x = \pm d_0.d_1 d_2 d_3 \ldots \times 10^e\]
+
+onde \(d_0 \in \{1, 2, \ldots, 9\}\) (um dígito antes do ponto) e \(e\)
+é o expoente.
+
+\textbf{Exemplo:} \(1234.56 = 1.23456 \times 10^3\)
+
+\subsection{Representação de ponto flutuante
+normalizada}\label{representauxe7uxe3o-de-ponto-flutuante-normalizada}
+
+Em base 2, um número de ponto flutuante tem a forma:
+\[x = \pm (1.d_1 d_2 d_3 \ldots) \times 2^e\]
+
+onde: - O bit implícito na posição \(2^0\) é sempre 1 (em representação
+normalizada) - \(d_i \in \{0, 1\}\) são os dígitos da mantissa (ou
+fração) - \(e\) é o expoente
+
+\textbf{Componentes:} 1. \textbf{Sinal:} 1 bit (0 = positivo, 1 =
+negativo) 2. \textbf{Expoente:} \(e\) bits (codificado com bias) 3.
+\textbf{Mantissa/Fração:} \(p\) bits (precisão)
+
+\textbf{Precisão total:} \(p + 1\) dígitos binários (o ``+1'' é o bit
+implícito)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Padrão IEEE 754}\label{padruxe3o-ieee-754}
+
+IEEE 754 (IEEE Standard for Floating-Point Arithmetic) é o padrão
+internacional para aritmética de ponto flutuante. Garante consistência
+entre plataformas.
+
+\subsection{Formatos principais}\label{formatos-principais}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lllllll@{}}
+\toprule\noalign{}
+Tipo & Bits & Sinal & Exp & Mant & Bias & Uso \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{float32} & 32 & 1 & 8 & 23 & 127 & Gráficos, GPUs \\
+\textbf{float64} & 64 & 1 & 11 & 52 & 1023 & Ciência, padrão Python \\
+\textbf{float80} & 80 & 1 & 15 & 64 & 16383 & Cálculos intermediários \\
+\end{longtable}
+}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Foco neste curso}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Trabalharemos principalmente com \textbf{float64} (precisão dupla, 64
+bits), que é o padrão em Python, MATLAB e linguagens científicas.
+
+\end{tcolorbox}
+
+\subsection{Estrutura de um número double (64
+bits)}\label{estrutura-de-um-nuxfamero-double-64-bits}
+
+\begin{verbatim}
+┌─────────┬───────────────────┬────────────────────────────────────────────────────┐
+│  Sinal  │   Expoente (11)   │              Mantissa (52 bits)                    │
+│ (1 bit) │                   │                                                    │
+└─────────┴───────────────────┴────────────────────────────────────────────────────┘
+\end{verbatim}
+
+\textbf{Decodificação:}
+\[\text{valor} = (-1)^S \times 2^{E - 1023} \times (1.M)_2\]
+
+onde \((1.M)_2 = 1 + \sum_{i=1}^{52} M_i \cdot 2^{-i}\)
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Exemplo de decodificação}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Considere o padrão IEEE 754 double:
+
+\begin{verbatim}
+0 01111111100 0000000000000000000000000000000000000000000000000000
+\end{verbatim}
+
+\textbf{Decodificação:} - \(S = 0\) (positivo) -
+\(E = (01111111100)_2 = 1020\) (expoente com bias) - \(M = 0\) (mantissa
+nula) - Expoente real: \(1020 - 1023 = -3\) - \textbf{Valor:}
+\(1 \times 2^{-3} \times 1.0 = 0.125\)
+
+\end{tcolorbox}
+
+\subsection{Valores especiais em IEEE
+754}\label{valores-especiais-em-ieee-754}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lllll@{}}
+\toprule\noalign{}
+Padrão & Sinal & Expoente & Mantissa & Significado \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Zeros & ±0 & 0 & 0 & +0, -0 \\
+Desnormalizados & ± & 0 & ≠ 0 & Muito pequenos (precisão reduzida) \\
+Normalizados & ± & 1 a 2046 & qualquer & Números regulares \\
+Infinitos & ± & máximo & 0 & \(\pm \infty\) \\
+NaN & qualquer & máximo & ≠ 0 & Not a Number \\
+\end{longtable}
+}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Exemplos de operações especiais}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\DecValTok{0}\NormalTok{)          }\CommentTok{\# inf}
+\BuiltInTok{print}\NormalTok{(}\OperatorTok{{-}}\DecValTok{1}\OperatorTok{/}\DecValTok{0}\NormalTok{)         }\CommentTok{\# {-}inf}
+\BuiltInTok{print}\NormalTok{(}\DecValTok{0}\OperatorTok{/}\DecValTok{0}\NormalTok{)          }\CommentTok{\# nan}
+\BuiltInTok{print}\NormalTok{(}\BuiltInTok{float}\NormalTok{(}\StringTok{\textquotesingle{}inf\textquotesingle{}}\NormalTok{) }\OperatorTok{{-}} \BuiltInTok{float}\NormalTok{(}\StringTok{\textquotesingle{}inf\textquotesingle{}}\NormalTok{))  }\CommentTok{\# nan}
+\end{Highlighting}
+\end{Shaded}
+
+\end{tcolorbox}
+
+\subsection{Números desnormalizados
+(subnormal)}\label{nuxfameros-desnormalizados-subnormal}
+
+Quando o expoente atinge seu mínimo (\(E = 0\)), números menores que o
+``mínimo normal'' podem ser representados com precisão reduzida:
+
+\[x = \pm (0.d_1 d_2 \ldots) \times 2^{e_{\text{min}}}\]
+
+Isto fornece \textbf{underflow gradual} ao invés de queda abrupta para
+zero.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Precisão e Erros de
+Máquina}\label{precisuxe3o-e-erros-de-muxe1quina}
+
+\subsection{\texorpdfstring{Machine epsilon
+(\(\epsilon\))}{Machine epsilon (\textbackslash epsilon)}}\label{machine-epsilon-epsilon}
+
+\textbf{Definição:} Menor número \(\epsilon\) tal que
+\(1 + \epsilon \neq 1\) em aritmética de ponto flutuante.
+
+\textbf{Fórmula:} \[\epsilon = 2^{-p}\]
+
+onde \(p\) é o número de dígitos binários de precisão (após o bit
+implícito).
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Formato & \(p\) & Machine epsilon & Valor aproximado \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+float32 & 24 & \(2^{-23}\) & \(1.19 \times 10^{-7}\) \\
+float64 & 53 & \(2^{-52}\) & \(2.22 \times 10^{-16}\) \\
+\end{longtable}
+}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-warning-color!10!white, colframe=quarto-callout-warning-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{Interpretação}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Machine epsilon é uma medida da \textbf{precisão relativa}: em máquina,
+qualquer número é representado com erro relativo no máximo da ordem de
+\(\epsilon / 2\).
+
+\end{tcolorbox}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Verificar machine epsilon em Python}
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+
+\NormalTok{eps32 }\OperatorTok{=}\NormalTok{ np.finfo(np.float32).eps}
+\NormalTok{eps64 }\OperatorTok{=}\NormalTok{ np.finfo(np.float64).eps}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Machine epsilon (float32): }\SpecialCharTok{\{}\NormalTok{eps32}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Machine epsilon (float64): }\SpecialCharTok{\{}\NormalTok{eps64}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Teórico (2\^{}{-}23): }\SpecialCharTok{\{}\DecValTok{2}\OperatorTok{**}\NormalTok{(}\OperatorTok{{-}}\DecValTok{23}\NormalTok{)}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Teórico (2\^{}{-}52): }\SpecialCharTok{\{}\DecValTok{2}\OperatorTok{**}\NormalTok{(}\OperatorTok{{-}}\DecValTok{52}\NormalTok{)}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Verificar experimentalmente}
+\KeywordTok{def}\NormalTok{ find\_epsilon(dtype):}
+\NormalTok{    eps }\OperatorTok{=}\NormalTok{ dtype(}\FloatTok{1.0}\NormalTok{)}
+    \ControlFlowTok{while}\NormalTok{ dtype(}\FloatTok{1.0}\NormalTok{) }\OperatorTok{+}\NormalTok{ eps }\OperatorTok{!=}\NormalTok{ dtype(}\FloatTok{1.0}\NormalTok{):}
+\NormalTok{        eps }\OperatorTok{=}\NormalTok{ eps }\OperatorTok{/}\NormalTok{ dtype(}\FloatTok{2.0}\NormalTok{)}
+    \ControlFlowTok{return}\NormalTok{ eps }\OperatorTok{*} \DecValTok{2}  \CommentTok{\# Volta um passo}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Experimental float64: }\SpecialCharTok{\{}\NormalTok{find\_epsilon(np.float64)}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Machine epsilon (float32): 1.1920928955078125e-07
+Machine epsilon (float64): 2.220446049250313e-16
+
+Teórico (2^-23): 1.1920928955078125e-07
+Teórico (2^-52): 2.220446049250313e-16
+
+Experimental float64: 2.220446049250313e-16
+\end{verbatim}
+
+\subsection{Maior e menor número
+representável}\label{maior-e-menor-nuxfamero-representuxe1vel}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2368}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.5789}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.1842}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Formato
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Menor positivo normal
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Maior
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+float32 & \(\approx 1.18 \times 10^{-38}\) &
+\(\approx 3.40 \times 10^{38}\) \\
+float64 & \(\approx 2.23 \times 10^{-308}\) &
+\(\approx 1.80 \times 10^{308}\) \\
+\end{longtable}
+}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Verificar limites em Python}
+\NormalTok{info32 }\OperatorTok{=}\NormalTok{ np.finfo(np.float32)}
+\NormalTok{info64 }\OperatorTok{=}\NormalTok{ np.finfo(np.float64)}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Float32:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Menor: }\SpecialCharTok{\{}\NormalTok{info32}\SpecialCharTok{.}\NormalTok{tiny}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Maior: }\SpecialCharTok{\{}\NormalTok{info32}\SpecialCharTok{.}\BuiltInTok{max}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Float64:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Menor: }\SpecialCharTok{\{}\NormalTok{info64}\SpecialCharTok{.}\NormalTok{tiny}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Maior: }\SpecialCharTok{\{}\NormalTok{info64}\SpecialCharTok{.}\BuiltInTok{max}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Float32:
+  Menor: 1.1754943508222875e-38
+  Maior: 3.4028234663852886e+38
+
+Float64:
+  Menor: 2.2250738585072014e-308
+  Maior: 1.7976931348623157e+308
+\end{verbatim}
+
+\subsection{Dígitos significativos
+decimais}\label{duxedgitos-significativos-decimais}
+
+Número de dígitos decimais significativos:
+\[\text{# dígitos decimais} \approx p \times \log_{10}(2)\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{float32} (\(p = 24\)): \(\approx 24 \times 0.301 \approx 7\)
+  dígitos
+\item
+  \textbf{float64} (\(p = 53\)): \(\approx 53 \times 0.301 \approx 16\)
+  dígitos
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Demonstração}
+\NormalTok{x\_float32 }\OperatorTok{=}\NormalTok{ np.float32(}\FloatTok{1.23456789}\NormalTok{)}
+\NormalTok{x\_float64 }\OperatorTok{=}\NormalTok{ np.float64(}\FloatTok{1.23456789}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Entrada:  1.23456789"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"float32: }\SpecialCharTok{\{}\NormalTok{x\_float32}\SpecialCharTok{:.8f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"float64: }\SpecialCharTok{\{}\NormalTok{x\_float64}\SpecialCharTok{:.16f\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Valores maiores}
+\NormalTok{x\_large32 }\OperatorTok{=}\NormalTok{ np.float32(}\FloatTok{123456789.0}\NormalTok{)}
+\NormalTok{x\_large64 }\OperatorTok{=}\NormalTok{ np.float64(}\FloatTok{123456789.0}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Entrada:  123456789.0"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"float32: }\SpecialCharTok{\{}\NormalTok{x\_large32}\SpecialCharTok{:.1f\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"float64: }\SpecialCharTok{\{}\NormalTok{x\_large64}\SpecialCharTok{:.10f\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Entrada:  1.23456789
+float32: 1.23456788
+float64: 1.2345678899999999
+
+Entrada:  123456789.0
+float32: 123456792.0
+float64: 123456789.0000000000
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Arredondamento}\label{arredondamento}
+
+\subsection{Estratégias de
+arredondamento}\label{estratuxe9gias-de-arredondamento}
+
+Quando um número não cabe exatamente em \(p\) bits, deve-se arredondar.
+IEEE 754 suporta 4 modos:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Round to nearest (padrão):} arredonda ao número flutuante mais
+  próximo; em caso de empate, arredonda ao par
+\item
+  \textbf{Round toward zero (truncation):} descarta os dígitos fora de
+  \(p\) bits
+\item
+  \textbf{Round toward +infinity:} sempre arredonda para cima
+\item
+  \textbf{Round toward -infinity:} sempre arredonda para baixo
+\end{enumerate}
+
+\subsection{Erro de arredondamento}\label{erro-de-arredondamento}
+
+Se \(x\) é um número real e \(\text{fl}(x)\) é sua representação em
+máquina, o erro relativo é limitado por:
+
+\[\frac{|x - \text{fl}(x)|}{|x|} \leq \frac{\epsilon}{2}\]
+
+onde \(\epsilon\) é a machine epsilon.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Operações Aritméticas em Ponto
+Flutuante}\label{operauxe7uxf5es-aritmuxe9ticas-em-ponto-flutuante}
+
+\subsection{Perda de significância (catastrophic
+cancellation)}\label{perda-de-significuxe2ncia-catastrophic-cancellation}
+
+Um problema grave ocorre quando \textbf{subtraímos dois números muito
+próximos}.
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-warning-color!10!white, colframe=quarto-callout-warning-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{Exemplo clássico}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Calcular \(\sqrt{x^2 + 1} - x\) para \(x = 10^8\).
+
+\textbf{Matematicamente}, para \(x\) grande:
+\[\sqrt{x^2 + 1} - x \approx \frac{1}{2x}\]
+
+\textbf{Em máquina}, \(\sqrt{x^2 + 1} \approx x\) (pois \(x\) é muito
+grande), então:
+\[\sqrt{x^2 + 1} - x \approx 0 \quad \text{❌ resultado errado!}\]
+
+\textbf{Solução:} Racionalizar
+\[\sqrt{x^2 + 1} - x = \frac{(x^2 + 1) - x^2}{\sqrt{x^2 + 1} + x} = \frac{1}{\sqrt{x^2 + 1} + x}\]
+
+que é numericamente estável. ✓
+
+\end{tcolorbox}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ math}
+
+\NormalTok{x }\OperatorTok{=} \FloatTok{1e8}
+
+\CommentTok{\# Método instável}
+\NormalTok{result1 }\OperatorTok{=}\NormalTok{ math.sqrt(x}\OperatorTok{**}\DecValTok{2} \OperatorTok{+} \DecValTok{1}\NormalTok{) }\OperatorTok{{-}}\NormalTok{ x}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Instável: sqrt(x\^{}2 + 1) {-} x = }\SpecialCharTok{\{}\NormalTok{result1}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Método estável}
+\NormalTok{result2 }\OperatorTok{=} \DecValTok{1} \OperatorTok{/}\NormalTok{ (math.sqrt(x}\OperatorTok{**}\DecValTok{2} \OperatorTok{+} \DecValTok{1}\NormalTok{) }\OperatorTok{+}\NormalTok{ x)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Estável:  1/(sqrt(x\^{}2 + 1) + x) = }\SpecialCharTok{\{}\NormalTok{result2}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Comparação}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Valor teórico: 1/(2x) = }\SpecialCharTok{\{}\DecValTok{1}\OperatorTok{/}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\NormalTok{x)}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Erro instável:  }\SpecialCharTok{\{}\BuiltInTok{abs}\NormalTok{(result1 }\OperatorTok{{-}} \DecValTok{1}\OperatorTok{/}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\NormalTok{x))}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Erro estável:   }\SpecialCharTok{\{}\BuiltInTok{abs}\NormalTok{(result2 }\OperatorTok{{-}} \DecValTok{1}\OperatorTok{/}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\NormalTok{x))}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Instável: sqrt(x^2 + 1) - x = 0.0
+Estável:  1/(sqrt(x^2 + 1) + x) = 5e-09
+
+Valor teórico: 1/(2x) = 5e-09
+Erro instável:  5e-09
+Erro estável:   0.0
+\end{verbatim}
+
+\subsection{Associatividade quebrada}\label{associatividade-quebrada}
+
+Operações não são associativas em ponto flutuante:
+\[(a + b) + c \neq a + (b + c)\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Demonstração}
+\NormalTok{a }\OperatorTok{=} \FloatTok{1.0}
+\NormalTok{b }\OperatorTok{=} \FloatTok{1e{-}16}
+\NormalTok{c }\OperatorTok{=} \OperatorTok{{-}}\FloatTok{1e{-}16}
+
+\NormalTok{result1 }\OperatorTok{=}\NormalTok{ (a }\OperatorTok{+}\NormalTok{ b) }\OperatorTok{+}\NormalTok{ c}
+\NormalTok{result2 }\OperatorTok{=}\NormalTok{ a }\OperatorTok{+}\NormalTok{ (b }\OperatorTok{+}\NormalTok{ c)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"(a + b) + c = }\SpecialCharTok{\{}\NormalTok{result1}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"a + (b + c) = }\SpecialCharTok{\{}\NormalTok{result2}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Iguais? }\SpecialCharTok{\{}\NormalTok{result1 }\OperatorTok{==}\NormalTok{ result2}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Outro exemplo}
+\NormalTok{x }\OperatorTok{=}\NormalTok{ [}\FloatTok{1e10}\NormalTok{, }\DecValTok{1}\NormalTok{, }\OperatorTok{{-}}\FloatTok{1e10}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Soma esquerda: ((1e10 + 1) {-} 1e10) = }\SpecialCharTok{\{}\NormalTok{(x[}\DecValTok{0}\NormalTok{] }\OperatorTok{+}\NormalTok{ x[}\DecValTok{1}\NormalTok{]) }\OperatorTok{+}\NormalTok{ x[}\DecValTok{2}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Soma direita:  (1e10 + (1 {-} 1e10)) = }\SpecialCharTok{\{}\NormalTok{x[}\DecValTok{0}\NormalTok{] }\OperatorTok{+}\NormalTok{ (x[}\DecValTok{1}\NormalTok{] }\OperatorTok{+}\NormalTok{ x[}\DecValTok{2}\NormalTok{])}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+(a + b) + c = 0.9999999999999999
+a + (b + c) = 1.0
+Iguais? False
+
+Soma esquerda: ((1e10 + 1) - 1e10) = 1.0
+Soma direita:  (1e10 + (1 - 1e10)) = 1.0
+\end{verbatim}
+
+\subsection{Absorção numérica}\label{absoruxe7uxe3o-numuxe9rica}
+
+Se \(|a| \gg |b|\), então \(a + b \approx a\) em máquina (o \(b\) é
+``absorvido'').
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Demonstração}
+\NormalTok{a }\OperatorTok{=} \FloatTok{1e16}
+\NormalTok{b }\OperatorTok{=} \DecValTok{1}
+
+\NormalTok{result }\OperatorTok{=}\NormalTok{ a }\OperatorTok{+}\NormalTok{ b }\OperatorTok{{-}}\NormalTok{ a}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"(1e16 + 1) {-} 1e16 = }\SpecialCharTok{\{}\NormalTok{result}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Esperado: 1"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Obtido: }\SpecialCharTok{\{}\NormalTok{result}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{Comparação:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"1e16 + 1 = }\SpecialCharTok{\{}\NormalTok{a }\OperatorTok{+}\NormalTok{ b}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"1e16     = }\SpecialCharTok{\{}\NormalTok{a}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"São iguais? }\SpecialCharTok{\{}\NormalTok{a }\OperatorTok{+}\NormalTok{ b }\OperatorTok{==}\NormalTok{ a}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+(1e16 + 1) - 1e16 = 0.0
+Esperado: 1
+Obtido: 0.0
+
+Comparação:
+1e16 + 1 = 1e+16
+1e16     = 1e+16
+São iguais? True
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Implementação em
+Computador}\label{implementauxe7uxe3o-em-computador}
+
+\subsection{Verificação de machine epsilon em
+Python}\label{verificauxe7uxe3o-de-machine-epsilon-em-python}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+
+\CommentTok{\# Método 1: usando numpy}
+\NormalTok{eps64 }\OperatorTok{=}\NormalTok{ np.finfo(np.float64).eps}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"NumPy epsilon (float64): }\SpecialCharTok{\{}\NormalTok{eps64}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Método 2: encontrar experimentalmente}
+\KeywordTok{def}\NormalTok{ find\_machine\_epsilon():}
+\NormalTok{    epsilon }\OperatorTok{=} \FloatTok{1.0}
+    \ControlFlowTok{while} \FloatTok{1.0} \OperatorTok{+}\NormalTok{ epsilon }\OperatorTok{!=} \FloatTok{1.0}\NormalTok{:}
+\NormalTok{        epsilon }\OperatorTok{=}\NormalTok{ epsilon }\OperatorTok{/} \FloatTok{2.0}
+    \ControlFlowTok{return}\NormalTok{ epsilon }\OperatorTok{*} \DecValTok{2}
+
+\NormalTok{eps\_experimental }\OperatorTok{=}\NormalTok{ find\_machine\_epsilon()}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Experimental:           }\SpecialCharTok{\{}\NormalTok{eps\_experimental}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Método 3: usando sys}
+\ImportTok{import}\NormalTok{ sys}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"sys.float\_info.epsilon: }\SpecialCharTok{\{}\NormalTok{sys}\SpecialCharTok{.}\NormalTok{float\_info}\SpecialCharTok{.}\NormalTok{epsilon}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+NumPy epsilon (float64): 2.220446049250313e-16
+Experimental:           2.220446049250313e-16
+sys.float_info.epsilon: 2.220446049250313e-16
+\end{verbatim}
+
+\subsection{Manipulação de representação
+binária}\label{manipulauxe7uxe3o-de-representauxe7uxe3o-binuxe1ria}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ float\_to\_binary(f):}
+    \CommentTok{"""Converte float64 para representação binária"""}
+\NormalTok{    bits }\OperatorTok{=}\NormalTok{ struct.pack(}\StringTok{\textquotesingle{}\textgreater{}d\textquotesingle{}}\NormalTok{, f)}
+    \ControlFlowTok{return} \StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{.join(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{b}\SpecialCharTok{:08b\}}\SpecialStringTok{\textquotesingle{}} \ControlFlowTok{for}\NormalTok{ b }\KeywordTok{in}\NormalTok{ bits)}
+
+\KeywordTok{def}\NormalTok{ analyze\_float(x):}
+    \CommentTok{"""Analisa componentes de um float64"""}
+\NormalTok{    bits }\OperatorTok{=}\NormalTok{ float\_to\_binary(x)}
+\NormalTok{    sign }\OperatorTok{=}\NormalTok{ bits[}\DecValTok{0}\NormalTok{]}
+\NormalTok{    exponent }\OperatorTok{=}\NormalTok{ bits[}\DecValTok{1}\NormalTok{:}\DecValTok{12}\NormalTok{]}
+\NormalTok{    mantissa }\OperatorTok{=}\NormalTok{ bits[}\DecValTok{12}\NormalTok{:]}
+    
+\NormalTok{    exp\_value }\OperatorTok{=} \BuiltInTok{int}\NormalTok{(exponent, }\DecValTok{2}\NormalTok{)}
+\NormalTok{    exp\_real }\OperatorTok{=}\NormalTok{ exp\_value }\OperatorTok{{-}} \DecValTok{1023}
+    
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Número: }\SpecialCharTok{\{}\NormalTok{x}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Binário: }\SpecialCharTok{\{}\NormalTok{bits}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Sinal:    }\SpecialCharTok{\{}\NormalTok{sign}\SpecialCharTok{\}}\SpecialStringTok{ (}\SpecialCharTok{\{}\StringTok{\textquotesingle{}+\textquotesingle{}} \ControlFlowTok{if}\NormalTok{ sign }\OperatorTok{==} \StringTok{\textquotesingle{}0\textquotesingle{}} \ControlFlowTok{else} \StringTok{\textquotesingle{}{-}\textquotesingle{}}\SpecialCharTok{\}}\SpecialStringTok{)"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Expoente: }\SpecialCharTok{\{}\NormalTok{exponent}\SpecialCharTok{\}}\SpecialStringTok{ (}\SpecialCharTok{\{}\NormalTok{exp\_value}\SpecialCharTok{\}}\SpecialStringTok{ → real: }\SpecialCharTok{\{}\NormalTok{exp\_real}\SpecialCharTok{\}}\SpecialStringTok{)"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Mantissa: }\SpecialCharTok{\{}\NormalTok{mantissa[:}\DecValTok{16}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{... (}\SpecialCharTok{\{}\NormalTok{mantissa}\SpecialCharTok{\}}\SpecialStringTok{)"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{()}
+
+\CommentTok{\# Exemplos}
+\NormalTok{analyze\_float(}\FloatTok{1.0}\NormalTok{)}
+\NormalTok{analyze\_float(}\FloatTok{0.5}\NormalTok{)}
+\NormalTok{analyze\_float(}\FloatTok{0.1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Número: 1.0
+Binário: 0011111111110000000000000000000000000000000000000000000000000000
+  Sinal:    0 (+)
+  Expoente: 01111111111 (1023 → real: 0)
+  Mantissa: 0000000000000000... (0000000000000000000000000000000000000000000000000000)
+
+Número: 0.5
+Binário: 0011111111100000000000000000000000000000000000000000000000000000
+  Sinal:    0 (+)
+  Expoente: 01111111110 (1022 → real: -1)
+  Mantissa: 0000000000000000... (0000000000000000000000000000000000000000000000000000)
+
+Número: 0.1
+Binário: 0011111110111001100110011001100110011001100110011001100110011010
+  Sinal:    0 (+)
+  Expoente: 01111111011 (1019 → real: -4)
+  Mantissa: 1001100110011001... (1001100110011001100110011001100110011001100110011010)
+\end{verbatim}
+
+\subsection{Verificação de
+overflow/underflow}\label{verificauxe7uxe3o-de-overflowunderflow}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+
+\CommentTok{\# Limites}
+\NormalTok{info }\OperatorTok{=}\NormalTok{ np.finfo(np.float64)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Float64 limits:"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Epsilon:            }\SpecialCharTok{\{}\NormalTok{info}\SpecialCharTok{.}\NormalTok{eps}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Tiny (min normal):  }\SpecialCharTok{\{}\NormalTok{info}\SpecialCharTok{.}\NormalTok{tiny}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Max:                }\SpecialCharTok{\{}\NormalTok{info}\SpecialCharTok{.}\BuiltInTok{max}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+
+\CommentTok{\# Gerar overflow}
+\NormalTok{x }\OperatorTok{=}\NormalTok{ np.float64(}\FloatTok{1e308}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"}\CharTok{\textbackslash{}n}\SpecialStringTok{1e308 * 10 = }\SpecialCharTok{\{}\NormalTok{x }\OperatorTok{*} \DecValTok{10}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# inf}
+
+\CommentTok{\# Underflow gradual}
+\NormalTok{y }\OperatorTok{=}\NormalTok{ np.float64(}\FloatTok{1e{-}320}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"1e{-}320 = }\SpecialCharTok{\{}\NormalTok{y}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"1e{-}330 = }\SpecialCharTok{\{}\NormalTok{np}\SpecialCharTok{.}\NormalTok{float64(}\FloatTok{1e{-}330}\NormalTok{)}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)  }\CommentTok{\# Desnormalizado}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Float64 limits:
+  Epsilon:            2.220446049250313e-16
+  Tiny (min normal):  2.2250738585072014e-308
+  Max:                1.7976931348623157e+308
+
+1e308 * 10 = inf
+1e-320 = 1e-320
+1e-330 = 0.0
+\end{verbatim}
+
+\begin{verbatim}
+/var/folders/bm/kxnd_r6x0vd3_b38fvf0rrgr0000gn/T/ipykernel_11751/740743619.py:12: RuntimeWarning: overflow encountered in scalar multiply
+  print(f"\n1e308 * 10 = {x * 10}")  # inf
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Aplicações e Conexões com Cálculo
+Numérico}\label{aplicauxe7uxf5es-e-conexuxf5es-com-cuxe1lculo-numuxe9rico}
+
+\subsection{Por que isso importa}\label{por-que-isso-importa}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Propagação de erros:} Pequenos erros de arredondamento crescem
+  ao longo de algoritmos iterativos
+\item
+  \textbf{Escolha de algoritmo:} Métodos numericamente estáveis são
+  essenciais
+\item
+  \textbf{Análise de erro:} Devemos estimar como erros se propagam em
+  nossas contas
+\item
+  \textbf{Teste de convergência:} Saber \(\epsilon\) ajuda a definir
+  tolerâncias apropriadas
+\end{enumerate}
+
+\subsection{Próximos capítulos}\label{pruxf3ximos-capuxedtulos}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Cap 1: Propagação de Erros} --- Como estimar e controlar erros
+\item
+  \textbf{Cap 2: Sistemas Lineares} --- Resolução estável via métodos
+  diretos e iterativos
+\item
+  \textbf{Cap 3: Interpolação} --- Aproximação de funções e análise de
+  erro
+\item
+  \textbf{Cap 4: Integração Numérica} --- Quadraturas e fórmulas
+  compostas
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Exercícios Propostos}\label{exercuxedcios-propostos}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Conversão de bases}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Converter \((101.11)_2\) para decimal
+  \item
+    Converter \((0.1)_{10}\) para binário (até 16 dígitos)
+  \end{itemize}
+\item
+  \textbf{Machine epsilon}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Qual é o machine epsilon para float32 e float64?
+  \item
+    Implementar um algoritmo em Python que encontre experimentalmente
+  \end{itemize}
+\item
+  \textbf{Limites numéricos}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Em double precision IEEE 754, qual é o maior expoente?
+  \item
+    Qual é o valor máximo representável?
+  \end{itemize}
+\item
+  \textbf{Não-associatividade}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Verificar numericamente que \((a + b) + c \neq a + (b + c)\) com
+    valores apropriados
+  \end{itemize}
+\item
+  \textbf{Cancelamento numérico}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Implementar ambas as formulações de \(\sqrt{x^2 + 1} - x\) em Python
+  \item
+    Comparar resultados para \(x = 10^{10}\)
+  \end{itemize}
+\item
+  \textbf{Absorção numérica}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Verificar que \((10^{16} + 1) - 10^{16} = 0\) em float64
+  \item
+    Explorar diferentes valores de \(10^k\) para encontrar threshold
+  \end{itemize}
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Referências}\label{referuxeancias}
+
+\begin{itemize}
+\item
+  \textbf{Burden, R. L., \& Faires, J. D. (2016).} \emph{Numerical
+  analysis} (10th ed.). Cengage Learning.
+\item
+  \textbf{Goldberg, D. (1991).} What every computer scientist should
+  know about floating-point arithmetic. \emph{ACM Computing Surveys},
+  23(1), 5--48.
+\item
+  \textbf{Higham, N. J. (2002).} \emph{Accuracy and stability of
+  numerical algorithms} (2nd ed.). SIAM.
+\item
+  \textbf{IEEE. (2019).} IEEE 754-2019: IEEE standard for floating-point
+  arithmetic. Institute of Electrical and Electronics Engineers.
+\item
+  \textbf{Knuth, D. E. (1997).} \emph{The art of computer programming:
+  Seminumerical algorithms} (Vol. 2, 3rd ed.). Addison-Wesley.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Anexo: Código Python Completo para
+Experimentos}\label{anexo-cuxf3digo-python-completo-para-experimentos}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Código para experimentos com representação numérica}
+
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\ImportTok{import}\NormalTok{ struct}
+\ImportTok{import}\NormalTok{ sys}
+
+\KeywordTok{class}\NormalTok{ FloatAnalyzer:}
+    \CommentTok{"""Classe para analisar representações de ponto flutuante"""}
+    
+    \AttributeTok{@staticmethod}
+    \KeywordTok{def}\NormalTok{ to\_binary(x):}
+        \CommentTok{"""Converte float64 para binário"""}
+\NormalTok{        bits }\OperatorTok{=}\NormalTok{ struct.pack(}\StringTok{\textquotesingle{}\textgreater{}d\textquotesingle{}}\NormalTok{, x)}
+        \ControlFlowTok{return} \StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{.join(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{b}\SpecialCharTok{:08b\}}\SpecialStringTok{\textquotesingle{}} \ControlFlowTok{for}\NormalTok{ b }\KeywordTok{in}\NormalTok{ bits)}
+    
+    \AttributeTok{@staticmethod}
+    \KeywordTok{def}\NormalTok{ from\_binary(bits\_str):}
+        \CommentTok{"""Converte binário para float64"""}
+\NormalTok{        bytes\_val }\OperatorTok{=} \BuiltInTok{bytes}\NormalTok{(}\BuiltInTok{int}\NormalTok{(bits\_str[i:i}\OperatorTok{+}\DecValTok{8}\NormalTok{], }\DecValTok{2}\NormalTok{) }
+                         \ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{64}\NormalTok{, }\DecValTok{8}\NormalTok{))}
+        \ControlFlowTok{return}\NormalTok{ struct.unpack(}\StringTok{\textquotesingle{}\textgreater{}d\textquotesingle{}}\NormalTok{, bytes\_val)[}\DecValTok{0}\NormalTok{]}
+    
+    \AttributeTok{@staticmethod}
+    \KeywordTok{def}\NormalTok{ analyze(x):}
+        \CommentTok{"""Analisa componentes de float64"""}
+\NormalTok{        bits }\OperatorTok{=}\NormalTok{ FloatAnalyzer.to\_binary(x)}
+\NormalTok{        sign\_bit }\OperatorTok{=}\NormalTok{ bits[}\DecValTok{0}\NormalTok{]}
+\NormalTok{        exp\_bits }\OperatorTok{=}\NormalTok{ bits[}\DecValTok{1}\NormalTok{:}\DecValTok{12}\NormalTok{]}
+\NormalTok{        mant\_bits }\OperatorTok{=}\NormalTok{ bits[}\DecValTok{12}\NormalTok{:]}
+        
+\NormalTok{        exp\_val }\OperatorTok{=} \BuiltInTok{int}\NormalTok{(exp\_bits, }\DecValTok{2}\NormalTok{)}
+\NormalTok{        exp\_real }\OperatorTok{=}\NormalTok{ exp\_val }\OperatorTok{{-}} \DecValTok{1023}
+        
+        \ControlFlowTok{return}\NormalTok{ \{}
+            \StringTok{\textquotesingle{}valor\textquotesingle{}}\NormalTok{: x,}
+            \StringTok{\textquotesingle{}binario\textquotesingle{}}\NormalTok{: bits,}
+            \StringTok{\textquotesingle{}sinal\textquotesingle{}}\NormalTok{: sign\_bit,}
+            \StringTok{\textquotesingle{}expoente\_bits\textquotesingle{}}\NormalTok{: exp\_bits,}
+            \StringTok{\textquotesingle{}expoente\_valor\textquotesingle{}}\NormalTok{: exp\_val,}
+            \StringTok{\textquotesingle{}expoente\_real\textquotesingle{}}\NormalTok{: exp\_real,}
+            \StringTok{\textquotesingle{}mantissa\textquotesingle{}}\NormalTok{: mant\_bits}
+\NormalTok{        \}}
+
+\CommentTok{\# Exemplos de uso}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"=== Análise de Números em IEEE 754 ===}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{ num }\KeywordTok{in}\NormalTok{ [}\FloatTok{1.0}\NormalTok{, }\FloatTok{0.5}\NormalTok{, }\FloatTok{2.0}\NormalTok{, }\FloatTok{0.1}\NormalTok{]:}
+\NormalTok{    result }\OperatorTok{=}\NormalTok{ FloatAnalyzer.analyze(num)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Número: }\SpecialCharTok{\{}\NormalTok{num}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Expoente real: }\SpecialCharTok{\{}\NormalTok{result[}\StringTok{\textquotesingle{}expoente\_real\textquotesingle{}}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"  Binário: }\SpecialCharTok{\{}\NormalTok{result[}\StringTok{\textquotesingle{}binario\textquotesingle{}}\NormalTok{][:}\DecValTok{16}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{..."}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+=== Análise de Números em IEEE 754 ===
+
+Número: 1.0
+  Expoente real: 0
+  Binário: 0011111111110000...
+
+Número: 0.5
+  Expoente real: -1
+  Binário: 0011111111100000...
+
+Número: 2.0
+  Expoente real: 1
+  Binário: 0100000000000000...
+
+Número: 0.1
+  Expoente real: -4
+  Binário: 0011111110111001...
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\emph{Última atualização: 2024}
+
+
+
+
+\end{document}

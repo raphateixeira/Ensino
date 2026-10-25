@@ -1,0 +1,58 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - index.qmd
+    - Aulas/*.qmd
+    - Notas/*.qmd
+
+
+website:
+  title: "Cálculo Numérico"
+  description: "Notas de aula — Métodos Numéricos em Python · UFPA"
+  reader-mode: true
+  navbar:
+    background: "#FFFFFF"   # navbar branca (camada "Site" do TemaRTx.scss)
+    foreground: "#0F1B33"
+    title: "Cálculo Numérico"
+    left:
+      - text: "Início"
+        href: index.qmd
+      - text: "Aulas"
+        menu:
+          - text: "0 · Plano de Ensino"
+            href: Aulas/CN00PlanoEnsino.qmd
+          - text: "1 · Introdução: Raízes e Erros Numéricos"
+            href: Aulas/CN01Erros.qmd
+          - text: "2 · Zeros de Funções"
+            href: Aulas/CN02ZerosDeFuncoes.qmd
+          - text: "3 · Interpolação Polinomial"
+            href: Aulas/CN03Interpolacao.qmd
+          - text: "4 · Ajuste de Curvas"
+            href: Aulas/CN04AjusteCurvas.qmd
+          - text: "5 · Integração Numérica"
+            href: Aulas/CN05Integracao.qmd
+          - text: "6 · Diferenciação Numérica"
+            href: Aulas/CN06Diferenciacao.qmd
+          - text: "7 · EDOs — Euler e Runge-Kutta"
+            href: Aulas/CN07EDOsEuler.qmd
+          - text: "8 · EDOs — Sistemas e Estabilidade"
+            href: Aulas/CN08EDOsSistemas.qmd
+          - text: "9 · Otimização Não Restrita"
+            href: Aulas/CN09OtimizacaoNaoRestrita.qmd
+  page-footer:
+    border: false
+    left: "Cálculo Numérico — Métodos Numéricos em Python"
+    center: "FEE · CAMTUC · UFPA"
+    right: "Prof. Dr. Raphael Teixeira"
+
+format:
+  html:
+    theme: [cosmo, TemaRTx.scss]
+    toc: true
+    toc-title: "Nesta página"
+    page-layout: article
+    lang: pt-BR
+
+# Os decks revealjs definem seu próprio `format:` em cada .qmd;
+# este bloco aplica-se apenas às páginas HTML (index).

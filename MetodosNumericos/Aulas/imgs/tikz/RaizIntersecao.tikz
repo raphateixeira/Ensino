@@ -1,0 +1,15 @@
+% Interseção y = x e y = cos(x): raiz de f(x) = cos(x) - x
+% Bibliotecas (chunk .qmd): arrows.meta
+\begin{tikzpicture}[>=Latex, scale=2.8, line width=0.9pt]
+  \draw[->] (0,0) -- (1.55,0) node[right] {$x$};
+  \draw[->] (0,0) -- (0,1.3) node[above] {$y$};
+
+  \draw[gray!70] (0,0) -- (1.3,1.3) node[right, font=\small] {$y=x$};
+  \draw[blue!70!black, line width=1.1pt]
+        plot[domain=0:1.5, samples=60] (\x, {cos(\x r)})
+        node[right, font=\small] {$y=\cos x$};
+
+  \draw[dashed, gray!55] (0.7391,0) -- (0.7391,0.7391) -- (0,0.7391);
+  \fill[red] (0.7391,0.7391) circle (1.3pt);
+  \node[below, font=\small] at (0.7391,-0.04) {$x^{*}$};
+\end{tikzpicture}

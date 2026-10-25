@@ -1,0 +1,25 @@
+% Spline: polinômio cúbico diferente em cada subintervalo, unidos com continuidade C2
+% Bibliotecas (chunk .qmd): arrows.meta
+\begin{tikzpicture}[>=Latex, xscale=1.7, yscale=0.85, line width=1.1pt]
+  \draw[->] (0.2,0) -- (6.3,0) node[right] {$x$};
+  \draw[->] (0.5,0) -- (0.5,4.2) node[above] {$S(x)$};
+
+  \def\xa{1.0}\def\xb{2.6}\def\xc{4.2}\def\xd{5.6}
+  \def\ya{1.2}\def\yb{3.4}\def\yc{1.0}\def\yd{2.6}
+
+  % três polinômios cúbicos locais, um por cor, unidos nos nós
+  \draw[teal!70!black]      plot[domain=\xa:\xb, samples=40] (\x, {\ya + (\yb-\ya)*((\x-\xa)/(\xb-\xa))^2 * (3-2*((\x-\xa)/(\xb-\xa)))});
+  \draw[orange!85!black]    plot[domain=\xb:\xc, samples=40] (\x, {\yb + (\yc-\yb)*((\x-\xb)/(\xc-\xb))^2 * (3-2*((\x-\xb)/(\xc-\xb)))});
+  \draw[violet!70!black]    plot[domain=\xc:\xd, samples=40] (\x, {\yc + (\yd-\yc)*((\x-\xc)/(\xd-\xc))^2 * (3-2*((\x-\xc)/(\xd-\xc)))});
+
+  \foreach \p/\v/\lab in {\xa/\ya/{x_0}, \xb/\yb/{x_1}, \xc/\yc/{x_2}, \xd/\yd/{x_3}}{
+    \draw[dashed, gray!50] (\p,0) -- (\p,\v);
+    \fill[black] (\p,\v) circle (1.6pt);
+    \node[below] at (\p,0) {$\lab$};
+  }
+  \node[font=\small, teal!70!black]   at (1.8,2.9) {$S_0(x)$};
+  \node[font=\small, orange!85!black] at (3.4,3.0) {$S_1(x)$};
+  \node[font=\small, violet!70!black] at (4.9,2.2) {$S_2(x)$};
+  \node[font=\footnotesize, align=center, gray!30!black] at (3.3,0.35)
+        {cada trecho é um cúbico próprio\\unidos com $S,\,S',\,S''$ contínuos nos nós};
+\end{tikzpicture}

@@ -1,0 +1,30 @@
+% Tanque cilíndrico horizontal: seção transversal com líquido até altura h
+% Bibliotecas (chunk .qmd): arrows.meta
+\begin{tikzpicture}[>=Latex, scale=1.6, line width=0.9pt]
+  \def\R{2.0}
+  \def\h{1.1}
+  \def\ymin{-2.0}
+  \def\ymax{-0.9}
+  \pgfmathsetmacro{\halfchord}{sqrt(\R*\R - \ymax*\ymax)}
+
+  % parede do tanque
+  \draw[line width=1.1pt] (0,0) circle (\R);
+
+  % líquido: segmento circular preenchido até a altura h
+  \begin{scope}
+    \clip (0,0) circle (\R);
+    \fill[blue!22] (-\R,\ymin) rectangle (\R,\ymax);
+  \end{scope}
+
+  % linha do nível do líquido
+  \draw[dashed, gray!60] (-\halfchord,\ymax) -- (\halfchord,\ymax);
+
+  % raio
+  \draw[gray!70] (0,0) -- (0,-\R) node[midway, right, font=\small] {$r$};
+
+  % altura do líquido
+  \draw[<->] (-\R-0.35,\ymin) -- (-\R-0.35,\ymax)
+        node[midway, left, font=\small] {$h$};
+
+  \node[font=\small] at (0,2.45) {tanque cilíndrico (vista frontal)};
+\end{tikzpicture}
