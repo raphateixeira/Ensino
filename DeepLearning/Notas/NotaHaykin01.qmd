@@ -1,0 +1,28 @@
+---
+title: "O perceptron"
+subtitle: "Neural networks - Haykin"
+institute: ""
+author: "Prof. Dr. Raphael Teixeira"
+lang: pt-BR
+format:
+  revealjs:
+    theme: [simple, ../TemaRTx.scss]
+    transition: fade
+    slide-number: true
+    width: 1600
+    height: 900
+    center: true
+    title-slide-attributes:
+      data-background-image: "../imgs/ufpa-colorido.png"
+      data-background-size: "84px"
+      data-background-position: "top 45px center"
+---
+
+## Redes neurais - do Início
+
+- McCulloch e Pitts (1943): Introduziu a ideia de redes neurais como máquinas de computação;
+- Hebb (1949): postular a primeira regra para aprendizagem auto-organizada;
+- Rosemblatt (1958): Propõe o perceptron como o primeiro modelo de aprendizagem supervisionada (com professor);
+
+
+

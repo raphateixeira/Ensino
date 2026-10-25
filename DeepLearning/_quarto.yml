@@ -1,0 +1,24 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - index.qmd
+    - Notas/*.qmd
+
+website:
+  title: "Aprendizagem de Máquina"
+  site-url: https://raphateixeira.github.io/DeepLearning
+  repo-url: https://github.com/raphateixeira/DeepLearning
+
+bibliography: references.bib
+csl: apa.csl
+
+format:
+  html:
+    theme: [cosmo, TemaRTx.scss]
+    lang: pt-BR
+  revealjs:
+    theme: [simple, TemaRTx.scss]
+    lang: pt-BR
+    width: 1600
+    height: 900
