@@ -13,6 +13,12 @@ DeepLearning), cada um inteiro numa subpasta com o histórico.
 - Cada slide define o próprio formato (tema `../../TemaRTx.scss`, 1600×900, logo); **não** pôr
   `format:` em `_metadata.yml` (é somado ao do documento e gera saída dupla). `_metadata.yml` só
   para bibliografia (CircuitosCA, ControleClassico, DeepLearning).
+- Tema Nova (`format: nova-revealjs`): extensão em `_extensions/nova/` na raiz (cópia idêntica à do
+  NovaPresent/ConversoresPotencia/MicrorredeCAMTUC; atualizar copiando). Slides Nova não declaram tema nem
+  tamanho; usam `resources: - "anims/*"` e `{{< include _encerramento.qmd >}}`. Já migrada:
+  `CircuitosCA/Notas/Aula05Potencia.qmd` (animações em `CircuitosCA/Notas/anims/potencia.js`).
+- `index.qmd` precisa de `title` explícito (com `title-block-style: none`): sem ele o Quarto promove o
+  primeiro título após a célula Python (`## Circuitos Elétricos II`) a título da página.
 - Rascunhos `ControleClassico/Notas/*Nova.qmd` ficam fora do render (motor do MATLAB).
 - **Nunca versionar** `CircuitosCA/Gabaritos/`, `ControleClassico/Resultados/` (dados de alunos) nem
   PDFs de livros (ver `.gitignore`).

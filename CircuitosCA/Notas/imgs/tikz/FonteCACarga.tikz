@@ -1,0 +1,12 @@
+% ---------------------------------------------------------------------
+% Fonte CA alimentando uma carga genérica Z: v(t) e i(t) senoidais,
+% em geral defasadas. Abertura da aula de potência em CA. Requer circuitikz.
+% ---------------------------------------------------------------------
+\ctikzset{bipoles/length=2.0cm}
+\begin{circuitikz}[scale=1.2, line width=1.2pt, font=\huge]
+\draw (0,0)
+  to[sinusoidal voltage source, l=$v(t)$] (0,3)
+  to[short, i=$i(t)$] (3,3)
+  to[generic, l=$\mathbf{Z}$] (3,0)
+  to[short] (0,0);
+\end{circuitikz}

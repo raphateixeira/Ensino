@@ -1,5 +1,9 @@
 ---
+title: "Ensino"
 pagetitle: "Ensino"
+# Sem title explícito o Quarto promovia o primeiro título após a célula Python
+# (## Circuitos Elétricos II) a título da página; o hero abaixo já mostra o nome.
+title-block-style: none
 ---
 
 <!-- Página única do repositório: uma seção por disciplina, com links diretos para cada aula.
@@ -38,7 +42,7 @@ df = pd.read_csv("horarios.csv")
 df["dia"] = pd.Categorical(df["dia"], categories=dias, ordered=True)
 df["horário"] = df["inicio"] + "–" + df["fim"]
 tabela = df.pivot_table(index="horário", columns="dia", values="disciplina", aggfunc="first", observed=False)
-tabela = tabela.reindex(columns=dias).fillna("—")
+tabela = tabela.reindex(columns=dias).astype(object).fillna("—")
 tabela = tabela.sort_index(key=lambda idx: idx.str.split("–").str[0])
 tabela.columns.name = None
 tabela.index.name = None

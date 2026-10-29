@@ -1,0 +1,12 @@
+% ---------------------------------------------------------------------
+% Fonte CC alimentando uma carga resistiva: V e I constantes.
+% Abertura da aula de potência em CA. Requer circuitikz.
+% ---------------------------------------------------------------------
+\ctikzset{bipoles/length=2.0cm}
+\begin{circuitikz}[scale=1.2, line width=1.2pt, font=\huge]
+\draw (0,0)
+  to[battery1, l=$V$, invert] (0,3)
+  to[short, i=$I$] (3,3)
+  to[R, l=$R$] (3,0)
+  to[short] (0,0);
+\end{circuitikz}

@@ -1,0 +1,16 @@
+% ---------------------------------------------------------------------
+% Duas cargas Z1 e Z2 em paralelo com a fonte 120∠10° V rms
+% (Alexander & Sadiku, Exemplo 11.14). Requer circuitikz.
+% ---------------------------------------------------------------------
+\ctikzset{bipoles/length=1.6cm}
+\begin{circuitikz}[scale=1.2, line width=1.2pt, font=\huge]
+\draw (0,0)
+  to[sinusoidal voltage source, l=$120\angle 10^\circ$ V rms] (0,3)
+  to[short, i=$\mathbf{I}_t$] (3,3)
+  to[generic, l_=$\mathbf{Z}_1$, i>^=$\mathbf{I}_1$] (3,0)
+  to[short] (0,0);
+\draw (3,3) to[short, -*] (3,3) to[short] (5.5,3)
+  to[generic, l_=$\mathbf{Z}_2$, i>^=$\mathbf{I}_2$] (5.5,0)
+  to[short] (3,0);
+\draw (3,0) node[circ] {};
+\end{circuitikz}
