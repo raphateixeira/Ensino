@@ -1,201 +1,670 @@
 ---
-title: "Lugar Geométrico das Raízes (LGR)"
-subtitle: "Sistemas de Controle I"
-institute: "Universidade Federal do Pará"
+title: "Lugar Geométrico das Raízes"
+subtitle: "Sistemas de Controle I · Aula 8"
 author: "Prof. Dr. Raphael Teixeira"
-format:
-  revealjs:
-    theme: [simple, ../../TemaRTx.scss]
-    self-contained: true
-    transition: fade
-    slide-number: true
-    width: 1600
-    height: 900
-    footer: " "
-    center: false
-    title-slide-attributes:
-      data-background-image: "imgs/ufpa-colorido.png"
-      data-background-size: "84px"
-      data-background-position: "top 45px center"
+institute: "Universidade Federal do Pará"
+format: nova-revealjs
+csl: ../apa.csl
+link-citations: true
+resources:
+  - "anims/*"
 ---
 
-## Motivação
+## Ao final desta aula, você será capaz de {.no-crumb}
 
-Considere a malha fechada com ganho ajustável $K$:
-
-$$T(s) = \frac{KG(s)}{1+KG(s)H(s)}$$
-
-Os polos de malha fechada mudam de posição conforme $K$ varia de $0$ a $\infty$ — e a resposta transitória (Aulas 3–5) e a estabilidade (Aula 7) dependem **diretamente** dessas posições.
-
-::: {.callout-important}
-## Definição
-O **Lugar Geométrico das Raízes (LGR)**, ou lugar de Evans, é o conjunto de todas as posições dos polos de malha fechada quando $K$ varia de $0$ a $+\infty$.
+::: {.big}
+1. **Ler** um LGR: o que acontece com a resposta quando o ganho $K$ aumenta
+2. **Esboçar** o LGR à mão a partir dos polos e zeros de malha aberta
+3. **Reconhecer** as formas típicas e prever estabilidade com ganho alto
+4. **Escolher** $K$ graficamente para atender $\zeta$ e $t_s$
+5. **Prever** o efeito de acrescentar polos e zeros (base dos compensadores)
 :::
 
-O LGR permite **visualizar** como escolher $K$ para atender especificações de $\zeta$, $\omega_n$, $M_p$, $t_s$ — sem calcular as raízes para cada valor de $K$.
-
----
-
-## Condições de Ângulo e de Módulo
-
-Um ponto $s_0$ pertence ao LGR se e somente se satisfaz a **equação característica** $1+KG(s)H(s)=0$, ou seja, $KG(s_0)H(s_0) = -1$. Escrevendo em forma polar:
-
-::: {.callout-important}
-## Condição de ângulo (define o LGR)
-$$\angle G(s_0)H(s_0) = 180° + k\cdot360°, \qquad k=0,\pm1,\pm2,\ldots$$
+::: {.notes}
+Aula de ~100 min, foco em interpretação e esboço. O traçado exato fica para o laboratório com MATLAB (rlocus). Motivação (15) · condição de ângulo (15) · regras de esboço (25) · catálogo de formas (10) · leitura e projeto (25) · polos e zeros (10).
 :::
 
-::: {.callout-tip}
-## Condição de módulo (define o valor de $K$ naquele ponto)
-$$K = \frac{1}{|G(s_0)H(s_0)|}$$
+# Motivação
+
+- Um ganho, muitos sistemas
+- O LGR ao vivo
+- O que é o LGR
+
+## Um ganho, muitos sistemas
+
+::: {.lead}
+Planta $G(s) = \dfrac{1}{s(s+2)}$ com controlador proporcional $K$ e realimentação unitária:
 :::
 
-- A condição de **ângulo** sozinha determina **se** $s_0$ está no LGR (independente de $K$)
-- A condição de **módulo** só é usada **depois**, para achar o $K$ correspondente a um ponto já identificado no LGR
-
----
-
-## Regras de Construção — Ramos e Simetria
-
-Seja $G(s)H(s) = \dfrac{\prod_{i=1}^{m}(s+z_i)}{\prod_{j=1}^{n}(s+p_j)}$, com $n$ polos e $m$ zeros de malha aberta ($n\geq m$, tipicamente).
-
-1. **Número de ramos** = $n$ (número de polos de malha aberta) — cada ramo parte de um polo
-2. **Pontos de partida** ($K=0$): os $n$ polos de malha aberta
-3. **Pontos de chegada** ($K\to\infty$): os $m$ zeros finitos de malha aberta; os $n-m$ ramos restantes vão para **zeros no infinito**
-4. **Simetria**: o LGR é simétrico em relação ao **eixo real** (polos complexos sempre em pares conjugados)
-
----
-
-## Regras de Construção — Eixo Real
-
-::: {.callout-important}
-## Regra do eixo real
-Um ponto do eixo real pertence ao LGR se o número de polos **mais** zeros de malha aberta à sua **direita** é **ímpar**.
+::: {.eqx .deriv style="--deriv-lhs: 250px; --deriv-rhs: 720px;"}
+::: {.step}
+[$H(s)$]{.lhs} [$= \dfrac{K\,G(s)}{1 + K\,G(s)} = \dfrac{K}{s^2 + 2s + K}$]{.rhs} [malha fechada]{.why}
+:::
+::: {.step .fragment}
+[$P(s)$]{.lhs} [$= s^2 + 2s + K = 0$]{.rhs} [polinômio característico]{.why}
+:::
+::: {.step .fragment}
+[$s_{1,2}$]{.lhs} [$= -1 \pm \sqrt{1-K}$]{.rhs} [Bhaskara]{.why}
+:::
 :::
 
-- Regra derivada diretamente da condição de ângulo: cada polo/zero real à direita contribui $180°$; a soma precisa ser um múltiplo ímpar de $180°$
-- Segmentos entre polos/zeros reais alternam pertencer ou não ao LGR, da direita para a esquerda
+:::: {.columns .fragment}
+::: {.column width="33%"}
+[$0 < K < 1$]{.t-a}
 
----
+Dois polos **reais** em $(-2, 0)$: superamortecido.
+:::
+::: {.column width="33%"}
+[$K = 1$]{.t-b}
 
-## Regras de Construção — Assíntotas
+Polo **duplo** em $s = -1$: criticamente amortecido.
+:::
+::: {.column width="33%"}
+[$K > 1$]{.t-c}
 
-Os $n-m$ ramos que vão para o infinito o fazem ao longo de **assíntotas retas**, centradas em:
+$s = -1 \pm j\sqrt{K-1}$: subamortecido, $\sigma = -1$ fixo.
+:::
+::::
 
-$$\sigma_a = \frac{\sum_j p_j - \sum_i z_i}{n-m} \qquad\text{(centroide, sobre o eixo real)}$$
-
-com ângulos:
-
-$$\theta_a = \frac{(2k+1)\times180°}{n-m}, \qquad k = 0,1,\ldots,n-m-1$$
-
-::: {.callout-tip}
-Exemplo: com $n-m=3$ (três ramos ao infinito), os ângulos são $60°$, $180°$ e $300°$ ($-60°$).
+::: {.takeaway .fragment}
+Enquanto $K$ varia, os polos de $H(s)$ **desenham curvas** no plano $s$.
 :::
 
----
-
-## Regras de Construção — Pontos de Saída/Chegada
-
-**Pontos de quebra (breakaway/break-in)**: onde dois ou mais ramos reais se encontram e se separam (saindo ou entrando no eixo real). Ocorrem em raízes reais de:
-
-$$\frac{dK}{ds} = 0, \qquad \text{onde } K(s) = \frac{-1}{G(s)H(s)}$$
-
-restritas às regiões do eixo real que pertencem ao LGR (regra anterior).
-
-**Ângulos de partida/chegada** (polos/zeros complexos): calculados aplicando a condição de ângulo a um ponto de teste infinitesimalmente próximo ao polo (ou zero) complexo, somando as contribuições angulares de todos os demais polos e zeros.
-
----
-
-## Regras de Construção — Cruzamento do Eixo Imaginário
-
-O(s) ponto(s) onde o LGR cruza o eixo $j\omega$ (fronteira de estabilidade) e o **ganho crítico** $K_{crít}$ correspondente são obtidos por **Routh-Hurwitz** (Aula 7): o valor de $K$ que anula uma linha inteira do array de Routh é $K_{crít}$; o polinômio auxiliar formado com a linha anterior dá a frequência de cruzamento $\omega$.
-
-::: {.callout-important}
-Essa é a ponte direta entre o critério de Routh-Hurwitz (Aula 7) e o LGR: o array de Routh localiza **exatamente** onde o lugar cruza para o semiplano direito.
+::: {.notes}
+Pergunte antes de mostrar o terceiro caso: o que acontece com t_s quando K cresce? Nada! σ = −1 fixo ⇒ t_s ≈ 4 s para qualquer K > 1; só M_p e ω_d mudam. Gancho para "o LGR mostra o que o ganho consegue e o que não consegue fazer".
 :::
 
----
+## O LGR ao vivo
 
-## Exemplo 1 — LGR de $G(s)H(s) = \dfrac{K}{s(s+2)(s+4)}$
+::: {style="height: 680px"}
+<canvas class="nova-canvas" data-nova-anim="lgr" data-poles="0,-2" data-xlim="-4,1.5" data-ylim="-6.5,6.5" data-k="5" data-kmax="40" data-step="true" data-tend="8" data-yr="-0.2,2.2" data-loop="false" data-asym="false" data-controls="k"></canvas>
+:::
 
-![LGR de $K/[s(s+2)(s+4)]$](imgs/plots/fig_lgr_exemplo1.png){width="52%" fig-align="center"}
+::: {.notes}
+Primeiro o traçado automático (K de 0 a ∞). Depois o slider: K < 1 (sem sobressinal), K = 1 (separação), K grande (mais oscilação, mesma envoltória). A resposta nunca fica mais rápida que e^{−t}.
+:::
 
-- $n=3$ polos ($0,-2,-4$), $m=0$ zeros $\implies$ 3 ramos, todos para o infinito
-- Centroide: $\sigma_a = \dfrac{0-2-4}{3} = -2$; ângulos das assíntotas: $60°, 180°, 300°$
-- Eixo real no LGR: $[-2,0]$ e $(-\infty,-4]$
+## O que é o LGR
 
----
-
-## Exemplo 1 — Ganho Crítico
-
-Equação característica: $s(s+2)(s+4)+K = s^3+6s^2+8s+K=0$.
-
-Array de Routh (mesma estrutura da Aula 7):
-
+::: {.eqx}
 $$
-\begin{array}{c|cc}
-s^3 & 1 & 8 \\
-s^2 & 6 & K \\
-s^1 & 8-\dfrac{K}{6} & 0 \\
-s^0 & K &
-\end{array}
+G(s) = \frac{N(s)}{D(s)}
+\qquad
+H(s) = \frac{K\,G(s)}{1 + K\,G(s)} = \frac{K\,N(s)}{\eq{a}{D(s) + K\,N(s)}}
 $$
-
-Estabilidade: $0 < K < 48$. Em $K=48$, a linha $s^1$ se anula — o LGR cruza o eixo $j\omega$ em $\omega = \sqrt{8} \approx 2{,}83$ rad/s (raiz do polinômio auxiliar $6s^2+K=0$).
-
----
-
-## Exemplo 2 — Efeito de um Zero: $G(s)H(s) = \dfrac{K(s+3)}{s(s+1)(s+5)}$
-
-![LGR de $K(s+3)/[s(s+1)(s+5)]$](imgs/plots/fig_lgr_exemplo2.png){width="52%" fig-align="center"}
-
-- $n=3$ polos ($0,-1,-5$), $m=1$ zero ($-3$) $\implies$ 3 ramos: 1 termina no zero $-3$, 2 vão ao infinito
-- $n-m=2$ assíntotas: ângulos $90°$ e $270°$, centroide $\sigma_a = \dfrac{(0-1-5)-(-3)}{2}=-1{,}5$
-- O zero **atrai** o ramo complexo para a esquerda, tendendo a **estabilizar** e **acelerar** o sistema (compare com o Exemplo 1, sem zero)
-
----
-
-## Usando o LGR para Projeto
-
-O LGR permite escolher $K$ (ou projetar um controlador que reformula o LGR) para posicionar os polos de malha fechada em uma **região desejada** do plano $s$:
-
-1. Trace as retas de $\zeta$ constante (ângulo $\theta=\cos^{-1}\zeta$ a partir da origem) para atender a especificação de $M_p$ (Aula 4)
-2. Trace a reta vertical $\text{Re}(s) = -\sigma_{\min}$ para atender a especificação de $t_s$
-3. Identifique a interseção dessas retas com o LGR e leia (ou calcule pela condição de módulo) o $K$ correspondente
-
-::: {.callout-tip}
-Se o LGR **não passa** pela região desejada, é necessário **modificar** a malha aberta — adicionando polos/zeros via um controlador (compensador de avanço/atraso de fase, ou PID — Aula 10) para "puxar" o lugar para a região desejada.
 :::
 
----
+[$N(s)$: zeros de malha aberta ($m$). $\;D(s)$: polos de malha aberta ($n$). Realimentação unitária; com sensor, use o produto planta $\times$ sensor no lugar de $G(s)$.]{.muted}
 
-## Exemplo de Projeto por LGR
-
-**Problema:** para $G(s)H(s) = \dfrac{K}{s(s+2)(s+4)}$ (Exemplo 1), encontrar $K$ tal que o par de polos dominantes tenha $\zeta \approx 0{,}5$.
-
-**Procedimento:**
-
-1. Trace a reta $\theta = \cos^{-1}(0{,}5) = 60°$ a partir da origem
-2. Encontre a interseção dessa reta com o ramo complexo do LGR (numericamente ou por software)
-3. Aplique a condição de módulo naquele ponto $s_0$: $K = |s_0|\,|s_0+2|\,|s_0+4|$
-
-::: {.callout-note}
-Na prática, esse procedimento é feito por software (MATLAB `rlocus`/`sgrid`, Python `control.root_locus`) — o traçado manual detalhado tem valor **didático**, para compreender a geometria por trás do resultado numérico.
+::: {.callout-definition title="Lugar geométrico das raízes (LGR)"}
+O caminho percorrido pelas raízes do polinômio característico [$P(s) = D(s) + K\,N(s)$]{.t-a}, isto é, pelos **polos de malha fechada**, quando $K$ vai de $0$ a $\infty$ [@ogata2010; @nise2015].
 :::
 
----
+::: {.takeaway .fragment}
+Os **zeros** de $H(s)$ são os de $G(s)$ e não mudam com $K$. O LGR mostra só o que o ganho move: os **polos**.
+:::
+
+::: {.notes}
+Evans (1948): desenhar o caminho dos polos sem resolver P(s) = 0 para cada K. É isso que vamos aprender a esboçar. O MATLAB faz o traçado exato; o esboço serve para prever, conferir e projetar com intuição.
+:::
+
+# Ler o LGR
+
+- O que a posição diz
+- A história de $K$
+
+## O que a posição de um polo diz (Aula 4)
+
+| Onde está o polo | O que se vê na resposta |
+|:--|:--|
+| Sobre o eixo real | sem oscilação (exponencial) |
+| Longe do eixo real (ângulo grande) | **mais oscilação**: $\zeta$ menor, $M_p$ maior |
+| Longe do eixo $j\omega$ (mais à esquerda) | **mais rápido**: $t_s \approx 4/\sigma$ |
+| Sobre o eixo $j\omega$ | oscilação **sustentada** |
+| No semiplano direito | **instável** |
+
+: {tbl-colwidths="[42,58]"}
+
+::: {.takeaway .fragment}
+Ler o LGR é acompanhar o polo **dominante** (o mais perto do eixo $j\omega$) enquanto $K$ cresce.
+:::
+
+## A história de $K$ em $\;G(s) = \dfrac{1}{s(s+2)(s+4)}$
+
+::: {.incremental}
+- $0 < K < 3{,}1$: polos **reais**, o dominante sai de $0$: resposta lenta, **sem sobressinal**
+- $K \approx 3{,}1$: dois ramos **colidem** em $s \approx -0{,}85$ e saem do eixo real
+- $3{,}1 < K < 48$: par complexo subindo: **mais oscilação**, sem ficar mais rápido
+- $K = 48$: polos em $\pm j2{,}83$: oscilação **sustentada**
+- $K > 48$: polos no semiplano direito: **instável**
+:::
+
+::: {.takeaway .fragment}
+Ganho alto não é "mais controle": aqui, depois de $K \approx 3$, aumentar $K$ só piora o amortecimento.
+:::
+
+## A história de $K$ ao vivo
+
+::: {style="height: 680px"}
+<canvas class="nova-canvas" data-nova-anim="lgr" data-poles="0,-2,-4" data-xlim="-6,2" data-ylim="-4,4" data-k="20" data-kmax="80" data-step="true" data-tend="14" data-yr="-0.6,5" data-loop="false" data-controls="k"></canvas>
+:::
+
+::: {.notes}
+Percorra os cinco trechos do slide anterior com o slider (ou clicando no lugar). Pergunta: por que o ramo da esquerda (que sai de −4) não importa para o transitório? Porque é rápido: fica cada vez mais à esquerda.
+:::
+
+# A regra de ouro: o ângulo
+
+- De onde vem
+- Vetores
+- Teste de um ponto
+
+## De onde vem o LGR
+
+::: {.eqx .deriv style="--deriv-lhs: 260px; --deriv-rhs: 480px;"}
+::: {.step}
+[$P(s_0) = 0$]{.lhs} [$\iff 1 + K\,G(s_0) = 0$]{.rhs} [$s_0$ é polo de $H(s)$]{.why}
+:::
+::: {.step .fragment}
+[$K\,G(s_0)$]{.lhs} [$= -1$]{.rhs} [um número real **negativo**]{.why}
+:::
+:::
+
+::: {.callout-important .fragment title="Condição de ângulo: decide quem está no LGR"}
+[$\angle G(s_0) = \pm 180°$]{.t-a} (a menos de voltas inteiras). **Não depende de $K$.**
+:::
+
+::: {.callout-tip .fragment title="Condição de módulo: dá o ganho naquele ponto"}
+[$K = 1/|G(s_0)|$]{.t-b}. Usada só depois, num ponto que já está no LGR.
+:::
+
+::: {.notes}
+−1 tem módulo 1 e ângulo 180°. Como K > 0 só "estica", o ângulo de K·G é o de G. Essa é a ideia central: o ganho não muda ângulos.
+:::
+
+## Ângulos com régua e transferidor
+
+:::: {.columns}
+::: {.column width="55%"}
+Cada fator de $G(s)$ é um **vetor** até o ponto de teste $s$:
+
+- de cada **zero** até $s$: ângulo [$\varphi_i$]{.t-a}, comprimento $\ell_i$
+- de cada **polo** até $s$: ângulo [$\theta_j$]{.t-b}, comprimento $d_j$
+
+::: {.eqx}
+$$
+\angle G(s) = \sum \eq{a}{\varphi_i} - \sum \eq{b}{\theta_j}
+\qquad
+K = \frac{\prod d_j}{\prod \ell_i}
+$$
+:::
+:::
+::: {.column width="45%"}
+::: {.callout-insight title="Leitura"}
+Zeros **somam** ângulo, polos **subtraem**. Um ponto está no LGR quando as contribuições "fecham" em $180°$.
+:::
+:::
+::::
+
+::: {.takeaway .fragment}
+Todas as regras de esboço são atalhos para não ter de medir esses ângulos ponto a ponto.
+:::
+
+## Teste de ponto ao vivo
+
+::: {style="height: 700px"}
+<canvas class="nova-canvas" data-nova-anim="lgr-angulo" data-poles="0,-2,-4" data-xlim="-6,1.5" data-ylim="-3.6,3.6" data-s="-1.5:2"></canvas>
+:::
+
+::: {.notes}
+Peça à turma para "caçar" pontos do LGR arrastando s: o eixo real entre 0 e −2, abaixo de −4, e a curva que sobe passando por j2,83 (K = 48, o ganho crítico de Routh). Ponto sobre o eixo real entre −2 e −4: a soma dá 0° ou 360°, nunca 180°.
+:::
+
+# Regras de esboço
+
+- Começo e fim
+- Eixo real
+- Assíntotas
+- Separação e partida
+- Eixo $j\omega$
+- Esboço guiado
+
+## Onde os ramos começam e terminam
+
+:::: {.columns}
+::: {.column width="50%"}
+#### $K$ pequeno
+
+$P(s) = D(s) + K\,N(s) \approx D(s)$
+
+Os ramos **nascem** nos [**polos** de malha aberta]{.t-a} ✕
+:::
+::: {.column width="50%"}
+#### $K$ grande
+
+$P(s)/K = D(s)/K + N(s) \approx N(s)$
+
+Os ramos **terminam** nos [**zeros** de malha aberta]{.t-b} ○
+:::
+::::
+
+::: {.callout-note .fragment title="Contagem"}
+- $n$ polos $\Rightarrow$ $n$ **ramos**, um para cada polo de malha fechada
+- só há $m$ zeros: os $n - m$ ramos que "sobram" vão para o **infinito**
+- o LGR é **simétrico** em relação ao eixo real (polos complexos vêm em pares)
+:::
+
+::: {.takeaway .fragment}
+Imagem útil: polos **repelem** os ramos, zeros os **atraem**.
+:::
+
+## Eixo real: contar para a direita
+
+::: {.callout-important title="Regra"}
+Um trecho do eixo real pertence ao LGR se tem um número **ímpar** de polos + zeros reais **à sua direita**.
+:::
+
+:::: {.columns .fragment}
+::: {.column width="50%"}
+**Por quê?** Para um ponto do eixo real:
+
+- polo/zero real à **esquerda**: vetor aponta para a direita, ângulo $0°$
+- polo/zero real à **direita**: vetor aponta para a esquerda, $180°$
+- par complexo: ângulos $+\theta$ e $-\theta$ se **cancelam**
+:::
+::: {.column width="50%"}
+**Na prática:** comece pelo polo ou zero real mais à direita e pinte trechos **alternados** para a esquerda.
+
+[Confira no teste de ponto: entre $-2$ e $-4$ a soma nunca dá $180°$.]{.muted}
+:::
+::::
+
+## Assíntotas: para onde vão os ramos sem destino
+
+:::: {.columns}
+::: {.column width="50%"}
+Os $n - m$ ramos que vão ao infinito se **espalham igualmente**, a partir de um centro no eixo real:
+
+::: {.eqx}
+$$
+\begin{aligned}
+\eq{a}{\theta_a} &= \eq{a}{\frac{180° + k\cdot 360°}{n - m}}\\[6pt]
+\eq{b}{\sigma_a} &= \eq{b}{\frac{\Sigma\,\text{polos} - \Sigma\,\text{zeros}}{n - m}}
+\end{aligned}
+$$
+:::
+
+[$\sigma_a$ é um "centro de massa": polos pesam $+1$, zeros $-1$.]{.muted}
+:::
+::: {.column width="50%"}
+| $n-m$ | ângulos | forma |
+|:--:|:--|:--|
+| 1 | $180°$ | para a esquerda |
+| 2 | $\pm 90°$ | reta vertical |
+| 3 | $\pm 60°,\ 180°$ | "tridente" |
+| 4 | $\pm 45°,\ \pm 135°$ | "X" |
+
+: {tbl-colwidths="[18,42,40]"}
+:::
+::::
+
+::: {.takeaway .fragment}
+Com $n - m \geq 3$ há assíntotas a menos de $90°$: com ganho alto, **algum ramo cruza para a direita**.
+:::
+
+## Separação, chegada e partida
+
+:::: {.columns}
+::: {.column width="50%"}
+#### No eixo real
+
+- Entre **dois polos** ligados por um trecho do LGR, os ramos se aproximam, **colidem** e saem do eixo (separação)
+- Entre **dois zeros**, chegam de fora e se separam no eixo (chegada)
+- Saem e chegam **perpendiculares** ao eixo
+
+[Valor exato: raiz de $dK/ds = 0$, com $K(s) = -D(s)/N(s)$; na prática, MATLAB.]{.muted .smaller}
+:::
+::: {.column width="50%"}
+#### Polos complexos
+
+O ramo **parte** do polo numa direção que fecha a condição de ângulo: os outros polos e zeros "empurram" o ramo.
+
+$$\theta_{\text{partida}} = 180° - \sum \theta_{\text{outros polos}} + \sum \varphi_{\text{zeros}}$$
+
+[Ângulos medidos **no polo** que se quer analisar.]{.muted .smaller}
+:::
+::::
+
+## Partida de um polo complexo, vista de perto
+
+::: {style="height: 700px"}
+<canvas class="nova-canvas" data-nova-anim="lgr-angulo" data-poles="0,-1:1" data-xlim="-2.2,0.6" data-ylim="-0.3,2.2" data-s="-0.85:0.85" data-locus="true"></canvas>
+:::
+
+::: {.notes}
+G(s) = 1/(s(s²+2s+2)). Ponto de teste perto de −1 + j: arraste-o ao redor do polo e mostre que só a direção −45° fecha os 180° (180° − 135° − 90° = −45°). A curva esmaecida sai para a direita e para baixo e depois sobe rumo ao eixo jω.
+:::
+
+## Cruzamento do eixo $j\omega$
+
+::: {.lead}
+Onde o LGR cruza o eixo $j\omega$ está a **fronteira de estabilidade**: é o ganho crítico de **Routh** (Aula 7).
+:::
+
+:::: {.columns .fragment}
+::: {.column width="50%"}
+No exemplo $G(s) = \dfrac{1}{s(s+2)(s+4)}$:
+
+$P(s) = s^3 + 6s^2 + 8s + K$
+
+Routh: estável para $0 < K < 48$
+:::
+::: {.column width="50%"}
+Em $K = 48$, o polinômio auxiliar $6s^2 + 48 = 0$ dá
+
+$s = \pm j\sqrt8 \approx \pm j2{,}83$
+
+o ponto onde o ramo cruza o eixo.
+:::
+::::
+
+::: {.takeaway .fragment}
+O LGR mostra **como** o sistema chega à instabilidade; Routh diz **exatamente onde**.
+:::
+
+## Esboço guiado
+
+::: {style="height: 700px"}
+<canvas class="nova-canvas" data-nova-anim="lgr-esboco" data-poles="0,-2,-4" data-xlim="-7,2" data-ylim="-4,4" data-kmax="200"></canvas>
+:::
+
+::: {.notes}
+Os seis passos aparecem um a um (R reinicia). Faça cada passo no quadro antes de a animação mostrá-lo. Depois repita com o exemplo de polos complexos do próximo slide.
+:::
+
+## Esboço guiado: polos complexos
+
+::: {style="height: 700px"}
+<canvas class="nova-canvas" data-nova-anim="lgr-esboco" data-poles="0,-1:1" data-xlim="-3.5,1.5" data-ylim="-2.6,2.6" data-kmax="30"></canvas>
+:::
+
+::: {.notes}
+G(s) = 1/(s(s²+2s+2)): não há separação (discriminante de dK/ds negativo); o passo 4 é a partida a −45°. Cruzamento em ±j1,41 com K = 4.
+:::
+
+## Roteiro de esboço
+
+| Passo | O que fazer | Ideia |
+|:--:|:--|:--|
+| 1 | Marcar polos ✕ e zeros ○ de $G(s)$ | começo ($K=0$) e fim ($K\to\infty$) |
+| 2 | Pintar o eixo real | nº **ímpar** à direita |
+| 3 | Traçar as $n-m$ assíntotas a partir de $\sigma_a$ | ramos sem destino se espalham |
+| 4 | Separação/chegada no eixo; partida de polos complexos | ramos colidem; ângulo fecha $180°$ |
+| 5 | Cruzamento de $j\omega$ | Routh |
+| 6 | Ligar os pedaços com curvas suaves e simétricas | continuidade |
+
+: {tbl-colwidths="[10,52,38]"}
+
+::: {.takeaway .fragment}
+O esboço não precisa ser exato: precisa acertar a **forma** e responder "estável para todo $K$?" e "quando oscila?".
+:::
+
+# Catálogo de formas
+
+- Um polo
+- Dois polos
+- Dois polos e um zero
+- Três polos
+- Polos complexos
+- Três polos e um zero
+
+## Um polo: $\;G(s) = \dfrac{1}{s+2}$
+
+[Um ramo, que sai do polo e corre para $-\infty$ pelo eixo real: sempre estável, cada vez mais rápido, nunca oscila.]{.muted}
+
+::: {style="height: 560px"}
+<canvas class="nova-canvas" data-nova-anim="lgr" data-poles="-2" data-xlim="-8,1.5" data-ylim="-3,3" data-k="2" data-kmax="10" data-tend="4" data-step="true" data-loop="false" data-controls="k"></canvas>
+:::
+
+::: {.notes}
+Erro em regime cai com K (1/(1+K/2)), mas nunca zera: o valor final fica abaixo de 1. Gancho para tipo do sistema (Aula 6).
+:::
+
+## Dois polos: $\;G(s) = \dfrac{1}{(s+1)(s+3)}$
+
+[Os ramos colidem no meio ($-2$) e sobem pela vertical: estável para todo $K$; acima de $K = 1$ oscila, sempre com a mesma envoltória.]{.muted}
+
+::: {style="height: 560px"}
+<canvas class="nova-canvas" data-nova-anim="lgr" data-poles="-1,-3" data-xlim="-5,1.5" data-ylim="-4,4" data-k="3" data-kmax="20" data-tend="6" data-step="true" data-loop="false" data-controls="k"></canvas>
+:::
+
+::: {.notes}
+Mesma lição do slide de motivação: o ganho muda a oscilação (ω_d), não o tempo de acomodação (σ = −2 fixo). Exercício 1: ζ = 0,707 em K = 5.
+:::
+
+## Dois polos e um zero: $\;G(s) = \dfrac{s+3}{s(s+1)}$
+
+[Os ramos saem do eixo, contornam o zero num **círculo** e voltam ao eixo: só oscila numa faixa de $K$ ($0{,}10 < K < 9{,}9$).]{.muted}
+
+::: {style="height: 560px"}
+<canvas class="nova-canvas" data-nova-anim="lgr" data-poles="0,-1" data-zeros="-3" data-xlim="-7.5,1.5" data-ylim="-3.2,3.2" data-k="5" data-kmax="15" data-tend="8" data-step="true" data-loop="false" data-controls="k"></canvas>
+:::
+
+::: {.notes}
+Círculo de centro no zero (−3) e raio √6. K grande: um polo vai ao zero (−3) e o outro a −∞; resposta rápida e sem oscilação. Compare com 1/(s(s+1)) sem o zero.
+:::
+
+## Três polos: $\;G(s) = \dfrac{1}{s(s+2)(s+4)}$
+
+[O "tridente": duas assíntotas a $\pm 60°$ cruzam o eixo $j\omega$. Ganho alto **desestabiliza** ($K > 48$).]{.muted}
+
+::: {style="height: 560px"}
+<canvas class="nova-canvas" data-nova-anim="lgr" data-poles="0,-2,-4" data-xlim="-7,2" data-ylim="-4,4" data-k="20" data-kmax="80" data-tend="14" data-yr="-0.6,2.6" data-step="true" data-loop="false" data-controls="k"></canvas>
+:::
+
+::: {.notes}
+É o exemplo da história de K. Regra geral: n − m ≥ 3 sempre cruza para a direita com ganho alto.
+:::
+
+## Polos complexos: $\;G(s) = \dfrac{1}{s(s^2+2s+2)}$
+
+[Os ramos **partem** dos polos complexos a $-45°$ e se curvam para o eixo $j\omega$: instável a partir de $K = 4$.]{.muted}
+
+::: {style="height: 560px"}
+<canvas class="nova-canvas" data-nova-anim="lgr" data-poles="0,-1:1" data-xlim="-3.5,1.5" data-ylim="-2.6,2.6" data-k="2" data-kmax="8" data-tend="20" data-yr="-0.6,2.6" data-step="true" data-loop="false" data-controls="k"></canvas>
+:::
+
+::: {.notes}
+Não há separação no eixo real. O polo da origem segue pelo eixo real para a esquerda; o par complexo é que domina e desestabiliza.
+:::
+
+## Três polos e um zero: $\;G(s) = \dfrac{s+1}{s(s+2)(s+4)}$
+
+[O zero "captura" um ramo e troca o tridente por duas verticais em $\sigma_a = -2{,}5$: **estável para todo $K$**.]{.muted}
+
+::: {style="height: 560px"}
+<canvas class="nova-canvas" data-nova-anim="lgr" data-poles="0,-2,-4" data-zeros="-1" data-xlim="-6,2" data-ylim="-4.5,4.5" data-k="20" data-kmax="80" data-tend="8" data-step="true" data-loop="false" data-controls="k"></canvas>
+:::
+
+::: {.notes}
+Compare com a forma de três polos: um único zero bem posicionado elimina a instabilidade. É a ideia do controlador PD / avanço de fase.
+:::
+
+## Verificação
+
+::: {.quiz answer="c"}
+Para $G(s) = \dfrac{1}{(s+1)(s+2)(s+3)(s+4)}$, os ramos que vão ao infinito seguem assíntotas:
+
+- a $\pm 90°$, centradas em $-2{,}5$
+- a $\pm 60°$ e $180°$, centradas em $-2{,}5$
+- a $\pm 45°$ e $\pm 135°$, centradas em $-2{,}5$
+- a $\pm 45°$ e $\pm 135°$, centradas na origem
+:::
+
+# Projeto pelo LGR
+
+- Especificações no plano $s$
+- Projeto ao vivo
+- Limites do ganho
+
+## Especificações viram regiões do plano $s$
+
+:::: {.columns}
+::: {.column width="50%"}
+- [$M_p$ máximo]{.t-a} $\Rightarrow$ $\zeta$ mínimo $\Rightarrow$ polos dentro de um **setor** em torno do eixo real negativo (ângulo $\arccos\zeta$)
+- [$t_s$ máximo]{.t-b} $\Rightarrow$ $\sigma$ mínimo $\Rightarrow$ polos à **esquerda** da reta $\operatorname{Re}(s) = -4/t_s$
+:::
+::: {.column width="50%"}
+::: {.callout-tip title="Procedimento gráfico"}
+1. Desenhar a reta de $\zeta$ desejado
+2. Achar onde ela **corta** o LGR
+3. Ler o $K$ naquele ponto (condição de módulo, ou clique no MATLAB)
+4. Conferir se os outros polos estão **bem à esquerda** (dominância)
+:::
+:::
+::::
+
+## Projeto ao vivo: $\zeta = 0{,}5$
+
+::: {style="height: 680px"}
+<canvas class="nova-canvas" data-nova-anim="lgr" data-poles="0,-2,-4" data-xlim="-6,2" data-ylim="-3.5,3.5" data-k="8.3" data-kmax="60" data-zeta="0.5" data-step="true" data-tend="14" data-loop="false" data-controls="k"></canvas>
+:::
+
+::: {.notes}
+A reta ζ = 0,5 corta o ramo em −0,67 ± j1,15, com K ≈ 8,3. O terceiro polo (−4,67) está 7× mais longe: dominância ok. M_p ≈ 16 % (simulado 15,5 %), t_s ≈ 4/0,67 ≈ 6 s. No MATLAB: rlocus + sgrid(0.5, []) + clique.
+:::
+
+## Quando só o ganho não basta
+
+::: {.lead}
+No exemplo, o par dominante **nunca** fica à esquerda de $\operatorname{Re}(s) \approx -0{,}85$: nenhum $K$ dá $t_s < 4{,}7$ s.
+:::
+
+:::: {.columns .fragment}
+::: {.column width="50%"}
+::: {.callout-insight title="Mudar o lugar, não só o ponto"}
+Para mover o LGR é preciso **acrescentar polos e zeros** à malha aberta com um compensador $C(s)$: o lugar passa a ser o de $C(s)\,G(s)$.
+:::
+:::
+::: {.column width="50%"}
+- **Zero** (PD, avanço de fase): puxa o lugar para a esquerda $\Rightarrow$ mais rápido e mais amortecido
+- **Polo na origem** (PI): elimina erro em regime, mas empurra o lugar para a direita
+- Projeto completo na Aula 10 (PID)
+:::
+::::
+
+# Efeito de polos e zeros
+
+- Acrescentando um zero
+- Acrescentando um polo
+
+## Acrescentando um zero
+
+::: {style="height: 680px"}
+<canvas class="nova-canvas" data-nova-anim="lgr" data-poles="0,-2,-4" data-z="-3" data-xlim="-8,3" data-ylim="-4.5,4.5" data-k="20" data-kmax="80" data-loop="false" data-controls="k,z"></canvas>
+:::
+
+::: {.notes}
+Com K = 20, mova o zero de −1 a −8. Zero perto (entre 0 e −6): n − m = 2, as duas assíntotas verticais ficam no semiplano esquerdo e o sistema é estável para todo K. Zero longe (além de −6): o centro das assíntotas passa para a direita e o ganho alto volta a desestabilizar.
+:::
+
+## Acrescentando um polo
+
+::: {style="height: 680px"}
+<canvas class="nova-canvas" data-nova-anim="lgr" data-poles="0,-2" data-p="-4" data-xlim="-8,3" data-ylim="-4.5,4.5" data-k="20" data-kmax="80" data-loop="false" data-controls="k,p"></canvas>
+:::
+
+::: {.notes}
+Sem o polo extra, 1/(s(s+2)) é estável para todo K. Com ele, vira um tridente e cruza jω. Leve o polo de −9 a −1: longe, o ramo dominante quase não muda (K crítico alto); perto, os ramos são empurrados para a direita (K crítico cai). Polo extra = dinâmica não modelada de atuador ou sensor.
+:::
+
+## Polos empurram, zeros puxam
+
+:::: {.columns}
+::: {.column width="50%"}
+::: {.callout-important title="Zero acrescentado"}
+- uma assíntota a menos
+- centro $\sigma_a$ vai para a **esquerda** (se o zero não estiver longe demais)
+- lugar **puxado** para a esquerda: mais estável e mais rápido
+:::
+:::
+::: {.column width="50%"}
+::: {.callout-note title="Polo acrescentado"}
+- uma assíntota a mais (ângulos mais "abertos")
+- centro $\sigma_a$ vai para a **direita**
+- lugar **empurrado** para a direita: ganho crítico menor
+:::
+:::
+::::
+
+::: {.takeaway .fragment}
+Polo **longe** quase não muda o ramo dominante: é por isso que modelos simplificados funcionam, até o ganho ficar alto demais.
+:::
+
+# No laboratório
+
+## LGR no MATLAB
+
+:::: {.columns}
+::: {.column width="55%"}
+```matlab
+s = tf('s');
+G = 1/(s*(s+2)*(s+4));
+
+rlocus(G)            % traça o LGR
+sgrid(0.5, [])       % reta de zeta = 0,5
+
+[K, polos] = rlocfind(G)   % clique no lugar
+
+H = feedback(K*G, 1);      % malha fechada
+step(H)
+```
+:::
+::: {.column width="45%"}
+::: {.callout-tip title="Roteiro da prática"}
+1. Esboce à mão **antes** de rodar `rlocus`
+2. Compare: eixo real, assíntotas, cruzamento
+3. Escolha $K$ para $\zeta = 0{,}5$ e confira o degrau
+4. Acrescente um zero e um polo e explique o que mudou
+:::
+:::
+::::
+
+# Síntese
+
+## Resumo
+
+| Pergunta | Onde olhar no LGR |
+|:--|:--|
+| Onde começam e terminam os polos de $H(s)$? | polos ✕ ($K=0$) e zeros ○ ($K\to\infty$) de $G(s)$ |
+| Quais trechos do eixo real? | nº ímpar de polos + zeros à direita |
+| Para onde vão os ramos restantes? | assíntotas: $n-m$ direções igualmente espaçadas |
+| Quando começa a oscilar? | separação: ramos saem do eixo real |
+| Até que $K$ é estável? | cruzamento de $j\omega$ (Routh) |
+| Que $K$ atende $\zeta$? | interseção com a reta de $\zeta$, módulo |
+| Como mudar o lugar? | zeros puxam, polos empurram |
+
+: {tbl-colwidths="[45,55]"}
+
+[Leitura: @ogata2010, cap. 6; @nise2015, caps. 8–9; @dorf2018, cap. 7.]{.muted .smaller}
 
 ## Exercícios
 
-1. Para $G(s)H(s) = \dfrac{K}{(s+1)(s+3)}$, esboce o LGR: identifique polos, segmentos do eixo real, centroide e ângulos das assíntotas.
-2. Para $G(s)H(s) = \dfrac{K}{s(s+1)(s+2)(s+3)}$, determine o número de ramos, a posição do centroide e os ângulos das assíntotas.
-3. Repita o Exemplo 1 (LGR de $K/[s(s+2)(s+4)]$) calculando manualmente o ponto de quebra no eixo real, no intervalo $[-2,0]$.
-4. Para $G(s)H(s)=\dfrac{K(s+3)}{s(s+1)(s+5)}$ (Exemplo 2), monte o array de Routh da equação característica e determine a faixa de $K$ para estabilidade.
-5. Explique por que adicionar um zero ao ramo complexo do LGR tende a "puxar" os polos dominantes para a esquerda, tornando o sistema mais estável e mais rápido.
+Esboce o LGR (passos 1 a 6) e responda: estável para todo $K$? A partir de que trecho a resposta oscila?
 
----
+1. $G(s) = \dfrac{1}{(s+1)(s+3)}$. Que $K$ dá $\zeta = 0{,}707$?
+2. $G(s) = \dfrac{1}{s(s+1)(s+2)(s+3)}$
+3. $G(s) = \dfrac{s+2}{s(s+1)}$ (compare com a forma do círculo do catálogo)
+4. $G(s) = \dfrac{s+2}{s^2 + 2s + 5}$: para onde partem os polos complexos?
+5. $G(s) = \dfrac{1}{s(s+2)(s+4)}$ com um zero em $-1$ e depois em $-8$: o que muda?
+6. Confira todos os esboços no MATLAB com `rlocus`.
 
-## Referências
+## Referências {.nova-refs-slide .no-cites}
 
 ::: {#refs}
 :::
+
+<script src="anims/nova-anim.js"></script>
+<script src="anims/lgr.js"></script>
+
+{{< include _encerramento-nova.qmd >}}

@@ -17,6 +17,9 @@ Todas começam ao entrar no slide, pausam ao sair e reiniciam com a tecla **R**.
 | `malha-aberta`, `malha-fechada`, `formas-blocos` | `diagramas.js` | Diagramas de blocos montados por fragmentos: malha aberta; malha fechada com atuador, sensor, d e n; série/paralelo/realimentação → equivalentes | SC I: Aulas 1–2 | — (use `<script src="anims/diagramas.js">` após cada diagrama) |
 | `primeira-ordem` | `primeira-ordem.js` + `nova-anim.js` | 1ª ordem K/(τs+1) com eixos fixos e curva de referência: 63,2 %, tangente, faixa de 2 %, tₛ = 4τ, transitório × regime, tabela de %, polo | SC I: Aula 2 (1ª ordem) | `k`, `tau` |
 | `polo-resposta` | `polo-resposta.js` + `nova-anim.js` | Arraste o polo no eixo real do plano s; a resposta ao degrau muda na hora (histórico esmaecido; semiplano direito instável) | SC I: polos, estabilidade | `p` |
+| `lgr` | `lgr.js` + `nova-anim.js` | LGR traçado enquanto K cresce; polos de malha fechada no K do slider (ou clicando no lugar); assíntotas, reta de ζ, degrau em malha fechada; zero/polo extra móvel; `data-compact` = só o plano (galerias) | SC I: Aula 8 (LGR), projeto por LGR | `poles`, `zeros` (`re:im` = par conjugado), `k`, `kmax`, `xlim`, `ylim`, `zeta`, `step`, `tend`, `z`, `p`, `asym` |
+| `lgr-esboco` | `lgr.js` + `nova-anim.js` | Esboço guiado em 6 passos: polos/zeros, eixo real, assíntotas, separação/partida, cruzamento de jω, lugar | SC I: Aula 8, regras de esboço | `poles`, `zeros`, `xlim`, `ylim`, `kmax` |
+| `lgr-angulo` | `lgr.js` + `nova-anim.js` | Arraste um ponto de teste s: vetores de polos e zeros, ângulos, ∠L(s) e K pela condição de módulo | SC I: condições de ângulo e de módulo, ângulo de partida | `poles`, `zeros`, `s`, `xlim`, `ylim`, `locus` |
 | vídeo RLS | `rls.mp4` (de `scripts/anim_rls.py`) | Identificação recursiva: y × ŷ e convergência de â, b̂ | Identificação de sistemas | — |
 
 Todas as animações com `nova-anim.js` aceitam **sliders ao vivo**:
