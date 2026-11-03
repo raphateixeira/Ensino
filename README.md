@@ -13,6 +13,7 @@ Reúne, desde 2026-10-25, os antigos repositórios de cada disciplina, cada um n
 | `AlgebraLinear/` | Álgebra Linear |
 | `ControleEstados/` | Sistemas de Controle II — Espaço de Estados |
 | `DeepLearning/` | Aprendizagem de Máquina (PPCA) |
+| `modelos/PlanoEnsino/` | Template LaTeX do Plano de Ensino (UFPA/FEE), ex-repositório `Plano-de-Ensino`; não é renderizado no site |
 
 - Uma só página índice (`index.qmd`), com uma seção por disciplina e um cartão por aula. Aula nova:
   acrescentar o arquivo à pasta (já coberta pelo `project.render` do `_quarto.yml`) e o cartão na seção.
