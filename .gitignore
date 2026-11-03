@@ -13,8 +13,11 @@ CircuitosCA/Gabaritos/
 ControleClassico/Resultados/
 
 # Livros-texto e material de terceiros (direitos autorais) — uso local apenas
-CircuitosCA/LivrosCircuitos/pdfs/
-ControleClassico/LivrosControle/pdfs/
+# Regra geral: qualquer pasta Livros*/ (ex.: LivrosAL/, LivrosControle/, LivrosCircuitos/)
+**/Livros*/
+CircuitosCA/LivrosCircuitos/
+ControleClassico/LivrosControle/
+AlgebraLinear/LivrosAL/
 DeepLearning/Livros/
 MetodosNumericos/Prompts/
 MetodosNumericos/Material/
