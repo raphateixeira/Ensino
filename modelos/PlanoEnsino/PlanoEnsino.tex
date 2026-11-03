@@ -1,0 +1,262 @@
+%
+% MODELO DE PLANO DE ENSINO — FACULDADE DE ENGENHARIA ELÉTRICA (FEE)
+% Campus Universitário de Tucuruí — Universidade Federal do Pará (UFPA)
+%
+% Este modelo de Plano de Ensino foi preparado pelo docente
+% André Felipe Souza da Cruz, no âmbito da Faculdade de Engenharia Elétrica,
+% para padronização e apoio à elaboração dos Planos de Ensino das Atividades
+% Curriculares, em conformidade com a legislação e as normas institucionais da UFPA.
+%
+% -------------------------------------------------------------------------
+% CRÉDITOS
+%
+% Este template é uma adaptação do modelo originalmente disponibilizado por
+% Rodrigo Cavalcante, disponível em:
+% https://www.overleaf.com/articles/plano-de-aula/chhjxtdqjsqk
+%
+% A presente versão mantém os créditos ao autor original, incorporando
+% adaptações estruturais, organizacionais e normativas voltadas ao uso
+% institucional pela Faculdade de Engenharia Elétrica da UFPA.
+%
+% -------------------------------------------------------------------------
+% ORGANIZAÇÃO DO PROJETO
+%
+% Este arquivo (PlanoEnsino.tex) concentra o cabeçalho, a identificação da
+% disciplina, a tabela de informações gerais, o texto (objetivos,
+% competências, conteúdo programático, metodologia, avaliação), a
+% programação semestral e os anexos.
+%
+% A bibliografia deve ser inserida no arquivo referencias.bib, utilizando
+% os comandos do pacote biblatex-abnt, adotado para adequação às normas da ABNT.
+%
+% Os pacotes utilizados neste modelo estão organizados no arquivo Package.tex.
+%
+% -------------------------------------------------------------------------
+% OBSERVAÇÕES IMPORTANTES
+% - Caso o documento seja utilizado como Plano de ENSINO (e não Plano de Aula),
+% alterar o termo correspondente logo abaixo.
+% - Para habilitar a seção "Programação Semestral", que contém a tabela com o
+% detalhamento do conteúdo por aula, remover o símbolo "%" da linha que
+% inclui essa seção, mais abaixo neste arquivo.
+%
+% -------------------------------------------------------------------------
+
+\documentclass[oneside,a4paper,12pt]{article}
+\input{Package.tex}
+% Definições-----------------------------------------------------------
+\newcommand{\plano}{Ensino}%Ensino ou Aula
+\newcommand{\universidade}{Universidade Federal do Pará \par Campus Universitário de Tucuruí }
+\newcommand{\departamento}{Faculdade de Engenharia Elétrica}
+
+% ===== Dados da Disciplina =====
+\newcommand{\professor}{Nome do(a) docente responsável}
+\newcommand{\email}{email@ufpa.br}
+\newcommand{\curso}{Nome do Curso}
+\newcommand{\disciplina}{Nome da Disciplina}
+\newcommand{\carater}{Obrigatória ou Optativa}
+\newcommand{\cargahoraria}{Carga horária total}
+\newcommand{\regime}{Regime de oferta}
+\newcommand{\periodo}{Período de oferta}
+\newcommand{\prerequisito}{Pré-requisito(s), se houver}
+\newcommand{\periodoletivo}{Ano.Período}
+
+% ---------------------------------------------------------------------
+\begin{document}
+  \pagestyle{empty}
+% Cabeçalho--------------------------------------------------------------
+\begin{center}
+    \includegraphics[width=2.5cm]{Figuras/UFPA.png}
+
+    \vspace{8pt}
+
+    \universidade
+    \par
+    \departamento
+    \par
+
+    \vspace{16pt}
+
+    \LARGE \textbf{Plano de \plano}
+\end{center}
+
+%\vspace{6pt}
+%TABELA----------------------------------------------------------------
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+
+\begin{tabular}{|p{0.48\textwidth}|p{0.48\textwidth}|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Dados de Identificação}} \\
+\hline
+\textbf{Professor:} Nome do(a) docente responsável &
+\textbf{E-mail:} email@instituicao.br \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Curso:} Nome do Curso} \\
+\hline
+\textbf{Disciplina:} Código - Nome da Disciplina &
+\textbf{Caráter:} Obrigatória ou Optativa \\
+\hline
+\textbf{Carga horária:} XXh &
+\textbf{Regime:} Regime de oferta \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Período de oferta:} dd/mm/aaaa à dd/mm/aaaa} \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Pré-requisito:} Informar pré-requisito(s), se houver} \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Período letivo:} Ano.Período} \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{3mm}
+%Texto-----------------------------------------------------------------
+  \begin{snugshade}
+  \section{Ementa}
+  \end{snugshade}
+
+  Escreva aqui a ementa da disciplina conforme descrito no Projeto Pedagótico de Curso de Engenharia Elétrica, aprovado em 2012. Alterações da ementa devem ser comunicados à direção da FEE para apreciação do colegiado.
+
+  \begin{snugshade}
+  \section{Objetivos}
+\end{snugshade}
+
+O objetivo da disciplina é proporcionar ao discente a compreensão dos conceitos fundamentais da área abordada, bem como o desenvolvimento de habilidades para análise, interpretação e resolução de problemas teóricos e práticos. Especificamente, busca-se que o discente seja capaz de aplicar métodos e técnicas pertinentes à área, interpretar resultados em diferentes contextos, estabelecer relações entre teoria e prática e desenvolver raciocínio lógico, pensamento crítico e autonomia no processo de aprendizagem.
+
+\begin{snugshade}
+  \section{Competências e Habilidades}
+\end{snugshade}
+
+\begin{itemize}
+
+    \item Compreender e aplicar os conceitos fundamentais da área abordada na disciplina. Relacionar competências a serem desenvolvidas conforme seção 3.4 Competências e Habilidades, página 13, do PPC de Engenharia Elétrica de 2012.
+
+    \item Analisar e interpretar problemas teóricos e práticos, estabelecendo relações com aplicações na Engenharia.
+
+    \item Utilizar métodos e técnicas adequados para modelagem e resolução de problemas.
+
+    \item Desenvolver raciocínio lógico, pensamento crítico e rigor na análise de resultados.
+
+\end{itemize}
+
+Ao final da disciplina, espera-se que o discente seja capaz de aplicar os conceitos estudados na análise e resolução de problemas, interpretar resultados obtidos em diferentes contextos e utilizar ferramentas e métodos adequados à área. Espera-se, ainda, que o discente demonstre autonomia na aprendizagem, capacidade de modelagem e habilidade de relacionar os conteúdos teóricos com aplicações práticas em Engenharia.
+
+
+  \begin{snugshade}
+  \section{Conteúdo programático} % conteúdos programados para a aula organizados em tópicos (de 4 a 8).
+  \end{snugshade}
+
+  O conteúdo programático deve ser elaborado em conformidade com a ementa da disciplina prevista no PPC do curso, assegurando coerência entre os tópicos abordados, os objetivos de aprendizagem e a carga horária disponível.
+
+  Recomenda-se que os conteúdos sejam organizados em unidades temáticas, apresentadas em sequência lógica e progressiva.
+
+  Cada unidade deve possuir título e descrição sucinta dos conteúdos a serem desenvolvidos ao longo do período letivo.
+
+
+
+  \begin{snugshade}
+  \section{Procedimentos metodológicos} % estratégias relevantes adotadas para alcançar os objetivos.
+  \end{snugshade}
+
+A metodologia de ensino deve apresentar, de forma sucinta, as estratégias pedagógicas e os recursos didáticos utilizados no desenvolvimento da disciplina, tais como aulas expositivas e dialogadas, resolução de exercícios, seminários, estudos de caso e atividades individuais ou em grupo. Recomenda-se também indicar os ambientes de realização das atividades, como sala de aula, laboratório de informática ou laboratório prático, bem como o uso de recursos e plataformas digitais de apoio ao ensino.
+
+
+  \begin{snugshade}
+  \section{Recursos didáticos} % quadro, giz, retro-projetor, filme, música, quadrinhos, etc.
+  \end{snugshade}
+  Exemplos:
+    \begin{itemize}
+	  \item apoio de recursos audiovisuais (data-show e filmes).
+	  \item laboratório de informática ou= laboratório multidisciplinar.
+	  \item Google Sala de Aula (Classroom)
+    \end{itemize}
+  %\newpage
+  \begin{snugshade}
+\section{Avaliação}
+\end{snugshade}
+
+A avaliação da aprendizagem será realizada de forma contínua e processual, por meio de instrumentos diversificados, tais como provas escritas, trabalhos individuais ou em grupo, listas de exercícios, seminários, atividades práticas e/ou outras estratégias definidas pelo docente, de acordo com a natureza da disciplina.
+
+A composição da nota final (NF) será estabelecida a partir da média ponderada ou aritmética das avaliações aplicadas ao longo do período letivo, conforme critérios previamente apresentados.
+
+\begin{center}
+$\mathrm{NF} = \dfrac{A_1 + A_2 + \cdots + A_n}{n}$
+\end{center}
+
+ou, quando aplicável,
+
+\begin{center}
+$\mathrm{NF} = \sum_{i=1}^{n} w_i \cdot A_i$
+\end{center}
+
+em que $A_i$ representa as avaliações realizadas e $w_i$ seus respectivos pesos.
+
+Será considerado aprovado o discente que obtiver frequência mínima de 75\% da carga horária da disciplina e nota final igual ou superior ao mínimo estabelecido pelas normas institucionais vigentes.
+
+Os critérios de avaliação, instrumentos utilizados, pesos atribuídos e cronograma das atividades avaliativas serão apresentados no início do período letivo, podendo ser ajustados, quando necessário, por motivos pedagógicos, mediante comunicação prévia aos discentes.
+
+As atividades avaliativas previstas no plano de ensino, tais como trabalhos individuais ou em grupo, seminários, listas de exercícios, estudos de caso, apresentações e demais instrumentos de acompanhamento da aprendizagem, poderão ser realizadas ao longo do período letivo, conforme cronograma estabelecido pelo docente.
+
+Entretanto, as avaliações na modalidade de prova escrita deverão limitar-se a, no máximo, duas aplicações durante o período acadêmico, devendo ocorrer nas semanas de provas definidas no calendário acadêmico, em conformidade com deliberação aprovada pelo Colegiado da Faculdade de Engenharia Elétrica.%\newpage
+% Referências bibliográficas-------------------------------------------
+% Programação Semestral (descomente o bloco abaixo para habilitar)-------
+%
+%  \begin{snugshade}
+%  \section*{Programação Semestral} %
+%  \end{snugshade}
+%
+%	\begin{tabular}{ |c|c|p{13cm}| }
+%	  \hline
+%	  \textbf{Aula}& \textbf{Data}  &  \multicolumn{1}{|c|}{\textbf{Conteúdo}} \\
+%	  \hline
+%	   01 & 01/01 & Apresentação da disciplina e diretrizes do curso \\
+%	  \hline
+%	   02 & 01/01 &           \\
+%	  \hline
+%	   03 & 01/01 &           \\
+%	  \hline
+%	   04 & 01/01 &           \\
+%	  \hline
+%	   05 & 01/01 &           \\
+%	  \hline
+%	   06 & 01/01 &           \\
+%	  \hline
+%	   07 & 01/01 & Prova Bimestral \\
+%	  \hline
+%	   08 & 01/01 & Prova Substitutiva \\
+%	  \hline
+%	   09 & 01/01 &           \\
+%	  \hline
+%	   10 & 01/01 &           \\
+%	  \hline
+%	   11 & 01/01 &           \\
+%	  \hline
+%	   12 & 01/01 &           \\
+%	  \hline
+%	   13 & 01/01 & Encerramento do conteúdo e revisão de tópicos da disciplina \\
+%	  \hline
+%	   14 & 01/01 & Prova Final \\
+%	  \hline
+%	   15 & 01/01 & Prova de Recuperação \\
+%      \hline
+%
+%	\end{tabular}
+%\vspace{3mm}
+% Referências bibliográficas-------------------------------------------
+\vspace{10pt}
+\nocite{*}
+\nocite{*}
+
+\printbibliography[keyword=basica, title={Bibliografia Básica}]
+
+\printbibliography[keyword=complementar, title={Bibliografia Complementar}]
+%\newpage
+% Anexos (descomente para habilitar)------------------------------------
+%\begin{snugshade}
+%\section*{Anexo I} %
+%\end{snugshade}
+%
+%\begin{figure}[h]
+%\includegraphics[width=15cm]{Figuras/Universe.png}
+%%\centering\caption{There's a map of concepts above.}
+%\end{figure}
+\end{document}
