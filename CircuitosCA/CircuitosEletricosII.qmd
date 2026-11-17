@@ -1,0 +1,65 @@
+---
+title: "Circuitos Elétricos II"
+pagetitle: "Circuitos Elétricos II"
+title-block-style: none
+toc: false
+---
+
+<!-- Página principal da disciplina, ligada ao cartão em ../index.qmd. Ao criar uma aula,
+     acrescente o cartão aqui (links .html: o Quarto não converte .qmd dentro de HTML bruto). -->
+<style>#title-block-header { display: none; }</style>
+
+::: {.rtx-hero}
+[Graduação em Engenharia Elétrica · 2026.4]{.rtx-eyebrow}
+
+# Circuitos Elétricos II {.unnumbered .unlisted}
+
+Análise de circuitos em regime permanente senoidal (CA):
+senoides, fasores, impedância e potência. [Plano de ensino](PlanoEnsino/PlanoEnsino.pdf),
+conforme a [Resolução 002/2026 – FEE/CAMTUC](https://drive.google.com/file/d/1JtjL9buTB5QWKTA2logcqEF6UDcoIAck/view).
+
+[Prof. Dr. Raphael Teixeira]{.rtx-meta}
+
+::: {.rtx-acoes}
+[← Todas as disciplinas](../index.html){.rtx-btn}
+:::
+:::
+
+## Aulas
+
+```{=html}
+<div class="categoria-grid">
+<a class="categoria-card" href="Notas/Aula00PlanoEnsino.html">
+  <h3>Aula 0</h3>
+  <p>Plano de ensino</p>
+</a>
+<a class="categoria-card" href="Notas/Aula01Senoides.html">
+  <h3>Aula 1</h3>
+  <p>Senoides e fasores</p>
+</a>
+<a class="categoria-card" href="Notas/Aula02Impedancia.html">
+  <h3>Aula 2</h3>
+  <p>Impedância</p>
+</a>
+<a class="categoria-card" href="Notas/Aula03LeisCircuitais.html">
+  <h3>Aula 3</h3>
+  <p>Leis circuitais e métodos de análise</p>
+</a>
+<a class="categoria-card" href="Notas/Aula04Teoremas.html">
+  <h3>Aula 4</h3>
+  <p>Teoremas de circuitos em CA</p>
+</a>
+<a class="categoria-card" href="Notas/Aula05Potencia.html">
+  <h3>Aula 5</h3>
+  <p>Potência em CA</p>
+</a>
+<a class="categoria-card" href="Notas/Aula06Trifasico.html">
+  <h3>Aula 6</h3>
+  <p>Circuitos trifásicos</p>
+</a>
+<a class="categoria-card categoria-card--verde" href="Listas/ListaExercicios01.html">
+  <h3>Lista de exercícios 1</h3>
+  <p>Capítulo 9 (em edição)</p>
+</a>
+</div>
+```

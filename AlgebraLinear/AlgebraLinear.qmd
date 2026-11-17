@@ -1,0 +1,172 @@
+---
+title: "Álgebra Linear"
+pagetitle: "Álgebra Linear"
+title-block-style: none
+toc: false
+---
+
+<!-- Página principal da disciplina, ligada ao cartão em ../index.qmd. Ao criar uma aula,
+     acrescente o cartão aqui (links .html: o Quarto não converte .qmd dentro de HTML bruto). -->
+<style>#title-block-header { display: none; }</style>
+
+::: {.rtx-hero}
+[Graduação em Engenharia Elétrica]{.rtx-eyebrow}
+
+# Álgebra Linear {.unnumbered .unlisted}
+
+Sistemas lineares e matrizes, espaços vetoriais, transformações
+lineares, autovalores e produto interno.
+
+[Prof. Dr. Raphael Teixeira]{.rtx-meta}
+
+::: {.rtx-acoes}
+[← Todas as disciplinas](../index.html){.rtx-btn}
+:::
+:::
+
+## Aulas
+
+```{=html}
+<div class="categoria-grid">
+<a class="categoria-card" href="Notas/AL00PlanoEnsinoAlgebraLinear.html">
+  <h3>Aula 0</h3>
+  <p>Plano de ensino</p>
+</a>
+</div>
+```
+
+## Bloco 1 — Sistemas lineares e matrizes
+
+```{=html}
+<div class="categoria-grid">
+<a class="categoria-card" href="Notas/AL01SistemasEquacoes.html">
+  <h3>Aula 1</h3>
+  <p>Sistemas de equações lineares e interpretação geométrica</p>
+</a>
+<a class="categoria-card" href="Notas/AL02MatrizesOperacoes.html">
+  <h3>Aula 2</h3>
+  <p>Matrizes e operações</p>
+</a>
+<a class="categoria-card" href="Notas/AL03EliminacaoGauss.html">
+  <h3>Aula 3</h3>
+  <p>Eliminação de Gauss e forma escalonada</p>
+</a>
+<a class="categoria-card" href="Notas/AL04GaussJordanPosto.html">
+  <h3>Aula 4</h3>
+  <p>Gauss-Jordan, sistemas homogêneos e posto</p>
+</a>
+<a class="categoria-card" href="Notas/AL05MatrizInversa.html">
+  <h3>Aula 5</h3>
+  <p>Matriz inversa</p>
+</a>
+<a class="categoria-card" href="Notas/AL06FatoracaoLU.html">
+  <h3>Aula 6</h3>
+  <p>Fatoração LU</p>
+</a>
+<a class="categoria-card" href="Notas/AL07Determinantes.html">
+  <h3>Aula 7</h3>
+  <p>Determinantes: cofatores e propriedades</p>
+</a>
+<a class="categoria-card" href="Notas/AL08CramerRevisao.html">
+  <h3>Aula 8</h3>
+  <p>Regra de Cramer, adjunta e revisão do bloco</p>
+</a>
+</div>
+```
+
+## Bloco 2 — Espaços vetoriais
+
+```{=html}
+<div class="categoria-grid">
+<a class="categoria-card" href="Notas/AL09EspacosVetoriais.html">
+  <h3>Aula 9</h3>
+  <p>Espaços vetoriais: axiomas e exemplos</p>
+</a>
+<a class="categoria-card" href="Notas/AL10SubespacosVetoriais.html">
+  <h3>Aula 10</h3>
+  <p>Subespaços vetoriais</p>
+</a>
+<a class="categoria-card" href="Notas/AL11CombinacaoLinearEspacoGerado.html">
+  <h3>Aula 11</h3>
+  <p>Combinação linear e espaço gerado</p>
+</a>
+<a class="categoria-card" href="Notas/AL12DependenciaIndependenciaLinear.html">
+  <h3>Aula 12</h3>
+  <p>Dependência e independência linear</p>
+</a>
+<a class="categoria-card" href="Notas/AL13BaseDimensao.html">
+  <h3>Aula 13</h3>
+  <p>Base e dimensão</p>
+</a>
+<a class="categoria-card" href="Notas/AL14EspacoLinhaColunaNucleoPosto.html">
+  <h3>Aula 14</h3>
+  <p>Espaço linha/coluna, núcleo, posto e nulidade</p>
+</a>
+<a class="categoria-card" href="Notas/AL15CoordenadasMudancaBase.html">
+  <h3>Aula 15</h3>
+  <p>Coordenadas e mudança de base</p>
+</a>
+</div>
+```
+
+## Bloco 3 — Transformações lineares
+
+```{=html}
+<div class="categoria-grid">
+<a class="categoria-card" href="Notas/AL16TransformacoesLineares.html">
+  <h3>Aula 16</h3>
+  <p>Transformações lineares: definição e exemplos</p>
+</a>
+<a class="categoria-card" href="Notas/AL17NucleoImagem.html">
+  <h3>Aula 17</h3>
+  <p>Núcleo e imagem de uma transformação linear</p>
+</a>
+<a class="categoria-card" href="Notas/AL18MatrizTransformacaoLinear.html">
+  <h3>Aula 18</h3>
+  <p>Matriz de uma transformação linear</p>
+</a>
+<a class="categoria-card" href="Notas/AL19ComposicaoInversaMudancaBase.html">
+  <h3>Aula 19</h3>
+  <p>Composição e inversa; mudança de base de operadores</p>
+</a>
+<a class="categoria-card" href="Notas/AL20TransformacoesGeometricas.html">
+  <h3>Aula 20</h3>
+  <p>Transformações geométricas no plano e no espaço</p>
+</a>
+</div>
+```
+
+## Bloco 4 — Autovalores, autovetores e produto interno
+
+```{=html}
+<div class="categoria-grid">
+<a class="categoria-card" href="Notas/AL21AutovaloresAutovetores.html">
+  <h3>Aula 21</h3>
+  <p>Autovalores, autovetores e polinômio característico</p>
+</a>
+<a class="categoria-card" href="Notas/AL22Diagonalizacao.html">
+  <h3>Aula 22</h3>
+  <p>Diagonalização de matrizes</p>
+</a>
+<a class="categoria-card" href="Notas/AL23AplicacoesAutovalores.html">
+  <h3>Aula 23</h3>
+  <p>Aplicações: sistemas dinâmicos e matrizes simétricas</p>
+</a>
+<a class="categoria-card" href="Notas/AL24NormaProdutoInterno.html">
+  <h3>Aula 24</h3>
+  <p>Norma, produto escalar e produto interno</p>
+</a>
+<a class="categoria-card" href="Notas/AL25BasesOrtonormaisGramSchmidt.html">
+  <h3>Aula 25</h3>
+  <p>Bases ortonormais e o processo de Gram-Schmidt</p>
+</a>
+<a class="categoria-card" href="Notas/AL26SubespacosOrtogonaisMinimosQuadrados.html">
+  <h3>Aula 26</h3>
+  <p>Subespaços ortogonais, mínimos quadrados e encerramento</p>
+</a>
+<a class="categoria-card" href="Notas/AL27MatrizesSimetricasComplexas.html">
+  <h3>Aula 27</h3>
+  <p>Matrizes simétricas e complexas</p>
+</a>
+</div>
+```

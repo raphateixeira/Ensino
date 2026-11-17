@@ -1,0 +1,67 @@
+---
+title: "Sistemas de Controle II"
+pagetitle: "Sistemas de Controle II"
+title-block-style: none
+toc: false
+---
+
+<!-- Página principal da disciplina, ligada ao cartão em ../index.qmd. Ao criar uma aula,
+     acrescente o cartão aqui (links .html: o Quarto não converte .qmd dentro de HTML bruto). -->
+<style>#title-block-header { display: none; }</style>
+
+::: {.rtx-hero}
+[Graduação em Engenharia Elétrica · turma 2024]{.rtx-eyebrow}
+
+# Sistemas de Controle II {.unnumbered .unlisted}
+
+Modelagem, representações e controle no espaço de estados.
+
+[Prof. Dr. Raphael Teixeira]{.rtx-meta}
+
+::: {.rtx-acoes}
+[← Todas as disciplinas](../index.html){.rtx-btn}
+:::
+:::
+
+## Aulas
+
+```{=html}
+<div class="categoria-grid">
+<a class="categoria-card" href="Notas/SS00PlanoEnsino.html">
+  <h3>Aula 0</h3>
+  <p>Plano de ensino</p>
+</a>
+<a class="categoria-card" href="Notas/SS01Modelagem.html">
+  <h3>Aula 1</h3>
+  <p>Modelagem no espaço de estados</p>
+</a>
+<a class="categoria-card" href="Notas/SS02ConversaoRepresentacoes.html">
+  <h3>Aula 2</h3>
+  <p>Conversão de representações</p>
+</a>
+<a class="categoria-card" href="Notas/SS03FormasCanonicas.html">
+  <h3>Aula 3</h3>
+  <p>Formas canônicas</p>
+</a>
+<a class="categoria-card" href="Notas/SS04SimulacaoMatlab.html">
+  <h3>Aula 4</h3>
+  <p>Simulação MATLAB/Simulink</p>
+</a>
+<a class="categoria-card" href="Notas/SS05ControleAlocacao.html">
+  <h3>Aula 5</h3>
+  <p>Controle por alocação de polos</p>
+</a>
+<a class="categoria-card" href="Notas/SS06ControleServosistema.html">
+  <h3>Aula 6</h3>
+  <p>Servossistemas com integrador</p>
+</a>
+<a class="categoria-card" href="Notas/SS07ControleServosistemasIntegrador.html">
+  <h3>Aula 7</h3>
+  <p>Servossistemas sem integrador</p>
+</a>
+<a class="categoria-card categoria-card--verde" href="Notas/AtividadeAvaliativaComputacional.html">
+  <h3>Atividade avaliativa</h3>
+  <p>Controle no espaço de estados (computacional)</p>
+</a>
+</div>
+```

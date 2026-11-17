@@ -1,0 +1,378 @@
+---
+title: "LGR na prática: motor CC"
+subtitle: "Sistemas de Controle I · Aula 8 · Exemplo 3"
+author: "Prof. Dr. Raphael Teixeira"
+institute: "Universidade Federal do Pará"
+format: rtx-revealjs
+csl: ../apa.csl
+link-citations: true
+suppress-bibliography: true
+resources:
+  - "anims/*"
+---
+
+# Modelagem
+
+- Equações
+- Diagrama de blocos
+- Função de transferência
+
+## Motor CC controlado pela armadura
+
+:::: {.columns}
+::: {.column width="50%"}
+#### Parte elétrica
+
+::: {.eqx}
+$$
+\begin{aligned}
+V_a &= R\,i_a + L\,\frac{di_a}{dt} + \eq{c}{e_a}\\
+\eq{c}{e_a} &= \eq{c}{K_e\,\omega}
+\end{aligned}
+$$
+:::
+
+[A tensão aplicada vence a resistência, a indutância e a **força contraeletromotriz** $e_a$.]{.muted}
+:::
+::: {.column width="50%"}
+#### Parte mecânica
+
+::: {.eqx}
+$$
+\begin{aligned}
+J\,\frac{d\omega}{dt} &= \eq{a}{T_m} - b\,\omega - \eq{d}{T_L}\\
+\eq{a}{T_m} &= \eq{a}{K_t\,i_a}
+\end{aligned}
+$$
+:::
+
+[O torque do motor acelera a inércia contra o atrito viscoso e a **carga** $T_L$.]{.muted}
+:::
+::::
+
+::: {.callout-insight .fragment label="O acoplamento"}
+A corrente gera torque ($K_t$), a velocidade gera tensão ($K_e$). Em unidades SI, $K_t = K_e$.
+:::
+
+::: {.notes}
+Retome o modelo da Aula 2. Laplace com condições iniciais nulas: (Ls + R) I_a = V_a − K_e Ω e (Js + b) Ω = K_t I_a − T_L. Cada equação vira um bloco.
+:::
+
+## Diagrama de blocos
+
+::: {.nova-svg data-nova-diagram="motor-cc"}
+:::
+
+<script src="anims/diagramas.js"></script>
+
+::: {.notes}
+Quatro passos (fragmentos): parte elétrica, parte mecânica, torque de carga, força contraeletromotriz. Destaque que a f.c.e.m. é uma realimentação NATURAL: o motor já é um sistema em malha fechada antes de qualquer controlador.
+:::
+
+## Redução do diagrama
+
+::: {.eqx .deriv style="--deriv-lhs: 300px; --deriv-rhs: 700px;"}
+::: {.step}
+[caminho direto]{.lhs} [$\dfrac{1}{Ls + R}\cdot K_t\cdot\dfrac{1}{Js + b}$]{.rhs} [série]{.why}
+:::
+::: {.step .fragment}
+[realimentação]{.lhs} [$K_e$]{.rhs} [negativa, pela f.c.e.m.]{.why}
+:::
+::: {.step .fragment}
+[$\dfrac{\Omega(s)}{V_a(s)}$]{.lhs} [$= \dfrac{K_t}{(Ls + R)(Js + b) + K_t K_e}$]{.rhs} [$G/(1 + GH)$ (Aula 2)]{.why}
+:::
+::: {.step .fragment}
+[$\dfrac{\Omega(s)}{T_L(s)}$]{.lhs} [$= \dfrac{-(Ls + R)}{(Ls + R)(Js + b) + K_t K_e}$]{.rhs} [mesmo denominador]{.why}
+:::
+:::
+
+## Com números {.small-slide}
+
+:::: {.columns}
+::: {.column width="42%"}
+| Parâmetro | Valor |
+|:--|:--|
+| $J$ (inércia) | $0{,}01$ kg·m² |
+| $b$ (atrito viscoso) | $0{,}02$ N·m·s/rad |
+| $R$ (resistência) | $1$ Ω |
+| $L$ (indutância) | $0{,}1$ H |
+| $K_t = K_e$ | $0{,}01$ N·m/A |
+
+: {tbl-colwidths="[55,45]"}
+:::
+::: {.column width="58%"}
+::: {.eqx .deriv style="--deriv-lhs: 150px; --deriv-rhs: 560px;"}
+::: {.step}
+[$D(s)$]{.lhs} [$= 0{,}001\,s^2 + 0{,}012\,s + 0{,}0201$]{.rhs}
+:::
+::: {.step .fragment}
+[$G(s)$]{.lhs} [$= \dfrac{10}{s^2 + 12\,s + 20{,}1} = \dfrac{10}{(s + \eq{b}{2{,}01})(s + \eq{c}{9{,}99})}$]{.rhs}
+:::
+:::
+
+::: {.fragment}
+Ganho estático $G(0) = 0{,}50$ (rad/s)/V: com 12 V, o motor gira a 6 rad/s em regime.
+:::
+:::
+::::
+
+::: {.notes}
+D(s) = LJ s² + (Lb + RJ) s + (Rb + K_t K_e). Divida por LJ = 0,001. Polos: −6 ± √(36 − 20,1) = −6 ± 3,99.
+:::
+
+## Quem é quem nos polos
+
+:::: {.columns}
+::: {.column width="50%"}
+- [$s = -2{,}01 \approx -b/J$]{.t-b}: polo **mecânico**, $\tau_m = J/b = 0{,}5$ s
+- [$s = -9{,}99 \approx -R/L$]{.t-c}: polo **elétrico**, $\tau_e = L/R = 0{,}1$ s
+
+[Sem acoplamento ($K_tK_e = 0$) seriam exatamente $-2$ e $-10$. Aqui $K_tK_e = 10^{-4} \ll Rb = 0{,}02$: acoplamento fraco.]{.muted .smaller}
+:::
+::: {.column width="50%"}
+::: {.callout-insight label="Modelo reduzido"}
+Com $L \to 0$ o polo elétrico vai para $-\infty$ e sobra uma planta de **1ª ordem**:
+
+$$
+G(s) \approx \frac{K_t/R}{Js + b + K_tK_e/R}
+$$
+
+Com os números: $G(s) \approx \dfrac{1}{s + 2{,}01}$.
+
+É o Exemplo 1, com outro ganho.
+:::
+:::
+::::
+
+::: {.notes}
+Num motor real o polo elétrico costuma ser bem mais rápido que o mecânico; o modelo reduzido é o padrão em controle de velocidade. Aqui mantemos os dois polos para ver o LGR completo.
+:::
+
+# Controle de velocidade
+
+- Especificações
+- Controlador P
+- Controlador PI
+- Controlador PID
+
+## O que queremos
+
+::: {.eqx .deriv style="--deriv-lhs: 340px; --deriv-rhs: 520px;"}
+::: {.step}
+[$e_\infty = 0$ ao degrau]{.lhs} [integrador na malha]{.rhs} [a planta é tipo 0]{.why}
+:::
+::: {.step .fragment}
+[$\text{OS}\% \leq 5\,\%$]{.lhs} [$\zeta \geq 0{,}7$]{.rhs} [setor de $\pm 45°$]{.why}
+:::
+::: {.step .fragment}
+[$t_s \leq 1$ s]{.lhs} [$\sigma \geq 4$]{.rhs} [à esquerda de $\operatorname{Re}(s) = -4$]{.why}
+:::
+::: {.step .fragment}
+[torque de carga]{.lhs} [velocidade volta ao valor desejado]{.rhs} [rejeição de perturbação]{.why}
+:::
+:::
+
+## O LGR do controlador P
+
+::: {style="height: 680px"}
+<canvas class="nova-canvas" data-nova-anim="lgr" data-poles="-2.01,-9.99" data-gain="10" data-xlim="-14,2" data-ylim="-9,9" data-k="5.19" data-kmax="40" data-zeta="0.7" data-step="true" data-tend="2" data-yr="-0.2,1.2" data-loop="false" data-controls="k"></canvas>
+:::
+
+::: {.notes}
+Dois polos reais: separação no ponto médio, −6 (K_c ≈ 1,6), e reta vertical em σ = −6. Então t_s ≈ 0,67 s para qualquer K_c acima da separação. ζ = 0,707 em −6 ± j6, K_c = 5,19: OS% = 4,3 %, t_s = 0,70 s. Mas o degrau para em 0,72!
+:::
+
+## O que o P consegue
+
+::: {.lead}
+Com $K_c = 5{,}19$: $\text{OS}\% = 4{,}3\,\%$ ✓ e $t_s = 0{,}70$ s ✓, mas a velocidade para em **72 %** do valor pedido.
+:::
+
+::: {.callout-important .fragment title="Erro × amortecimento"}
+Tipo 0: $e_\infty = \dfrac{1}{1 + 0{,}5\,K_c}$. Para baixar o erro é preciso subir $K_c$, e os polos sobem pela vertical: com 5 % de erro ($K_c = 38$), $\text{OS}\%$ vai a **37 %**.
+:::
+
+::: {.notes}
+K_c = 38: polos −6 ± j19,1, ζ = 0,30. O t_s quase não muda (σ = 6 fixo): é a vertical do LGR.
+:::
+
+## PI: onde pôr o zero?
+
+::: {.eqx .deriv style="--deriv-lhs: 220px; --deriv-rhs: 820px;"}
+::: {.step}
+[$C(s)\,G(s)$]{.lhs} [$= K_c\,\dfrac{s + z}{s}\cdot\dfrac{10}{(s + 2{,}01)(s + 9{,}99)}$]{.rhs} [tipo 1]{.why}
+:::
+:::
+
+## Onde pôr o zero do PI? Explore
+
+::: {style="height: 680px"}
+<canvas class="nova-canvas" data-nova-anim="lgr" data-poles="0,-2.01,-9.99" data-gain="10" data-z="-4" data-xlim="-14,2" data-ylim="-9,9" data-k="5" data-kmax="40" data-zeta="0.7" data-step="true" data-tend="3" data-yr="-0.2,1.4" data-loop="false" data-controls="k,z"></canvas>
+:::
+
+::: {.notes}
+Zero em −4: o polo da origem e o polo mecânico se encontram, o par sobe e o LGR se curva para a direita; σ fica pequeno. Zero perto da origem (−0,5): PI "lento", a cauda do polo entre 0 e −0,5 domina. Leve o zero até −2: ele cancela o polo mecânico. Mesma ideia do Exemplo 1.
+:::
+
+## PI de cancelamento
+
+::: {.eqx .deriv style="--deriv-lhs: 220px; --deriv-rhs: 640px;"}
+::: {.step}
+[$C(s)\,G(s)$]{.lhs} [$= \dfrac{10\,K_c}{s\,(s + 9{,}99)}$]{.rhs} [zero em $-2{,}01 \approx -b/J$: sobra o polo elétrico]{.why}
+:::
+::: {.step .fragment}
+[$P(s)$]{.lhs} [$= s^2 + 9{,}99\,s + 10\,K_c$]{.rhs} [$\sigma = 5$ fixo após a separação]{.why}
+:::
+::: {.step .fragment}
+[$\zeta = 0{,}7$]{.lhs} [$\omega_n = 5/0{,}7 = 7{,}14 \Rightarrow K_c = 5{,}1,\ K_i = K_c z = 10{,}3$]{.rhs} [$s = -5 \pm j5{,}1$]{.why}
+:::
+:::
+
+::: {.callout-tip .fragment title="Resultado"}
+Erro nulo ✓, $\text{OS}\% = 4{,}6\,\%$ ✓, $t_s = 0{,}84$ s ✓.
+:::
+
+::: {.notes}
+No slide anterior, leve o zero até −2 e K_c até 5,1 para ver este projeto ao vivo.
+:::
+
+## PID: cancelar os dois polos
+
+::: {.eqx .deriv style="--deriv-lhs: 200px; --deriv-rhs: 880px;"}
+::: {.step}
+[$C(s)$]{.lhs} [$= K_c\,\dfrac{(s + \eq{b}{2{,}01})(s + \eq{c}{9{,}99})}{s}$]{.rhs} [zeros sobre os polos]{.why}
+:::
+::: {.step}
+[]{.lhs} [$= K_p + \dfrac{K_i}{s} + K_d\,s$]{.rhs} [forma paralela]{.why}
+:::
+::: {.step .fragment}
+[$C(s)\,G(s)$]{.lhs} [$= \dfrac{10\,K_c}{s}$]{.rhs} [um integrador puro]{.why}
+:::
+::: {.step .fragment}
+[$H(s)$]{.lhs} [$= \dfrac{10\,K_c}{s + 10\,K_c}$]{.rhs} [1ª ordem: $t_s = 0{,}4/K_c$]{.why}
+:::
+::: {.step .fragment}
+[$t_s = 0{,}2$ s]{.lhs} [$K_c = 2$: $\ K_p = 24{,}0,\ K_i = 40{,}2,\ K_d = 2{,}0$]{.rhs} [$K_c(s^2 + 12s + 20{,}1)/s$]{.why}
+:::
+:::
+
+::: {.notes}
+É o Exemplo 1 levado ao extremo: o PI cancela um polo, o PID cancela os dois. O LGR do sistema compensado é só o eixo real a partir da origem; K_c escolhe a velocidade. Não há sobressinal em nenhum K_c.
+:::
+
+## O PID ao vivo
+
+::: {style="height: 680px"}
+<canvas class="nova-canvas" data-nova-anim="lgr" data-poles="0,-2.01,-9.99" data-zeros="-2.01,-9.99" data-gain="10" data-xlim="-24,2" data-ylim="-12,12" data-k="2" data-kmax="10" data-step="true" data-tend="1" data-yr="-0.2,1.4" data-loop="false" data-controls="k"></canvas>
+:::
+
+::: {.notes}
+Com os dois zeros sobre os dois polos, o lugar é só o eixo real a partir da origem e K_c escolhe a velocidade, sem sobressinal. Para explorar zeros que não cancelam, use o MATLAB (exercício 6).
+:::
+
+## O preço do PID
+
+::: {.lead}
+Para um degrau de 1 rad/s, o PI pede no máximo **5 V**; o PID, **200 V**.
+:::
+
+::: {.callout-important .fragment title="Derivative kick"}
+O degrau na referência é derivado: $u$ salta para $K_c/T_f$. Com 12 V de alimentação, o PID **satura** e a resposta real fica longe da simulada.
+:::
+
+::: {.callout-tip .fragment title="Saídas"}
+Derivada sobre a **saída** (Exemplo 2), filtro mais lento, ou referência em **rampa**.
+:::
+
+::: {.notes}
+Derivada filtrada K_c(s + 2,01)(s + 9,99)/[s(T_f s + 1)]: T_f = 0,01 s → pico 200 V, t_s = 0,16 s; T_f = 0,02 s → 100 V, OS% = 1,7 %, t_s = 0,12 s. PI: pico 5,3 V. Valor final de u: 2,01 V para 1 rad/s.
+:::
+
+## E o torque de carga?
+
+::: {.lead}
+Degrau de carga $T_L = 0{,}01$ N·m com o motor em regime:
+:::
+
+- **Malha aberta** e **P**: a velocidade cai e **fica** mais baixa
+- **PI** e **PID**: a velocidade cai e **volta**, em cerca de 1,3 s nos dois
+
+::: {.callout-important .fragment title="O polo cancelado volta"}
+Na resposta à **referência**, os zeros escondem o polo mecânico. Na resposta à **carga**, ele reaparece: a recuperação continua presa a $\tau_m = 0{,}5$ s, mesmo com o PID dez vezes mais rápido na referência.
+:::
+
+::: {.notes}
+Quedas: malha aberta 0,50 rad/s permanente; P (K_c = 5,19) 0,14 rad/s permanente; PI pico 0,14 rad/s, volta a 10 % do pico em 1,4 s; PID pico 0,04 rad/s, 1,3 s. Ω/T_L tem o polo em −2,01 sem o zero correspondente. Para recuperar mais rápido: zero do PI um pouco à esquerda do polo mecânico (com o zero em −4, volta em 1,0 s), aceitando mais sobressinal.
+:::
+
+## Qual escolher?
+
+::: {.big}
+- **P**: não zera o erro
+- **PI de cancelamento**: atende a tudo com esforço razoável ✓
+- **PID**: dez vezes mais rápido no papel, mas só com um atuador que aguente
+:::
+
+# Do motor ao servo
+
+## Posição = velocidade integrada
+
+::: {.eqx .deriv style="--deriv-lhs: 300px; --deriv-rhs: 640px;"}
+::: {.step}
+[$\Theta(s)$]{.lhs} [$= \dfrac{\Omega(s)}{s}$]{.rhs} [ângulo do eixo]{.why}
+:::
+::: {.step .fragment}
+[$\dfrac{\Theta(s)}{V_a(s)}$]{.lhs} [$= \dfrac{10}{s\,(s + 2{,}01)(s + 9{,}99)} \approx \dfrac{10}{s\,(s + 2)(s + 10)}$]{.rhs} [um polo a mais na origem]{.why}
+:::
+:::
+
+# No laboratório
+
+## O motor no MATLAB {.small-slide}
+
+:::: {.columns}
+::: {.column width="55%"}
+```matlab
+J = 0.01; b = 0.02; R = 1; L = 0.1;
+Kt = 0.01; Ke = 0.01;
+s = tf('s');
+G  = Kt/((L*s + R)*(J*s + b) + Kt*Ke);
+Gd = -(L*s + R)/((L*s + R)*(J*s + b) + Kt*Ke);
+pole(G)
+
+rlocus(G), sgrid(0.7, []), xline(-4)
+
+C  = (s + 2.01)/s;   Kc = 5.1;      % PI
+H  = feedback(Kc*C*G, 1);           % referência
+Hd = minreal(Gd/(1 + Kc*C*G));      % carga T_L
+stepinfo(H), step(0.01*Hd)
+
+Cpid = 2*(s+2.01)*(s+9.99)/(s*(0.01*s+1));  % PID filtrado
+U = feedback(Cpid, G);  step(U)     % sinal de controle
+```
+:::
+::: {.column width="45%"}
+::: {.callout-tip title="Roteiro da prática"}
+1. Monte o diagrama de blocos no Simulink com os parâmetros da tabela
+2. Compare `pole(G)` com $-b/J$ e $-R/L$; aumente $K_t$ e veja os polos se afastarem
+3. Projete P, PI e PID pelo LGR e confira com `stepinfo`
+4. Aplique um degrau de $T_L$ no Simulink e meça a recuperação
+5. Ponha uma saturação de ±12 V no PID e compare com a simulação linear
+:::
+:::
+::::
+
+## Exercícios {.small-slide}
+
+1. Refaça a redução do diagrama de blocos e confira $G(s)$ com os números da tabela.
+2. Com $K_t = K_e = 0{,}1$, recalcule os polos. O acoplamento ainda é fraco?
+3. Use o modelo reduzido ($L \to 0$) para projetar o PI de cancelamento e teste-o no modelo completo.
+4. PI com zero em $-4$: que $K_c$ dá $\zeta = 0{,}7$? Compare $t_s$ e a recuperação da carga com o PI de cancelamento.
+5. Que $K_c$ do controlador P leva o erro a 10 %? Quanto vale $\text{OS}\%$?
+6. PID de cancelamento com $t_s = 0{,}5$ s: calcule $K_p$, $K_i$ e $K_d$. Qual o pico de $u$ com $T_f = 0{,}05$ s?
+7. Confira tudo no MATLAB e no Simulink.
+
+<script src="anims/nova-anim.js"></script>
+<script src="anims/lgr.js"></script>
+
+{{< include _encerramento-rtx.qmd >}}

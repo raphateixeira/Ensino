@@ -33,5 +33,5 @@ for Kp, cor, rot in [(3, "#3A6EDB", "Kp = 3: estável"), (14, "#D0473B", "Kp = 1
 ax.set(xlim=(0, T), ylim=(-1, 3), xlabel="t (s)", ylabel="y(t)")
 ax.legend(loc="lower center", bbox_to_anchor=(0.5, 1.0), ncol=2, fontsize=10)
 fig.tight_layout()
-fig.savefig(ROOT / "Notas" / "imgs" / "plots" / "fig_aula01_estabilidade.png", transparent=True)
+fig.savefig(ROOT / "Aulas" / "imgs" / "plots" / "fig_aula01_estabilidade.png", transparent=True)
 print("ok")

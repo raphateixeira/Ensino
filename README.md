@@ -12,6 +12,7 @@ Reúne, desde 2026-10-25, os antigos repositórios de cada disciplina, cada um n
 | `MetodosNumericos/` | Cálculo Numérico |
 | `AlgebraLinear/` | Álgebra Linear |
 | `ControleEstados/` | Sistemas de Controle II — Espaço de Estados |
+| `TopEspControle/` | Tópicos Especiais em Controle (optativa: identificação, controle digital, MPC, SINDy, redes neurais) |
 | `DeepLearning/` | Aprendizagem de Máquina (PPCA) |
 | `modelos/PlanoEnsino/` | Template LaTeX do Plano de Ensino (UFPA/FEE), ex-repositório `Plano-de-Ensino`; não é renderizado no site |
 

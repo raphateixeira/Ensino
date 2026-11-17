@@ -6,16 +6,20 @@
    As últimas curvas ficam esmaecidas para comparação.
 
    Parâmetros: data-p="-1"   (slider: data-controls="p")
+               data-k="2"    ganho estático da planta, G(s) = K·a/(s + a) (padrão 1)
    ===================================================================== */
 NovaAnim.register("polo-resposta", ({ canvas, ctx, W, H, data }) => {
   const { C, FONT, fmt, text, frame, axes, line, seg, ease } = NovaAnim;
-  const T = 6, N = 600;
+  const T = 6, N = 600, KG = parseFloat(data.k || "1");
   const ts = Array.from({ length: N + 1 }, (_, i) => (i / N) * T);
-  const resp = (p) => ts.map((t) => (p < 0 ? 1 - Math.exp(p * t) : Math.exp(p * t) - 1));
+  const resp = (p) => ts.map((t) => KG * (p < 0 ? 1 - Math.exp(p * t) : Math.exp(p * t) - 1));
+  const yTop = Math.max(1.6, 1.3 * KG);
+  const yStep = yTop > 2 ? 1 : 0.5;
+  const yTicks = []; for (let v = 0; v <= yTop + 1e-9; v += yStep) yTicks.push(v);
 
   // plano s à esquerda, resposta à direita
   const S = frame({ x: 40, y: 70, w: 560, h: H - 160 }, [-5.5, 1.5], [-2.5, 2.5]);
-  const R = frame({ x: 720, y: 70, w: W - 760, h: H - 160 }, [0, T], [-0.1, 1.6]);
+  const R = frame({ x: 720, y: 70, w: W - 760, h: H - 160 }, [0, T], [-0.1 * KG, yTop]);
 
   let pole = Math.min(1.2, Math.max(-5, parseFloat(data.p || "-1")));
   if (Math.abs(pole) < 0.1) pole = -0.1;
@@ -88,8 +92,9 @@ NovaAnim.register("polo-resposta", ({ canvas, ctx, W, H, data }) => {
   }
 
   function drawResp() {
-    axes(ctx, R, { yticks: [0, 0.5, 1, 1.5], xticks: [0, 1, 2, 3, 4, 5, 6], xlabel: "t (s)", ylabel: "resposta ao degrau" });
-    seg(ctx, R.box.x, R.y(1), R.box.x + R.box.w, R.y(1), { color: C.faint, dash: [6, 6], width: 1.4 });
+    axes(ctx, R, { yticks: yTicks, xticks: [0, 1, 2, 3, 4, 5, 6], xlabel: "t (s)", ylabel: "resposta ao degrau" });
+    seg(ctx, R.box.x, R.y(KG), R.box.x + R.box.w, R.y(KG), { color: C.faint, dash: [6, 6], width: 1.4 });
+    if (KG !== 1) text(ctx, `K = ${fmt(KG, 1)}`, R.box.x + 12, R.y(KG) - 10, { font: FONT.sansM, color: C.muted });
     hist.forEach((h) => line(ctx, R, ts, resp(h.p), { color: h.c, width: 2, alpha: 0.35 }));
     const p = Math.min(1, (performance.now() - born) / 1800);
     const c = COLS[col % COLS.length];
@@ -99,7 +104,7 @@ NovaAnim.register("polo-resposta", ({ canvas, ctx, W, H, data }) => {
     if (pole < 0) {
       const tau = -1 / pole, t4 = 4 * tau;
       if (t4 <= T) {
-        seg(ctx, R.x(t4), R.y(0), R.x(t4), R.y(0.98), { color: c, dash: [4, 5], width: 1.6 });
+        seg(ctx, R.x(t4), R.y(0), R.x(t4), R.y(0.98 * KG), { color: c, dash: [4, 5], width: 1.6 });
         text(ctx, "4τ", R.x(t4), R.y(0) - 10, { font: FONT.sansM, color: c, align: "center" });
       }
       text(ctx, `τ = 1/|polo| = ${fmt(tau, 2)} s`, px, R.box.y + 30, { font: FONT.sansB, color: c, align: "right" });

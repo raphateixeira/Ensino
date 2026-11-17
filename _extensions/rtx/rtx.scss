@@ -1,0 +1,1503 @@
+/*-- scss:defaults --*/
+
+// =====================================================================
+// RTx — tema revealjs (16:9, 1600x900) para aulas e palestras.
+// Visual do TemaRTx (fundo branco, Roboto/Lato/Fira Code, espaçamentos,
+// blocos com rótulo, capa com logo) + recursos da Nova (equações
+// explicadas com cores, definição de variáveis, derivações, consolidação,
+// painéis, animações, morph, anotações, quiz, citações, acessibilidade).
+//
+// Papel das cores
+//   azul UFPA ($navy)   → estrutura: títulos, capa, seções
+//   vermelho UFPA       → acentos pequenos (nº da seção, marcas)
+//   paleta $eq-colors   → só para o conteúdo (equações, curvas)
+// =====================================================================
+
+// --- Fundo e tinta (TemaRTx) ---
+// Os nomes $paper* vêm da Nova (usados pelas regras dos recursos); aqui o
+// "papel" é branco, como no TemaRTx.
+$paper: #FFFFFF;
+$paper-deep: #F0F3F7;     // blocos de código ($code-block-bg do TemaRTx)
+$paper-dark: #F5F7FA;     // listras de tabela, fundos alternativos
+$ink: #222222;            // texto principal
+$muted: #6C757D;          // texto secundário ($secondary do TemaRTx)
+$grey: #555555;           // subtítulo da capa
+$faint: #C5CCD6;          // termos "apagados" no foco das equações
+$rule: #D6DCE5;           // filetes
+
+// --- Paleta acadêmica (TemaRTx) ---
+$navy: #1B365D;           // $primary
+$navy-soft: #4A6FA5;
+$accent: #4A6FA5;
+$rose: #B23A48;           // vermelho UFPA
+$wine: #96263A;
+$gold: #E8C547;           // $highlight-color
+$green: #2E7D32;          // $success
+$orange: #E65100;         // $warning-color
+$info: #0277BD;
+
+// --- Paleta das equações explicadas (a–h) — a mesma da Nova ---
+$eq-colors: (
+  a: #7B4FD0,   // roxo
+  b: #2E9C6B,   // verde
+  c: #D2457E,   // rosa
+  d: #3A6EDB,   // azul
+  e: #D0473B,   // vermelho
+  f: #2795B0,   // ciano
+  g: #D27A22,   // laranja
+  h: #7A8A1C    // oliva
+);
+
+// --- Tipografia (TemaRTx) ---
+// $font-serif é o nome herdado da Nova para a fonte "de destaque"
+// (títulos, texto das equações, consolidação); no RTx é a Lato.
+$font-serif: "Lato", "Helvetica Neue", Arial, sans-serif;
+$font-sans: "Roboto", "Helvetica Neue", Arial, sans-serif;
+$font-mono: "Fira Code", "JetBrains Mono", Menlo, monospace;
+
+// --- Tamanhos e espaçamentos (TemaRTx) ---
+$slide-font-size-root: 38px;
+$spacing-xxs: 0.25 * $slide-font-size-root;
+$spacing-xs: 0.5 * $slide-font-size-root;
+$spacing-sm: 0.75 * $slide-font-size-root;
+$spacing-md: 1 * $slide-font-size-root;
+$spacing-lg: 1.5 * $slide-font-size-root;
+$spacing-xl: 2 * $slide-font-size-root;
+$spacing-xxl: 3 * $slide-font-size-root;
+
+// --- Variáveis do Quarto/revealjs ---
+$body-bg: $paper;
+$body-color: $ink;
+$text-muted: $muted;
+$link-color: $accent;
+$selection-bg: lighten($muted, 30%);
+$selection-color: $navy;
+$font-family-sans-serif: $font-sans;
+$font-family-monospace: $font-mono;
+
+$presentation-font-size-root: $slide-font-size-root;
+$presentation-line-height: 1.5;
+$presentation-heading-font: $font-serif;
+$presentation-heading-color: $navy;
+$presentation-heading-font-weight: 600;
+$presentation-heading-text-transform: none;
+$presentation-heading-letter-spacing: normal;
+$presentation-heading-line-height: 1.2;
+$presentation-h1-font-size: 2.3 * $slide-font-size-root;
+$presentation-h2-font-size: 1.85 * $slide-font-size-root;
+$presentation-h3-font-size: 1.1 * $slide-font-size-root;
+$presentation-h4-font-size: 1 * $slide-font-size-root;
+$presentation-block-margin: 18px;
+$presentation-slide-text-align: left;
+$presentation-font-smaller: 0.8em;
+
+$code-block-bg: $paper-deep;
+$code-block-border-color: $paper-deep;
+$code-block-font-size: 0.78 * $slide-font-size-root;
+$code-output-bg: #F8F9FA;
+
+// --- Geometria do slide (pixels do canvas 1600x900) ---
+// Equivale às bordas dos decks TemaRTx (revealjs com margin 0.1).
+$pad-top: 40px;
+$pad-side: 80px;
+$pad-bottom: 54px;        // espaço para o rodapé discreto
+
+$logo: url("data:image/png;base64,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");
+
+/*-- scss:rules --*/
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=Lato:ital,wght@0,400;0,700;1,400&family=Fira+Code:wght@400;600&display=swap");
+
+:root {
+  --nova-bg: #{$paper};
+  @each $k, $v in $eq-colors { --eq-#{$k}: #{$v}; }
+}
+
+// Alternância papel/branco (tecla W) para testar no projetor
+body.nova-white { --nova-bg: #fff; }
+body.nova-white, body.nova-white .reveal-viewport { background: #fff !important; }
+
+// Cada slide pinta o próprio papel (exceto os que têm fundo do revealjs):
+// assim o mix-blend-mode: multiply das figuras tem com o que se misturar
+// (o slide é um contexto de empilhamento transparente).
+.reveal .slides section:not([data-background-color]):not([data-background-image]):not([data-background-video]):not(.stack) {
+  background-color: var(--nova-bg);
+}
+
+// =====================================================================
+// Área útil do slide: bordas estreitas, título sempre no topo
+// =====================================================================
+
+.reveal .slides > section:not(.stack),
+.reveal .slides > section.stack > section {
+  box-sizing: border-box;
+  height: 100%;
+  padding: $pad-top $pad-side $pad-bottom;
+  top: 0 !important;
+}
+
+.reveal .slides section { text-align: left; }
+
+// Cabeçalho do slide (TemaRTx): título centralizado em Lato, sem filete.
+// A trilha da seção (.nova-crumb, montada pelo JS) fica oculta; com
+// `rtx-crumb: show` no YAML aparece discreta no canto superior direito.
+.reveal .slide .nova-head {
+  display: block;
+  position: relative;
+  margin: 0;
+}
+
+.reveal .slide h2 {
+  font-family: $font-serif;
+  font-weight: 600;
+  font-size: $presentation-h2-font-size;
+  line-height: 1.2;
+  color: $navy;
+  margin: 0 0 $spacing-xl 0;
+  padding: 0;
+  text-align: center;
+}
+
+.reveal .slide .nova-crumb { display: none; }
+html.rtx-crumb .reveal .slide .nova-crumb {
+  display: block;
+  position: absolute;
+  top: -28px;
+  right: 0;
+  max-width: 420px;
+  font-family: $font-sans;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba($rose, 0.8);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  .num { color: rgba($rose, 0.5); margin-right: 0.6em; }
+}
+
+.reveal .slide h3 {
+  font-family: $font-serif;
+  font-weight: normal;
+  font-size: $presentation-h3-font-size;
+  color: $muted;
+  padding-left: $spacing-xs;
+  margin: 0.4em 0 0.25em;
+}
+
+.reveal .slide h4 {
+  font-family: $font-serif;
+  font-weight: normal;
+  color: $accent;
+  margin-top: 0;
+}
+
+
+// =====================================================================
+// Rodapé, número do slide, barra de progresso: discretos e no limite
+// inferior da tela (ficam fora do slide: medidas em vw)
+// =====================================================================
+
+.reveal .footer {
+  position: absolute !important;
+  bottom: 0.55vw !important;
+  left: 1.2vw !important;
+  right: auto !important;
+  text-align: left !important;
+  font-family: $font-sans;
+  font-size: max(10px, 0.72vw) !important;
+  letter-spacing: 0.02em;
+  color: $muted !important;
+  transition: opacity 0.5s ease;
+  z-index: 30;
+  p { margin: 0; color: inherit; }
+  a, a:visited { color: inherit !important; text-decoration: none !important; }
+  a:hover { color: $navy !important; }
+}
+
+.reveal .slide-number {
+  position: absolute;
+  top: auto !important;
+  bottom: 0.55vw !important;
+  right: 1.2vw !important;
+  left: auto !important;
+  background: none !important;
+  font-family: $font-sans;
+  font-size: max(10px, 0.72vw) !important;
+  color: $muted !important;
+  transition: opacity 0.5s ease;
+  a, a:hover { color: $muted !important; }
+}
+
+.reveal .progress {
+  height: 2px;
+  color: rgba($navy, 0.45);
+  background: transparent;
+}
+
+// Capa, seções e encerramento: sem rodapé/número
+.reveal.nova-bare .footer,
+.reveal.nova-bare .slide-number { opacity: 0 !important; pointer-events: none; }
+
+// Botão do menu (Quarto) pequeno e quase invisível
+.reveal .slide-menu-button {
+  left: auto !important;
+  right: 4.5vw !important;
+  bottom: 0.2vw !important;
+  opacity: 0.25;
+  transform: scale(0.6);
+  transform-origin: bottom right;
+  &:hover { opacity: 0.8; }
+}
+
+// =====================================================================
+// Capa (TemaRTx): logo no topo, título em Lato, subtítulo cinza, autores
+// =====================================================================
+
+.reveal .slides section#title-slide {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  padding: 45px 120px 60px !important;
+
+  // Logo UFPA embutido (não depende do caminho do projeto)
+  &::before {
+    content: "";
+    display: block;
+    flex: none;
+    width: 155px;
+    height: 199px;
+    margin-bottom: 40px;
+    background: $logo center / contain no-repeat;
+  }
+
+  .title {
+    font-family: $font-serif;
+    font-weight: 600;
+    font-size: 2.0em;
+    line-height: 1.2;
+    color: $navy;
+    margin: 0 0 0.5em;
+    padding: 0;
+  }
+
+  .subtitle {
+    font-family: $font-serif;
+    font-weight: 400;
+    font-size: 1.4em;
+    line-height: 1.2;
+    color: $grey;
+    margin: 0 0 1.5em;
+  }
+
+  .quarto-title-authors {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    margin-top: 2em;
+    font-size: 1em;
+  }
+
+  .quarto-title-author-email,
+  .date { display: none; }
+}
+
+// Logo antigo passado via title-slide-attributes: já está no ::before
+.reveal .backgrounds > .slide-background:first-child .slide-background-content {
+  background-image: none !important;
+}
+
+// =====================================================================
+// Slides de seção (# Título): número, palavra com filetes até as bordas
+// e, abaixo, a lista de tópicos em linha (formato de subtítulo)
+// =====================================================================
+
+.reveal .slides section.title-slide.level1 {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  padding: 0 0 40px;
+
+  // Número da seção (inserido por nova-after.html)
+  .nova-secnum {
+    text-align: center;
+    font-family: $font-sans;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    color: $rose;
+    margin: 0 0 6px;
+  }
+
+  h1 {
+    display: flex;
+    align-items: center;
+    gap: 56px;
+    margin: 0;
+    padding: 0;
+    font-family: $font-serif;
+    font-weight: 400;
+    font-size: $presentation-h1-font-size;
+    letter-spacing: -0.01em;
+    color: $navy;
+    text-align: center;
+    white-space: nowrap;
+
+    &::before, &::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: $rule;
+    }
+  }
+
+  // Parágrafo ou lista de tópicos abaixo do título, como subtítulo
+  > p, > ul, > ol {
+    text-align: center;
+    margin: 24px auto 0;
+    max-width: 1240px;
+    font-family: $font-serif;
+    font-style: italic;
+    font-size: 34px;
+    color: $grey;
+  }
+
+  > ul, > ol {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 0;
+    padding: 0;
+    list-style: none;
+
+    > li {
+      padding: 0;
+      margin: 0;
+      color: $grey;
+      &::before { display: none; }
+    }
+    > li + li::before {
+      display: inline-block;
+      position: static;
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba($rose, 0.6);
+      margin: 0 22px;
+      vertical-align: middle;
+    }
+  }
+}
+
+// =====================================================================
+// Movimento: fragmentos e transições suaves
+// =====================================================================
+
+$ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+// Fragmento padrão: surge com leve subida (estilos nomeados do reveal
+// — fade-left, grow, highlight-* etc. — mantêm o próprio comportamento)
+.reveal .slides section .fragment:not([class*="highlight"]):not([class*="fade-"]):not(.grow):not(.shrink):not(.strike):not(.semi-fade-out):not(.custom):not(.blur-in):not(.lightup):not(.draw) {
+  transform: translateY(14px);
+  transition: opacity 0.55s ease, transform 0.7s $ease-out, visibility 0s 0.55s;
+  &.visible {
+    transform: none;
+    transition: opacity 0.55s ease, transform 0.7s $ease-out, visibility 0s;
+  }
+}
+
+// .blur-in: sai do desfoque
+.reveal .slides section .fragment.blur-in {
+  opacity: 0;
+  filter: blur(10px);
+  transition: opacity 0.7s ease, filter 0.9s $ease-out;
+  &.visible { opacity: 1; filter: none; }
+}
+
+// .dim-past: o item anterior esmaece quando o próximo aparece
+.reveal .slides section .fragment.dim-past.visible:not(.current-fragment) { opacity: 0.35; }
+
+// .lightup: o texto já está visível; o passo só acende a cor do termo
+.reveal .slides section .fragment.lightup {
+  opacity: 1;
+  visibility: inherit;
+  transform: none;
+}
+
+// =====================================================================
+// Equações explicadas com cores (.eqx)
+//
+//   Regra única:
+//   - termos coloridos por padrão;
+//   - enquanto a explicação de um termo é um fragmento ainda não
+//     mostrado, o termo fica em preto (as cores "acendem" passo a passo);
+//   - modo preto: tecla C (apresentação inteira), `eqx-mode: mono` no
+//     YAML (começa em preto) ou .eqx.mono (só aquela equação);
+//   - passar o mouse/clicar sempre destaca o par termo–texto em cor.
+// =====================================================================
+
+.reveal .eqx {
+  margin: 10px 0 0;
+
+  // Equação em destaque: maior que o texto corrido
+  .math.display { display: block; font-size: 1.4em; text-align: center; }
+  .MathJax_Display { margin: 0.35em 0 0.55em !important; }
+  .MathJax, .MathJax_Display { transition: color 0.35s ease; }
+
+  // Texto explicativo: serifado, confortável, separado por filete
+  .eqx-text {
+    font-family: $font-serif;
+    font-size: 40px;
+    line-height: 1.75;
+    border-top: 1px solid $rule;
+    padding-top: 30px;
+    margin-top: 26px;
+  }
+
+  @each $k, $v in $eq-colors {
+    .eqx-#{$k}, .t-#{$k} {
+      color: var(--eq-#{$k});
+      transition: color 0.35s ease, background-color 0.35s ease, opacity 0.35s ease;
+    }
+    .t-#{$k} {
+      font-weight: 600;
+      border-radius: 4px;
+      padding: 0 2px;
+      cursor: pointer;
+    }
+    .eqx-#{$k} { cursor: pointer; }
+
+    // explicação ainda não mostrada → termo em preto
+    &:has(.t-#{$k}.fragment:not(.visible)) .eqx-#{$k} { color: inherit; }
+    .t-#{$k}.fragment.lightup:not(.visible) { color: inherit; font-weight: 400; }
+  }
+
+  // Modo preto (por equação ou global)
+  &.mono {
+    @each $k, $v in $eq-colors {
+      .eqx-#{$k} { color: inherit; }
+      .t-#{$k} { color: inherit; font-weight: 400; }
+    }
+  }
+}
+
+html.eqx-mono .reveal .eqx {
+  @each $k, $v in $eq-colors {
+    .eqx-#{$k} { color: inherit; }
+    .t-#{$k} { color: inherit; font-weight: 400; }
+  }
+}
+
+// Foco (hover/clique): o par termo–texto em cor, o resto apagado.
+// "html" na frente para vencer o modo preto global.
+html .reveal .eqx[data-focus] {
+  .MathJax, .MathJax_Display, .eqx-term { color: $faint; }
+  @each $k, $v in $eq-colors { .t-#{$k} { color: $muted; } }
+}
+@each $k, $v in $eq-colors {
+  html .reveal .eqx[data-focus="#{$k}"] .eqx-#{$k} { color: var(--eq-#{$k}); }
+  html .reveal .eqx[data-focus="#{$k}"] .t-#{$k} {
+    color: var(--eq-#{$k});
+    font-weight: 600;
+    background-color: rgba($v, 0.12);
+  }
+}
+
+// Definição formal de variáveis: só o símbolo é colorido
+.reveal .eqx .eqx-defs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  > li {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    align-items: baseline;
+    padding: 10px 0 10px 0;
+    margin: 0;
+    border-bottom: 1px solid $rule;
+    &::before { display: none; }
+    > span:first-child { font-size: 1.15em; text-align: center; }
+  }
+}
+
+// Derivação passo a passo: cada passo é uma linha (lhs | rhs | porquê);
+// os passos anteriores ficam visíveis (esmaecidos) para formar o todo
+.reveal .deriv {
+  --deriv-lhs: 300px;
+  --deriv-rhs: 640px;
+  margin-top: 6px;
+
+  .step {
+    display: grid;
+    grid-template-columns: var(--deriv-lhs) var(--deriv-rhs) 1fr;
+    align-items: baseline;
+    column-gap: 14px;
+    padding: 8px 0;
+    transition: opacity 0.5s ease;
+    > p { display: contents; }
+  }
+  .lhs { text-align: right; font-size: 1.2em; }
+  .rhs { text-align: left; font-size: 1.2em; }
+  .why {
+    font-family: $font-serif;
+    font-style: italic;
+    font-size: 28px;
+    color: $muted;
+    padding-left: 24px;
+    border-left: 2px solid $rule;
+  }
+  // passo atual em destaque, anteriores esmaecidos
+  &:has(.step.current-fragment) .step:not(.current-fragment) { opacity: 0.6; }
+}
+
+// =====================================================================
+// Consolidação (.takeaway): frase, equação ou número que fecha o slide
+// =====================================================================
+
+.reveal .takeaway {
+  text-align: center;
+  margin: 30px auto 0;
+  max-width: 1300px;
+  font-family: $font-serif;
+  font-weight: 600;
+  font-size: 42px;
+  line-height: 1.3;
+  color: $navy;
+
+  &::before {
+    content: "";
+    display: block;
+    width: 64px;
+    height: 2px;
+    margin: 0 auto 22px;
+    background: rgba($rose, 0.7);
+  }
+  p { margin: 0; }
+  .math.display { font-size: 1.15em; }
+  .num {
+    display: block;
+    font-size: 96px;
+    line-height: 1.05;
+    font-variant-numeric: lining-nums;
+  }
+  .label {
+    display: block;
+    font-family: $font-sans;
+    font-weight: 400;
+    font-size: 24px;
+    letter-spacing: 0.04em;
+    color: $muted;
+    margin-top: 6px;
+  }
+}
+
+// =====================================================================
+// Layout de área cheia
+// =====================================================================
+
+// Painéis lado a lado (estilo "pipeline": figura + legenda, setas opcionais)
+.reveal .panels {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  margin-top: 10px;
+
+  > .panel {
+    flex: 1 1 0;
+    min-width: 0;
+    text-align: center;
+    > p:first-child {
+      font-family: $font-serif;
+      font-size: 32px;
+      line-height: 1.2;
+      min-height: 2.4em;
+      margin: 0 0 14px;
+    }
+    img { width: 100%; height: auto; max-height: 560px; object-fit: contain; }
+  }
+
+  > .arrow {
+    flex: none;
+    align-self: center;
+    margin-top: 1.2em;
+    font-size: 64px;
+    line-height: 1;
+    color: $ink;
+    &::before { content: "→"; }
+  }
+}
+
+// Slide sem padding (figura/vídeo/canvas ocupa tudo)
+.reveal .slides section.bleed {
+  padding: 0 !important;
+  > .nova-head { position: absolute; top: $pad-top; left: $pad-side; right: $pad-side; z-index: 2; }
+}
+
+// Imagens: "multiply" funde figuras de fundo branco com o papel
+.reveal img, .reveal video {
+  mix-blend-mode: multiply;
+  border-radius: 0;
+}
+.reveal .no-blend img, .reveal img.no-blend { mix-blend-mode: normal; }
+
+.reveal figure figcaption,
+.reveal .figure-caption {
+  font-family: $font-serif;
+  font-style: italic;
+  font-size: 26px;
+  color: $muted;
+  text-align: center;
+}
+
+// Canvas e diagramas animados (ver anims/)
+.reveal canvas.nova-canvas { display: block; width: 100%; height: 100%; }
+.reveal .nova-svg svg { display: block; width: 100%; height: auto; overflow: visible; }
+
+// Traço que "se desenha" quando o fragmento aparece (SVG com pathLength=1)
+.reveal .slides section .fragment.draw { opacity: 1; visibility: inherit; transform: none; }
+.reveal .fragment.draw .ink {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1.6s $ease-out;
+}
+.reveal .fragment.draw.visible .ink { stroke-dashoffset: 0; }
+.reveal .fragment.draw .fade {
+  opacity: 0;
+  transition: opacity 0.6s ease 0.2s;
+}
+.reveal .fragment.draw.visible .fade { opacity: 1; }
+
+// =====================================================================
+// Texto: utilitários
+// =====================================================================
+
+.reveal .lead {
+  font-family: $font-serif;
+  font-size: 44px;
+  line-height: 1.45;
+  color: $ink;
+}
+.reveal .serif { font-family: $font-serif; }
+.reveal .muted, .reveal .muted p { color: $muted; }
+.reveal .small { font-size: 0.8em; }
+.reveal .smaller { font-size: 0.65em; }
+.reveal .big { font-size: 1.3em; }
+.reveal .center { text-align: center; display: block; }
+.reveal .navy { color: $navy; }
+.reveal .rose { color: $rose; }
+.reveal .mark {
+  background: linear-gradient(transparent 58%, rgba($gold, 0.38) 58%);
+  padding: 0 2px;
+}
+
+.reveal .small-slide { font-size: 0.82em; }
+
+// Listas (TemaRTx): marcadores padrão, recuo e espaçamento confortáveis
+.reveal ul {
+  list-style-type: disc;
+  margin-left: $spacing-sm;
+  padding-left: $spacing-sm;
+}
+.reveal ol {
+  list-style-type: decimal;
+  margin-left: $spacing-sm;
+  padding-left: $spacing-sm;
+}
+.reveal ul li ul, .reveal ol li ol { font-size: 0.9em; }
+.reveal .slide ul, .reveal .slide ol { line-height: 1.4; }
+.reveal .slide ul li, .reveal .slide ol li { margin: 0.3em 0; }
+.reveal .slide ul li ul li, .reveal .slide ol li ol li { margin: 0.1em 0; }
+
+
+// =====================================================================
+// Código (TemaRTx)
+// =====================================================================
+
+.reveal pre {
+  margin: $spacing-xxs 0;
+  width: 100%;
+  background-color: $code-block-bg;
+  border-radius: 6px;
+  box-shadow: none;
+  font-family: $font-mono;
+  font-size: $code-block-font-size;
+  line-height: 1.4;
+  overflow: auto;
+  border: 0;
+}
+.reveal pre code {
+  font-size: inherit;
+  background-color: $code-block-bg;
+  border-radius: 6px;
+  padding: $spacing-md;
+  max-height: 600px;
+  white-space: pre-wrap;
+  color: $ink;
+  border: 0;
+}
+.reveal div.sourceCode {
+  border: 0;
+  border-radius: 6px;
+  background: $code-block-bg;
+  margin-bottom: 0;
+}
+.reveal code { font-family: $font-mono; }
+.reveal p code, .reveal li code, .reveal td code {
+  font-size: 0.8em;
+  padding: 0 4px;
+  border-radius: 6px;
+  background: $code-block-bg;
+}
+.reveal pre.code-wrapper code .line-number { color: #A8B0BC; }
+
+// Saída do código: fundo claro com filete azul à esquerda
+.reveal div.cell-output-stdout pre,
+.reveal div.cell-output pre {
+  background-color: $code-output-bg;
+  border-left: 3px solid $accent;
+  border-radius: 0 6px 6px 0;
+  code { background: transparent; color: $ink; }
+}
+.reveal div.sourceCode + div.cell-output pre {
+  margin-top: 0;
+  border-radius: 0 0 6px 6px;
+  border-top: 1px solid rgba($accent, 0.2);
+}
+.reveal div.cell-output { margin-bottom: $spacing-xs; }
+.reveal .cell .sourceCode + .cell-output-display { margin-top: $spacing-xs; }
+
+// Rótulo do arquivo: [```{.python filename="x.py"}]
+.reveal .code-with-filename .code-with-filename-file {
+  background: transparent;
+  border: none;
+  padding: 0 0 4px;
+  font-family: $font-sans;
+  font-size: 16px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $accent;
+  pre { background: transparent; }
+}
+.reveal .code-copy-button { opacity: 0.35; &:hover { opacity: 1; } }
+
+// Código ao lado do resultado (output-location: column) ou em colunas
+.reveal .columns pre, .reveal .output-location-column pre { font-size: 26px; }
+.reveal .columns pre code, .reveal .output-location-column pre code { max-height: 700px; }
+
+
+// =====================================================================
+// Tabelas (TemaRTx): cabeçalho azul-claro em versalete, linhas listradas
+// =====================================================================
+
+.reveal table {
+  width: 85%;
+  margin: $spacing-sm auto;
+  border-collapse: collapse;
+  font-family: $font-sans;
+  font-size: 0.75em;
+  font-variant-numeric: tabular-nums;
+
+  caption, & + .table-caption {
+    font-style: italic;
+    color: $muted;
+    font-size: 0.85em;
+    caption-side: top;
+    padding-bottom: 10px;
+  }
+  tr:nth-child(even) { background-color: $paper-dark; }
+  th {
+    text-align: left;
+    background-color: $rule;
+    color: $ink;
+    padding: $spacing-xs;
+    border-bottom: 2px solid $muted;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  td {
+    padding: $spacing-xs;
+    border-bottom: 1px solid lighten($muted, 20%);
+    color: $ink;
+    vertical-align: middle;
+  }
+}
+// Destaque de célula: [**valor**]{.hl}
+.reveal .hl {
+  background: rgba($gold, 0.35);
+  border-radius: 4px;
+  padding: 0.05em 0.35em;
+}
+
+
+// =====================================================================
+// Blocos (TemaRTx)
+//   Personalizados: .callout-definition/-theorem/-example/-insight/-question
+//   (rótulo fixo com ícone; complemento opcional com label="...")
+//   Quarto: .callout-note/-tip/-warning/-important/-caution (desenho padrão)
+// =====================================================================
+
+@mixin rtx-block($color, $label, $alpha: 0.08) {
+  border-left-color: $color;
+  background-color: rgba($color, $alpha);
+  &::before { content: $label; color: $color; }
+  &[data-label]::before { content: $label " · " attr(data-label); }
+  &[title]::before { content: $label " · " attr(title); }
+}
+
+.reveal .callout-example, .reveal .callout-question, .reveal .callout-insight,
+.reveal .callout-definition, .reveal .callout-theorem {
+  padding: $spacing-xxs $spacing-sm;
+  margin: $spacing-xxs 0;
+  border-left: 5px solid;
+  border-radius: 6px;
+  position: relative;
+  text-align: left;
+  p { margin: 0; }
+  &::before {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1em;
+    margin-bottom: 0.1em;
+  }
+}
+.reveal .callout-example    { @include rtx-block($green, "📚 Exemplo"); }
+.reveal .callout-question   { @include rtx-block($orange, "❓ Pergunta"); }
+.reveal .callout-insight    { @include rtx-block($info, "💡 Insight"); }
+.reveal .callout-definition { @include rtx-block($navy, "📘 Definição", 0.06); }
+.reveal .callout-theorem    { @include rtx-block($info, "📐 Teorema", 0.06); }
+
+// Callouts do Quarto: desenho padrão, mais compacto
+.reveal div.callout { border-radius: 0; }
+.reveal div.callout.callout-style-default,
+.reveal div.callout.callout-style-simple { border: solid lighten($muted, 20%) 1px; }
+.reveal div.callout.callout-style-simple div.callout-title,
+.reveal div.callout.callout-style-default div.callout-title { font-size: 1.1em; }
+.reveal div.callout.callout-style-simple div.callout-content,
+.reveal div.callout.callout-style-default div.callout-content { font-size: 0.95em; }
+.reveal div.callout.callout-titled .callout-title p { margin-top: 0.2em; margin-bottom: 0; }
+.reveal div.callout.callout-titled .callout-body > .callout-content > :last-child { margin-bottom: 0.1em; }
+.reveal div.callout.callout-style-simple .callout-icon::before,
+.reveal div.callout.callout-style-default .callout-icon::before {
+  height: 1em; width: 1em; background-size: 0.95em 0.95em;
+}
+.reveal div.callout.callout-titled .callout-icon::before { margin-top: 0.25em; }
+.reveal div.callout-note.callout-style-default .callout-title { background-color: lighten($accent, 35%); }
+
+
+// =====================================================================
+// Encerramento (TemaRTx)
+// =====================================================================
+
+.reveal .slides section.encerramento {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center;
+
+  h2 { display: none; }
+  img, .encerramento-logo {
+    width: 190px !important;
+    height: auto !important;
+    max-width: 190px !important;
+    max-height: 245px !important;
+    margin: 0 auto $spacing-md auto;
+    border-radius: 0;
+  }
+  p { margin: 0.2em 0; color: $accent; text-align: center; }
+  .encerramento-nome, .encerramento-nome a {
+    color: $navy !important;
+    font-weight: bold;
+    font-size: 1.25em;
+    text-decoration: none !important;
+  }
+  .encerramento-ufpa { color: $ink; }
+  .encerramento-campus { color: $accent; }
+  .encerramento-email, a.encerramento-email { font-size: 0.7em; }
+}
+
+
+// #####################################################################
+// RECURSOS INTERATIVOS (nova-extras.html e anims/nova-anim.js)
+// #####################################################################
+
+// ---------------------------------------------------------------------
+// Sliders ao vivo das animações (data-controls="zeta,wn")
+// ---------------------------------------------------------------------
+.reveal .nova-has-controls {
+  display: flex;
+  flex-direction: column;
+  > canvas.nova-canvas { flex: 1 1 auto; height: auto; min-height: 0; }
+}
+.reveal .nova-controls {
+  flex: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 38px;
+  padding: 12px 18px;
+  margin-top: 8px;
+  border-top: 1px solid $rule;
+  font-family: $font-sans;
+  font-size: 22px;
+  label { display: flex; align-items: center; gap: 12px; }
+  .nova-ctl-name { font-family: $font-serif; font-style: italic; font-size: 26px; color: $navy; min-width: 1.2em; }
+  .nova-ctl-val { font-variant-numeric: tabular-nums; color: $grey; min-width: 4.5em; }
+  input[type="range"] { width: 220px; accent-color: $navy; cursor: pointer; }
+  .nova-ctl-replay {
+    margin-left: auto;
+    font: 500 19px $font-sans;
+    color: $navy;
+    background: rgba($navy, 0.06);
+    border: 1px solid rgba($navy, 0.25);
+    border-radius: 6px;
+    padding: 6px 14px;
+    cursor: pointer;
+    &:hover { background: rgba($navy, 0.12); }
+  }
+}
+
+// ---------------------------------------------------------------------
+// 1. Movimento mágico (.morph + \mv{nome}{termo})
+// ---------------------------------------------------------------------
+.reveal .morph {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  margin: 24px 0;
+  > .morph-step {
+    grid-area: 1 / 1;
+    margin: 0;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    .math.display { font-size: 1.5em; }
+  }
+  > .morph-step.is-current { opacity: 1; }
+  > .morph-step.morph-leaving { opacity: 0; transition: opacity 0.25s ease; }
+  .mv { display: inline-block; }
+  .mv-moving { color: $rose; transition: color 0.9s ease; }
+  .mv-new { animation: nova-mv-in 0.8s ease both; }
+}
+// o passo seguinte é um fragmento, mas quem controla a visibilidade é o JS
+.reveal .slides section .morph > .morph-step.fragment {
+  visibility: inherit !important;
+  transform: none !important;
+}
+.reveal .slides section .morph > .morph-step.fragment:not(.is-current) { opacity: 0 !important; }
+.reveal .slides section .morph > .morph-step.fragment.is-current { opacity: 1 !important; }
+@keyframes nova-mv-in { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: none; } }
+
+// ---------------------------------------------------------------------
+// 2. Anotações à mão (.rn-underline/-box/-circle/-highlight/-strike/-bracket)
+// ---------------------------------------------------------------------
+$rn-types: underline, box, circle, highlight, strike, bracket;
+@each $t in $rn-types {
+  .reveal .rn-#{$t} { position: relative; display: inline-block; }
+  div.rn-#{$t} { display: block !important; width: fit-content; }
+  .reveal .slides section .fragment.rn-#{$t} {
+    opacity: 1 !important; visibility: inherit !important; transform: none !important;
+  }
+}
+.reveal .rn-highlight { isolation: isolate; }
+.reveal .rn-svg {
+  position: absolute;
+  left: 0; top: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+.reveal .rn-highlight > .rn-svg { z-index: -1; mix-blend-mode: multiply; }
+.reveal .rn-ink {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.reveal .rn-on > .rn-svg .rn-ink,
+.reveal .fragment.visible > .rn-svg .rn-ink { stroke-dashoffset: 0; }
+
+// ---------------------------------------------------------------------
+// 3. Comparador antes/depois (.compare)
+// ---------------------------------------------------------------------
+.reveal .compare { margin: 10px auto; }
+.reveal .compare-stage {
+  position: relative;
+  display: grid;
+  max-width: 100%;
+  user-select: none;
+  > .compare-a, > .compare-b { grid-area: 1 / 1; }
+  img { display: block; width: 100%; height: auto; max-height: 640px; object-fit: contain; margin: 0 !important; }
+  p { margin: 0; }
+}
+.reveal .compare-b { background: var(--nova-bg); }
+.reveal .compare-bar {
+  position: absolute; top: 0; bottom: 0; width: 2px;
+  background: $rose; transform: translateX(-1px); pointer-events: none;
+}
+.reveal .compare-knob {
+  position: absolute; top: 50%;
+  width: 46px; height: 46px; margin: -23px 0 0 -23px;
+  border-radius: 50%; background: $paper; border: 2px solid $rose;
+  color: $rose; font: 600 22px/42px $font-sans; text-align: center;
+  pointer-events: none; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+.reveal .compare-label {
+  position: absolute; top: 10px;
+  font: 600 16px $font-sans; letter-spacing: 0.12em; text-transform: uppercase;
+  color: $grey; background: rgba($paper, 0.85); padding: 4px 10px; border-radius: 4px;
+}
+.reveal .compare-label-a { left: 10px; }
+.reveal .compare-label-b { right: 10px; }
+.reveal .compare-range {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  margin: 0; opacity: 0; cursor: ew-resize;
+}
+
+// ---------------------------------------------------------------------
+// 4. Gráfico interativo (.nova-plotly)
+// ---------------------------------------------------------------------
+.reveal .nova-plotly {
+  position: relative;
+  width: 100%;
+  height: 640px;
+  > script { display: none; }
+}
+.reveal .nova-plotly-frame {
+  border: none;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+
+// ---------------------------------------------------------------------
+// 5. Python no navegador (.pyrun)
+// ---------------------------------------------------------------------
+.reveal .pyrun {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: start;
+  margin-top: 6px;
+}
+.reveal .pyrun-editor {
+  width: 100%;
+  box-sizing: border-box;
+  font: 20px/1.5 $font-mono;
+  color: $ink;
+  background: $paper-deep;
+  border: none;
+  border-left: 3px solid rgba($navy, 0.35);
+  border-radius: 8px;
+  padding: 14px 18px;
+  resize: vertical;
+  tab-size: 4;
+  &:focus { outline: 2px solid rgba($navy, 0.3); }
+}
+.reveal .pyrun-bar {
+  display: flex; align-items: center; gap: 14px; margin-top: 10px;
+  button {
+    font: 500 19px $font-sans; color: $navy; cursor: pointer;
+    background: rgba($navy, 0.06); border: 1px solid rgba($navy, 0.25);
+    border-radius: 6px; padding: 6px 14px;
+    &:hover { background: rgba($navy, 0.12); }
+    &:disabled { opacity: 0.5; cursor: wait; }
+  }
+  .pyrun-run { color: #fff; background: $navy; border-color: $navy; &:hover { background: lighten($navy, 8%); } }
+  .pyrun-status { font: italic 20px $font-serif; color: $muted; }
+}
+.reveal .pyrun-out {
+  margin: 0 0 10px;
+  font: 19px/1.45 $font-mono;
+  color: $grey;
+  white-space: pre-wrap;
+  background: transparent;
+  box-shadow: none;
+  &:empty { display: none; }
+}
+.reveal .pyrun-fig img { width: 100%; height: auto; }
+
+// ---------------------------------------------------------------------
+// 6. Quiz (.quiz)
+// ---------------------------------------------------------------------
+.reveal .quiz {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px 40px;
+  &.has-qr { grid-template-columns: 1fr 260px; }
+  > p:first-child { grid-column: 1 / -1; font-family: $font-serif; font-size: 40px; line-height: 1.3; margin: 0 0 10px; }
+  .quiz-reveal { display: none; }
+}
+.reveal .quiz-opts { display: flex; flex-direction: column; gap: 12px; }
+.reveal .quiz-opt {
+  display: grid;
+  grid-template-columns: 52px 1fr 260px 120px;
+  align-items: center;
+  gap: 18px;
+  text-align: left;
+  font: 30px $font-sans;
+  color: $ink;
+  background: rgba($navy, 0.03);
+  border: 1px solid $rule;
+  border-radius: 10px;
+  padding: 12px 18px;
+  cursor: pointer;
+  transition: background 0.4s, border-color 0.4s, opacity 0.4s;
+  &:hover { background: rgba($navy, 0.07); }
+  p { margin: 0; }
+}
+.reveal .quiz-letter {
+  width: 44px; height: 44px; border-radius: 50%;
+  display: grid; place-items: center;
+  font: 600 22px $font-sans; color: $navy; border: 2px solid rgba($navy, 0.4);
+}
+.reveal .quiz-bar { height: 12px; background: $paper-deep; border-radius: 6px; overflow: hidden; }
+.reveal .quiz-fill { display: block; height: 100%; width: 0; background: rgba($navy, 0.55); transition: width 0.5s ease; }
+.reveal .quiz-count { font: 20px $font-sans; color: $muted; text-align: right; font-variant-numeric: tabular-nums; }
+.reveal .quiz.revealed {
+  .quiz-opt { opacity: 0.45; }
+  .quiz-opt.quiz-correct {
+    opacity: 1; border-color: $green; background: rgba($green, 0.08);
+    .quiz-letter { color: #fff; background: $green; border-color: $green; }
+    .quiz-fill { background: $green; }
+  }
+}
+.reveal .quiz-qr {
+  align-self: start;
+  text-align: center;
+  .quiz-qr-code svg { width: 230px; height: 230px; }
+  .quiz-qr-code svg path, .quiz-qr-code svg rect[fill="black"] { fill: $ink; }
+  .quiz-qr-url { font: 16px $font-sans; color: $muted; margin-top: 8px; word-break: break-all; }
+}
+
+// ---------------------------------------------------------------------
+// 7. Citações: referências no pé do slide + slide de bibliografia
+// ---------------------------------------------------------------------
+.reveal .nova-cites {
+  position: absolute;
+  left: $pad-side;
+  right: 160px;
+  bottom: 44px;
+  font-family: $font-sans;
+  font-size: 15px;
+  line-height: 1.35;
+  color: $muted;
+  border-top: 1px solid $rule;
+  padding-top: 6px;
+  .nova-cite { margin: 2px 0; text-indent: -1.2em; padding-left: 1.2em; }
+  a { color: $accent; text-decoration: none; }
+}
+.reveal a[role="doc-biblioref"] { color: $navy; text-decoration: none; border-bottom: 1px dotted rgba($navy, 0.4); }
+.reveal .nova-refs-slide h2 { font-size: $presentation-h2-font-size !important; }
+.reveal #refs, .reveal .nova-refs-slide #refs {
+  font-size: 22px;
+  line-height: 1.4;
+  .csl-entry { margin: 0 0 12px; padding-left: 1.5em; text-indent: -1.5em; }
+  a { color: $accent; }
+}
+
+// ---------------------------------------------------------------------
+// 8a. Paleta segura para daltonismo (tecla A ou eqx-palette: cvd)
+//     Base Okabe–Ito, escurecida para contraste sobre o papel; o texto
+//     ganha também um sublinhado diferente por letra (dupla codificação).
+// ---------------------------------------------------------------------
+html.eqx-cvd {
+  --eq-a: #0072B2;   // azul
+  --eq-b: #C55A00;   // vermelhão
+  --eq-c: #00805E;   // verde-azulado
+  --eq-d: #B0509A;   // púrpura-avermelhado
+  --eq-e: #A87400;   // âmbar
+  --eq-f: #2B86BD;   // azul-céu
+  --eq-g: #4B3A8C;   // índigo
+  --eq-h: #882255;   // vinho
+}
+$cvd-lines: (a: solid, b: dashed, c: dotted, d: double, e: wavy, f: solid, g: dashed, h: dotted);
+@each $k, $style in $cvd-lines {
+  html.eqx-cvd .reveal .eqx .t-#{$k} {
+    text-decoration: underline $style;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 6px;
+  }
+}
+
+// ---------------------------------------------------------------------
+// 8b. Modo escuro (tecla D ou nova-mode: dark)
+// ---------------------------------------------------------------------
+$dk-bg: #1C1D20;
+$dk-ink: #E9E6DF;
+$dk-muted: #A39E94;
+$dk-rule: #3A3B40;
+$dk-title: #A9C1E6;
+$dk-rose: #E08A95;
+
+html.nova-dark {
+  --nova-bg: #{$dk-bg};
+  --nova-rn: #{$dk-rose};
+  --eq-a: #A88BEA; --eq-b: #5CC795; --eq-c: #EB7FA9; --eq-d: #7FA6F0;
+  --eq-e: #F0806F; --eq-f: #5CC1D8; --eq-g: #EDA45E; --eq-h: #B5C24E;
+  &.eqx-cvd { --eq-a: #56B4E9; --eq-b: #E69F00; --eq-c: #3CC29A; --eq-d: #DA8AC0;
+              --eq-e: #F0E442; --eq-f: #8FD0F5; --eq-g: #A99BE0; --eq-h: #E07AA8; }
+
+  body, .reveal-viewport { background: $dk-bg !important; }
+  .reveal .slide-background { background-color: $dk-bg !important; }
+  .reveal, .reveal p, .reveal li, .reveal td { color: $dk-ink; }
+  .reveal .slide h2, .reveal .slide h3, .reveal #title-slide .title,
+  .reveal section.title-slide.level1 h1, .reveal .takeaway, .reveal .navy,
+  .reveal .encerramento-nome, .reveal .encerramento-nome a { color: $dk-title !important; }
+  .reveal .nova-crumb, .reveal .nova-secnum, .reveal .rose { color: $dk-rose; }
+  .reveal .muted, .reveal .muted p, .reveal .footer, .reveal .slide-number,
+  .reveal .subtitle, .reveal .quarto-title-affiliation, .reveal .deriv .why,
+  .reveal section.title-slide.level1 > p, .reveal section.title-slide.level1 > ul li,
+  .reveal .encerramento-campus { color: $dk-muted !important; }
+  .reveal .quarto-title-author-name, .reveal .encerramento-ufpa { color: $dk-ink; }
+  .reveal .nova-head, .reveal .eqx .eqx-text, .reveal #title-slide .quarto-title-authors,
+  .reveal .nova-controls, .reveal .nova-cites, .reveal .deriv .why { border-color: $dk-rule; }
+  .reveal section.title-slide.level1 h1::before, .reveal section.title-slide.level1 h1::after { background: $dk-rule; }
+  .reveal table th { color: $dk-title; border-color: $dk-title !important; }
+  .reveal table td { border-color: $dk-rule !important; }
+  .reveal table tr:last-child td { border-color: $dk-title !important; }
+
+  // código
+  .reveal div.sourceCode, .reveal pre code, .reveal .pyrun-editor { background: #26272B !important; color: $dk-ink; }
+  .reveal p code, .reveal li code, .reveal td code { background: #26272B; color: $dk-title; }
+  .reveal code span.kw, .reveal code span.cf, .reveal code span.im, .reveal code span.dt { color: #8FB0E0; }
+  .reveal code span.st, .reveal code span.ch, .reveal code span.ss, .reveal code span.vs, .reveal code span.sc { color: #E59AA3; }
+  .reveal code span.dv, .reveal code span.bn, .reveal code span.fl, .reveal code span.cn { color: #7CC79A; }
+  .reveal code span.co, .reveal code span.do, .reveal code span.an, .reveal code span.cv { color: #8F8A80; }
+  .reveal code span.fu, .reveal code span.bu, .reveal code span.ex, .reveal code span.at { color: #9FC1F0; }
+
+  // figuras, canvas e diagramas: inversão com rotação de matiz (mantém as
+  // cores reconhecíveis); fotos: classe .no-invert
+  .reveal img, .reveal video { mix-blend-mode: normal; }
+  .reveal img:not(.no-invert), .reveal canvas.nova-canvas, .reveal .nova-svg svg,
+  .reveal .cell-output-display svg {
+    filter: invert(0.92) hue-rotate(180deg);
+  }
+  .reveal .encerramento img, .reveal .no-invert img { filter: none; }
+  #title-slide::before { filter: none; }
+  .reveal .quiz-opt { background: rgba(255, 255, 255, 0.03); border-color: $dk-rule; color: $dk-ink; }
+  .reveal .compare-knob { background: $dk-bg; }
+  .reveal .compare-label { background: rgba($dk-bg, 0.85); color: $dk-muted; }
+}
+
+// ---------------------------------------------------------------------
+// 8c. Movimento reduzido (preferência do sistema operacional)
+// ---------------------------------------------------------------------
+@media (prefers-reduced-motion: reduce) {
+  .reveal .slides section .fragment { transform: none !important; filter: none !important; transition-duration: 0.01s !important; }
+  .reveal .rn-ink, .reveal .fragment.draw .ink { transition-duration: 0.01s !important; }
+}
+
+// ---------------------------------------------------------------------
+// Impressão em PDF (?print-pdf): o revealjs envolve cada slide num
+// .pdf-page, então as bordas internas precisam ser reaplicadas
+// ---------------------------------------------------------------------
+html.print-pdf .reveal .slides .pdf-page > section:not(#title-slide):not(.title-slide):not(.encerramento) {
+  box-sizing: border-box;
+  padding: $pad-top $pad-side $pad-bottom !important;
+}
+
+// ---------------------------------------------------------------------
+// Linha do tempo (.timeline): história, roteiro do curso, etapas
+//   ::: {.timeline}
+//   - **1788** Watt: regulador centrífugo
+//   - **1868** Maxwell: estabilidade [aqui]{.now}
+//   :::
+//   Com ::: {.timeline .incremental} os marcos surgem um a um.
+// ---------------------------------------------------------------------
+.reveal .timeline ul {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  padding: 0;
+  margin: 40px 0 10px;
+  list-style: none;
+  > li {
+    flex: 1 1 0;
+    position: relative;
+    margin: 0;
+    padding: 34px 14px 0 0;
+    font-size: 26px;
+    line-height: 1.35;
+    color: $grey;
+    border-top: 2px solid $rule;
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0; top: -9px;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: $paper;
+      border: 2.5px solid $navy;
+    }
+    strong {
+      display: block;
+      font-family: $font-serif;
+      font-size: 40px;
+      font-weight: 600;
+      color: $navy;
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+  }
+  > li:has(.now) {
+    color: $ink;
+    &::before { background: $rose; border-color: $rose; box-shadow: 0 0 0 6px rgba($rose, 0.15); }
+    strong { color: $rose; }
+  }
+  .now {
+    display: inline-block;
+    margin-top: 8px;
+    font: 600 15px $font-sans;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: $rose;
+  }
+}
+html.nova-dark .reveal .timeline ul > li { border-color: $dk-rule; color: $dk-muted;
+  strong { color: $dk-title; } &::before { background: $dk-bg; border-color: $dk-title; } }
+
+// ---------------------------------------------------------------------
+// Rodapé não intercepta cliques: o Quarto o faz ocupar a largura toda,
+// sobre o fundo do slide (onde ficam sliders e botões). Só o link clica.
+// ---------------------------------------------------------------------
+.reveal .footer { width: auto !important; max-width: 60vw; pointer-events: none; }
+.reveal .footer a { pointer-events: auto; }
+.reveal .nova-controls { position: relative; z-index: 40; }
+
+
+// Derivação: a fonte-base do RTx (38px) é maior que a da Nova (34px);
+// equações um pouco menores para caberem nas colunas lhs | rhs | porquê
+.reveal .deriv {
+  .lhs, .rhs { font-size: 1.07em; }
+  .why { font-size: 26px; }
+}
+// Consolidação em em: acompanha .small-slide
+.reveal .takeaway { font-size: 1.1em; margin-top: 24px; }
+// Cores e fontes lidas pelas animações em canvas (anims/nova-anim.js)
+:root {
+  --anim-ink: #{$ink};
+  --anim-muted: #{$muted};
+  --anim-grey: #{$grey};
+  --anim-rule: #{$rule};
+  --anim-faint: #{$faint};
+  --anim-rose: #{$rose};
+  --anim-serif: "Lato", "Helvetica Neue", Arial, sans-serif;
+  --anim-sans: "Roboto", "Helvetica Neue", Arial, sans-serif;
+}
+// #####################################################################
+// COMPATIBILIDADE COM OS DECKS TemaRTx
+// Classes do TemaRTx que continuam valendo, para migrar um deck antigo
+// trocando só o `format:`.
+// #####################################################################
+
+// Texto justificado nos slides de conteúdo (títulos, capa e figuras não)
+.reveal .slides section:not(#title-slide):not(.encerramento):not(.title-slide) {
+  > p, > ul > li, > ol > li { text-align: justify; hyphens: auto; }
+  p:has(> img:only-child) { text-align: center; }
+  // parágrafo com equação em destaque: justificar abre buracos
+  p:has(.math.display), p:has(mjx-container[display]) { text-align: left; }
+  // blocos são estreitos: justificar abre buracos entre as palavras
+  [class*="callout"] p { text-align: left; hyphens: manual; }
+}
+
+// Definição de variáveis em lista lateral: símbolo à esquerda (coluna de
+// largura --defs-sym), descrição em recuo pendurado. Recuo e não grid: a
+// descrição pode ter negrito, links etc. sem quebrar o alinhamento.
+// (na Nova o seletor `.eqx-defs > li` não alcançava a <ul> do Pandoc)
+.reveal .eqx .eqx-defs ul {
+  --defs-sym: 4.2em;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  > li {
+    padding: 0.28em 0 0.28em calc(var(--defs-sym) + 0.6em);
+    margin: 0;
+    border-bottom: 1px solid $rule;
+    text-align: left;
+    > span:first-child {
+      display: inline-block;
+      width: var(--defs-sym);
+      margin-left: calc(-1 * var(--defs-sym) - 0.6em);
+      margin-right: 0.6em;
+      text-align: right;
+    }
+  }
+  > li:last-child { border-bottom: none; }
+}
+
+// Imagens com cantos suaves (fotos e figuras)
+.reveal img { border-radius: 8px; }
+
+// Tamanhos
+.reveal .largest { font-size: 1.20em; }
+.reveal .larger  { font-size: 1.50em; }
+.reveal .large   { font-size: 1.25em; }
+.reveal .smaller { font-size: 0.64em; }
+.reveal .smallest { font-size: 0.512em; }
+.reveal .small-slide { font-size: $presentation-font-smaller; }
+.reveal .tiny-slide { font-size: 0.75em; }
+.reveal .slide-code { font-size: 0.8em; }
+
+// Alinhamento
+.reveal .left   { display: block; text-align: left; }
+.reveal .right  { display: block; text-align: right; }
+.reveal .v-center { display: grid; align-items: center; height: 90%; }
+.reveal .v-top    { display: grid; align-items: start; height: 90%; }
+.reveal .v-bottom { display: grid; align-items: end; height: 90%; }
+.reveal .columns { display: flex !important; align-items: center !important; }
+
+// Ênfase
+@mixin rtx-emph($c, $weight: bold, $style: normal) {
+  background-color: rgba($c, 0.1);
+  padding: $spacing-xxs;
+  margin: $spacing-xxs 0;
+  border-radius: 4px;
+  color: $c;
+  font-weight: $weight;
+  font-style: $style;
+}
+.reveal .alert   { @include rtx-emph($navy); }
+.reveal .note    { @include rtx-emph(darken($gold, 10%), normal, italic); }
+.reveal .warning { @include rtx-emph($orange); }
+.reveal .fg { color: $accent; font-weight: bold; }
+.reveal .bg { background-color: $accent; padding: $spacing-xs $spacing-sm; border-radius: 4px; color: #fff; }
+.reveal .highlight { background-color: $gold; color: $ink; padding: $spacing-xxs; border-radius: 2px; }
+
+// Citação
+.reveal .blockquote, .reveal blockquote {
+  font-size: inherit;
+  padding: 0 $spacing-md;
+  color: $muted;
+  border-left: 0.25rem solid $rule;
+  box-shadow: none;
+  background: none;
+  margin-bottom: $spacing-md;
+}
+.reveal .slides section.quote-slide {
+  color: $navy;
+  font-size: 0.75em;
+  text-align: center;
+  blockquote { font-style: italic; color: $muted; border-left: 5px solid $navy; padding-left: 20px; }
+}
+
+// Slide de seção manual do TemaRTx (## Título {.section-slide})
+.reveal .slides section.section-slide {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: flex-start !important;
+  align-items: center;
+  h1 {
+    font-size: $presentation-h1-font-size;
+    color: $navy;
+    text-align: center;
+    border-bottom: 3px solid $accent;
+    padding-bottom: $spacing-md;
+    display: inline-block;
+  }
+}
+
+.reveal strong { font-weight: 700; }

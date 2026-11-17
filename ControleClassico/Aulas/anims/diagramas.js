@@ -6,6 +6,7 @@
      "malha-aberta"     controlador → atuador → planta, perturbação d
      "malha-fechada"    + sensor, comparador, erro, ruído de medição n
      "formas-blocos"    série, paralelo e realimentação → equivalentes
+     "motor-cc"         motor CC pela armadura: V_a → ω, T_L e força contraeletromotriz
 
    Uso (o <script> logo depois do <div>):
      ::: {.nova-svg data-nova-diagram="malha-fechada"}
@@ -75,6 +76,42 @@
 
   // -----------------------------------------------------------------
   const DIAGRAMS = {
+    // Motor CC controlado pela armadura: V_a → ω, com torque de carga T_L
+    // e força contraeletromotriz e_a = K_e ω realimentada
+    "motor-cc"(svg, g) {
+      svg.setAttribute("viewBox", "0 90 1496 440");
+      const Y = 250, BH = 100;
+      let G = g(1);
+      label(G, "V_a(s)", 20, Y - 18, C.u);
+      arrow(G, [[20, Y], [146, Y]], C.u);
+      sum(G, 170, Y, { left: "+", bottom: "−" });
+      arrow(G, [[194, Y], [296, Y]], C.e);
+      block(G, 300, Y - BH / 2, 230, BH, "1/(Ls + R)", "", "armadura");
+      label(G, "I_a(s)", 550, Y - 18, C.n);
+      arrow(G, [[530, Y], [626, Y]], C.n);
+      block(G, 630, Y - BH / 2, 120, BH, "K_t", "", "torque");
+      G = g(2);
+      label(G, "T_m", 770, Y - 18, C.d);
+      arrow(G, [[750, Y], [866, Y]], C.d);
+      sum(G, 890, Y, { left: "+" });
+      arrow(G, [[914, Y], [1016, Y]], C.d);
+      block(G, 1020, Y - BH / 2, 230, BH, "1/(Js + b)", "", "mecânica");
+      label(G, "ω(s)", 1380, Y - 18, C.y);
+      arrow(G, [[1250, Y], [1470, Y]], C.y);
+      G = g(3);
+      label(G, "T_L(s)", 905, 128, C.d);
+      arrow(G, [[890, 140], [890, Y - 28]], C.d);
+      txt(G, "−", 866, Y - 34, { family: SANS, size: 28, color: C.rose });
+      note(G, "torque de carga", 1110, 128, C.d);
+      G = g(4);
+      el("circle", { cx: 1320, cy: Y, r: 6, fill: C.rose, class: "fade" }, G);
+      arrow(G, [[1320, Y], [1320, 420], [846, 420]], C.rose);
+      block(G, 726, 380, 120, 80, "K_e", "", "", "rose");
+      label(G, "E_a(s)", 560, 408, C.rose);
+      arrow(G, [[726, 420], [170, 420], [170, Y + 28]], C.rose);
+      note(G, "força contraeletromotriz: o motor freia a própria corrente", 760, 505, C.rose);
+    },
+
     "malha-aberta"(svg, g) {
       svg.setAttribute("viewBox", "0 120 1496 380");
       const Y = 300, BH = 100;

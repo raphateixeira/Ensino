@@ -1,0 +1,366 @@
+---
+title: "LGR na prática: servo de posição"
+subtitle: "Sistemas de Controle I · Aula 8 · Exemplo 4"
+author: "Prof. Dr. Raphael Teixeira"
+institute: "Universidade Federal do Pará"
+format: rtx-revealjs
+csl: ../apa.csl
+link-citations: true
+suppress-bibliography: true
+resources:
+  - "anims/*"
+---
+
+# O problema
+
+- Servo de posição
+- Especificações
+- Região do plano $s$
+
+## Servo de posição com motor CC {.small-slide}
+
+Posicionar uma **antena** acionada pelo motor CC do Exemplo 3, medindo o ângulo, com realimentação unitária [@nise2015].
+
+::: {.eqx}
+$$
+G(s) = \frac{\Theta(s)}{U(s)} = \frac{1}{\eq{a}{s}\,\eq{b}{(s+2)}\,\eq{c}{(s+10)}}
+$$
+
+:::: {.columns}
+::: {.column width="52%"}
+::: {.eqx-defs}
+- [$s = 0$]{.t-a} velocidade **integra** em posição
+- [$s = -2$]{.t-b} motor e carga ($\tau_m = 0{,}5$ s)
+- [$s = -10$]{.t-c} parte elétrica ($\tau_e = 0{,}1$ s)
+:::
+:::
+::: {.column width="48%"}
+::: {.callout-definition label="Controlador"}
+**Proporcional**, $u = K\,e$: o ganho do motor (10, no Exemplo 3) e o do amplificador ficam embutidos em $K$.
+:::
+
+::: {.callout-insight .fragment label="Já sabemos (Aula 6)"}
+Polo na origem: **tipo 1**, erro nulo ao degrau para todo $K$ estabilizante.
+:::
+:::
+::::
+:::
+
+## Especificações viram regiões
+
+::: {.lead}
+Resposta ao degrau de posição com **sobressinal de no máximo 10 %** e **acomodação em até 2 s**.
+:::
+
+::: {.eqx .deriv style="--deriv-lhs: 320px; --deriv-rhs: 480px;"}
+::: {.step}
+[$\text{OS}\% \leq 10\,\%$]{.lhs} [$\Rightarrow\ \zeta \geq 0{,}6$]{.rhs} [setor de $\pm 53°$ em torno do eixo real negativo]{.why}
+:::
+::: {.step .fragment}
+[$t_s \approx \dfrac{4}{\sigma} \leq 2$ s]{.lhs} [$\Rightarrow\ \sigma \geq 2$]{.rhs} [polos à esquerda de $\operatorname{Re}(s) = -2$]{.why}
+:::
+:::
+
+::: {.notes}
+ζ = 0,6 dá exatamente 9,5 % (Aula 4). Desenhe no quadro o setor e a reta vertical e hachure a região permitida; ela vai ficar no canto do quadro a aula inteira.
+:::
+
+# Tentativa 1: modelo reduzido
+
+- Desprezar o polo rápido
+- O que o LGR mostra
+- Na planta real
+
+## Desprezar o polo rápido
+
+::: {.eqx .deriv style="--deriv-lhs: 220px; --deriv-rhs: 560px;"}
+::: {.step}
+[$\dfrac{1}{s+10}$]{.lhs} [$\approx \dfrac{1}{10}$]{.rhs} [polo 5× mais rápido que o do motor]{.why}
+:::
+::: {.step .fragment}
+[$K\,G(s)$]{.lhs} [$\approx \dfrac{K/10}{s(s+2)}$]{.rhs} [igual à motivação da Aula 8]{.why}
+:::
+:::
+
+::: {.fragment}
+O LGR de $1/[s(s+2)]$ já é conhecido: separação em $-1$ e **reta vertical** em $\sigma = -1$.
+:::
+
+::: {.callout-important .fragment title="Leitura imediata"}
+Com controlador P, o par de polos fica preso em $\sigma = -1$: $t_s \approx 4$ s para **qualquer** $K$. A especificação de $t_s$ já falha no modelo reduzido.
+:::
+
+## O que o LGR do modelo reduzido mostra
+
+::: {style="height: 680px"}
+<canvas class="nova-canvas" data-nova-anim="lgr" data-poles="0,-2" data-xlim="-4,1.5" data-ylim="-3,3" data-k="2.77" data-kmax="20" data-zeta="0.6" data-step="true" data-tend="8" data-yr="-0.2,1.6" data-loop="false" data-controls="k"></canvas>
+:::
+
+::: {.notes}
+Aqui o K do slider é o ganho efetivo K/10. A reta ζ = 0,6 corta a vertical em −1 ± j1,33, com K/10 = 2,77, ou seja, K ≈ 27,7. Simulado: OS% = 9,4 %, t_s = 3,6 s. Pergunta à turma: confiamos nesse K na planta real?
+:::
+
+## O projeto reduzido na planta real
+
+::: {.lead}
+Com o mesmo $K = 27{,}7$, o sobressinal previsto de **9 %** vira **15 %**, e a acomodação passa de 3,6 s para 4,9 s.
+:::
+
+::: {.notes}
+Previsto: polos −1,00 ± j1,33, ζ = 0,60, OS% = 9,4 %, t_s = 3,6 s. Na planta: −0,84 ± j1,41, ζ = 0,51, OS% = 15,2 %, t_s = 4,9 s. É o slide "Acrescentando um polo" da Aula 8, agora com números. Com ganho baixo a aproximação 1/(s+10) ≈ 1/10 vale; com o ganho de projeto ela já distorce o resultado.
+:::
+
+# Tentativa 2: P com o modelo completo
+
+- Esboço
+- Escolha de $K$
+- Até onde vai o ganho
+
+## Esboço pelo roteiro
+
+:::: {.columns}
+::: {.column width="58%"}
+1. Polos ✕ em $0,\ -2,\ -10$; sem zeros: $n - m = 3$
+2. Eixo real: $[-2, 0]$ e $(-\infty, -10]$
+3. Assíntotas: $\pm 60°$ e $180°$, centro $\sigma_a = \dfrac{0 - 2 - 10}{3} = -4$
+4. Separação entre $0$ e $-2$: $s \approx -0{,}95$ ($K \approx 9$)
+5. Routh em $s^3 + 12s^2 + 20s + K$: estável para $K < 240$, cruza em $\pm j4{,}47$
+:::
+::: {.column width="42%"}
+::: {.callout-insight .fragment title="O que já dá para prever"}
+- Até $K \approx 9$: sem sobressinal, **lento**
+- Depois da separação, o par sobe e vai para a **direita**
+- A parte real do par dominante **nunca** passa de $-0{,}95$
+:::
+:::
+::::
+
+::: {.notes}
+Faça o esboço no quadro com a turma antes de passar para a animação. Separação: dK/ds = 0 ⇒ 3s² + 24s + 20 = 0 ⇒ s = −0,945 (a outra raiz, −7,06, não está no LGR). Routh: 12·20 = 240, polinômio auxiliar 12s² + 240 = 0 ⇒ s = ±j√20.
+:::
+
+## Esboço guiado
+
+::: {style="height: 700px"}
+<canvas class="nova-canvas" data-nova-anim="lgr-esboco" data-poles="0,-2,-10" data-xlim="-13,3" data-ylim="-7,7" data-kmax="600"></canvas>
+:::
+
+::: {.notes}
+Confira cada passo da animação com o que foi feito no quadro. Destaque o passo 5: o cruzamento de jω em K = 240 é o limite absoluto do ganho.
+:::
+
+## Escolha de $K$ ao vivo
+
+::: {style="height: 680px"}
+<canvas class="nova-canvas" data-nova-anim="lgr" data-poles="0,-2,-10" data-xlim="-12,3" data-ylim="-6,6" data-k="21.6" data-kmax="300" data-zeta="0.6" data-step="true" data-tend="10" data-yr="-0.2,1.8" data-loop="false" data-controls="k"></canvas>
+:::
+
+::: {.notes}
+A reta ζ = 0,6 corta o ramo em −0,87 ± j1,16, com K ≈ 21,6. Terceiro polo em −10,26: 12× mais longe, dominância garantida. Simulado: OS% = 9,3 %, t_s = 4,2 s. Depois leve K até 240 para ver a oscilação sustentada.
+:::
+
+## Resultado com controlador P
+
+::: {.lead}
+Com $K = 21{,}6$: $\text{OS}\% = 9{,}3\,\%$ ✓, mas $t_s = 4{,}2$ s ✗.
+:::
+
+::: {.callout-important .fragment title="Nenhum K resolve"}
+Para $t_s \leq 2$ s seria preciso $\sigma \geq 2$, mas o par dominante nunca vai além de $\sigma \approx 0{,}95$.
+
+Mudar $K$ só **move o ponto** sobre o lugar. Para cumprir $t_s$ é preciso **mudar o lugar**.
+:::
+
+::: {.notes}
+Polos dominantes −0,87 ± j1,16; terceiro polo em −10,3 (dominância ok).
+:::
+
+## Verificação
+
+::: {.quiz answer="b"}
+Por que nenhum ganho $K$ deixa este servo acomodar em menos de 2 s?
+
+- Porque $K$ precisa ficar abaixo de 240 para o sistema ser estável
+- Porque o par dominante nunca fica à esquerda de $\operatorname{Re}(s) \approx -0{,}95$
+- Porque o polo em $-10$ é lento demais
+- Porque o sistema é tipo 1 e tem erro em regime
+:::
+
+# Tentativa 3: acrescentar um zero
+
+- Controlador PD
+- Onde pôr o zero
+- Escolha de $K$
+
+## Controlador PD: um zero na malha {.small-slide}
+
+::: {.eqx .deriv style="--deriv-lhs: 300px; --deriv-rhs: 600px;"}
+::: {.step}
+[$C(s)$]{.lhs} [$= K\,(s + z) = \eq{a}{K z} + \eq{b}{K}\,s$]{.rhs} [ação proporcional + **derivativa**]{.why}
+:::
+::: {.step .fragment}
+[$1 + C(s)\,G(s) = 0$]{.lhs} [$\iff 1 + K\,\dfrac{s+z}{s(s+2)(s+10)} = 0$]{.rhs} [novo LGR, ainda em função de $K$]{.why}
+:::
+:::
+
+:::: {.columns .fragment}
+::: {.column width="50%"}
+- Agora $n - m = 2$: duas assíntotas **verticais**
+- Centro: $\sigma_a = \dfrac{-12 + z}{2}$
+:::
+::: {.column width="50%"}
+- Zero perto da origem $\Rightarrow$ $\sigma_a$ bem à esquerda
+- Zero em $z > 12$ $\Rightarrow$ centro no semiplano direito
+:::
+::::
+
+## Onde pôr o zero? Explore
+
+::: {style="height: 680px"}
+<canvas class="nova-canvas" data-nova-anim="lgr" data-poles="0,-2,-10" data-z="-4" data-xlim="-12,3" data-ylim="-8,8" data-k="17" data-kmax="200" data-zeta="0.6" data-step="true" data-tend="4" data-yr="-0.2,1.6" data-loop="false" data-controls="k,z"></canvas>
+:::
+
+::: {.notes}
+Comece com o zero em −4: com ζ = 0,6 (K ≈ 17) o par fica em −1,7 ± j2,3 e t_s ≈ 2 s, no limite. Leve o zero para −3 e para −2 e reajuste K sobre a reta de ζ. Com o zero em −2 ele cancela o polo do motor e o LGR vira a reta vertical em σ = −5. Observe também: com o zero longe (−8, −9) o lugar volta a parecer o do controlador P.
+:::
+
+## Zero sobre o polo do motor: $z = 2$
+
+::: {.eqx .deriv style="--deriv-lhs: 200px; --deriv-rhs: 900px;"}
+::: {.step}
+[$C(s)\,G(s)$]{.lhs} [$= \dfrac{K\,\eq{a}{(s+2)}}{s\,\eq{a}{(s+2)}\,(s+10)} = \dfrac{K}{s(s+10)}$]{.rhs} [cancelamento polo-zero]{.why}
+:::
+::: {.step .fragment}
+[$P(s)$]{.lhs} [$= s^2 + 10s + K$]{.rhs} [$\sigma = -5$ fixo para $K > 25$]{.why}
+:::
+::: {.step .fragment}
+[$\zeta = 0{,}6$]{.lhs} [$\Rightarrow\ \omega_n = 5/0{,}6 = 8{,}33,\quad K = \omega_n^2 \approx 69{,}4$]{.rhs} [$s = -5 \pm j6{,}66$]{.why}
+:::
+:::
+
+::: {.callout-tip .fragment title="Resultado"}
+$\text{OS}\% = 9{,}5\,\%$ ✓ e $t_s \approx 4/5 = 0{,}8$ s ✓ (simulado: $0{,}71$ s). Quase **seis vezes** mais rápido que o melhor controlador P.
+:::
+
+::: {.notes}
+Em termos de PID: K_p = K·z ≈ 139 e K_d = K ≈ 69,4. O LGR do sistema compensado é o de dois polos da Aula 8, só que com a reta vertical em −5 em vez de −1.
+:::
+
+## O projeto PD ao vivo
+
+::: {style="height: 680px"}
+<canvas class="nova-canvas" data-nova-anim="lgr" data-poles="0,-2,-10" data-zeros="-2" data-xlim="-12,3" data-ylim="-8,8" data-k="69.4" data-kmax="200" data-zeta="0.6" data-step="true" data-tend="3" data-yr="-0.2,1.6" data-loop="false" data-controls="k"></canvas>
+:::
+
+::: {.notes}
+O ramo que sai de −2 termina no zero em −2 (comprimento zero): o lugar é só o eixo real [−10, 0] e a vertical em −5. Mostre que com K < 25 os polos são reais e a resposta não tem sobressinal.
+:::
+
+# Conferência
+
+- Robustez do cancelamento
+- O que o zero comprou
+- Custo do zero
+
+## E se o polo do motor não estiver em $-2$?
+
+::: {.lead}
+O cancelamento só é exato se o modelo for exato. Com o **mesmo** $C(s) = 69{,}4\,(s+2)$, um motor 20 % mais lento leva $\text{OS}\%$ de 9,5 % a **14 %**.
+:::
+
+::: {.notes}
+Polo do motor em −1,6: polos −4,74 ± j6,54 e −2,13, OS% = 14,2 %, t_s = 0,79 s. Nominal (−2): −5 ± j6,66, 9,5 %, 0,71 s. Em −2,4: −5,26 ± j6,78 e −1,89, 5,1 %, 0,91 s. Teste ao vivo no próximo slide. O polo de malha fechada em ≈ −2 fica "coberto" pelo zero na resposta à referência, mas aparece na resposta a uma perturbação de carga (modo lento de 0,5 s).
+:::
+
+## Erro de modelo ao vivo
+
+::: {style="height: 680px"}
+<canvas class="nova-canvas" data-nova-anim="lgr" data-poles="0,-1.6,-10" data-zeros="-2" data-xlim="-12,3" data-ylim="-8,8" data-k="69.4" data-kmax="200" data-zeta="0.6" data-step="true" data-tend="3" data-yr="-0.2,1.6" data-loop="false" data-controls="k"></canvas>
+:::
+
+::: {.notes}
+Planta com o polo do motor em −1,6 e o zero do controlador mantido em −2. Agora o polo de −1,6 encontra o da origem e o zero em −2 é alcançado pelo ramo que vem de −10 pelo eixo real: o polo de malha fechada lento fica em −2,13, logo ao lado do zero (quase cancelado). Reduza K até a reta de ζ = 0,6 para recuperar OS% ≤ 10 %.
+:::
+
+## O que o zero comprou
+
+::: {.big}
+- Resposta **seis vezes** mais rápida: $t_s$ de 4,2 s para 0,7 s, com o mesmo $\text{OS}\%$
+- Ganho maior, então **erro de seguimento** menor: à rampa, de 0,93 para 0,14
+:::
+
+::: {.notes}
+Erro à rampa unitária: e∞ = 1/K_v, K_v = lim s·C(s)G(s) (Aula 6). P: K_v = K/20 = 1,08; PD: K_v = Kz/20 = 6,94. O projeto reduzido aplicado à planta real teria erro 0,72.
+:::
+
+## O preço do zero
+
+:::: {.columns}
+::: {.column width="50%"}
+::: {.callout-important title="Ação derivativa"}
+- $u = K z\,e + K\,\dot e$: a derivada **amplifica ruído** de medição
+- Degrau na referência $\Rightarrow$ impulso em $u$ (*derivative kick*)
+- O motor tem limites de tensão: $K = 69{,}4$ pode **saturar** o atuador
+:::
+:::
+::: {.column width="50%"}
+::: {.callout-insight title="Próximo passo: PID (Aula 10)"}
+- Derivada **filtrada** e aplicada sobre $y$
+- Ação **integral** para erro nulo também sob perturbação de carga
+- O LGR continua sendo a ferramenta para posicionar os zeros
+:::
+:::
+::::
+
+::: {.notes}
+Feche a ponte para a Aula 10: o PD é um PID com K_i = 0. O que mudou nesta aula foi a pergunta: em vez de "qual K?", "onde estão os polos e zeros de C(s)?".
+:::
+
+# No laboratório
+
+## O projeto no MATLAB
+
+:::: {.columns}
+::: {.column width="55%"}
+```matlab
+s = tf('s');
+G = 1/(s*(s+2)*(s+10));
+
+% Tentativa 2: controlador P
+rlocus(G); sgrid(0.6, [])
+K = 21.6;
+stepinfo(feedback(K*G, 1))
+
+% Tentativa 3: PD com zero em -2
+C = (s + 2);
+rlocus(C*G); sgrid(0.6, [])
+K = 69.4;
+H = feedback(K*C*G, 1);
+step(H), stepinfo(H)
+```
+:::
+::: {.column width="45%"}
+::: {.callout-tip title="Roteiro da prática"}
+1. Esboce os dois LGR à mão **antes** de rodar `rlocus`
+2. Use `rlocfind` (ou clique no gráfico) para conferir $K$
+3. Troque o polo do motor por $-1{,}6$ e $-2{,}4$ e repita `stepinfo`
+4. Plote $u(t)$ com `step(K*C/(1 + K*C*G))` e compare o pico de tensão dos controladores P e PD
+:::
+:::
+::::
+
+## Exercícios
+
+Para o mesmo servo, $G(s) = \dfrac{1}{s(s+2)(s+10)}$:
+
+1. Refaça a tentativa 2 para $\zeta = 0{,}7$: que $K$, que $t_s$?
+2. Com o zero do PD em $-4$, ache $K$ para $\zeta = 0{,}6$ e explique por que o $\text{OS}\%$ simulado passa de 10 %.
+3. Exija $t_s \leq 1$ s e $\text{OS}\% \leq 5\,\%$. Onde deve ficar o par dominante? O PD com zero em $-2$ consegue?
+4. O que acontece com o LGR do PD se o zero for colocado em $-11$? E em $-13$?
+5. Calcule o erro à rampa dos itens 1 e 3 e compare com o PD da aula (0,14).
+6. Confira tudo no MATLAB com `rlocus`, `sgrid` e `stepinfo`.
+
+<script src="anims/nova-anim.js"></script>
+<script src="anims/lgr.js"></script>
+
+{{< include _encerramento-rtx.qmd >}}

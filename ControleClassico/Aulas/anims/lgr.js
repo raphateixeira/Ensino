@@ -17,6 +17,7 @@
 
    Parâmetros:
      data-poles="0,-2,-4"   polos de G(s); "re:im" = par re ± j·im
+     data-gain="4"          ganho de G(s) = gain·N/D ("lgr": o slider K é o do controlador)
      data-zeros="-3"        zeros de G(s) (mesmo formato)
      data-xlim="-7,2"       janela do plano s (eixos com a mesma escala)
      data-ylim="-4,4"
@@ -105,10 +106,10 @@
 
   // LGR completo: K geométrico de 1e-4 a 1e5 (cache por polos/zeros)
   const CACHE = new Map();
-  function locus(P, Z) {
-    const key = JSON.stringify([P, Z]);
+  function locus(P, Z, g = 1) {
+    const key = JSON.stringify([P, Z, g]);
     if (CACHE.has(key)) return CACHE.get(key);
-    const a = polyFromRoots(P), b = polyFromRoots(Z), N = 1600;
+    const a = polyFromRoots(P), b = polyFromRoots(Z).map((v) => v * g), N = 1600;
     const Ks = [0], R = [P.map((p) => p.slice())];
     // perto de uma raiz dupla a raiz anda como √K: subdivide o passo de K
     // enquanto alguma raiz (na região de interesse) saltar demais
@@ -263,7 +264,7 @@
   function lgr({ canvas, ctx, W, H, data }) {
     const { C, FONT, fmt, text, axes, line, dot, seg } = NovaAnim;
     const { P, Z, xlim, ylim } = opts(data);
-    const Lc = locus(P, Z);
+    const Lc = locus(P, Z, parseFloat(data.gain || "1"));
     const n = P.length, m = Z.length;
     const compact = data.compact === "true";
     const showStep = !compact && data.step === "true";
@@ -284,7 +285,8 @@
     const S = compact ? plane({ x: 10, y: 48, w: W - 20, h: H - 58 }, xlim, ylim, true) : plane(showStep ? { x: 30, y: 40, w: W * 0.5, h: H - 90 } : { x: 30, y: 40, w: W * 0.64, h: H - 90 }, xlim, ylim);
     const RX = S.box.x + S.box.w + 110;
     const yr = (data.yr || "-0.2,1.8").split(",").map(parseFloat);
-    const R = NovaAnim.frame({ x: RX, y: H * 0.4, w: W - RX - 30, h: H * 0.5 }, [0, parseFloat(data.tend || "10")], yr);
+    const RY = Math.max(H * 0.4, S.box.y + 170);   // abaixo do bloco de informações
+    const R = NovaAnim.frame({ x: RX, y: RY, w: W - RX - 30, h: Math.min(H * 0.5, H - RY - 50) }, [0, parseFloat(data.tend || "10")], yr);
     const yt = [];
     const dy = yr[1] - yr[0] > 3 ? 1 : 0.5;
     for (let v = Math.ceil(yr[0] / dy) * dy; v <= yr[1] + 1e-9; v += dy) yt.push(v);
@@ -359,10 +361,11 @@
     }
 
     function drawInfo(Kc, Rc) {
-      const x = RX - 40, unstable = Rc.some((r) => r[0] > 1e-6);
+      const x = RX - 40, maxRe = Math.max(...Rc.map((r) => r[0]));
+      const unstable = maxRe > 1e-4, marginal = !unstable && maxRe > -1e-4 && Kc > 0;
       let y = S.box.y + 30;
       text(ctx, `K = ${fmt(Kc, Kc < 10 ? 3 : 2)}`, x, y, { font: FONT.title, color: C.rose });
-      text(ctx, unstable ? "instável" : "estável", x + 200, y, { font: FONT.sansB, color: unstable ? C.rose : C.b }); y += 44;
+      text(ctx, unstable ? "instável" : marginal ? "marginalmente estável" : "estável", x + 200, y, { font: FONT.sansB, color: unstable ? C.rose : marginal ? C.g : C.b }); y += 44;
       text(ctx, "polos de malha fechada:", x, y, { font: FONT.sansM, color: C.ink }); y += 34;
       if (showStep) text(ctx, rootList(Rc).join("   ·   "), x + 16, y, { font: FONT.sans, color: C.ink });
       else rootList(Rc).forEach((s) => { text(ctx, `s = ${s}`, x + 16, y, { font: FONT.sans, color: C.ink }); y += 30; });

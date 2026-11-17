@@ -24,20 +24,26 @@
   const v = (name, d) => (css.getPropertyValue(name).trim() || d);
 
   const C = {
-    ink: "#1D1C1A", muted: "#77736A", grey: "#5F6368", rule: "#DDD7CB",
-    faint: "#C9C3B6", paper: "#F7F5F0", navy: "#1B365D", rose: "#A63D4A",
+    // cores e fontes do tema: o RTx define --anim-* e --nova-bg; sem elas
+    // (tema Nova) valem os padrões abaixo
+    ink: v("--anim-ink", "#1D1C1A"), muted: v("--anim-muted", "#77736A"),
+    grey: v("--anim-grey", "#5F6368"), rule: v("--anim-rule", "#DDD7CB"),
+    faint: v("--anim-faint", "#C9C3B6"), paper: v("--nova-bg", "#F7F5F0"),
+    navy: "#1B365D", rose: v("--anim-rose", "#A63D4A"),
     a: v("--eq-a", "#7B4FD0"), b: v("--eq-b", "#2E9C6B"), c: v("--eq-c", "#D2457E"),
     d: v("--eq-d", "#3A6EDB"), e: v("--eq-e", "#D0473B"), f: v("--eq-f", "#2795B0"),
     g: v("--eq-g", "#D27A22"), h: v("--eq-h", "#7A8A1C"),
   };
 
+  const SERIF = v("--anim-serif", '"Source Serif 4", Georgia, serif');
+  const SANS = v("--anim-sans", '"Inter", sans-serif');
   const FONT = {
-    title: '600 26px "Source Serif 4", Georgia, serif',
-    serif: '24px "Source Serif 4", Georgia, serif',
-    ital: 'italic 24px "Source Serif 4", Georgia, serif',
-    sans: '20px "Inter", sans-serif',
-    sansM: '500 22px "Inter", sans-serif',
-    sansB: '600 24px "Inter", sans-serif',
+    title: "600 26px " + SERIF,
+    serif: "24px " + SERIF,
+    ital: "italic 24px " + SERIF,
+    sans: "20px " + SANS,
+    sansM: "500 22px " + SANS,
+    sansB: "600 24px " + SANS,
   };
 
   // número com vírgula decimal

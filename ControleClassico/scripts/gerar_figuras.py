@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Gera as figuras de dados (respostas no tempo, LGR, Bode, PID) usadas
-nos slides de Notas/*.qmd. Saída em Notas/imgs/plots/*.png.
+nos slides de Aulas/*.qmd. Saída em Aulas/imgs/plots/*.png.
 
 Requer: numpy, matplotlib, control (pip install numpy matplotlib control)
 Uso:    python3 scripts/gerar_figuras.py
@@ -11,7 +11,7 @@ import control as ct
 import matplotlib.pyplot as plt
 import numpy as np
 
-OUT = os.path.join(os.path.dirname(__file__), "..", "Notas", "imgs", "plots")
+OUT = os.path.join(os.path.dirname(__file__), "..", "Aulas", "imgs", "plots")
 os.makedirs(OUT, exist_ok=True)
 
 # --- Paleta categórica fixa (ordem fixa, validada para daltonismo) ---

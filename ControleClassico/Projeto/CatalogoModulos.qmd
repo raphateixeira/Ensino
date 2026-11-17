@@ -15,7 +15,7 @@ format:
     footer: " "
     center: false
     title-slide-attributes:
-      data-background-image: "../Notas/imgs/ufpa-colorido.png"
+      data-background-image: "../Aulas/imgs/ufpa-colorido.png"
       data-background-size: "84px"
       data-background-position: "top 45px center"
 engine: knitr
@@ -25,7 +25,7 @@ engine: knitr
 
 - Trabalho em **dupla**, valendo até **2,0 pontos** somados à média das avaliações
 - Percorre o ciclo completo: **do modelo à bancada real**
-- As oito etapas estão detalhadas no [Plano de Ensino](../Notas/Aula00PlanoEnsino.qmd)
+- As oito etapas estão detalhadas no [Plano de Ensino](../Aulas/Aula00PlanoEnsino.qmd)
 
 ::: {.callout-note}
 Esta apresentação cobre a **etapa zero**: escolher o sistema físico que a dupla vai modelar, analisar e controlar.
@@ -77,7 +77,7 @@ Não existe módulo "mais fácil" — existe módulo mais **alinhado com o que a
 %| fig-align: center
 %| fig-width: 9
 \usetikzlibrary{arrows.meta, decorations.pathmorphing}
-\input{../Notas/imgs/tikz/MotorCC.tikz}
+\input{../Aulas/imgs/tikz/MotorCC.tikz}
 ```
 
 ::: {.columns}

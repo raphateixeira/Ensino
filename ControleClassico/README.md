@@ -16,7 +16,7 @@ ControleClassico/
 │   └── gerar_figuras.py        gera as figuras de dados (respostas, LGR, Bode, PID)
 ├── .github/workflows/
 │   └── publish.yml             CI: renderiza e publica em GitHub Pages
-├── Notas/
+├── Aulas/
 │   ├── Aula00PlanoEnsino.qmd    plano de ensino
 │   ├── Aula01Introducao.qmd     definições, malha aberta/fechada, terminologia
 │   ├── Aula02ModelagemFT.qmd    Laplace, função de transferência, diagrama de blocos
@@ -26,6 +26,10 @@ ControleClassico/
 │   ├── Aula06ErroRegimePermanente.qmd ordem superior, erro em regime permanente, tipo
 │   ├── Aula07Estabilidade.qmd   estabilidade, critério de Routh-Hurwitz, faixa de K
 │   ├── Aula08LGR.qmd            lugar geométrico das raízes
+│   ├── Aula08Ex01PrimeiraOrdem.qmd    exemplo 1: 1ª ordem (P e PI); plano s e sgrid
+│   ├── Aula08Ex02DuploIntegrador.qmd  exemplo 2: duplo integrador (P, PD, PID)
+│   ├── Aula08Ex03MotorCC.qmd          exemplo 3: motor CC, modelagem e velocidade (P, PI, PID)
+│   ├── Aula08Ex04ServoPosicao.qmd     exemplo 4: servo de posição (P → PD)
 │   ├── Aula09RespostaFrequencia.qmd   Bode, margens de estabilidade
 │   ├── Aula10PID.qmd            controlador PID e sintonia
 │   └── imgs/
@@ -62,7 +66,7 @@ quarto render       # gera o site em _site/
   pip install numpy matplotlib control
   python3 scripts/gerar_figuras.py
   ```
-  As figuras já ficam versionadas em `Notas/imgs/plots/`; rode o script
+  As figuras já ficam versionadas em `Aulas/imgs/plots/`; rode o script
   apenas se alterar os parâmetros dos exemplos.
 
 ### Observações sobre os chunks TikZ

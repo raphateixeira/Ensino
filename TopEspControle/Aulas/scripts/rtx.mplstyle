@@ -1,0 +1,27 @@
+# Estilo matplotlib casado com o tema RTx (fundo branco, Roboto, paleta das equações).
+# Uso: plt.style.use("scripts/rtx.mplstyle")
+figure.facecolor: FFFFFF
+axes.facecolor: FFFFFF
+savefig.facecolor: FFFFFF
+axes.edgecolor: 6C757D
+axes.labelcolor: 222222
+axes.titlecolor: 1B365D
+axes.spines.top: False
+axes.spines.right: False
+axes.grid: True
+grid.color: E4E8EE
+grid.linewidth: 0.8
+xtick.color: 6C757D
+ytick.color: 6C757D
+text.color: 222222
+axes.prop_cycle: cycler('color', ['1B365D', 'B23A48', '2E9C6B', '7B4FD0', 'D27A22', '2795B0', 'D2457E', '7A8A1C'])
+lines.linewidth: 2.2
+font.family: sans-serif
+font.sans-serif: Roboto, Helvetica Neue, Arial, DejaVu Sans
+font.size: 15
+axes.titlesize: 17
+axes.labelsize: 16
+legend.fontsize: 14
+legend.frameon: False
+mathtext.fontset: cm
+axes.formatter.use_locale: False

@@ -1,0 +1,76 @@
+---
+title: "Tópicos Especiais em Controle"
+pagetitle: "Tópicos Especiais em Controle"
+title-block-style: none
+toc: false
+---
+
+<!-- Página principal da disciplina, ligada ao cartão em ../index.qmd. Ao criar uma aula,
+     acrescente o cartão aqui (links .html: o Quarto não converte .qmd dentro de HTML bruto). -->
+<style>#title-block-header { display: none; }</style>
+
+::: {.rtx-hero}
+[Graduação em Engenharia Elétrica · Optativa]{.rtx-eyebrow}
+
+# Tópicos Especiais em Controle {.unnumbered .unlisted}
+
+Do dado ao controlador: identificação de sistemas, controle digital e no espaço de estados
+discreto, controle preditivo (MPC), identificação de modelos por SINDy e redes neurais
+(inclusive recorrentes) para modelagem e controle.
+
+[Prof. Dr. Raphael Teixeira]{.rtx-meta}
+
+::: {.rtx-acoes}
+[← Todas as disciplinas](../index.html){.rtx-btn}
+:::
+:::
+
+## Aulas
+
+```{=html}
+<div class="categoria-grid">
+<a class="categoria-card" href="Aulas/Aula00PlanoEnsino.html">
+  <h3>Aula 0</h3>
+  <p>Plano de ensino</p>
+</a>
+<a class="categoria-card" href="Aulas/Aula01Identificacao.html">
+  <h3>Aula 1 · Módulo 1</h3>
+  <p>Identificação de sistemas: mínimos quadrados, ARX, PRBS, validação e MQR</p>
+</a>
+</div>
+```
+
+## Módulos
+
+```{=html}
+<div class="categoria-grid">
+<div class="categoria-card">
+  <h3>Módulo 1</h3>
+  <p>Identificação de sistemas</p>
+</div>
+<div class="categoria-card">
+  <h3>Módulo 2</h3>
+  <p>Controle digital</p>
+</div>
+<div class="categoria-card">
+  <h3>Módulo 3</h3>
+  <p>Espaço de estados discreto</p>
+</div>
+<div class="categoria-card">
+  <h3>Módulo 4</h3>
+  <p>Controle preditivo (MPC)</p>
+</div>
+<div class="categoria-card">
+  <h3>Módulo 5</h3>
+  <p>SINDy: modelos a partir de dados</p>
+</div>
+<div class="categoria-card">
+  <h3>Módulo 6</h3>
+  <p>Redes neurais e recorrentes</p>
+</div>
+<div class="categoria-card categoria-card--verde">
+  <h3>Módulo 7</h3>
+  <p>Tópicos complementares</p>
+</div>
+</div>
+```

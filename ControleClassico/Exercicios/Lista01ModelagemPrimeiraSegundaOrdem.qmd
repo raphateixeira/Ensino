@@ -16,7 +16,7 @@ consta apenas um resumo para localização e planejamento de estudo.
 ::: {.callout-note}
 ## Sobre esta versão
 Primeira seleção de exercícios, a ser revisada. Números de problema referem-se às edições já
-mapeadas no [Guia de Estudos: Livros](../Notas/GuiaBibliografico.qmd) (Ogata 5ª ed. Pearson/2010;
+mapeadas no [Guia de Estudos: Livros](../Aulas/GuiaBibliografico.qmd) (Ogata 5ª ed. Pearson/2010;
 Nise 6ª ed. LTC — numeração de capítulo/seção estável entre edições).
 :::
 
@@ -73,6 +73,6 @@ ao degrau subamortecida.
 
 ::: {.callout-tip}
 Compare sempre a solução analítica (fórmulas de $M_p$, $t_p$, $t_s$, $t_r$ vistas na
-[Aula 4](../Notas/Aula04SegundaOrdem.qmd)) com a simulação numérica — é a melhor forma de
+[Aula 4](../Aulas/Aula04SegundaOrdem.qmd)) com a simulação numérica — é a melhor forma de
 verificar se o modelo foi montado corretamente antes de avançar para o projeto do controlador.
 :::

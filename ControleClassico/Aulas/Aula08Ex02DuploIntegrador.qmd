@@ -1,0 +1,326 @@
+---
+title: "LGR na prática: duplo integrador"
+subtitle: "Sistemas de Controle I · Aula 8 · Exemplo 2"
+author: "Prof. Dr. Raphael Teixeira"
+institute: "Universidade Federal do Pará"
+format: rtx-revealjs
+csl: ../apa.csl
+link-citations: true
+suppress-bibliography: true
+resources:
+  - "anims/*"
+---
+
+# A planta
+
+- Drone em altitude
+- Sem atrito, sem mola
+
+## Drone em altitude
+
+::: {.eqx}
+$$
+G(s) = \frac{Z(s)}{U(s)} = \frac{1}{\eq{a}{s^2}}
+$$
+
+[Massa $m = 1$ kg, empuxo $u$ (N), altura $z$ (m).]{.muted}
+:::
+
+:::: {.columns}
+::: {.column width="55%"}
+::: {.eqx}
+::: {.eqx-defs}
+- [$1/s^2$]{.t-a} empuxo → aceleração → velocidade → altura: **dois integradores**
+- [$-mg$]{.t-c} peso: **perturbação** constante na entrada da planta
+:::
+:::
+
+[Mesma forma: atitude de satélite ($J\ddot\theta = \tau$), carrinho sem atrito.]{.muted .smaller}
+:::
+::: {.column width="45%"}
+::: {.callout-important .fragment title="Em malha aberta"}
+Polo **duplo** na origem: empuxo constante dá altura $t^2/2$, sem limite. Não é BIBO-estável (Aula 7).
+:::
+:::
+::::
+
+::: {.notes}
+Por enquanto ignoramos o peso (supomos que já foi compensado). Ele volta na seção de perturbação.
+:::
+
+## O que queremos
+
+::: {.lead}
+Degrau de altura com **sobressinal de no máximo 5 %**, **acomodação em até 2 s** e **erro nulo**, também com o peso.
+:::
+
+::: {.eqx .deriv style="--deriv-lhs: 320px; --deriv-rhs: 520px;"}
+::: {.step}
+[$\text{OS}\% \leq 5\,\%$]{.lhs} [$\Rightarrow\ \zeta \geq 0{,}69$]{.rhs} [setor de $\pm 46°$]{.why}
+:::
+::: {.step .fragment}
+[$t_s \leq 2$ s]{.lhs} [$\Rightarrow\ \sigma \geq 2$]{.rhs} [à esquerda de $\operatorname{Re}(s) = -2$]{.why}
+:::
+::: {.step .fragment}
+[erro ao degrau de $r$]{.lhs} [nulo para qualquer controlador estabilizante]{.rhs} [a planta já é **tipo 2**]{.why}
+:::
+:::
+
+# Controle proporcional
+
+## O LGR do controlador P
+
+::: {.eqx .deriv style="--deriv-lhs: 300px; --deriv-rhs: 520px;"}
+::: {.step}
+[$1 + \dfrac{K}{s^2} = 0$]{.lhs} [$\iff s^2 + K = 0$]{.rhs} [sem termo em $s$: sem amortecimento]{.why}
+:::
+::: {.step .fragment}
+[$s$]{.lhs} [$= \pm j\sqrt{K}$]{.rhs} [sobre o eixo $j\omega$ para **todo** $K$]{.why}
+:::
+:::
+
+## O P ao vivo
+
+::: {style="height: 680px"}
+<canvas class="nova-canvas" data-nova-anim="lgr" data-poles="0,0" data-xlim="-5,3" data-ylim="-4.5,4.5" data-k="4" data-kmax="20" data-step="true" data-tend="8" data-yr="-0.2,2.2" data-loop="false" data-controls="k"></canvas>
+:::
+
+::: {.notes}
+Eixo real: para s < 0 há dois polos à direita (par): nenhum trecho. Os ramos saem da origem a ±90° e sobem pelo eixo jω. Mais K, oscilação mais rápida, nunca amortecida.
+:::
+
+# Controle PD
+
+- Mola + amortecedor
+- O círculo
+- O zero de malha fechada
+
+## PD: mola + amortecedor virtuais
+
+::: {.eqx .deriv style="--deriv-lhs: 300px; --deriv-rhs: 640px;"}
+::: {.step}
+[$C(s)$]{.lhs} [$= \eq{a}{K_p} + \eq{b}{K_d}\,s = K_d\,(s + z)$]{.rhs} [[mola]{.t-a} + [amortecedor]{.t-b}, $\ z = K_p/K_d$]{.why}
+:::
+::: {.step .fragment}
+[$P(s)$]{.lhs} [$= s^2 + \eq{b}{K_d}\,s + \eq{a}{K_p}$]{.rhs} [$2\zeta\omega_n = K_d$, $\ \omega_n^2 = K_p$]{.why}
+:::
+::: {.step .fragment}
+[LGR]{.lhs} [**círculo** de centro $-z$ e raio $z$]{.rhs} [chegada ao eixo em $-2z$, com $K_d = 4z$]{.why}
+:::
+:::
+
+::: {.callout-insight .fragment label="Leitura do círculo"}
+O zero **puxa** os dois ramos para o semiplano esquerdo; com ganho alto, um polo vai para o zero e o outro para $-\infty$.
+:::
+
+::: {.notes}
+Prova rápida do círculo: num ponto do lugar, o ângulo do zero menos duas vezes o ângulo dos polos na origem dá 180°; geometricamente isso é a circunferência que passa pela origem com centro no zero. Basta mostrar na animação.
+:::
+
+## Onde pôr o zero? Explore
+
+::: {style="height: 680px"}
+<canvas class="nova-canvas" data-nova-anim="lgr" data-poles="0,0" data-z="-2.5" data-xlim="-8,2" data-ylim="-4.5,4.5" data-k="5" data-kmax="30" data-zeta="0.7" data-step="true" data-tend="4" data-yr="-0.2,1.6" data-loop="false" data-controls="k,z"></canvas>
+:::
+
+::: {.notes}
+Zero perto da origem: círculo pequeno, polos lentos. Zero longe: círculo grande, mais rápido para o mesmo ζ, mas K_d maior (mais esforço). Nas animações, o slider K é o K_d e o zero é z = K_p/K_d. A reta ζ = 0,7 corta o círculo de z = 2,5 em −2,5 ± j2,5 com K_d = 5.
+:::
+
+## Projeto por casamento de coeficientes
+
+::: {.eqx .deriv style="--deriv-lhs: 320px; --deriv-rhs: 560px;"}
+::: {.step}
+[polos desejados]{.lhs} [$s = -2{,}5 \pm j2{,}5$]{.rhs} [$\zeta = 0{,}707$, $\sigma = 2{,}5$]{.why}
+:::
+::: {.step .fragment}
+[$P(s)$]{.lhs} [$= s^2 + 5s + 12{,}5$]{.rhs} [$(s + 2{,}5)^2 + 2{,}5^2$]{.why}
+:::
+::: {.step .fragment}
+[$K_d = 5,\ \ K_p = 12{,}5$]{.lhs} [$\Rightarrow\ z = K_p/K_d = 2{,}5$]{.rhs} [o ponto está no círculo de raio $2{,}5$ ✓]{.why}
+:::
+:::
+
+::: {.callout-important .fragment title="Mas a simulação mostra"}
+$t_s = 1{,}4$ s ✓, porém $\text{OS}\% = 20{,}8\,\%$ ✗, e não os 4,3 % que $\zeta = 0{,}707$ promete.
+:::
+
+## O zero de malha fechada
+
+$H(s) = \frac{5\,(s + 2{,}5)}{s^2 + 5s + 12{,}5}$: polos no lugar certo, mas com um **zero** em $-2{,}5$.
+
+::: {style="height: 500px"}
+<canvas class="nova-canvas" data-nova-anim="lgr" data-poles="0,0" data-zeros="-2.5" data-xlim="-8,2" data-ylim="-4.5,4.5" data-k="5" data-kmax="30" data-zeta="0.7" data-step="true" data-tend="4" data-yr="-0.2,1.6" data-loop="false" data-controls="k"></canvas>
+:::
+
+::: {.notes}
+Os polos estão exatamente onde queríamos. O culpado é o zero em −2,5, tão perto dos polos quanto eles da origem: a resposta é a de 2ª ordem pura MAIS a sua derivada escalada, que dá o "empurrão" do sobressinal. O LGR mostra os polos; os zeros de H(s) são os de C(s)G(s) e ele não os "move".
+:::
+
+## Derivada sobre a saída
+
+::: {.eqx .deriv style="--deriv-lhs: 200px; --deriv-rhs: 560px;"}
+::: {.step}
+[$u$]{.lhs} [$= K_p\,(r - z) - K_d\,\dot z$]{.rhs} [a referência não é derivada]{.why}
+:::
+::: {.step .fragment}
+[$H(s)$]{.lhs} [$= \dfrac{12{,}5}{s^2 + 5s + 12{,}5}$]{.rhs} [**mesmo** $P(s)$, sem o zero]{.why}
+:::
+:::
+
+:::: {.columns .fragment}
+::: {.column width="50%"}
+- Mesmo LGR, mesmos polos
+- 2ª ordem pura: valem as fórmulas de $\text{OS}\%$ e $t_s$
+- Degrau em $r$ não gera impulso em $u$
+:::
+::: {.column width="50%"}
+::: {.callout-tip title="Resultado"}
+$\text{OS}\% = 4{,}3\,\%$ ✓, $t_s = 1{,}7$ s ✓
+:::
+:::
+::::
+
+::: {.notes}
+A Aula 10 (PID) usa essa mesma estrutura para evitar o derivative kick. O próximo slide mostra, no plano s, a resposta de 2ª ordem pura com esses polos: exatamente o que a derivada sobre a saída entrega.
+:::
+
+## Os polos do PD no plano $s$
+
+::: {style="height: 700px"}
+<canvas class="nova-canvas" data-nova-anim="plano-s" data-zeta="0.707" data-wn="3.54" data-lim="5" data-zmin="0.69" data-smin="2" data-controls="zeta,wn"></canvas>
+:::
+
+::: {.notes}
+ζ = 0,707 e ω_n = 3,54: σ = 2,5, ω_d = 2,5. Compare com os 20,8 % do PD no erro: mesmos polos, outro zero.
+:::
+
+# A gravidade e o PID
+
+- Erro por perturbação
+- Vale a pena o I?
+- Estabilidade condicional
+
+## O peso como perturbação
+
+::: {.eqx .deriv style="--deriv-lhs: 320px; --deriv-rhs: 600px;"}
+::: {.step}
+[$\dfrac{Z(s)}{D(s)}$]{.lhs} [$= \dfrac{1}{s^2 + K_d s + K_p}$]{.rhs} [igual para as duas versões do PD]{.why}
+:::
+::: {.step .fragment}
+[$z_\infty$]{.lhs} [$= \dfrac{d}{K_p} = \dfrac{-9{,}8}{12{,}5} = -0{,}78$ m]{.rhs} [o drone para **78 cm abaixo**]{.why}
+:::
+:::
+
+:::: {.columns .fragment}
+::: {.column width="50%"}
+::: {.callout-tip title="Saída 1: compensar o peso"}
+Somar $u_{ff} = mg$ ao controle. Funciona se $m$ for conhecida: com 10 % de erro na massa, sobram 0,98 N e o erro cai para 8 cm.
+:::
+:::
+::: {.column width="50%"}
+::: {.callout-tip title="Saída 2: ação integral"}
+Um integrador no controlador zera o erro para **qualquer** perturbação constante. Custo: o PID.
+:::
+:::
+::::
+
+::: {.notes}
+A planta é tipo 2 em relação à referência, mas o tipo em relação à perturbação na entrada depende dos integradores do controlador (Aula 6). Por isso o PD erra sob o peso.
+:::
+
+## PID: três polos na origem
+
+::: {.eqx .deriv style="--deriv-lhs: 300px; --deriv-rhs: 640px;"}
+::: {.step}
+[$C(s)\,G(s)$]{.lhs} [$= K\,\dfrac{s^2 + as + b}{s^3}$]{.rhs} [zeros em $-2{,}5$ (PD) e $-0{,}5$ (I lento)]{.why}
+:::
+::: {.step .fragment}
+[$P(s)$]{.lhs} [$= s^3 + Ks^2 + aK\,s + bK$]{.rhs} [Routh: estável $\iff K > b/a$]{.why}
+:::
+:::
+
+## O PID ao vivo
+
+::: {style="height: 680px"}
+<canvas class="nova-canvas" data-nova-anim="lgr" data-poles="0,0,0" data-zeros="-2.5,-0.5" data-xlim="-7,2" data-ylim="-4.5,4.5" data-k="5" data-kmax="20" data-step="true" data-tend="10" data-yr="-0.2,1.8" data-loop="false" data-controls="k"></canvas>
+:::
+
+::: {.notes}
+Com s² + 3s + 1,25: estável só para K > 0,417. Os ramos saem da origem a ±60° e 180°: dois vão primeiro para o semiplano DIREITO e só depois são puxados de volta pelos zeros. Leve K para 0,3 e mostre a instabilidade: ganho baixo demais desestabiliza (estabilidade condicional).
+:::
+
+## Vale a pena o I?
+
+::: {.lead}
+Só pela **perturbação**: para a referência a planta já é tipo 2.
+:::
+
+:::: {.columns .fragment}
+::: {.column width="50%"}
+::: {.callout-tip title="Ganha"}
+O peso é rejeitado: o drone desce 63 cm e **volta** em cerca de 5 s.
+:::
+:::
+::: {.column width="50%"}
+::: {.callout-important title="Paga"}
+Estabilidade **condicional**, um polo lento perto do zero do integrador e $\text{OS}\%$ de 26 %.
+:::
+:::
+::::
+
+::: {.notes}
+Números: PD no erro OS% = 20,8 %, t_s = 1,4 s; PD com D na saída 4,3 %, 1,7 s; ambos param 0,78 m abaixo sob o peso. PID no erro (K = 5): polos −2,26 ± j2,78 e −0,49, OS% = 26,5 %, t_s = 2,1 s. PID com P e D na saída: sem sobressinal, mas t_s = 8,3 s (o polo −0,49 deixa de ser compensado pelo zero).
+:::
+
+# No laboratório
+
+## O projeto no MATLAB
+
+:::: {.columns}
+::: {.column width="55%"}
+```matlab
+s = tf('s');
+G = 1/s^2;
+
+rlocus(G)                       % P: eixo jw
+
+C = s + 2.5;                    % PD: Kd*(s + Kp/Kd), zero em -2.5
+rlocus(C*G), sgrid(0.7, [])
+K = 5;                          % Kd = 5, Kp = 12.5
+H1 = feedback(K*C*G, 1);        % D no erro
+H2 = feedback(12.5*G, 1 + 0.4*s);  % D na saída
+stepinfo(H1), stepinfo(H2)
+
+Gd = feedback(G, K*C);          % perturbação
+step(-9.8*Gd)
+```
+:::
+::: {.column width="45%"}
+::: {.callout-tip title="Roteiro da prática"}
+1. Confirme que `rlocus(G)` fica sobre o eixo $j\omega$
+2. Compare `H1` e `H2`: mesmos polos (`pole`), zeros diferentes (`zero`)
+3. Simule o peso com e sem $u_{ff} = mg$ (e com $m$ 10 % errada)
+4. Monte o PID e ache o $K$ mínimo pelo LGR e por Routh
+:::
+:::
+::::
+
+[`H2`: com $u = 12{,}5\,(r - z) - 5\,\dot z$, a malha fechada é $12{,}5\,G/(1 + 12{,}5\,G\,(1 + 0{,}4\,s))$.]{.muted .smaller}
+
+## Exercícios
+
+Para $G(s) = 1/s^2$:
+
+1. PD com zero em $-1$: que $K_d$ (e $K_p$) dá $\zeta = 0{,}707$? Onde ficam os polos e qual o $t_s$?
+2. Mostre que o LGR do PD é o círculo de centro $-z$ e raio $z$ (use $s = -z + z\,e^{j\phi}$ na condição de ângulo).
+3. Projete o PD com D na saída para $t_s = 1$ s e $\text{OS}\% \leq 5\,\%$. Quanto vale o erro sob o peso?
+4. PID com zeros em $-1$ e $-3$: ache o $K$ mínimo por Routh e confira no LGR.
+5. Por que o PID com P e D na saída é tão lento? Onde está o polo responsável?
+6. Confira tudo no MATLAB.
+
+<script src="anims/nova-anim.js"></script>
+<script src="anims/plano-s.js"></script>
+<script src="anims/lgr.js"></script>
+
+{{< include _encerramento-rtx.qmd >}}

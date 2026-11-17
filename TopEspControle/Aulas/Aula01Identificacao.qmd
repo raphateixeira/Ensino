@@ -1,0 +1,1266 @@
+---
+title: "Identificação de Sistemas"
+subtitle: "Tópicos Especiais em Controle · Aula 1"
+author: "Prof. Dr. Raphael Teixeira"
+institute: "Universidade Federal do Pará"
+format: rtx-revealjs
+csl: ../apa.csl
+link-citations: true
+execute:
+  warning: false
+resources:
+  - "anims/*"
+---
+
+<!-- Material de origem (aproveitado e aprofundado):
+     ~/GitRTx/Notas/fundamentos/identificacao-sistemas/Ident01–04 (reta, PRBS, ARX, notebook LIT);
+     ~/GitRTx/ProjetosCCS/Notas/IdentificacaoSallenKeyPRBS (ensaio real, dados em dados/);
+     ~/GitRTx/NovaPresent/anims/rls.mp4 (vídeo do MQR).
+     Funções de apoio: scripts/ident.py. Animações: anims/ident.js. -->
+
+```{python}
+#| echo: false
+import sys
+sys.path.insert(0, "scripts")
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import signal
+import ident as I
+
+plt.style.use("scripts/rtx.mplstyle")
+V = I.virgula
+AZUL, ROSA, VERDE, ROXO, LARANJA = "#1B365D", "#B23A48", "#2E9C6B", "#7B4FD0", "#D27A22"
+```
+
+## Ao final desta aula, você será capaz de {.no-crumb}
+
+::: {}
+1. **Formular** a identificação como um problema de mínimos quadrados
+2. **Montar** a regressão de um modelo ARX e estimar seus parâmetros
+3. **Projetar** o experimento: período de amostragem e sinal PRBS
+4. **Validar** um modelo: simulação livre, FIT, resíduos e ordem
+5. **Estimar** de forma recursiva (MQR) e acompanhar uma planta que muda
+6. **Aplicar** tudo a dados reais de um filtro na LaunchPad
+:::
+
+::: {.notes}
+Aula longa, pensada para duas ou três sessões de 100 min (o Módulo 1 tem 4 semanas). Sessão 1: motivação, mínimos quadrados, ARX. Sessão 2: experimento (excitação, PRBS, Ts), validação, ordem, viés. Sessão 3: MQR e caso real Sallen-Key; a prática no MATLAB/Python fica para o laboratório.
+:::
+
+# Por que identificar
+
+- Modelo para controle
+- Caixa branca, cinza e preta
+- O ciclo da identificação
+
+## Modelo para controle {.small-slide}
+
+::: {.lead}
+PID digital, alocação de polos e MPC começam com um modelo, $G(z)$ ou $(A, B, C, D)$. **De onde ele vem?**
+:::
+
+:::: {.columns}
+::: {.column width="50%"}
+[**Modelagem física**]{.t-a}
+
+- Leis de Kirchhoff, Newton, conservação
+- Parâmetros de catálogo ou medidos
+- Erra quando um parâmetro varia ou falta um efeito
+:::
+::: {.column width="50%"}
+[**Identificação**]{.t-b}
+
+- Dados de **entrada e saída** de um ensaio
+- Explica o que foi medido, até o que não se sabia modelar
+- Vale na faixa ensaiada
+:::
+::::
+
+::: {.takeaway .fragment}
+Identificar é escolher, entre muitos modelos, o que **melhor explica os dados** e conferir se ele **serve ao uso** pretendido [@ljung1999].
+:::
+
+## Caixa branca, cinza e preta {.small-slide}
+
+:::: {.columns}
+::: {.column width="33%"}
+[**Branca**]{.t-a}
+
+Equações e parâmetros físicos conhecidos.
+
+[Motor CC com $R$, $L$, $J$ e $b$ medidos.]{.muted}
+:::
+::: {.column width="33%"}
+[**Cinza**]{.t-b}
+
+Estrutura física, parâmetros **estimados** dos dados.
+
+[Buck com $L$ e $C$ de catálogo e perdas estimadas.]{.muted}
+:::
+::: {.column width="33%"}
+[**Preta**]{.t-c}
+
+Estrutura genérica, sem significado físico direto.
+
+[ARX, redes neurais.]{.muted}
+:::
+::::
+
+::: {.callout-insight .fragment title="Onde está cada módulo"}
+Hoje: caixa **preta linear** (ARX). Módulo 5 (SINDy) fica entre a cinza e a preta: escolhe termos de uma biblioteca e os mantém interpretáveis. Módulo 6 (redes neurais e recorrentes): caixa preta **não linear**.
+:::
+
+## O ciclo da identificação
+
+::: {.timeline}
+- **Experimento**: período de amostragem $T_s$, sinal de entrada, duração, amplitude
+- **Dados**: retirar o ponto de operação, separar identificação e validação
+- **Estrutura**: ARX, ARMAX, OE… e as ordens $n_a$, $n_b$ e o atraso $n_k$
+- **Estimação**: mínimos quadrados (lote) ou recursivos (MQR)
+- **Validação**: simulação livre com dados novos, resíduos; se falhar, volte
+:::
+
+::: {.takeaway .fragment}
+O ciclo raramente fecha na primeira volta: o mais comum é **refazer o experimento** [@ljung1999; @aguirre2015].
+:::
+
+::: {.notes}
+Insistir: a maior parte dos problemas práticos vem do experimento (Ts, sinal), não do estimador. O caso Sallen-Key no fim da aula é exatamente isso.
+:::
+
+# Mínimos quadrados
+
+- Um problema de calibração
+- Forma matricial e custo
+- Equações normais
+- Geometria e estatística
+
+## Um problema de calibração
+
+::: {.lead}
+Sensor de temperatura: 12 pares (temperatura $T_i$, tensão $V_i$). O gráfico sugere uma reta:
+:::
+
+::: {.eqx}
+$$
+V = \eq{a}{\theta_1}\, T + \eq{b}{\theta_0} + \eq{c}{e}
+$$
+
+::: {.eqx-defs}
+- [$\theta_1$]{.t-a} inclinação: sensibilidade do sensor (V/°C)
+- [$\theta_0$]{.t-b} intercepto: tensão a 0 °C
+- [$e$]{.t-c} erro: ruído de medida e o que a reta não explica
+:::
+:::
+
+::: {.takeaway .fragment}
+Doze equações, duas incógnitas: **não há** reta que passe por todos os pontos. Qual escolher?
+:::
+
+## Forma matricial {.small-slide}
+
+::: {.eqx}
+$$
+\underbrace{\begin{bmatrix} y_1 \\ y_2 \\ \vdots \\ y_n \end{bmatrix}}_{\eq{a}{\mathbf{y}}}
+=
+\underbrace{\begin{bmatrix} x_1 & 1 \\ x_2 & 1 \\ \vdots & \vdots \\ x_n & 1 \end{bmatrix}}_{\eq{b}{\mathbf{A}}}
+\underbrace{\begin{bmatrix} \theta_1 \\ \theta_0 \end{bmatrix}}_{\eq{c}{\boldsymbol{\theta}}}
++
+\underbrace{\begin{bmatrix} e_1 \\ e_2 \\ \vdots \\ e_n \end{bmatrix}}_{\eq{d}{\mathbf{e}}}
+$$
+
+:::
+
+[$\mathbf{y}$: saídas medidas ($n$). $\;\mathbf{A}$: regressores, **cada coluna é um termo** do modelo ($n \times p$). $\;\boldsymbol{\theta}$: parâmetros ($p$). $\;\mathbf{e}$: erros.]{.muted}
+
+::: {.takeaway .fragment}
+Basta ser **linear nos parâmetros**: as colunas de $\mathbf{A}$ podem ser $x^2$, $\operatorname{sen} x$ ou $y[k-1]$ (ARX hoje, SINDy no Módulo 5).
+:::
+
+## Qual reta? A função custo
+
+Cada escolha de $\boldsymbol{\theta}$ gera um vetor de erros $\mathbf{e} = \mathbf{y} - \mathbf{A}\boldsymbol{\theta}$. Para comparar escolhas, agregamos $\mathbf{e}$ num só número:
+
+::: {.eqx}
+$$
+J(\boldsymbol{\theta}) = \sum_{i=1}^{n} e_i^2 = \mathbf{e}^\mathsf{T}\mathbf{e} = (\mathbf{y} - \mathbf{A}\boldsymbol{\theta})^\mathsf{T}(\mathbf{y} - \mathbf{A}\boldsymbol{\theta})
+$$
+:::
+
+::: {.incremental}
+- **Por que o quadrado?** A soma simples $\sum e_i$ deixa erros positivos e negativos se cancelarem
+- O quadrado **pune mais** os erros grandes e é **derivável**
+- E, o principal: $J$ é uma **parábola** em $\boldsymbol{\theta}$, com mínimo único e fórmula fechada
+:::
+
+## Mínimos quadrados ao vivo
+
+::: {style="height: 640px"}
+<canvas class="nova-canvas" data-nova-anim="mmq-reta" data-th1="0.03" data-th0="1.2" data-otimo="true" data-loop="false" data-controls="th1,th0"></canvas>
+:::
+
+<script src="anims/nova-anim.js"></script>
+<script src="anims/ident.js"></script>
+
+::: {.notes}
+Peça a um aluno que minimize J com os sliders. Observe o vale da superfície: longo e inclinado. Inclinação e intercepto são correlacionados porque T não está centrada (todas as temperaturas são positivas): aumentar θ₁ e diminuir θ₀ quase não muda J. Centrar os dados (T − T̄) deixa o vale redondo; é o mesmo problema de condicionamento que volta no ARX com Ts pequeno.
+:::
+
+## Equações normais
+
+::: {.eqx .deriv style="--deriv-lhs: 330px; --deriv-rhs: 620px;"}
+::: {.step}
+[$J(\boldsymbol{\theta})$]{.lhs} [$= \mathbf{y}^\mathsf{T}\mathbf{y} - 2\boldsymbol{\theta}^\mathsf{T}\mathbf{A}^\mathsf{T}\mathbf{y} + \boldsymbol{\theta}^\mathsf{T}\mathbf{A}^\mathsf{T}\mathbf{A}\,\boldsymbol{\theta}$]{.rhs} [expandindo]{.why}
+:::
+::: {.step .fragment}
+[$\dfrac{\partial J}{\partial \boldsymbol{\theta}}$]{.lhs} [$= -2\mathbf{A}^\mathsf{T}(\mathbf{y} - \mathbf{A}\boldsymbol{\theta}) = \mathbf{0}$]{.rhs} [gradiente nulo]{.why}
+:::
+::: {.step .fragment}
+[$\eq{a}{\mathbf{A}^\mathsf{T}\mathbf{A}}\,\hat{\boldsymbol{\theta}}$]{.lhs} [$= \mathbf{A}^\mathsf{T}\mathbf{y}$]{.rhs} [equações normais]{.why}
+:::
+::: {.step .fragment}
+[$\hat{\boldsymbol{\theta}}$]{.lhs} [$= (\mathbf{A}^\mathsf{T}\mathbf{A})^{-1}\mathbf{A}^\mathsf{T}\mathbf{y}$]{.rhs} [se $\mathbf{A}^\mathsf{T}\mathbf{A}$ é inversível]{.why}
+:::
+:::
+
+::: {.callout-important .fragment title="Quando existe solução única"}
+[$\mathbf{A}^\mathsf{T}\mathbf{A}$]{.t-a} é inversível $\iff$ as colunas de $\mathbf{A}$ são **linearmente independentes**. Em identificação, isso depende do sinal de entrada: é a **persistência de excitação**.
+:::
+
+::: {.notes}
+A matriz hessiana é 2AᵀA, semidefinida positiva: J é convexa, o ponto crítico é mínimo global.
+:::
+
+## Geometria: uma projeção {.small-slide}
+
+:::: {.columns}
+::: {.column width="48%"}
+```{=html}
+<svg viewBox="0 0 520 380" style="width:100%">
+  <polygon points="30,300 330,350 500,250 200,200" fill="rgba(27,54,93,0.08)" stroke="#1B365D" stroke-width="1.5"/>
+  <text x="380" y="330" font-size="22" fill="#1B365D" font-style="italic">colunas de A</text>
+  <line x1="120" y1="290" x2="300" y2="110" stroke="#B23A48" stroke-width="4" marker-end="url(#ah)"/>
+  <line x1="120" y1="290" x2="300" y2="260" stroke="#2E9C6B" stroke-width="4" marker-end="url(#ah2)"/>
+  <line x1="300" y1="110" x2="300" y2="256" stroke="#7B4FD0" stroke-width="3" stroke-dasharray="8 6"/>
+  <polyline points="300,240 284,243 284,259" fill="none" stroke="#7B4FD0" stroke-width="2"/>
+  <text x="190" y="170" font-size="28" fill="#B23A48" font-style="italic">y</text>
+  <text x="200" y="300" font-size="28" fill="#2E9C6B" font-style="italic">ŷ = Aθ̂</text>
+  <text x="312" y="190" font-size="28" fill="#7B4FD0" font-style="italic">ê</text>
+  <defs>
+    <marker id="ah" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#B23A48"/></marker>
+    <marker id="ah2" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2E9C6B"/></marker>
+  </defs>
+</svg>
+```
+:::
+::: {.column width="52%"}
+- $\mathbf{A}\boldsymbol{\theta}$ só alcança o **plano** gerado pelas colunas de $\mathbf{A}$; $\mathbf{y}$ está fora dele
+- O ponto do plano mais perto de $\mathbf{y}$ é a sua **projeção ortogonal**:
+
+::: {.eqx}
+$$
+\hat{\mathbf{y}} = \mathbf{A}(\mathbf{A}^\mathsf{T}\mathbf{A})^{-1}\mathbf{A}^\mathsf{T}\,\mathbf{y}
+$$
+:::
+
+- O resíduo é **perpendicular** a todas as colunas: $\mathbf{A}^\mathsf{T}\hat{\mathbf{e}} = \mathbf{0}$, que é a própria equação normal
+:::
+::::
+
+::: {.takeaway .fragment}
+Mínimos quadrados é a **sombra** de $\mathbf{y}$ no espaço dos modelos possíveis. O que sobra, $\hat{\mathbf{e}}$, não tem nada em comum com os regressores.
+:::
+
+## Estatística: quão confiável é $\hat{\boldsymbol{\theta}}$? {.small-slide}
+
+Se os dados vêm de $\mathbf{y} = \mathbf{A}\boldsymbol{\theta}_0 + \mathbf{e}$, com $\mathbf{e}$ **branco**, média nula, variância $\sigma^2$ e **independente** de $\mathbf{A}$ [@soderstrom1989]:
+
+::: {.eqx}
+$$
+\mathbb{E}[\hat{\boldsymbol{\theta}}] = \boldsymbol{\theta}_0
+\qquad
+\operatorname{Cov}(\hat{\boldsymbol{\theta}}) = \sigma^2\,(\eq{a}{\mathbf{A}^\mathsf{T}\mathbf{A}})^{-1}
+\qquad
+\hat\sigma^2 = \frac{\|\hat{\mathbf{e}}\|^2}{n - p}
+$$
+:::
+
+- **Não polarizado**: em média, acerta o parâmetro verdadeiro
+- A incerteza cai quando [$\mathbf{A}^\mathsf{T}\mathbf{A}$]{.t-a} é "grande": **mais dados** e regressores **bem espalhados**
+
+::: {.callout-warning .fragment title="Hipótese que vai cair"}
+No ARX, $\mathbf{A}$ contém saídas passadas, que **dependem do ruído**. Se o ruído não for branco, $\hat{\boldsymbol{\theta}}$ fica **polarizado** (adiante).
+:::
+
+## Na prática: não inverta $\mathbf{A}^\mathsf{T}\mathbf{A}$ {.small-slide}
+
+```{python}
+#| echo: true
+rng = np.random.default_rng(12)
+T = np.array([15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70.0])
+Vm = 0.05 * T + 0.5 + rng.normal(0, 0.15, T.size)
+
+A = np.column_stack((T, np.ones_like(T)))     # colunas: [T, 1]
+th_n = np.linalg.inv(A.T @ A) @ A.T @ Vm     # equação normal (didático)
+th_q, *_ = np.linalg.lstsq(A, Vm, rcond=None)  # QR/SVD (use este)
+print("normal:", th_n.round(4), " lstsq:", th_q.round(4))
+print(f"cond(A) = {np.linalg.cond(A):.0f}  cond(AᵀA) = {np.linalg.cond(A.T @ A):.0f}")
+```
+
+[Formar $\mathbf{A}^\mathsf{T}\mathbf{A}$ **eleva ao quadrado** o número de condição. `lstsq` (Python) e `A\y` (MATLAB) resolvem por QR sem formá-la.]{.muted}
+
+# Sistemas dinâmicos e o modelo ARX
+
+- Memória
+- O operador atraso
+- ARX como regressão
+
+## Da estática à dinâmica
+
+Na calibração, $V_i$ dependia só de $T_i$, no mesmo instante. Sistemas **dinâmicos** têm **memória**:
+
+- O nível de um tanque depende da vazão acumulada
+- A velocidade de um motor depende da tensão aplicada **e** da inércia
+- A tensão no capacitor de um filtro depende de toda a história da entrada
+
+::: {.eqx}
+$$
+y[k] = f\big(\eq{a}{y[k-1], y[k-2], \dots}\,;\ \eq{b}{u[k-1], \dots}\big) + e[k]
+$$
+:::
+
+::: {.takeaway .fragment}
+Os regressores passam a ser [**saídas passadas**]{.t-a} e [**entradas passadas**]{.t-b}. O estimador continua o mesmo.
+:::
+
+## Entrada, saída e perturbação
+
+```{=html}
+<svg viewBox="0 0 1100 300" style="width:85%; display:block; margin:20px auto">
+  <defs><marker id="a3" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1B365D"/></marker>
+  <marker id="a4" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#B23A48"/></marker></defs>
+  <line x1="60" y1="200" x2="330" y2="200" stroke="#1B365D" stroke-width="3" marker-end="url(#a3)"/>
+  <text x="120" y="185" font-size="30" font-style="italic" fill="#222">u[k]</text>
+  <rect x="330" y="150" width="240" height="100" rx="10" fill="rgba(27,54,93,0.06)" stroke="#1B365D" stroke-width="3"/>
+  <text x="450" y="212" font-size="32" text-anchor="middle" font-style="italic" fill="#1B365D">G(q)</text>
+  <line x1="570" y1="200" x2="760" y2="200" stroke="#1B365D" stroke-width="3" marker-end="url(#a3)"/>
+  <circle cx="785" cy="200" r="24" fill="none" stroke="#1B365D" stroke-width="3"/>
+  <text x="785" y="210" font-size="30" text-anchor="middle" fill="#1B365D">+</text>
+  <rect x="690" y="20" width="190" height="80" rx="10" fill="rgba(178,58,72,0.06)" stroke="#B23A48" stroke-width="3" stroke-dasharray="8 6"/>
+  <text x="785" y="72" font-size="30" text-anchor="middle" font-style="italic" fill="#B23A48">H(q)</text>
+  <line x1="785" y1="100" x2="785" y2="172" stroke="#B23A48" stroke-width="3" marker-end="url(#a4)"/>
+  <line x1="960" y1="60" x2="882" y2="60" stroke="#B23A48" stroke-width="3" marker-end="url(#a4)"/>
+  <text x="970" y="70" font-size="30" font-style="italic" fill="#B23A48">e[k]</text>
+  <line x1="809" y1="200" x2="1040" y2="200" stroke="#1B365D" stroke-width="3" marker-end="url(#a3)"/>
+  <text x="930" y="185" font-size="30" font-style="italic" fill="#222">y[k]</text>
+</svg>
+```
+
+::: {.eqx}
+$$
+y[k] = \eq{a}{G(q)}\,u[k] + \eq{b}{H(q)}\,e[k]
+$$
+
+::: {.eqx-defs}
+- [$G(q)$]{.t-a} dinâmica da planta: o que queremos para o controle
+- [$H(q)$]{.t-b} como o ruído branco $e[k]$ se colore até a saída
+:::
+:::
+
+## O operador atraso
+
+::: {.eqx}
+$$
+q^{-1}\,y[k] = y[k-1]
+\qquad\qquad
+q^{-2}\,y[k] = y[k-2]
+$$
+:::
+
+Uma equação de diferenças vira uma razão de polinômios em $q^{-1}$:
+
+::: {.eqx .deriv style="--deriv-lhs: 600px; --deriv-rhs: 600px;"}
+::: {.step}
+[$y[k] + a_1 y[k-1] + a_2 y[k-2]$]{.lhs} [$= b_1 u[k-1] + b_2 u[k-2]$]{.rhs} [equação de diferenças]{.why}
+:::
+::: {.step .fragment}
+[$\eq{a}{(1 + a_1 q^{-1} + a_2 q^{-2})}\, y[k]$]{.lhs} [$= \eq{b}{(b_1 q^{-1} + b_2 q^{-2})}\, u[k]$]{.rhs} [$A(q)\,y = B(q)\,u$]{.why}
+:::
+::: {.step .fragment}
+[$G(z)$]{.lhs} [$= \dfrac{B(z)}{A(z)} = \dfrac{b_1 z + b_2}{z^2 + a_1 z + a_2}$]{.rhs} [troque $q$ por $z$]{.why}
+:::
+:::
+
+::: {.takeaway .fragment}
+Os coeficientes identificados **são** a função de transferência discreta do Módulo 2: identificar dá o $G(z)$ pronto para o projeto.
+:::
+
+## O modelo ARX {.small-slide}
+
+*AutoRegressive with eXogenous input* [@ljung1999]:
+
+::: {.eqx}
+$$
+\eq{a}{A(q)}\,y[k] = \eq{b}{B(q)}\,u[k] + \eq{c}{e[k]}
+$$
+$$
+\eq{a}{A(q) = 1 + a_1 q^{-1} + \dots + a_{n_a} q^{-n_a}}
+$$
+$$
+\eq{b}{B(q) = b_1 q^{-n_k} + \dots + b_{n_b} q^{-(n_k + n_b - 1)}}
+$$
+
+::: {.eqx-defs}
+- [$A(q)$]{.t-a} parte autorregressiva: $n_a$ polos
+- [$B(q)$]{.t-b} entrada exógena, $n_b$ coeficientes, atraso $n_k$
+- [$e[k]$]{.t-c} ruído branco **na equação**: $H(q) = 1/A(q)$
+:::
+:::
+
+[Notação ARX($n_a$, $n_b$, $n_k$). Na LaunchPad, lê-se o ADC antes de escrever o DAC: $n_k \ge 1$.]{.muted .smaller}
+
+::: {.notes}
+Convenção de sinais: a de Ljung e do MATLAB (A = 1 + a1 q^-1 + ...). Na nota antiga do Sallen-Key os sinais de a estavam trocados; aqui tudo segue Ljung.
+:::
+
+## A família de modelos {.small-slide}
+
+Forma geral: $\;A(q)\,y[k] = \dfrac{B(q)}{F(q)}\,u[k] + \dfrac{C(q)}{D(q)}\,e[k]$
+
+::: {.incremental}
+- [**FIR**]{.t-a}: só $B$. Sem realimentação da saída; precisa de muitos termos para dinâmica lenta
+- [**ARX**]{.t-b}: $A$ e $B$. Ruído filtrado por $1/A$, o mesmo denominador da planta
+- [**ARMAX**]{.t-c}: acrescenta $C$, um ruído com dinâmica própria
+- [**OE**]{.t-d} (*output error*): $B/F$ e ruído branco **só na medida**
+- [**Box-Jenkins**]{.t-e}: planta e ruído com denominadores independentes
+:::
+
+::: {.takeaway .fragment}
+Só o **ARX** (e o FIR) vira mínimos quadrados de **uma conta**. Os demais pedem otimização iterativa (`armax`, `oe`, `bj`, `pem` no MATLAB). Por isso o ARX é sempre o primeiro a tentar.
+:::
+
+## ARX como regressão linear {.small-slide}
+
+::: {.eqx .deriv style="--deriv-lhs: 120px; --deriv-rhs: 960px;"}
+::: {.step}
+[$y[k]$]{.lhs} [$= \eq{a}{-\sum_{i=1}^{n_a} a_i\, y[k-i]} + \eq{b}{\sum_{j=1}^{n_b} b_j\, u[k-n_k-j+1]} + e[k]$]{.rhs} [isolando]{.why}
+:::
+::: {.step .fragment}
+[$y[k]$]{.lhs} [$= \boldsymbol{\varphi}[k]^\mathsf{T}\boldsymbol{\theta} + e[k]$]{.rhs} [regressão]{.why}
+:::
+:::
+
+:::: {.columns .fragment}
+::: {.column width="50%"}
+$$
+\boldsymbol{\varphi}[k] = \begin{bmatrix} \eq{a}{-y[k-1]} \\ \vdots \\ \eq{a}{-y[k-n_a]} \\ \eq{b}{u[k-n_k]} \\ \vdots \\ \eq{b}{u[k-n_k-n_b+1]} \end{bmatrix}
+$$
+:::
+::: {.column width="50%"}
+$$
+\boldsymbol{\theta} = \begin{bmatrix} a_1 \\ \vdots \\ a_{n_a} \\ b_1 \\ \vdots \\ b_{n_b} \end{bmatrix}
+$$
+:::
+::::
+
+## Montando $\boldsymbol{\Phi}$ {.small-slide}
+
+Empilhando $\boldsymbol{\varphi}[k]^\mathsf{T}$ para todos os instantes com passado disponível ($k = n+1, \dots, N$):
+
+::: {.eqx}
+$$
+\underbrace{\begin{bmatrix} y[n+1] \\ y[n+2] \\ \vdots \\ y[N] \end{bmatrix}}_{\mathbf{Y}}
+=
+\underbrace{\begin{bmatrix} \boldsymbol{\varphi}[n+1]^\mathsf{T} \\ \boldsymbol{\varphi}[n+2]^\mathsf{T} \\ \vdots \\ \boldsymbol{\varphi}[N]^\mathsf{T} \end{bmatrix}}_{\eq{a}{\boldsymbol{\Phi}}}
+\boldsymbol{\theta} + \mathbf{E}
+$$
+$$
+\hat{\boldsymbol{\theta}} = (\boldsymbol{\Phi}^\mathsf{T}\boldsymbol{\Phi})^{-1}\boldsymbol{\Phi}^\mathsf{T}\mathbf{Y}
+$$
+:::
+
+::: {.takeaway .fragment}
+A diferença para a reta é **só o conteúdo** de [$\boldsymbol{\Phi}$]{.t-a}: antes, colunas $[x_i,\ 1]$; agora, saídas e entradas passadas.
+:::
+
+## Em Python {.small-slide}
+
+```{.python filename="scripts/ident.py" code-line-numbers="|3-4|10-11"}
+def regressores(u, y, na, nb, nk=1):
+    n0 = max(na, nk + nb - 1)                 # primeiro k com passado completo
+    k = np.arange(n0, len(y))
+    cols = [-y[k - i] for i in range(1, na + 1)] + [u[k - nk - j] for j in range(nb)]
+    return np.column_stack(cols), y[k]
+
+
+def arx(u, y, na, nb, nk=1):
+    Phi, Y = regressores(u, y, na, nb, nk)
+    th, *_ = np.linalg.lstsq(Phi, Y, rcond=None)
+    return th[:na], th[na:]                    # (a1..a_na), (b1..b_nb)
+```
+
+[Em MATLAB, as mesmas duas linhas: `Phi = [-y(k-1) -y(k-2) u(k-1) u(k-2)]; th = Phi \ y(k);`]{.muted}
+
+# O experimento
+
+- Persistência de excitação
+- PRBS
+- Escolha de $T_s$, $T_b$ e duração
+
+## Um degrau basta?
+
+::: {style="height: 660px"}
+<canvas class="nova-canvas" data-nova-anim="arx-ls" data-entrada="0" data-sigma="0.3" data-loop="false" data-controls="entrada,sigma"></canvas>
+:::
+
+::: {.notes}
+Planta y[k] = 0,7 y[k−1] + 1,5 u[k−1] + e[k] (a1 = −0,7, b1 = 1,5), as notas Ident02/03. Entrada 0 (degrau): depois do transitório, u e y ficam constantes; as linhas novas de Φ são todas iguais e só o ganho estático b/(1+a) fica bem determinado; â e b̂ andam juntos ao longo de uma reta. Com σ = 0 até o degrau acerta (o transitório basta): o problema é ruído + pouca informação. Entrada 1 (PRBS): converge rápido. Entrada 2 (senoide): também funciona aqui, porque há só 2 parâmetros (uma senoide excita ordem 2). Olhe cond(ΦᵀΦ) no fim.
+:::
+
+## Persistência de excitação {.small-slide}
+
+::: {.callout-definition title="Persistência de excitação de ordem n"}
+O sinal $u$ é persistentemente excitante de ordem $n$ se a matriz de autocorrelação
+$\mathbf{R}_u = \big[\,r_u(i-j)\,\big]_{i,j=1}^{n}$ é **definida positiva** [@soderstrom1989].
+:::
+
+- Um ARX com $n_b$ coeficientes em $B$ exige $u$ excitante de ordem **pelo menos $n_b$**; na prática, $n_a + n_b$
+- **Degrau**: ordem 1 (só o ganho estático)
+- **Uma senoide**: ordem 2; **$m$ senoides** de frequências distintas: ordem $2m$
+- **Ruído branco** e **PRBS**: qualquer ordem (a PRBS, até o seu período)
+
+::: {.takeaway .fragment}
+Excitação persistente é a condição para que $\boldsymbol{\Phi}^\mathsf{T}\boldsymbol{\Phi}$ seja inversível **e bem condicionada**: o sinal precisa mostrar a dinâmica em muitas situações diferentes.
+:::
+
+::: {.notes}
+A mesma condição reaparece no DeePC como posto da matriz de Hankel (Lema de Willems), tópico complementar.
+:::
+
+## Sinais de excitação {.small-slide}
+
+:::: {.columns}
+::: {.column width="50%"}
+- [**Degrau** ou sequência de degraus]{.t-a}: simples, pobre em frequências
+- [**Ruído branco**]{.t-b}: rico, mas com picos que saturam atuadores
+- [**Multissenoidal / chirp**]{.t-c}: frequências escolhidas, bom para resposta em frequência
+- [**PRBS**]{.t-d}: dois níveis fixos, espectro largo
+:::
+::: {.column width="50%"}
+::: {.callout-definition title="PRBS"}
+*Pseudo-Random Binary Sequence*: alterna **deterministicamente** entre $-A$ e $+A$, mas com estatística de ruído branco.
+:::
+
+- Periódica e reprodutível
+- Autocorrelação quase um **impulso**, espectro quase **plano**
+- Amplitude limitada: protege atuador e sensor
+:::
+::::
+
+## Gerando a PRBS: o LFSR {.small-slide}
+
+:::: {.columns}
+::: {.column width="50%"}
+LFSR (*Linear Feedback Shift Register*): $n$ bits; o bit que entra é o **XOR** de alguns bits (*taps*) do próprio registrador.
+
+- Com taps de um **polinômio primitivo**, percorre os $2^n - 1$ estados não nulos antes de repetir: **comprimento máximo**
+- $n = 7$: $x^7 + x^6 + 1$ (127 bits)
+- $n = 8$: $x^8 + x^6 + x^5 + x^4 + 1$ (255 bits; firmware do Sallen-Key)
+:::
+::: {.column width="50%"}
+```{python}
+#| echo: true
+def lfsr(n, taps):
+    reg, out = [1] * n, []
+    for _ in range(2**n - 1):
+        out.append(reg[-1])
+        fb = 0
+        for t in taps: fb ^= reg[t - 1]   # XOR
+        reg = [fb] + reg[:-1]             # desloca
+    return out
+
+seq = lfsr(4, (4, 3))
+print("".join(map(str, seq)), len(seq))
+```
+
+[Em toda PRBS de comprimento máximo há $2^{n-1}$ uns e $2^{n-1}-1$ zeros, e o maior trecho constante tem $n$ bits.]{.muted .smaller}
+:::
+::::
+
+## Dois parâmetros de projeto {.small-slide}
+
+::: {.eqx}
+$$
+u[k] = \pm A, \qquad \text{bit de duração } \eq{a}{T_b = N_b\,T_s}, \qquad \text{período } \eq{b}{(2^n - 1)\,T_b}
+$$
+:::
+
+:::: {.columns}
+::: {.column width="50%"}
+[**Duração do bit $T_b$**]{.t-a}
+
+O espectro de potência é $\propto \operatorname{sinc}^2(f T_b)$: quase plano até
+
+$$
+f \approx \frac{0{,}44}{T_b}
+$$
+
+e com zero em $1/T_b$. Bit curto excita frequências altas.
+:::
+::: {.column width="50%"}
+[**Número de bits $n$**]{.t-b}
+
+O trecho constante mais longo dura $n\,T_b$. Ele precisa deixar a saída **acomodar**, senão o ganho estático fica mal estimado:
+
+$$
+n\,T_b \gtrsim t_s
+$$
+:::
+::::
+
+[Regras práticas do caso Sallen-Key; na literatura há variantes [@aguirre2015; @ljung1999].]{.muted .smaller}
+
+## A PRBS ao vivo
+
+::: {style="height: 700px"}
+<canvas class="nova-canvas" data-nova-anim="prbs" data-n="7" data-nb="2" data-tau="6" data-loop="false" data-controls="n,nb,tau"></canvas>
+:::
+
+::: {.notes}
+1) Nb = 1: autocorrelação é um impulso e o espectro é plano até 0,5 (ruído branco). 2) Aumente Nb: o impulso vira triângulo de largura Nb e a faixa verde (até 0,44/Tb) encolhe. 3) Aumente τ da planta: se Tb ≪ τ, a saída y quase não sai do meio, chega pouca informação de ganho estático; se a faixa verde termina antes da banda da planta, a dinâmica rápida não é excitada. O ponto bom: faixa verde cobrindo a banda da planta com folga.
+:::
+
+## Período de amostragem $T_s$ {.small-slide}
+
+::: {.lead}
+Um polo contínuo em $s = -\omega$ vira, amostrado, $z = e^{-\omega T_s}$:
+:::
+
+:::: {.columns}
+::: {.column width="50%"}
+[**$T_s$ pequeno demais**]{.t-a}
+
+- Polos perto de $z = 1$: $y[k] \approx y[k-1]$
+- O ajuste passa a explicar ruído e detalhes rápidos
+- Coeficientes mal condicionados
+:::
+::: {.column width="50%"}
+[**$T_s$ grande demais**]{.t-b}
+
+- A dinâmica rápida some entre amostras
+- *Aliasing* sem filtro antes do ADC
+- O atraso de uma amostra pesa no controle
+:::
+::::
+
+::: {.callout-tip .fragment title="Regra de Åström e Wittenmark"}
+$\omega\,T_s \approx 0{,}2$ a $0{,}6$ para os polos de interesse, ou cerca de 4 a 10 amostras no tempo de subida [@astrom1997].
+:::
+
+::: {.notes}
+Pode-se gravar rápido (para ter folga) e identificar com dados decimados, após filtro passa-baixas. É o que se fará com o Sallen-Key: gravado a 1 ms, identificado a 5 ms.
+:::
+
+## Antes de estimar: preparar os dados {.small-slide}
+
+::: {.incremental}
+- **Ponto de operação**: trabalhe com desvios, $\tilde u = u - u_0$, $\tilde y = y - y_0$ ($y_0$ medido antes de a PRBS começar)
+- **Transitório inicial**: descarte o trecho em que a planta ainda está saindo das condições iniciais
+- **Decimação**: filtre e tome uma amostra a cada $M$, se $T_s$ de gravação foi pequeno
+- **Divisão**: cerca de **70 %** para identificar e **30 %** para validar (ou outro ensaio, como um degrau)
+- **Inspeção visual**: saturação, *outliers*, deriva do sensor
+:::
+
+::: {.takeaway .fragment}
+Validar com os mesmos dados da identificação é **trapaça**: o modelo sempre se sai bem no que já viu.
+:::
+
+# Estimação e validação
+
+- Predição $\times$ simulação livre
+- FIT e resíduos
+- Ordem do modelo
+- Quando o ARX erra
+
+## Exemplo: planta de 2ª ordem {.small-slide}
+
+::::: {.columns}
+:::: {.column width="52%"}
+```{python}
+#| echo: true
+K, xi, wn, Ts = 0.6, 0.7, 3.2, 0.1
+Gz = signal.cont2discrete(([K*wn**2], [1, 2*xi*wn, wn**2]),
+                          Ts, method="zoh")
+b_v, a_v = np.squeeze(Gz[0])[1:], Gz[1][1:]   # verdadeiros
+
+u = I.prbs(7, nb=5)                 # 127 bits × 5 amostras
+y = signal.dlsim((np.squeeze(Gz[0]), Gz[1], Ts), u)[1].ravel()
+y = y + np.random.default_rng(1).normal(0, 0.01, y.size)
+N = y.size; n_id = int(0.7 * N)     # 70 % para identificar
+```
+::::
+:::: {.column width="48%"}
+```{python}
+#| fig-width: 7
+#| fig-height: 5.6
+t = Ts * np.arange(N)
+fig, ax = plt.subplots(2, 1, sharex=True)
+ax[0].step(t, u, where="post", color=AZUL)
+ax[1].plot(t, y, color=ROSA)
+for a_ in ax: a_.axvspan(t[n_id], t[-1], color=LARANJA, alpha=0.08)
+ax[1].text(t[n_id] + 1, y.max(), "validação", color=LARANJA)
+ax[0].set_ylabel("u"); ax[1].set_ylabel("y"); ax[1].set_xlabel("t (s)")
+plt.tight_layout()
+```
+::::
+:::::
+
+[Do notebook *Identificação de um modelo LIT*: $K = 0{,}6$, $\zeta = 0{,}7$, $\omega_n = 3{,}2$ rad/s, $T_s = 0{,}1$ s.]{.muted .smaller}
+
+## Estimando o ARX(2, 2, 1) {.small-slide}
+
+```{python}
+#| echo: true
+a_h, b_h = I.arx(u[:n_id], y[:n_id], na=2, nb=2, nk=1)
+
+print("a verdadeiro:", a_v.round(4), "  estimado:", a_h.round(4))
+print("b verdadeiro:", b_v.round(4), "  estimado:", b_h.round(4))
+Kh, zh, tauh = I.ganho_e_tau(a_h, b_h, Ts)
+print(f"ganho estático: {Kh:.3f} (0,6)   polos: {np.round(zh, 3)}")
+```
+
+::: {.takeaway .fragment}
+Parâmetros próximos dos verdadeiros não bastam como validação: na prática **não se conhece** o verdadeiro. O teste é o comportamento em **dados novos**.
+:::
+
+## Predição de um passo $\times$ simulação livre {.small-slide}
+
+:::: {.columns}
+::: {.column width="50%"}
+[**Predição de um passo**]{.t-a}
+
+$$
+\hat y[k \mid k-1] = \boldsymbol{\varphi}[k]^\mathsf{T}\hat{\boldsymbol{\theta}}
+$$
+
+Usa as saídas **medidas** no passado. É o que o mínimos quadrados minimiza. Teste fraco: basta copiar $y[k-1]$.
+:::
+::: {.column width="50%"}
+[**Simulação livre**]{.t-b}
+
+$$
+\hat y_s[k] = -\textstyle\sum a_i\,\hat y_s[k-i] + \sum b_j\,u[k-n_k-j+1]
+$$
+
+Realimenta a **própria** saída do modelo, só com a entrada. Teste exigente: é como o modelo será usado.
+:::
+::::
+
+## Predição $\times$ simulação na validação
+
+```{python}
+#| fig-width: 14
+#| fig-height: 5.6
+ys = I.simula(a_h, b_h, u); yp = I.prediz(a_h, b_h, u, y)
+fig, ax = plt.subplots()
+v = slice(n_id, N)
+ax.plot(t[v], y[v], color=ROSA, lw=3, label="medido")
+ax.plot(t[v], yp[v], "--", color=AZUL, label=f"1 passo (FIT {V(I.fit(y[v], yp[v]), 1)} %)")
+ax.plot(t[v], ys[v], color=VERDE, label=f"simulação livre (FIT {V(I.fit(y[v], ys[v]), 1)} %)")
+ax.set_xlabel("t (s), dados de validação"); ax.legend(ncol=3, loc="upper left")
+ax.set_ylim(top=1.3 * np.nanmax(y[v]))
+```
+
+[Com $T_s$ adequado e pouco ruído, os dois FITs ficam próximos. No caso real adiante, com $T_s$ pequeno demais, eles se separam.]{.muted}
+
+## Medindo o ajuste: FIT {.small-slide}
+
+::: {.eqx}
+$$
+\text{FIT} = 100\left(1 - \frac{\|\mathbf{y} - \hat{\mathbf{y}}\|}{\|\mathbf{y} - \bar{y}\|}\right)\%
+$$
+:::
+
+- **100 %**: ajuste perfeito; **0 %**: o modelo não é melhor que prever a **média**; pode ser negativo
+- É a métrica do `compare` do MATLAB (NRMSE)
+- Sempre informe **qual** FIT: de um passo ou de simulação livre, em identificação ou validação
+
+::: {.callout-insight .fragment title="Por que não R²?"}
+O FIT compara **normas**; o $R^2$ (usado no notebook original), **quadrados**: FIT de 90 % equivale a $R^2 = 99\%$. O FIT separa melhor os modelos bons dos muito bons.
+:::
+
+## Resíduos: o que sobrou deve ser ruído {.small-slide}
+
+O resíduo $\hat e[k] = y[k] - \hat y[k \mid k-1]$ é a parte que o modelo **não explicou**. Se a estrutura está certa, ele é **branco** e **não correlacionado com a entrada**:
+
+```{python}
+#| fig-width: 14
+#| fig-height: 3.8
+res = (y - yp)[n_id:]
+lag = 25; banda = 1.96 / np.sqrt(np.sum(~np.isnan(res)))
+r_e = I.acf(res, lag)
+uu = u[n_id:] - u[n_id:].mean(); ee = res - np.nanmean(res)
+r_eu = np.array([np.nansum(ee[l:] * uu[:len(uu) - l]) for l in range(lag + 1)]) / np.sqrt(np.nansum(ee**2) * np.sum(uu**2))
+fig, ax = plt.subplots(1, 2)
+for a_, r, tt in ((ax[0], r_e, "autocorrelação de ê"), (ax[1], r_eu, "correlação cruzada ê × u")):
+    a_.stem(range(lag + 1), r, basefmt=" ", linefmt=AZUL, markerfmt="o")
+    a_.axhspan(-banda, banda, color=VERDE, alpha=0.12)
+    a_.set_title(tt); a_.set_xlabel("atraso ℓ")
+plt.tight_layout()
+```
+
+[Faixa verde: 95 % de confiança para ruído branco, $\pm 1{,}96/\sqrt{N}$. Pontos fora dela (além de $\ell = 0$) indicam dinâmica não modelada.]{.muted .smaller}
+
+## Qual ordem? {.small-slide}
+
+```{python}
+#| fig-width: 14
+#| fig-height: 3.5
+ordens = range(1, 6); fits, aics = [], []
+for n in ordens:
+    a_, b_ = I.arx(u[:n_id], y[:n_id], n, n)
+    fits.append(I.fit(y[n_id:], I.simula(a_, b_, u)[n_id:]))
+    e_ = (y - I.prediz(a_, b_, u, y))[:n_id]; e_ = e_[~np.isnan(e_)]
+    aics.append(e_.size * np.log(np.mean(e_**2)) + 2 * 2 * n)
+fig, ax = plt.subplots(1, 2)
+ax[0].plot(list(ordens), fits, "o-", color=AZUL); ax[0].set_title("FIT de simulação livre na validação (%)")
+ax[1].plot(list(ordens), aics, "o-", color=ROSA); ax[1].set_title("critério de Akaike (AIC)")
+for a_ in ax: a_.set_xlabel("na = nb"); a_.set_xticks(list(ordens))
+plt.tight_layout()
+```
+
+::: {.eqx}
+$$
+\text{AIC} = N \ln \hat\sigma^2 + 2p
+$$
+:::
+
+[Ordem baixa: resíduo colorido (viés). Ordem alta: ajusta o ruído e não ganha nada em dados novos. Escolha o **joelho**: a menor ordem a partir da qual a curva para de melhorar [@ljung1999].]{.muted}
+
+## Quando o ARX erra: ruído na medida {.small-slide}
+
+::: {.lead}
+Se o ruído entra **só na medida** (estrutura OE), $y = G\,u + v$, a equação do ARX fica
+:::
+
+::: {.eqx}
+$$
+A(q)\,y[k] = B(q)\,u[k] + \underbrace{\eq{a}{A(q)\,v[k]}}_{\text{não é branco}}
+$$
+:::
+
+O erro da regressão passa a conter $v[k-1]$, que também está em $y[k-1]$, dentro de $\boldsymbol{\varphi}[k]$: **erro e regressor correlacionados** $\Rightarrow$ estimativa **polarizada**.
+
+::: {.callout-tip .fragment title="Remédios"}
+Melhorar a relação sinal-ruído (amplitude, filtro), $T_s$ adequado, **variáveis instrumentais**, ou estimar OE/ARMAX por erro de predição (`oe`, `armax`). Com bom experimento, ARX e OE costumam coincidir (caso real adiante).
+:::
+
+## O viés em números
+
+```{python}
+#| fig-width: 14
+#| fig-height: 5.4
+sig = [0.0, 0.01, 0.02, 0.05, 0.1]; Kmc = []
+y_lim = signal.dlsim((np.squeeze(Gz[0]), Gz[1], Ts), u)[1].ravel()
+for s in sig:
+    Ks = []
+    for r in range(40):
+        yy = y_lim + np.random.default_rng(r).normal(0, s, N)
+        Ks.append(I.ganho_e_tau(*I.arx(u, yy, 2, 2), Ts)[0])
+    Kmc.append((np.mean(Ks), np.std(Ks)))
+Kmc = np.array(Kmc)
+fig, ax = plt.subplots()
+ax.errorbar(sig, Kmc[:, 0], yerr=Kmc[:, 1], fmt="o-", color=ROSA, capsize=6, label="ARX (40 ensaios)")
+ax.axhline(K, ls="--", color=VERDE, label="ganho verdadeiro 0,6")
+ax.set_xlabel("desvio padrão do ruído de medida"); ax.set_ylabel("ganho estimado"); ax.legend()
+```
+
+[Planta de 2ª ordem do exemplo, 40 ensaios por nível de ruído. A média se afasta de 0,6: não é falta de dados, é **viés** da estrutura ARX.]{.muted}
+
+# Mínimos quadrados recursivos
+
+- Por que recursivo
+- Do lote ao recursivo
+- O algoritmo e o esquecimento
+
+## Por que recursivo?
+
+::: {.incremental}
+- O mínimo quadrado em **lote** espera todos os dados e resolve um sistema $p \times p$
+- No DSP, os dados chegam **uma amostra por vez**; refazer o lote a cada $T_s$ é caro e a memória cresce
+- A planta **muda**: temperatura, carga, desgaste. O modelo precisa acompanhar
+- Base do **controle adaptativo**: estimar e reprojetar o controlador a cada amostra [@astrom2008adaptive]
+:::
+
+## O MQR em ação
+
+{{< video anims/rls.mp4 width="1100" height="480" >}}
+
+[Planta $y[k+1] = 0{,}9\,y[k] + 0{,}5\,u[k]$ com entrada PRBS: saída predita e convergência de $\hat a$ e $\hat b$.]{.muted .smaller}
+
+## Do lote ao recursivo
+
+Defina $\mathbf{P}[k] = \Big(\sum_{i=1}^{k} \boldsymbol{\varphi}[i]\boldsymbol{\varphi}[i]^\mathsf{T}\Big)^{-1}$, o inverso de $\boldsymbol{\Phi}^\mathsf{T}\boldsymbol{\Phi}$ até o instante $k$:
+
+::: {.eqx .deriv style="--deriv-lhs: 200px; --deriv-rhs: 900px;"}
+::: {.step}
+[$\mathbf{P}[k]^{-1}$]{.lhs} [$= \mathbf{P}[k-1]^{-1} + \boldsymbol{\varphi}[k]\boldsymbol{\varphi}[k]^\mathsf{T}$]{.rhs} [uma linha nova em $\boldsymbol{\Phi}$]{.why}
+:::
+::: {.step .fragment}
+[$\hat{\boldsymbol{\theta}}[k]$]{.lhs} [$= \hat{\boldsymbol{\theta}}[k-1] + \mathbf{P}[k]\,\boldsymbol{\varphi}[k]\,\big(y[k] - \boldsymbol{\varphi}[k]^\mathsf{T}\hat{\boldsymbol{\theta}}[k-1]\big)$]{.rhs} [das equações normais]{.why}
+:::
+::: {.step .fragment}
+[$\mathbf{P}[k]$]{.lhs} [$= \mathbf{P}[k-1] - \dfrac{\mathbf{P}[k-1]\boldsymbol{\varphi}[k]\boldsymbol{\varphi}[k]^\mathsf{T}\mathbf{P}[k-1]}{1 + \boldsymbol{\varphi}[k]^\mathsf{T}\mathbf{P}[k-1]\boldsymbol{\varphi}[k]}$]{.rhs} [lema da inversão]{.why}
+:::
+:::
+
+::: {.takeaway .fragment}
+O lema da inversão de matrizes troca a inversão $p \times p$ por uma **divisão escalar**: custo $O(p^2)$ por amostra, memória fixa.
+:::
+
+## O algoritmo MQR {.small-slide}
+
+::: {.callout-definition title="Mínimos quadrados recursivos com esquecimento λ"}
+A cada amostra $k$, com $\boldsymbol{\varphi}[k]$ e $y[k]$:
+
+1. [Erro a priori: $\;\varepsilon[k] = y[k] - \boldsymbol{\varphi}[k]^\mathsf{T}\hat{\boldsymbol{\theta}}[k-1]$]{.t-a}
+2. [Ganho: $\;\mathbf{L}[k] = \dfrac{\mathbf{P}[k-1]\,\boldsymbol{\varphi}[k]}{\lambda + \boldsymbol{\varphi}[k]^\mathsf{T}\mathbf{P}[k-1]\,\boldsymbol{\varphi}[k]}$]{.t-b}
+3. [Correção: $\;\hat{\boldsymbol{\theta}}[k] = \hat{\boldsymbol{\theta}}[k-1] + \mathbf{L}[k]\,\varepsilon[k]$]{.t-c}
+4. [Covariância: $\;\mathbf{P}[k] = \dfrac{1}{\lambda}\big(\mathbf{P}[k-1] - \mathbf{L}[k]\,\boldsymbol{\varphi}[k]^\mathsf{T}\mathbf{P}[k-1]\big)$]{.t-d}
+:::
+
+[Início: $\hat{\boldsymbol{\theta}}[0] = \mathbf{0}$ (ou um palpite) e $\mathbf{P}[0] = \delta\,\mathbf{I}$, com $\delta$ grande ($10^3$ a $10^6$): "não confio no palpite". Com $\lambda = 1$ e $\delta \to \infty$, o MQR reproduz exatamente o lote.]{.muted}
+
+## Lendo o algoritmo {.small-slide}
+
+:::: {.columns}
+::: {.column width="50%"}
+[**Novo = antigo + ganho × surpresa**]{.t-c}
+
+- $\varepsilon[k]$: quanto o modelo atual **errou** ao prever $y[k]$
+- $\mathbf{P}$ grande no início: ganho alto, aprende rápido
+- $\mathbf{P}$ encolhe com os dados: fica conservador
+
+:::
+::: {.column width="50%"}
+[**Fator de esquecimento**]{.t-b}
+
+Minimiza $\sum_{i} \lambda^{k-i}\,\varepsilon[i]^2$: dados antigos pesam menos.
+
+$$
+\text{memória} \approx \frac{1}{1-\lambda}\ \text{amostras}
+$$
+
+$\lambda = 0{,}98$: cerca de 50 amostras.
+:::
+::::
+
+::: {.callout-warning .fragment title="Compromisso e cuidado"}
+$\lambda$ menor acompanha mais rápido, mas fica **mais ruidoso**. Sem excitação e com $\lambda < 1$, $\mathbf{P}$ cresce sem limite (*estouro da covariância*) e a estimativa dispara quando a excitação volta: mantenha a planta excitada ou limite $\mathbf{P}$.
+:::
+
+## MQR ao vivo: a planta muda
+
+::: {style="height: 660px"}
+<canvas class="nova-canvas" data-nova-anim="mqr" data-lam="1" data-loop="false" data-controls="lam"></canvas>
+:::
+
+::: {.notes}
+Planta y[k] = a y[k−1] + b u[k−1] (aqui com sinais positivos, como no vídeo), a: 0,9 → 0,75 e b: 0,5 → 1,0 em k = 300. λ = 1: converge na primeira metade e quase não se move depois (lembra tudo, a média de dois regimes). λ = 0,98: acompanha em ~50 amostras. λ = 0,9: acompanha rápido, mas as estimativas tremem com o ruído. Mostrar também a predição ŷ: com λ = 1, ela se degrada depois da mudança.
+:::
+
+## MQR em código
+
+```{.python filename="scripts/ident.py" code-line-numbers="|5|6|7|8"}
+def mqr(Phi, Y, lam=1.0, delta=1e3):
+    th = np.zeros(Phi.shape[1]); P = delta * np.eye(Phi.shape[1])
+    TH = np.zeros((len(Y), Phi.shape[1]))
+    for k, (phi, yk) in enumerate(zip(Phi, Y)):
+        eps = yk - phi @ th                     # erro a priori
+        L = P @ phi / (lam + phi @ P @ phi)     # ganho
+        th = th + L * eps                       # correção
+        P = (P - np.outer(L, phi @ P)) / lam    # covariância
+        TH[k] = th
+    return TH
+```
+
+[No C2000, as mesmas quatro linhas em `float`, com $p = 4$: algumas dezenas de multiplicações por período. Usado no controle FCS adaptativo do inversor ([ConversoresPotencia, VSI05](https://raphateixeira.github.io/ConversoresPotencia/)).]{.muted .smaller}
+
+# Caso real: filtro Sallen-Key na LaunchPad
+
+- O ensaio
+- O efeito de $T_s$
+- Modelo, validação e MQR
+
+## O ensaio {.small-slide}
+
+:::: {.columns}
+::: {.column width="40%"}
+Filtro passa-baixas de 2ª ordem (Sallen-Key, ganho unitário) ligado à LAUNCHXL-F28379D:
+
+- $u$: DAC-A → entrada do filtro
+- $y$: saída do filtro → ADC-A
+- PRBS de 8 bits, $1{,}0 \pm 0{,}4$ V, $T_b = 5$ ms
+- Gravado com $T_s = 1$ ms, 2000 amostras
+- Validação extra: onda quadrada $0{,}6 \leftrightarrow 1{,}4$ V
+
+[Ensaio de ProjetosCCS, *Identificação do filtro Sallen-Key*.]{.muted .smaller}
+:::
+::: {.column width="60%"}
+```{python}
+#| fig-width: 8.5
+#| fig-height: 5.6
+d = I.le_csv_ccs("dados/DadosPRBSSK01.csv"); u_sk, y_sk = d["uV"], d["yV"]
+g = I.le_csv_ccs("dados/DadosDegrauSK01.csv"); ug_sk, yg_sk = g["uV"], g["yV"]
+t_sk = 1e-3 * np.arange(u_sk.size)
+fig, ax = plt.subplots(2, 1, sharex=True)
+ax[0].step(t_sk, u_sk, where="post", color=AZUL, lw=1.2); ax[0].set_ylabel("u (V)")
+ax[1].plot(t_sk, y_sk, color=ROSA, lw=1.2); ax[1].set_ylabel("y (V)")
+ax[1].set_xlabel("t (s)"); ax[1].set_xlim(0, 0.8)
+ax[0].set_title("primeiros 0,8 s do ensaio PRBS")
+plt.tight_layout()
+```
+:::
+::::
+
+::: {.notes}
+Bits de 5 ms são curtos para um filtro com acomodação de ~120 ms: y quase nunca chega aos níveis 0,6 e 1,4 V. Mesmo assim os dados servem, como se verá; o ensaio recomendado depois foi Tb = 20 ms.
+:::
+
+## ARX(2, 2, 1) com os dados de 1 ms
+
+```{python}
+#| fig-width: 14
+#| fig-height: 4.4
+u0, y0 = 1.0, y_sk[:100].mean()
+mod = {}
+for M in (1, 5):
+    du, dy = u_sk[100::M] - u0, y_sk[100::M] - y0
+    n = int(0.7 * du.size)
+    a_, b_ = I.arx(du[:n], dy[:n], 2, 2, 1)
+    mod[M] = dict(a=a_, b=b_, du=du, dy=dy, n=n, Ts=M * 1e-3)
+    mod[M]["K"], mod[M]["z"], mod[M]["tau"] = I.ganho_e_tau(a_, b_, M * 1e-3)
+    mod[M]["fit1"] = I.fit(dy[n:], I.prediz(a_, b_, du, dy)[n:])
+    mod[M]["fits"] = I.fit(dy[n:], I.simula(a_, b_, du)[n:])
+    dug, dyg = ug_sk[::M] - ug_sk[0], yg_sk[::M] - yg_sk[0]
+    mod[M]["ysg"], mod[M]["fitg"] = I.simula(a_, b_, dug), I.fit(dyg, I.simula(a_, b_, dug))
+fig, ax = plt.subplots()
+tg = 1e-3 * np.arange(yg_sk.size)
+ax.plot(tg, yg_sk - yg_sk[0], color=ROSA, lw=3, label="degrau medido")
+ax.plot(tg, mod[1]["ysg"], color=LARANJA, label=f"ARX com Ts = 1 ms (FIT {V(mod[1]['fitg'], 0)} %)")
+ax.set_xlim(0, 1.0); ax.set_xlabel("t (s)"); ax.set_ylabel("y − y(0) (V)"); ax.legend(loc="upper left")
+```
+
+```{python}
+#| output: asis
+m1 = mod[1]
+print(f"Ganho estático {V(m1['K'])} (o filtro tem ganho 1); polo lento com τ = {V(1e3*m1['tau'][0], 0)} ms. "
+      f"Na validação, predição de um passo com FIT de **{V(m1['fit1'], 1)} %**, simulação livre com **{V(m1['fits'], 1)} %**.")
+```
+
+## Por que 1 ms atrapalha {.small-slide}
+
+::: {.incremental}
+- O polo lento do filtro ($\approx 36$ rad/s) anda só $\omega_1 T_s = 0{,}036$ por amostra: $y[k] \approx y[k-1]$
+- A predição de um passo acerta quase de graça: o FIT de um passo alto **não diz nada**
+- O que sobra para os coeficientes "explicarem" são os detalhes de uma amostra para a outra: ruído e o que um modelo de 2ª ordem não tem
+- Resultado: ganho e polo lento **errados** em simulação livre
+:::
+
+::: {.callout-tip .fragment title="Correção sem novo ensaio"}
+Com os **mesmos dados**, tomando uma amostra a cada 5 ($T_s = 5$ ms): os polos ficam em $\omega T_s \approx 0{,}18$ e $0{,}60$, dentro da faixa de Åström e Wittenmark.
+:::
+
+::: {.notes}
+Na nota original há também um "patamar" na subida (y salta 0,17 V e para ~10 ms), só nas subidas: não linear, provavelmente o amplificador operacional. Com 1 ms esse trecho pesa; com 5 ms quase some.
+:::
+
+## Modelo com $T_s = 5$ ms {.small-slide}
+
+```{python}
+#| output: asis
+m5 = mod[5]; a5, b5 = m5["a"], m5["b"]
+Vm = lambda x, d: V(x, d).replace(",", "{,}")
+print(f"""::: {{.eqx}}
+$$
+G(z) = \\frac{{{Vm(b5[0], 4)}\\,z^{{-1}} + {Vm(b5[1], 4)}\\,z^{{-2}}}}{{1 {Vm(a5[0], 4)}\\,z^{{-1}} + {Vm(a5[1], 4)}\\,z^{{-2}}}}
+$$
+:::
+""")
+w = -np.log(np.abs(m5["z"])) / m5["Ts"]
+print(f"- **Ganho estático** $B(1)/A(1)$ = {V(m5['K'], 3)}")
+print(f"- **Polos** $z$ = {V(m5['z'][0].real, 3)} e {V(m5['z'][1].real, 3)}: $\\tau = -T_s/\\ln z$ = "
+      f"{V(1e3*m5['tau'][0], 1)} ms e {V(1e3*m5['tau'][1], 1)} ms ({V(w.min(), 0)} e {V(w.max(), 0)} rad/s)")
+print(f"- **Validação** (30 % finais da PRBS): FIT de simulação livre de **{V(m5['fits'], 1)} %**; "
+      f"no degrau, **{V(m5['fitg'], 1)} %**")
+```
+
+::: {.takeaway .fragment}
+Mesmo filtro, mesmos dados: escolher bem o $T_s$ levou o ajuste no degrau de 68 % para 96 %. A estimativa por erro de saída (OE) dá praticamente o mesmo modelo.
+:::
+
+## Validação
+
+```{python}
+#| fig-width: 14
+#| fig-height: 5.4
+m5 = mod[5]; n5 = m5["n"]; t5 = 5e-3 * np.arange(m5["du"].size)
+fig, ax = plt.subplots(1, 2, gridspec_kw={"width_ratios": [1.3, 1]})
+ax[0].plot(t5[n5:], m5["dy"][n5:], color=ROSA, lw=3, label="medido")
+ax[0].plot(t5[n5:], I.simula(m5["a"], m5["b"], m5["du"])[n5:], color=VERDE, label="simulação livre")
+ax[0].set_title("30 % finais da PRBS"); ax[0].set_xlabel("t (s)"); ax[0].legend(loc="lower left")
+tg5 = 5e-3 * np.arange(m5["ysg"].size)
+ax[1].plot(tg, yg_sk - yg_sk[0], color=ROSA, lw=3, label="medido")
+ax[1].plot(tg5, m5["ysg"], color=VERDE, label="ARX, Ts = 5 ms")
+ax[1].plot(tg, mod[1]["ysg"], color=LARANJA, lw=1.6, label="ARX, Ts = 1 ms")
+ax[1].set_xlim(0, 0.6); ax[1].set_title("onda quadrada (outro ensaio)"); ax[1].set_xlabel("t (s)"); ax[1].legend(loc="lower right")
+plt.tight_layout()
+```
+
+## MQR nos dados reais {.small-slide}
+
+```{python}
+#| fig-width: 14
+#| fig-height: 4.6
+Phi5, Y5 = I.regressores(m5["du"], m5["dy"], 2, 2, 1)
+fig, ax = plt.subplots(1, 2)
+for a_, lam in ((ax[0], 1.0), (ax[1], 0.97)):
+    TH, _ = I.mqr(Phi5, Y5, lam=lam, delta=1e3)
+    lote = np.r_[m5["a"], m5["b"]]
+    for j, (nm, c) in enumerate(zip(["a₁", "a₂", "b₁ × 10", "b₂ × 10"], [AZUL, ROSA, VERDE, ROXO])):
+        esc = 10 if j > 1 else 1
+        a_.plot(5e-3 * np.arange(len(Y5)), esc * TH[:, j], color=c, label=nm)
+        a_.axhline(esc * lote[j], color=c, ls=":", lw=1.4)
+    a_.set_ylim(-2, 1.5); a_.set_xlabel("t (s)"); a_.set_title(f"λ = {V(lam, 2)}")
+ax[0].legend(ncol=4, loc="lower right")
+plt.tight_layout()
+```
+
+[Linhas pontilhadas: estimativa em lote (70 % dos dados). Com $\lambda = 1$ o MQR converge para ela em menos de 1 s; com $\lambda = 0{,}97$ ele oscila em torno, pronto para acompanhar uma mudança.]{.muted}
+
+## Do modelo identificado ao controle {.small-slide}
+
+::: {.incremental}
+- $G(z)$ identificado é a entrada direta do **PID digital** e da **alocação de polos** (Módulos 2 e 3)
+- O mesmo modelo, em espaço de estados, é o **modelo de predição do MPC** (Módulo 4)
+- Para controlar com outro período: `Gc = d2c(G, 'zoh')` e `c2d(Gc, 1e-3)`. Identifique no $T_s$ bom e converta
+- Com o MQR rodando junto do controlador: **controle adaptativo** (tópico complementar)
+:::
+
+::: {.takeaway .fragment}
+Identificação não termina no FIT: termina quando o **controlador projetado com o modelo funciona na planta**.
+:::
+
+# Ferramentas e prática
+
+- MATLAB
+- Python no navegador
+- Atividade
+
+## MATLAB: System Identification Toolbox {.small-slide}
+
+```{.matlab filename="ident_sk.m"}
+u = idinput(2000, 'prbs', [0 1/5], [-0.4 0.4]);   % PRBS com Tb = 5 Ts (projeto)
+
+dados = iddata(y, u, 1e-3);                % ensaio gravado com Ts = 1 ms
+dados = detrend(dados, 0);                 % retira o ponto de operação
+dados = resample(dados, 1, 5);             % filtra e decima: Ts = 5 ms
+ze = dados(1:280);  zv = dados(281:end);   % identificação | validação
+
+m_arx = arx(ze, [2 2 1]);                  % na, nb, nk
+m_oe  = oe(ze,  [2 2 1]);                  % erro de saída (iterativo)
+compare(zv, m_arx, m_oe)                   % FIT de simulação livre
+resid(zv, m_arx)                           % autocorrelação dos resíduos
+G = tf(m_arx)                              % G(z) para o projeto
+
+est = recursiveARX([2 2 1], 'ForgettingFactor', 0.98);   % MQR
+for k = 1:numel(y), [a, b] = est(y(k), u(k)); end
+```
+
+## Python ao vivo
+
+::: {.pyrun}
+```python
+import numpy as np
+
+# Planta "desconhecida": y[k] = 1,5 y[k-1] - 0,7 y[k-2] + u[k-1] + 0,5 u[k-2] + e
+rng = np.random.default_rng(0)
+N = 400
+u = np.sign(rng.standard_normal(N))        # troque por np.ones(N) (degrau) e compare
+y = np.zeros(N)
+for k in range(2, N):
+    y[k] = 1.5*y[k-1] - 0.7*y[k-2] + u[k-1] + 0.5*u[k-2] + 0.2*rng.standard_normal()
+
+k = np.arange(2, N)
+Phi = np.column_stack([-y[k-1], -y[k-2], u[k-1], u[k-2]])
+th, *_ = np.linalg.lstsq(Phi, y[k], rcond=None)
+print("a1, a2, b1, b2 =", th.round(3), "   (verdadeiro: -1,5  0,7  1  0,5)")
+print("cond(Phi'Phi) =", round(np.linalg.cond(Phi.T @ Phi)))
+```
+:::
+
+[Pyodide: roda no navegador, sem servidor. A primeira execução baixa cerca de 10 MB.]{.muted .smaller}
+
+## Pergunta
+
+::: {.quiz answer="b"}
+Um ARX identificado tem FIT de **98 %** na predição de um passo e **70 %** em simulação livre, nos dados de validação. A causa mais provável é:
+
+- O modelo está ótimo: 98 % é o que importa
+- $T_s$ pequeno demais: o modelo aprendeu basicamente $y[k] \approx y[k-1]$
+- A PRBS tem bits longos demais
+- O ruído de medida é nulo
+:::
+
+::: {.notes}
+Instrução por pares: votação individual, 2 min de discussão em duplas, nova votação. É exatamente o caso Sallen-Key com 1 ms.
+:::
+
+## Atividade 1: identificar a planta {.small-slide}
+
+::: {.incremental}
+1. **Projetar o ensaio**: estimar a constante de tempo com um degrau; escolher $T_s$, $T_b$, $n$ e a amplitude, justificando
+2. **Executar** na LaunchPad (motor CC, Buck ou Sallen-Key) e exportar os dados
+3. **Estimar** ARX em lote para ordens 1 a 4 e escolher a ordem (FIT de validação, AIC, resíduos)
+4. **Estimar** o mesmo modelo por MQR, com $\lambda = 1$ e $\lambda < 1$, e comparar com o lote
+5. **Entregar** $G(z)$, ganho, constantes de tempo e um relatório curto com as figuras de validação
+:::
+
+[O modelo desta atividade é a planta de referência das próximas: PID digital (Módulo 2), realimentação de estados (Módulo 3) e MPC (Módulo 4).]{.muted}
+
+## Resumo
+
+::: {.incremental}
+- **Mínimos quadrados**: $\hat{\boldsymbol{\theta}} = (\mathbf{A}^\mathsf{T}\mathbf{A})^{-1}\mathbf{A}^\mathsf{T}\mathbf{y}$; geometricamente, uma projeção; resolva por QR
+- **ARX**: a mesma regressão com saídas e entradas passadas em $\boldsymbol{\Phi}$; os coeficientes formam $G(z)$
+- **Experimento**: excitação persistente; PRBS com $0{,}44/T_b$ cobrindo a banda e $n\,T_b \gtrsim t_s$; $\omega T_s \approx 0{,}2$ a $0{,}6$
+- **Validação**: simulação livre em dados novos, FIT, resíduos brancos, ordem no joelho; cuidado com o viés por ruído na medida
+- **MQR**: o mesmo estimador, amostra a amostra; $\lambda$ troca rapidez por ruído
+:::
+
+## Para aprofundar {.small-slide}
+
+:::: {.columns}
+::: {.column width="50%"}
+**Leituras**
+
+- Ljung: cap. 4 (estruturas), 7 (erro de predição), 13 (experimento) e 16 (validação) [@ljung1999]
+- Aguirre: introdução em português, com muitos exemplos reais [@aguirre2015]
+- Söderström e Stoica: estatística e variáveis instrumentais [@soderstrom1989]
+- Åström e Wittenmark: MQR e controle adaptativo [@astrom2008adaptive]
+:::
+::: {.column width="50%"}
+**Material de origem e aplicações**
+
+- [Notas: Identificação de Sistemas](https://raphateixeira.github.io/Notas/) (ajuste de reta, PRBS, ARX)
+- [ConversoresPotencia](https://raphateixeira.github.io/ConversoresPotencia/): ARX do inversor (VSI02), PRBS no Buck, MQR no FCS adaptativo
+- Próximas aulas: SINDy e Koopman usam este mesmo estimador com regressores não lineares
+:::
+::::
+
+## Bibliografia
+
+::: {#refs}
+:::
+
+{{< include _encerramento-rtx.qmd >}}

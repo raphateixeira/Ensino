@@ -1,0 +1,105 @@
+---
+title: "Sistemas de Controle I"
+pagetitle: "Sistemas de Controle I"
+title-block-style: none
+toc: false
+---
+
+<!-- Página principal da disciplina, ligada ao cartão em ../index.qmd. Ao criar uma aula,
+     acrescente o cartão aqui (links .html: o Quarto não converte .qmd dentro de HTML bruto). -->
+<style>#title-block-header { display: none; }</style>
+
+::: {.rtx-hero}
+[Graduação em Engenharia Elétrica · 2026.4]{.rtx-eyebrow}
+
+# Sistemas de Controle I {.unnumbered .unlisted}
+
+Controle clássico: modelagem por função de transferência,
+resposta transitória de 1ª e 2ª ordem, erro de regime permanente, estabilidade (Routh-Hurwitz), lugar
+geométrico das raízes, resposta em frequência e controladores PID.
+
+[Prof. Dr. Raphael Teixeira]{.rtx-meta}
+
+::: {.rtx-acoes}
+[← Todas as disciplinas](../index.html){.rtx-btn}
+:::
+:::
+
+## Aulas
+
+```{=html}
+<div class="categoria-grid">
+<a class="categoria-card" href="Aulas/Aula00PlanoEnsino.html">
+  <h3>Aula 0</h3>
+  <p>Plano de ensino</p>
+</a>
+<a class="categoria-card" href="Aulas/Aula01Introducao.html">
+  <h3>Aula 1</h3>
+  <p>Introdução a sistemas de controle</p>
+</a>
+<a class="categoria-card" href="Aulas/Aula02ModelagemFT.html">
+  <h3>Aula 2</h3>
+  <p>Modelagem e função de transferência</p>
+</a>
+<a class="categoria-card" href="Aulas/Aula03PrimeiraOrdem.html">
+  <h3>Aula 3</h3>
+  <p>Sistemas de primeira ordem</p>
+</a>
+<a class="categoria-card" href="Aulas/Aula04SegundaOrdem.html">
+  <h3>Aula 4</h3>
+  <p>Sistemas de segunda ordem</p>
+</a>
+<a class="categoria-card" href="Aulas/Aula05ExerciciosPrimeiraSegundaOrdem.html">
+  <h3>Aula 5</h3>
+  <p>Exercícios: sistemas de primeira e segunda ordem</p>
+</a>
+<a class="categoria-card" href="Aulas/Aula06ErroRegimePermanente.html">
+  <h3>Aula 6</h3>
+  <p>Erro de regime permanente</p>
+</a>
+<a class="categoria-card" href="Aulas/Aula07Estabilidade.html">
+  <h3>Aula 7</h3>
+  <p>Estabilidade e critério de Routh-Hurwitz</p>
+</a>
+<a class="categoria-card" href="Aulas/Aula08LGR.html">
+  <h3>Aula 8</h3>
+  <p>Lugar geométrico das raízes (LGR)</p>
+</a>
+<a class="categoria-card" href="Aulas/Aula08Ex01PrimeiraOrdem.html">
+  <h3>Aula 8 · Exemplo 1</h3>
+  <p>LGR na prática: primeira ordem (P e PI) e o plano s</p>
+</a>
+<a class="categoria-card" href="Aulas/Aula08Ex02DuploIntegrador.html">
+  <h3>Aula 8 · Exemplo 2</h3>
+  <p>LGR na prática: duplo integrador (P, PD, PID)</p>
+</a>
+<a class="categoria-card" href="Aulas/Aula08Ex03MotorCC.html">
+  <h3>Aula 8 · Exemplo 3</h3>
+  <p>LGR na prática: velocidade de um motor CC (P, PI, PID)</p>
+</a>
+<a class="categoria-card" href="Aulas/Aula08Ex04ServoPosicao.html">
+  <h3>Aula 8 · Exemplo 4</h3>
+  <p>LGR na prática: servo de posição (P → PD)</p>
+</a>
+<a class="categoria-card" href="Aulas/Aula09RespostaFrequencia.html">
+  <h3>Aula 9</h3>
+  <p>Resposta em frequência (fora da edição 2026.4)</p>
+</a>
+<a class="categoria-card" href="Aulas/Aula10PID.html">
+  <h3>Aula 10</h3>
+  <p>Controlador PID</p>
+</a>
+<a class="categoria-card categoria-card--verde" href="Aulas/GuiaBibliografico.html">
+  <h3>Guia de estudos</h3>
+  <p>Onde estudar cada tema nos livros-texto</p>
+</a>
+<a class="categoria-card categoria-card--verde" href="Projeto/CatalogoModulos.html">
+  <h3>Projeto</h3>
+  <p>Catálogo de temas: escolha do sistema físico</p>
+</a>
+<a class="categoria-card categoria-card--verde" href="Exercicios/Lista01ModelagemPrimeiraSegundaOrdem.html">
+  <h3>Lista de exercícios 1</h3>
+  <p>Modelagem e resposta de sistemas de 1ª e 2ª ordem</p>
+</a>
+</div>
+```

@@ -1,0 +1,280 @@
+---
+title: "LGR na prática: sistema de primeira ordem"
+subtitle: "Sistemas de Controle I · Aula 8 · Exemplo 1"
+author: "Prof. Dr. Raphael Teixeira"
+institute: "Universidade Federal do Pará"
+format: rtx-revealjs
+csl: ../apa.csl
+link-citations: true
+suppress-bibliography: true
+resources:
+  - "anims/*"
+---
+
+# A planta
+
+- Primeira ordem padrão
+- Especificações
+
+## Primeira ordem padrão
+
+::: {.eqx}
+$$
+G(s) = \frac{\eq{a}{K}}{\eq{b}{\tau}\,s + 1} = \frac{2}{0{,}5\,s + 1} = \frac{4}{s + \eq{c}{2}}
+$$
+
+::: {.eqx-defs}
+- [$K = 2$]{.t-a} ganho estático: degrau de 1 na entrada leva a saída a 2
+- [$\tau = 0{,}5$ s]{.t-b} constante de tempo: 63 % do caminho em $\tau$, acomodação em $4\tau = 2$ s
+- [$s = -2$]{.t-c} o polo, $-1/\tau$: quanto mais à esquerda, mais rápido
+:::
+:::
+
+[Circuito RC com amplificador, temperatura de um forno, velocidade de um motor com indutância desprezada (Exemplo 3): todos têm essa forma (Aula 3).]{.muted .smaller}
+
+::: {.notes}
+Realimentação unitária e controlador C(s) antes da planta. Nas animações deste exemplo o slider K é o ganho K_c do controlador; o ganho 4 da planta já está incluído.
+:::
+
+## O que queremos
+
+::: {.eqx}
+$$
+G(s) = \frac{K}{\tau s + 1} = \frac{4}{s + 2}
+$$
+:::
+
+Resposta ao degrau em malha fechada com:
+
+1. **Erro nulo** em regime ao degrau
+2. **Sobressinal** de no máximo 5 %
+3. **Acomodação** (2 %) em até 1 s
+
+# Polos e especificações no plano $s$
+
+- Polo real
+- Par complexo
+- As curvas do `sgrid`
+- Regiões de projeto
+
+## Polo real: só velocidade
+
+::: {style="height: 640px"}
+<canvas class="nova-canvas" data-nova-anim="polo-resposta" data-p="-2" data-k="2" data-controls="p"></canvas>
+:::
+
+::: {.notes}
+Revisão rápida da Aula 3, já com o ganho K = 2 da planta: polo em −a ⇒ y = K(1 − e^{−at}), τ = 1/a, t_s = 4/a. Nunca há sobressinal. Arraste para −4: t_s cai pela metade. Arraste para o semiplano direito: instável.
+:::
+
+## Par complexo: quatro números, uma posição
+
+::: {.eqx .deriv style="--deriv-lhs: 300px; --deriv-rhs: 640px;"}
+::: {.step}
+[$P(s)$]{.lhs} [$= s^2 + 2\zeta\omega_n s + \omega_n^2$]{.rhs} [forma padrão (Aula 4)]{.why}
+:::
+::: {.step .fragment}
+[$s_{1,2}$]{.lhs} [$= -\eq{b}{\zeta\omega_n} \pm j\,\eq{c}{\omega_n\sqrt{1-\zeta^2}}$]{.rhs} [$0 < \zeta < 1$]{.why}
+:::
+::: {.step .fragment}
+[$s_{1,2}$]{.lhs} [$= -\eq{b}{\sigma} \pm j\,\eq{c}{\omega_d}$]{.rhs} [parte real e parte imaginária]{.why}
+:::
+:::
+
+:::: {.columns .fragment}
+::: {.column width="50%"}
+- [$|s| = \omega_n$]{.t-d}: **distância** à origem
+- [$\cos\theta = \zeta$]{.t-a}: **ângulo** com o eixo real negativo
+:::
+::: {.column width="50%"}
+- [$\sigma = \zeta\omega_n$]{.t-b}: distância ao eixo $j\omega$
+- [$\omega_d$]{.t-c}: altura, a frequência da oscilação
+:::
+::::
+
+::: {.notes}
+Desenhe no quadro: o polo, o vetor até a origem (ω_n), o ângulo θ com o eixo real negativo, as projeções σ e ω_d. Pitágoras: σ² + ω_d² = ω_n². Trigonometria: σ = ω_n cos θ ⇒ cos θ = ζ.
+:::
+
+## O plano $s$ e o `sgrid`
+
+::: {style="height: 700px"}
+<canvas class="nova-canvas" data-nova-anim="plano-s" data-step="false" data-zeta="0.6" data-wn="5" data-lim="6"></canvas>
+:::
+
+::: {.notes}
+Figura de referência para o quadro: raios de ζ e círculos de ω_n como o sgrid desenha, e as quatro grandezas de um polo. Arraste o polo para ler os valores; a resposta ao degrau vem no slide "O plano s ao vivo".
+:::
+
+## Cada parâmetro é uma curva do plano $s$ {.small-slide}
+
+| Mantendo constante | Lugar dos polos | Governa | Fórmula |
+|:--|:--|:--|:--|
+| [$\zeta$]{.t-a} | **raio** saindo da origem | sobressinal | $\text{OS}\% = 100\,e^{-\pi\zeta/\sqrt{1-\zeta^2}}$ |
+| [$\omega_n$]{.t-d} | **círculo** centrado na origem | rapidez geral | $t_r \approx 1{,}8/\omega_n$ |
+| [$\sigma = \zeta\omega_n$]{.t-b} | **reta vertical** | acomodação | $t_s \approx 4/\sigma$ |
+| [$\omega_d$]{.t-c} | **reta horizontal** | instante de pico | $t_p = \pi/\omega_d$ |
+
+: {tbl-colwidths="[20,30,20,30]"}
+
+::: {.callout-insight .fragment label="O sgrid do MATLAB"}
+`sgrid` desenha os **raios de $\zeta$** e os **círculos de $\omega_n$**. As retas de $\sigma$ e de $\omega_d$ ficam por sua conta (`xline`, `yline`).
+:::
+
+## O plano $s$ ao vivo
+
+::: {style="height: 700px"}
+<canvas class="nova-canvas" data-nova-anim="plano-s" data-zeta="0.5" data-wn="3" data-lim="6" data-controls="zeta,wn"></canvas>
+:::
+
+::: {.notes}
+Quatro experimentos: (1) slider ζ fixo, varie ω_n: o polo corre pelo raio, OS% não muda, a resposta só muda de escala de tempo. (2) ω_n fixo, varie ζ: corre pelo círculo. (3) Arraste o polo na vertical: σ fixo, t_s quase igual, OS% muda. (4) Arraste na horizontal: ω_d fixo, t_p igual.
+:::
+
+## Especificações viram regiões
+
+::: {.eqx .deriv style="--deriv-lhs: 320px; --deriv-rhs: 520px;"}
+::: {.step}
+[$\text{OS}\% \leq 5\,\%$]{.lhs} [$\Rightarrow\ \zeta \geq 0{,}69$ (usamos $0{,}7$)]{.rhs} [setor de $\pm 45°$: raios do `sgrid`]{.why}
+:::
+::: {.step .fragment}
+[$t_s \leq 1$ s]{.lhs} [$\Rightarrow\ \sigma \geq 4$]{.rhs} [à esquerda da reta $\operatorname{Re}(s) = -4$]{.why}
+:::
+::: {.step .fragment}
+[$e_\infty = 0$]{.lhs} [$\Rightarrow$ integrador na malha]{.rhs} [não é região: é **tipo** (Aula 6)]{.why}
+:::
+:::
+
+## A região de projeto ao vivo
+
+::: {style="height: 700px"}
+<canvas class="nova-canvas" data-nova-anim="plano-s" data-zeta="0.6" data-wn="5" data-lim="8" data-zmin="0.7" data-smin="4" data-controls="zeta,wn"></canvas>
+:::
+
+::: {.notes}
+O polo inicial (−3 ± j4) falha nas duas especificações. Arraste o polo para fora da região verde e mostre qual especificação falha (✗ em vermelho). Polo real (ζ = 1) também serve, desde que à esquerda de −4.
+:::
+
+## Verificação
+
+::: {.quiz answer="c"}
+Um par de polos em $s = -3 \pm j4$ tem:
+
+- $\omega_n = 4$, $\zeta = 0{,}75$, $t_s \approx 1{,}0$ s
+- $\omega_n = 7$, $\zeta = 0{,}43$, $t_s \approx 0{,}6$ s
+- $\omega_n = 5$, $\zeta = 0{,}6$, $t_s \approx 1{,}3$ s
+- $\omega_n = 5$, $\zeta = 0{,}8$, $t_s \approx 1{,}0$ s
+:::
+
+::: {.notes}
+ω_n = √(9+16) = 5; ζ = 3/5 = 0,6 (OS% ≈ 9,5 %); σ = 3 ⇒ t_s ≈ 1,33 s; ω_d = 4 ⇒ t_p ≈ 0,79 s.
+:::
+
+# Controle proporcional
+
+- O LGR do P
+
+## O LGR do controlador P
+
+::: {.eqx .deriv style="--deriv-lhs: 380px; --deriv-rhs: 480px;"}
+::: {.step}
+[$1 + K_c\,G(s) = 0$]{.lhs} [$\iff s + 2 + 4K_c = 0$]{.rhs} [um polo só]{.why}
+:::
+::: {.step .fragment}
+[$s$]{.lhs} [$= -(2 + 4K_c)$]{.rhs} [anda para a esquerda pelo eixo real]{.why}
+:::
+::: {.step .fragment}
+[$e_\infty$]{.lhs} [$= \dfrac{1}{1 + 2K_c}$]{.rhs} [tipo 0: $K_p = G(0)\,K_c = 2K_c$]{.why}
+:::
+:::
+
+## O LGR do P ao vivo
+
+::: {style="height: 680px"}
+<canvas class="nova-canvas" data-nova-anim="lgr" data-poles="-2" data-gain="4" data-xlim="-12,2" data-ylim="-3,3" data-k="1" data-kmax="10" data-step="true" data-tend="3" data-yr="-0.2,1.2" data-loop="false" data-controls="k"></canvas>
+:::
+
+::: {.notes}
+Um ramo, do polo −2 até −∞. O polo de malha fechada nunca sai do eixo real: nunca há sobressinal, para qualquer K_c. Mostre que o degrau para cada vez mais perto de 1, sem chegar.
+:::
+
+# Controle PI
+
+- Um polo e um zero
+- Onde pôr o zero
+- Cancelamento
+
+## PI: um polo na origem e um zero
+
+::: {.eqx .deriv style="--deriv-lhs: 300px; --deriv-rhs: 620px;"}
+::: {.step}
+[$C(s)$]{.lhs} [$= \eq{a}{K_c} + \dfrac{\eq{b}{K_i}}{s} = K_c\,\dfrac{s + z}{s}$]{.rhs} [$z = K_i/K_c$]{.why}
+:::
+::: {.step .fragment}
+[$C(s)\,G(s)$]{.lhs} [$= K_c\,\dfrac{4\,(s + z)}{s\,(s + 2)}$]{.rhs} [tipo 1: erro nulo ao degrau]{.why}
+:::
+:::
+
+::: {.notes}
+Regra do eixo real (Aula 8) para cada caso. z < 2: trechos [−z, 0] e (−∞, −2]. z > 2: [−2, 0] e (−∞, −z], com separação e chegada (círculo centrado no zero).
+:::
+
+## Onde pôr o zero? Explore
+
+::: {style="height: 680px"}
+<canvas class="nova-canvas" data-nova-anim="lgr" data-poles="0,-2" data-gain="4" data-z="-4" data-xlim="-12,2" data-ylim="-6,6" data-k="1" data-kmax="6" data-zeta="0.7" data-step="true" data-tend="3" data-yr="-0.2,1.4" data-loop="false" data-controls="k,z"></canvas>
+:::
+
+::: {.notes}
+Comece com o zero em −4 e K_c = 1: polos −3 ± j2,65, ζ = 0,75. A fórmula prevê OS% = 2,8 %, mas a simulação dá 7,9 %: o zero de malha fechada em −4 acelera a subida e aumenta o sobressinal. Depois leve o zero para −1: tudo real, mas um polo fica entre 0 e −1 (t_s ≈ 2,6 s com K_c = 1,5). Termine com o zero em −2.
+:::
+
+## Cancelamento: zero sobre o polo
+
+::: {.eqx .deriv style="--deriv-lhs: 300px; --deriv-rhs: 700px;"}
+::: {.step}
+[$C(s)\,G(s)$]{.lhs} [$= K_c\,\dfrac{4\,\eq{a}{(s + 2)}}{s\,\eq{a}{(s + 2)}} = \dfrac{4K_c}{s}$]{.rhs} [$z = 2 = 1/\tau$]{.why}
+:::
+::: {.step .fragment}
+[$H(s)$]{.lhs} [$= \dfrac{4K_c}{s + 4K_c}$]{.rhs} [1ª ordem, ganho **1**]{.why}
+:::
+::: {.step .fragment}
+[$t_s = \dfrac{4}{4K_c} \leq 1$ s]{.lhs} [$\Rightarrow\ K_c \geq 1$; com folga, $K_c = 1{,}5$, $K_i = 3$]{.rhs} [polo em $-6$]{.why}
+:::
+:::
+
+::: {.callout-tip .fragment title="Resultado"}
+Erro nulo ✓, $\text{OS}\% = 0$ ✓, $t_s = 0{,}65$ s ✓. A malha fechada é de 1ª ordem com **ganho 1** e polo onde quisermos.
+:::
+
+::: {.notes}
+Regra prática para planta de 1ª ordem: K_i/K_c = 1/τ, isto é, T_i = τ. É a sintonia "por cancelamento" que reaparece no motor CC (Exemplo 3).
+:::
+
+## O PI de cancelamento ao vivo
+
+::: {style="height: 680px"}
+<canvas class="nova-canvas" data-nova-anim="lgr" data-poles="0,-2" data-zeros="-2" data-gain="4" data-xlim="-12,2" data-ylim="-6,6" data-k="1.5" data-kmax="6" data-zeta="0.7" data-step="true" data-tend="3" data-yr="-0.2,1.4" data-loop="false" data-controls="k"></canvas>
+:::
+
+::: {.notes}
+O LGR é só o eixo real a partir da origem. K_c escolhe a posição do polo: rapidez sem sobressinal e sem erro. O limite real é o atuador: u(0⁺) = K_c.
+:::
+
+## Exercícios {.small-slide}
+
+Para $G(s) = \dfrac{4}{s + 2}$:
+
+1. Que $K_c$ do controlador P dá erro de 2 %? Onde fica o polo e quanto vale $u(0^+)$?
+2. PI de cancelamento com $t_s = 0{,}5$ s: calcule $K_c$ e $K_i$.
+3. PI com zero em $-4$: mostre que $\zeta \geq 0{,}707$ para todo $K_c$ (mínimo em $K_c = 0{,}5$). Por que o $\text{OS}\%$ simulado nesse ponto (6,7 %) passa dos 4,3 % da fórmula?
+4. Um par de polos em $-4 \pm j4$: calcule $\zeta$, $\omega_n$, $\text{OS}\%$, $t_p$ e $t_s$ e marque no plano $s$.
+5. Se o polo da planta for $-1{,}6$ em vez de $-2$, o que acontece com o PI de cancelamento de $z = 2$?
+6. Confira tudo no MATLAB com `rlocus`, `sgrid` e `stepinfo`.
+
+<script src="anims/nova-anim.js"></script>
+<script src="anims/polo-resposta.js"></script>
+<script src="anims/plano-s.js"></script>
+<script src="anims/lgr.js"></script>
+
+{{< include _encerramento-rtx.qmd >}}

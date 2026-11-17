@@ -1,0 +1,158 @@
+---
+title: "Plano de Ensino"
+subtitle: "Tópicos Especiais em Controle"
+author: "Prof. Dr. Raphael Teixeira"
+institute: "Universidade Federal do Pará"
+format: rtx-revealjs
+csl: ../apa.csl
+link-citations: true
+---
+
+# A disciplina
+
+- Identificação
+- Ementa
+- Fio condutor
+
+## Identificação
+
+::: {.columns}
+::: {.column width="55%"}
+
+| | |
+|:--|:--|
+| **Curso** | Engenharia Elétrica |
+| **Disciplina** | Tópicos Especiais em Controle |
+| **Carga horária** | 60 horas |
+| **Natureza** | Optativa |
+| **Período letivo** | a definir |
+| **Pré-requisitos** | Sistemas de Controle I e II |
+
+:::
+::: {.column width="45%"}
+
+Prof. Dr. Raphael Teixeira
+
+raphaelbt@ufpa.br
+
+[Faculdade de Engenharia Elétrica · Campus de Tucuruí]{.muted}
+
+:::
+:::
+
+## Ementa
+
+::: {.columns}
+::: {.column width="50%"}
+
+1. Identificação de sistemas: modelos ARX/ARMAX, mínimos quadrados, sinais de excitação (PRBS), validação
+2. Controle digital: amostragem, transformada $Z$, discretização de controladores
+3. Espaço de estados discreto: realimentação de estados, observadores, LQR
+4. Controle preditivo (MPC): horizonte, custo, restrições, otimização quadrática
+
+:::
+::: {.column width="50%"}
+
+5. SINDy: identificação esparsa de modelos no espaço de estados a partir de dados
+6. Redes neurais artificiais: perceptron multicamadas, treinamento, redes recorrentes (RNN, LSTM, GRU) para modelagem dinâmica
+7. Tópicos complementares (ver adiante)
+
+:::
+:::
+
+## Fio condutor
+
+**Do dado ao controlador.** Cada módulo responde a uma pergunta da cadeia:
+
+1. Como obter um modelo a partir de medições? [identificação, SINDy, redes neurais]{.muted}
+2. Como levar esse modelo para o computador que controla? [controle digital, espaço de estados discreto]{.muted}
+3. Como usar o modelo para decidir a ação de controle respeitando limites? [MPC]{.muted}
+
+[Uma mesma planta de laboratório (motor CC, conversor Buck ou aeropêndulo) acompanha a disciplina: ensaio, identificação, projeto e implementação.]{.muted .smaller}
+
+::: {.notes}
+Escolher a planta de referência no início do semestre conforme a disponibilidade do laboratório e das placas C2000 (LAUNCHXL-F28379D).
+:::
+
+# Conteúdo
+
+- Módulos e cronograma
+- Tópicos complementares
+
+## Módulos 1 a 3: modelo e implementação
+
+- **Identificação de sistemas** [@ljung1999; @aguirre2015]
+  - Estrutura de modelos (FIR, ARX, ARMAX, OE), mínimos quadrados e mínimos quadrados recursivos
+  - Projeto do experimento: PRBS, taxa de amostragem, validação cruzada
+- **Controle digital** [@astrom1997; @ogata1995]
+  - Amostragem e retenção, transformada $Z$, mapeamento $s \to z$
+  - Discretização (Tustin, ZOH), PID digital, efeitos de atraso e quantização
+- **Espaço de estados discreto** [@franklin1998]
+  - $x_{k+1} = A x_k + B u_k$: alocação de polos, observador, integrador
+  - LQR discreto como ponte para o MPC
+
+## Módulos 4 a 6: otimização e dados
+
+- **Controle preditivo** [@camacho2007; @rawlings2017; @wang2009]
+  - Predição, função custo, horizonte deslizante, restrições em $u$ e $\Delta u$
+  - MPC como problema de programação quadrática; implementação em tempo real
+- **SINDy** [@brunton2016sindy; @brunton2022]
+  - Biblioteca de funções candidatas, regressão esparsa (STLSQ), modelos com entrada (SINDYc)
+  - Do modelo identificado ao controlador (SINDy + MPC)
+- **Redes neurais** [@haykin2009; @goodfellow2016]
+  - Perceptron multicamadas, retropropagação, regularização
+  - Redes recorrentes (RNN, LSTM, GRU) como modelos dinâmicos NARX
+
+## Tópicos complementares (sugestões)
+
+Escolhidos conforme o interesse da turma e o tempo disponível:
+
+- **Filtro de Kalman** e estimação de estados [@simon2006]
+- **Controle baseado em dados sem modelo explícito**: DeePC [@coulson2019deepc]
+- **Operador de Koopman e DMD**: modelos lineares para dinâmicas não lineares [@brunton2022]
+- **Aprendizado por reforço** aplicado a controle [@sutton2018]
+- **Controle adaptativo**: MQR + alocação de polos (regulador auto-ajustável)
+- **Implementação embarcada**: controladores digitais e MPC em DSP (TI C2000)
+
+## Cronograma previsto
+
+::: {.columns}
+::: {.column width="50%"}
+
+1. Identificação de sistemas · 4 semanas
+2. Controle digital · 2 semanas
+3. Espaço de estados discreto · 2 semanas
+
+:::
+::: {.column width="50%"}
+
+4. Controle preditivo · 3 semanas
+5. SINDy · 2 semanas
+6. Redes neurais e recorrentes · 2 semanas
+7. Tópicos complementares e projetos · 1 semana
+
+:::
+:::
+
+# Avaliação e ferramentas
+
+## Avaliação (proposta)
+
+- **Atividades computacionais** por módulo, com relatório curto: 40 %
+- **Projeto final**: identificar, projetar e simular (ou implementar) o controle de uma planta: 60 %
+  - Apresentação oral e relatório no formato de artigo
+
+[O projeto final retoma a planta de referência e usa pelo menos dois métodos da disciplina (por exemplo, SINDy + MPC, ou rede recorrente + controle digital).]{.muted .smaller}
+
+## Ferramentas
+
+- **MATLAB/Simulink**: System Identification Toolbox, Control System Toolbox, MPC Toolbox
+- **Python**: `numpy`, `scipy`, `python-control`, `pysindy`, `cvxpy`, `pytorch`
+- **Laboratório**: placa TI LAUNCHXL-F28379D (Code Composer Studio) para aquisição e controle em tempo real
+
+## Bibliografia
+
+::: {#refs}
+:::
+
+{{< include _encerramento-rtx.qmd >}}

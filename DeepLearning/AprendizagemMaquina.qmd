@@ -1,0 +1,44 @@
+---
+title: "Aprendizagem de Máquina"
+pagetitle: "Aprendizagem de Máquina"
+title-block-style: none
+toc: false
+---
+
+<!-- Página principal da disciplina, ligada ao cartão em ../index.qmd. Ao criar uma aula,
+     acrescente o cartão aqui (links .html: o Quarto não converte .qmd dentro de HTML bruto). -->
+<style>#title-block-header { display: none; }</style>
+
+::: {.rtx-hero}
+[Mestrado em Computação Aplicada (PPCA)]{.rtx-eyebrow}
+
+# Aprendizagem de Máquina {.unnumbered .unlisted}
+
+Com o Prof. Dr. Cleison Silva. Fundamentos de aprendizado
+supervisionado e não supervisionado e redes neurais.
+
+[Prof. Dr. Raphael Teixeira]{.rtx-meta}
+
+::: {.rtx-acoes}
+[← Todas as disciplinas](../index.html){.rtx-btn}
+:::
+:::
+
+## Aulas
+
+```{=html}
+<div class="categoria-grid">
+<a class="categoria-card" href="Notas/Aula01DeepLearning.html">
+  <h3>Aula 1</h3>
+  <p>Deep Learning: introdução, fundamentos e aplicações</p>
+</a>
+<a class="categoria-card" href="Notas/Aula02aProbabilidades.html">
+  <h3>Aula 2</h3>
+  <p>Probabilidades</p>
+</a>
+<a class="categoria-card categoria-card--verde" href="Notas/NotaHaykin01.html">
+  <h3>Nota</h3>
+  <p>O perceptron (Haykin)</p>
+</a>
+</div>
+```
