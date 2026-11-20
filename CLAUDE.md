@@ -20,7 +20,7 @@ Controle, optativa) foi criada em 2026-11-17 já no tema RTx.
   `format:` em `_metadata.yml` (é somado ao do documento e gera saída dupla). `_metadata.yml` só
   para bibliografia (CircuitosCA, ControleClassico, DeepLearning).
 - Tema Nova (`format: nova-revealjs`): extensão em `_extensions/nova/` na raiz (cópia idêntica à do
-  NovaPresent/ConversoresPotencia/MicrorredeCAMTUC; atualizar copiando). Slides Nova não declaram tema nem
+  NovaPresent/ConversoresPotencia/Microrrede; atualizar copiando). Slides Nova não declaram tema nem
   tamanho; usam `resources: - "anims/*"` e `{{< include _encerramento.qmd >}}`. Já migrada:
   `CircuitosCA/Notas/Aula05Potencia.qmd` (animações em `CircuitosCA/Notas/anims/potencia.js`); `ControleClassico/Aulas/Aula08LGR.qmd` (LGR, animações em `ControleClassico/Aulas/anims/lgr.js`; o encerramento lá é `_encerramento-nova.qmd`).
 - Tema RTx (`format: rtx-revealjs`, desde 2026-11-16): visual do TemaRTx (branco, Roboto/Lato,
